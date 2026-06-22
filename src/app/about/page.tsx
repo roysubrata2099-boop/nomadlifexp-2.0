@@ -1,105 +1,64 @@
-import Link from "next/link";
-
 export default function AboutPage() {
     return (
-        <main style={{ maxWidth: "900px", margin: "0 auto", padding: "80px 24px" }}>
+        <main style={{
+            maxWidth: "900px",
+            margin: "0 auto",
+            padding: "80px 20px",
+            lineHeight: "1.7",
+            color: "#e2e8f0",
+            background: "#0f172a",
+            minHeight: "100vh"
+        }}>
 
-            {/* HERO */}
-            <section style={{ textAlign: "center" }}>
-                <h1 style={{ fontSize: "3rem", fontWeight: 800 }}>
-                    About NomadLifeXP
-                </h1>
+            <h1>About NomadLifeXP</h1>
 
-                <p style={{ color: "#94a3b8", marginTop: "15px", fontSize: "1.1rem" }}>
-                    A structured life system built to replace motivation with systems.
-                </p>
-            </section>
+            <p>
+                NomadLifeXP is a structured self-transformation system designed to replace motivation with systems.
+                It is built for people who struggle with consistency, discipline, focus, and mental clarity in a highly distracting world.
+            </p>
 
-            {/* CORE IDEA */}
-            <section style={{ marginTop: "70px" }}>
-                <h2>What is NomadLifeXP?</h2>
+            <p>
+                Most people already know what to do. The real problem is not knowledge — it is execution.
+                Without structure, even the best intentions fail under distraction, stress, and inconsistency.
+            </p>
 
-                <p style={{ color: "#94a3b8", lineHeight: 1.8 }}>
-                    NomadLifeXP is not a motivation-based self-help blog.
-                    It is a structured life operating system designed to rebuild discipline,
-                    physical performance, yoga practice, and mental clarity through repeatable daily frameworks.
-                </p>
+            <h2>Why This System Exists</h2>
 
-                <p style={{ color: "#94a3b8", lineHeight: 1.8, marginTop: "15px" }}>
-                    Most people already know what they should do — train, focus, stay consistent.
-                    The failure is not knowledge. It is system design.
-                </p>
-            </section>
+            <p>
+                Modern life is optimized for distraction, not focus. Short-form content, notifications, and constant stimulation
+                weaken attention span and break long-term discipline.
+            </p>
 
-            {/* PRINCIPLE */}
-            <section style={{ marginTop: "70px" }}>
-                <h2>Core Principle</h2>
+            <p>
+                NomadLifeXP was created to reverse that pattern by rebuilding behavior through structure instead of motivation.
+            </p>
 
-                <div
-                    style={{
-                        marginTop: "20px",
-                        padding: "20px",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        borderRadius: "12px",
-                        background: "rgba(255,255,255,0.03)"
-                    }}
-                >
-                    <p style={{ fontSize: "1.2rem", color: "#fff" }}>
-                        If your life has no structure, motivation will always fail you.
-                    </p>
-                </div>
-            </section>
+            <h2>Core Philosophy</h2>
 
-            {/* SYSTEM */}
-            <section style={{ marginTop: "70px" }}>
-                <h2>The Core System</h2>
+            <p>
+                Growth is not emotional. It is structural.
+                Identity is not something you decide — it is something you build through repetition.
+            </p>
 
-                <ul style={{ color: "#94a3b8", lineHeight: 2 }}>
-                    <li><strong>Discipline</strong> → consistency engine</li>
-                    <li><strong>Fitness</strong> → energy + physical control</li>
-                    <li><strong>Yoga</strong> → awareness + breath + mobility</li>
-                    <li><strong>Mental Clarity</strong> → focus + emotional control</li>
-                </ul>
-            </section>
+            <p>
+                Small actions repeated daily are more powerful than occasional bursts of motivation.
+                Over time, discipline becomes automatic and no longer requires effort or negotiation.
+            </p>
 
-            {/* WHY IT EXISTS */}
-            <section style={{ marginTop: "70px" }}>
-                <h2>Why This System Exists</h2>
+            <h2>The Four Pillars</h2>
 
-                <p style={{ color: "#94a3b8", lineHeight: 1.8 }}>
-                    Modern environments are engineered for distraction.
-                    Attention is fragmented, habits are unstable, and focus is constantly broken.
-                </p>
+            <ul>
+                <li><b>Discipline</b> — consistency under resistance</li>
+                <li><b>Fitness</b> — physical energy and control</li>
+                <li><b>Yoga</b> — awareness, breath, and balance</li>
+                <li><b>Mental Clarity</b> — focus and emotional stability</li>
+            </ul>
 
-                <p style={{ color: "#94a3b8", lineHeight: 1.8, marginTop: "15px" }}>
-                    NomadLifeXP exists to reverse this pattern by replacing motivation cycles
-                    with structured behavioral systems that work even on low-energy days.
-                </p>
-            </section>
+            <h2>Evolve in Motion</h2>
 
-            {/* CTA */}
-            <section style={{ marginTop: "90px", textAlign: "center" }}>
-                <h2>Start Building Your System</h2>
-
-                <p style={{ color: "#94a3b8", marginTop: "10px" }}>
-                    You don’t need more information. You need execution structure.
-                </p>
-
-                <Link
-                    href="/blog"
-                    style={{
-                        display: "inline-block",
-                        marginTop: "25px",
-                        background: "#8b5cf6",
-                        padding: "14px 26px",
-                        borderRadius: "10px",
-                        color: "white",
-                        fontWeight: 600
-                    }}
-                >
-                    Enter Blog System
-                </Link>
-            </section>
+            <p style={{ color: "#facc15", fontWeight: "bold" }}>
+                Discipline • Fitness • Yoga • Mental Clarity
+            </p>
 
         </main>
     );

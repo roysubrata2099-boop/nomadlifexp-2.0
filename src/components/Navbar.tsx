@@ -1,60 +1,108 @@
+// src/components/Navbar.tsx
 import Link from "next/link";
 
 export default function Navbar() {
+    // Main structural site links
+    const mainLinks = [
+        { name: "Home", href: "/" },
+        { name: "Blog", href: "/blog" },
+        { name: "About", href: "/about" },
+        { name: "Start Here", href: "/start-here" },
+    ];
+
+    // Article category dynamic filter links
+    const categoryLinks = [
+        { name: "Mindset", href: "/blog/category/mindset" },
+        { name: "Discipline", href: "/blog/category/discipline" },
+        { name: "Fitness", href: "/blog/category/fitness" },
+        { name: "Yoga", href: "/blog/category/yoga" },
+    ];
+
     return (
         <header
             style={{
-                position: "sticky",
-                top: 0,
-                zIndex: 1000,
-                background: "rgba(11,15,20,0.85)",
-                backdropFilter: "blur(14px)",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                backgroundColor: "#111",
+                borderBottom: "1px solid #222",
+                maxWidth: "900px",
+                margin: "0 auto",
+                padding: "15px 20px",
             }}
         >
-            <nav
+            <div
                 style={{
-                    maxWidth: "1100px",
-                    margin: "0 auto",
-                    padding: "16px 24px",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     flexWrap: "wrap",
+                    gap: "15px",
                 }}
             >
-                {/* BRAND */}
+                {/* Brand Logo */}
                 <Link
                     href="/"
                     style={{
-                        fontWeight: 800,
-                        fontSize: "16px",
-                        color: "#8b5cf6",
+                        color: "#facc15",
                         textDecoration: "none",
-                        letterSpacing: "0.5px",
+                        fontWeight: "bold",
+                        fontSize: "22px",
+                        letterSpacing: "-0.5px",
                     }}
                 >
                     NomadLifeXP
                 </Link>
 
-                {/* NAV LINKS */}
-                <div
+                {/* Primary Navigation Hub */}
+                <nav
                     style={{
                         display: "flex",
-                        gap: "16px",
-                        fontSize: "14px",
+                        alignItems: "center",
+                        gap: "20px",
                         flexWrap: "wrap",
                     }}
                 >
-                    <Link href="/start-here">Start Here</Link>
-                    <Link href="/blog">Blog</Link>
-                    <Link href="/discipline">Discipline</Link>
-                    <Link href="/fitness">Fitness</Link>
-                    <Link href="/yoga">Yoga</Link>
-                    <Link href="/mindset">Mindset</Link>
-                    <Link href="/about">About</Link>
-                </div>
-            </nav>
+                    {/* Main Pages */}
+                    <div style={{ display: "flex", gap: "15px" }}>
+                        {mainLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                style={{
+                                    color: "#fff",
+                                    textDecoration: "none",
+                                    fontSize: "15px",
+                                    fontWeight: "600",
+                                }}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Divider Line */}
+                    <span style={{ color: "#333", userSelect: "none" }}>|</span>
+
+                    {/* Categories */}
+                    <div style={{ display: "flex", gap: "12px" }}>
+                        {categoryLinks.map((tab) => (
+                            <Link
+                                key={tab.name}
+                                href={tab.href}
+                                style={{
+                                    color: "#38bdf8", // Distinct accent color for content silos
+                                    textDecoration: "none",
+                                    fontSize: "14px",
+                                    fontWeight: "500",
+                                    padding: "2px 6px",
+                                    borderRadius: "4px",
+                                    background: "#161b22",
+                                }}
+                            >
+                                {tab.name}
+                            </Link>
+                        ))}
+                    </div>
+                </nav>
+            </div>
         </header>
     );
 }

@@ -1,11 +1,8 @@
-import "./globals.css";
+// src/app/layout.tsx
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
-
-export const metadata = {
-  title: "NomadLifeXP | Self Transformation System",
-  description:
-    "A structured system for discipline, fitness, yoga, and mental clarity. Replace motivation with systems.",
-};
+import Footer from "@/components/Footer";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -13,27 +10,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Navbar />
 
-        {/* SYSTEM WRAPPER */}
-        <div className="container">
-          {children}
-        </div>
+        {children}
 
-        <footer
-          style={{
-            padding: "80px 0",
-            textAlign: "center",
-            color: "#94a3b8",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-            marginTop: "80px",
-          }}
-        >
-          <p>NomadLifeXP System Platform</p>
-          <p>Discipline • Fitness • Yoga • Mental Clarity</p>
-        </footer>
+        <Footer />
+
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+
+        {/* Inline configuration script */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
       </body>
     </html>
   );

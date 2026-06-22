@@ -1,5 +1,6 @@
 // src/app/layout.tsx
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -17,6 +18,7 @@ export default function RootLayout({
         {children}
 
         <Footer />
+        <Analytics />
 
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <Script

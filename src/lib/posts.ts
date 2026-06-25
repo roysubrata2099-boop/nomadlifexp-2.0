@@ -30,19 +30,19 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/attention-span.jpg",
     relatedSlugs: ["mental-clarity", "stop-procrastination", "discipline-creates-freedom"],
     content: `
-<h1>Can You Rebuild Your Attention Span After Years of Digital Distraction</h1>
+# Can You Rebuild Your Attention Span After Years of Digital Distraction
 
-<p>Modern life has changed how attention works. Your inability to focus is not a defect. It is a result of constant digital interruption.</p>
+Modern life has changed how attention works. Your inability to focus is not a defect. It is a result of constant digital interruption.
 
-<p>Every notification, every short video, and every switch in attention trains your brain to lose depth.</p>
+Every notification, every short video, and every switch in attention trains your brain to lose depth.
 
-<p>The good news is that attention can be rebuilt.</p>
+The good news is that attention can be rebuilt.
 
-<h2>The Protocol for Recovery</h2>
+## The Protocol for Recovery
 
-<p>Start with focused work blocks without distraction. Train your mind to stay in one task without switching.</p>
+Start with focused work blocks without distraction. Train your mind to stay in one task without switching.
 
-<p>Even five minutes of pure focus is powerful in the beginning.</p>
+Even five minutes of pure focus is powerful in the beginning.
 `
   },
 
@@ -57,13 +57,13 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/focus.jpg",
     relatedSlugs: ["mental-clarity", "attention-span-guide"],
     content: `
-<h1>The Reason You Can’t Focus Even When You Try Hard</h1>
+# The Reason You Can’t Focus Even When You Try Hard
 
-<p>You are not lazy. You are mentally overloaded. When your mind is full, focus naturally breaks.</p>
+You are not lazy. You are mentally overloaded. When your mind is full, focus naturally breaks.
 
-<h2>Why Focus Fails</h2>
+## Why Focus Fails
 
-<p>Too many thoughts, stress, and constant input reduce mental clarity and performance.</p>
+Too many thoughts, stress, and constant input reduce mental clarity and performance.
 `
   },
 
@@ -82,84 +82,79 @@ export const posts: Post[] = [
       "stop-procrastination",
       "discipline-creates-freedom"
     ],
-    // 🔥 UPDATED: FULL WORD-BY-WORD DISCIPLINE CONTENT INJECTED HERE
     content: `
-<h1>Self Discipline Guide: Reclaim Your Attention, Rebuild Your Life</h1>
+# Self Discipline Guide: Reclaim Your Attention, Rebuild Your Life
 
-<p>Most people believe they lack discipline. They call themselves lazy, inconsistent, unmotivated. But the truth is more dangerous. The real problem is not weakness. The real problem is attention.</p>
+Most people believe they lack discipline. They call themselves lazy, inconsistent, unmotivated. But the truth is more dangerous. The real problem is not weakness. The real problem is attention.
 
-<p>You sit down to focus, but a notification steals your mind. A quick scroll becomes an hour. A short video becomes a cycle. Discipline does not collapse in big failures. It collapses in small interruptions.</p>
+You sit down to focus, but a notification steals your mind. A quick scroll becomes an hour. A short video becomes a cycle. Discipline does not collapse in big failures. It collapses in small interruptions.
 
-<p><strong>Discipline breaks first in attention, not in action.</strong></p>
+**Discipline breaks first in attention, not in action.**
 
-<h2>What Self Discipline Really Is</h2>
+## What Self Discipline Really Is
 
-<p>Self discipline is not punishment. It is not restriction. It is not forcing yourself through suffering.</p>
+Self discipline is not punishment. It is not restriction. It is not forcing yourself through suffering.
 
-<p>Self discipline is self leadership. It is the ability to act according to long-term direction instead of short-term emotion.</p>
+Self discipline is self leadership. It is the ability to act according to long-term direction instead of short-term emotion.
 
-<p>Every time you choose focus over distraction, you are not just completing a task. You are shaping identity.</p>
+Every time you choose focus over distraction, you are not just completing a task. You are shaping identity.
 
-<p><em>Discipline is not behavior. It is identity in motion.</em></p>
+*Discipline is not behavior. It is identity in motion.*
 
-<h2>Why Discipline Feels Hard Today</h2>
+## Why Discipline Feels Hard Today
 
-<p>It is not because people are weaker. It is because the environment is stronger.</p>
+It is not because people are weaker. It is because the environment is stronger.
 
-<p>Modern life is engineered for distraction. Social media, short content, endless entertainment, constant stimulation.</p>
+Modern life is engineered for distraction. Social media, short content, endless entertainment, constant stimulation.
 
-<p>This creates:</p>
-<ul>
-  <li>Attention fragmentation</li>
-  <li>Mental fatigue</li>
-  <li>Low discomfort tolerance</li>
-</ul>
+This creates:
+- Attention fragmentation
+- Mental fatigue
+- Low discomfort tolerance
 
-<h2>The Hidden Cost of Weak Discipline</h2>
+## The Hidden Cost of Weak Discipline
 
-<p>Without discipline, life drifts. You delay work, restart goals, avoid decisions.</p>
+Without discipline, life drifts. You delay work, restart goals, avoid decisions.
 
-<p>The real damage is internal — you stop trusting yourself.</p>
+The real damage is internal — you stop trusting yourself.
 
-<h2>Discipline Is Not Found, It Is Built</h2>
+## Discipline Is Not Found, It Is Built
 
-<p>Discipline is a system outcome, not a personality trait.</p>
+Discipline is a system outcome, not a personality trait.
 
-<p>Systems decide behavior when motivation disappears.</p>
+Systems decide behavior when motivation disappears.
 
-<h2>The NomadLifeXP Discipline System</h2>
+## The NomadLifeXP Discipline System
 
-<ul>
-  <li><strong>Awareness:</strong> Reclaim attention through silence and meditation.</li>
-  <li><strong>Energy:</strong> Build body strength through fitness and breathwork.</li>
-  <li><strong>Clarity:</strong> Reduce mental noise with single-direction focus.</li>
-  <li><strong>Systems:</strong> Design environment, not willpower.</li>
-  <li><strong>Identity:</strong> Become someone who keeps commitments.</li>
-</ul>
+- **Awareness:** Reclaim attention through silence and meditation.
+- **Energy:** Build body strength through fitness and breathwork.
+- **Clarity:** Reduce mental noise with single-direction focus.
+- **Systems:** Design environment, not willpower.
+- **Identity:** Become someone who keeps commitments.
 
-<h2>Why Fitness, Yoga, and Meditation Matter</h2>
+## Why Fitness, Yoga, and Meditation Matter
 
-<p>They build internal stability and control over attention.</p>
+They build internal stability and control over attention.
 
-<p>A distracted mind cannot build a disciplined life.</p>
+A distracted mind cannot build a disciplined life.
 
-<h2>The 7 Day Reset</h2>
+## The 7 Day Reset
 
-<p>Day 1: Walk without phone</p>
-<p>Day 2: Silent sitting</p>
-<p>Day 3: Workout or yoga</p>
-<p>Day 4: Focused task</p>
-<p>Day 5: Remove distraction</p>
-<p>Day 6: Reflection writing</p>
-<p>Day 7: Morning without phone</p>
+Day 1: Walk without phone
+Day 2: Silent sitting
+Day 3: Workout or yoga
+Day 4: Focused task
+Day 5: Remove distraction
+Day 6: Reflection writing
+Day 7: Morning without phone
 
-<h2>Why This Works</h2>
+## Why This Works
 
-<p>Discipline is built through repetition, not intensity.</p>
+Discipline is built through repetition, not intensity.
 
-<h2>Final Insight</h2>
+## Final Insight
 
-<p>You do not need to become someone else. You need to remove what is blocking who you already are.</p>
+You do not need to become someone else. You need to remove what is blocking who you already are.
 `
   },
 
@@ -173,51 +168,50 @@ export const posts: Post[] = [
     category: "fitness",
     image: "https://nomadlifexp.com/images/workout.jpg",
     relatedSlugs: ["fitness-consistency", "self-discipline-and-consistency-guide"],
-    // 🔥 UPDATED: FULL WORD-BY-WORD FITNESS CONTENT INJECTED HERE
     content: `
-<h1>Why People Watch Workout Videos but Never Actually Exercise</h1>
+# Why People Watch Workout Videos but Never Actually Exercise
 
-<p>Watching fitness content feels motivating for a moment, but real change only happens through action.</p>
+Watching fitness content feels motivating for a moment, but real change only happens through action.</p>
 
-<p>Every day, millions of people watch workout videos but never act on them.</p>
+Every day, millions of people watch workout videos but never act on them.
 
-<p>They save routines, feel inspired, and plan to start tomorrow.</p>
+They save routines, feel inspired, and plan to start tomorrow.
 
-<p><strong>Inspiration feels like progress — but only action creates real change.</strong></p>
+**Inspiration feels like progress — but only action creates real change.**
 
-<h2>Why Watching Feels So Good</h2>
+## Why Watching Feels So Good
 
-<p>Watching gives your brain a false sense of achievement.</p>
+Watching gives your brain a false sense of achievement.
 
-<p>You imagine transformation without doing the work.</p>
+You imagine transformation without doing the work.
 
-<p><em>Watching creates inspiration. Action creates transformation.</em></p>
+*Watching creates inspiration. Action creates transformation.*
 
-<h2>Comfort Keeps People Stuck</h2>
+## Comfort Keeps People Stuck
 
-<p>Comfort feels safe, but it prevents growth.</p>
+Comfort feels safe, but it prevents growth.
 
-<p>The life you want starts on the other side of discomfort.</p>
+The life you want starts on the other side of discomfort.
 
-<h2>Why Motivation Fails</h2>
+## Why Motivation Fails
 
-<p>Motivation is temporary. It comes and goes.</p>
+Motivation is temporary. It comes and goes.
 
-<p>Consistency requires habits, not feelings.</p>
+Consistency requires habits, not feelings.
 
-<p>Discipline is what works when motivation disappears.</p>
+Discipline is what works when motivation disappears.
 
-<h2>How to Break the Cycle</h2>
+## How to Break the Cycle
 
-<p>Start small: walk, stretch, do 10 pushups.</p>
+Start small: walk, stretch, do 10 pushups.
 
-<p>Focus on consistency instead of perfection.</p>
+Focus on consistency instead of perfection.
 
-<h2>Final Thoughts</h2>
+## Final Thoughts
 
-<p>Watching can inspire you, but only action changes your life.</p>
+Watching can inspire you, but only action changes your life.
 
-<p>Your life changes when your habits change.</p>
+Your life changes when your habits change.
 `
   },
 
@@ -232,11 +226,11 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/fitness.jpg",
     relatedSlugs: ["fitness-is-not-about-time"],
     content: `
-<h1>Fitness Consistency</h1>
+# Fitness Consistency
 
-<p>Consistency matters more than motivation.</p>
+Consistency matters more than motivation.
 
-<p>Small repeated actions build long-term results.</p>
+Small repeated actions build long-term results.
 `
   },
 
@@ -251,9 +245,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/fitness2.jpg",
     relatedSlugs: ["fitness-consistency"],
     content: `
-<h1>Fitness Is Not About Time</h1>
+# Fitness Is Not About Time
 
-<p>You do not need more time. You need better structure.</p>
+You do not need more time. You need better structure.
 `
   },
 
@@ -268,9 +262,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/mental.jpg",
     relatedSlugs: ["attention-span-guide"],
     content: `
-<h1>Mental Clarity</h1>
+# Mental Clarity
 
-<p>Overthinking creates mental noise. Clarity comes from reduction.</p>
+Overthinking creates mental noise. Clarity comes from reduction.
 `
   },
 
@@ -285,9 +279,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/procrastination.jpg",
     relatedSlugs: ["self-discipline-and-consistency-guide"],
     content: `
-<h1>Stop Procrastination</h1>
+# Stop Procrastination
 
-<p>Procrastination is emotional resistance, not laziness.</p>
+Procrastination is emotional resistance, not laziness.
 `
   },
 
@@ -302,9 +296,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/stuck.jpg",
     relatedSlugs: ["mental-clarity"],
     content: `
-<h1>You Are Not Stuck</h1>
+# You Are Not Stuck
 
-<p>You are repeating patterns, not stuck forever.</p>
+You are repeating patterns, not stuck forever.
 `
   },
 
@@ -319,9 +313,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/discipline2.jpg",
     relatedSlugs: ["self-discipline-and-consistency-guide"],
     content: `
-<h1>Build Discipline Foundation</h1>
+# Build Discipline Foundation
 
-<p>Systems create discipline, not motivation.</p>
+Systems create discipline, not motivation.
 `
   },
 
@@ -336,9 +330,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/freedom.jpg",
     relatedSlugs: ["self-discipline-and-consistency-guide"],
     content: `
-<h1>Discipline Creates Freedom</h1>
+# Discipline Creates Freedom
 
-<p>Structure removes chaos and gives clarity.</p>
+Structure removes chaos and gives clarity.
 `
   },
 
@@ -353,9 +347,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/yoga1.jpg",
     relatedSlugs: ["headstand"],
     content: `
-<h1>Forward Bending Yoga</h1>
+# Forward Bending Yoga
 
-<p>This posture helps relax the nervous system.</p>
+This posture helps relax the nervous system.
 `
   },
 
@@ -370,9 +364,9 @@ export const posts: Post[] = [
     image: "https://nomadlifexp.com/images/yoga2.jpg",
     relatedSlugs: ["forward-bending"],
     content: `
-<h1>Headstand Benefits</h1>
+# Headstand Benefits
 
-<p>Inversions improve focus and body awareness.</p>
+Inversions improve focus and body awareness.
 `
   }
 ];

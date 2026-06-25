@@ -1,79 +1,66 @@
 import { posts } from "@/lib/posts";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-interface PageProps {
-    params: Promise<{
-        category: string;
-    }>;
+interface Props {
+    params: Promise<{ category: string }>;
 }
 
-export default async function CategoryPage({
-    params,
-}: PageProps) {
+export async function generateMetadata({ params }: Props) {
     const { category } = await params;
+    const decodedCategory = decodeURIComponent(category);
+    return {
+        title: `${decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1)} Blogs - Nomad Life XP`,
+        description: `Articles listed under the ${decodedCategory} category.`,
+    };
+}
+
+export default async function CategoryPage({ params }: Props) {
+    const { category } = await params;
+    const targetCategory = decodeURIComponent(category).toLowerCase();
 
     const filteredPosts = posts.filter(
-        (post) =>
-            post.category.toLowerCase() === category.toLowerCase()
+        (post) => post.category.toLowerCase() === targetCategory
     );
+
+    if (filteredPosts.length === 0) {
+        notFound();
+    }
 
     return (
-        <main
-            style={{
-                maxWidth: "900px",
-                margin: "0 auto",
-                padding: "40px 20px",
-                backgroundColor: "#0b0b0b", // Matches your original body background
-                color: "#fff",
-            }}
-        >
-            <h1
-                style={{
-                    textTransform: "capitalize",
-                    color: "#facc15", // Original gold header accent
-                    fontSize: "32px",
-                    marginBottom: "30px"
-                }}
-            >
-                {category} Articles
+        <main className="max-w-5xl mx-auto px-4 py-12">
+            <h1 className="text-4xl font-bold mb-8 capitalize border-b border-slate-800 pb-4 text-slate-100">
+                Category: {targetCategory}
             </h1>
 
-            {filteredPosts.length === 0 ? (
-                <p style={{ color: "#a1a1aa" }}>No posts found in this category.</p>
-            ) : (
-                filteredPosts.map((post) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredPosts.map((post) => (
                     <article
                         key={post.slug}
-                        style={{
-                            marginBottom: "30px",
-                            borderBottom: "1px solid #222",
-                            paddingBottom: "20px",
-                        }}
+                        className="border border-slate-800 bg-slate-900/50 rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:border-slate-700 transition flex flex-col h-full"
                     >
-                        <Link
-                            href={`/blog/posts/${post.slug}`}
-                            style={{
-                                textDecoration: "none",
-                            }}
-                        >
-                            <h2
-                                style={{
-                                    color: "#38bdf8", // Links stand out beautifully in blue
-                                    margin: "0 0 10px 0",
-                                    fontSize: "24px",
-                                }}
-                                className="category-post-title"
-                            >
-                                {post.title}
+                        {post.image && (
+                            <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+                        )}
+                        <div className="p-5 flex flex-col flex-grow">
+                            <h2 className="text-xl font-bold mb-2 line-clamp-2 text-slate-100">
+                                <Link href={`/blog/posts/${post.slug}`} className="hover:text-yellow-400 transition">
+                                    {post.title}
+                                </Link>
                             </h2>
-                        </Link>
-
-                        <p style={{ opacity: 0.9, fontSize: "17px", margin: 0 }}>
-                            {post.description}
-                        </p>
+                            <p className="text-slate-400 text-sm line-clamp-2 mb-4 flex-grow">{post.description}</p>
+                            <div className="text-xs text-slate-500 pt-2 border-t border-slate-800/50">{post.date}</div>
+                        </div>
                     </article>
-                ))
-            )}
+                ))}
+            </div>
         </main>
     );
+}
+
+export async function generateStaticParams() {
+    const uniqueCategories = Array.from(new Set(posts.map((post) => post.category.toLowerCase())));
+    return uniqueCategories.map((category) => ({
+        category: category,
+    }));
 }

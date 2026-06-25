@@ -1,38 +1,101 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #0f172a;
-  color: #e2e8f0;
+@import "tailwindcss";
+
+/* 🔥 1. ACTIVATE TYPOGRAPHY UTILITIES FOR TAILWIND V4 */
+@plugin "@tailwindcss/typography";
+
+/* 2. BASE STYLES & GLOBALS */
+@layer base {
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #0f172a;
+    /* Sleek slate-900 canvas background */
+    color: #e2e8f0;
+    /* Crisp slate-200 high-contrast readability text */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
+/* 3. STRUCTURAL COMPONENTS & OVERRIDES */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  /* Equivalent to 20px 40px */
   border-bottom: 1px solid #1e293b;
+  /* border-slate-800 backdrop cutoff */
+  background-color: rgba(15, 23, 42, 0.8);
+  /* Elegant sticky frosted-glass baseline */
+  backdrop-filter: blur(8px);
 }
 
 .logo {
   color: #facc15;
-  font-weight: bold;
+  /* Brand Amber-400 Highlight */
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.025em;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.9;
 }
 
 .nav-links {
   display: flex;
-  gap: 18px;
+  align-items: center;
+  gap: 1.25rem;
+  /* Balanced navigation spacing padding */
 }
 
 .nav-links a {
   color: #cbd5e1;
+  /* Neutral slate-300 link state */
   text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-links a:hover {
   color: #facc15;
+  /* Snappy layout hover feedback transition */
 }
 
 main {
-  max-width: 900px;
-  margin: auto;
-  padding: 40px;
+  max-width: 56.25rem;
+  /* Exactly 900px optimal structural content boundary layout */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* 🔥 4. TYPOGRAPHY INJECTION OVERRIDES FOR DARK MODE BLOG TEXT
+  This sets the visual theme formatting for your full raw post markup tags inside the .prose wrap!
+*/
+.prose {
+  --tw-prose-body: #cbd5e1;
+  --tw-prose-headings: #f8fafc;
+  --tw-prose-links: #38bdf8;
+  --tw-prose-bold: #ffffff;
+  --tw-prose-counters: #94a3b8;
+  --tw-prose-bullets: #facc15;
+  /* Gold bullet points for your 7 Day reset guides! */
+  --tw-prose-quotes: #e2e8f0;
+
+  font-size: 1.125rem;
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }

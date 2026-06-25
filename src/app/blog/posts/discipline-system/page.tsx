@@ -1,24 +1,94 @@
-export default function DisciplineSystemPage() {
+import { posts } from "@/lib/posts";
+import Link from "next/link";
+
+export default function DisciplinePage() {
+    const disciplineArticles = posts.filter(
+        (post) => post.category === "discipline"
+    );
+
     return (
-        <main style={{ maxWidth: "800px", margin: "0 auto", padding: "80px 20px", fontFamily: "system-ui", background: "#0f172a", color: "#e2e8f0", minHeight: "100vh" }}>
+        <main className="max-w-5xl mx-auto px-6 py-20">
 
-            <h1>Discipline System</h1>
+            {/* HERO */}
+            <section className="text-center">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+                    Discipline System
+                </h1>
 
-            <p>
-                Discipline is not motivation. It is a system that controls your actions when motivation disappears.
-            </p>
+                <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                    Discipline is not motivation. It is structure that creates freedom.
+                </p>
 
-            <h2>Key Idea</h2>
-            <p>
-                Your environment decides your behavior more than your willpower.
-            </p>
+                <p className="mt-4 text-gray-500 max-w-xl mx-auto">
+                    Master your actions. Control your focus. Build consistency.
+                </p>
+            </section>
 
-            <h2>Practice</h2>
-            <p>
-                Start with one small habit and repeat it daily without negotiation.
-            </p>
+            {/* CORE */}
+            <section className="mt-20 space-y-4">
+                <h2 className="text-2xl font-semibold">What is Discipline?</h2>
+                <p className="text-gray-600 leading-relaxed">
+                    Discipline is the ability to act based on long-term direction instead of short-term emotion.
+                </p>
+            </section>
 
-            <a href="/blog" style={{ color: "#facc15" }}>← Back to Blog</a>
+            <section className="mt-12 space-y-4">
+                <h2 className="text-2xl font-semibold">Why Most People Lack Discipline</h2>
+                <p className="text-gray-600 leading-relaxed">
+                    People fail not from lack of knowledge, but lack of systems and structure.
+                </p>
+            </section>
+
+            <section className="mt-12 space-y-4">
+                <h2 className="text-2xl font-semibold">How Discipline is Built</h2>
+                <p className="text-gray-600 leading-relaxed">
+                    Discipline is built through repetition, environment design, and identity shift.
+                </p>
+            </section>
+
+            {/* ARTICLES */}
+            <section className="mt-20">
+                <h2 className="text-2xl font-semibold">Featured Articles</h2>
+
+                <div className="mt-6 grid gap-4">
+                    {disciplineArticles.map((post) => (
+                        <Link
+                            key={post.slug}
+                            href={`/blog/posts/${post.slug}`}   // ✅ FIXED
+                            className="p-5 border rounded-xl hover:bg-gray-50 transition block group"
+                        >
+                            <div className="font-medium group-hover:text-blue-600">
+                                {post.title}
+                            </div>
+
+                            {post.description && (
+                                <div className="text-sm text-gray-500 mt-1">
+                                    {post.description}
+                                </div>
+                            )}
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* RELATED */}
+            <section className="mt-20">
+                <h2 className="text-2xl font-semibold">Explore More Topics</h2>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                    <Link href="/blog/category/mindset" className="px-4 py-2 border rounded-full">
+                        Mindset
+                    </Link>
+
+                    <Link href="/blog/category/fitness" className="px-4 py-2 border rounded-full">
+                        Fitness
+                    </Link>
+
+                    <Link href="/blog/category/yoga" className="px-4 py-2 border rounded-full">
+                        Yoga
+                    </Link>
+                </div>
+            </section>
 
         </main>
     );

@@ -1,80 +1,84 @@
-// src/app/blog/posts/[slug]/page.tsx
-
 import { posts } from "@/lib/posts";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { marked } from "marked";
+import Link from "next/link";
 
-interface PageProps {
-    params: Promise<{
-        slug: string;
-    }>;
+interface Props {
+    params: Promise<{ slug: string }>;
 }
 
-export default async function BlogPostPage({ params }: PageProps) {
+export async function generateMetadata({ params }: Props) {
     const { slug } = await params;
+    const post = posts.find((p) => p.slug === slug);
+
+    if (!post) return {};
+
+    return {
+        title: `${post.title} - Nomad Life XP`,
+        description: post.description,
+    };
+}
+
+export default async function BlogPostPage({ params }: Props) {
+    const { slug } = await params;
+
     const post = posts.find((p) => p.slug === slug);
 
     if (!post) {
         notFound();
     }
 
-    const formattedHtml = await marked(post.content);
+    const relatedPosts = posts.filter((p) => post.relatedSlugs.includes(p.slug));
 
     return (
-        <div className="min-h-screen bg-white text-gray-900 font-sans antialiased">
-            <main className="max-w-2xl mx-auto px-6 py-16">
-
-                {/* Breadcrumbs */}
-                <div className="mb-10 text-sm font-medium text-gray-400">
-                    <Link href="/blog" className="hover:text-black transition-colors">Blog</Link>
-                    <span className="mx-2">/</span>
-                    <span className="capitalize text-gray-800 font-semibold">{post.category} System</span>
+        <main className="max-w-3xl mx-auto px-4 py-12">
+            <header className="mb-8">
+                <div className="text-sm text-slate-400 mb-2">
+                    <Link href={`/blog/category/${post.category}`} className="hover:underline text-yellow-400 capitalize font-medium">
+                        {post.category}
+                    </Link>
+                    <span> • {post.date}</span>
                 </div>
+                <h1 className="text-4xl font-extrabold text-slate-100 mb-6 tracking-tight">{post.title}</h1>
 
-                {/* Post Core Body */}
-                <article className="prose prose-lg max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 mb-8 leading-tight">
-                        {post.title}
-                    </h1>
-
-                    <div
-                        dangerouslySetInnerHTML={{ __html: formattedHtml }}
-                        className="space-y-6 text-gray-800 text-lg leading-relaxed
-                       [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-gray-950 [&_h2]:pt-6 [&_h2]:tracking-tight
-                       [&_h3]:text-xl [&_h3]:font-medium [&_h3]:text-gray-900 [&_h3]:italic
-                       [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-3
-                       [&_li]:text-gray-700 [&_hr]:border-gray-200 [&_hr]:my-10"
+                {post.image && (
+                    <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-64 md:h-96 object-cover rounded-xl mb-6 shadow-sm"
                     />
-                </article>
+                )}
+            </header>
 
-                {/* Footer Related Hub Matrix */}
-                <div className="mt-20 pt-8 border-t border-gray-100">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">
-                        Related Articles
-                    </h3>
+            {/* Injects typography rules explicitly built out via globally applied CSS variables */}
+            <div
+                className="prose max-w-none border-b border-slate-800 pb-8 text-slate-300 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+            />
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium text-blue-600">
-                        <Link href="/blog/posts/mental-clarity-guide" className="hover:underline">
-                            → Mental Clarity Guide
-                        </Link>
-                        <Link href="/blog/posts/attention-span-guide" className="hover:underline">
-                            → Attention Span Guide
-                        </Link>
-                        <Link href="/blog/posts/stop-procrastination" className="hover:underline">
-                            → Stop Procrastination
-                        </Link>
-                        <Link href="/blog/posts/discipline-creates-freedom" className="hover:underline">
-                            → Discipline Creates Freedom
-                        </Link>
+            {/* Related Reading Navigation Block */}
+            {relatedPosts.length > 0 && (
+                <section className="mt-12">
+                    <h3 className="text-2xl font-bold mb-6 text-slate-100">Related Articles</h3>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                        {relatedPosts.map((relPost) => (
+                            <Link
+                                key={relPost.slug}
+                                href={`/blog/posts/${relPost.slug}`}
+                                className="p-4 border border-slate-800 bg-slate-900/30 rounded-lg block hover:bg-slate-900/80 hover:border-slate-700 transition"
+                            >
+                                <span className="text-xs text-yellow-400 uppercase font-semibold tracking-wider">{relPost.category}</span>
+                                <h4 className="font-semibold text-slate-200 mt-1">→ {relPost.title}</h4>
+                            </Link>
+                        ))}
                     </div>
-
-                    <div className="mt-16 text-center text-xs text-gray-400">
-                        © 2026 Nomad Life XP | Discipline • Focus • Growth
-                    </div>
-                </div>
-
-            </main>
-        </div>
+                </section>
+            )}
+        </main>
     );
+}
+
+export async function generateStaticParams() {
+    return posts.map((post) => ({
+        slug: post.slug,
+    }));
 }

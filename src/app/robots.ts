@@ -1,11 +1,11 @@
-export default function robots() {
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
     return {
-        rules: [
-            {
-                userAgent: "*",
-                allow: "/",
-            },
-        ],
-        sitemap: "https://yourdomain.com/sitemap.xml",
-    };
+        rules: {
+            userAgent: '*',
+            allow: '/',
+        },
+        sitemap: 'https://nomadlifexp.com/sitemap.xml',
+    }
 }

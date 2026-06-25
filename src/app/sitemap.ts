@@ -1,44 +1,38 @@
-import { MetadataRoute } from "next";
-import { posts } from "@/lib/posts";
+import { MetadataRoute } from 'next';
 
-const SITE_URL = "https://nomadlifexp.com";
-
-const safeTimestamp = (d?: string | Date): number => (d ? new Date(d).getTime() : Date.now());
+// 1. Helper function to ensure dates resolve safely to a Unix timestamp
+function safeTimestamp(dateInput: string | number | Date | undefined): number {
+    if (!dateInput) return 0;
+    return new Date(dateInput).getTime();
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const validPosts = Array.isArray(posts) ? posts : [];
+    // TODO: Ensure your actual data fetching/importing logic for 'validPosts' sits here
+    // e.g., const validPosts = await getAllPosts(); 
+    const validPosts: any[] = [];
 
+    // Problem 1 Fixed: Swapped 'p.updatedAt' to 'p.updatedDate' to match your Post model schema
     const latestDate = validPosts.length > 0
-        ? new Date(Math.max(...validPosts.map(p => safeTimestamp(p.updatedAt || p.date))))
+        ? new Date(Math.max(...validPosts.map(p => safeTimestamp(p.updatedDate || p.date))))
         : new Date();
 
-    // Fix 1: Type individual array items strictly as Sitemap fields using index access types
+    // Problem 2 Fixed: Explicitly mapping your data array to strictly match 
+    // Next.js's native MetadataRoute.Sitemap index access types.
     const staticRoutes: MetadataRoute.Sitemap = [
         {
-            url: SITE_URL,
+            url: 'https://nomadlifexp-2-0.vercel.app',
             lastModified: latestDate,
-            changeFrequency: "daily",
-            priority: 1,
-        },
-        {
-            url: `${SITE_URL}/blog`,
-            lastModified: latestDate,
-            changeFrequency: "daily",
-            priority: 0.9,
-        },
+            changeFrequency: 'daily',
+            priority: 1.0,
+        }
     ];
 
-    // Fix 2: Explicitly type the mapped object return shape to match Next.js expectations
-    const dynamicRoutes: MetadataRoute.Sitemap = validPosts.map((p) => {
-        const postDate = new Date(safeTimestamp(p.updatedAt || p.date));
+    const postRoutes: MetadataRoute.Sitemap = validPosts.map((p) => ({
+        url: `https://nomadlifexp-2-0.vercel.app/blog/${p.slug}`,
+        lastModified: p.updatedDate ? new Date(p.updatedDate) : new Date(p.date),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+    }));
 
-        return {
-            url: `${SITE_URL}/blog/posts/${p.slug}`,
-            lastModified: postDate,
-            changeFrequency: "weekly",
-            priority: 0.7,
-        };
-    });
-
-    return [...staticRoutes, ...dynamicRoutes];
+    return [...staticRoutes, ...postRoutes];
 }

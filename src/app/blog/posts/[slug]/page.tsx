@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { posts } from '@/lib/posts';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw'; // ✅ Fix: Import the HTML parsing engine
 
 interface PageProps {
     params: any;
@@ -13,7 +14,6 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-    // Gracefully handles both async promises and plain objects
     const resolvedParams = params && typeof params.then === 'function'
         ? await params
         : params;
@@ -46,15 +46,13 @@ export default async function BlogPostPage({ params }: PageProps) {
                     )}
                 </header>
 
-                {/* Dynamic Markdown Content Parser */}
+                {/* Content Parser: Now handles Markdown AND raw HTML tags safely */}
                 <div className="text-zinc-800 dark:text-zinc-200 text-base sm:text-lg leading-relaxed prose prose-zinc dark:prose-invert max-w-none
-          prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50
-          prose-headings:font-bold prose-headings:mt-6 prose-headings:mb-4
+          prose-headings:text-zinc-900 dark:prose-headings:text-zinc-50 prose-headings:font-bold prose-headings:mt-6 prose-headings:mb-4
           prose-p:leading-relaxed prose-p:mb-4
           prose-strong:text-zinc-900 dark:prose-strong:text-zinc-50 prose-strong:font-bold
-          prose-ul:list-disc prose-ul:pl-5 prose-ul:my-4 prose-li:mb-1
-          whitespace-pre-wrap">
-                    <ReactMarkdown>{fullBodyText}</ReactMarkdown>
+          prose-ul:list-disc prose-ul:pl-5 prose-ul:my-4 prose-li:mb-1">
+                    <ReactMarkdown rehypePlugins={[rehypeRaw]}>{fullBodyText}</ReactMarkdown>
                 </div>
 
             </article>

@@ -9,8 +9,6 @@ export interface Post {
   image: string;
   relatedSlugs: string[];
   content: string;
-
-  // ✅ SAFE SEO EXTENSIONS (DO NOT BREAK EXISTING DATA)
   canonical?: string;
   updatedDate?: string;
   readingTime?: number;
@@ -21,8 +19,7 @@ export const posts: Post[] = [
   {
     title: "Can You Rebuild Your Attention Span After Years of Digital Distraction",
     slug: "attention-span-guide",
-    description:
-      "Learn how digital distraction weakens attention span and how to rebuild focus and deep work ability.",
+    description: "Learn how digital distraction weakens attention span and how to rebuild focus and deep work ability.",
     keywords: ["attention span", "focus", "deep work"],
     author: "Nomad Life XP",
     date: "2026-06-24",
@@ -55,15 +52,17 @@ Even five minutes of pure focus is powerful in the beginning.
     date: "2026-06-24",
     category: "mindset",
     image: "https://nomadlifexp.com/images/focus.jpg",
-    relatedSlugs: ["mental-clarity", "attention-span-guide"],
+    relatedSlugs: ["attention-span-guide"],
     content: `
 # The Reason You Can’t Focus Even When You Try Hard
 
-You are not lazy. You are mentally overloaded. When your mind is full, focus naturally breaks.
+You are not lazy. You are mentally overloaded.
 
 ## Why Focus Fails
 
 Too many thoughts, stress, and constant input reduce mental clarity and performance.
+
+Focus breaks when your mind has no space left to process clearly.
 `
   },
 
@@ -71,90 +70,36 @@ Too many thoughts, stress, and constant input reduce mental clarity and performa
     title: "Self Discipline Guide: Reclaim Your Attention, Rebuild Your Life",
     slug: "self-discipline-and-consistency-guide",
     description: "Discipline begins with attention. Learn how to rebuild self-control and consistency.",
-    keywords: ["self discipline", "focus", "habits"],
+    keywords: ["self discipline", "habits", "focus"],
     author: "Nomad Life XP",
     date: "2026-06-24",
     category: "discipline",
     image: "https://nomadlifexp.com/images/discipline.jpg",
-    relatedSlugs: [
-      "mental-clarity",
-      "attention-span-guide",
-      "stop-procrastination",
-      "discipline-creates-freedom"
-    ],
+    relatedSlugs: ["attention-span-guide", "stop-procrastination"],
     content: `
-# Self Discipline Guide: Reclaim Your Attention, Rebuild Your Life
+# Self Discipline Guide
 
-Most people believe they lack discipline. They call themselves lazy, inconsistent, unmotivated. But the truth is more dangerous. The real problem is not weakness. The real problem is attention.
-
-You sit down to focus, but a notification steals your mind. A quick scroll becomes an hour. A short video becomes a cycle. Discipline does not collapse in big failures. It collapses in small interruptions.
-
-**Discipline breaks first in attention, not in action.**
+Most people think discipline is motivation. It is not. It is attention control.
 
 ## What Self Discipline Really Is
 
-Self discipline is not punishment. It is not restriction. It is not forcing yourself through suffering.
+Self discipline is self leadership — choosing long-term direction over short-term emotion.
 
-Self discipline is self leadership. It is the ability to act according to long-term direction instead of short-term emotion.
+## Discipline Breaks in Attention First
 
-Every time you choose focus over distraction, you are not just completing a task. You are shaping identity.
+Every distraction weakens identity.
 
-*Discipline is not behavior. It is identity in motion.*
+## The System
 
-## Why Discipline Feels Hard Today
+- Awareness
+- Energy
+- Clarity
+- Structure
+- Identity
 
-It is not because people are weaker. It is because the environment is stronger.
+## Final Truth
 
-Modern life is engineered for distraction. Social media, short content, endless entertainment, constant stimulation.
-
-This creates:
-- Attention fragmentation
-- Mental fatigue
-- Low discomfort tolerance
-
-## The Hidden Cost of Weak Discipline
-
-Without discipline, life drifts. You delay work, restart goals, avoid decisions.
-
-The real damage is internal — you stop trusting yourself.
-
-## Discipline Is Not Found, It Is Built
-
-Discipline is a system outcome, not a personality trait.
-
-Systems decide behavior when motivation disappears.
-
-## The NomadLifeXP Discipline System
-
-- **Awareness:** Reclaim attention through silence and meditation.
-- **Energy:** Build body strength through fitness and breathwork.
-- **Clarity:** Reduce mental noise with single-direction focus.
-- **Systems:** Design environment, not willpower.
-- **Identity:** Become someone who keeps commitments.
-
-## Why Fitness, Yoga, and Meditation Matter
-
-They build internal stability and control over attention.
-
-A distracted mind cannot build a disciplined life.
-
-## The 7 Day Reset
-
-Day 1: Walk without phone
-Day 2: Silent sitting
-Day 3: Workout or yoga
-Day 4: Focused task
-Day 5: Remove distraction
-Day 6: Reflection writing
-Day 7: Morning without phone
-
-## Why This Works
-
-Discipline is built through repetition, not intensity.
-
-## Final Insight
-
-You do not need to become someone else. You need to remove what is blocking who you already are.
+You do not become disciplined. You remove what destroys discipline.
 `
   },
 
@@ -167,51 +112,25 @@ You do not need to become someone else. You need to remove what is blocking who 
     date: "2026-06-25",
     category: "fitness",
     image: "https://nomadlifexp.com/images/workout.jpg",
-    relatedSlugs: ["fitness-consistency", "self-discipline-and-consistency-guide"],
+    relatedSlugs: [],
     content: `
 # Why People Watch Workout Videos but Never Actually Exercise
 
-Watching fitness content feels motivating for a moment, but real change only happens through action.</p>
+Watching fitness content feels productive, but it creates false progress.
 
-Every day, millions of people watch workout videos but never act on them.
+## Why Watching Feels Good
 
-They save routines, feel inspired, and plan to start tomorrow.
+Your brain gets dopamine from learning, not doing.
 
-**Inspiration feels like progress — but only action creates real change.**
+## The Trap
 
-## Why Watching Feels So Good
+Inspiration without action creates illusion of change.
 
-Watching gives your brain a false sense of achievement.
+## Real Rule
 
-You imagine transformation without doing the work.
+Only action changes the body, not consumption.
 
-*Watching creates inspiration. Action creates transformation.*
-
-## Comfort Keeps People Stuck
-
-Comfort feels safe, but it prevents growth.
-
-The life you want starts on the other side of discomfort.
-
-## Why Motivation Fails
-
-Motivation is temporary. It comes and goes.
-
-Consistency requires habits, not feelings.
-
-Discipline is what works when motivation disappears.
-
-## How to Break the Cycle
-
-Start small: walk, stretch, do 10 pushups.
-
-Focus on consistency instead of perfection.
-
-## Final Thoughts
-
-Watching can inspire you, but only action changes your life.
-
-Your life changes when your habits change.
+Start small. Move daily. Build consistency.
 `
   },
 
@@ -224,13 +143,21 @@ Your life changes when your habits change.
     date: "2026-06-24",
     category: "fitness",
     image: "https://nomadlifexp.com/images/fitness.jpg",
-    relatedSlugs: ["fitness-is-not-about-time"],
+    relatedSlugs: [],
     content: `
 # Fitness Consistency
 
-Consistency matters more than motivation.
+Consistency is more important than intensity.
 
-Small repeated actions build long-term results.
+## Core Principle
+
+Small actions repeated daily create transformation.
+
+## Rule
+
+Never miss twice.
+
+Fitness is identity built through repetition.
 `
   },
 
@@ -238,16 +165,24 @@ Small repeated actions build long-term results.
     title: "Fitness Is Not About Time: Fix Your Workout Mindset",
     slug: "fitness-is-not-about-time",
     description: "Fix excuses around time and fitness.",
-    keywords: ["fitness", "time management"],
+    keywords: ["fitness", "mindset"],
     author: "Nomad Life XP",
     date: "2026-06-24",
     category: "fitness",
     image: "https://nomadlifexp.com/images/fitness2.jpg",
-    relatedSlugs: ["fitness-consistency"],
+    relatedSlugs: [],
     content: `
 # Fitness Is Not About Time
 
 You do not need more time. You need better structure.
+
+## Truth
+
+Even 20 minutes is enough if done consistently.
+
+## Fix
+
+Stop waiting for perfect time. Start now.
 `
   },
 
@@ -260,11 +195,19 @@ You do not need more time. You need better structure.
     date: "2026-06-24",
     category: "mindset",
     image: "https://nomadlifexp.com/images/mental.jpg",
-    relatedSlugs: ["attention-span-guide"],
+    relatedSlugs: [],
     content: `
 # Mental Clarity
 
-Overthinking creates mental noise. Clarity comes from reduction.
+Overthinking creates noise in the mind.
+
+## Solution
+
+Reduce inputs. Increase silence.
+
+## Result
+
+Clarity is not gained. It is uncovered.
 `
   },
 
@@ -277,11 +220,19 @@ Overthinking creates mental noise. Clarity comes from reduction.
     date: "2026-06-24",
     category: "discipline",
     image: "https://nomadlifexp.com/images/procrastination.jpg",
-    relatedSlugs: ["self-discipline-and-consistency-guide"],
+    relatedSlugs: [],
     content: `
 # Stop Procrastination
 
-Procrastination is emotional resistance, not laziness.
+Procrastination is emotional resistance.
+
+## Why It Happens
+
+Fear of discomfort.
+
+## Fix
+
+Start before you feel ready.
 `
   },
 
@@ -289,16 +240,20 @@ Procrastination is emotional resistance, not laziness.
     title: "You Are Not Stuck in Life",
     slug: "stuck-in-life",
     description: "Break mental loops.",
-    keywords: ["stuck", "clarity"],
+    keywords: ["clarity", "mindset"],
     author: "Nomad Life XP",
     date: "2026-06-24",
     category: "mindset",
     image: "https://nomadlifexp.com/images/stuck.jpg",
-    relatedSlugs: ["mental-clarity"],
+    relatedSlugs: [],
     content: `
 # You Are Not Stuck
 
-You are repeating patterns, not stuck forever.
+You are repeating patterns, not trapped.
+
+## Truth
+
+Change your actions, change your life.
 `
   },
 
@@ -311,11 +266,15 @@ You are repeating patterns, not stuck forever.
     date: "2026-06-24",
     category: "discipline",
     image: "https://nomadlifexp.com/images/discipline2.jpg",
-    relatedSlugs: ["self-discipline-and-consistency-guide"],
+    relatedSlugs: [],
     content: `
 # Build Discipline Foundation
 
 Systems create discipline, not motivation.
+
+## Rule
+
+Structure beats willpower.
 `
   },
 
@@ -328,11 +287,15 @@ Systems create discipline, not motivation.
     date: "2026-06-24",
     category: "discipline",
     image: "https://nomadlifexp.com/images/freedom.jpg",
-    relatedSlugs: ["self-discipline-and-consistency-guide"],
+    relatedSlugs: [],
     content: `
 # Discipline Creates Freedom
 
-Structure removes chaos and gives clarity.
+Structure removes chaos.
+
+## Truth
+
+Discipline = freedom.
 `
   },
 
@@ -345,11 +308,15 @@ Structure removes chaos and gives clarity.
     date: "2026-06-24",
     category: "yoga",
     image: "https://nomadlifexp.com/images/yoga1.jpg",
-    relatedSlugs: ["headstand"],
+    relatedSlugs: [],
     content: `
 # Forward Bending Yoga
 
-This posture helps relax the nervous system.
+Helps calm the nervous system.
+
+## Benefit
+
+Reduces stress and improves relaxation.
 `
   },
 
@@ -362,11 +329,15 @@ This posture helps relax the nervous system.
     date: "2026-06-24",
     category: "yoga",
     image: "https://nomadlifexp.com/images/yoga2.jpg",
-    relatedSlugs: ["forward-bending"],
+    relatedSlugs: [],
     content: `
 # Headstand Benefits
 
-Inversions improve focus and body awareness.
+Inversions improve focus and circulation.
+
+## Effect
+
+Better body awareness and mental clarity.
 `
   }
 ];

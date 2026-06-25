@@ -2,19 +2,21 @@ import { notFound } from "next/navigation";
 import { posts } from "@/lib/posts";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import Image from "next/image";
 
-export async function generateStaticParams() {
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
-}
+type Params = {
+    slug: string;
+};
 
-// ✅ SEO PER POST (VERY IMPORTANT)
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+/* ---------------- SEO ---------------- */
+export async function generateMetadata({ params }: { params: Params }) {
     const post = posts.find((p) => p.slug === params.slug);
 
     if (!post) {
-        return { title: "Not Found" };
+        return {
+            title: "Post Not Found | Nomad Life XP",
+            description: "This blog post does not exist.",
+        };
     }
 
     return {
@@ -24,12 +26,25 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         openGraph: {
             title: post.title,
             description: post.description,
-            images: [post.image],
+            images: [
+                {
+                    url: post.image,
+                    alt: post.title,
+                },
+            ],
         },
     };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+/* ---------------- STATIC PARAMS ---------------- */
+export async function generateStaticParams() {
+    return posts.map((post) => ({
+        slug: post.slug,
+    }));
+}
+
+/* ---------------- PAGE ---------------- */
+export default function BlogPostPage({ params }: { params: Params }) {
     const post = posts.find((p) => p.slug === params.slug);
 
     if (!post) return notFound();
@@ -38,25 +53,44 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <main className="min-h-screen bg-black text-white py-12">
             <article className="max-w-3xl mx-auto px-6">
 
-                <div className="mb-8 border-b border-zinc-800 pb-6">
-                    <p className="text-sm text-yellow-400 uppercase">
+                {/* HEADER */}
+                <header className="mb-10 border-b border-zinc-800 pb-6">
+                    <p className="text-sm text-yellow-400 uppercase tracking-wide">
                         {post.category} • {post.date}
                     </p>
 
-                    <h1 className="text-4xl font-bold mt-2">
+                    <h1 className="text-4xl font-bold mt-2 leading-tight">
                         {post.title}
                     </h1>
 
-                    <p className="text-zinc-400 mt-3">
+                    <p className="text-zinc-400 mt-4">
                         {post.description}
                     </p>
-                </div>
+                </header>
 
-                <div className="prose prose-invert max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {/* CONTENT */}
+                <section className="prose prose-invert max-w-none prose-p:leading-relaxed prose-headings:text-white prose-a:text-yellow-400">
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                            img: ({ src, alt }) => {
+                                if (!src || typeof src !== "string") return null;
+
+                                return (
+                                    <Image
+                                        src={src}
+                                        alt={alt || "Blog image"}
+                                        width={800}
+                                        height={450}
+                                        className="rounded-lg object-cover my-6"
+                                    />
+                                );
+                            },
+                        }}
+                    >
                         {post.content}
                     </ReactMarkdown>
-                </div>
+                </section>
 
             </article>
         </main>

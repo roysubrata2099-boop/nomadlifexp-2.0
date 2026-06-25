@@ -1,108 +1,52 @@
-// src/components/Navbar.tsx
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-    // Main structural site links
-    const mainLinks = [
-        { name: "Home", href: "/" },
-        { name: "Blog", href: "/blog" },
-        { name: "About", href: "/about" },
-        { name: "Start Here", href: "/start-here" },
-    ];
+    const pathname = usePathname();
 
-    // Article category dynamic filter links
-    const categoryLinks = [
-        { name: "Mindset", href: "/blog/category/mindset" },
-        { name: "Discipline", href: "/blog/category/discipline" },
-        { name: "Fitness", href: "/blog/category/fitness" },
-        { name: "Yoga", href: "/blog/category/yoga" },
-    ];
+    const linkClass = (path: string) =>
+        `transition ${pathname === path
+            ? "text-yellow-400 font-semibold"
+            : "text-zinc-300 hover:text-yellow-400"
+        }`;
 
     return (
-        <header
-            style={{
-                backgroundColor: "#111",
-                borderBottom: "1px solid #222",
-                maxWidth: "900px",
-                margin: "0 auto",
-                padding: "15px 20px",
-            }}
-        >
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                    gap: "15px",
-                }}
-            >
-                {/* Brand Logo */}
+        <header className="border-b border-zinc-800 bg-black/90 backdrop-blur-md sticky top-0 z-50">
+            <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+
+                {/* Logo */}
                 <Link
                     href="/"
-                    style={{
-                        color: "#facc15",
-                        textDecoration: "none",
-                        fontWeight: "bold",
-                        fontSize: "22px",
-                        letterSpacing: "-0.5px",
-                    }}
+                    className="text-xl font-bold text-white hover:text-yellow-400 transition"
                 >
                     NomadLifeXP
                 </Link>
 
-                {/* Primary Navigation Hub */}
-                <nav
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "20px",
-                        flexWrap: "wrap",
-                    }}
-                >
-                    {/* Main Pages */}
-                    <div style={{ display: "flex", gap: "15px" }}>
-                        {mainLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                style={{
-                                    color: "#fff",
-                                    textDecoration: "none",
-                                    fontSize: "15px",
-                                    fontWeight: "600",
-                                }}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </div>
+                {/* Links */}
+                <div className="flex gap-6 text-sm">
+                    <Link href="/blog" className={linkClass("/blog")}>
+                        Blog
+                    </Link>
 
-                    {/* Divider Line */}
-                    <span style={{ color: "#333", userSelect: "none" }}>|</span>
+                    <Link href="/mindset" className={linkClass("/mindset")}>
+                        Mindset
+                    </Link>
 
-                    {/* Categories */}
-                    <div style={{ display: "flex", gap: "12px" }}>
-                        {categoryLinks.map((tab) => (
-                            <Link
-                                key={tab.name}
-                                href={tab.href}
-                                style={{
-                                    color: "#38bdf8", // Distinct accent color for content silos
-                                    textDecoration: "none",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    padding: "2px 6px",
-                                    borderRadius: "4px",
-                                    background: "#161b22",
-                                }}
-                            >
-                                {tab.name}
-                            </Link>
-                        ))}
-                    </div>
-                </nav>
-            </div>
+                    <Link href="/discipline" className={linkClass("/discipline")}>
+                        Discipline
+                    </Link>
+
+                    <Link href="/fitness" className={linkClass("/fitness")}>
+                        Fitness
+                    </Link>
+
+                    <Link href="/yoga" className={linkClass("/yoga")}>
+                        Yoga
+                    </Link>
+                </div>
+            </nav>
         </header>
     );
 }

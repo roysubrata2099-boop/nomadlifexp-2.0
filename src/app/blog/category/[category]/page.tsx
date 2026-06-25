@@ -3,27 +3,31 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface Props {
-    params: Promise<{ category: string }>;
+    params: {
+        category: string;
+    };
 }
 
 export async function generateMetadata({ params }: Props) {
-    const { category } = await params;
-    const decodedCategory = decodeURIComponent(category);
+    const decodedCategory = decodeURIComponent(params.category);
+
+    const title =
+        decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1);
+
     return {
-        title: `${decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1)} Blogs - Nomad Life XP`,
+        title: `${title} Blogs - Nomad Life XP`,
         description: `Articles listed under the ${decodedCategory} category.`,
     };
 }
 
-export default async function CategoryPage({ params }: Props) {
-    const { category } = await params;
-    const targetCategory = decodeURIComponent(category).toLowerCase();
+export default function CategoryPage({ params }: Props) {
+    const targetCategory = decodeURIComponent(params.category).toLowerCase();
 
     const filteredPosts = posts.filter(
         (post) => post.category.toLowerCase() === targetCategory
     );
 
-    if (filteredPosts.length === 0) {
+    if (!filteredPosts.length) {
         notFound();
     }
 
@@ -40,16 +44,30 @@ export default async function CategoryPage({ params }: Props) {
                         className="border border-slate-800 bg-slate-900/50 rounded-lg overflow-hidden shadow-sm hover:shadow-md hover:border-slate-700 transition flex flex-col h-full"
                     >
                         {post.image && (
-                            <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+                            <img
+                                src={post.image}
+                                alt={post.title}
+                                className="w-full h-48 object-cover"
+                            />
                         )}
+
                         <div className="p-5 flex flex-col flex-grow">
                             <h2 className="text-xl font-bold mb-2 line-clamp-2 text-slate-100">
-                                <Link href={`/blog/posts/${post.slug}`} className="hover:text-yellow-400 transition">
+                                <Link
+                                    href={`/blog/posts/${post.slug}`}
+                                    className="hover:text-yellow-400 transition"
+                                >
                                     {post.title}
                                 </Link>
                             </h2>
-                            <p className="text-slate-400 text-sm line-clamp-2 mb-4 flex-grow">{post.description}</p>
-                            <div className="text-xs text-slate-500 pt-2 border-t border-slate-800/50">{post.date}</div>
+
+                            <p className="text-slate-400 text-sm line-clamp-2 mb-4 flex-grow">
+                                {post.description}
+                            </p>
+
+                            <div className="text-xs text-slate-500 pt-2 border-t border-slate-800/50">
+                                {post.date}
+                            </div>
                         </div>
                     </article>
                 ))}
@@ -59,8 +77,11 @@ export default async function CategoryPage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-    const uniqueCategories = Array.from(new Set(posts.map((post) => post.category.toLowerCase())));
+    const uniqueCategories = Array.from(
+        new Set(posts.map((post) => post.category.toLowerCase()))
+    );
+
     return uniqueCategories.map((category) => ({
-        category: category,
+        category,
     }));
 }

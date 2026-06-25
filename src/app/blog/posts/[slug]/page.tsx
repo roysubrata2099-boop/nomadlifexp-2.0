@@ -3,6 +3,7 @@ import { posts } from "@/lib/posts";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Image from "next/image";
+import Link from "next/link";
 
 type Params = {
     slug: string;
@@ -49,6 +50,20 @@ export default function BlogPostPage({ params }: { params: Params }) {
 
     if (!post) return notFound();
 
+    /* ---------------- RELATED POSTS ENGINE ---------------- */
+    const relatedPosts = posts
+        .filter((p) => {
+            if (p.slug === post.slug) return false;
+
+            const sameCategory = p.category === post.category;
+
+            const sharedKeywords =
+                p.keywords?.some((k) => post.keywords?.includes(k));
+
+            return sameCategory || sharedKeywords;
+        })
+        .slice(0, 3);
+
     return (
         <main className="min-h-screen bg-black text-white py-12">
             <article className="max-w-3xl mx-auto px-6">
@@ -56,7 +71,10 @@ export default function BlogPostPage({ params }: { params: Params }) {
                 {/* HEADER */}
                 <header className="mb-10 border-b border-zinc-800 pb-6">
                     <p className="text-sm text-yellow-400 uppercase tracking-wide">
-                        {post.category} • {post.date}
+                        <Link href={`/blog/category/${post.category}`}>
+                            {post.category}
+                        </Link>{" "}
+                        • {post.date}
                     </p>
 
                     <h1 className="text-4xl font-bold mt-2 leading-tight">
@@ -90,6 +108,35 @@ export default function BlogPostPage({ params }: { params: Params }) {
                     >
                         {post.content}
                     </ReactMarkdown>
+                </section>
+
+                {/* RELATED POSTS (🔥 CORE CONNECTION SYSTEM) */}
+                <section className="mt-14 border-t border-zinc-800 pt-8">
+                    <h2 className="text-xl font-semibold mb-4">
+                        Related Articles
+                    </h2>
+
+                    <div className="space-y-3">
+                        {relatedPosts.map((p) => (
+                            <Link
+                                key={p.slug}
+                                href={`/blog/posts/${p.slug}`}
+                                className="block text-yellow-400 hover:underline"
+                            >
+                                {p.title}
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+
+                {/* CATEGORY NAVIGATION */}
+                <section className="mt-10 text-sm text-zinc-400">
+                    <Link
+                        href={`/blog/category/${post.category}`}
+                        className="text-yellow-400 hover:underline"
+                    >
+                        More in {post.category}
+                    </Link>
                 </section>
 
             </article>

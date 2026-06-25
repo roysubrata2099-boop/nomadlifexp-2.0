@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { posts } from '@/lib/posts';
 
-// This dynamic type handles both Next.js 14 (object) and Next.js 15+ (Promise) seamlessly
 interface PageProps {
     params: any;
 }
@@ -27,8 +26,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         notFound();
     }
 
-    // Fallback structural rendering check
-    const fullBodyText = post.content || post.body || post.description || '';
+    // FIXED: Removed post.body so TypeScript passes perfectly
+    const fullBodyText = post.content || post.description || '';
 
     return (
         <article className="max-w-3xl mx-auto px-4 py-12 prose prose-neutral dark:prose-invert">

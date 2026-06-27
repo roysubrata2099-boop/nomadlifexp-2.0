@@ -8,7 +8,7 @@ export const metadata: Metadata = {
         canonical: "https://nomadlifexp.com/discipline-system",
     },
     openGraph: {
-        title: "Somatic Habit Engineering & Discipline System | NomadLifeXP",
+        title: "Somatic Habit Engineering & Discipline System | | NomadLifeXP",
         description: "Eliminate decision fatigue through strict systemic execution.",
         url: "https://nomadlifexp.com/discipline-system",
         type: "website",
@@ -64,14 +64,14 @@ export default function DisciplineSystemPage() {
                         The Discipline System: <br />
                         <span className="opacity-60 text-sm md:text-2xl font-light tracking-widest block mt-2" style={{ color: 'var(--text-muted, #94a3b8)' }}>Habit Engineering for High Output</span>
                     </h1>
-                    <p className="font-light text-sm sm:text-base max-w-2xl leading-relaxed mx-auto" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                    <p className="font-light text-sm sm:text-base max-w-2xl leading-relaxed mx-auto text-center" style={{ color: 'var(--text-muted, #94a3b8)' }}>
                         A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.
                     </p>
                 </header>
 
                 <div className="w-full border-b border-white/5" />
 
-                {/* THREE-COLUMN SYSTEM MATRIX */}
+                {/* THREE-COLUMN SYSTEM MATRIX (Text-Centered Alignment) */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                     {[
                         { phase: "Phase I", title: "Internal Integrity", href: "/mindset", label: "cognitive focus controls", body: "Fixing non-negotiable daily baselines to establish morning momentum. Read our analysis on isolating " },
@@ -80,11 +80,11 @@ export default function DisciplineSystemPage() {
                     ].map((item, idx) => (
                         <div
                             key={idx}
-                            className="border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-6 rounded-xl flex flex-col justify-start space-y-3 transition-all duration-300 hover:border-cyan-500/20 shadow-[0_4px_25px_rgba(0,0,0,0.3)] text-left"
+                            className="border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-6 rounded-xl flex flex-col items-center justify-start space-y-3 transition-all duration-300 hover:border-cyan-500/20 shadow-[0_4px_25px_rgba(0,0,0,0.3)] text-center"
                         >
                             <span className="text-xs uppercase tracking-widest font-bold block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>{item.phase}</span>
                             <h2 className="text-white text-base font-bold tracking-tight">{item.title}</h2>
-                            <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                            <p className="text-sm font-light leading-relaxed text-center" style={{ color: 'var(--text-muted, #94a3b8)' }}>
                                 {item.body}
                                 <Link href={item.href} className="underline underline-offset-4 transition-colors text-white hover:text-cyan-400">
                                     {item.label}
@@ -94,20 +94,20 @@ export default function DisciplineSystemPage() {
                     ))}
                 </section>
 
-                {/* CORE PROTOCOL LIST WITH DEEP SILO LINKING */}
-                <section className="w-full border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-8 space-y-8 rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] text-left">
-                    <span className="text-xs uppercase tracking-[0.25em] font-bold block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-            // Non-Negotiable Execution Parameters
+                {/* CORE PROTOCOL LIST WITH DEEP SILO LINKING (Text-Centered Alignment) */}
+                <section className="w-full border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-8 space-y-8 rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] text-center flex flex-col items-center">
+                    <span className="text-xs uppercase tracking-[0.25em] font-bold block text-center" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
+                        // Non-Negotiable Execution Parameters
                     </span>
-                    <div className="space-y-8 divide-y divide-white/5">
+                    <div className="space-y-8 divide-y divide-white/5 w-full">
                         {coreProtocols.map((protocol, index) => (
-                            <div key={protocol.rule} className={`space-y-3 group text-left ${index !== 0 ? 'pt-6' : ''}`}>
-                                <h3 className="text-white text-sm font-bold uppercase tracking-wider flex items-center gap-2 group-hover:text-cyan-400 transition-colors duration-300">
+                            <div key={protocol.rule} className={`space-y-3 group text-center flex flex-col items-center ${index !== 0 ? 'pt-6' : ''}`}>
+                                <h3 className="text-white text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 group-hover:text-cyan-400 transition-colors duration-300 w-full text-center">
                                     {protocol.rule}
                                 </h3>
-                                <p className="text-sm font-light leading-relaxed max-w-3xl" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                                <p className="text-sm font-light leading-relaxed max-w-3xl text-center" style={{ color: 'var(--text-muted, #94a3b8)' }}>
                                     {protocol.desc}{" "}
-                                    <Link href={protocol.targetHref} className="text-xs tracking-wider inline-flex items-center gap-1 transition-all ml-1 font-medium hover:text-white" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
+                                    <Link href={protocol.targetHref} className="text-xs tracking-wider inline-flex items-center justify-center gap-1 transition-all ml-1 font-medium hover:text-white" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
                                         View Architecture Node <span className="transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200">↗</span>
                                     </Link>
                                 </p>
@@ -121,7 +121,7 @@ export default function DisciplineSystemPage() {
                     <div className="space-y-2">
                         <span className="text-[10px] uppercase tracking-[0.3em] font-black block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>Collective Synchronization</span>
                         <h2 className="text-lg text-white font-bold tracking-tight uppercase">Sync With the Execution Network</h2>
-                        <p className="text-sm font-light leading-relaxed max-w-xl mx-auto" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                        <p className="text-sm font-light leading-relaxed max-w-xl mx-auto text-center" style={{ color: 'var(--text-muted, #94a3b8)' }}>
                             We compile raw biometric structures, workflow optimization scripts, and somatic baseline reviews into periodic tactical logs. Join an elite pool of operators executing around the globe.
                         </p>
                     </div>
@@ -139,7 +139,7 @@ export default function DisciplineSystemPage() {
                 </section>
 
                 {/* LINEAR DIRECTORY LINKAGE FOOTER */}
-                <footer className="w-full flex flex-col sm:flex-row gap-6 items-center justify-between pt-8 border-t border-white/5">
+                <footer className="w-full flex flex-col sm:flex-row gap-6 items-center justify-between pt-8 border-t border-white/5 text-center sm:text-left">
                     <span className="text-sm font-light" style={{ color: 'var(--text-muted, #94a3b8)' }}>
                         Review detailed case studies on our complete database.
                     </span>

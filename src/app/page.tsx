@@ -137,23 +137,49 @@ function NomadLifeXPMaster() {
       </main>
 
       {/* FOOTER */}
-      <footer className="w-full border-t border-white/5 py-12 text-center text-xs text-gray-500">
-        <div className="mb-4">
+      <footer className="w-full border-t border-white/5 py-12 text-center text-xs text-gray-500 font-mono">
+        <div className="mb-4 tracking-widest uppercase text-[10px]">
           Follow NomadLifeXP —{" "}
-          <a className="text-white mx-2" href="https://youtube.com">
+          <a
+            className="text-neutral-300 mx-2 transition-all duration-300 hover:text-[#ffca28]"
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              textShadow: "0 0 10px rgba(255, 202, 40, 0)",
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300"}
+            onMouseLeave={(e) => e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)"}
+          >
             YouTube
           </a>
-          |
-          <a className="text-white mx-2" href="https://instagram.com">
+          <span className="text-neutral-700">|</span>
+          <a
+            className="text-neutral-300 mx-2 transition-all duration-300 hover:text-[#ffca28]"
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              textShadow: "0 0 10px rgba(255, 202, 40, 0)",
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300"}
+            onMouseLeave={(e) => e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)"}
+          >
             Instagram
           </a>
         </div>
 
-        <div>© 2026 NomadLifeXP. All rights reserved.</div>
+        <div className="tracking-wider text-neutral-600">© 2026 NomadLifeXP. All rights reserved.</div>
 
         <Link
           href="/knowledge-index"
-          className="block mt-4 text-cyan-400 hover:text-cyan-300"
+          className="inline-block mt-6 transition-all duration-300 uppercase tracking-[0.2em] font-bold text-[11px]"
+          style={{
+            color: "#ffca28",
+            textShadow: "0 0 12px rgba(255, 202, 40, 0.4), 0 0 25px rgba(255, 179, 0, 0.2)",
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.textShadow = "0 0 15px #ffca28, 0 0 30px #ffb300, 0 0 45px #ff8f00"}
+          onMouseLeave={(e) => e.currentTarget.style.textShadow = "0 0 12px rgba(255, 202, 40, 0.4), 0 0 25px rgba(255, 179, 0, 0.2)"}
         >
           Knowledge Index ↗
         </Link>

@@ -21,10 +21,10 @@ export default function Navbar() {
         <header className="w-full border-b border-neutral-900 bg-black text-neutral-200 selection:bg-neutral-800 selection:text-white sticky top-0 z-50 backdrop-blur-md bg-black/95 antialiased">
             <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
 
-                {/* LOGO IDENTIFIER ROOT */}
+                {/* LOGO IDENTIFIER ROOT (Case-Protected) */}
                 <Link
                     href="/"
-                    className="font-black text-white uppercase tracking-wider text-sm font-mono hover:text-neutral-300 transition-colors"
+                    className="font-black text-white normal-case tracking-wider text-sm font-mono hover:text-neutral-300 transition-colors"
                 >
                     NomadLifeXP // Sys
                 </Link>

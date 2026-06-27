@@ -88,5 +88,9 @@ export function getRelatedPosts(
         return b.score - a.score;
     });
 
-    return sorted.slice(0, 4).map((x) => x.post);
+    // FIX: Safely map back to a strict Post type by ensuring keywords is never undefined
+    return sorted.slice(0, 4).map((x) => ({
+        ...x.post,
+        keywords: x.post.keywords ?? []
+    })) as Post[];
 }

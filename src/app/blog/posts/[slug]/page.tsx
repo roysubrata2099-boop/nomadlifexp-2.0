@@ -114,7 +114,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </h1>
                 <div className="text-[11px] font-mono uppercase tracking-wider pt-4 border-t border-white/5 flex justify-between items-center" style={{ color: 'var(--text-muted, #94a3b8)' }}>
                     <span>Published: {post.date}</span>
-                    <span>Written by: {post.author}</span>
+                    <span>Written by: NomadLifeXP</span>
                 </div>
             </header>
 

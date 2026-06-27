@@ -7,12 +7,13 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
     const currentPath = usePathname();
 
-    // Reordered and injected the missing Knowledge Index protocol node
+    // Safely appended the Discipline System protocol node without disrupting order
     const navigationNodes = [
         { label: "Home", href: "/" },
         { label: "Start Here", href: "/start-here" },
         { label: "Knowledge Index", href: "/knowledge-index" },
         { label: "Blog", href: "/blog" },
+        { label: "Discipline System", href: "/discipline-system" },
         { label: "About", href: "/about" }
     ];
 
@@ -32,7 +33,7 @@ export default function Navbar() {
                 <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono uppercase tracking-widest">
                     {navigationNodes.map((node) => {
                         // Evaluate real-time route path matching metrics
-                        const isActive = currentPath === node.href;
+                        const isActive = currentPath === node.href || currentPath?.startsWith(`${node.href}/`);
 
                         return (
                             <Link
@@ -46,7 +47,7 @@ export default function Navbar() {
                                 {isActive && (
                                     <span className="text-yellow-500 mr-1 animate-pulse">//</span>
                                 )}
-                                {node.label.toLowerCase().replace(" ", "_")}
+                                {node.label.toLowerCase().replace(/ /g, "_")}
                             </Link>
                         );
                     })}

@@ -71,9 +71,16 @@ function NomadLifeXPMaster() {
             Core Framework
           </span>
 
-          <p className="text-xs tracking-[0.25em] uppercase font-semibold text-cyan-300 mt-2">
-            Discipline / Fitness / Yoga / Mindset
-          </p>
+          {/* SAFELY CONVERTED MATRIX NODES */}
+          <div className="text-xs tracking-[0.25em] uppercase font-semibold text-cyan-300 mt-2 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
+            <Link href="/discipline-system" className="hover:text-white transition-colors duration-200">Discipline</Link>
+            <span className="text-gray-600 font-normal">/</span>
+            <Link href="/blog?category=fitness" className="hover:text-white transition-colors duration-200">Fitness</Link>
+            <span className="text-gray-600 font-normal">/</span>
+            <Link href="/blog?category=yoga" className="hover:text-white transition-colors duration-200">Yoga</Link>
+            <span className="text-gray-600 font-normal">/</span>
+            <Link href="/blog?category=mindset" className="hover:text-white transition-colors duration-200">Mindset</Link>
+          </div>
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight uppercase mb-12">

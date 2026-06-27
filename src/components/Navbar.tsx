@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
     const currentPath = usePathname();
 
-    // Safely appended the Discipline System protocol node without disrupting order
     const navigationNodes = [
         { label: "Home", href: "/" },
         { label: "Start Here", href: "/start-here" },
@@ -17,7 +16,6 @@ export default function Navbar() {
         { label: "About", href: "/about" }
     ];
 
-    // Evaluate if the user is currently looking at the root homepage
     const isHomepage = currentPath === "/";
 
     return (
@@ -26,15 +24,15 @@ export default function Navbar() {
 
                 {/* LOGO & ESCAPE VECTOR ROOT GROUP */}
                 <div className="flex items-center justify-center gap-2">
-
+                    
                     {/* CONDITIONAL BACK TO HOME NAV NODE */}
                     {!isHomepage && (
-                        <Link
-                            href="/"
+                        <Link 
+                            href="/" 
                             className="text-neutral-500 hover:text-cyan-400 transition-colors duration-200 text-sm font-mono pr-2 border-r border-white/10 group flex items-center justify-center"
                             title="Return to Homepage"
                         >
-                            <span className="transform group-hover:-translate-x-0.5 transition-transform duration-200">←</span>
+                            <span className="transform group-hover:-translate-x-0.5 transition-transform duration-200">?</span>
                         </Link>
                     )}
 
@@ -50,7 +48,6 @@ export default function Navbar() {
                 {/* RESPONSIVE SCALING LINK DECK */}
                 <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono uppercase tracking-widest">
                     {navigationNodes.map((node) => {
-                        // Evaluate real-time route path matching metrics
                         const isActive = currentPath === node.href || currentPath?.startsWith(`${node.href}/`);
 
                         return (

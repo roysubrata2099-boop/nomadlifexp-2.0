@@ -137,57 +137,47 @@ function NomadLifeXPMaster() {
       </main>
 
       {/* FOOTER */}
-      <footer className="w-full border-t border-white/5 py-12 text-center text-xs text-gray-500 font-mono">
-        <div className="mb-4 tracking-widest uppercase text-[10px] text-gray-500">
+      <footer className="w-full border-t border-white/5 py-12 text-center text-xs font-mono">
+
+        {/* UNIFIED GOLDEN SOCIAL LAYER */}
+        <div
+          className="mb-4 tracking-widest uppercase text-[10px] transition-all duration-300"
+          style={{
+            color: "#ffca28",
+            textShadow: "0 0 12px rgba(255, 202, 40, 0.4)",
+          }}
+        >
           Follow NomadLifeXP —{" "}
           <a
-            className="mx-2 transition-all duration-300 inline-block"
+            className="mx-1 transition-all duration-300 underline underline-offset-4"
             href="https://youtube.com"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              color: "#d4d4d8",
-              textShadow: "0 0 10px rgba(255, 202, 40, 0)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#ffca28";
-              e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "#d4d4d8";
-              e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)";
-            }}
+            style={{ color: "#ffca28" }}
+            onMouseEnter={(e) => e.currentTarget.style.textShadow = "0 0 15px #ffca28, 0 0 30px #ffb300"}
+            onMouseLeave={(e) => e.currentTarget.style.textShadow = "none"}
           >
             YouTube
           </a>
-          <span className="text-neutral-700">|</span>
+          <span className="text-amber-600/60 mx-1">|</span>
           <a
-            className="mx-2 transition-all duration-300 inline-block"
+            className="mx-1 transition-all duration-300 underline underline-offset-4"
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              color: "#d4d4d8",
-              textShadow: "0 0 10px rgba(255, 202, 40, 0)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#ffca28";
-              e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "#d4d4d8";
-              e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)";
-            }}
+            style={{ color: "#ffca28" }}
+            onMouseEnter={(e) => e.currentTarget.style.textShadow = "0 0 15px #ffca28, 0 0 30px #ffb300"}
+            onMouseLeave={(e) => e.currentTarget.style.textShadow = "none"}
           >
             Instagram
           </a>
         </div>
 
-        <div className="tracking-wider text-neutral-600">© 2026 NomadLifeXP. All rights reserved.</div>
+        <div className="tracking-wider text-neutral-600 mb-6">© 2026 NomadLifeXP. All rights reserved.</div>
 
         <Link
           href="/knowledge-index"
-          className="inline-block mt-6 transition-all duration-300 uppercase tracking-[0.2em] font-bold text-[11px]"
+          className="inline-block transition-all duration-300 uppercase tracking-[0.2em] font-bold text-[11px]"
           style={{
             color: "#ffca28",
             textShadow: "0 0 12px rgba(255, 202, 40, 0.4), 0 0 25px rgba(255, 179, 0, 0.2)",

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 /* ---------------- PRODUCTION SEO METADATA ---------------- */
 export async function generateMetadata(): Promise<Metadata> {
@@ -72,27 +73,28 @@ export default function AboutPage() {
 
                 <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 w-full">
                     {[
-                        { name: "Discipline", metric: "Consistency Under Acute Friction" },
-                        { name: "Fitness", metric: "Mitochondrial Energy & Somatic Control" },
-                        { name: "Yoga", metric: "Attention Control via Controlled Respiration" },
-                        { name: "Mindset", metric: "Cognitive Parsing Optimization & Clarity" }
+                        { name: "Discipline", slug: "/discipline", metric: "Consistency Under Acute Friction" },
+                        { name: "Fitness", slug: "/fitness", metric: "Mitochondrial Energy & Somatic Control" },
+                        { name: "Yoga", slug: "/yoga", metric: "Attention Control via Controlled Respiration" },
+                        { name: "Mindset", slug: "/mindset", metric: "Cognitive Parsing Optimization & Clarity" }
                     ].map((pillar, idx) => (
-                        <div
+                        <Link
                             key={idx}
-                            className="border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-6 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] shadow-[0_4px_25px_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-cyan-500/20 group"
+                            href={pillar.slug}
+                            className="border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-6 rounded-xl flex flex-col justify-between items-center text-center min-h-[160px] shadow-[0_4px_25px_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-cyan-500/40 hover:bg-[#0b132b]/70 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-cyan-500/30 group cursor-pointer"
                         >
                             <span className="text-[10px] font-mono text-neutral-500 tracking-wider block mb-3 group-hover:text-cyan-400 transition-colors">
                                 PILLAR_0{idx + 1}
                             </span>
                             <div className="space-y-2 flex flex-col items-center justify-center">
-                                <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                                <span className="text-sm font-bold text-white uppercase tracking-wider group-hover:text-cyan-300 transition-colors block">
                                     {pillar.name}
-                                </h3>
+                                </span>
                                 <p className="text-xs font-light leading-snug" style={{ color: 'var(--text-muted, #94a3b8)' }}>
                                     {pillar.metric}
                                 </p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </section>

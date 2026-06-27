@@ -1,125 +1,84 @@
+/* ==========================================================================
+   🚀 TAILWIND ENGINE INITIALIZATION
+   ========================================================================== */
 @import "tailwindcss";
 
-/* 🔥 Tailwind Typography (BEST PRACTICE for v4: keep here OR move to config, but this works fine) */
-@plugin "@tailwindcss/typography";
+/* ==========================================================================
+   🎨 BRAND PALETTE RESET (DARK BLUE, SEA GREEN & VIBRANT GOLD OVERRIDE)
+   ========================================================================== */
+:root {
+  --bg-deep-blue: #030712;
+  /* Dark Midnight Blue Background Matrix */
+  --bg-surface-blue: #0f172a;
+  /* Deepened Layout Content Blocks */
 
-/* =========================
-   1. BASE STYLES
-========================= */
-@layer base {
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #0f172a;
-    color: #e2e8f0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* 🌊 High-Contrast Sea Green Typography Layer */
+  --text-main: #26d0a8;
+  /* Radiant Sea Green for primary text and titles */
+  --text-muted: #a7f3d0;
+  /* Mint Sea Green for descriptions and body content */
+
+  /* ✨ Vibrant Gold Highlight Matrix */
+  --glow-cyan: #ffb700;
+  /* Vibrant Solar Gold */
+  --glow-amber: #f59e0b;
+  /* Amber Gold Flare */
+  --highlight-lime: #ffe57f;
+  /* Incandescent Yellow-Gold accent */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-deep-blue) !important;
+  color: var(--text-main) !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   ✨ FIERY PLASMA GLOW EFFECT -> SHIFTED TO VIBRANT GOLD
+   ========================================================================== */
+.fiery-glow-text {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 4px var(--glow-cyan),
+    0 0 12px var(--glow-cyan),
+    0 0 30px var(--glow-amber);
+  animation: flare 4s infinite alternate;
+}
+
+@keyframes flare {
+  0% {
+    opacity: 0.96;
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 6px var(--glow-cyan), 0 0 18px var(--glow-cyan), 0 0 40px var(--glow-amber);
   }
 }
 
-/* =========================
-   2. COMPONENTS (NAVBAR)
-========================= */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 2.5rem;
-  border-bottom: 1px solid #1e293b;
-  background-color: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(8px);
-}
-
-.logo {
-  color: #facc15;
+/* ==========================================================================
+   🖋️ BLOG READER HIGHLIGHTS (Golden Under-Glow Protection)
+   ========================================================================== */
+.blog-content strong,
+p strong {
+  color: #ffffff !important;
   font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: -0.025em;
-  transition: opacity 0.2s ease;
-}
-
-.logo:hover {
-  opacity: 0.9;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.nav-links a {
-  color: #cbd5e1;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: #facc15;
-}
-
-/* =========================
-   3. SAFE CONTAINER (FIXED)
-   (❌ removed global "main" selector)
-========================= */
-.container {
-  max-width: 56.25rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2.5rem 1.5rem;
-}
-
-/* =========================
-   4. TYPOGRAPHY (PROSE BLOG STYLING)
-========================= */
-.prose {
-  --tw-prose-body: #cbd5e1;
-  --tw-prose-headings: #f8fafc;
-  --tw-prose-links: #38bdf8;
-  --tw-prose-bold: #ffffff;
-  --tw-prose-counters: #94a3b8;
-  --tw-prose-bullets: #facc15;
-  --tw-prose-quotes: #e2e8f0;
-
-  font-size: 1.125rem;
-  line-height: 1.8;
-  letter-spacing: -0.01em;
-}
-
-/* Headings */
-.prose h1,
-.prose h2,
-.prose h3 {
-  letter-spacing: -0.03em;
-  font-weight: 800;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-/* Paragraph spacing */
-.prose p {
-  margin-bottom: 1rem;
-}
-
-/* Links */
-.prose a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-
-.prose a:hover {
-  text-decoration: underline;
-}
-
-/* Code blocks */
-.prose code {
-  color: #facc15;
-}
-
-/* Lists */
-.prose ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
+  background: linear-gradient(180deg, transparent 65%, rgba(255, 183, 0, 0.35) 100%) !important;
+  padding: 2px 4px;
+  border-radius: 2px;
+  text-shadow: 0 0 8px rgba(255, 183, 0, 0.7);
 }

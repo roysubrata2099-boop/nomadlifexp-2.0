@@ -138,32 +138,46 @@ function NomadLifeXPMaster() {
 
       {/* FOOTER */}
       <footer className="w-full border-t border-white/5 py-12 text-center text-xs text-gray-500 font-mono">
-        <div className="mb-4 tracking-widest uppercase text-[10px]">
+        <div className="mb-4 tracking-widest uppercase text-[10px] text-gray-500">
           Follow NomadLifeXP —{" "}
           <a
-            className="text-neutral-300 mx-2 transition-all duration-300 hover:text-[#ffca28]"
+            className="mx-2 transition-all duration-300 inline-block"
             href="https://youtube.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{
+              color: "#d4d4d8",
               textShadow: "0 0 10px rgba(255, 202, 40, 0)",
             }}
-            onMouseEnter={(e) => e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300"}
-            onMouseLeave={(e) => e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)"}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#ffca28";
+              e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "#d4d4d8";
+              e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)";
+            }}
           >
             YouTube
           </a>
           <span className="text-neutral-700">|</span>
           <a
-            className="text-neutral-300 mx-2 transition-all duration-300 hover:text-[#ffca28]"
+            className="mx-2 transition-all duration-300 inline-block"
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{
+              color: "#d4d4d8",
               textShadow: "0 0 10px rgba(255, 202, 40, 0)",
             }}
-            onMouseEnter={(e) => e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300"}
-            onMouseLeave={(e) => e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)"}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#ffca28";
+              e.currentTarget.style.textShadow = "0 0 12px #ffca28, 0 0 25px #ffb300";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "#d4d4d8";
+              e.currentTarget.style.textShadow = "0 0 10px rgba(255, 202, 40, 0)";
+            }}
           >
             Instagram
           </a>

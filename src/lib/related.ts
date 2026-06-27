@@ -1,15 +1,16 @@
 import { Post } from "./posts";
 
-/* ---------------- EXTENDED TYPE (SAFE + COMPATIBLE) ---------------- */
+/* ---------------- CLEAN COMPATIBLE TYPE ---------------- */
+
+/**
+ * We keep keywords fully compatible with Post
+ * so TypeScript never conflicts.
+ */
 export interface EnhancedPost extends Omit<Post, "keywords"> {
-    /**
-     * Keywords can come in multiple formats from CMS or legacy data.
-     * We normalize everything internally in getNormalizedKeywords().
-     */
-    keywords?: string | string[];
+    keywords?: string[];
 }
 
-/* ---------------- TEXT TOKENIZER ---------------- */
+/* ---------------- TOKENIZER ---------------- */
 function tokenize(text: string = ""): string[] {
     if (!text) return [];
 
@@ -17,30 +18,24 @@ function tokenize(text: string = ""): string[] {
         .toLowerCase()
         .replace(/[^\w\s\-]/g, " ")
         .split(/[\s_]+/)
-        .map((word) => word.trim())
-        .filter((word) => word.length > 3);
+        .map((w) => w.trim())
+        .filter((w) => w.length > 3);
 }
 
 /* ---------------- KEYWORD NORMALIZER ---------------- */
-function getNormalizedKeywords(input: string | string[] | undefined): Set<string> {
+function getNormalizedKeywords(input: string[] | undefined): Set<string> {
     const set = new Set<string>();
     if (!input) return set;
 
-    const arr = Array.isArray(input)
-        ? input
-        : input.split(",");
-
-    for (const item of arr) {
-        if (typeof item !== "string") continue;
-
-        const clean = item.trim().toLowerCase();
-        if (clean) set.add(clean);
+    for (const item of input) {
+        if (!item) continue;
+        set.add(item.trim().toLowerCase());
     }
 
     return set;
 }
 
-/* ---------------- RELATED POSTS ENGINE ---------------- */
+/* ---------------- MAIN ENGINE ---------------- */
 export function getRelatedPosts(
     current: EnhancedPost,
     allPosts: EnhancedPost[]
@@ -52,11 +47,11 @@ export function getRelatedPosts(
     const currentCategory = current.category?.toLowerCase().trim() || "";
 
     const scored = allPosts
-        .filter((post) => post && post.slug !== current.slug)
+        .filter((p) => p.slug !== current.slug)
         .map((post) => {
             let score = 0;
 
-            /* 1. CATEGORY MATCH (highest priority) */
+            // 1. CATEGORY MATCH
             if (
                 post.category &&
                 post.category.toLowerCase().trim() === currentCategory
@@ -64,35 +59,34 @@ export function getRelatedPosts(
                 score += 5;
             }
 
-            /* 2. KEYWORD MATCH */
+            // 2. KEYWORDS MATCH
             const postKeywords = getNormalizedKeywords(post.keywords);
 
-            for (const keyword of postKeywords) {
-                if (currentKeywords.has(keyword)) {
+            for (const k of postKeywords) {
+                if (currentKeywords.has(k)) {
                     score += 2;
                 }
             }
 
-            /* 3. TITLE TOKEN MATCH */
-            const postTitleTokens = tokenize(post.title);
+            // 3. TITLE MATCH
+            const postTokens = tokenize(post.title);
 
-            for (const token of postTitleTokens) {
-                if (currentTitleTokens.has(token)) {
+            for (const t of postTokens) {
+                if (currentTitleTokens.has(t)) {
                     score += 1;
                 }
             }
 
             return { post, score };
         })
-        .filter((item) => item.score > 0);
+        .filter((x) => x.score > 0);
 
-    /* deterministic sorting (stable UI) */
-    const sorted = [...scored].sort((a, b) => {
+    const sorted = scored.sort((a, b) => {
         if (b.score === a.score) {
             return a.post.slug.localeCompare(b.post.slug);
         }
         return b.score - a.score;
     });
 
-    return sorted.slice(0, 4).map((item) => item.post);
+    return sorted.slice(0, 4).map((x) => x.post);
 }

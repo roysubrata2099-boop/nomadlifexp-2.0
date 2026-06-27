@@ -1,64 +1,111 @@
+import { Metadata } from "next";
+
+/* ---------------- PRODUCTION SEO METADATA ---------------- */
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        title: "System Core Architecture | About NomadLifeXP",
+        description: "Deconstruct the execution framework engineered to bypass motivation, establish structural autonomy, and counter modern environmental distraction.",
+        alternates: {
+            canonical: "/about",
+        },
+    };
+}
+
+/* ---------------- OPERATIONAL ABOUT CORE ---------------- */
 export default function AboutPage() {
     return (
-        <main style={{
-            maxWidth: "900px",
-            margin: "0 auto",
-            padding: "80px 20px",
-            lineHeight: "1.7",
-            color: "#e2e8f0",
-            background: "#0f172a",
-            minHeight: "100vh"
-        }}>
+        <main className="min-h-screen bg-[#060b18] text-white px-6 pt-32 pb-24 antialiased flex flex-col items-center justify-start">
 
-            <h1>About NomadLifeXP</h1>
+            {/* HERO HEADING NODE */}
+            <section className="max-w-3xl w-full text-center flex flex-col items-center justify-center space-y-6 mb-20">
+                <span className="text-[10px] font-mono uppercase tracking-[0.3em] px-4 py-1.5 border border-white/5 bg-[#0b132b]/60 inline-block rounded-none" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
+                    System Manifest // Blueprint
+                </span>
+                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight fiery-glow-text">
+                    About NomadLifeXP
+                </h1>
+                <p className="font-light max-w-2xl mx-auto leading-relaxed text-sm sm:text-base" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                    NomadLifeXP is an integrated behavioral development architecture engineered to substitute fragile emotional motivation with absolute structural design. It serves operators combating progressive cognitive decline and fragmented execution loops within high-friction environments.
+                </p>
+            </section>
 
-            <p>
-                NomadLifeXP is a structured self-transformation system designed to replace motivation with systems.
-                It is built for people who struggle with consistency, discipline, focus, and mental clarity in a highly distracting world.
-            </p>
+            {/* PLATFORM MOTIVATION CONTEXT */}
+            <section className="max-w-3xl w-full flex flex-col items-center justify-center space-y-12 mb-20 text-center">
+                <p className="font-light leading-relaxed max-w-2xl mx-auto text-sm sm:text-base" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                    Most modern performers possess no knowledge deficiency. The systemic bottleneck resides strictly within the <strong className="font-bold text-white uppercase tracking-wide">execution matrix</strong>. Lacking structured feedback loops and ambient guardrails, even optimized intent collapses under acute dopamine exposure, baseline friction, and chaotic variance.
+                </p>
 
-            <p>
-                Most people already know what to do. The real problem is not knowledge — it is execution.
-                Without structure, even the best intentions fail under distraction, stress, and inconsistency.
-            </p>
+                <div className="w-full border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-8 space-y-4 rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] text-center flex flex-col items-center justify-center max-w-2xl">
+                    <h2 className="text-xs font-mono uppercase tracking-[0.15em]" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
+            // Environmental Reality // Why This System Exists
+                    </h2>
+                    <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                        Modern computational lifestyle infrastructures are designed explicitly to commodify your attention. Hyper-compressed media networks and perpetual push configurations are eroding deep-focus states while destabilizing voluntary persistence. This system provides a defensive perimeter, systematically constructing consistent execution routines through strict automation instead of raw willpower.
+                    </p>
+                </div>
+            </section>
 
-            <h2>Why This System Exists</h2>
+            {/* META PHILOSOPHY MATRIX */}
+            <section className="max-w-3xl w-full flex flex-col items-center justify-center space-y-8 mb-24 text-center">
+                <div className="w-full border-b border-white/5 pb-4">
+                    <h2 className="text-xs font-mono uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                        Operational Philosophy
+                    </h2>
+                </div>
+                <div className="grid gap-8 sm:grid-cols-2 text-sm font-light leading-relaxed text-center max-w-2xl" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                    <p>
+                        Human development is fundamentally structural, not emotional. Identity thresholds are never determined by cognitive preference; they are forged explicitly through the mechanical repetition of verified operational routines.
+                    </p>
+                    <p>
+                        Atomic habits executed on rigid temporal schedules compounding over extended horizons comfortably outperform sporadic, high-intensity creative bursts. Over deep timelines, discipline shifts to a baseline background function, terminating the need for internal cognitive negotiations.
+                    </p>
+                </div>
+            </section>
 
-            <p>
-                Modern life is optimized for distraction, not focus. Short-form content, notifications, and constant stimulation
-                weaken attention span and break long-term discipline.
-            </p>
+            {/* THE CORE PILLARS COMPONENT */}
+            <section className="max-w-4xl w-full flex flex-col items-center justify-center mb-24 space-y-10 text-center">
+                <div className="w-full border-b border-white/5 pb-4">
+                    <h2 className="text-xs font-mono uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                        The Core Pillars
+                    </h2>
+                </div>
 
-            <p>
-                NomadLifeXP was created to reverse that pattern by rebuilding behavior through structure instead of motivation.
-            </p>
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 w-full">
+                    {[
+                        { name: "Discipline", metric: "Consistency Under Acute Friction" },
+                        { name: "Fitness", metric: "Mitochondrial Energy & Somatic Control" },
+                        { name: "Yoga", metric: "Attention Control via Controlled Respiration" },
+                        { name: "Mindset", metric: "Cognitive Parsing Optimization & Clarity" }
+                    ].map((pillar, idx) => (
+                        <div
+                            key={idx}
+                            className="border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-6 rounded-xl flex flex-col justify-between items-center text-center min-h-[150px] shadow-[0_4px_25px_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-cyan-500/20 group"
+                        >
+                            <span className="text-[10px] font-mono text-neutral-500 tracking-wider block mb-3 group-hover:text-cyan-400 transition-colors">
+                                PILLAR_0{idx + 1}
+                            </span>
+                            <div className="space-y-2 flex flex-col items-center justify-center">
+                                <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                                    {pillar.name}
+                                </h3>
+                                <p className="text-xs font-light leading-snug" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                                    {pillar.metric}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
 
-            <h2>Core Philosophy</h2>
-
-            <p>
-                Growth is not emotional. It is structural.
-                Identity is not something you decide — it is something you build through repetition.
-            </p>
-
-            <p>
-                Small actions repeated daily are more powerful than occasional bursts of motivation.
-                Over time, discipline becomes automatic and no longer requires effort or negotiation.
-            </p>
-
-            <h2>The Four Pillars</h2>
-
-            <ul>
-                <li><b>Discipline</b> — consistency under resistance</li>
-                <li><b>Fitness</b> — physical energy and control</li>
-                <li><b>Yoga</b> — awareness, breath, and balance</li>
-                <li><b>Mental Clarity</b> — focus and emotional stability</li>
-            </ul>
-
-            <h2>Evolve in Motion</h2>
-
-            <p style={{ color: "#facc15", fontWeight: "bold" }}>
-                Discipline • Fitness • Yoga • Mental Clarity
-            </p>
+            {/* RUNTIME SYSTEM STATUS TRACKER */}
+            <section className="max-w-3xl w-full border-t border-white/5 pt-16 text-center flex flex-col items-center justify-center space-y-3">
+                <h4 className="text-[10px] font-mono uppercase tracking-[0.25em] font-black" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
+                    Evolve in Motion
+                </h4>
+                <p className="text-neutral-500 font-mono text-[9px] uppercase tracking-[0.4em]">
+                    Discipline // Fitness // Yoga // Mindset
+                </p>
+            </section>
 
         </main>
     );

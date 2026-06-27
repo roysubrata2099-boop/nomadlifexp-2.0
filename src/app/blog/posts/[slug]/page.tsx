@@ -1,145 +1,176 @@
-import { notFound } from "next/navigation";
 import { posts } from "@/lib/posts";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import Image from "next/image";
+import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Metadata } from "next";
 
-type Params = {
-    slug: string;
-};
+interface PageProps {
+    params: Promise<{
+        slug: string;
+    }>;
+}
 
-/* ---------------- SEO ---------------- */
-export async function generateMetadata({ params }: { params: Params }) {
-    const post = posts.find((p) => p.slug === params.slug);
+/* ----------------- CLEAN SMART PARSER ----------------- */
+function parseMarkdownToHtml(markdownString: string): string {
+    if (!markdownString) return "";
+
+    const lines = markdownString.split("\n");
+    const htmlElements: string[] = [];
+    let paragraphBuffer: string[] = [];
+
+    const flushParagraph = () => {
+        if (paragraphBuffer.length > 0) {
+            const textContent = paragraphBuffer.join(" ");
+            htmlElements.push(`<p class="font-light leading-relaxed text-base sm:text-lg my-6" style="color: var(--text-muted, #94a3b8);">${textContent}</p>`);
+            paragraphBuffer = [];
+        }
+    };
+
+    for (let line of lines) {
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith("# ")) {
+            flushParagraph();
+            htmlElements.push(`<h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white mt-10 mb-4 border-b border-white/5 pb-2">${trimmed.slice(2)}</h1>`);
+        } else if (trimmed.startsWith("## ")) {
+            flushParagraph();
+            htmlElements.push(`<h2 class="text-xl sm:text-2xl font-bold uppercase text-neutral-100 mt-8 mb-3">${trimmed.slice(3)}</h2>`);
+        } else if (trimmed.startsWith("- ")) {
+            flushParagraph();
+            htmlElements.push(`<li class="ml-5 list-disc font-light my-2" style="color: var(--text-muted, #94a3b8);">${trimmed.slice(2)}</li>`);
+        } else if (trimmed === "") {
+            flushParagraph();
+        } else {
+            paragraphBuffer.push(trimmed);
+        }
+    }
+
+    flushParagraph();
+    return htmlElements.join("");
+}
+
+/* ----------------- DYNAMIC SEO METADATA ----------------- */
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const decodedSlug = decodeURIComponent(slug);
+    const post = posts.find((p) => p.slug.toLowerCase() === decodedSlug.toLowerCase());
 
     if (!post) {
-        return {
-            title: "Post Not Found | Nomad Life XP",
-            description: "This blog post does not exist.",
-        };
+        return { title: "Post Not Found" };
     }
 
     return {
-        title: `${post.title} | Nomad Life XP`,
+        title: `${post.title} | NomadLifeXP`,
         description: post.description,
         keywords: post.keywords,
-        openGraph: {
-            title: post.title,
-            description: post.description,
-            images: [
-                {
-                    url: post.image,
-                    alt: post.title,
-                },
-            ],
-        },
     };
 }
 
-/* ---------------- STATIC PARAMS ---------------- */
+/* ----------------- STATIC GENERATION ROUTER ----------------- */
 export async function generateStaticParams() {
     return posts.map((post) => ({
         slug: post.slug,
     }));
 }
 
-/* ---------------- PAGE ---------------- */
-export default function BlogPostPage({ params }: { params: Params }) {
-    const post = posts.find((p) => p.slug === params.slug);
+/* ----------------- MAIN BLOG POST PAGE ----------------- */
+export default async function BlogPostPage({ params }: PageProps) {
+    const { slug: rawSlug } = await params;
+    const slug = decodeURIComponent(rawSlug);
 
-    if (!post) return notFound();
+    const post = posts.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
 
-    /* ---------------- RELATED POSTS ENGINE ---------------- */
-    const relatedPosts = posts
+    if (!post) notFound();
+
+    const related = posts
         .filter((p) => {
             if (p.slug === post.slug) return false;
-
-            const sameCategory = p.category === post.category;
-
-            const sharedKeywords =
-                p.keywords?.some((k) => post.keywords?.includes(k));
-
-            return sameCategory || sharedKeywords;
+            const catMatch = p.category && post.category && p.category.toLowerCase() === post.category.toLowerCase();
+            const slugMatch = post.relatedSlugs && post.relatedSlugs.includes(p.slug);
+            return !!(catMatch || slugMatch);
         })
         .slice(0, 3);
 
     return (
-        <main className="min-h-screen bg-black text-white py-12">
-            <article className="max-w-3xl mx-auto px-6">
+        <main className="min-h-screen bg-[#060b18] text-white px-6 pt-32 pb-24 antialiased">
 
-                {/* HEADER */}
-                <header className="mb-10 border-b border-zinc-800 pb-6">
-                    <p className="text-sm text-yellow-400 uppercase tracking-wide">
-                        <Link href={`/blog/category/${post.category}`}>
-                            {post.category}
-                        </Link>{" "}
-                        • {post.date}
+            {/* NAVIGATION BAR */}
+            <div className="max-w-3xl mx-auto mb-8">
+                <Link
+                    href="/blog"
+                    className="text-xs font-mono tracking-widest hover:text-white uppercase transition-colors"
+                    style={{ color: 'var(--text-muted, #94a3b8)' }}
+                >
+                    ← Back to Articles
+                </Link>
+            </div>
+
+            {/* HEADER */}
+            <header className="max-w-3xl mx-auto mb-12 space-y-4">
+                <span className="text-[10px] font-mono tracking-[0.25em] uppercase font-bold block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
+          // {post.category}
+                </span>
+                <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-tight">
+                    {post.title}
+                </h1>
+                <div className="text-[11px] font-mono uppercase tracking-wider pt-4 border-t border-white/5 flex justify-between items-center" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                    <span>Published: {post.date}</span>
+                    <span>Written by: {post.author}</span>
+                </div>
+            </header>
+
+            {/* COVER IMAGE */}
+            {post.image && (
+                <div className="max-w-3xl mx-auto mb-12 h-64 sm:h-96 w-full bg-[#0b132b]/20 border border-white/5 overflow-hidden relative rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
+                    <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover opacity-80 relative z-10"
+                    />
+                </div>
+            )}
+
+            {/* ARTICLE CONTENT */}
+            <article className="max-w-3xl mx-auto">
+                <div
+                    className="block prose-neutral prose-invert"
+                    dangerouslySetInnerHTML={{ __html: parseMarkdownToHtml(post.content || "") }}
+                />
+            </article>
+
+            {/* RECOMMENDED READING */}
+            <section className="max-w-3xl mx-auto mt-24 border-t border-white/5 pt-12">
+                <h2 className="text-xs font-mono uppercase tracking-[0.2em] mb-6" style={{ color: 'var(--text-muted, #94a3b8)' }}>
+                    Recommended Reading
+                </h2>
+
+                {related.length === 0 ? (
+                    <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
+                        No related articles found.
                     </p>
-
-                    <h1 className="text-4xl font-bold mt-2 leading-tight">
-                        {post.title}
-                    </h1>
-
-                    <p className="text-zinc-400 mt-4">
-                        {post.description}
-                    </p>
-                </header>
-
-                {/* CONTENT */}
-                <section className="prose prose-invert max-w-none prose-p:leading-relaxed prose-headings:text-white prose-a:text-yellow-400">
-                    <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
-                        components={{
-                            img: ({ src, alt }) => {
-                                if (!src || typeof src !== "string") return null;
-
-                                return (
-                                    <Image
-                                        src={src}
-                                        alt={alt || "Blog image"}
-                                        width={800}
-                                        height={450}
-                                        className="rounded-lg object-cover my-6"
-                                    />
-                                );
-                            },
-                        }}
-                    >
-                        {post.content}
-                    </ReactMarkdown>
-                </section>
-
-                {/* RELATED POSTS (🔥 CORE CONNECTION SYSTEM) */}
-                <section className="mt-14 border-t border-zinc-800 pt-8">
-                    <h2 className="text-xl font-semibold mb-4">
-                        Related Articles
-                    </h2>
-
-                    <div className="space-y-3">
-                        {relatedPosts.map((p) => (
+                ) : (
+                    <div className="grid gap-4 sm:grid-cols-3">
+                        {related.map((r) => (
                             <Link
-                                key={p.slug}
-                                href={`/blog/posts/${p.slug}`}
-                                className="block text-yellow-400 hover:underline"
+                                key={r.slug}
+                                href={`/blog/posts/${r.slug}`}
+                                className="p-5 border border-white/5 bg-[#0b132b]/40 rounded-xl hover:border-cyan-500/20 shadow-[0_4px_25px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all flex flex-col justify-between space-y-4 group"
                             >
-                                {p.title}
+                                <div className="space-y-2 block">
+                                    <span className="text-[9px] font-mono uppercase tracking-widest block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
+                    // {r.category}
+                                    </span>
+                                    <h3 className="font-bold text-sm text-neutral-200 group-hover:text-cyan-400 transition-colors line-clamp-2 overflow-hidden">
+                                        {r.title}
+                                    </h3>
+                                </div>
+                                <span className="text-[10px] font-mono tracking-widest transition-colors uppercase block pt-2 group-hover:text-white" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
+                                    Read Article →
+                                </span>
                             </Link>
                         ))}
                     </div>
-                </section>
-
-                {/* CATEGORY NAVIGATION */}
-                <section className="mt-10 text-sm text-zinc-400">
-                    <Link
-                        href={`/blog/category/${post.category}`}
-                        className="text-yellow-400 hover:underline"
-                    >
-                        More in {post.category}
-                    </Link>
-                </section>
-
-            </article>
+                )}
+            </section>
         </main>
     );
 }

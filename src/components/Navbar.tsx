@@ -17,17 +17,35 @@ export default function Navbar() {
         { label: "About", href: "/about" }
     ];
 
+    // Evaluate if the user is currently looking at the root homepage
+    const isHomepage = currentPath === "/";
+
     return (
         <header className="w-full border-b border-neutral-900 bg-black text-neutral-200 selection:bg-neutral-800 selection:text-white sticky top-0 z-50 backdrop-blur-md bg-black/95 antialiased">
             <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
 
-                {/* LOGO IDENTIFIER ROOT (Case-Protected) */}
-                <Link
-                    href="/"
-                    className="font-black text-white normal-case tracking-wider text-sm font-mono hover:text-neutral-300 transition-colors"
-                >
-                    NomadLifeXP // Sys
-                </Link>
+                {/* LOGO & ESCAPE VECTOR ROOT GROUP */}
+                <div className="flex items-center justify-center gap-2">
+
+                    {/* CONDITIONAL BACK TO HOME NAV NODE */}
+                    {!isHomepage && (
+                        <Link
+                            href="/"
+                            className="text-neutral-500 hover:text-cyan-400 transition-colors duration-200 text-sm font-mono pr-2 border-r border-white/10 group flex items-center justify-center"
+                            title="Return to Homepage"
+                        >
+                            <span className="transform group-hover:-translate-x-0.5 transition-transform duration-200">←</span>
+                        </Link>
+                    )}
+
+                    {/* ABSOLUTE CASE-PROTECTED BRAND LOGO */}
+                    <Link
+                        href="/"
+                        className="font-black text-white normal-case tracking-wider text-sm font-mono hover:text-neutral-300 transition-colors"
+                    >
+                        NomadLifeXP // Sys
+                    </Link>
+                </div>
 
                 {/* RESPONSIVE SCALING LINK DECK */}
                 <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono uppercase tracking-widest">

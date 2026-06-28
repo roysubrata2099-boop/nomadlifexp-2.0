@@ -3,110 +3,172 @@ import { Metadata } from "next";
 
 /* ---------------- PRODUCTION SEO METADATA ---------------- */
 export async function generateMetadata(): Promise<Metadata> {
-    return {
-        title: "System Entry Framework | Start Here | NomadLifeXP",
-        description: "Begin your journey. Deconstruct the global system architecture, progression flows, and execution operational nodes.",
-        alternates: {
-            canonical: "/start-here",
-        },
-    };
+    try {
+        return {
+            title: "System Entry Framework | Start Here | NomadLifeXP",
+            description: "Begin your journey. Deconstruct the global system architecture, progression flows, and execution operational nodes.",
+            alternates: {
+                canonical: "https://nomadlifexp.com/start-here",
+            },
+            openGraph: {
+                title: "System Entry Framework | Start Here | NomadLifeXP",
+                description: "Begin your journey. Deconstruct the global system architecture, progression flows, and execution operational nodes.",
+                url: "https://nomadlifexp.com/start-here",
+                type: "website",
+            },
+        };
+    } catch {
+        return {
+            title: "System Entry Framework Matrix",
+        };
+    }
 }
 
 /* ---------------- OPERATIONAL ENTRY GATEWAY ---------------- */
 export default function StartHere() {
+    const systemSteps = [
+        { step: "1", category: "Discipline", detail: "Engineer and stabilize the foundational consistency loop." },
+        { step: "2", category: "Fitness", detail: "Optimize cell mitochondria, metabolic thresholds, and pure energy output." },
+        { step: "3", category: "Yoga", detail: "Refine somatic biofeedback mechanisms and isolate internal attention controls." },
+        { step: "4", category: "Mindset", detail: "Isolate cognitive distortions, deconstruct bias states, and lock in high focus clarity." }
+    ];
+
     return (
-        <main className="min-h-screen bg-[#060b18] text-white px-6 pt-32 pb-24 antialiased flex flex-col items-center justify-start">
+        <>
+            {/* Mainframe Canvas */}
+            <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-amber-500 selection:text-black overflow-hidden">
 
-            {/* HERO MODULE */}
-            <header className="max-w-3xl w-full text-center flex flex-col items-center justify-center space-y-6 mb-20">
-                <p className="text-xs uppercase tracking-[0.25em] font-medium" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-                    Discipline / Fitness / Yoga / Mindset
-                </p>
+                {/* Ambient Lighting Accents */}
+                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
+                <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-neutral-500/5 rounded-full blur-[140px] pointer-events-none" />
 
-                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight fiery-glow-text">
-                    Evolve in Motion
-                </h1>
+                {/* Mainframe Technical Matrix Grid Background Overlay */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-                <p className="font-light max-w-xl mx-auto leading-relaxed text-sm sm:text-base" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                    The NomadLifeXP configuration maps deliberate execution parameters to clean physical output. It is engineered to establish strict cognitive clarity and daily consistency through non-negotiable micro-structures.
-                </p>
+                {/* Content Area Matrix */}
+                <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
 
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-8 w-full max-w-md">
-                    <Link
-                        href="/discipline-system"
-                        className="w-full sm:w-auto px-6 py-3 text-xs uppercase tracking-widest border transition-all duration-200 font-medium text-center"
-                        style={{
-                            borderColor: 'var(--glow-cyan, #06b6d4)',
-                            backgroundColor: 'rgba(6,182,212,0.05)',
-                            color: 'var(--glow-cyan, #06b6d4)',
-                            boxShadow: '0 0 15px rgba(6,182,212,0.1)'
-                        }}
-                    >
-                        Initialize System
-                    </Link>
-
-                    <Link
-                        href="/blog"
-                        className="w-full sm:w-auto px-6 py-3 text-xs uppercase tracking-widest bg-white text-black hover:bg-neutral-200 transition-colors font-bold text-center"
-                    >
-                        Read Database Logs
-                    </Link>
-                </div>
-            </header>
-
-            {/* STRATEGIC CONTEXT FRAMEWORK */}
-            <section className="max-w-3xl w-full flex flex-col items-center justify-center mb-20 text-center">
-                <div className="w-full border border-white/5 bg-[#0b132b]/40 backdrop-blur-sm p-8 space-y-3 rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] max-w-2xl">
-                    <h2 className="text-xs uppercase tracking-[0.2em] font-bold" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-            // Core Premise //
-                    </h2>
-                    <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                        This is not a temporary motivational blueprint. It is a highly integrated somatic and behavioral system architecture designed to systematically replace fleeting emotional choice with absolute structure.
-                    </p>
-                </div>
-            </section>
-
-            {/* CORE PROCEDURAL SEQUENCE FLOW */}
-            <section className="max-w-3xl w-full flex flex-col items-center justify-center mb-24 space-y-10 text-center">
-                <div className="w-full border-b border-white/5 pb-4">
-                    <h2 className="text-xs uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                        System Progression Sequence
-                    </h2>
-                </div>
-
-                <div className="space-y-8 w-full max-w-2xl text-left">
-                    {[
-                        { step: "1", category: "Discipline", detail: "Engineer and stabilize the foundational consistency loop." },
-                        { step: "2", category: "Fitness", detail: "Optimize cell mitochondria, metabolic thresholds, and pure energy output." },
-                        { step: "3", category: "Yoga", detail: "Refine somatic biofeedback mechanisms and isolate internal attention controls." },
-                        { step: "4", category: "Mindset", detail: "Isolate cognitive distortions, deconstruct bias states, and lock in high focus clarity." }
-                    ].map((node) => (
-                        <div
-                            key={node.step}
-                            className="flex flex-col sm:flex-row sm:items-start text-sm font-light border-l-2 pl-6 py-2 gap-2 sm:gap-8 transition-all duration-300 group"
-                            style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+                    {/* Navigation Breadcrumb Node Block */}
+                    <div className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6">
+                        <Link
+                            href="/"
+                            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-500 transition-colors duration-200 group"
                         >
-                            <span className="text-xs font-mono font-bold tracking-widest min-w-[70px] group-hover:text-cyan-400 transition-colors" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                                STEP_0{node.step}
+                            <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">←</span>
+                            RETURN_TO_HOME
+                        </Link>
+                        <span className="text-neutral-800 font-mono text-xs" aria-hidden="true">/</span>
+                        <Link
+                            href="/blog"
+                            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-500 transition-colors duration-200 group"
+                        >
+                            RETURN_TO_DIRECTORY
+                        </Link>
+                    </div>
+
+                    {/* Left-Aligned Technical Header Block */}
+                    <header className="mb-16 max-w-5xl space-y-5">
+                        <div className="flex items-center gap-2">
+                            <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+                            <p className="text-xs uppercase tracking-[0.4em] font-mono text-amber-500">
+                                NomadLifeXP // Core Initialization Sequence
+                            </p>
+                        </div>
+                        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">
+                            Evolve In<br />
+                            <span className="bg-gradient-to-r from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent">
+                                Constant Motion
                             </span>
-                            <div className="space-y-1.5 flex-grow">
-                                <span className="font-black text-white uppercase tracking-wider block text-xs">
-                                    {node.category}
-                                </span>
-                                <p className="font-light leading-relaxed text-sm" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                                    {node.detail}
-                                </p>
+                        </h1>
+                        <p className="text-base md:text-lg font-light leading-relaxed max-w-3xl text-neutral-400 font-mono">
+                            The NomadLifeXP configuration maps deliberate execution parameters to clean physical output. It is engineered to establish strict cognitive clarity and daily consistency through non-negotiable micro-structures.
+                        </p>
+
+                        {/* Interactive Navigation Launch Buttons */}
+                        <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full max-w-md">
+                            <Link
+                                href="/discipline-system"
+                                className="w-full sm:w-auto px-6 py-3.5 text-xs uppercase tracking-widest border transition-all duration-300 font-mono font-bold text-center border-amber-500/40 bg-amber-500/5 text-amber-500 hover:bg-amber-500/20 hover:border-amber-500"
+                            >
+                                Initialize System
+                            </Link>
+
+                            <Link
+                                href="/blog"
+                                className="w-full sm:w-auto px-6 py-3.5 text-xs uppercase tracking-widest bg-white text-black hover:bg-neutral-200 transition-colors font-mono font-bold text-center"
+                            >
+                                Read Database Logs
+                            </Link>
+                        </div>
+                    </header>
+
+                    {/* Strategic Core Premise Frame */}
+                    <div className="flex flex-col gap-8 mb-16 bg-black border border-neutral-900 p-6 md:p-8 rounded-none relative">
+                        <div className="flex justify-between items-center border-b border-neutral-900 pb-4">
+                            <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">// Axiomatic Rule Baseline</span>
+                            <div className="flex gap-1.5 items-center">
+                                <span className="w-1.5 h-1.5 bg-neutral-800" />
+                                <span className="w-1.5 h-1.5 bg-neutral-800" />
+                                <span className="w-1.5 h-1.5 bg-amber-500 animate-pulse" />
                             </div>
                         </div>
-                    ))}
+
+                        <div className="space-y-2 max-w-4xl">
+                            <h3 className="text-amber-500 text-xs font-mono font-bold uppercase tracking-widest">
+                                // Core Operational Premise
+                            </h3>
+                            <p className="text-sm font-light leading-relaxed text-neutral-400">
+                                This is not a temporary motivational blueprint. It is a highly integrated somatic and behavioral system architecture designed to systematically replace fleeting emotional choice with absolute structure.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* CORE PROCEDURAL SEQUENCE FLOW */}
+                    <section className="mb-16 space-y-6">
+                        <div className="border-b border-neutral-900 pb-4">
+                            <h2 className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-mono font-bold">
+                                // System Progression Sequence Layout
+                            </h2>
+                        </div>
+
+                        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+                            {systemSteps.map((node) => (
+                                <div
+                                    key={node.step}
+                                    className="p-8 border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm rounded-none hover:border-amber-500/30 transition-all duration-300 group flex flex-col justify-between space-y-6"
+                                >
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-xs font-mono font-bold tracking-widest text-neutral-500 group-hover:text-amber-500 transition-colors">
+                                                STEP_0{node.step}
+                                            </span>
+                                            <span className="text-[10px] font-mono text-neutral-800 select-none" aria-hidden="true">
+                                                [NODE_SEQ_0{node.step}]
+                                            </span>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <h3 className="text-base font-bold text-white uppercase tracking-wider group-hover:text-amber-400 transition-colors">
+                                                {node.category}
+                                            </h3>
+                                            <p className="text-sm text-neutral-400 font-light leading-relaxed">
+                                                {node.detail}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Cross-System Connection Router Node Links */}
+                    <footer className="max-w-3xl mx-auto border-t border-neutral-900 pt-16 text-center space-y-6">
+                        <p className="text-neutral-700 font-mono text-[10px] uppercase tracking-[0.3em] select-none">
+                            Discipline / Fitness / Yoga / Mindset
+                        </p>
+                    </footer>
+
                 </div>
-            </section>
-
-            {/* FOOTER MATRIX META */}
-            <footer className="w-full max-w-3xl border-t border-white/5 pt-16 text-center text-neutral-500 font-mono text-[10px] uppercase tracking-[0.3em]">
-                Active Execution Sequence
-            </footer>
-
-        </main>
+            </div>
+        </>
     );
 }

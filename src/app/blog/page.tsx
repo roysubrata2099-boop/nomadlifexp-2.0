@@ -74,6 +74,17 @@ export default function BlogIndex() {
 
             <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
 
+                {/* Back to Main Directory Navigation Protocol Link */}
+                <div className="mb-12">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
+                    >
+                        <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
+                        RETURN_TO_HOME
+                    </Link>
+                </div>
+
                 {/* Header Block Section */}
                 <header className="mb-16 max-w-5xl space-y-5">
                     <div className="flex items-center gap-2">

@@ -55,11 +55,12 @@ export default function BlogIndex() {
         <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 bg-transparent text-white antialiased font-sans selection:bg-cyan-500 selection:text-black">
 
             {/* Header Deck */}
-            <header className="mb-20 max-w-5xl space-y-6">
+            <header className="mb-20 max-w-5xl space-y-5">
                 <p className="text-sm md:text-base uppercase tracking-[0.4em] font-black" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
                     NomadLifeXP // System Architecture
                 </p>
-                <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase leading-none">
+                {/* Scaled down header elements */}
+                <h1 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase leading-tight">
                     Human Transformation Matrix
                 </h1>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-4xl text-slate-400">

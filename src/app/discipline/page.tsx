@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: "Discipline & Autonomy Architecture | NomadLifeXP",
-        description: "Discipline is not an emotional state or a temporary motivational spark.",
+        description: "Discipline is a strictly engineered execution architecture explicitly deployed to construct true long-term autonomy.",
         url: "https://nomadlifexp.com/discipline",
         type: "website",
     },
@@ -65,10 +65,12 @@ export default function DisciplinePage() {
 
     return (
         <>
-            {/* Structured Schema Validation Layer */}
+            {/* Structured Schema Validation Layer - XSS and Parser Protected */}
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(structuredData).replace(/</g, '\\u003c')
+                }}
             />
 
             {/* Mainframe Canvas */}
@@ -85,7 +87,7 @@ export default function DisciplinePage() {
                 <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
 
                     {/* Navigation Breadcrumb Node Block */}
-                    <div className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6">
+                    <nav className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6" aria-label="Breadcrumb">
                         <Link
                             href="/"
                             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
@@ -93,14 +95,14 @@ export default function DisciplinePage() {
                             <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">←</span>
                             RETURN_TO_HOME
                         </Link>
-                        <span className="text-neutral-800 font-mono text-xs">/</span>
+                        <span className="text-neutral-800 font-mono text-xs" aria-hidden="true">/</span>
                         <Link
                             href="/blog"
                             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
                         >
                             RETURN_TO_DIRECTORY
                         </Link>
-                    </div>
+                    </nav>
 
                     {/* Left-Aligned Technical Header Block */}
                     <header className="mb-16 max-w-5xl space-y-5">
@@ -171,7 +173,7 @@ export default function DisciplinePage() {
                                         </p>
                                     </div>
                                     <Link href={module.href} className="inline-flex items-center gap-1 text-cyan-400 font-mono text-xs uppercase tracking-wider hover:text-cyan-300 transition-colors">
-                                        Read Article &rarr;
+                                        Read Article <span aria-hidden="true">→</span>
                                     </Link>
                                 </div>
                             ))}
@@ -191,7 +193,7 @@ export default function DisciplinePage() {
                                     className="border border-neutral-900 p-6 bg-neutral-950/20 backdrop-blur-sm flex items-center justify-between group hover:border-cyan-500/30 transition-all duration-300 font-mono text-xs uppercase tracking-widest text-neutral-400 hover:text-white"
                                 >
                                     <span>{node.name}</span>
-                                    <span className="transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200 text-cyan-400">&rarr;</span>
+                                    <span className="transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200 text-cyan-400" aria-hidden="true">→</span>
                                 </Link>
                             ))}
                         </div>

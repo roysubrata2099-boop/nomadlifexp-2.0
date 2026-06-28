@@ -37,12 +37,12 @@ export async function generateMetadata(): Promise<Metadata> {
             title: "Discipline & Autonomy Architecture | NomadLifeXP",
             description: "Learn how authentic discipline is engineered using deliberate systems, environmental alignment, and identity evolution.",
             alternates: {
-                canonical: "https://nomadlifexp.com/discipline-system",
+                canonical: "https://nomadlifexp.com/blog/category/discipline",
             },
             openGraph: {
                 title: "Discipline & Autonomy Architecture | NomadLifeXP",
                 description: "Learn how authentic discipline is engineered using deliberate systems, environmental alignment, and identity evolution.",
-                url: "https://nomadlifexp.com/discipline-system",
+                url: "https://nomadlifexp.com/blog/category/discipline",
                 type: "website",
             },
         };
@@ -106,7 +106,7 @@ export default function DisciplinePage() {
                 {/* Content Area Matrix */}
                 <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
 
-                    {/* Navigation Breadcrumb Node Block */}
+                    {/* Navigation Breadcrumb Node Block with Animated Arrow Safeguard */}
                     <div className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6">
                         <Link
                             href="/"
@@ -118,7 +118,7 @@ export default function DisciplinePage() {
                         <span className="text-neutral-800 font-mono text-xs" aria-hidden="true">/</span>
                         <Link
                             href="/blog"
-                            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-500 transition-colors duration-200 group"
+                            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-500 transition-colors duration-200"
                         >
                             RETURN_TO_DIRECTORY
                         </Link>
@@ -178,7 +178,7 @@ export default function DisciplinePage() {
                         </div>
                     </div>
 
-                    {/* LIVE KNOWLEDGE NODES GRID */}
+                    {/* LIVE KNOWLEDGE NODES GRID (Standardized to matching 3-column Blog Grid layout parameters) */}
                     <section className="mb-16 space-y-6">
                         <div className="border-b border-neutral-900 pb-4">
                             <h2 className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-mono font-bold">
@@ -186,7 +186,7 @@ export default function DisciplinePage() {
                             </h2>
                         </div>
 
-                        <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+                        <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
                             {disciplineArticles.map((post, idx) => (
                                 <Link
                                     key={post.slug || `discipline-node-${idx}`}
@@ -194,10 +194,10 @@ export default function DisciplinePage() {
                                     className="p-8 border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm rounded-none hover:border-amber-500/30 transition-all duration-300 group flex flex-col justify-between space-y-8"
                                 >
                                     <div className="space-y-3">
-                                        <h3 className="text-lg font-bold text-white uppercase tracking-tight group-hover:text-amber-500 transition-colors line-clamp-2">
+                                        <h3 className="text-base font-bold text-white uppercase tracking-tight group-hover:text-amber-500 transition-colors line-clamp-2">
                                             {post.title || "Untitled Node"}
                                         </h3>
-                                        <p className="text-sm text-neutral-400 font-light line-clamp-2 leading-relaxed">
+                                        <p className="text-sm text-neutral-400 font-light line-clamp-3 leading-relaxed">
                                             {post.description || ""}
                                         </p>
                                     </div>
@@ -220,7 +220,7 @@ export default function DisciplinePage() {
                                 <Link
                                     key={`alt-node-${cat}`}
                                     href={`/blog/category/${cat}`}
-                                    className="px-5 py-2.5 text-xs uppercase tracking-wider border border-neutral-900 text-neutral-400 bg-transparent hover:text-white hover:border-neutral-500 transition-colors font-mono"
+                                    className="px-5 py-2.5 text-xs uppercase tracking-wider border border-neutral-900 text-neutral-400 bg-transparent hover:text-white hover:border-amber-500 transition-colors font-mono"
                                 >
                                     {cat}
                                 </Link>

@@ -20,10 +20,10 @@ export default function BlogIndex(): React.JSX.Element {
     const FILTER_CATEGORIES = ["all", "mindset", "discipline", "fitness", "yoga"];
 
     const INDEX_CARDS = [
-        { id: "mindset", title: "Mindset", icon: "🧠" },
-        { id: "discipline", title: "Discipline", icon: "⚡" },
-        { id: "fitness", title: "Fitness", icon: "💪" },
-        { id: "yoga", title: "Yoga", icon: "🧘" }
+        { id: "mindset", title: "Mindset" },
+        { id: "discipline", title: "Discipline" },
+        { id: "fitness", title: "Fitness" },
+        { id: "yoga", title: "Yoga" }
     ];
 
     // Safely verify if posts exists as an array
@@ -87,7 +87,6 @@ export default function BlogIndex(): React.JSX.Element {
                             <div>
                                 {/* Category Header */}
                                 <div className="flex items-center gap-3 text-sm uppercase tracking-[0.2em] mb-6 border-b border-white/5 pb-4">
-                                    <span className="text-lg">{card.icon}</span>
                                     <h2 className="font-bold tracking-widest text-white">
                                         {card.title}
                                     </h2>

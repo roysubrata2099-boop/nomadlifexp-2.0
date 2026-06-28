@@ -6,7 +6,6 @@ export const metadata: Metadata = {
     title: "Discipline & Autonomy Architecture | NomadLifeXP",
     description: "Discipline is not an emotional state or a temporary motivational spark. It is a strictly engineered execution architecture explicitly deployed to construct true long-term autonomy.",
     alternates: {
-        // FIXED: Dynamically matches your folder structure routing
         canonical: "https://nomadlifexp.com/discipline",
     },
     openGraph: {
@@ -54,9 +53,10 @@ export default function DisciplinePage() {
 
     const structuredData = {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Discipline & Autonomy Architecture",
-        "description": "A strictly engineered execution architecture explicitly deployed to construct true long-term autonomy.",
+        "@type": "CollectionPage",
+        "name": "Discipline & Autonomy Architecture | NomadLifeXP",
+        "description": "Discipline is not an emotional state or a temporary motivational spark. It is a strictly engineered execution architecture explicitly deployed to construct true long-term autonomy.",
+        "url": "https://nomadlifexp.com/discipline",
         "publisher": {
             "@type": "Organization",
             "name": "NomadLifeXP",
@@ -66,7 +66,7 @@ export default function DisciplinePage() {
 
     return (
         <>
-            {/* Structured Schema Validation Layer - XSS and Parser Protected */}
+            {/* Structured Schema Validation Layer - Protected Against Injection */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -81,7 +81,7 @@ export default function DisciplinePage() {
                 <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" />
                 <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" />
 
-                {/* Mainframe Technical Matrix Grid Background Overlay */}
+                {/* Technical Matrix Grid Background Overlay */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
                 {/* Content Area Matrix */}

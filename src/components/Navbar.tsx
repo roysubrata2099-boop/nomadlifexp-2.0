@@ -1,11 +1,12 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 /* ---------------- OPERATIONAL NAVIGATION ENGINE ---------------- */
 export default function Navbar() {
-    const currentPath = usePathname();
+    const currentPath = usePathname() || "/";
 
     const navigationNodes = [
         { label: "Home", href: "/" },
@@ -24,45 +25,48 @@ export default function Navbar() {
 
                 {/* LOGO & ESCAPE VECTOR ROOT GROUP */}
                 <div className="flex items-center justify-center gap-2">
-                    
+
                     {/* CONDITIONAL BACK TO HOME NAV NODE */}
                     {!isHomepage && (
-                        <Link 
-                            href="/" 
+                        <Link
+                            href="/"
                             className="text-neutral-500 hover:text-cyan-400 transition-colors duration-200 text-sm font-mono pr-2 border-r border-white/10 group flex items-center justify-center"
                             title="Return to Homepage"
                         >
-                            <span className="transform group-hover:-translate-x-0.5 transition-transform duration-200">?</span>
+                            <span className="transform group-hover:-translate-x-1 transition-transform duration-200 font-bold">
+                                &larr;
+                            </span>
                         </Link>
                     )}
 
                     {/* ABSOLUTE CASE-PROTECTED BRAND LOGO */}
                     <Link
                         href="/"
-                        className="font-black text-white normal-case tracking-wider text-sm font-mono hover:text-neutral-300 transition-colors"
+                        className="font-black text-white tracking-wider text-sm font-mono hover:text-neutral-300 transition-colors block"
                     >
                         NomadLifeXP // Sys
                     </Link>
                 </div>
 
                 {/* RESPONSIVE SCALING LINK DECK */}
-                <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono uppercase tracking-widest">
+                <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono tracking-widest uppercase">
                     {navigationNodes.map((node) => {
-                        const isActive = currentPath === node.href || currentPath?.startsWith(`${node.href}/`);
+                        // Secure active calculation routing layer
+                        const isActive = currentPath === node.href || (node.href !== "/" && currentPath.startsWith(`${node.href}/`));
 
                         return (
                             <Link
                                 key={node.href}
                                 href={node.href}
-                                className={`transition-colors py-1 relative group ${isActive
+                                className={`transition-colors py-1 relative group block ${isActive
                                     ? "text-white font-bold"
                                     : "text-neutral-500 hover:text-neutral-200"
                                     }`}
                             >
                                 {isActive && (
-                                    <span className="text-yellow-500 mr-1 animate-pulse">//</span>
+                                    <span className="text-cyan-400 mr-1 animate-pulse">//</span>
                                 )}
-                                {node.label.toLowerCase().replace(/ /g, "_")}
+                                {String(node.label || "").toLowerCase().replace(/ /g, "_")}
                             </Link>
                         );
                     })}

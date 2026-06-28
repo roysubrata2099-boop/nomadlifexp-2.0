@@ -6,6 +6,7 @@ export const metadata: Metadata = {
     title: "Discipline & Autonomy Architecture | NomadLifeXP",
     description: "Discipline is not an emotional state or a temporary motivational spark. It is a strictly engineered execution architecture explicitly deployed to construct true long-term autonomy.",
     alternates: {
+        // FIXED: Dynamically matches your folder structure routing
         canonical: "https://nomadlifexp.com/discipline",
     },
     openGraph: {

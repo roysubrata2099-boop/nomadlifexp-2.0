@@ -1,138 +1,226 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
-// Directly import the 'posts' variable from your lib file to remove wildcard complexity
 import { posts } from "@/lib/posts";
 
-interface SafePostItem {
-    slug?: string;
-    category?: string;
-    title?: string;
-    desc?: string;
-    description?: string;
-    [key: string]: any;
-}
+export default function BlogIndex() {
+    const [searchQuery, setSearchQuery] = useState("all");
+    const [activePillar, setActivePillar] = useState("all");
+    const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
-export default function BlogIndex(): React.JSX.Element {
-    const [activeFilter, setActiveFilter] = useState<string>("all");
+    const fixedPillars = ["all", "mindset", "discipline", "fitness", "yoga", "travel"];
 
-    const FILTER_CATEGORIES = ["all", "mindset", "discipline", "fitness", "yoga"];
+    // 1. Fallback safety array
+    const safePosts = Array.isArray(posts) ? posts : [];
 
-    const INDEX_CARDS = [
-        { id: "mindset", title: "Mindset" },
-        { id: "discipline", title: "Discipline" },
-        { id: "fitness", title: "Fitness" },
-        { id: "yoga", title: "Yoga" }
-    ];
+    // 2. Type-agnostic normalizer helper
+    const postMatchesPillar = (post: any, targetPillar: string): boolean => {
+        if (!post) return false;
+        const target = String(targetPillar || "").toLowerCase().trim();
+        if (target === "all") return true;
 
-    // Safely verify if posts exists as an array
-    const safePosts: SafePostItem[] = Array.isArray(posts) ? (posts as SafePostItem[]) : [];
+        const pillarField = String(post.pillar || "").toLowerCase().trim();
+        if (pillarField === target) return true;
+
+        const categoryField = String(post.category || "").toLowerCase().trim();
+        if (categoryField === target) return true;
+
+        return false;
+    };
+
+    // 3. Performance-isolated lookup memo
+    const filteredPosts = useMemo(() => {
+        return safePosts.filter((post: any) => {
+            if (!post) return false;
+
+            const matchesPillar = postMatchesPillar(post, activePillar);
+            const cleanQuery = String(searchQuery || "").toLowerCase().trim();
+            if (!cleanQuery || cleanQuery === "all") return matchesPillar;
+
+            const safeTitle = String(post.title || "").toLowerCase();
+            const safeDescription = String(post.desc || post.description || "").toLowerCase();
+            const safeKeywords = Array.isArray(post.keywords) ? post.keywords : [];
+
+            return (
+                matchesPillar &&
+                (safeTitle.includes(cleanQuery) ||
+                    safeDescription.includes(cleanQuery) ||
+                    safeKeywords.some((k: any) => String(k || "").toLowerCase().includes(cleanQuery)))
+            );
+        });
+    }, [searchQuery, activePillar, safePosts]);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-start px-6 pt-32 pb-24 bg-[#060b18] text-white antialiased">
+        <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 bg-transparent text-white antialiased font-sans selection:bg-cyan-500 selection:text-black">
 
-            {/* HEADER PANELS */}
-            <div className="max-w-5xl w-full text-center mb-20 flex flex-col items-center justify-center">
-                <div className="space-y-4 mb-8">
-                    <span className="text-xs uppercase tracking-[0.3em] font-bold" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-                        Articles & Insights
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tight uppercase fiery-glow-text">
-                        NomadLifeXP Blog
-                    </h1>
-                </div>
-
-                <p className="max-w-xl mx-auto text-sm font-light leading-relaxed mb-12" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                    Cultivating discipline, functional fitness, modern yoga, and an unshakeable mindset.
+            {/* Header Deck */}
+            <header className="mb-20 max-w-5xl space-y-6">
+                <p className="text-sm md:text-base uppercase tracking-[0.4em] font-black" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
+                    NomadLifeXP // System Architecture
                 </p>
+                <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase leading-none">
+                    Human Transformation Matrix
+                </h1>
+                <p className="text-base md:text-xl font-light leading-relaxed max-w-4xl text-slate-400">
+                    Explore foundational protocols spanning cognitive clarity, habit mechanics, intentional movement, and mobile lifestyle execution.
+                </p>
+            </header>
 
-                {/* FILTERS PANEL */}
-                <div className="flex flex-wrap justify-center gap-3 pt-2 border-b border-white/5 pb-8 w-full">
-                    {FILTER_CATEGORIES.map((cat) => {
-                        const isSelected = activeFilter === String(cat);
+            {/* Control Console */}
+            <div className="flex flex-col gap-8 mb-16">
+
+                {/* Pillar Selection Deck */}
+                <div className="flex flex-wrap gap-3 border-b border-white/5 pb-8">
+                    {fixedPillars.map((pillar) => {
+                        const targetKey = String(pillar || "").toLowerCase().trim();
+                        const postCount = targetKey === "all"
+                            ? safePosts.length
+                            : safePosts.filter((p: any) => postMatchesPillar(p, pillar)).length;
+
+                        const isLive = postCount > 0 || targetKey === "travel";
+                        const isActive = activePillar.toLowerCase().trim() === targetKey;
+
                         return (
                             <button
-                                key={cat}
-                                onClick={() => setActiveFilter(cat)}
-                                className="px-6 py-2.5 text-xs uppercase tracking-widest transition-all cursor-pointer font-medium border"
+                                key={pillar}
+                                onClick={() => setActivePillar(pillar)}
+                                disabled={!isLive}
+                                className="px-7 py-3 text-sm uppercase tracking-[0.2em] font-bold border transition-all duration-200 rounded-none"
                                 style={{
-                                    borderColor: isSelected ? 'var(--glow-cyan, #06b6d4)' : 'rgba(255,255,255,0.08)',
-                                    backgroundColor: isSelected ? 'var(--glow-cyan, #06b6d4)' : 'transparent',
-                                    color: isSelected ? '#000000' : 'var(--text-muted, #94a3b8)',
-                                    boxShadow: isSelected ? '0 0 15px rgba(6,182,212,0.2)' : 'none'
+                                    cursor: isLive ? "pointer" : "not-allowed",
+                                    backgroundColor: isActive ? 'var(--glow-cyan, #06b6d4)' : 'transparent',
+                                    color: isActive ? "#000000" : isLive ? "#ffffff" : "#334155",
+                                    borderColor: isLive ? (isActive ? 'var(--glow-cyan, #06b6d4)' : 'rgba(255,255,255,0.15)') : '#1e293b',
+                                    boxShadow: isActive ? '0 0 25px rgba(6,182,212,0.3)' : 'none'
                                 }}
                             >
-                                {cat}
+                                {pillar} {targetKey === "travel" && " ⚡ (System Coming)"}
                             </button>
                         );
                     })}
                 </div>
+
+                {/* Live Search Field */}
+                <div className="w-full max-w-xl space-y-2">
+                    <label className="text-[10px] uppercase tracking-widest text-slate-500 font-mono block">Query Pipeline Filter_</label>
+                    <input
+                        type="text"
+                        placeholder="SEARCH PROTOCOLS..."
+                        value={searchQuery === "all" ? "" : searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value || "all")}
+                        className="p-4 text-base w-full rounded-none border outline-none font-mono uppercase tracking-wider transition-all duration-200 bg-[#060b18]/80 border-white/10 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                    />
+                </div>
             </div>
 
-            {/* KNOWLEDGE INDEX GRID LAYOUT */}
-            <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-                {INDEX_CARDS.map((card) => {
-                    const sectionPosts = safePosts.filter(
-                        (p) => String(p?.category || "").toLowerCase() === String(card.id)
-                    );
+            {/* Dynamic Module Grid */}
+            {filteredPosts.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {filteredPosts.map((post: any, idx: number) => {
+                        if (!post) return null;
 
-                    if (activeFilter !== "all" && activeFilter !== card.id) return null;
+                        const postKey = String(post.slug || idx).trim();
+                        const isHovered = hoveredSlug === postKey;
+                        const cleanSlug = String(post.slug || "").replace("#", "").trim();
+                        const safeKeywordsList = Array.isArray(post.keywords) ? post.keywords : [];
 
-                    return (
-                        <div
-                            key={card.id}
-                            className="w-full border border-white/5 bg-[#0b132b]/40 rounded-xl text-left transition-all duration-300 hover:border-cyan-500/30 shadow-[0_4px_30px_rgba(0,0,0,0.4)] backdrop-blur-sm p-8 flex flex-col justify-between group"
-                        >
-                            <div>
-                                {/* Category Header */}
-                                <div className="flex items-center gap-3 text-sm uppercase tracking-[0.2em] mb-6 border-b border-white/5 pb-4">
-                                    <h2 className="font-bold tracking-widest text-white">
-                                        {card.title}
-                                    </h2>
+                        return (
+                            <Link
+                                key={postKey}
+                                href={`/blog/posts/${cleanSlug || ""}`}
+                                onMouseEnter={() => setHoveredSlug(postKey)}
+                                onMouseLeave={() => setHoveredSlug(null)}
+                                className="border rounded-none p-8 flex flex-col justify-between transition-all duration-300 bg-[#0b132b]/20 backdrop-blur-md group relative overflow-hidden"
+                                style={{
+                                    borderColor: isHovered ? 'var(--glow-cyan, #06b6d4)' : 'rgba(255,255,255,0.05)',
+                                    boxShadow: isHovered ? "0 20px 40px -15px rgba(6, 182, 212, 0.15)" : "none",
+                                }}
+                            >
+                                {/* Card Header Content Block */}
+                                <div className="space-y-4">
+                                    <div className="flex gap-2 items-center text-xs font-mono font-bold uppercase tracking-[0.25em]">
+                                        <span
+                                            onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                const fallbackPillar = post.pillar || post.category || "all";
+                                                setActivePillar(String(fallbackPillar).toLowerCase().trim());
+                                            }}
+                                            className="hover:underline cursor-pointer"
+                                            style={{ color: 'var(--glow-cyan, #06b6d4)' }}
+                                        >
+                                            {post.pillar || post.category || "protocol"}
+                                        </span>
+                                        <span className="text-slate-700">/</span>
+                                        <span className="text-slate-500">
+                                            {String(post.category || "general").replace("-", " ")}
+                                        </span>
+                                    </div>
+
+                                    <h3
+                                        className="text-xl md:text-2xl font-black tracking-tight leading-tight uppercase transition-colors duration-200"
+                                        style={{ color: isHovered ? 'var(--glow-cyan, #06b6d4)' : '#ffffff' }}
+                                    >
+                                        {post.title || "Untitled Matrix Protocol"}
+                                    </h3>
+
+                                    <p className="text-sm font-light leading-relaxed text-slate-400 pb-4">
+                                        {post.desc || post.description || "No execution summary found."}
+                                    </p>
                                 </div>
 
-                                {/* Link List */}
-                                {sectionPosts.length > 0 ? (
-                                    <ul className="space-y-5 mb-8">
-                                        {sectionPosts.map((post: SafePostItem, postIdx: number) => (
-                                            <li key={post?.slug || String(postIdx)} className="group/item">
-                                                <Link
-                                                    href={`/blog/posts/${post?.slug || ""}`}
-                                                    className="block cursor-pointer"
+                                {/* Card Footer Control Block */}
+                                <div className="mt-6 space-y-6">
+                                    <div className="flex flex-wrap gap-2">
+                                        {safeKeywordsList.map((kw: any, kwIdx: number) => {
+                                            const cleanKw = String(kw || "").trim();
+                                            if (!cleanKw) return null;
+                                            return (
+                                                <span
+                                                    key={`${cleanKw}-${kwIdx}`}
+                                                    onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
+                                                        e.stopPropagation();
+                                                        e.preventDefault();
+                                                        setSearchQuery(cleanKw);
+                                                    }}
+                                                    className="text-xs font-mono bg-slate-900/80 border border-white/5 px-2.5 py-1 rounded-none transition-colors duration-150 text-slate-400 hover:bg-slate-800 hover:text-white"
                                                 >
-                                                    <h3 className="text-base font-semibold tracking-tight text-slate-200 group-hover/item:text-cyan-400 transition-colors duration-200 mb-1">
-                                                        {post?.title || "Untitled Article"}
-                                                    </h3>
-                                                    {(post?.desc || post?.description) && (
-                                                        <p className="text-xs font-light line-clamp-2" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                                                            {post.desc || post.description}
-                                                        </p>
-                                                    )}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p className="text-xs font-light italic mb-8" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                                        No articles compiled under this index node yet.
-                                    </p>
-                                )}
-                            </div>
+                                                    #{cleanKw}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
 
-                            {/* View Filter Deep Dive */}
-                            <button
-                                onClick={() => setActiveFilter(card.id)}
-                                className="text-xs font-bold tracking-widest uppercase inline-flex items-center gap-1 transition-colors hover:text-white mt-auto self-start cursor-pointer group"
-                                style={{ color: 'var(--glow-cyan, #06b6d4)' }}
-                            >
-                                Explore {card.title} <span className="transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200">→</span>
-                            </button>
-                        </div>
-                    );
-                })}
-            </div>
-
+                                    <div
+                                        className="w-full text-center py-3.5 rounded-none text-xs font-mono font-bold uppercase tracking-[0.25em] border transition-all duration-300"
+                                        style={{
+                                            backgroundColor: isHovered ? 'var(--glow-cyan, #06b6d4)' : 'transparent',
+                                            color: isHovered ? '#000000' : '#ffffff',
+                                            borderColor: isHovered ? 'var(--glow-cyan, #06b6d4)' : 'rgba(255,255,255,0.1)'
+                                        }}
+                                    >
+                                        Launch Protocol Study
+                                    </div>
+                                </div>
+                            </Link>
+                        );
+                    })}
+                </div>
+            ) : (
+                <div className="text-center py-24 border border-dashed border-white/10 rounded-none bg-[#060b18]/40">
+                    <p className="text-base text-slate-500 font-mono uppercase tracking-wider mb-4">
+                        System Alert: No matching execution files found inside current directory lookup.
+                    </p>
+                    <button
+                        onClick={() => { setSearchQuery("all"); setActivePillar("all"); }}
+                        className="bg-none border-none font-bold text-xs font-mono uppercase tracking-[0.2em] underline cursor-pointer"
+                        style={{ color: 'var(--glow-cyan, #06b6d4)' }}
+                    >
+                        Reset Matrix Filters
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

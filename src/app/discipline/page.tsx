@@ -15,21 +15,6 @@ function normalize(str: string | undefined | null): string {
     return String(str).toLowerCase().trim();
 }
 
-/* ---------------- PRODUCTION STATIC RUNTIME PARSER ---------------- */
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-    const rawPosts = (posts || []) as any[];
-    return rawPosts
-        .filter((p) => typeof p === "object" && p !== null)
-        .map((p) => ({
-            slug: typeof p.slug === "string" ? p.slug : "",
-            category: typeof p.category === "string" ? p.category : ""
-        }))
-        .filter((p) => normalize(p.category) === "discipline" && p.slug !== "")
-        .map((p) => ({
-            slug: p.slug,
-        }));
-}
-
 /* ---------------- PRODUCTION SEO METADATA ---------------- */
 export async function generateMetadata(): Promise<Metadata> {
     try {
@@ -37,12 +22,12 @@ export async function generateMetadata(): Promise<Metadata> {
             title: "Discipline & Autonomy Architecture | NomadLifeXP",
             description: "Learn how authentic discipline is engineered using deliberate systems, environmental alignment, and identity evolution.",
             alternates: {
-                canonical: "https://nomadlifexp.com/discipline-system",
+                canonical: "https://nomadlifexp.com/discipline",
             },
             openGraph: {
                 title: "Discipline & Autonomy Architecture | NomadLifeXP",
                 description: "Learn how authentic discipline is engineered using deliberate systems, environmental alignment, and identity evolution.",
-                url: "https://nomadlifexp.com/discipline-system",
+                url: "https://nomadlifexp.com/discipline",
                 type: "website",
             },
         };
@@ -54,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 /* ---------------- OPERATIONAL LAYER RUNTIME ---------------- */
-export default function DisciplinePage() {
+export default async function DisciplinePage() {
     const rawPosts = (posts || []) as any[];
 
     // Standardized type-safe verification layer protecting data properties

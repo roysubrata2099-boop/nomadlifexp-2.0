@@ -109,7 +109,7 @@ export default function DisciplineCategoryPage() {
                     <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block">// Active Database Knowledge Modules</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Article Card 01 - Deep Linked Link */}
+                        {/* Article Card 01 - SAFE FILTER FALLBACK */}
                         <div className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
                             <div className="space-y-3 mb-6">
                                 <h3 className="text-white text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200">
@@ -119,12 +119,12 @@ export default function DisciplineCategoryPage() {
                                     Discipline begins with attention. Learn how to rebuild self-control and consistency.
                                 </p>
                             </div>
-                            <Link href="/blog/self-discipline-guide" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                            <Link href="/blog?query=self-discipline-guide" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
                                 Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                             </Link>
                         </div>
 
-                        {/* Article Card 02 - Deep Linked Link */}
+                        {/* Article Card 02 - SAFE FILTER FALLBACK */}
                         <div className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
                             <div className="space-y-3 mb-6">
                                 <h3 className="text-white text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200">
@@ -134,7 +134,7 @@ export default function DisciplineCategoryPage() {
                                     Break procrastination cycles permanently.
                                 </p>
                             </div>
-                            <Link href="/blog/why-you-procrastinate-how-to-stop" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                            <Link href="/blog?query=why-you-procrastinate" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
                                 Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                             </Link>
                         </div>

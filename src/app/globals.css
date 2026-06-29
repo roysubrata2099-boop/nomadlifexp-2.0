@@ -1,30 +1,18 @@
 /* ==========================================================================
-   🚀 TAILWIND ENGINE INITIALIZATION
+   🚀 TAILWIND ENGINE INITIALIZATION & MATRIX CONTEXT
    ========================================================================== */
 @import "tailwindcss";
 
 /* ==========================================================================
-   🎨 BRAND PALETTE RESET (DARK BLUE, SEA GREEN & VIBRANT GOLD OVERRIDE)
+   🎨 BRAND PALETTE RESET (NAVY CONTEXT WITH ORIGINAL MATRICES SECURED)
    ========================================================================== */
 :root {
-  --bg-deep-blue: #030712;
-  /* Dark Midnight Blue Background Matrix */
+  /* Secured Core Assets */
   --bg-surface-blue: #0f172a;
-  /* Deepened Layout Content Blocks */
-
-  /* 🌊 High-Contrast Sea Green Typography Layer */
-  --text-main: #26d0a8;
-  /* Radiant Sea Green for primary text and titles */
   --text-muted: #a7f3d0;
-  /* Mint Sea Green for descriptions and body content */
-
-  /* ✨ Vibrant Gold Highlight Matrix */
   --glow-cyan: #ffb700;
-  /* Vibrant Solar Gold */
   --glow-amber: #f59e0b;
-  /* Amber Gold Flare */
   --highlight-lime: #ffe57f;
-  /* Incandescent Yellow-Gold accent */
 }
 
 * {
@@ -33,12 +21,22 @@
   padding: 0;
 }
 
+/* ==========================================================================
+   🌌 DEEP NAVY BLUE BACKGROUND LAYERING ENGINE
+   ========================================================================== */
 body {
-  background-color: var(--bg-deep-blue) !important;
-  color: var(--text-main) !important;
+  min-height: 100vh;
+  /* Clean solid color fallback followed by high-performance multi-layer radial arrays */
+  background-color: #050914 !important;
+  background:
+    radial-gradient(circle at top, #0a1a3a 0%, transparent 45%),
+    radial-gradient(circle at bottom, #050b1a 0%, transparent 40%),
+    linear-gradient(135deg, #050914, #071428, #0a1a33) !important;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  color: #ffffff;
+  /* Safe base layout text color */
 }
 
 a {
@@ -48,10 +46,54 @@ a {
 }
 
 /* ==========================================================================
-   ✨ FIERY PLASMA GLOW EFFECT -> SHIFTED TO VIBRANT GOLD
+   ✨ CLEAN TRILL TEXT CONFIGURATION (USE THIS CLASS FOR TEXTS/HEADINGS)
+   ========================================================================== */
+.trill,
+.trill-text-target,
+h1,
+h2 {
+  display: inline-block;
+  /* Safe handling for text clipping environments */
+
+  /* Smooth ocean-blue gradient matrix */
+  background: linear-gradient(90deg,
+      #ffffff,
+      #7dd3fc,
+      #38bdf8,
+      #60a5fa,
+      #ffffff) !important;
+  background-size: 300% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+
+  /* Soft architectural glow matrices */
+  text-shadow:
+    0 0 10px rgba(56, 189, 248, 0.18),
+    0 0 25px rgba(125, 211, 252, 0.10);
+
+  /* Continuous execution runtime */
+  animation: trillShimmer 4s linear infinite !important;
+}
+
+/* Shimmer runtime framework */
+@keyframes trillShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* ==========================================================================
+   ✨ FIERY PLASMA GLOW EFFECT -> SECURED WITH GOLD ARCHITECTURE
    ========================================================================== */
 .fiery-glow-text {
   color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  /* Safety override for text gradient inheritances */
   text-shadow:
     0 0 4px var(--glow-cyan),
     0 0 12px var(--glow-cyan),
@@ -76,6 +118,8 @@ a {
 .blog-content strong,
 p strong {
   color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  /* Protects content highlights from inheriting global text gradients */
   font-weight: 700;
   background: linear-gradient(180deg, transparent 65%, rgba(255, 183, 0, 0.35) 100%) !important;
   padding: 2px 4px;

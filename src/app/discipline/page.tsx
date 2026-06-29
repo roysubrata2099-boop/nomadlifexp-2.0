@@ -119,7 +119,7 @@ export default function DisciplineCategoryPage() {
                                     Discipline begins with attention. Learn how to rebuild self-control and consistency.
                                 </p>
                             </div>
-                            <Link href="#" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                            <Link href="/blog?category=discipline" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
                                 Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                             </Link>
                         </div>
@@ -134,7 +134,7 @@ export default function DisciplineCategoryPage() {
                                     Break procrastination cycles permanently.
                                 </p>
                             </div>
-                            <Link href="#" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                            <Link href="/blog?category=discipline" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
                                 Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                             </Link>
                         </div>

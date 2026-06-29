@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// FIXED: Isolated navigation matrix pointing to dedicated framework node pages
 const MAIN_NAVIGATION_NODES = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-  { label: "Discipline System", href: "/discipline-system" },
+  { label: "Discipline System", href: "/discipline" },
 ];
 
 function NomadLifeXPMaster() {
@@ -71,15 +72,15 @@ function NomadLifeXPMaster() {
             Core Framework
           </span>
 
-          {/* SAFELY CONVERTED MATRIX NODES */}
+          {/* FIXED: Re-mapped Core Matrix Inline Anchor Points directly to their explicit architectural pages */}
           <div className="text-xs tracking-[0.25em] uppercase font-semibold text-cyan-300 mt-2 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
-            <Link href="/discipline-system" className="hover:text-white transition-colors duration-200">Discipline</Link>
+            <Link href="/discipline" className="hover:text-white transition-colors duration-200">Discipline</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/blog?category=fitness" className="hover:text-white transition-colors duration-200">Fitness</Link>
+            <Link href="/fitness" className="hover:text-white transition-colors duration-200">Fitness</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/blog?category=yoga" className="hover:text-white transition-colors duration-200">Yoga</Link>
+            <Link href="/yoga" className="hover:text-white transition-colors duration-200">Yoga</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/blog?category=mindset" className="hover:text-white transition-colors duration-200">Mindset</Link>
+            <Link href="/mindset" className="hover:text-white transition-colors duration-200">Mindset</Link>
           </div>
         </div>
 

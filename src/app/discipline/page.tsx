@@ -61,7 +61,13 @@ export default function DisciplinePage() {
             "@type": "Organization",
             "name": "NomadLifeXP",
             "url": "https://nomadlifexp.com"
-        }
+        },
+        "hasPart": knowledgeModules.map(module => ({
+            "@type": "WebPage",
+            "name": module.title,
+            "description": module.desc,
+            "url": `https://nomadlifexp.com${module.href}`
+        }))
     };
 
     return (
@@ -85,7 +91,7 @@ export default function DisciplinePage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
                 {/* Content Area Matrix */}
-                <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
+                <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
 
                     {/* Navigation Breadcrumb Node Block */}
                     <nav className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6" aria-label="Breadcrumb">
@@ -125,11 +131,11 @@ export default function DisciplinePage() {
                     </header>
 
                     {/* Theoretical Foundations Terminal Block Console */}
-                    <div className="flex flex-col gap-8 mb-16 bg-black border border-neutral-900 p-6 md:p-8 rounded-none relative">
+                    <section className="flex flex-col gap-8 mb-16 bg-black border border-neutral-900 p-6 md:p-8 rounded-none relative">
 
                         {/* Status Bar Section Header */}
                         <div className="flex justify-between items-center border-b border-neutral-900 pb-4">
-                            <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">// Theoretical Foundations Grid</span>
+                            <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">// Theoretical Foundations Grid</h2>
                             <div className="flex gap-1.5 items-center">
                                 <span className="w-1.5 h-1.5 bg-neutral-800" />
                                 <span className="w-1.5 h-1.5 bg-neutral-800" />
@@ -152,23 +158,23 @@ export default function DisciplinePage() {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </section>
 
                     {/* Active Database Knowledge Modules (Two-Column Layout) */}
-                    <div className="mb-16 space-y-6">
+                    <section className="mb-16 space-y-6">
                         <div className="flex items-center justify-between border-b border-neutral-900 pb-4">
-                            <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">// Active Database Knowledge Modules</span>
+                            <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">// Active Database Knowledge Modules</h2>
                         </div>
-                        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                             {knowledgeModules.map((module, idx) => (
-                                <div
+                                <article
                                     key={idx}
                                     className="border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm p-8 flex flex-col justify-between transition-all duration-300 hover:border-amber-500/30 rounded-none group"
                                 >
                                     <div className="space-y-4 mb-6">
-                                        <h2 className="text-white text-lg font-bold uppercase tracking-tight transition-colors duration-200 group-hover:text-amber-500">
+                                        <h3 className="text-white text-lg font-bold uppercase tracking-tight transition-colors duration-200 group-hover:text-amber-500">
                                             {module.title}
-                                        </h2>
+                                        </h3>
                                         <p className="text-sm font-light leading-relaxed text-neutral-400">
                                             {module.desc}
                                         </p>
@@ -176,13 +182,13 @@ export default function DisciplinePage() {
                                     <Link href={module.href} className="inline-flex items-center gap-1 text-cyan-400 font-mono text-xs uppercase tracking-wider hover:text-cyan-300 transition-colors">
                                         Read Article <span aria-hidden="true">→</span>
                                     </Link>
-                                </div>
+                                </article>
                             ))}
-                        </section>
-                    </div>
+                        </div>
+                    </section>
 
                     {/* Cross-Connect Alternative Nodes Matrix Area */}
-                    <div className="space-y-4">
+                    <nav className="space-y-4" aria-label="Related Pillars">
                         <div className="flex items-center justify-between border-b border-neutral-900 pb-4">
                             <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">// Cross-Connect Alternative Nodes</span>
                         </div>
@@ -198,9 +204,9 @@ export default function DisciplinePage() {
                                 </Link>
                             ))}
                         </div>
-                    </div>
+                    </nav>
 
-                </div>
+                </main>
             </div>
         </>
     );

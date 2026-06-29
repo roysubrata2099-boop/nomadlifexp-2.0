@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// FIXED: Isolated navigation matrix pointing to dedicated framework node pages
+// 100% PROTECTED: Decoupled navigation matrix routing endpoints independently
 const MAIN_NAVIGATION_NODES = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-  { label: "Discipline System", href: "/discipline" },
+  { label: "Discipline System", href: "/discipline-system" }, // Bound explicitly to system path
 ];
 
 function NomadLifeXPMaster() {
@@ -72,7 +72,7 @@ function NomadLifeXPMaster() {
             Core Framework
           </span>
 
-          {/* FIXED: Re-mapped Core Matrix Inline Anchor Points directly to their explicit architectural pages */}
+          {/* 100% PROTECTED: Kept category pillar link completely isolated on the legacy filter target */}
           <div className="text-xs tracking-[0.25em] uppercase font-semibold text-cyan-300 mt-2 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
             <Link href="/discipline" className="hover:text-white transition-colors duration-200">Discipline</Link>
             <span className="text-gray-600 font-normal">/</span>
@@ -140,7 +140,6 @@ function NomadLifeXPMaster() {
       {/* FOOTER */}
       <footer className="w-full border-t border-white/5 py-12 text-center text-xs font-mono">
 
-        {/* UNIFIED GOLDEN SOCIAL LAYER */}
         <div
           className="mb-4 tracking-widest uppercase text-[10px] transition-all duration-300"
           style={{
@@ -194,7 +193,6 @@ function NomadLifeXPMaster() {
   );
 }
 
-/* ✅ SAFE NEXT.JS EXPORT */
 export default function Page() {
   return <NomadLifeXPMaster />;
 }

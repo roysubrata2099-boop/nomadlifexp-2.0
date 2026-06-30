@@ -41,7 +41,7 @@ export default function DisciplineSystemPage() {
                     </Link>
                     <span className="text-neutral-800 font-mono text-xs" aria-hidden="true">/</span>
                     <Link
-                        href="/discipline-system"
+                        href="/directory"
                         className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-400 transition-colors duration-200"
                     >
                         RETURN_TO_DIRECTORY
@@ -125,7 +125,7 @@ export default function DisciplineSystemPage() {
                                     Zero data ingestion before the morning somatic mobility sequence. High-leverage engineering blocks execute within a strict zero-notification chamber.
                                 </p>
                             </div>
-                            <Link href="/discipline-system" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
+                            <Link href="/architecture/attention-protection" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
                                 View Architecture Node <span aria-hidden="true">&nearr;</span>
                             </Link>
                         </div>
@@ -140,7 +140,7 @@ export default function DisciplineSystemPage() {
                                     Daily functional thresholds are fixed structural components. Daily conditioning cycles do not negotiate with shifting schedules or environmental friction.
                                 </p>
                             </div>
-                            <Link href="/discipline-system" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
+                            <Link href="/architecture/metabolic-baselines" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
                                 View Architecture Node <span aria-hidden="true">&nearr;</span>
                             </Link>
                         </div>
@@ -155,7 +155,7 @@ export default function DisciplineSystemPage() {
                                     All dynamic displays drop to zero emission bounds by 21:30. Core cognitive performance logs finalize before initializing the neurological recovery window.
                                 </p>
                             </div>
-                            <Link href="/discipline-system" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
+                            <Link href="/architecture/evening-deceleration" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
                                 View Architecture Node <span aria-hidden="true">&nearr;</span>
                             </Link>
                         </div>
@@ -172,9 +172,12 @@ export default function DisciplineSystemPage() {
                         </p>
                     </div>
                     <div className="flex justify-start md:justify-end">
-                        <button type="button" className="px-6 py-3 border border-amber-500 text-amber-500 text-xs font-mono uppercase tracking-widest hover:bg-amber-500 hover:text-black transition-all duration-300 cursor-pointer">
+                        <Link
+                            href="/join"
+                            className="px-6 py-3 border border-amber-500 text-amber-500 text-xs font-mono uppercase tracking-widest hover:bg-amber-500 hover:text-black transition-all duration-300 whitespace-nowrap"
+                        >
                             Join the Execution Channel
-                        </button>
+                        </Link>
                     </div>
                 </section>
 
@@ -184,7 +187,7 @@ export default function DisciplineSystemPage() {
                         <div className="text-[10px] font-mono uppercase text-neutral-500">// System_Archives</div>
                         <p className="text-xs text-neutral-400 font-light">Review detailed case studies on our complete database.</p>
                     </div>
-                    <Link href="/discipline-system" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-amber-500 hover:text-amber-400 transition-colors">
+                    <Link href="/archives" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-amber-500 hover:text-amber-400 transition-colors">
                         Read System Logs <span aria-hidden="true">&rarr;</span>
                     </Link>
                 </footer>

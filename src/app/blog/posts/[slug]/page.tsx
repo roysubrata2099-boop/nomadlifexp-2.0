@@ -1,12 +1,13 @@
+// IMPORT THE RAW ARRAY INSTEAD OF NON-EXISTENT FUNCTIONS
 import { posts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
 
+/* ----------------- EXACT NEXT.JS 15 ENGINE SIGNATURES ----------------- */
 interface PageProps {
-    params: Promise<{
-        slug: string;
-    }>;
+    params: Promise<{ slug: string }>;
+    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 /* ----------------- CLEAN SMART PARSER ----------------- */
@@ -25,7 +26,7 @@ function parseMarkdownToHtml(markdownString: string): string {
         }
     };
 
-    for (let line of lines) {
+    for (const line of lines) {
         const trimmed = line.trim();
 
         if (trimmed.startsWith("# ")) {
@@ -49,43 +50,60 @@ function parseMarkdownToHtml(markdownString: string): string {
 }
 
 /* ----------------- DYNAMIC SEO METADATA ----------------- */
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { slug } = await params;
-    const decodedSlug = decodeURIComponent(slug);
-    const post = posts.find((p) => p.slug.toLowerCase() === decodedSlug.toLowerCase());
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+    try {
+        const resolvedParams = await props.params;
+        const slug = resolvedParams?.slug;
+        if (!slug) return { title: "Post Not Found" };
 
-    if (!post) {
-        return { title: "Post Not Found" };
+        const decodedSlug = decodeURIComponent(slug);
+        const post = posts.find((p: any) => p.slug.toLowerCase() === decodedSlug.toLowerCase());
+
+        if (!post) {
+            return { title: "Post Not Found" };
+        }
+
+        return {
+            title: `${post.title || "Blog Post"} | NomadLifeXP`,
+            description: post.description || "",
+            keywords: Array.isArray(post.keywords) ? post.keywords : [],
+        };
+    } catch {
+        return { title: "Blog Post | NomadLifeXP" };
     }
-
-    return {
-        title: `${post.title} | NomadLifeXP`,
-        description: post.description,
-        keywords: post.keywords,
-    };
 }
 
 /* ----------------- STATIC GENERATION ROUTER ----------------- */
-export async function generateStaticParams() {
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+    try {
+        if (!posts || !Array.isArray(posts)) return [];
+
+        return posts.map((post: any) => ({
+            slug: String(post?.slug || ""),
+        }));
+    } catch (error) {
+        console.error("Error generating static params:", error);
+        return [];
+    }
 }
 
 /* ----------------- MAIN BLOG POST PAGE ----------------- */
-export default async function BlogPostPage({ params }: PageProps) {
-    const { slug: rawSlug } = await params;
-    const slug = decodeURIComponent(rawSlug);
+export default async function BlogPostPage(props: PageProps) {
+    const resolvedParams = await props.params;
+    const rawSlug = resolvedParams?.slug;
 
-    const post = posts.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
+    if (!rawSlug) notFound();
+
+    const slug = decodeURIComponent(rawSlug);
+    const post = posts.find((p: any) => p.slug.toLowerCase() === slug.toLowerCase());
 
     if (!post) notFound();
 
     const related = posts
-        .filter((p) => {
-            if (p.slug === post.slug) return false;
-            const catMatch = p.category && post.category && p.category.toLowerCase() === post.category.toLowerCase();
-            const slugMatch = post.relatedSlugs && post.relatedSlugs.includes(p.slug);
+        .filter((p: any) => {
+            if (!p || p.slug === post.slug) return false;
+            const catMatch = p.category && post.category && String(p.category).toLowerCase() === String(post.category).toLowerCase();
+            const slugMatch = post.relatedSlugs && Array.isArray(post.relatedSlugs) && post.relatedSlugs.includes(p.slug);
             return !!(catMatch || slugMatch);
         })
         .slice(0, 3);
@@ -107,7 +125,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {/* HEADER */}
             <header className="max-w-3xl mx-auto mb-12 space-y-4">
                 <span className="text-[10px] font-mono tracking-[0.25em] uppercase font-bold block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-          // {post.category}
+                    // {post.category || "general"}
                 </span>
                 <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-tight">
                     {post.title}
@@ -149,25 +167,31 @@ export default async function BlogPostPage({ params }: PageProps) {
                     </p>
                 ) : (
                     <div className="grid gap-4 sm:grid-cols-3">
-                        {related.map((r) => (
-                            <Link
-                                key={r.slug}
-                                href={`/blog/posts/${r.slug}`}
-                                className="p-5 border border-white/5 bg-[#0b132b]/40 rounded-xl hover:border-cyan-500/20 shadow-[0_4px_25px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all flex flex-col justify-between space-y-4 group"
-                            >
-                                <div className="space-y-2 block">
-                                    <span className="text-[9px] font-mono uppercase tracking-widest block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-                    // {r.category}
+                        {related.map((r: any) => {
+                            const currentSlug = r.slug || "invalid";
+                            const currentTitle = r.title || "Untitled Article";
+                            const currentCategory = r.category || "general";
+
+                            return (
+                                <Link
+                                    key={currentSlug}
+                                    href={`/blog/posts/${currentSlug}`}
+                                    className="p-5 border border-white/5 bg-[#0b132b]/40 rounded-xl hover:border-cyan-500/20 shadow-[0_4px_25px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all flex flex-col justify-between space-y-4 group"
+                                >
+                                    <div className="space-y-2 block">
+                                        <span className="text-[9px] font-mono uppercase tracking-widest block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
+                                            // {currentCategory}
+                                        </span>
+                                        <h3 className="font-bold text-sm text-neutral-200 group-hover:text-cyan-400 transition-colors line-clamp-2 overflow-hidden">
+                                            {currentTitle}
+                                        </h3>
+                                    </div>
+                                    <span className="text-[10px] font-mono tracking-widest transition-colors uppercase block pt-2 group-hover:text-white" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
+                                        Read Article →
                                     </span>
-                                    <h3 className="font-bold text-sm text-neutral-200 group-hover:text-cyan-400 transition-colors line-clamp-2 overflow-hidden">
-                                        {r.title}
-                                    </h3>
-                                </div>
-                                <span className="text-[10px] font-mono tracking-widest transition-colors uppercase block pt-2 group-hover:text-white" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
-                                    Read Article →
-                                </span>
-                            </Link>
-                        ))}
+                                </Link>
+                            );
+                        })}
                     </div>
                 )}
             </section>

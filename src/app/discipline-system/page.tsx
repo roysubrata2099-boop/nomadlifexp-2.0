@@ -116,8 +116,8 @@ export default function DisciplineSystemPage() {
 
                     <div className="space-y-8 divide-y divide-neutral-900 w-full">
                         {/* Parameter 01 */}
-                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 group pt-2">
-                            <div className="space-y-2 max-w-4xl">
+                        <div className="group pt-2">
+                            <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
                                     01 / Digital Deliberation &amp; Attention Protection
                                 </h3>
@@ -125,14 +125,11 @@ export default function DisciplineSystemPage() {
                                     Zero data ingestion before the morning somatic mobility sequence. High-leverage engineering blocks execute within a strict zero-notification chamber.
                                 </p>
                             </div>
-                            <Link href="/architecture/attention-protection" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
-                                View Architecture Node <span aria-hidden="true">&nearr;</span>
-                            </Link>
                         </div>
 
                         {/* Parameter 02 */}
-                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 group pt-8">
-                            <div className="space-y-2 max-w-4xl">
+                        <div className="group pt-8">
+                            <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
                                     02 / Structural Anchors &amp; Metabolic Baselines
                                 </h3>
@@ -140,14 +137,11 @@ export default function DisciplineSystemPage() {
                                     Daily functional thresholds are fixed structural components. Daily conditioning cycles do not negotiate with shifting schedules or environmental friction.
                                 </p>
                             </div>
-                            <Link href="/architecture/metabolic-baselines" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
-                                View Architecture Node <span aria-hidden="true">&nearr;</span>
-                            </Link>
                         </div>
 
                         {/* Parameter 03 */}
-                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 group pt-8">
-                            <div className="space-y-2 max-w-4xl">
+                        <div className="group pt-8">
+                            <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
                                     03 / Evening Deceleration &amp; Biofeedback Analysis
                                 </h3>
@@ -155,29 +149,18 @@ export default function DisciplineSystemPage() {
                                     All dynamic displays drop to zero emission bounds by 21:30. Core cognitive performance logs finalize before initializing the neurological recovery window.
                                 </p>
                             </div>
-                            <Link href="/architecture/evening-deceleration" className="inline-flex items-center gap-1 text-xs font-mono uppercase text-neutral-500 hover:text-white whitespace-nowrap self-start pt-1 transition-colors">
-                                View Architecture Node <span aria-hidden="true">&nearr;</span>
-                            </Link>
                         </div>
                     </div>
                 </section>
 
-                {/* Collective Synchronization CTA Area */}
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 border border-neutral-900 p-8 md:p-12 bg-neutral-950/10 items-center">
-                    <div className="space-y-4">
+                {/* Collective Synchronization Section */}
+                <section className="border border-neutral-900 p-8 md:p-12 bg-neutral-950/10">
+                    <div className="space-y-4 max-w-4xl">
                         <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block">// Collective Synchronization</span>
                         <h2 className="text-2xl font-black uppercase text-white tracking-tight">Sync With the Execution Network</h2>
                         <p className="text-sm font-light text-neutral-400 leading-relaxed">
                             We compile raw biometric structures, workflow optimization scripts, and somatic baseline reviews into periodic tactical logs. Join an elite pool of operators executing around the globe.
                         </p>
-                    </div>
-                    <div className="flex justify-start md:justify-end">
-                        <Link
-                            href="/join"
-                            className="px-6 py-3 border border-amber-500 text-amber-500 text-xs font-mono uppercase tracking-widest hover:bg-amber-500 hover:text-black transition-all duration-300 whitespace-nowrap"
-                        >
-                            Join the Execution Channel
-                        </Link>
                     </div>
                 </section>
 

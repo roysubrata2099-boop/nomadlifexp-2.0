@@ -11,130 +11,73 @@ interface PostItem {
     displayPillar: string;
 }
 
-function getSystemFixedRoute(rawSlug: string): { slug: string; cat: string; display: string } {
-    const s = String(rawSlug || "").toLowerCase().trim();
-
+// 100% Immutable Production Ground-Truth Architecture
+const IMMUTABLE_POSTS: PostItem[] = [
     // 🧠 Mindset (4)
-    if (s.includes("attention-span") || s.includes("rebuild-your-attention")) {
-        return { slug: "rebuild-your-attention-span", cat: "mindset", display: "MINDSET" };
-    }
-    if (s.includes("cant-focus") || s.includes("why-you-cant-focus")) {
-        return { slug: "why-you-cant-focus-even-when-you-try-hard", cat: "mindset", display: "MINDSET" };
-    }
-    if (s.includes("overthinking") || s.includes("mental-clarity")) {
-        return { slug: "mental-clarity-stop-overthinking-and-regain-focus", cat: "mindset", display: "MINDSET" };
-    }
-    if (s.includes("not-stuck") || s.includes("you-are-not-stuck")) {
-        return { slug: "you-are-not-stuck-in-life", cat: "mindset", display: "MINDSET" };
-    }
+    { slug: "rebuild-your-attention-span", title: "Rebuild Your Attention Span", description: "Reclaim your mental baseline and stop dopamine overstimulation.", category: "mindset", displayPillar: "MINDSET" },
+    { slug: "why-you-cant-focus-even-when-you-try-hard", title: "Why You Can't Focus Even When You Try Hard", description: "The underlying mechanics of cognitive friction and focus optimization.", category: "mindset", displayPillar: "MINDSET" },
+    { slug: "mental-clarity-stop-overthinking-and-regain-focus", title: "Mental Clarity: Stop Overthinking and Regain Focus", description: "Practical mental frameworks to eliminate internal noise.", category: "mindset", displayPillar: "MINDSET" },
+    { slug: "you-are-not-stuck-in-life", title: "You Are Not Stuck in Life", description: "Breaking down false glass ceilings and rewiring momentum patterns.", category: "mindset", displayPillar: "MINDSET" },
 
     // 🎯 Discipline (3)
-    if (s.includes("self-discipline") || s.includes("reclaim-your-attention")) {
-        return { slug: "self-discipline-guide-reclaim-your-attention-rebuild-your-life", cat: "discipline", display: "DISCIPLINE" };
-    }
-    if (s.includes("procrastinate") || s.includes("why-you-procrastinate")) {
-        return { slug: "why-you-procrastinate-and-how-to-stop-it", cat: "discipline", display: "DISCIPLINE" };
-    }
-    if (s.includes("daily-habits") || s.includes("habits-over-motivation") || s.includes("power-of-daily-habits")) {
-        return { slug: "the-power-of-daily-habits-over-motivation", cat: "discipline", display: "DISCIPLINE" };
-    }
+    { slug: "self-discipline-guide-reclaim-your-attention-rebuild-your-life", title: "Self Discipline Guide: Reclaim Your Attention, Rebuild Your Life", description: "The definitive operational blueprint to building sovereign self-control.", category: "discipline", displayPillar: "DISCIPLINE" },
+    { slug: "why-you-procrastinate-and-how-to-stop-it", title: "Why You Procrastinate and How to Stop It", description: "Moving past emotional resistance frameworks into raw, consistent action.", category: "discipline", displayPillar: "DISCIPLINE" },
+    { slug: "the-power-of-daily-habits-over-motivation", title: "The Power of Daily Habits Over Motivation", description: "Why system-driven behavior scaling beats erratic motivation bursts every time.", category: "discipline", displayPillar: "DISCIPLINE" },
 
     // 💪 Fitness (4)
-    if (s.includes("workout-videos") || s.includes("never-actually-exercise")) {
-        return { slug: "why-people-watch-workout-videos-but-never-actually-exercise", cat: "fitness", display: "FITNESS" };
-    }
-    if (s.includes("fitness-consistency") || s.includes("workout-discipline")) {
-        return { slug: "fitness-consistency-build-workout-discipline-that-lasts", cat: "fitness", display: "FITNESS" };
-    }
-    if (s.includes("not-about-time") || s.includes("fitness-is-not")) {
-        return { slug: "fitness-is-not-about-time", cat: "fitness", display: "FITNESS" };
-    }
-    if (s.includes("workout-habit") || s.includes("outlast") || s.includes("outlasts-your-motivation")) {
-        return { slug: "build-workout-habit-outlast-motivation", cat: "fitness", display: "FITNESS" };
-    }
+    { slug: "why-people-watch-workout-videos-but-never-actually-exercise", title: "Why People Watch Workout Videos but Never Actually Exercise", description: "Overcoming passive consumption loops to manifest real physical habits.", category: "fitness", displayPillar: "FITNESS" },
+    { slug: "fitness-consistency-build-workout-discipline-that-lasts", title: "Fitness Consistency: Build Workout Discipline That Lasts", description: "Structuring automated body transformations without friction dependencies.", category: "fitness", displayPillar: "FITNESS" },
+    { slug: "fitness-is-not-about-time", title: "Fitness Is Not About Time", description: "Demolishing time-scarcity myths around athletic cultivation layouts.", category: "fitness", displayPillar: "FITNESS" },
+    { slug: "build-workout-habit-outlast-motivation", title: "How to Build a Workout Habit That Outlasts Your Motivation", description: "The structural architecture required to anchor an unshakeable fitness identity.", category: "fitness", displayPillar: "FITNESS" },
 
     // 🧘 Yoga (3)
-    if (s.includes("headstand") || s.includes("benefits")) {
-        return { slug: "headstand-benefits-for-body-and-mind", cat: "yoga", display: "YOGA" };
-    }
-    if (s.includes("forearm-stand") || s.includes("focus-and-confidence")) {
-        return { slug: "forearm-stand-yoga-for-focus-and-confidence", cat: "yoga", display: "YOGA" };
-    }
-    if (s.includes("forward-bending") || s.includes("stress-relief")) {
-        return { slug: "forward-bending-yoga-for-stress-relief", cat: "yoga", display: "YOGA" };
-    }
+    { slug: "headstand-benefits-for-body-and-mind", title: "Headstand Benefits for Body and Mind", description: "Inversion mechanics for neural performance and vascular wellness.", category: "yoga", displayPillar: "YOGA" },
+    { slug: "forearm-stand-yoga-for-focus-and-confidence", title: "Forearm Stand Yoga for Focus and Confidence", description: "Calibrating geometric precision balance to anchor situational awareness.", category: "yoga", displayPillar: "YOGA" },
+    { slug: "forward-bending-yoga-for-stress-relief", title: "Forward Bending Yoga for Stress Relief", description: "Triggering parasympathetic nervous response states through structured release.", category: "yoga", displayPillar: "YOGA" }
+];
 
-    return { slug: rawSlug, cat: "general", display: "GENERAL" };
-}
+function getSafeLoadedBlogs(): PostItem[] {
+    const targetDir = path.join(process.cwd(), "src", "content", "posts");
 
-function getScannedBlogs(): PostItem[] {
-    try {
-        const targetDir = path.join(process.cwd(), "src", "content", "posts");
-        if (!fs.existsSync(targetDir)) return [];
+    return IMMUTABLE_POSTS.map(staticPost => {
+        try {
+            // Check for potential filename variants safely
+            let filename = `${staticPost.slug}.md`;
+            if (staticPost.slug === "build-workout-habit-outlast-motivation") {
+                filename = "how-to-build-a-workout-habit-that-outlasts-your-motivation.md";
+            }
 
-        const files = fs.readdirSync(targetDir);
+            const filePath = path.join(targetDir, filename);
+            if (fs.existsSync(filePath)) {
+                const content = fs.readFileSync(filePath, "utf8") || "";
+                const lines = content.split("\n");
 
-        return files
-            .filter((file) => {
-                const norm = String(file || "").trim().toLowerCase();
-                return norm.endsWith(".md") && norm !== ".md" && !norm.startsWith(".");
-            })
-            .map((file): PostItem | null => {
-                try {
-                    const rawSlug = file.replace(/\.md$/i, "").trim();
-                    const systemRoute = getSystemFixedRoute(rawSlug);
-                    const filePath = path.join(targetDir, file);
-                    const fileContent = fs.readFileSync(filePath, "utf8") || "";
-                    const lines = fileContent.split("\n");
+                // Dynamically upgrade title/description if files are accurate
+                const h1Line = lines.find(l => l.trim().startsWith("# "));
+                const cleanLines = lines.map(l => l.trim()).filter(l => l.length > 0 && !l.startsWith("#"));
 
-                    let title = "";
-                    const h1Line = lines.find(l => l.trim().startsWith("# "));
-                    if (h1Line) {
-                        title = h1Line.replace("# ", "").trim();
-                    } else {
-                        const cleanLines = lines.map(l => l.trim()).filter(l => l.length > 0);
-                        title = cleanLines.find(l => l.length > 20 && !l.startsWith("/") && !l.startsWith("#")) || rawSlug.replace(/-/g, " ");
-                    }
-
-                    let description = "Protocol data log.";
-                    const cleanLines = lines.map(l => l.trim()).filter(l => l.length > 0);
-                    const descriptiveLine = cleanLines.find(l => l.length > 40 && !l.startsWith("#") && !l.startsWith("/") && l.trim() !== title.trim());
-                    if (descriptiveLine) {
-                        description = descriptiveLine;
-                    }
-
-                    return {
-                        slug: String(systemRoute.slug),
-                        title: String(title),
-                        description: String(description),
-                        category: systemRoute.cat,
-                        displayPillar: systemRoute.display
-                    };
-                } catch (err) {
-                    return null;
-                }
-            })
-            .filter((p): p is PostItem => p !== null);
-    } catch (e) {
-        return [];
-    }
+                return {
+                    ...staticPost,
+                    title: h1Line ? h1Line.replace("# ", "").trim() : staticPost.title,
+                    description: cleanLines.find(l => l.length > 40) || staticPost.description
+                };
+            }
+        } catch (e) {
+            // Safe fallback: uses hardcoded values if reading fails
+        }
+        return staticPost;
+    });
 }
 
 export default async function BlogIndexPage() {
-    const posts = getScannedBlogs() || [];
-
-    const totalAll = posts.length;
-    const totalMindset = posts.filter(p => p.category === "mindset").length;
-    const totalDiscipline = posts.filter(p => p.category === "discipline").length;
-    const totalFitness = posts.filter(p => p.category === "fitness").length;
-    const totalYoga = posts.filter(p => p.category === "yoga").length;
+    const posts = getSafeLoadedBlogs();
 
     const categoriesList = [
-        { name: "all", count: totalAll, path: "/blog" },
-        { name: "mindset", count: totalMindset, path: "/blog/category/mindset" },
-        { name: "discipline", count: totalDiscipline, path: "/blog/category/discipline" },
-        { name: "fitness", count: totalFitness, path: "/blog/category/fitness" },
-        { name: "yoga", count: totalYoga, path: "/blog/category/yoga" }
+        { name: "all", count: posts.length, path: "/blog" },
+        { name: "mindset", count: posts.filter(p => p.category === "mindset").length, path: "/blog/category/mindset" },
+        { name: "discipline", count: posts.filter(p => p.category === "discipline").length, path: "/blog/category/discipline" },
+        { name: "fitness", count: posts.filter(p => p.category === "fitness").length, path: "/blog/category/fitness" },
+        { name: "yoga", count: posts.filter(p => p.category === "yoga").length, path: "/blog/category/yoga" }
     ];
 
     return (
@@ -146,7 +89,7 @@ export default async function BlogIndexPage() {
                 </header>
 
                 <section className="space-y-4 mb-12">
-                    <h3 className="text-xs font-mono uppercase text-neutral-500">System_Directories ({totalAll})</h3>
+                    <h3 className="text-xs font-mono uppercase text-neutral-500">System_Directories ({posts.length})</h3>
                     <div className="flex flex-wrap gap-3 font-mono text-xs uppercase">
                         {categoriesList.map((cat) => (
                             <Link key={`cat-list-${cat.name}`} href={cat.path} className="border border-neutral-900 bg-neutral-950/40 px-4 py-2.5 hover:border-cyan-500 hover:text-cyan-400 transition-all">

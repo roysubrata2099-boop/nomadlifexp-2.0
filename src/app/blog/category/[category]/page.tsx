@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import { notFound } from "next/navigation";
 
-// Strict structural Next.js runtime guarantees
 export const dynamicParams = true;
 
 interface PageProps {
@@ -19,15 +18,7 @@ interface PostItem {
     category: string;
 }
 
-interface FrontmatterData {
-    title?: string;
-    description?: string;
-    pillar?: string;
-    category?: string;
-    [key: string]: string | undefined;
-}
-
-// 1. Fully Guarded Isolated Markdown Parser
+// 1. Intelligent Content-Scanning Parser (No longer relies on strict '---')
 function getMarkdownBlogs(): PostItem[] {
     try {
         const targetDir = path.join(process.cwd(), "src", "content", "posts");
@@ -41,50 +32,82 @@ function getMarkdownBlogs(): PostItem[] {
                 return normalizedFile.toLowerCase().endsWith(".md") && normalizedFile !== ".md" && !normalizedFile.startsWith(".");
             })
             .map((file): PostItem | null => {
-                // Individual block protection isolates read errors so one broken file cannot take down the index
                 try {
                     const slug = file.replace(/\.md$/i, "").trim();
                     const filePath = path.join(targetDir, file);
                     const fileContent = fs.readFileSync(filePath, "utf8");
 
-                    const parts = fileContent.split("---");
-                    const data: FrontmatterData = {};
+                    // Step A: Search for explicit key-value pairings anywhere in the document text
+                    let explicitCategory = "";
+                    let explicitPillar = "";
+                    let explicitTitle = "";
+                    let explicitDesc = "";
 
-                    if (parts.length >= 3 && parts[1]) {
-                        parts[1].split("\n").forEach((line) => {
+                    const lines = fileContent.split("\n");
+                    lines.forEach((line) => {
+                        const lowerLine = line.toLowerCase();
+                        if (lowerLine.includes("category:") || lowerLine.includes("pillar:")) {
                             const sep = line.indexOf(":");
-                            if (sep !== -1) {
-                                const key = line.slice(0, sep).trim().toLowerCase();
-                                let val = line.slice(sep + 1).trim();
-                                if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-                                    val = val.slice(1, -1);
-                                }
-                                // String conversion fallback completely stops variable injection breaks
-                                data[key] = String(val);
-                            }
-                        });
+                            const val = line.slice(sep + 1).replace(/['"]/g, "").trim().toLowerCase();
+                            if (lowerLine.includes("category:")) explicitCategory = val;
+                            if (lowerLine.includes("pillar:")) explicitPillar = val;
+                        }
+                        if (lowerLine.includes("title:")) {
+                            const sep = line.indexOf(":");
+                            explicitTitle = line.slice(sep + 1).replace(/['"]/g, "").trim();
+                        }
+                        if (lowerLine.includes("description:")) {
+                            const sep = line.indexOf(":");
+                            explicitDesc = line.slice(sep + 1).replace(/['"]/g, "").trim();
+                        }
+                    });
+
+                    // Step B: Smart Keyword Fallback Strategy (Failsafe for loose file formats)
+                    // If no category was explicitly declared, scan the slug and body text for topics
+                    let finalCategory = explicitCategory || explicitPillar || "general";
+
+                    if (finalCategory === "general") {
+                        const scanningTarget = (slug + " " + fileContent).toLowerCase();
+                        if (scanningTarget.includes("yoga")) {
+                            finalCategory = "yoga";
+                        } else if (scanningTarget.includes("fitness") || scanningTarget.includes("workout") || scanningTarget.includes("body")) {
+                            finalCategory = "fitness";
+                        } else if (scanningTarget.includes("mindset") || scanningTarget.includes("calm") || scanningTarget.includes("mental")) {
+                            finalCategory = "mindset";
+                        } else if (scanningTarget.includes("discipline") || scanningTarget.includes("consistency")) {
+                            finalCategory = "discipline";
+                        }
+                    }
+
+                    // Step C: Try to extract title from markdown H1 headers if metadata title is missing
+                    let finalTitle = explicitTitle;
+                    if (!finalTitle) {
+                        const h1Line = lines.find(l => l.trim().startsWith("# "));
+                        if (h1Line) {
+                            finalTitle = h1Line.replace("# ", "").trim();
+                        } else {
+                            finalTitle = slug.replace(/-/g, " ");
+                        }
                     }
 
                     return {
                         slug,
-                        title: String(data.title || slug.replace(/-/g, " ")),
-                        description: String(data.description || "System protocol data log."),
-                        pillar: String(data.pillar || data.category || "general").toLowerCase().trim(),
-                        category: String(data.category || data.pillar || "general").toLowerCase().trim()
+                        title: finalTitle,
+                        description: explicitDesc || "System protocol data log entry.",
+                        pillar: finalCategory,
+                        category: finalCategory
                     };
                 } catch (singleFileError) {
-                    console.error(`Skipping corrupt markdown structure tracking asset: ${file}`, singleFileError);
                     return null;
                 }
             })
-            .filter((post): post is PostItem => post !== null); // Discard dead entries seamlessly
+            .filter((post): post is PostItem => post !== null);
     } catch (e) {
-        console.error("Global matrix file aggregator safely intercepted a directory crash:", e);
         return [];
     }
 }
 
-// 2. Pre-Compile Build Parameter Engine Matrix
+// 2. Build-time route compiler
 export async function generateStaticParams() {
     try {
         const posts = getMarkdownBlogs();
@@ -92,7 +115,6 @@ export async function generateStaticParams() {
 
         posts.forEach(p => {
             if (p.category) parameterRoutes.add(p.category.toLowerCase().trim());
-            if (p.pillar) parameterRoutes.add(p.pillar.toLowerCase().trim());
         });
 
         return Array.from(parameterRoutes).map(cat => ({
@@ -103,11 +125,9 @@ export async function generateStaticParams() {
     }
 }
 
-// 3. Main Operational Category Page Renderer Component
+// 3. Page Renderer
 export default async function CategoryPage({ params }: PageProps) {
-    // Graceful unwrap protection matrix for dynamic params context
     const resolvedParams = await params.catch(() => null);
-
     const category = decodeURIComponent(resolvedParams?.category || "")
         .toLowerCase()
         .trim();
@@ -118,6 +138,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
     const allPosts = getMarkdownBlogs();
 
+    // Cross-match check against matched category keywords
     const filtered = allPosts.filter(
         (p) => p.category === category || p.pillar === category
     );
@@ -142,13 +163,13 @@ export default async function CategoryPage({ params }: PageProps) {
                 <header className="mb-16 max-w-5xl space-y-4 border-b border-neutral-900 pb-8">
                     <div className="flex items-center gap-2">
                         <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                        <p className="text-xs uppercase tracking-[0.4em] font-mono text-neutral-500">NomadLifeXP // Partition Pipeline</p>
+                        <p className="text-xs uppercase tracking-[0.4em] font-mono text-neutral-500">NomadLifeXP // Dynamic Pillar Node</p>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight">
                         Pillar: <span className="text-cyan-400">{category}</span>
                     </h1>
                     <p className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
-                        {filtered.length} {filtered.length === 1 ? "ACTIVE_PROTOCOL" : "ACTIVE_PROTOCOLS"} INDEXED IN FILE SYSTEM
+                        {filtered.length} {filtered.length === 1 ? "ACTIVE_PROTOCOL" : "ACTIVE_PROTOCOLS"} LINKED SUCCESSFULLY
                     </p>
                 </header>
 
@@ -156,13 +177,13 @@ export default async function CategoryPage({ params }: PageProps) {
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
                         {filtered.map((post, idx) => (
                             <Link
-                                key={`post-node-${post.slug}-${idx}`}
+                                key={`scanned-node-${post.slug}-${idx}`}
                                 href={`/blog/posts/${post.slug}`}
                                 className="group border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm rounded-none p-8 hover:border-cyan-500 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
                             >
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
-                                        <span className="uppercase">{post.pillar} / {post.category}</span>
+                                        <span className="text-cyan-400/80">{post.category}</span>
                                         <span>LOG_0{idx + 1}</span>
                                     </div>
                                     <h2 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-200 uppercase tracking-wide leading-snug">

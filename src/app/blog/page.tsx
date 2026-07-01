@@ -12,7 +12,7 @@ interface PostItem {
 }
 
 /**
- * 100% Immutable Safety Matrix Mapping
+ * 100% Safety Matrix Mapping System
  */
 function getTargetCategoryFromSlug(slug: string): { cat: string; display: string } {
     const s = String(slug || "").toLowerCase().trim();
@@ -54,12 +54,19 @@ function getScannedBlogs(): PostItem[] {
             })
             .map((file): PostItem | null => {
                 try {
-                    const slug = file.replace(/\.md$/i, "").trim();
+                    // Normalize slug generation to handle whitespaces, extensions, and hidden anomalies safely
+                    const rawSlug = file.replace(/\.md$/i, "").trim();
+
+                    // 100% Protection: Force strict routing URI-compatible slugs
+                    const cleanSlug = encodeURIComponent(rawSlug.toLowerCase())
+                        .replace(/%20/g, "-")
+                        .replace(/[^a-zA-Z0-9-_]/g, "");
+
                     const filePath = path.join(targetDir, file);
                     const fileContent = fs.readFileSync(filePath, "utf8") || "";
                     const lines = fileContent.split("\n");
 
-                    const rule = getTargetCategoryFromSlug(slug);
+                    const rule = getTargetCategoryFromSlug(rawSlug);
 
                     let title = "";
                     const h1Line = lines.find(l => l.trim().startsWith("# "));
@@ -67,7 +74,7 @@ function getScannedBlogs(): PostItem[] {
                         title = h1Line.replace("# ", "").trim();
                     } else {
                         const cleanLines = lines.map(l => l.trim()).filter(l => l.length > 0);
-                        title = cleanLines.find(l => l.length > 20 && !l.startsWith("/") && !l.startsWith("#")) || slug.replace(/-/g, " ");
+                        title = cleanLines.find(l => l.length > 20 && !l.startsWith("/") && !l.startsWith("#")) || rawSlug.replace(/-/g, " ");
                     }
 
                     let description = "Protocol data log.";
@@ -78,14 +85,14 @@ function getScannedBlogs(): PostItem[] {
                     }
 
                     return {
-                        slug: String(slug),
-                        title: String(title || slug.replace(/-/g, " ")),
+                        slug: String(cleanSlug || rawSlug),
+                        title: String(title || rawSlug.replace(/-/g, " ")),
                         description: String(description),
                         category: rule.cat,
                         displayPillar: rule.display
                     };
                 } catch (err) {
-                    return null; // Prevents a corrupted file entry from breaking compilation
+                    return null; // Isolate faulty files instantly
                 }
             })
             .filter((p): p is PostItem => p !== null);
@@ -138,7 +145,12 @@ export default async function BlogIndexPage() {
                                     <span className="text-cyan-400">{post.displayPillar}</span>
                                     <span className="text-neutral-600">ID: 0{idx + 1}</span>
                                 </div>
-                                <h2 className="text-xl font-bold uppercase tracking-wide group-hover:text-cyan-400 transition-colors line-clamp-2">{post.title}</h2>
+                                {/* Clean URL wrapper redirection path logic mapping */}
+                                <h2 className="text-xl font-bold uppercase tracking-wide group-hover:text-cyan-400 transition-colors line-clamp-2">
+                                    <Link href={`/blog/${post.slug}`} className="hover:underline">
+                                        {post.title}
+                                    </Link>
+                                </h2>
                                 <p className="text-sm font-light text-neutral-400 line-clamp-3">{post.description}</p>
                             </div>
                             <div className="pt-6 mt-6 border-t border-neutral-900/60">

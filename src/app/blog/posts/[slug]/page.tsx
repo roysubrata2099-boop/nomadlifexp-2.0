@@ -20,7 +20,20 @@ function parseMarkdownToHtml(markdownString: string): string {
 
     const flushParagraph = () => {
         if (paragraphBuffer.length > 0) {
-            const textContent = paragraphBuffer.join(" ");
+            let textContent = paragraphBuffer.join(" ");
+
+            // Safe fallback checking for inline markdown images trapped within a paragraph array block
+            if (textContent.trim().startsWith("![") && textContent.includes("](")) {
+                const imgMatch = textContent.match(/!\[(.*?)\]\((.*?)\)/);
+                if (imgMatch) {
+                    const alt = imgMatch[1];
+                    const src = imgMatch[2];
+                    htmlElements.push(`<div class="my-8 overflow-hidden rounded-xl border border-white/5 shadow-lg"><img src="${src}" alt="${alt}" class="w-full h-auto object-cover opacity-90" /></div>`);
+                    paragraphBuffer = [];
+                    return;
+                }
+            }
+
             htmlElements.push(`<p class="font-light leading-relaxed text-base sm:text-lg my-6" style="color: var(--text-muted, #94a3b8);">${textContent}</p>`);
             paragraphBuffer = [];
         }
@@ -38,6 +51,14 @@ function parseMarkdownToHtml(markdownString: string): string {
         } else if (trimmed.startsWith("- ")) {
             flushParagraph();
             htmlElements.push(`<li class="ml-5 list-disc font-light my-2" style="color: var(--text-muted, #94a3b8);">${trimmed.slice(2)}</li>`);
+        } else if (trimmed.startsWith("![") && trimmed.includes("](")) {
+            flushParagraph();
+            const imgMatch = trimmed.match(/!\[(.*?)\]\((.*?)\)/);
+            if (imgMatch) {
+                const alt = imgMatch[1];
+                const src = imgMatch[2];
+                htmlElements.push(`<div class="my-8 overflow-hidden rounded-xl border border-white/5 shadow-lg"><img src="${src}" alt="${alt}" class="w-full h-auto object-cover opacity-90" /></div>`);
+            }
         } else if (trimmed === "") {
             flushParagraph();
         } else {

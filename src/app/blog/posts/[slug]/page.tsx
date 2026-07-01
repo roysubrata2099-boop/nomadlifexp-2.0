@@ -1,326 +1,162 @@
 import fs from "fs";
 import path from "path";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Metadata } from "next";
+import React from "react";
+import { notFound } from "next/navigation";
 
-/* ----------------- EXACT NEXT.JS 15 ENGINE SIGNATURES ----------------- */
-interface PageProps {
+interface PostPageProps {
     params: Promise<{ slug: string }>;
-    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-/* ----------------- SAFE FRONTMATTER & CONTENT EXTRACTOR ----------------- */
-interface ExtractedPost {
-    title: string;
-    description: string;
-    date: string;
-    category: string;
-    image: string;
-    keywords: string[];
-    content: string;
+interface FrontmatterData {
+    title?: string;
+    description?: string;
+    pillar?: string;
+    category?: string;
+    [key: string]: string | undefined;
 }
 
-function getPostFromFile(slug: string): ExtractedPost | null {
-    try {
-        const targetDir = path.join(process.cwd(), "src", "content", "posts");
-        const filePath = path.join(targetDir, `${slug}.md`);
-
-        if (!fs.existsSync(filePath)) return null;
-
-        const fileContent = fs.readFileSync(filePath, "utf8");
-
-        // Split frontmatter block out cleanly
-        const parts = fileContent.split("---");
-        if (parts.length < 3) {
-            return {
-                title: slug,
-                description: "",
-                date: "",
-                category: "general",
-                image: "",
-                keywords: [],
-                content: fileContent
-            };
-        }
-
-        const frontmatterLines = parts[1].split("\n");
-        const bodyContent = parts.slice(2).join("---");
-
-        const data: any = {
-            title: "",
-            description: "",
-            date: "",
-            category: "general",
-            image: "",
-            keywords: []
-        };
-
-        // Parse key-value frontmatter lines manually without external dependencies
-        frontmatterLines.forEach(line => {
-            const separatorIndex = line.indexOf(":");
-            if (separatorIndex !== -1) {
-                const key = line.slice(0, separatorIndex).trim();
-                let val = line.slice(separatorIndex + 1).trim();
-
-                // Clean quotes if present
-                if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-                    val = val.slice(1, -1);
-                }
-
-                if (key === "keywords" || key === "tags") {
-                    try {
-                        // Handle array brackets if format is ["A", "B"]
-                        if (val.startsWith("[") && val.endsWith("]")) {
-                            data.keywords = val.slice(1, -1).split(",").map(s => s.trim().replace(/['"']/g, ""));
-                        } else {
-                            data.keywords = val.split(",").map(s => s.trim());
-                        }
-                    } catch {
-                        data.keywords = [];
-                    }
-                } else {
-                    data[key] = val;
-                }
-            }
-        });
-
-        return {
-            title: data.title || slug,
-            description: data.description || "",
-            date: data.date || "",
-            category: data.category || "general",
-            image: data.image || "",
-            keywords: data.keywords,
-            content: bodyContent
-        };
-    } catch (error) {
-        console.error("Error reading post file:", error);
-        return null;
-    }
-}
-
-/* ----------------- CLEAN SMART PARSER ----------------- */
-function parseMarkdownToHtml(markdownString: string): string {
-    if (!markdownString) return "";
-
-    const lines = markdownString.split("\n");
-    const htmlElements: string[] = [];
-    let paragraphBuffer: string[] = [];
-
-    const flushParagraph = () => {
-        if (paragraphBuffer.length > 0) {
-            let textContent = paragraphBuffer.join(" ");
-
-            if (textContent.trim().startsWith("![") && textContent.includes("](")) {
-                const imgMatch = textContent.match(/!\[(.*?)\]\((.*?)\)/);
-                if (imgMatch) {
-                    const alt = imgMatch[1];
-                    let src = imgMatch[2];
-                    // Strip /public from string safely if accidentially passed
-                    if (src.startsWith("/public")) src = src.replace("/public", "");
-                    htmlElements.push(`<div class="my-8 overflow-hidden rounded-xl border border-white/5 shadow-lg"><img src="${src}" alt="${alt}" class="w-full h-auto object-cover opacity-90" /></div>`);
-                    paragraphBuffer = [];
-                    return;
-                }
-            }
-
-            htmlElements.push(`<p class="font-light leading-relaxed text-base sm:text-lg my-6" style="color: var(--text-muted, #94a3b8);">${textContent}</p>`);
-            paragraphBuffer = [];
-        }
-    };
-
-    for (const line of lines) {
-        const trimmed = line.trim();
-
-        if (trimmed.startsWith("# ")) {
-            flushParagraph();
-            htmlElements.push(`<h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white mt-10 mb-4 border-b border-white/5 pb-2">${trimmed.slice(2)}</h1>`);
-        } else if (trimmed.startsWith("## ")) {
-            flushParagraph();
-            htmlElements.push(`<h2 class="text-xl sm:text-2xl font-bold uppercase text-neutral-100 mt-8 mb-3">${trimmed.slice(3)}</h2>`);
-        } else if (trimmed.startsWith("### ")) {
-            flushParagraph();
-            htmlElements.push(`<h3 class="text-lg sm:text-xl font-bold uppercase text-neutral-200 mt-6 mb-2">${trimmed.slice(4)}</h3>`);
-        } else if (trimmed.startsWith("- ")) {
-            flushParagraph();
-            htmlElements.push(`<li class="ml-5 list-disc font-light my-2" style="color: var(--text-muted, #94a3b8);">${trimmed.slice(2)}</li>`);
-        } else if (trimmed.startsWith("* ")) {
-            flushParagraph();
-            htmlElements.push(`<li class="ml-5 list-disc font-light my-2" style="color: var(--text-muted, #94a3b8);">${trimmed.slice(2)}</li>`);
-        } else if (trimmed.startsWith("![") && trimmed.includes("](")) {
-            flushParagraph();
-            const imgMatch = trimmed.match(/!\[(.*?)\]\((.*?)\)/);
-            if (imgMatch) {
-                const alt = imgMatch[1];
-                let src = imgMatch[2];
-                if (src.startsWith("/public")) src = src.replace("/public", "");
-                htmlElements.push(`<div class="my-8 overflow-hidden rounded-xl border border-white/5 shadow-lg"><img src="${src}" alt="${alt}" class="w-full h-auto object-cover opacity-90" /></div>`);
-            }
-        } else if (trimmed === "") {
-            flushParagraph();
-        } else {
-            paragraphBuffer.push(trimmed);
-        }
-    }
-
-    flushParagraph();
-    return htmlElements.join("");
-}
-
-/* ----------------- DYNAMIC SEO METADATA ----------------- */
-export async function generateMetadata(props: PageProps): Promise<Metadata> {
-    try {
-        const resolvedParams = await props.params;
-        const slug = resolvedParams?.slug;
-        if (!slug) return { title: "Post Not Found" };
-
-        const decodedSlug = decodeURIComponent(slug);
-        const post = getPostFromFile(decodedSlug);
-
-        if (!post) return { title: "Post Not Found" };
-
-        return {
-            title: `${post.title} | NomadLifeXP`,
-            description: post.description,
-            keywords: post.keywords,
-        };
-    } catch {
-        return { title: "Blog Post | NomadLifeXP" };
-    }
-}
-
-/* ----------------- STATIC GENERATION ROUTER ----------------- */
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
+// 1. Static Generation Matrix (Pre-compiles all 14 articles at build time)
+export async function generateStaticParams() {
     try {
         const targetDir = path.join(process.cwd(), "src", "content", "posts");
         if (!fs.existsSync(targetDir)) return [];
 
         const files = fs.readdirSync(targetDir);
         return files
-            .filter(file => file.endsWith(".md"))
-            .map(file => ({
-                slug: file.replace(".md", ""),
+            .filter((file) => file.endsWith(".md") && file !== ".md")
+            .map((file) => ({
+                slug: file.replace(".md", "").trim(),
             }));
-    } catch (error) {
-        console.error("Error generating static params:", error);
+    } catch (e) {
         return [];
     }
 }
 
-/* ----------------- MAIN BLOG POST PAGE ----------------- */
-export default async function BlogPostPage(props: PageProps) {
-    const resolvedParams = await props.params;
-    const rawSlug = resolvedParams?.slug;
+// 2. Main Server-Side Content Loader & Parser
+export default async function PostPage({ params }: PostPageProps) {
+    const resolvedParams = await params;
+    const cleanSlug = String(resolvedParams.slug || "").trim();
 
-    if (!rawSlug) notFound();
+    const targetDir = path.join(process.cwd(), "src", "content", "posts");
+    const filePath = path.join(targetDir, `${cleanSlug}.md`);
 
-    const slug = decodeURIComponent(rawSlug);
-    const post = getPostFromFile(slug);
+    // Guard configuration: Triggers Next.js native 404 page if slug isn't found
+    if (!fs.existsSync(filePath)) {
+        notFound();
+    }
 
-    if (!post) notFound();
-
-    // Dynamically look for related posts inside the filesystem directory
-    let related: any[] = [];
+    let fileContent = "";
     try {
-        const targetDir = path.join(process.cwd(), "src", "content", "posts");
-        const files = fs.readdirSync(targetDir);
-
-        related = files
-            .filter(file => file.endsWith(".md") && file !== `${slug}.md`)
-            .map(file => getPostFromFile(file.replace(".md", "")))
-            .filter((p): p is ExtractedPost => p !== null && p.category.toLowerCase() === post.category.toLowerCase())
-            .map(p => ({ slug: p.title.toLowerCase().replace(/ /g, "-"), title: p.title, category: p.category })) // generic structured backup map
-            .slice(0, 3);
-    } catch {
-        related = [];
+        fileContent = fs.readFileSync(filePath, "utf8");
+    } catch (e) {
+        notFound();
     }
 
-    // Dynamic clean image fallback logic
-    let postImage = post.image;
-    if (postImage.startsWith("/public")) {
-        postImage = postImage.replace("/public", "");
+    // Process frontmatter and payload content stream split
+    const parts = fileContent.split("---");
+    const data: FrontmatterData = {
+        title: cleanSlug.replace(/-/g, " "),
+        description: "",
+        pillar: "protocol",
+        category: "general"
+    };
+
+    let rawMarkdownBody = fileContent;
+
+    if (parts.length >= 3) {
+        rawMarkdownBody = parts.slice(2).join("---").trim();
+        const lines = parts[1].split("\n");
+        lines.forEach((line) => {
+            const sep = line.indexOf(":");
+            if (sep !== -1) {
+                const key = line.slice(0, sep).trim();
+                let val = line.slice(sep + 1).trim();
+                if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                    val = val.slice(1, -1);
+                }
+                data[key] = val;
+            }
+        });
     }
+
+    // Defensive simple formatter to render body text line breaks and images cleanly without extra libraries
+    const renderedParagraphs = rawMarkdownBody.split("\n\n").map((para, index) => {
+        const cleanPara = para.trim();
+        if (!cleanPara) return null;
+
+        // Inline Image Parsing Support Strategy (![alt](src))
+        if (cleanPara.startsWith("![") && cleanPara.includes("](")) {
+            const altMatch = cleanPara.match(/!\[(.*?)\]/);
+            const srcMatch = cleanPara.match(/\((.*?)\)/);
+            if (srcMatch) {
+                const alt = altMatch ? altMatch[1] : "Matrix Media Asset";
+                const src = srcMatch[1];
+                return (
+                    <div key={index} className="my-8 border border-neutral-900 bg-neutral-950 p-2">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={src} alt={alt} className="w-full h-auto object-cover border border-neutral-800" />
+                        <span className="block mt-2 font-mono text-[10px] text-neutral-500 uppercase tracking-widest text-center">Asset Log // {alt}</span>
+                    </div>
+                );
+            }
+        }
+
+        // Subheading parsing formatting layer (### heading)
+        if (cleanPara.startsWith("###")) {
+            return <h3 key={index} className="text-xl font-bold text-cyan-400 font-mono pt-6 pb-2 uppercase tracking-wide">{cleanPara.replace(/###/g, "").trim()}</h3>;
+        }
+        if (cleanPara.startsWith("##")) {
+            return <h2 key={index} className="text-2xl font-black text-white font-mono pt-8 pb-3 uppercase tracking-tight border-b border-neutral-900">{cleanPara.replace(/##/g, "").trim()}</h2>;
+        }
+
+        return <p key={index} className="text-neutral-300 font-light text-base md:text-lg leading-relaxed mb-6 font-sans">{cleanPara}</p>;
+    });
 
     return (
-        <main className="min-h-screen bg-[#060b18] text-white px-6 pt-32 pb-24 antialiased">
+        <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
+            <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff01_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
-            {/* NAVIGATION BAR */}
-            <div className="max-w-3xl mx-auto mb-8">
-                <Link
-                    href="/blog"
-                    className="text-xs font-mono tracking-widest hover:text-white uppercase transition-colors"
-                    style={{ color: 'var(--text-muted, #94a3b8)' }}
-                >
-                    ← Back to Articles
-                </Link>
-            </div>
-
-            {/* HEADER */}
-            <header className="max-w-3xl mx-auto mb-12 space-y-4">
-                <span className="text-[10px] font-mono tracking-[0.25em] uppercase font-bold block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-                    // {post.category || "general"}
-                </span>
-                <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-tight">
-                    {post.title}
-                </h1>
-                <div className="text-[11px] font-mono uppercase tracking-wider pt-4 border-t border-white/5 flex justify-between items-center" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                    <span>Published: {post.date}</span>
-                    <span className="normal-case">Written by: NomadLifeXP</span>
+            <div className="max-w-4xl mx-auto px-6 pt-36 pb-32 relative z-10">
+                {/* Protocol Directory Backlink */}
+                <div className="mb-12">
+                    <Link href="/blog" className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group">
+                        <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
+                        BACK_TO_MATRIX_INDEX
+                    </Link>
                 </div>
-            </header>
 
-            {/* COVER IMAGE */}
-            {postImage && (
-                <div className="max-w-3xl mx-auto mb-12 h-64 sm:h-96 w-full bg-[#0b132b]/20 border border-white/5 overflow-hidden relative rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
-                    <img
-                        src={postImage}
-                        alt={post.title}
-                        className="w-full h-full object-cover opacity-80 relative z-10"
-                    />
-                </div>
-            )}
-
-            {/* ARTICLE CONTENT */}
-            <article className="max-w-3xl mx-auto">
-                <div
-                    className="block prose-neutral prose-invert"
-                    dangerouslySetInnerHTML={{ __html: parseMarkdownToHtml(post.content || "") }}
-                />
-            </article>
-
-            {/* RECOMMENDED READING */}
-            <section className="max-w-3xl mx-auto mt-24 border-t border-white/5 pt-12">
-                <h2 className="text-xs font-mono uppercase tracking-[0.2em] mb-6" style={{ color: 'var(--text-muted, #94a3b8)' }}>
-                    Recommended Reading
-                </h2>
-
-                {related.length === 0 ? (
-                    <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
-                        No related articles found.
-                    </p>
-                ) : (
-                    <div className="grid gap-4 sm:grid-cols-3">
-                        {related.map((r: any) => {
-                            return (
-                                <div
-                                    key={r.slug}
-                                    className="p-5 border border-white/5 bg-[#0b132b]/40 rounded-xl hover:border-cyan-500/20 shadow-[0_4px_25px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all flex flex-col justify-between space-y-4 group"
-                                >
-                                    <div className="space-y-2 block">
-                                        <span className="text-[9px] font-mono uppercase tracking-widest block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-                                            // {r.category}
-                                        </span>
-                                        <h3 className="font-bold text-sm text-neutral-200 group-hover:text-cyan-400 transition-colors line-clamp-2 overflow-hidden">
-                                            {r.title}
-                                        </h3>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                {/* Article Protocol Header Meta */}
+                <header className="mb-12 space-y-4 pb-8 border-b border-neutral-900">
+                    <div className="flex items-center gap-3 text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">
+                        <span>{data.pillar || "System"}</span>
+                        <span className="text-neutral-800">/</span>
+                        <span className="text-neutral-500">{data.category || "Protocol"}</span>
                     </div>
-                )}
-            </section>
-        </main>
+                    <h1 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase leading-tight">
+                        {data.title || cleanSlug.replace(/-/g, " ")}
+                    </h1>
+                    {data.description && (
+                        <p className="text-sm md:text-base font-light font-mono text-neutral-400 pt-2 max-w-2xl leading-relaxed">
+                            {data.description}
+                        </p>
+                    )}
+                </header>
+
+                {/* Main Rendered Content Block */}
+                <article className="space-y-2">
+                    {renderedParagraphs}
+                </article>
+
+                {/* Back to Top / Exit Protocols Footer Row */}
+                <footer className="mt-16 pt-8 border-t border-neutral-900 flex justify-between items-center font-mono text-xs text-neutral-500">
+                    <span>SYS_STATUS // STREAM_COMPLETE</span>
+                    <Link href="/blog" className="text-cyan-400 hover:underline tracking-wider uppercase">
+                        [ Terminate Study Session ]
+                    </Link>
+                </footer>
+            </div>
+        </div>
     );
 }

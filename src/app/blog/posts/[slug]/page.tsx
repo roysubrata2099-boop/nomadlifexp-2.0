@@ -1,5 +1,5 @@
-// IMPORT THE RAW ARRAY INSTEAD OF NON-EXISTENT FUNCTIONS
-import { posts } from "@/lib/posts";
+import fs from "fs";
+import path from "path";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -8,6 +8,96 @@ import { Metadata } from "next";
 interface PageProps {
     params: Promise<{ slug: string }>;
     searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+/* ----------------- SAFE FRONTMATTER & CONTENT EXTRACTOR ----------------- */
+interface ExtractedPost {
+    title: string;
+    description: string;
+    date: string;
+    category: string;
+    image: string;
+    keywords: string[];
+    content: string;
+}
+
+function getPostFromFile(slug: string): ExtractedPost | null {
+    try {
+        const targetDir = path.join(process.cwd(), "src", "content", "posts");
+        const filePath = path.join(targetDir, `${slug}.md`);
+
+        if (!fs.existsSync(filePath)) return null;
+
+        const fileContent = fs.readFileSync(filePath, "utf8");
+
+        // Split frontmatter block out cleanly
+        const parts = fileContent.split("---");
+        if (parts.length < 3) {
+            return {
+                title: slug,
+                description: "",
+                date: "",
+                category: "general",
+                image: "",
+                keywords: [],
+                content: fileContent
+            };
+        }
+
+        const frontmatterLines = parts[1].split("\n");
+        const bodyContent = parts.slice(2).join("---");
+
+        const data: any = {
+            title: "",
+            description: "",
+            date: "",
+            category: "general",
+            image: "",
+            keywords: []
+        };
+
+        // Parse key-value frontmatter lines manually without external dependencies
+        frontmatterLines.forEach(line => {
+            const separatorIndex = line.indexOf(":");
+            if (separatorIndex !== -1) {
+                const key = line.slice(0, separatorIndex).trim();
+                let val = line.slice(separatorIndex + 1).trim();
+
+                // Clean quotes if present
+                if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                    val = val.slice(1, -1);
+                }
+
+                if (key === "keywords" || key === "tags") {
+                    try {
+                        // Handle array brackets if format is ["A", "B"]
+                        if (val.startsWith("[") && val.endsWith("]")) {
+                            data.keywords = val.slice(1, -1).split(",").map(s => s.trim().replace(/['"']/g, ""));
+                        } else {
+                            data.keywords = val.split(",").map(s => s.trim());
+                        }
+                    } catch {
+                        data.keywords = [];
+                    }
+                } else {
+                    data[key] = val;
+                }
+            }
+        });
+
+        return {
+            title: data.title || slug,
+            description: data.description || "",
+            date: data.date || "",
+            category: data.category || "general",
+            image: data.image || "",
+            keywords: data.keywords,
+            content: bodyContent
+        };
+    } catch (error) {
+        console.error("Error reading post file:", error);
+        return null;
+    }
 }
 
 /* ----------------- CLEAN SMART PARSER ----------------- */
@@ -22,12 +112,13 @@ function parseMarkdownToHtml(markdownString: string): string {
         if (paragraphBuffer.length > 0) {
             let textContent = paragraphBuffer.join(" ");
 
-            // Safe fallback checking for inline markdown images trapped within a paragraph array block
             if (textContent.trim().startsWith("![") && textContent.includes("](")) {
                 const imgMatch = textContent.match(/!\[(.*?)\]\((.*?)\)/);
                 if (imgMatch) {
                     const alt = imgMatch[1];
-                    const src = imgMatch[2];
+                    let src = imgMatch[2];
+                    // Strip /public from string safely if accidentially passed
+                    if (src.startsWith("/public")) src = src.replace("/public", "");
                     htmlElements.push(`<div class="my-8 overflow-hidden rounded-xl border border-white/5 shadow-lg"><img src="${src}" alt="${alt}" class="w-full h-auto object-cover opacity-90" /></div>`);
                     paragraphBuffer = [];
                     return;
@@ -48,7 +139,13 @@ function parseMarkdownToHtml(markdownString: string): string {
         } else if (trimmed.startsWith("## ")) {
             flushParagraph();
             htmlElements.push(`<h2 class="text-xl sm:text-2xl font-bold uppercase text-neutral-100 mt-8 mb-3">${trimmed.slice(3)}</h2>`);
+        } else if (trimmed.startsWith("### ")) {
+            flushParagraph();
+            htmlElements.push(`<h3 class="text-lg sm:text-xl font-bold uppercase text-neutral-200 mt-6 mb-2">${trimmed.slice(4)}</h3>`);
         } else if (trimmed.startsWith("- ")) {
+            flushParagraph();
+            htmlElements.push(`<li class="ml-5 list-disc font-light my-2" style="color: var(--text-muted, #94a3b8);">${trimmed.slice(2)}</li>`);
+        } else if (trimmed.startsWith("* ")) {
             flushParagraph();
             htmlElements.push(`<li class="ml-5 list-disc font-light my-2" style="color: var(--text-muted, #94a3b8);">${trimmed.slice(2)}</li>`);
         } else if (trimmed.startsWith("![") && trimmed.includes("](")) {
@@ -56,7 +153,8 @@ function parseMarkdownToHtml(markdownString: string): string {
             const imgMatch = trimmed.match(/!\[(.*?)\]\((.*?)\)/);
             if (imgMatch) {
                 const alt = imgMatch[1];
-                const src = imgMatch[2];
+                let src = imgMatch[2];
+                if (src.startsWith("/public")) src = src.replace("/public", "");
                 htmlElements.push(`<div class="my-8 overflow-hidden rounded-xl border border-white/5 shadow-lg"><img src="${src}" alt="${alt}" class="w-full h-auto object-cover opacity-90" /></div>`);
             }
         } else if (trimmed === "") {
@@ -78,16 +176,14 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
         if (!slug) return { title: "Post Not Found" };
 
         const decodedSlug = decodeURIComponent(slug);
-        const post = posts.find((p: any) => p.slug.toLowerCase() === decodedSlug.toLowerCase());
+        const post = getPostFromFile(decodedSlug);
 
-        if (!post) {
-            return { title: "Post Not Found" };
-        }
+        if (!post) return { title: "Post Not Found" };
 
         return {
-            title: `${post.title || "Blog Post"} | NomadLifeXP`,
-            description: post.description || "",
-            keywords: Array.isArray(post.keywords) ? post.keywords : [],
+            title: `${post.title} | NomadLifeXP`,
+            description: post.description,
+            keywords: post.keywords,
         };
     } catch {
         return { title: "Blog Post | NomadLifeXP" };
@@ -97,11 +193,15 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 /* ----------------- STATIC GENERATION ROUTER ----------------- */
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
     try {
-        if (!posts || !Array.isArray(posts)) return [];
+        const targetDir = path.join(process.cwd(), "src", "content", "posts");
+        if (!fs.existsSync(targetDir)) return [];
 
-        return posts.map((post: any) => ({
-            slug: String(post?.slug || ""),
-        }));
+        const files = fs.readdirSync(targetDir);
+        return files
+            .filter(file => file.endsWith(".md"))
+            .map(file => ({
+                slug: file.replace(".md", ""),
+            }));
     } catch (error) {
         console.error("Error generating static params:", error);
         return [];
@@ -116,18 +216,31 @@ export default async function BlogPostPage(props: PageProps) {
     if (!rawSlug) notFound();
 
     const slug = decodeURIComponent(rawSlug);
-    const post = posts.find((p: any) => p.slug.toLowerCase() === slug.toLowerCase());
+    const post = getPostFromFile(slug);
 
     if (!post) notFound();
 
-    const related = posts
-        .filter((p: any) => {
-            if (!p || p.slug === post.slug) return false;
-            const catMatch = p.category && post.category && String(p.category).toLowerCase() === String(post.category).toLowerCase();
-            const slugMatch = post.relatedSlugs && Array.isArray(post.relatedSlugs) && post.relatedSlugs.includes(p.slug);
-            return !!(catMatch || slugMatch);
-        })
-        .slice(0, 3);
+    // Dynamically look for related posts inside the filesystem directory
+    let related: any[] = [];
+    try {
+        const targetDir = path.join(process.cwd(), "src", "content", "posts");
+        const files = fs.readdirSync(targetDir);
+
+        related = files
+            .filter(file => file.endsWith(".md") && file !== `${slug}.md`)
+            .map(file => getPostFromFile(file.replace(".md", "")))
+            .filter((p): p is ExtractedPost => p !== null && p.category.toLowerCase() === post.category.toLowerCase())
+            .map(p => ({ slug: p.title.toLowerCase().replace(/ /g, "-"), title: p.title, category: p.category })) // generic structured backup map
+            .slice(0, 3);
+    } catch {
+        related = [];
+    }
+
+    // Dynamic clean image fallback logic
+    let postImage = post.image;
+    if (postImage.startsWith("/public")) {
+        postImage = postImage.replace("/public", "");
+    }
 
     return (
         <main className="min-h-screen bg-[#060b18] text-white px-6 pt-32 pb-24 antialiased">
@@ -158,10 +271,10 @@ export default async function BlogPostPage(props: PageProps) {
             </header>
 
             {/* COVER IMAGE */}
-            {post.image && (
+            {postImage && (
                 <div className="max-w-3xl mx-auto mb-12 h-64 sm:h-96 w-full bg-[#0b132b]/20 border border-white/5 overflow-hidden relative rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]">
                     <img
-                        src={post.image}
+                        src={postImage}
                         alt={post.title}
                         className="w-full h-full object-cover opacity-80 relative z-10"
                     />
@@ -189,28 +302,20 @@ export default async function BlogPostPage(props: PageProps) {
                 ) : (
                     <div className="grid gap-4 sm:grid-cols-3">
                         {related.map((r: any) => {
-                            const currentSlug = r.slug || "invalid";
-                            const currentTitle = r.title || "Untitled Article";
-                            const currentCategory = r.category || "general";
-
                             return (
-                                <Link
-                                    key={currentSlug}
-                                    href={`/blog/posts/${currentSlug}`}
+                                <div
+                                    key={r.slug}
                                     className="p-5 border border-white/5 bg-[#0b132b]/40 rounded-xl hover:border-cyan-500/20 shadow-[0_4px_25px_rgba(0,0,0,0.3)] backdrop-blur-sm transition-all flex flex-col justify-between space-y-4 group"
                                 >
                                     <div className="space-y-2 block">
                                         <span className="text-[9px] font-mono uppercase tracking-widest block" style={{ color: 'var(--glow-amber, #f59e0b)' }}>
-                                            // {currentCategory}
+                                            // {r.category}
                                         </span>
                                         <h3 className="font-bold text-sm text-neutral-200 group-hover:text-cyan-400 transition-colors line-clamp-2 overflow-hidden">
-                                            {currentTitle}
+                                            {r.title}
                                         </h3>
                                     </div>
-                                    <span className="text-[10px] font-mono tracking-widest transition-colors uppercase block pt-2 group-hover:text-white" style={{ color: 'var(--glow-cyan, #06b6d4)' }}>
-                                        Read Article →
-                                    </span>
-                                </Link>
+                                </div>
                             );
                         })}
                     </div>

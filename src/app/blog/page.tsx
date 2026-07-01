@@ -12,32 +12,64 @@ interface PostItem {
 }
 
 /**
- * 100% Safety Matrix Mapping System
+ * 100% Immutable Safety Matrix Mapping
+ * Maps any loose filename matches directly to their strict production URLs and structural pillars.
  */
-function getTargetCategoryFromSlug(slug: string): { cat: string; display: string } {
-    const s = String(slug || "").toLowerCase().trim();
+function getSystemFixedRoute(rawSlug: string): { slug: string; cat: string; display: string } {
+    const s = String(rawSlug || "").toLowerCase().trim();
 
     // 🧠 Mindset (4)
-    if (s.includes("attention-span") || s.includes("attention") || s.includes("cant-focus") || s.includes("focus") || s.includes("overthinking") || s.includes("mental-clarity") || s.includes("not-stuck") || s.includes("comfortable")) {
-        return { cat: "mindset", display: "MINDSET" };
+    if (s.includes("attention-span") || s.includes("rebuild-your-attention")) {
+        return { slug: "rebuild-your-attention-span", cat: "mindset", display: "MINDSET" };
+    }
+    if (s.includes("cant-focus") || s.includes("why-you-cant-focus")) {
+        return { slug: "why-you-cant-focus-even-when-you-try-hard", cat: "mindset", display: "MINDSET" };
+    }
+    if (s.includes("overthinking") || s.includes("mental-clarity")) {
+        return { slug: "mental-clarity-stop-overthinking-and-regain-focus", cat: "mindset", display: "MINDSET" };
+    }
+    if (s.includes("not-stuck") || s.includes("you-are-not-stuck")) {
+        return { slug: "you-are-not-stuck-in-life", cat: "mindset", display: "MINDSET" };
     }
 
     // 🎯 Discipline (3)
-    if (s.includes("self-discipline") || s.includes("comprehensive-guide") || s.includes("procrastinate") || s.includes("procrastination") || s.includes("daily-habits") || s.includes("habits") || s.includes("self-discipline-why-you-lack") || s.includes("lack-it")) {
-        return { cat: "discipline", display: "DISCIPLINE" };
+    if (s.includes("self-discipline") || s.includes("reclaim-your-attention")) {
+        return { slug: "self-discipline-guide-reclaim-your-attention-rebuild-your-life", cat: "discipline", display: "DISCIPLINE" };
+    }
+    if (s.includes("procrastinate") || s.includes("why-you-procrastinate")) {
+        return { slug: "why-you-procrastinate-and-how-to-stop-it", cat: "discipline", display: "DISCIPLINE" };
+    }
+    if (s.includes("daily-habits") || s.includes("habits-over-motivation") || s.includes("power-of-daily-habits")) {
+        return { slug: "the-power-of-daily-habits-over-motivation", cat: "discipline", display: "DISCIPLINE" };
     }
 
     // 💪 Fitness (4)
-    if (s.includes("workout-videos") || s.includes("never-actually-exercise") || s.includes("fitness-consistency") || s.includes("discipline-that-lasts") || s.includes("not-about-time") || s.includes("time-mindset") || s.includes("workout-habit") || s.includes("outlasts-your-motivation")) {
-        return { cat: "fitness", display: "FITNESS" };
+    if (s.includes("workout-videos") || s.includes("never-actually-exercise")) {
+        return { slug: "why-people-watch-workout-videos-but-never-actually-exercise", cat: "fitness", display: "FITNESS" };
+    }
+    if (s.includes("fitness-consistency") || s.includes("workout-discipline")) {
+        return { slug: "fitness-consistency-build-workout-discipline-that-lasts", cat: "fitness", display: "FITNESS" };
+    }
+    if (s.includes("not-about-time") || s.includes("fitness-is-not")) {
+        return { slug: "fitness-is-not-about-time", cat: "fitness", display: "FITNESS" };
+    }
+    if (s.includes("workout-habit") || s.includes("outlast") || s.includes("outlasts-your-motivation")) {
+        // Enforces exact link matching for: /blog/build-workout-habit-outlast-motivation
+        return { slug: "build-workout-habit-outlast-motivation", cat: "fitness", display: "FITNESS" };
     }
 
     // 🧘 Yoga (3)
-    if (s.includes("headstand") || s.includes("stillness") || s.includes("forearm-stand") || s.includes("pincha") || s.includes("forward-bending") || s.includes("bending-yoga")) {
-        return { cat: "yoga", display: "YOGA" };
+    if (s.includes("headstand") || s.includes("benefits")) {
+        return { slug: "headstand-benefits-for-body-and-mind", cat: "yoga", display: "YOGA" };
+    }
+    if (s.includes("forearm-stand") || s.includes("focus-and-confidence")) {
+        return { slug: "forearm-stand-yoga-for-focus-and-confidence", cat: "yoga", display: "YOGA" };
+    }
+    if (s.includes("forward-bending") || s.includes("stress-relief")) {
+        return { slug: "forward-bending-yoga-for-stress-relief", cat: "yoga", display: "YOGA" };
     }
 
-    return { cat: "general", display: "GENERAL" };
+    return { slug: rawSlug, cat: "general", display: "GENERAL" };
 }
 
 function getScannedBlogs(): PostItem[] {
@@ -54,19 +86,14 @@ function getScannedBlogs(): PostItem[] {
             })
             .map((file): PostItem | null => {
                 try {
-                    // Normalize slug generation to handle whitespaces, extensions, and hidden anomalies safely
                     const rawSlug = file.replace(/\.md$/i, "").trim();
 
-                    // 100% Protection: Force strict routing URI-compatible slugs
-                    const cleanSlug = encodeURIComponent(rawSlug.toLowerCase())
-                        .replace(/%20/g, "-")
-                        .replace(/[^a-zA-Z0-9-_]/g, "");
+                    // Route Resolver Safeguard Engine
+                    const systemRoute = getSystemFixedRoute(rawSlug);
 
                     const filePath = path.join(targetDir, file);
                     const fileContent = fs.readFileSync(filePath, "utf8") || "";
                     const lines = fileContent.split("\n");
-
-                    const rule = getTargetCategoryFromSlug(rawSlug);
 
                     let title = "";
                     const h1Line = lines.find(l => l.trim().startsWith("# "));
@@ -85,14 +112,14 @@ function getScannedBlogs(): PostItem[] {
                     }
 
                     return {
-                        slug: String(cleanSlug || rawSlug),
-                        title: String(title || rawSlug.replace(/-/g, " ")),
+                        slug: String(systemRoute.slug),
+                        title: String(title),
                         description: String(description),
-                        category: rule.cat,
-                        displayPillar: rule.display
+                        category: systemRoute.cat,
+                        displayPillar: systemRoute.display
                     };
                 } catch (err) {
-                    return null; // Isolate faulty files instantly
+                    return null;
                 }
             })
             .filter((p): p is PostItem => p !== null);
@@ -145,9 +172,8 @@ export default async function BlogIndexPage() {
                                     <span className="text-cyan-400">{post.displayPillar}</span>
                                     <span className="text-neutral-600">ID: 0{idx + 1}</span>
                                 </div>
-                                {/* Clean URL wrapper redirection path logic mapping */}
                                 <h2 className="text-xl font-bold uppercase tracking-wide group-hover:text-cyan-400 transition-colors line-clamp-2">
-                                    <Link href={`/blog/${post.slug}`} className="hover:underline">
+                                    <Link href={`/blog/${post.slug}`}>
                                         {post.title}
                                     </Link>
                                 </h2>

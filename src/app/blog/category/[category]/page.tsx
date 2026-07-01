@@ -54,12 +54,44 @@ function getScannedBlogs(): PostItem[] {
             })
             .map((file): PostItem | null => {
                 try {
-                    const slug = file.replace(/\.md$/i, "").trim();
+                    const rawSlug = file.replace(/\.md$/i, "").trim();
+                    const rule = getTargetCategoryFromSlug(rawSlug);
+
+                    // Standardize slug mapping exactly like index file node rules
+                    let fixedSlug = rawSlug;
+                    if (rawSlug.includes("workout-habit") || rawSlug.includes("outlast")) {
+                        fixedSlug = "build-workout-habit-outlast-motivation";
+                    } else if (rawSlug.includes("attention-span")) {
+                        fixedSlug = "rebuild-your-attention-span";
+                    } else if (rawSlug.includes("cant-focus")) {
+                        fixedSlug = "why-you-cant-focus-even-when-you-try-hard";
+                    } else if (rawSlug.includes("overthinking")) {
+                        fixedSlug = "mental-clarity-stop-overthinking-and-regain-focus";
+                    } else if (rawSlug.includes("not-stuck")) {
+                        fixedSlug = "you-are-not-stuck-in-life";
+                    } else if (rawSlug.includes("self-discipline")) {
+                        fixedSlug = "self-discipline-guide-reclaim-your-attention-rebuild-your-life";
+                    } else if (rawSlug.includes("procrastinate")) {
+                        fixedSlug = "why-you-procrastinate-and-how-to-stop-it";
+                    } else if (rawSlug.includes("daily-habits")) {
+                        fixedSlug = "the-power-of-daily-habits-over-motivation";
+                    } else if (rawSlug.includes("workout-videos")) {
+                        fixedSlug = "why-people-watch-workout-videos-but-never-actually-exercise";
+                    } else if (rawSlug.includes("fitness-consistency")) {
+                        fixedSlug = "fitness-consistency-build-workout-discipline-that-lasts";
+                    } else if (rawSlug.includes("not-about-time")) {
+                        fixedSlug = "fitness-is-not-about-time";
+                    } else if (rawSlug.includes("headstand")) {
+                        fixedSlug = "headstand-benefits-for-body-and-mind";
+                    } else if (rawSlug.includes("forearm-stand")) {
+                        fixedSlug = "forearm-stand-yoga-for-focus-and-confidence";
+                    } else if (rawSlug.includes("forward-bending")) {
+                        fixedSlug = "forward-bending-yoga-for-stress-relief";
+                    }
+
                     const filePath = path.join(targetDir, file);
                     const fileContent = fs.readFileSync(filePath, "utf8") || "";
                     const lines = fileContent.split("\n");
-
-                    const rule = getTargetCategoryFromSlug(slug);
 
                     let title = "";
                     const h1Line = lines.find(l => l.trim().startsWith("# "));
@@ -67,7 +99,7 @@ function getScannedBlogs(): PostItem[] {
                         title = h1Line.replace("# ", "").trim();
                     } else {
                         const cleanLines = lines.map(l => l.trim()).filter(l => l.length > 0);
-                        title = cleanLines.find(l => l.length > 20 && !l.startsWith("/") && !l.startsWith("#")) || slug.replace(/-/g, " ");
+                        title = cleanLines.find(l => l.length > 20 && !l.startsWith("/") && !l.startsWith("#")) || rawSlug.replace(/-/g, " ");
                     }
 
                     let description = "Protocol data log.";
@@ -78,8 +110,8 @@ function getScannedBlogs(): PostItem[] {
                     }
 
                     return {
-                        slug: String(slug),
-                        title: String(title || slug.replace(/-/g, " ")),
+                        slug: String(fixedSlug),
+                        title: String(title || rawSlug.replace(/-/g, " ")),
                         description: String(description),
                         category: rule.cat,
                         displayPillar: rule.display
@@ -145,12 +177,16 @@ export default async function CategoryPage({ params }: PageProps) {
                                     <span className="text-cyan-400">{post.displayPillar}</span>
                                     <span className="text-neutral-600">LOG_0{idx + 1}</span>
                                 </div>
-                                <h2 className="text-xl font-bold uppercase tracking-wide text-white group-hover:text-cyan-400 transition-colors line-clamp-2">{post.title}</h2>
+                                <h2 className="text-xl font-bold uppercase tracking-wide text-white group-hover:text-cyan-400 transition-colors line-clamp-2">
+                                    <Link href={`/blog/posts/${post.slug}`}>
+                                        {post.title}
+                                    </Link>
+                                </h2>
                                 <p className="text-sm font-light text-neutral-400 line-clamp-3">{post.description}</p>
                             </div>
 
                             <div className="pt-6 mt-6 border-t border-neutral-900/60">
-                                <Link href={`/blog/${post.slug}`} className="text-xs font-mono text-neutral-500 hover:text-white transition-colors">
+                                <Link href={`/blog/posts/${post.slug}`} className="text-xs font-mono text-neutral-500 hover:text-white transition-colors">
                                     Launch Study Protocol &rarr;
                                 </Link>
                             </div>

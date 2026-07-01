@@ -11,10 +11,6 @@ interface PostItem {
     displayPillar: string;
 }
 
-/**
- * 100% Immutable Safety Matrix Mapping
- * Maps any loose filename matches directly to their strict production URLs and structural pillars.
- */
 function getSystemFixedRoute(rawSlug: string): { slug: string; cat: string; display: string } {
     const s = String(rawSlug || "").toLowerCase().trim();
 
@@ -54,7 +50,6 @@ function getSystemFixedRoute(rawSlug: string): { slug: string; cat: string; disp
         return { slug: "fitness-is-not-about-time", cat: "fitness", display: "FITNESS" };
     }
     if (s.includes("workout-habit") || s.includes("outlast") || s.includes("outlasts-your-motivation")) {
-        // Enforces exact link matching for: /blog/build-workout-habit-outlast-motivation
         return { slug: "build-workout-habit-outlast-motivation", cat: "fitness", display: "FITNESS" };
     }
 
@@ -87,10 +82,7 @@ function getScannedBlogs(): PostItem[] {
             .map((file): PostItem | null => {
                 try {
                     const rawSlug = file.replace(/\.md$/i, "").trim();
-
-                    // Route Resolver Safeguard Engine
                     const systemRoute = getSystemFixedRoute(rawSlug);
-
                     const filePath = path.join(targetDir, file);
                     const fileContent = fs.readFileSync(filePath, "utf8") || "";
                     const lines = fileContent.split("\n");
@@ -173,14 +165,14 @@ export default async function BlogIndexPage() {
                                     <span className="text-neutral-600">ID: 0{idx + 1}</span>
                                 </div>
                                 <h2 className="text-xl font-bold uppercase tracking-wide group-hover:text-cyan-400 transition-colors line-clamp-2">
-                                    <Link href={`/blog/${post.slug}`}>
+                                    <Link href={`/blog/posts/${post.slug}`}>
                                         {post.title}
                                     </Link>
                                 </h2>
                                 <p className="text-sm font-light text-neutral-400 line-clamp-3">{post.description}</p>
                             </div>
                             <div className="pt-6 mt-6 border-t border-neutral-900/60">
-                                <Link href={`/blog/${post.slug}`} className="text-xs font-mono text-neutral-500 hover:text-white transition-colors">
+                                <Link href={`/blog/posts/${post.slug}`} className="text-xs font-mono text-neutral-500 hover:text-white transition-colors">
                                     Launch Protocol Study &rarr;
                                 </Link>
                             </div>

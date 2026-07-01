@@ -18,7 +18,6 @@ interface PostItem {
     category: string;
 }
 
-// 1. Intelligent Content-Scanning Parser (No longer relies on strict '---')
 function getMarkdownBlogs(): PostItem[] {
     try {
         const targetDir = path.join(process.cwd(), "src", "content", "posts");
@@ -37,7 +36,6 @@ function getMarkdownBlogs(): PostItem[] {
                     const filePath = path.join(targetDir, file);
                     const fileContent = fs.readFileSync(filePath, "utf8");
 
-                    // Step A: Search for explicit key-value pairings anywhere in the document text
                     let explicitCategory = "";
                     let explicitPillar = "";
                     let explicitTitle = "";
@@ -62,8 +60,6 @@ function getMarkdownBlogs(): PostItem[] {
                         }
                     });
 
-                    // Step B: Smart Keyword Fallback Strategy (Failsafe for loose file formats)
-                    // If no category was explicitly declared, scan the slug and body text for topics
                     let finalCategory = explicitCategory || explicitPillar || "general";
 
                     if (finalCategory === "general") {
@@ -79,7 +75,6 @@ function getMarkdownBlogs(): PostItem[] {
                         }
                     }
 
-                    // Step C: Try to extract title from markdown H1 headers if metadata title is missing
                     let finalTitle = explicitTitle;
                     if (!finalTitle) {
                         const h1Line = lines.find(l => l.trim().startsWith("# "));
@@ -107,16 +102,13 @@ function getMarkdownBlogs(): PostItem[] {
     }
 }
 
-// 2. Build-time route compiler
 export async function generateStaticParams() {
     try {
         const posts = getMarkdownBlogs();
         const parameterRoutes = new Set<string>();
-
         posts.forEach(p => {
             if (p.category) parameterRoutes.add(p.category.toLowerCase().trim());
         });
-
         return Array.from(parameterRoutes).map(cat => ({
             category: encodeURIComponent(cat)
         }));
@@ -125,7 +117,6 @@ export async function generateStaticParams() {
     }
 }
 
-// 3. Page Renderer
 export default async function CategoryPage({ params }: PageProps) {
     const resolvedParams = await params.catch(() => null);
     const category = decodeURIComponent(resolvedParams?.category || "")
@@ -137,8 +128,6 @@ export default async function CategoryPage({ params }: PageProps) {
     }
 
     const allPosts = getMarkdownBlogs();
-
-    // Cross-match check against matched category keywords
     const filtered = allPosts.filter(
         (p) => p.category === category || p.pillar === category
     );
@@ -176,9 +165,12 @@ export default async function CategoryPage({ params }: PageProps) {
                 <section>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
                         {filtered.map((post, idx) => (
+                            /* Bulletproof Routing Fix: Change target route path format 
+                              from '/blog/posts/[slug]' to '/blog/[slug]' to resolve target 404s
+                            */
                             <Link
                                 key={`scanned-node-${post.slug}-${idx}`}
-                                href={`/blog/posts/${post.slug}`}
+                                href={`/blog/${post.slug}`}
                                 className="group border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm rounded-none p-8 hover:border-cyan-500 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
                             >
                                 <div className="space-y-4">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { notFound } from "next/navigation";
 
-// Next.js structural configurations
+// Strict structural Next.js runtime guarantees
 export const dynamicParams = true;
 
 interface PageProps {
@@ -27,7 +27,7 @@ interface FrontmatterData {
     [key: string]: string | undefined;
 }
 
-// 1. Structural Markdown Directory Aggregator Engine
+// 1. Fully Guarded Isolated Markdown Parser
 function getMarkdownBlogs(): PostItem[] {
     try {
         const targetDir = path.join(process.cwd(), "src", "content", "posts");
@@ -40,44 +40,51 @@ function getMarkdownBlogs(): PostItem[] {
                 const normalizedFile = file.trim();
                 return normalizedFile.toLowerCase().endsWith(".md") && normalizedFile !== ".md" && !normalizedFile.startsWith(".");
             })
-            .map((file): PostItem => {
-                const slug = file.replace(/\.md$/i, "").trim();
-                const filePath = path.join(targetDir, file);
-                const fileContent = fs.readFileSync(filePath, "utf8");
+            .map((file): PostItem | null => {
+                // Individual block protection isolates read errors so one broken file cannot take down the index
+                try {
+                    const slug = file.replace(/\.md$/i, "").trim();
+                    const filePath = path.join(targetDir, file);
+                    const fileContent = fs.readFileSync(filePath, "utf8");
 
-                const parts = fileContent.split("---");
-                const data: FrontmatterData = {};
+                    const parts = fileContent.split("---");
+                    const data: FrontmatterData = {};
 
-                if (parts.length >= 3 && parts[1]) {
-                    parts[1].split("\n").forEach((line) => {
-                        const sep = line.indexOf(":");
-                        if (sep !== -1) {
-                            const key = line.slice(0, sep).trim().toLowerCase();
-                            let val = line.slice(sep + 1).trim();
-                            if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-                                val = val.slice(1, -1);
+                    if (parts.length >= 3 && parts[1]) {
+                        parts[1].split("\n").forEach((line) => {
+                            const sep = line.indexOf(":");
+                            if (sep !== -1) {
+                                const key = line.slice(0, sep).trim().toLowerCase();
+                                let val = line.slice(sep + 1).trim();
+                                if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                                    val = val.slice(1, -1);
+                                }
+                                // String conversion fallback completely stops variable injection breaks
+                                data[key] = String(val);
                             }
-                            data[key] = val;
-                        }
-                    });
-                }
+                        });
+                    }
 
-                // Defensive Fallback Hierarchy to block runtime breaks
-                return {
-                    slug,
-                    title: String(data.title || slug.replace(/-/g, " ")),
-                    description: String(data.description || "System protocol data log."),
-                    pillar: String(data.pillar || data.category || "general").toLowerCase().trim(),
-                    category: String(data.category || data.pillar || "general").toLowerCase().trim()
-                };
-            });
+                    return {
+                        slug,
+                        title: String(data.title || slug.replace(/-/g, " ")),
+                        description: String(data.description || "System protocol data log."),
+                        pillar: String(data.pillar || data.category || "general").toLowerCase().trim(),
+                        category: String(data.category || data.pillar || "general").toLowerCase().trim()
+                    };
+                } catch (singleFileError) {
+                    console.error(`Skipping corrupt markdown structure tracking asset: ${file}`, singleFileError);
+                    return null;
+                }
+            })
+            .filter((post): post is PostItem => post !== null); // Discard dead entries seamlessly
     } catch (e) {
-        console.error("Shielded category collection error caught:", e);
+        console.error("Global matrix file aggregator safely intercepted a directory crash:", e);
         return [];
     }
 }
 
-// 2. Pre-Compile Build Whitelist Generation Matrix
+// 2. Pre-Compile Build Parameter Engine Matrix
 export async function generateStaticParams() {
     try {
         const posts = getMarkdownBlogs();
@@ -96,9 +103,11 @@ export async function generateStaticParams() {
     }
 }
 
-// 3. Main Operational Category Page Renderer
+// 3. Main Operational Category Page Renderer Component
 export default async function CategoryPage({ params }: PageProps) {
-    const resolvedParams = await params;
+    // Graceful unwrap protection matrix for dynamic params context
+    const resolvedParams = await params.catch(() => null);
+
     const category = decodeURIComponent(resolvedParams?.category || "")
         .toLowerCase()
         .trim();
@@ -109,7 +118,6 @@ export default async function CategoryPage({ params }: PageProps) {
 
     const allPosts = getMarkdownBlogs();
 
-    // Cross-match check against both category flags and pillar tags seamlessly
     const filtered = allPosts.filter(
         (p) => p.category === category || p.pillar === category
     );
@@ -126,7 +134,7 @@ export default async function CategoryPage({ params }: PageProps) {
             <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
                 <div className="mb-12">
                     <Link href="/blog" className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group">
-                        <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
+                        <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">←</span>
                         BACK_TO_MATRIX_INDEX
                     </Link>
                 </div>
@@ -148,13 +156,13 @@ export default async function CategoryPage({ params }: PageProps) {
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
                         {filtered.map((post, idx) => (
                             <Link
-                                key={post.slug}
+                                key={`post-node-${post.slug}-${idx}`}
                                 href={`/blog/posts/${post.slug}`}
                                 className="group border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm rounded-none p-8 hover:border-cyan-500 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
                             >
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
-                                        <span>{post.pillar} / {post.category}</span>
+                                        <span className="uppercase">{post.pillar} / {post.category}</span>
                                         <span>LOG_0{idx + 1}</span>
                                     </div>
                                     <h2 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-200 uppercase tracking-wide leading-snug">

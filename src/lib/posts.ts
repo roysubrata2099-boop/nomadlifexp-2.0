@@ -1,5 +1,3 @@
-import "server-only";
-
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -18,7 +16,6 @@ const POSTS_DIR = path.join(process.cwd(), "src/content/posts");
 function getFiles(): string[] {
   try {
     if (!fs.existsSync(POSTS_DIR)) return [];
-
     return fs.readdirSync(POSTS_DIR).filter((file) => file.endsWith(".md"));
   } catch {
     return [];
@@ -28,7 +25,6 @@ function getFiles(): string[] {
 function parsePost(file: string): Post | null {
   try {
     const fullPath = path.join(POSTS_DIR, file);
-
     if (!fs.existsSync(fullPath)) return null;
 
     const raw = fs.readFileSync(fullPath, "utf8");

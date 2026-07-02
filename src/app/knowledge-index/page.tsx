@@ -16,14 +16,13 @@ export const metadata: Metadata = {
     },
 };
 
-// Explicit interface matching Next.js strict page constraints
 interface PageProps {
     params: Promise<Record<string, string | string[] | undefined>>;
     searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export default async function KnowledgeIndexPage(props: PageProps) {
-    // Await search parameters safely per Next.js 15 standards
+    // Await search parameters per Next.js 15 standards
     const searchParams = await props.searchParams;
     const queryParam = typeof searchParams.q === "string" ? searchParams.q.toLowerCase().trim() : "";
     const categoryParam = typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
@@ -31,7 +30,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
     const rawPosts = getAllPosts();
     const safePosts = Array.isArray(rawPosts) ? rawPosts : [];
 
-    // Sanitize frontmatter fields into absolute primitives
+    // Sanitize frontmatter fields safely into absolute structural primitives
     const processedPosts = safePosts.map((p) => ({
         slug: p && typeof p.slug === "string" ? p.slug : "",
         title: p && typeof p.title === "string" ? p.title : "Untitled Node",
@@ -39,11 +38,11 @@ export default async function KnowledgeIndexPage(props: PageProps) {
         category: p && typeof p.category === "string" ? p.category.toLowerCase().trim() : "uncategorized",
     }));
 
-    // Extract categories for structural filter generation
+    // Extract dynamic unique categories for the layout filter tabs
     const uniqueCategories = Array.from(new Set(processedPosts.map((p) => p.category).filter(Boolean)));
     const navigationCategories = ["all", ...uniqueCategories];
 
-    // Filter posts entirely on the server side using the URL state
+    // Server-side filtering logic matching active navigation inputs
     const filteredPosts = processedPosts.filter((post) => {
         const matchesCategory = categoryParam === "all" || post.category === categoryParam;
         const matchesSearch =
@@ -54,13 +53,11 @@ export default async function KnowledgeIndexPage(props: PageProps) {
 
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
-
-            {/* Ambient Matrix Grids */}
+            {/* Ambient Matrix Background Elements */}
             <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
             <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
-
                 {/* Navigation Breadcrumb */}
                 <nav className="mb-12 flex items-center border-b border-neutral-900 pb-6" aria-label="Breadcrumb">
                     <Link
@@ -87,7 +84,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                     </h1>
                 </header>
 
-                {/* Search & Filtering Architecture */}
+                {/* Search Architecture Box */}
                 <div className="mb-12 space-y-6">
                     <form method="GET" action="/knowledge-index" className="relative">
                         <input
@@ -103,11 +100,10 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                         </span>
                     </form>
 
-                    {/* Filter Category Tabs */}
+                    {/* Dynamic Filtering Category Tabs */}
                     <div className="flex flex-wrap gap-2 border-b border-neutral-900/60 pb-6">
                         {navigationCategories.map((cat) => {
                             const isActive = categoryParam === cat;
-                            // Build clean routing query target parameters
                             const targetHref = queryParam
                                 ? `/knowledge-index?cat=${cat}&q=${encodeURIComponent(queryParam)}`
                                 : `/knowledge-index?cat=${cat}`;
@@ -128,7 +124,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                     </div>
                 </div>
 
-                {/* Database Search Matrix Results Output */}
+                {/* Database Search Matrix Output Grid */}
                 {filteredPosts.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {filteredPosts.map((post, idx) => (

@@ -51,21 +51,30 @@ export default async function BlogPostPage({ params }: PageProps) {
         );
     }
 
-    let finalTitle = staticPost.title;
-    let htmlContent = `<p class="text-neutral-400 italic">${staticPost.description}</p><p class="text-neutral-500 mt-4">[System Note: Live markdown ledger file missing or unreadable. Displaying protected cache snapshot.]</p>`;
+    let finalTitle: string = staticPost.title;
+    let htmlContent: string = `<p class="text-neutral-400 italic">${staticPost.description}</p><p class="text-neutral-500 mt-4">[System Note: Live markdown ledger file missing or unreadable. Displaying protected cache snapshot.]</p>`;
 
-    // Safe File System Read Operation
+    // Safe File System Read Operation with Auto-Case Insensitive Fallback Lookup
     try {
-        // Enforce absolute directory mapping to prevent silent environmental bugs
         const targetDir = path.resolve(process.cwd(), "src/content/posts");
-        let filename = `${slug}.md`;
 
-        // Flawless edge-case override handler
-        if (slug === "build-workout-habit-outlast-motivation") {
+        const cleanSlug = (slug || "").trim().toLowerCase();
+        let filename = `${cleanSlug}.md`;
+
+        if (cleanSlug === "build-workout-habit-outlast-motivation") {
             filename = "how-to-build-a-workout-habit-that-outlasts-your-motivation.md";
         }
 
-        const filePath = path.join(targetDir, filename);
+        let filePath = path.join(targetDir, filename);
+
+        // Fallback scan in case Windows file endings are '.MD' or cased differently
+        if (!fs.existsSync(filePath) && fs.existsSync(targetDir)) {
+            const directoryFiles = fs.readdirSync(targetDir);
+            const matchedFile = directoryFiles.find(f => f.toLowerCase() === filename.toLowerCase());
+            if (matchedFile) {
+                filePath = path.join(targetDir, matchedFile);
+            }
+        }
 
         if (fs.existsSync(filePath)) {
             const rawContent = fs.readFileSync(filePath, "utf8") || "";

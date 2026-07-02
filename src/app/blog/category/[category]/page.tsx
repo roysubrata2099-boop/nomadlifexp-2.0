@@ -1,7 +1,5 @@
-import fs from "fs";
-import path from "path";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export const dynamicParams = true;
@@ -10,185 +8,73 @@ interface PageProps {
     params: Promise<{ category: string }>;
 }
 
-interface PostItem {
-    slug: string;
-    title: string;
-    description: string;
-    category: string;
-    displayPillar: string;
-}
-
-function getTargetCategoryFromSlug(slug: string): { cat: string; display: string } {
-    const s = String(slug || "").toLowerCase().trim();
-
-    if (s.includes("attention-span") || s.includes("attention") || s.includes("cant-focus") || s.includes("focus") || s.includes("overthinking") || s.includes("mental-clarity") || s.includes("not-stuck") || s.includes("comfortable")) {
-        return { cat: "mindset", display: "MINDSET" };
-    }
-
-    if (s.includes("self-discipline") || s.includes("comprehensive-guide") || s.includes("procrastinate") || s.includes("procrastination") || s.includes("daily-habits") || s.includes("habits") || s.includes("self-discipline-why-you-lack") || s.includes("lack-it")) {
-        return { cat: "discipline", display: "DISCIPLINE" };
-    }
-
-    if (s.includes("workout-videos") || s.includes("never-actually-exercise") || s.includes("fitness-consistency") || s.includes("discipline-that-lasts") || s.includes("not-about-time") || s.includes("time-mindset") || s.includes("workout-habit") || s.includes("outlasts-your-motivation")) {
-        return { cat: "fitness", display: "FITNESS" };
-    }
-
-    if (s.includes("headstand") || s.includes("stillness") || s.includes("forearm-stand") || s.includes("pincha") || s.includes("forward-bending") || s.includes("bending-yoga")) {
-        return { cat: "yoga", display: "YOGA" };
-    }
-
-    return { cat: "general", display: "GENERAL" };
-}
-
-function getScannedBlogs(): PostItem[] {
-    try {
-        const targetDir = path.join(process.cwd(), "src", "content", "posts");
-        if (!fs.existsSync(targetDir)) return [];
-
-        const files = fs.readdirSync(targetDir);
-
-        return files
-            .filter((file) => {
-                const norm = String(file || "").trim().toLowerCase();
-                return norm.endsWith(".md") && norm !== ".md" && !norm.startsWith(".");
-            })
-            .map((file): PostItem | null => {
-                try {
-                    const rawSlug = file.replace(/\.md$/i, "").trim();
-                    const rule = getTargetCategoryFromSlug(rawSlug);
-
-                    // Standardize slug mapping exactly like index file node rules
-                    let fixedSlug = rawSlug;
-                    if (rawSlug.includes("workout-habit") || rawSlug.includes("outlast")) {
-                        fixedSlug = "build-workout-habit-outlast-motivation";
-                    } else if (rawSlug.includes("attention-span")) {
-                        fixedSlug = "rebuild-your-attention-span";
-                    } else if (rawSlug.includes("cant-focus")) {
-                        fixedSlug = "why-you-cant-focus-even-when-you-try-hard";
-                    } else if (rawSlug.includes("overthinking")) {
-                        fixedSlug = "mental-clarity-stop-overthinking-and-regain-focus";
-                    } else if (rawSlug.includes("not-stuck")) {
-                        fixedSlug = "you-are-not-stuck-in-life";
-                    } else if (rawSlug.includes("self-discipline")) {
-                        fixedSlug = "self-discipline-guide-reclaim-your-attention-rebuild-your-life";
-                    } else if (rawSlug.includes("procrastinate")) {
-                        fixedSlug = "why-you-procrastinate-and-how-to-stop-it";
-                    } else if (rawSlug.includes("daily-habits")) {
-                        fixedSlug = "the-power-of-daily-habits-over-motivation";
-                    } else if (rawSlug.includes("workout-videos")) {
-                        fixedSlug = "why-people-watch-workout-videos-but-never-actually-exercise";
-                    } else if (rawSlug.includes("fitness-consistency")) {
-                        fixedSlug = "fitness-consistency-build-workout-discipline-that-lasts";
-                    } else if (rawSlug.includes("not-about-time")) {
-                        fixedSlug = "fitness-is-not-about-time";
-                    } else if (rawSlug.includes("headstand")) {
-                        fixedSlug = "headstand-benefits-for-body-and-mind";
-                    } else if (rawSlug.includes("forearm-stand")) {
-                        fixedSlug = "forearm-stand-yoga-for-focus-and-confidence";
-                    } else if (rawSlug.includes("forward-bending")) {
-                        fixedSlug = "forward-bending-yoga-for-stress-relief";
-                    }
-
-                    const filePath = path.join(targetDir, file);
-                    const fileContent = fs.readFileSync(filePath, "utf8") || "";
-                    const lines = fileContent.split("\n");
-
-                    let title = "";
-                    const h1Line = lines.find(l => l.trim().startsWith("# "));
-                    if (h1Line) {
-                        title = h1Line.replace("# ", "").trim();
-                    } else {
-                        const cleanLines = lines.map(l => l.trim()).filter(l => l.length > 0);
-                        title = cleanLines.find(l => l.length > 20 && !l.startsWith("/") && !l.startsWith("#")) || rawSlug.replace(/-/g, " ");
-                    }
-
-                    let description = "Protocol data log.";
-                    const cleanLines = lines.map(l => l.trim()).filter(l => l.length > 0);
-                    const descriptiveLine = cleanLines.find(l => l.length > 40 && !l.startsWith("#") && !l.startsWith("/") && l.trim() !== title.trim());
-                    if (descriptiveLine) {
-                        description = descriptiveLine;
-                    }
-
-                    return {
-                        slug: String(fixedSlug),
-                        title: String(title || rawSlug.replace(/-/g, " ")),
-                        description: String(description),
-                        category: rule.cat,
-                        displayPillar: rule.display
-                    };
-                } catch (err) {
-                    return null;
-                }
-            })
-            .filter((p): p is PostItem => p !== null);
-    } catch (e) {
-        return [];
-    }
-}
+const IMMUTABLE_POSTS = [
+    { slug: "rebuild-your-attention-span", title: "Rebuild Your Attention Span", description: "Reclaim your mental baseline and stop dopamine overstimulation.", category: "mindset", displayPillar: "MINDSET" },
+    { slug: "why-you-cant-focus-even-when-you-try-hard", title: "Why You Can't Focus Even When You Try Hard", description: "The underlying mechanics of cognitive friction and focus optimization.", category: "mindset", displayPillar: "MINDSET" },
+    { slug: "mental-clarity-stop-overthinking-and-regain-focus", title: "Mental Clarity: Stop Overthinking and Regain Focus", description: "Practical mental frameworks to eliminate internal noise.", category: "mindset", displayPillar: "MINDSET" },
+    { slug: "you-are-not-stuck-in-life", title: "You Are Not Stuck in Life", description: "Breaking down false glass ceilings and rewiring momentum patterns.", category: "mindset", displayPillar: "MINDSET" },
+    { slug: "self-discipline-guide-reclaim-your-attention-rebuild-your-life", title: "Self Discipline Guide: Reclaim Your Attention, Rebuild Your Life", description: "The definitive operational blueprint to building sovereign self-control.", category: "discipline", displayPillar: "DISCIPLINE" },
+    { slug: "why-you-procrastinate-and-how-to-stop-it", title: "Why You Procrastinate and How to Stop It", description: "Moving past emotional resistance frameworks into raw, consistent action.", category: "discipline", displayPillar: "DISCIPLINE" },
+    { slug: "the-power-of-daily-habits-over-motivation", title: "The Power of Daily Habits Over Motivation", description: "Why system-driven behavior scaling beats erratic motivation bursts every time.", category: "discipline", displayPillar: "DISCIPLINE" },
+    { slug: "why-people-watch-workout-videos-but-never-actually-exercise", title: "Why People Watch Workout Videos but Never Actually Exercise", description: "Overcoming passive consumption loops to manifest real physical habits.", category: "fitness", displayPillar: "FITNESS" },
+    { slug: "fitness-consistency-build-workout-discipline-that-lasts", title: "Fitness Consistency: Build Workout Discipline That Lasts", description: "Structuring automated body transformations without friction dependencies.", category: "fitness", displayPillar: "FITNESS" },
+    { slug: "fitness-is-not-about-time", title: "Fitness Is Not About Time", description: "Demolishing time-scarcity myths around athletic cultivation layouts.", category: "fitness", displayPillar: "FITNESS" },
+    { slug: "build-workout-habit-outlast-motivation", title: "How to Build a Workout Habit That Outlasts Your Motivation", description: "The structural architecture required to anchor an unshakeable fitness identity.", category: "fitness", displayPillar: "FITNESS" },
+    { slug: "headstand-benefits-for-body-and-mind", title: "Headstand Benefits for Body and Mind", description: "Inversion mechanics for neural performance and vascular wellness.", category: "yoga", displayPillar: "YOGA" },
+    { slug: "forearm-stand-yoga-for-focus-and-confidence", title: "Forearm Stand Yoga for Focus and Confidence", description: "Calibrating geometric precision balance to anchor situational awareness.", category: "yoga", displayPillar: "YOGA" },
+    { slug: "forward-bending-yoga-for-stress-relief", title: "Forward Bending Yoga for Stress Relief", description: "Triggering parasympathetic nervous response states through structured release.", category: "yoga", displayPillar: "YOGA" }
+];
 
 export async function generateStaticParams() {
-    return [
-        { category: "all" },
-        { category: "mindset" },
-        { category: "discipline" },
-        { category: "fitness" },
-        { category: "yoga" }
-    ];
+    return [{ category: "all" }, { category: "mindset" }, { category: "discipline" }, { category: "fitness" }, { category: "yoga" }];
 }
 
 export default async function CategoryPage({ params }: PageProps) {
-    const resolvedParams = await params.catch(() => null);
-    const category = decodeURIComponent(resolvedParams?.category || "").toLowerCase().trim();
+    let category = "";
 
-    if (!category) notFound();
+    // 100% safe unwrapping of Next.js 15 async params
+    try {
+        const resolved = params ? await params : null;
+        category = String(resolved?.category || "").toLowerCase().trim();
+    } catch {
+        category = "";
+    }
 
-    const allPosts = getScannedBlogs() || [];
-    const filtered = allPosts.filter(p => p.category === category);
+    const validCategories = ["all", "mindset", "discipline", "fitness", "yoga"];
 
-    if (filtered.length === 0 && category !== "all") {
+    if (!category || !validCategories.includes(category)) {
         notFound();
     }
 
-    const postsToDisplay = category === "all" ? allPosts : filtered;
+    const posts = category === "all" ? IMMUTABLE_POSTS : IMMUTABLE_POSTS.filter(p => p.category === category);
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans antialiased relative overflow-hidden">
-            <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
+        <div className="min-h-screen bg-black text-white font-sans antialiased relative pt-36 pb-32">
+            <main className="max-w-7xl mx-auto px-6 z-10 relative">
                 <div className="mb-12">
-                    <Link href="/blog" className="text-xs font-mono text-neutral-500 hover:text-cyan-400">
-                        &larr; BACK_TO_MATRIX_INDEX
-                    </Link>
+                    <Link href="/blog" className="text-xs font-mono text-neutral-500 hover:text-cyan-400">&larr; BACK_TO_MATRIX_INDEX</Link>
                 </div>
-
-                <header className="mb-16 border-b border-neutral-900 pb-8 space-y-2">
-                    <h1 className="text-4xl md:text-6xl font-black uppercase">
-                        Pillar: <span className="text-cyan-400">{category}</span>
-                    </h1>
-                    <p className="font-mono text-xs text-neutral-400 uppercase">
-                        {postsToDisplay.length} Protocols Linked Successfully
-                    </p>
+                <header className="mb-16 border-b border-neutral-900 pb-8">
+                    <h1 className="text-4xl md:text-6xl font-black uppercase">Pillar: <span className="text-cyan-400">{category}</span></h1>
+                    <p className="font-mono text-xs text-neutral-400 uppercase mt-2">{posts.length} Protocols Dynamic Filter Online</p>
                 </header>
-
                 <section className="grid gap-6 md:grid-cols-2">
-                    {postsToDisplay.map((post, idx) => (
-                        <div key={`cat-post-${post.slug}-${idx}`} className="border border-neutral-900 bg-neutral-950/20 p-8 flex flex-col justify-between transition-all hover:border-neutral-700 group">
+                    {posts.map((post, idx) => (
+                        <div key={`cat-${post.slug}-${idx}`} className="border border-neutral-900 bg-neutral-950/20 p-8 flex flex-col justify-between group hover:border-neutral-700 transition-all">
                             <div className="space-y-4">
                                 <div className="flex justify-between font-mono text-xs">
                                     <span className="text-cyan-400">{post.displayPillar}</span>
-                                    <span className="text-neutral-600">LOG_0{idx + 1}</span>
+                                    <span className="text-neutral-600">
+                                        LOG_{String(idx + 1).padStart(2, "0")}
+                                    </span>
                                 </div>
-                                <h2 className="text-xl font-bold uppercase tracking-wide text-white group-hover:text-cyan-400 transition-colors line-clamp-2">
-                                    <Link href={`/blog/posts/${post.slug}`}>
-                                        {post.title}
-                                    </Link>
+                                <h2 className="text-xl font-bold uppercase tracking-wide group-hover:text-cyan-400 transition-colors">
+                                    <Link href={`/blog/posts/${post.slug}`}>{post.title}</Link>
                                 </h2>
                                 <p className="text-sm font-light text-neutral-400 line-clamp-3">{post.description}</p>
                             </div>
-
                             <div className="pt-6 mt-6 border-t border-neutral-900/60">
-                                <Link href={`/blog/posts/${post.slug}`} className="text-xs font-mono text-neutral-500 hover:text-white transition-colors">
-                                    Launch Study Protocol &rarr;
-                                </Link>
+                                <Link href={`/blog/posts/${post.slug}`} className="text-xs font-mono text-neutral-500 hover:text-white transition-colors">Launch Study Protocol &rarr;</Link>
                             </div>
                         </div>
                     ))}

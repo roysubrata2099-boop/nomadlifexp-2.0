@@ -1,4 +1,4 @@
-import { posts } from "@/lib/posts";
+import { getAllPosts } from "@/lib/markdown"; // <-- Connected to dynamic markdown engine
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
@@ -17,7 +17,7 @@ function normalize(str: string | undefined | null): string {
 
 /* ---------------- PRODUCTION STATIC RUNTIME PARSER ---------------- */
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-    const rawPosts = (posts || []) as any[];
+    const rawPosts = getAllPosts(); // <-- Dynamically pulled from disk
     return rawPosts
         .filter((p) => typeof p === "object" && p !== null)
         .map((p) => ({
@@ -55,7 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 /* ---------------- OPERATIONAL YOGA ENGINE ---------------- */
 export default function YogaPage() {
-    const rawPosts = (posts || []) as any[];
+    const rawPosts = getAllPosts(); // <-- Hooks into your live markdown workspace ecosystem
 
     // Coerce raw data collection through safe type interface mapping
     const verifiedPosts: SystemPost[] = rawPosts.map((p) => ({

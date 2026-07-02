@@ -1,4 +1,4 @@
-import { posts } from "@/lib/posts";
+import { getAllPosts } from "@/lib/markdown"; // <-- Connected to markdown system parser
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
@@ -18,7 +18,7 @@ function normalize(str: string | undefined | null): string {
 
 /* ---------------- PRODUCTION STATIC RUNTIME PARSER ---------------- */
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-    const rawPosts = (posts || []) as any[];
+    const rawPosts = getAllPosts(); // <-- Dynamically pulled from disk
     return rawPosts
         .filter((p) => typeof p === "object" && p !== null)
         .map((p) => ({
@@ -56,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 /* ---------------- OPERATIONAL MINDSET ENGINE ---------------- */
 export default function MindsetPage() {
-    const rawPosts = (posts || []) as any[];
+    const rawPosts = getAllPosts(); // <-- Directly hooks into live .md framework ecosystem
 
     // Coerce raw data collection through safe type interface mapping
     const typedPosts: PostDataShape[] = rawPosts.map((p) => ({

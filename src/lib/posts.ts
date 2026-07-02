@@ -3,19 +3,23 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const postsDirectory = path.join(process.cwd(), "src/content");
+const postsDirectory = path.join(process.cwd(), "src/content/posts");
 
-export function getPostBySlug(slug: string) {
-  const filePath = path.join(postsDirectory, `${slug}.md`);
+export function getAllPosts() {
+  const files = fs.readdirSync(postsDirectory);
 
-  const fileContent = fs.readFileSync(filePath, "utf-8");
+  return files.map((file) => {
+    const filePath = path.join(postsDirectory, file);
+    const fileContent = fs.readFileSync(filePath, "utf8");
 
-  const { data, content } = matter(fileContent);
+    const { data, content } = matter(fileContent);
 
-  return {
-    slug,
-    title: data.title,
-    category: data.category,
-    content,
-  };
+    return {
+      title: String(data.title || ""),
+      slug: String(data.slug || ""),
+      category: String(data.category || ""),
+      description: String(data.description || ""),
+      content
+    };
+  });
 }

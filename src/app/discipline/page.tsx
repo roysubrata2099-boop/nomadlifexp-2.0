@@ -1,7 +1,36 @@
-// src/app/discipline/page.tsx
+import { getAllPosts } from "@/lib/markdown"; // <-- Connected to dynamic markdown engine
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
+interface SystemPost {
+    slug: string;
+    title: string;
+    description: string;
+    category: string;
+}
+
+function normalize(str: string | undefined | null): string {
+    if (!str) return "";
+    return String(str).toLowerCase().trim();
+}
+
+/* ---------------- PRODUCTION STATIC RUNTIME PARSER ---------------- */
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+    const rawPosts = getAllPosts(); // <-- Dynamically pulled from disk
+    return rawPosts
+        .filter((p) => typeof p === "object" && p !== null)
+        .map((p) => ({
+            slug: typeof p.slug === "string" ? p.slug : "",
+            category: typeof p.category === "string" ? p.category : ""
+        }))
+        .filter((p) => normalize(p.category) === "discipline" && p.slug !== "")
+        .map((p) => ({
+            slug: p.slug,
+        }));
+}
+
+/* ---------------- PRODUCTION SEO METADATA ---------------- */
 export const metadata: Metadata = {
     title: "Discipline & Autonomy Architecture | NomadLifeXP",
     description: "Discipline is not an emotional state or a temporary motivational spark. It is a strictly engineered execution architecture explicitly deployed to construct true long-term autonomy.",
@@ -16,7 +45,27 @@ export const metadata: Metadata = {
     },
 };
 
+/* ---------------- OPERATIONAL DISCIPLINE ENGINE ---------------- */
 export default function DisciplineCategoryPage() {
+    const rawPosts = getAllPosts(); // <-- Direct hook into live Markdown pipeline
+
+    // Map and normalize elements into a type-safe matrix container
+    const verifiedPosts: SystemPost[] = rawPosts.map((p) => ({
+        slug: typeof p?.slug === "string" ? p.slug : "",
+        title: typeof p?.title === "string" ? p.title : "Untitled Node",
+        description: typeof p?.description === "string" ? p.description : "",
+        category: typeof p?.category === "string" ? p.category : ""
+    }));
+
+    // Isolate data streams pertaining exclusively to discipline
+    const disciplineArticles = verifiedPosts.filter(
+        (post) => post && normalize(post.category) === "discipline"
+    );
+
+    if (!disciplineArticles || disciplineArticles.length === 0) {
+        notFound();
+    }
+
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
 
@@ -101,40 +150,26 @@ export default function DisciplineCategoryPage() {
                     </div>
                 </section>
 
-                {/* Active Database Knowledge Modules (Articles) */}
+                {/* Active Database Knowledge Modules (Articles dynamically mapped) */}
                 <section className="space-y-6 mb-24" aria-label="Knowledge Modules">
                     <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block">// Active Database Knowledge Modules</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Article Card 01 - FIX APPLIED: Mapped to verified comprehensive slug */}
-                        <div className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
-                            <div className="space-y-3 mb-6">
-                                <h3 className="text-white text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200">
-                                    Self Discipline Guide: Reclaim Your Attention, Rebuild Your Life
-                                </h3>
-                                <p className="text-sm font-light text-neutral-400 leading-relaxed">
-                                    Discipline begins with attention. Learn how to rebuild self-control and consistency.
-                                </p>
+                        {disciplineArticles.map((post, idx) => (
+                            <div key={post.slug || `disc-node-${idx}`} className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
+                                <div className="space-y-3 mb-6">
+                                    <h3 className="text-white text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200 line-clamp-2">
+                                        {post.title}
+                                    </h3>
+                                    <p className="text-sm font-light text-neutral-400 leading-relaxed line-clamp-2">
+                                        {post.description || "System data node processing description pending framework deployment."}
+                                    </p>
+                                </div>
+                                <Link href={`/blog/posts/${post.slug}`} className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                                    Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
+                                </Link>
                             </div>
-                            <Link href="/blog/posts/self-discipline-comprehensive-guide" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
-                                Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
-                            </Link>
-                        </div>
-
-                        {/* Article Card 02 - VERIFIED WORKING */}
-                        <div className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
-                            <div className="space-y-3 mb-6">
-                                <h3 className="text-white text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200">
-                                    Why You Procrastinate and How to Stop It
-                                </h3>
-                                <p className="text-sm font-light text-neutral-400 leading-relaxed">
-                                    Break procrastination cycles permanently.
-                                </p>
-                            </div>
-                            <Link href="/blog/posts/why-you-procrastinate-how-to-stop" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
-                                Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
-                            </Link>
-                        </div>
+                        ))}
                     </div>
                 </section>
 

@@ -1,9 +1,9 @@
-import { posts } from "@/lib/posts";
+import { getAllPosts } from "@/lib/markdown"; // <-- Tied directly to dynamic filesystem engine
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 
-interface PostDataShape {
+interface SystemPost {
     slug: string;
     title: string;
     description: string;
@@ -17,7 +17,7 @@ function normalize(str: string | undefined | null): string {
 
 /* ---------------- PRODUCTION STATIC RUNTIME PARSER ---------------- */
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-    const rawPosts = (posts || []) as any[];
+    const rawPosts = getAllPosts(); // <-- Dynamically pulled from disk workspace
     return rawPosts
         .filter((p) => typeof p === "object" && p !== null)
         .map((p) => ({
@@ -31,205 +31,166 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 /* ---------------- PRODUCTION SEO METADATA ---------------- */
-export async function generateMetadata(): Promise<Metadata> {
-    try {
-        return {
-            title: "Fitness & Physical Capacity | NomadLifeXP",
-            description: "Engineered frameworks designed to cultivate elite functional capacity, core physical output strength, and long-term longevity.",
-            alternates: {
-                canonical: "https://nomadlifexp.com/fitness",
-            },
-            openGraph: {
-                title: "Fitness & Physical Capacity | NomadLifeXP",
-                description: "Engineered frameworks designed to cultivate elite functional capacity, core physical output strength, and long-term longevity.",
-                url: "https://nomadlifexp.com/fitness",
-                type: "website",
-            },
-        };
-    } catch {
-        return {
-            title: "Fitness System Architecture",
-        };
-    }
-}
+export const metadata: Metadata = {
+    title: "Somatic Mechanics & Fitness Architecture | NomadLifeXP",
+    description: "Physical capability is the biological substrate of consciousness. We treat somatic fitness not as superficial vanity, but as a deliberate kinetic framework optimized for absolute vitality.",
+    alternates: {
+        canonical: "https://nomadlifexp.com/fitness",
+    },
+    openGraph: {
+        title: "Somatic Mechanics & Fitness Architecture | NomadLifeXP",
+        description: "Physical capability is the biological substrate of consciousness. We treat somatic fitness not as superficial vanity, but as a deliberate kinetic framework optimized for absolute vitality.",
+        url: "https://nomadlifexp.com/fitness",
+        type: "website",
+    },
+};
 
 /* ---------------- OPERATIONAL FITNESS ENGINE ---------------- */
-export default function FitnessPage() {
-    const rawPosts = (posts || []) as any[];
+export default function FitnessCategoryPage() {
+    const rawPosts = getAllPosts(); // <-- Direct hook into live Markdown pipeline
 
-    // Standardized type-safe verification layer protecting data properties
-    const verifiedPosts: PostDataShape[] = rawPosts.map((p) => ({
+    // Map and normalize elements into a type-safe matrix container
+    const verifiedPosts: SystemPost[] = rawPosts.map((p) => ({
         slug: typeof p?.slug === "string" ? p.slug : "",
         title: typeof p?.title === "string" ? p.title : "Untitled Node",
         description: typeof p?.description === "string" ? p.description : "",
         category: typeof p?.category === "string" ? p.category : ""
     }));
 
-    // Collect active metrics specifically cataloged within the fitness sector
+    // Isolate data streams pertaining exclusively to fitness
     const fitnessArticles = verifiedPosts.filter(
-        (post) => normalize(post.category) === "fitness"
+        (post) => post && normalize(post.category) === "fitness"
     );
 
     if (!fitnessArticles || fitnessArticles.length === 0) {
         notFound();
     }
 
-    const coreConcepts = [
-        {
-            title: "01 / The Intensity Delusion",
-            text: "Relying on rare, destructive workout sessions creates physical regression. Sustainable, calculated micro-stress variables yield long-term muscle adaptations."
-        },
-        {
-            title: "02 / Environment Optimization",
-            text: "Your workout schedule must be anchored directly into physical room space or micro-structures that limit execution friction variables."
-        }
-    ];
-
-    const alternativeNodes: string[] = ["discipline", "yoga", "mindset"];
-
     return (
-        <>
-            {/* Mainframe Canvas */}
-            <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-purple-500 selection:text-black overflow-hidden">
+        <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
 
-                {/* Ambient Lighting Accents */}
-                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none" />
-                <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-neutral-500/5 rounded-full blur-[140px] pointer-events-none" />
+            {/* Ambient Lighting Accents */}
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-neutral-800/20 rounded-full blur-[140px] pointer-events-none" />
 
-                {/* Mainframe Technical Matrix Grid Background Overlay */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            {/* Technical Matrix Grid Background Overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-                {/* Content Area Matrix */}
-                <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
+            {/* Content Area Matrix */}
+            <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
 
-                    {/* Navigation Breadcrumb Node Block */}
-                    <div className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6">
-                        <Link
-                            href="/"
-                            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-purple-400 transition-colors duration-200 group"
-                        >
-                            <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">←</span>
-                            RETURN_TO_HOME
-                        </Link>
-                        <span className="text-neutral-800 font-mono text-xs" aria-hidden="true">/</span>
-                        <Link
-                            href="/blog"
-                            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-purple-400 transition-colors duration-200 group"
-                        >
-                            RETURN_TO_DIRECTORY
-                        </Link>
-                    </div>
+                {/* Navigation Breadcrumb Node Block */}
+                <nav className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6" aria-label="Breadcrumb">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
+                    >
+                        <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">&larr;</span>
+                        RETURN_TO_HOME
+                    </Link>
+                    <span className="text-neutral-800 font-mono text-xs" aria-hidden="true">/</span>
+                    <Link
+                        href="/blog"
+                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200"
+                    >
+                        RETURN_TO_DIRECTORY
+                    </Link>
+                </nav>
 
-                    {/* Left-Aligned Technical Header Block */}
-                    <header className="mb-16 max-w-5xl space-y-5">
-                        <div className="flex items-center gap-2">
-                            <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse" />
-                            <p className="text-xs uppercase tracking-[0.4em] font-mono text-purple-400">
-                                NomadLifeXP // Physical Output Optimization
-                            </p>
-                        </div>
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">
-                            The Fitness<br />
-                            <span className="bg-gradient-to-r from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent">
-                                System Baseline
-                            </span>
-                        </h1>
-                        <p className="text-base md:text-lg font-light leading-relaxed max-w-3xl text-neutral-400 font-mono">
-                            Physical capacity is an engineering baseline. True progression relies heavily on structural, rhythmic execution consistency—never short-term sporadic intensity.
+                {/* Left-Aligned Category Header Block */}
+                <header className="mb-20 max-w-5xl space-y-5">
+                    <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                        <p className="text-xs uppercase tracking-[0.4em] font-mono text-cyan-400">
+                            NomadLifeXP // Somatic Optimization Layer
                         </p>
-                    </header>
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">
+                        Somatic Mechanics<br />
+                        <span className="bg-gradient-to-r from-white via-neutral-300 to-cyan-400 bg-clip-text text-transparent">
+                            &amp; Kinetic Power
+                        </span>
+                    </h1>
+                    <p className="text-base md:text-lg font-light leading-relaxed max-w-3xl text-neutral-400 font-mono">
+                        Physical capability is the biological substrate of consciousness. We treat somatic fitness not as superficial vanity, but as a deliberate kinetic framework optimized for absolute vitality.
+                    </p>
+                </header>
 
-                    {/* Non-Negotiable Parameter Terminal Block Console */}
-                    <div className="flex flex-col gap-8 mb-16 bg-black border border-neutral-900 p-6 md:p-8 rounded-none relative">
+                {/* Core Pillars Custom Grid Layout */}
+                <section className="space-y-6 mb-24" aria-label="Kinetic Foundations Grid">
+                    <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block mb-4">// Kinetic Foundations Grid</h2>
 
-                        {/* Status Bar Section Header */}
-                        <div className="flex justify-between items-center border-b border-neutral-900 pb-4">
-                            <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">// Core Concepts Grid</span>
-                            <div className="flex gap-1.5 items-center">
-                                <span className="w-1.5 h-1.5 bg-neutral-800" />
-                                <span className="w-1.5 h-1.5 bg-neutral-800" />
-                                <span className="w-1.5 h-1.5 bg-purple-500 animate-pulse" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="border border-neutral-900 p-8 bg-neutral-950/20 backdrop-blur-sm flex flex-col justify-between hover:border-cyan-500/30 transition-colors duration-300">
+                            <div className="space-y-4">
+                                <div className="font-mono text-xs text-cyan-400 tracking-wider">01 // Functional Hypertrophy</div>
+                                <p className="text-sm font-light leading-relaxed text-neutral-400">
+                                    Engineering raw muscle density and structurally sound movement patterns built to endure long-term physical demands.
+                                </p>
                             </div>
                         </div>
 
-                        {/* Core Concepts Matrix Layout */}
-                        <div className="space-y-8 divide-y divide-neutral-900 w-full">
-                            {coreConcepts.map((concept, index) => (
-                                <div key={concept.title} className={`flex flex-col md:flex-row md:items-start md:justify-between gap-4 group ${index !== 0 ? 'pt-8' : ''}`}>
-                                    <div className="space-y-2 max-w-3xl">
-                                        <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-purple-400 transition-colors duration-300">
-                                            {concept.title}
-                                        </h3>
-                                        <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                            {concept.text}
-                                        </p>
-                                    </div>
-                                    <div className="pt-1 shrink-0">
-                                        <span className="text-neutral-700 font-mono text-xs select-none" aria-hidden="true">
-                                            [SYS_PERF_0{index + 1}]
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
+                        <div className="border border-neutral-900 p-8 bg-neutral-950/20 backdrop-blur-sm flex flex-col justify-between hover:border-cyan-500/30 transition-colors duration-300">
+                            <div className="space-y-4">
+                                <div className="font-mono text-xs text-cyan-400 tracking-wider">02 // Metabolic Capacity</div>
+                                <p className="text-sm font-light leading-relaxed text-neutral-400">
+                                    Optimizing energy production pathways to ensure your cellular health can support peak cognitive output under pressure.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="border border-neutral-900 p-8 bg-neutral-950/20 backdrop-blur-sm flex flex-col justify-between hover:border-cyan-500/30 transition-colors duration-300">
+                            <div className="space-y-4">
+                                <div className="font-mono text-xs text-cyan-400 tracking-wider">03 // Biomechanical Resilience</div>
+                                <p className="text-sm font-light leading-relaxed text-neutral-400">
+                                    Protecting and reinforcing active joint systems through targeted load distribution and intentional functional range exercises.
+                                </p>
+                            </div>
                         </div>
                     </div>
+                </section>
 
-                    {/* LIVE KNOWLEDGE NODES GRID */}
-                    <section className="mb-16 space-y-6">
-                        <div className="border-b border-neutral-900 pb-4">
-                            <h2 className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-mono font-bold">
-                                // Active Database Knowledge Modules
-                            </h2>
-                        </div>
+                {/* Active Database Knowledge Modules (Articles dynamically mapped) */}
+                <section className="space-y-6 mb-24" aria-label="Knowledge Modules">
+                    <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block">// Active Database Knowledge Modules</h2>
 
-                        <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
-                            {fitnessArticles.map((post, idx) => (
-                                <Link
-                                    key={post.slug || `fitness-node-${idx}`}
-                                    href={`/blog/posts/${post.slug || "empty"}`}
-                                    className="p-8 border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm rounded-none hover:border-purple-500/30 transition-all duration-300 group flex flex-col justify-between space-y-8"
-                                >
-                                    <div className="space-y-3">
-                                        <h3 className="text-base font-bold text-white uppercase tracking-tight group-hover:text-purple-400 transition-colors line-clamp-2">
-                                            {post.title || "Untitled Node"}
-                                        </h3>
-                                        <p className="text-sm text-neutral-400 font-light line-clamp-3 leading-relaxed">
-                                            {post.description || ""}
-                                        </p>
-                                    </div>
-                                    <span className="text-xs font-mono font-bold text-neutral-500 group-hover:text-white transition-colors tracking-wide block">
-                                        Read Article →
-                                    </span>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {fitnessArticles.map((post, idx) => (
+                            <div key={post.slug || `fit-node-${idx}`} className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
+                                <div className="space-y-3 mb-6">
+                                    <h3 className="text-white text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200 line-clamp-2">
+                                        {post.title}
+                                    </h3>
+                                    <p className="text-sm font-light text-neutral-400 leading-relaxed line-clamp-2">
+                                        {post.description || "System data node processing description pending framework deployment."}
+                                    </p>
+                                </div>
+                                <Link href={`/blog/posts/${post.slug}`} className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link">
+                                    Read Article <span className="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                                 </Link>
-                            ))}
-                        </div>
-                    </section>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-                    {/* Cross-System Connection Router Node Links */}
-                    <footer className="max-w-3xl mx-auto border-t border-neutral-900 pt-16 text-center space-y-6">
-                        <h4 className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-mono font-bold">
-                            // Cross-Connect Alternative Nodes
-                        </h4>
+                {/* Cross-Connect Alternative Nodes Footer Matrix */}
+                <footer className="pt-8 border-t border-neutral-900">
+                    <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block mb-6">// Cross-Connect Alternative Nodes</h2>
 
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            {alternativeNodes.map((cat) => (
-                                <Link
-                                    key={`alt-node-${cat}`}
-                                    href={`/blog/category/${cat}`}
-                                    className="px-5 py-2.5 text-xs uppercase tracking-wider border border-neutral-900 text-neutral-400 bg-transparent hover:text-white hover:border-neutral-500 transition-colors font-mono"
-                                >
-                                    {cat}
-                                </Link>
-                            ))}
-                        </div>
+                    <div className="flex flex-wrap items-center gap-y-4 gap-x-8 text-xs font-mono uppercase tracking-widest">
+                        <Link href="/yoga" className="text-neutral-400 hover:text-white flex items-center gap-2 transition-colors">
+                            yoga <span className="text-neutral-700" aria-hidden="true">&rarr;</span>
+                        </Link>
+                        <Link href="/discipline" className="text-neutral-400 hover:text-white flex items-center gap-2 transition-colors">
+                            discipline <span className="text-neutral-700" aria-hidden="true">&rarr;</span>
+                        </Link>
+                        <Link href="/mindset" className="text-neutral-400 hover:text-white flex items-center gap-2 transition-colors">
+                            mindset <span className="text-neutral-700" aria-hidden="true">&rarr;</span>
+                        </Link>
+                    </div>
+                </footer>
 
-                        <p className="pt-12 text-neutral-700 font-mono text-[10px] uppercase tracking-[0.3em] select-none">
-                            Discipline / Fitness / Yoga / Mindset
-                        </p>
-                    </footer>
-
-                </div>
-            </div>
-        </>
+            </main>
+        </div>
     );
 }

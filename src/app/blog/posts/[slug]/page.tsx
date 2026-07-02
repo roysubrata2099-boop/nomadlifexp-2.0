@@ -6,7 +6,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 export async function generateStaticParams() {
     const posts = getAllPosts();
     return posts.map((post) => ({
-        slug: post.slug,
+        slug: post.slug.toLowerCase(), // Force static maps to lower case for consistency
     }));
 }
 
@@ -16,7 +16,12 @@ type Props = {
 
 export default async function BlogPostPage({ params }: Props) {
     const { slug } = await params;
-    const post = getPostBySlug(slug);
+
+    // Try finding via clean slug, fallback to lowercase slug match
+    let post = getPostBySlug(slug);
+    if (!post) {
+        post = getPostBySlug(slug.toLowerCase());
+    }
 
     if (!post) {
         notFound();
@@ -24,7 +29,6 @@ export default async function BlogPostPage({ params }: Props) {
 
     return (
         <main className="max-w-3xl mx-auto px-4 py-16">
-            {/* Strict Silo Architecture Navigation Links */}
             <nav className="text-xs font-mono tracking-wider text-zinc-400 uppercase mb-12 flex items-center gap-2">
                 <Link href="/blog" className="hover:text-black underline">Index</Link>
                 <span>/</span>
@@ -45,13 +49,11 @@ export default async function BlogPostPage({ params }: Props) {
                     </div>
                 </header>
 
-                {/* Safe HTML MDX Content Wrapper */}
                 <div className="prose prose-zinc max-w-none dark:prose-invert text-zinc-800 leading-relaxed space-y-4">
                     <MDXRemote source={post.content} />
                 </div>
             </article>
 
-            {/* Circular Silo Framework - Loops bots back to top level maps */}
             <footer className="mt-16 pt-8 border-t border-zinc-200 bg-zinc-50 p-6 rounded-xl">
                 <h4 className="text-sm font-bold uppercase tracking-wider mb-2">Deep Infrastructure Framework</h4>
                 <p className="text-sm text-zinc-600 leading-relaxed">

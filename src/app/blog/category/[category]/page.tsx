@@ -2,13 +2,25 @@ import { getAllPosts } from '@/lib/markdown';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+// Pre-render BOTH cases so Linux servers never 404 on case mismatch
 export async function generateStaticParams() {
-    return [
-        { category: 'discipline' },
-        { category: 'fitness' },
-        { category: 'yoga' },
-        { category: 'mindset' }
-    ];
+    const categories = ['discipline', 'fitness', 'yoga', 'mindset'];
+    const params = [];
+
+    for (const cat of categories) {
+        params.push({ category: cat });
+        params.push({ category: cat.charAt(0).toUpperCase() + cat.slice(1) });
+    }
+    return params;
+}
+
+function getNormalizedPillar(category: string): string {
+    const norm = category?.toLowerCase().trim();
+    if (norm === 'fitness') return 'fitness';
+    if (norm === 'wellness' || norm === 'yoga') return 'yoga';
+    if (norm === 'self growth' || norm === 'discipline') return 'discipline';
+    if (norm === 'mental clarity' || norm === 'mindset') return 'mindset';
+    return 'mindset';
 }
 
 type Props = {
@@ -17,17 +29,20 @@ type Props = {
 
 export default async function CategoryPillarPage({ params }: Props) {
     const { category } = await params;
+    // Handle incoming URL parameter cleanly regardless of casing
+    const currentTarget = category.toLowerCase().trim();
+
     const allPosts = getAllPosts();
 
     const filteredPosts = allPosts.filter(
-        (post) => post.category?.toLowerCase() === category.toLowerCase()
+        (post) => getNormalizedPillar(post.category) === currentTarget
     );
 
     if (filteredPosts.length === 0) {
         notFound();
     }
 
-    const pillarName = category.charAt(0).toUpperCase() + category.slice(1);
+    const pillarName = currentTarget.charAt(0).toUpperCase() + currentTarget.slice(1);
 
     return (
         <main className="max-w-4xl mx-auto px-4 py-16">
@@ -37,7 +52,7 @@ export default async function CategoryPillarPage({ params }: Props) {
 
             <header className="border-b border-zinc-200 pb-6 mb-12">
                 <h1 className="text-3xl font-black tracking-tight uppercase">Pillar: {pillarName}</h1>
-                <p className="text-gray-500 mt-2">Deep dive blueprints and tactical content focused on {pillarName}.</p>
+                <p className="text-gray-500 mt-2">Blueprints focused strictly on {pillarName}.</p>
             </header>
 
             <div className="space-y-10">

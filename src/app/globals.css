@@ -1,118 +1,4 @@
 /* ==========================================================================
-   🚀 TAILWIND ENGINE INITIALIZATION & MATRIX CONTEXT
-   ========================================================================== */
-@import "tailwindcss";
-
-/* ==========================================================================
-   🎨 BRAND PALETTE RESET (NAVY CONTEXT WITH ORIGINAL MATRICES SECURED)
-   ========================================================================== */
-:root {
-  /* Secured Core Assets */
-  --bg-surface-blue: #0f172a;
-  --text-muted: #a7f3d0;
-  --glow-cyan: #ffb700;
-  --glow-amber: #f59e0b;
-  --highlight-lime: #ffe57f;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* ==========================================================================
-   🌌 DEEP NAVY BLUE BACKGROUND LAYERING ENGINE
-   ========================================================================== */
-body {
-  min-height: 100vh;
-  /* Clean solid color fallback followed by high-performance multi-layer radial arrays */
-  background-color: #050914 !important;
-  background:
-    radial-gradient(circle at top, #0a1a3a 0%, transparent 45%),
-    radial-gradient(circle at bottom, #050b1a 0%, transparent 40%),
-    linear-gradient(135deg, #050914, #071428, #0a1a33) !important;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  color: #ffffff;
-  /* Safe base layout text color */
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-/* ==========================================================================
-   ✨ CLEAN TRILL TEXT CONFIGURATION (USE THIS CLASS FOR TEXTS/HEADINGS)
-   ========================================================================== */
-.trill,
-.trill-text-target,
-h1,
-h2 {
-  display: inline-block;
-  /* Safe handling for text clipping environments */
-
-  /* Smooth ocean-blue gradient matrix */
-  background: linear-gradient(90deg,
-      #ffffff,
-      #7dd3fc,
-      #38bdf8,
-      #60a5fa,
-      #ffffff) !important;
-  background-size: 300% 100% !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-
-  /* Soft architectural glow matrices */
-  text-shadow:
-    0 0 10px rgba(56, 189, 248, 0.18),
-    0 0 25px rgba(125, 211, 252, 0.10);
-
-  /* Continuous execution runtime */
-  animation: trillShimmer 4s linear infinite !important;
-}
-
-/* Shimmer runtime framework */
-@keyframes trillShimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  100% {
-    background-position: 300% 50%;
-  }
-}
-
-/* ==========================================================================
-   ✨ FIERY PLASMA GLOW EFFECT -> SECURED WITH GOLD ARCHITECTURE
-   ========================================================================== */
-.fiery-glow-text {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  /* Safety override for text gradient inheritances */
-  text-shadow:
-    0 0 4px var(--glow-cyan),
-    0 0 12px var(--glow-cyan),
-    0 0 30px var(--glow-amber);
-  animation: flare 4s infinite alternate;
-}
-
-@keyframes flare {
-  0% {
-    opacity: 0.96;
-  }
-
-  100% {
-    opacity: 1;
-    text-shadow: 0 0 6px var(--glow-cyan), 0 0 18px var(--glow-cyan), 0 0 40px var(--glow-amber);
-  }
-}
-
-/* ==========================================================================
    🖋️ BLOG READER HIGHLIGHTS (Golden Under-Glow Protection)
    ========================================================================== */
 .blog-content strong,
@@ -125,4 +11,51 @@ p strong {
   padding: 2px 4px;
   border-radius: 2px;
   text-shadow: 0 0 8px rgba(255, 183, 0, 0.7);
+}
+
+/* ==========================================================================
+   🔒 100% PRODUCTION PROTECTION: HIGH-CONTRAST READABILITY LAYER
+   ========================================================================== */
+.blog-content,
+.blog-content p,
+.blog-content li,
+.blog-content span,
+p,
+li {
+  /* Forces rendering away from any accidental 'transparent' text-fill inheritances */
+  -webkit-text-fill-color: initial !important;
+  text-shadow: none !important;
+
+  /* High contrast off-white/silver for optimal reading against deep navy */
+  color: #f8fafc !important;
+
+  /* Structural readability boost */
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8 !important;
+}
+
+/* Maintain crisp visibility for links inside reading blocks */
+.blog-content a,
+p a {
+  color: #38bdf8 !important;
+  -webkit-text-fill-color: #38bdf8 !important;
+  text-decoration: underline;
+}
+
+.blog-content a:hover,
+p a:hover {
+  color: #7dd3fc !important;
+  -webkit-text-fill-color: #7dd3fc !important;
+}
+
+/* Prevent target headings inside blogs from breaking their trill shimmer */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h1 *,
+.blog-content h2 * {
+  -webkit-text-fill-color: transparent !important;
+  color: inherit !important;
 }

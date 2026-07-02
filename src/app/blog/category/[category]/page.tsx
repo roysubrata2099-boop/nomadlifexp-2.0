@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+// Force Next.js to dynamically capture and render paths even if not compiled during static build pipelines
+export const dynamicParams = true;
+
 interface SystemPost {
     slug: string;
     title: string;
@@ -14,7 +17,6 @@ interface PageProps {
     params: Promise<{ category: string }>;
 }
 
-// Global normalization engine to prevent casing/whitespace mismatches
 function normalize(str: string | undefined | null): string {
     if (!str) return "";
     return String(str).toLowerCase().replace(/_/g, "-").trim();
@@ -78,11 +80,6 @@ export default async function CategoryPage({ params }: PageProps) {
     const { category } = await params;
     const currentCategory = normalize(category);
 
-    // Hard whitelist validation guardrail
-    if (!["discipline", "fitness", "yoga", "mindset"].includes(currentCategory)) {
-        notFound();
-    }
-
     const rawPosts = getAllPosts() || [];
 
     const verifiedPosts: SystemPost[] = rawPosts.map((p) => ({
@@ -92,12 +89,15 @@ export default async function CategoryPage({ params }: PageProps) {
         category: typeof p?.category === "string" ? p.category : ""
     }));
 
-    // Isolate articles using normalized values to handle content discrepancies safely
     const filteredArticles = verifiedPosts.filter(
         (post) => post && normalize(post.category) === currentCategory
     );
 
-    const activeSeo = categorySeoMap[currentCategory];
+    // Dynamic generation fallback object if category missing from categorySeoMap array
+    const activeSeo = categorySeoMap[currentCategory] || {
+        title: `${currentCategory.toUpperCase()} Execution Matrix`,
+        desc: `Operational matrix framework parameters deployed for the ${currentCategory} system block.`
+    };
 
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">

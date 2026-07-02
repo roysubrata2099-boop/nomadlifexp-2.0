@@ -14,9 +14,10 @@ interface PageProps {
     params: Promise<{ category: string }>;
 }
 
+// Global normalization engine to prevent casing/whitespace mismatches
 function normalize(str: string | undefined | null): string {
     if (!str) return "";
-    return String(str).toLowerCase().trim();
+    return String(str).toLowerCase().replace(/_/g, "-").trim();
 }
 
 const categorySeoMap: Record<string, { title: string; desc: string }> = {
@@ -77,11 +78,12 @@ export default async function CategoryPage({ params }: PageProps) {
     const { category } = await params;
     const currentCategory = normalize(category);
 
+    // Hard whitelist validation guardrail
     if (!["discipline", "fitness", "yoga", "mindset"].includes(currentCategory)) {
         notFound();
     }
 
-    const rawPosts = getAllPosts();
+    const rawPosts = getAllPosts() || [];
 
     const verifiedPosts: SystemPost[] = rawPosts.map((p) => ({
         slug: typeof p?.slug === "string" ? p.slug : "",
@@ -90,6 +92,7 @@ export default async function CategoryPage({ params }: PageProps) {
         category: typeof p?.category === "string" ? p.category : ""
     }));
 
+    // Isolate articles using normalized values to handle content discrepancies safely
     const filteredArticles = verifiedPosts.filter(
         (post) => post && normalize(post.category) === currentCategory
     );
@@ -186,8 +189,8 @@ export default async function CategoryPage({ params }: PageProps) {
 
                     {filteredArticles.length === 0 ? (
                         <div className="border border-neutral-900 bg-neutral-950/40 p-8 text-center">
-                            <p className="text-sm font-mono text-neutral-500">
-                                NO ACTIVE KNOWLEDGE NODES DEPLOYED IN THIS CATEGORY PIPELINE.
+                            <p className="text-sm font-mono text-neutral-500 uppercase">
+                                No active knowledge nodes deployed in the {currentCategory} pipeline yet.
                             </p>
                         </div>
                     ) : (

@@ -1,4 +1,10 @@
-# Mental Clarity: How to Stop Overthinking and Improve Focus
+---
+title: "Mental Clarity: How to Stop Overthinking and Improve Focus"
+category: "mindset"
+slug: "mental-clarity-stop-overthinking-and-regain-focus"
+author: "NomadLifeXP"
+year: 2026
+---
 
 A practical guide that helps you reduce mental noise, improve focus, and regain control of your attention.
 

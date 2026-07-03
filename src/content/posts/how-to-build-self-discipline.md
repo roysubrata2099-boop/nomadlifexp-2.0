@@ -1,6 +1,6 @@
 ---
 title: "Self Discipline: Why You Lack It and How to Build It for Good"
-category: "Self Growth"
+category: "discipline"
 slug: "how-to-build-self-discipline"
 author: "NomadLifeXP"
 year: 2026

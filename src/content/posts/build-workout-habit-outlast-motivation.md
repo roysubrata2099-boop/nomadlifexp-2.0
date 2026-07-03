@@ -1,6 +1,6 @@
 ---
 title: "How to Build a Workout Habit That Outlasts Your Motivation"
-category: "Fitness"
+category: "fitness"
 slug: "build-workout-habit-outlast-motivation"
 date: "2026-06-26"
 author: "NomadLifeXP"

@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "The Nomad Journal | NomadLifeXP",
+    title: "Self-Development System Map | NomadLifeXP",
     description: "Self-Development System Map: Deep strategies for lifestyle design, mindset cultivation, and physical performance optimization.",
     alternates: {
         canonical: "https://nomadlifexp.com/blog",
     },
     openGraph: {
-        title: "The Nomad Journal | NomadLifeXP",
+        title: "Self-Development System Map | NomadLifeXP",
         description: "Self-Development System Map: Deep strategies for lifestyle design, mindset cultivation, and physical performance optimization.",
         url: "https://nomadlifexp.com/blog",
         type: "website",
@@ -22,7 +22,6 @@ interface PageProps {
 }
 
 export default async function BlogPage(props: PageProps) {
-    // Safely unpack parameters for Next.js 15 routing compliance
     const searchParams = await props.searchParams;
     const queryParam = typeof searchParams.q === "string" ? searchParams.q.toLowerCase().trim() : "";
     const categoryParam = typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
@@ -30,12 +29,13 @@ export default async function BlogPage(props: PageProps) {
     const rawPosts = getAllPosts();
     const safePosts = Array.isArray(rawPosts) ? rawPosts : [];
 
-    // 🛡️ 100% BULLETPROOF STRING DETECTOR MATRIX
+    // 🛡️ RE-ENGINEERED 100% BULLETPROOF STRING DETECTOR MATRIX
     const matchCategoryByTitleAndMetadata = (title: string, rawCat: string): string => {
         const t = title.toLowerCase();
 
         if (
             t.includes("reclaim your attention") ||
+            t.includes("self-discipline guide") ||
             t.includes("lack discipline") ||
             t.includes("procrastinate") ||
             t.includes("discipline")
@@ -58,6 +58,7 @@ export default async function BlogPage(props: PageProps) {
         }
 
         if (
+            t.includes("everything becomes still") ||
             t.includes("headstand") ||
             t.includes("forearm stand") ||
             t.includes("forward bending") ||
@@ -80,16 +81,12 @@ export default async function BlogPage(props: PageProps) {
             return "mindset";
         }
 
-        // Secondary structural fallbacks
         const c = rawCat.toLowerCase().trim();
         if (c === "wellness") return "fitness";
         if (c === "self growth" || c === "mental clarity") return "mindset";
-        if (c === "uncategorized") return "discipline";
-
         return c || "discipline";
     };
 
-    // Restructure post objects with sanitized primitives
     const processedPosts = safePosts.map((p) => {
         const titleText = p && typeof p.title === "string" ? p.title : "";
         const rawCategory = p && typeof p.category === "string" ? p.category : "";
@@ -105,7 +102,6 @@ export default async function BlogPage(props: PageProps) {
 
     const navigationCategories = ["all", "discipline", "fitness", "yoga", "mindset"];
 
-    // Filter Engine
     const filteredPosts = processedPosts.filter((post) => {
         const matchesCategory = categoryParam === "all" || post.category === categoryParam;
         const matchesSearch =
@@ -116,13 +112,11 @@ export default async function BlogPage(props: PageProps) {
 
     return (
         <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
-            {/* Dynamic Grid Background Overlay */}
             <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
             <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
 
-                {/* 🛡️ RETURN TO MASTER NODE ARROW */}
                 <div className="mb-8">
                     <Link
                         href="/"
@@ -132,7 +126,7 @@ export default async function BlogPage(props: PageProps) {
                     </Link>
                 </div>
 
-                {/* Blog System Header */}
+                {/* Updated Page Header to Match New Title Request */}
                 <header className="mb-12 max-w-4xl space-y-4">
                     <div className="flex items-center gap-2">
                         <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
@@ -140,15 +134,14 @@ export default async function BlogPage(props: PageProps) {
                             NomadLifeXP // System Log Registry
                         </p>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">
-                        The Nomad Journal<br />
+                    <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white uppercase leading-none">
+                        Self-Development<br />
                         <span className="bg-gradient-to-r from-white via-neutral-300 to-neutral-500 bg-clip-text text-transparent">
-                            Operational Intel
+                            System Map
                         </span>
                     </h1>
                 </header>
 
-                {/* Filter Controls */}
                 <div className="mb-12 space-y-6">
                     <form method="GET" action="/blog" className="relative">
                         <input
@@ -161,7 +154,6 @@ export default async function BlogPage(props: PageProps) {
                         <input type="hidden" name="cat" value={categoryParam} />
                     </form>
 
-                    {/* Navigation Category Filters */}
                     <div className="flex flex-wrap gap-2 border-b border-neutral-900/60 pb-6">
                         {navigationCategories.map((cat) => {
                             const isActive = categoryParam === cat;
@@ -185,10 +177,8 @@ export default async function BlogPage(props: PageProps) {
                     </div>
                 </div>
 
-                {/* ECOSYSTEM TWO-COLUMN GRID */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
 
-                    {/* COLUMN 1 & 2: Blog Feed Grid */}
                     <div className="lg:col-span-2 space-y-6">
                         <h2 className="text-xs font-mono tracking-[0.3em] uppercase text-neutral-500 mb-4">
                             Active Manifest Indexes ({filteredPosts.length})
@@ -235,25 +225,24 @@ export default async function BlogPage(props: PageProps) {
                         )}
                     </div>
 
-                    {/* COLUMN 3: SELF-DEVELOPMENT SYSTEM MAP BLUEPRINT VIEW */}
                     <div className="lg:col-span-1 border border-neutral-900 bg-neutral-950/80 p-6 space-y-6 font-mono text-xs">
                         <div>
                             <h2 className="text-cyan-400 font-bold uppercase tracking-widest mb-1 text-sm border-b border-neutral-900/80 pb-2">
-                                Self-Development System Map
+                                System Map View
                             </h2>
                             <p className="text-neutral-500 text-[10px] uppercase tracking-wider">
                                 Ecosystem Architecture Parameters
                             </p>
                         </div>
 
-                        {/* 1. DISCIPLINE PILLAR COMPONENT */}
+                        {/* 1. DISCIPLINE */}
                         {(categoryParam === "all" || categoryParam === "discipline") && (
                             <div className={`p-4 border transition-all duration-300 ${categoryParam === "discipline" ? "border-cyan-400 bg-cyan-950/20" : "border-neutral-900/60"}`}>
                                 <div className="text-cyan-400 text-[10px] mb-1 font-bold">01 // EXECUTION ENGINE</div>
                                 <h4 className="text-white font-bold uppercase text-xs mb-1">1. DISCIPLINE</h4>
                                 <p className="text-neutral-500 text-[10px] uppercase mb-2">(Execution Systems + Habit Control)</p>
                                 <ul className="text-neutral-400 space-y-1 list-none p-0 pl-1 mb-3 text-[11px]">
-                                    <li>• Reclaim Your Attention, Rebuild Your Life</li>
+                                    <li>• Self-Discipline Guide: Reclaim Your Attention</li>
                                     <li>• Why You Lack Discipline & How to Build It</li>
                                     <li>• Why You Procrastinate & How to Stop It</li>
                                 </ul>
@@ -263,7 +252,7 @@ export default async function BlogPage(props: PageProps) {
                             </div>
                         )}
 
-                        {/* 2. FITNESS PILLAR COMPONENT */}
+                        {/* 2. FITNESS */}
                         {(categoryParam === "all" || categoryParam === "fitness") && (
                             <div className={`p-4 border transition-all duration-300 ${categoryParam === "fitness" ? "border-cyan-400 bg-cyan-950/20" : "border-neutral-900/60"}`}>
                                 <div className="text-cyan-400 text-[10px] mb-1 font-bold">02 // KINETIC OUTPUT</div>
@@ -281,13 +270,14 @@ export default async function BlogPage(props: PageProps) {
                             </div>
                         )}
 
-                        {/* 3. YOGA PILLAR COMPONENT */}
+                        {/* 3. YOGA */}
                         {(categoryParam === "all" || categoryParam === "yoga") && (
                             <div className={`p-4 border transition-all duration-300 ${categoryParam === "yoga" ? "border-cyan-400 bg-cyan-950/20" : "border-neutral-900/60"}`}>
                                 <div className="text-cyan-400 text-[10px] mb-1 font-bold">03 // NERVOUS SYSTEM TUNING</div>
                                 <h4 className="text-white font-bold uppercase text-xs mb-1">3. YOGA</h4>
                                 <p className="text-neutral-500 text-[10px] uppercase mb-2">(Nervous System + Focus + Calm)</p>
                                 <ul className="text-neutral-400 space-y-1 list-none p-0 pl-1 mb-3 text-[11px]">
+                                    <li>• What Happens in Your Mind When Everything Becomes Still</li>
                                     <li>• Headstand Awareness Reset</li>
                                     <li>• Forearm Stand Stress Focus</li>
                                     <li>• Forward Bending Stress Relief</li>
@@ -298,7 +288,7 @@ export default async function BlogPage(props: PageProps) {
                             </div>
                         )}
 
-                        {/* 4. MINDSET PILLAR COMPONENT */}
+                        {/* 4. MINDSET */}
                         {(categoryParam === "all" || categoryParam === "mindset") && (
                             <div className={`p-4 border transition-all duration-300 ${categoryParam === "mindset" ? "border-cyan-400 bg-cyan-950/20" : "border-neutral-900/60"}`}>
                                 <div className="text-cyan-400 text-[10px] mb-1 font-bold">04 // COGNITIVE CORE</div>
@@ -316,7 +306,6 @@ export default async function BlogPage(props: PageProps) {
                             </div>
                         )}
 
-                        {/* 🔗 COMPLETE MASTER CLOSURE RECURSION VIEW */}
                         <div className="p-4 border border-dashed border-neutral-800 bg-black/60 space-y-2 text-[11px]">
                             <h4 className="text-white font-bold uppercase tracking-wider text-xs flex items-center gap-1.5">
                                 <span>🔗</span> MASTER SYSTEM FLOW LOOP

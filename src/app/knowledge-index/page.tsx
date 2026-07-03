@@ -28,15 +28,13 @@ export const metadata: Metadata = {
     },
 };
 
-// Explicit structural alignment targeting strict compiler engines
 interface PageProps {
     params: Promise<Record<string, any>>;
     searchParams: Promise<Record<string, any>>;
 }
 
-export default async function KnowledgeIndexPage({ params, searchParams }: PageProps) {
-    // Resolve asynchronous properties natively
-    const resolvedParams = await params;
+export default async function KnowledgeIndexPage({ searchParams }: PageProps) {
+    // Resolve the asynchronous search parameters natively
     const resolvedSearchParams = await searchParams;
 
     // Fallback assignment strings bypassing strict indexing rules

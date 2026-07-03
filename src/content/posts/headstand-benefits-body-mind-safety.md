@@ -2,12 +2,10 @@
 title: "What Happens in Your Mind When Everything Becomes Still"
 description: "Explore the profound physical and mental benefits of Headstand practice, how it builds mental stability under pressure, and vital safety guidelines for safety and alignment."
 slug: "headstand-benefits-body-mind-safety"
-date: 2026-07-01
+date: "2026-07-01"
 tags: ["Yoga", "Inversions", "Headstand", "Mindfulness", "Mental Health"]
-category: "Wellness"
+category: "yoga"
 ---
-
-# What Happens in Your Mind When Everything Becomes Still
 
 **Breath is Power and Awareness is Transformation.**
 

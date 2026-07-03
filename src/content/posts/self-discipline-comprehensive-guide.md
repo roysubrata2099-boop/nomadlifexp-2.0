@@ -1,4 +1,10 @@
-# Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life
+---
+title: "Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life"
+category: "discipline"
+slug: "self-discipline-comprehensive-guide"
+author: "NomadLifeXP"
+year: 2026
+---
 
 Most people believe they lack discipline. They call themselves lazy, inconsistent, or unmotivated. But the truth is far more dangerous. The real problem is not weakness—**the real problem is attention.**
 

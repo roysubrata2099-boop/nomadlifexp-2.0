@@ -13,6 +13,9 @@
   --glow-cyan: #ffb700;
   --glow-amber: #f59e0b;
   --highlight-lime: #ffe57f;
+
+  /* ⭐ Premium Body Text */
+  --body-text: #EDF6FF;
 }
 
 * {
@@ -26,57 +29,60 @@
    ========================================================================== */
 body {
   min-height: 100vh;
-  /* Clean solid color fallback followed by high-performance multi-layer radial arrays */
+
   background-color: #050914 !important;
+
   background:
     radial-gradient(circle at top, #0a1a3a 0%, transparent 45%),
     radial-gradient(circle at bottom, #050b1a 0%, transparent 40%),
     linear-gradient(135deg, #050914, #071428, #0a1a33) !important;
+
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
   line-height: 1.65;
+
   -webkit-font-smoothing: antialiased;
-  color: #ffffff;
-  /* Safe base layout text color */
+
+  color: var(--body-text);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
 }
 
 /* ==========================================================================
-   ✨ CLEAN TRILL TEXT CONFIGURATION (USE THIS CLASS FOR TEXTS/HEADINGS)
+   ✨ CLEAN TRILL TEXT CONFIGURATION
    ========================================================================== */
 .trill,
 .trill-text-target,
 h1,
 h2 {
   display: inline-block;
-  /* Safe handling for text clipping environments */
 
-  /* Smooth ocean-blue gradient matrix */
-  background: linear-gradient(90deg,
+  background:
+    linear-gradient(90deg,
       #ffffff,
       #7dd3fc,
       #38bdf8,
       #60a5fa,
       #ffffff) !important;
+
   background-size: 300% 100% !important;
+
   -webkit-background-clip: text !important;
   background-clip: text !important;
+
   -webkit-text-fill-color: transparent !important;
 
-  /* Soft architectural glow matrices */
   text-shadow:
-    0 0 10px rgba(56, 189, 248, 0.18),
-    0 0 25px rgba(125, 211, 252, 0.10);
+    0 0 10px rgba(56, 189, 248, .18),
+    0 0 25px rgba(125, 211, 252, .10);
 
-  /* Continuous execution runtime */
   animation: trillShimmer 4s linear infinite !important;
 }
 
-/* Shimmer runtime framework */
 @keyframes trillShimmer {
   0% {
     background-position: 0% 50%;
@@ -88,41 +94,116 @@ h2 {
 }
 
 /* ==========================================================================
-   ✨ FIERY PLASMA GLOW EFFECT -> SECURED WITH GOLD ARCHITECTURE
+   📖 PREMIUM BLOG BODY TEXT (With 100% Inheritance Leakage Protection)
+   ========================================================================== */
+p,
+li,
+td,
+figcaption {
+  color: var(--body-text) !important;
+
+  /* 🛡️ Explictly resets text-fill to ensure standard text never turns transparent */
+  -webkit-text-fill-color: var(--body-text) !important;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   💬 BLOCKQUOTE
+   ========================================================================== */
+blockquote {
+  color: #DBEAFE !important;
+
+  border-left: 4px solid #38BDF8;
+
+  padding-left: 20px;
+
+  margin: 24px 0;
+
+  font-style: italic;
+}
+
+/* ==========================================================================
+   📊 TABLES
+   ========================================================================== */
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  margin: 24px 0;
+}
+
+th {
+  background: rgba(30, 41, 59, .85);
+
+  color: #7DD3FC !important;
+
+  padding: 14px;
+
+  text-align: left;
+}
+
+td {
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+
+  padding: 14px;
+}
+
+/* ==========================================================================
+   ✨ FIERY PLASMA GLOW EFFECT
    ========================================================================== */
 .fiery-glow-text {
   color: #ffffff !important;
+
   -webkit-text-fill-color: #ffffff !important;
-  /* Safety override for text gradient inheritances */
+
   text-shadow:
     0 0 4px var(--glow-cyan),
     0 0 12px var(--glow-cyan),
     0 0 30px var(--glow-amber);
+
   animation: flare 4s infinite alternate;
 }
 
 @keyframes flare {
   0% {
-    opacity: 0.96;
+    opacity: .96;
   }
 
   100% {
     opacity: 1;
-    text-shadow: 0 0 6px var(--glow-cyan), 0 0 18px var(--glow-cyan), 0 0 40px var(--glow-amber);
+
+    text-shadow:
+      0 0 6px var(--glow-cyan),
+      0 0 18px var(--glow-cyan),
+      0 0 40px var(--glow-amber);
   }
 }
 
 /* ==========================================================================
-   🖋️ BLOG READER HIGHLIGHTS (Golden Under-Glow Protection)
+   🖋️ BLOG READER HIGHLIGHTS
    ========================================================================== */
 .blog-content strong,
-p strong {
+p strong,
+li strong {
   color: #ffffff !important;
+
   -webkit-text-fill-color: #ffffff !important;
-  /* Protects content highlights from inheriting global text gradients */
+
   font-weight: 700;
-  background: linear-gradient(180deg, transparent 65%, rgba(255, 183, 0, 0.35) 100%) !important;
+
+  background:
+    linear-gradient(180deg,
+      transparent 65%,
+      rgba(255, 183, 0, .35) 100%) !important;
+
   padding: 2px 4px;
+
   border-radius: 2px;
-  text-shadow: 0 0 8px rgba(255, 183, 0, 0.7);
+
+  text-shadow:
+    0 0 8px rgba(255, 183, 0, .7);
 }

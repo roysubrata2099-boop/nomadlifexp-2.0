@@ -3,9 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-// Force Next.js to dynamically capture and render paths even if not compiled during static build pipelines
-export const dynamicParams = true;
-
 interface SystemPost {
     slug: string;
     title: string;
@@ -19,10 +16,11 @@ interface PageProps {
 
 function normalize(str: string | undefined | null): string {
     if (!str) return "";
-    return String(str).toLowerCase().replace(/_/g, "-").trim();
+    return String(str).toLowerCase().trim();
 }
 
-const categorySeoMap: Record<string, { title: string; desc: string }> = {
+// Map to supply UI layout engines with textual nodes per domain
+const frameworkConfig: Record<string, { title: string; desc: string }> = {
     discipline: {
         title: "Discipline & Autonomy Architecture",
         desc: "Discipline is not an emotional state or a temporary motivational spark. It is a strictly engineered execution architecture explicitly deployed to construct true long-term autonomy."
@@ -42,7 +40,7 @@ const categorySeoMap: Record<string, { title: string; desc: string }> = {
 };
 
 /* ---------------- PRODUCTION STATIC RUNTIME PARSER ---------------- */
-export async function generateStaticParams(): Promise<{ category: string }[]> {
+export async function generateStaticParams() {
     return [
         { category: "discipline" },
         { category: "fitness" },
@@ -54,31 +52,37 @@ export async function generateStaticParams(): Promise<{ category: string }[]> {
 /* ---------------- PRODUCTION SEO METADATA ---------------- */
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { category } = await params;
-    const currentCategory = normalize(category);
-    const seoInfo = categorySeoMap[currentCategory] || {
-        title: `${category.toUpperCase()} Core Architecture`,
-        desc: `NomadLifeXP Dynamic Execution Matrix for ${category}.`
+    const targetCategory = normalize(category);
+    const seoConfig = frameworkConfig[targetCategory] || {
+        title: `${category.toUpperCase()} Matrix Blueprint`,
+        desc: `NomadLifeXP operational dynamic execution pipeline matrix for ${category}.`
     };
 
     return {
-        title: `${seoInfo.title} | NomadLifeXP`,
-        description: seoInfo.desc,
+        title: `${seoConfig.title} | NomadLifeXP`,
+        description: seoConfig.desc,
         alternates: {
-            canonical: `https://nomadlifexp.com/blog/category/${currentCategory}`,
+            // Self-referencing clean canonical tags reflecting the clean root route layout
+            canonical: `https://nomadlifexp.com/${targetCategory}`,
         },
         openGraph: {
-            title: `${seoInfo.title} | NomadLifeXP`,
-            description: seoInfo.desc,
-            url: `https://nomadlifexp.com/blog/category/${currentCategory}`,
+            title: `${seoConfig.title} | NomadLifeXP`,
+            description: seoConfig.desc,
+            url: `https://nomadlifexp.com/${targetCategory}`,
             type: "website",
         },
     };
 }
 
-/* ---------------- OPERATIONAL CATEGORY ENGINE ---------------- */
+/* ---------------- OPERATIONAL CATEGORY ROUTE ENGINE ---------------- */
 export default async function CategoryPage({ params }: PageProps) {
     const { category } = await params;
-    const currentCategory = normalize(category);
+    const targetCategory = normalize(category);
+
+    const recognizedCategories = ["discipline", "fitness", "yoga", "mindset"];
+    if (!recognizedCategories.includes(targetCategory)) {
+        notFound();
+    }
 
     const rawPosts = getAllPosts() || [];
 
@@ -90,14 +94,10 @@ export default async function CategoryPage({ params }: PageProps) {
     }));
 
     const filteredArticles = verifiedPosts.filter(
-        (post) => post && normalize(post.category) === currentCategory
+        (post) => post && normalize(post.category) === targetCategory
     );
 
-    // Dynamic generation fallback object if category missing from categorySeoMap array
-    const activeSeo = categorySeoMap[currentCategory] || {
-        title: `${currentCategory.toUpperCase()} Execution Matrix`,
-        desc: `Operational matrix framework parameters deployed for the ${currentCategory} system block.`
-    };
+    const activeLayout = frameworkConfig[targetCategory];
 
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
@@ -130,7 +130,7 @@ export default async function CategoryPage({ params }: PageProps) {
                     </Link>
                 </nav>
 
-                {/* Left-Aligned Category Header Block */}
+                {/* Left-Aligned Dynamic Category Header Block */}
                 <header className="mb-20 max-w-5xl space-y-5">
                     <div className="flex items-center gap-2">
                         <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
@@ -139,13 +139,13 @@ export default async function CategoryPage({ params }: PageProps) {
                         </p>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">
-                        The {currentCategory}<br />
+                        The {targetCategory}<br />
                         <span className="bg-gradient-to-r from-white via-neutral-300 to-cyan-400 bg-clip-text text-transparent">
                             System Matrix
                         </span>
                     </h1>
                     <p className="text-base md:text-lg font-light leading-relaxed max-w-3xl text-neutral-400 font-mono first-letter:uppercase">
-                        {activeSeo.desc}
+                        {activeLayout.desc}
                     </p>
                 </header>
 
@@ -183,25 +183,25 @@ export default async function CategoryPage({ params }: PageProps) {
                     </div>
                 </section>
 
-                {/* Active Database Knowledge Modules (Articles dynamically mapped) */}
+                {/* Dynamic Database Knowledge Modules */}
                 <section className="space-y-6 mb-24" aria-label="Knowledge Modules">
                     <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block">// Active Database Knowledge Modules</h2>
 
                     {filteredArticles.length === 0 ? (
                         <div className="border border-neutral-900 bg-neutral-950/40 p-8 text-center">
                             <p className="text-sm font-mono text-neutral-500 uppercase">
-                                No active knowledge nodes deployed in the {currentCategory} pipeline yet.
+                                No active posts found inside the {targetCategory} node pipeline.
                             </p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {filteredArticles.map((post, idx) => (
-                                <div key={post.slug || `${currentCategory}-node-${idx}`} className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
+                                <div key={post.slug || `${targetCategory}-node-${idx}`} className="border border-neutral-900 bg-neutral-950/40 p-8 flex flex-col justify-between group hover:border-neutral-800 transition-colors duration-300">
                                     <div className="space-y-3 mb-6">
                                         <h3 className="text-white text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200 line-clamp-2">
                                             {post.title}
                                         </h3>
-                                        <p className="text-sm font-light text-neutral-400 line-clamp-2 leading-relaxed">
+                                        <p className="text-sm font-light text-neutral-400 leading-relaxed line-clamp-2">
                                             {post.description || "System data node processing description pending framework deployment."}
                                         </p>
                                     </div>
@@ -214,15 +214,15 @@ export default async function CategoryPage({ params }: PageProps) {
                     )}
                 </section>
 
-                {/* Cross-Connect Alternative Nodes Footer Matrix */}
+                {/* Cross-Connect Clean UI Links */}
                 <footer className="pt-8 border-t border-neutral-900">
                     <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block mb-6">// Cross-Connect Alternative Nodes</h2>
 
                     <div className="flex flex-wrap items-center gap-y-4 gap-x-8 text-xs font-mono uppercase tracking-widest">
-                        {["discipline", "fitness", "yoga", "mindset"]
-                            .filter((cat) => cat !== currentCategory)
+                        {recognizedCategories
+                            .filter((cat) => cat !== targetCategory)
                             .map((cat) => (
-                                <Link key={cat} href={`/blog/category/${cat}`} className="text-neutral-400 hover:text-white flex items-center gap-2 transition-colors">
+                                <Link key={cat} href={`/${cat}`} className="text-neutral-400 hover:text-white flex items-center gap-2 transition-colors">
                                     {cat} <span className="text-neutral-700" aria-hidden="true">&rarr;</span>
                                 </Link>
                             ))}

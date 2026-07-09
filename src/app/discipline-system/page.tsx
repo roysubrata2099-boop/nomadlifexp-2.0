@@ -75,7 +75,10 @@ export default function DisciplineSystemPage() {
                             <div className="font-mono text-xs text-amber-500 tracking-wider">Phase I // SYS_01</div>
                             <h3 className="text-white text-lg font-bold uppercase tracking-tight">Internal Integrity</h3>
                             <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                Fixing non-negotiable daily baselines to establish morning momentum. Read our analysis on isolating cognitive focus controls.
+                                Fixing non-negotiable daily baselines to establish morning momentum. Read our analysis on isolating cognitive{" "}
+                                <Link href="/mindset" className="text-amber-500 hover:underline font-normal">
+                                    focus controls and mindset configurations
+                                </Link>.
                             </p>
                         </div>
                     </div>
@@ -86,7 +89,10 @@ export default function DisciplineSystemPage() {
                             <div className="font-mono text-xs text-amber-500 tracking-wider">Phase II // SYS_02</div>
                             <h3 className="text-white text-lg font-bold uppercase tracking-tight">Physical Anchor</h3>
                             <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                Integrating proactive kinetic sequences straight into neural networks. Review our active metabolic training configurations.
+                                Integrating proactive kinetic sequences straight into neural networks. Review our active{" "}
+                                <Link href="/fitness" className="text-amber-500 hover:underline font-normal">
+                                    metabolic fitness architectures
+                                </Link>.
                             </p>
                         </div>
                     </div>
@@ -97,7 +103,10 @@ export default function DisciplineSystemPage() {
                             <div className="font-mono text-xs text-amber-500 tracking-wider">Phase III // SYS_03</div>
                             <h3 className="text-white text-lg font-bold uppercase tracking-tight">Velocity Output</h3>
                             <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                Channeling pristine physiological alignment directly into complex technical execution via real-time somatic feedback loops.
+                                Channeling pristine physiological alignment directly into complex technical execution via real-time somatic feedback loops managed by the{" "}
+                                <Link href="/recalibration" className="text-amber-500 hover:underline font-normal">
+                                    recalibration system
+                                </Link>.
                             </p>
                         </div>
                     </div>

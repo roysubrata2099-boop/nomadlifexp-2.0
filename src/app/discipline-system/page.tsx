@@ -69,6 +69,7 @@ export default function DisciplineSystemPage() {
 
                 {/* Phase Blocks Layout Wrapper */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16" aria-label="System Phases">
+
                     {/* Phase I */}
                     <div className="border border-neutral-900 p-8 bg-neutral-950/20 backdrop-blur-sm flex flex-col justify-between">
                         <div className="space-y-4">
@@ -128,7 +129,7 @@ export default function DisciplineSystemPage() {
                         <div className="group pt-2">
                             <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    01 / Digital Deliberation &amp; Attention Protection
+                                    01 / Digital Deliberation & Attention Protection
                                 </h3>
                                 <p className="text-sm font-light leading-relaxed text-neutral-400">
                                     Zero data ingestion before the morning somatic mobility sequence. High-leverage engineering blocks execute within a strict zero-notification chamber.
@@ -140,7 +141,7 @@ export default function DisciplineSystemPage() {
                         <div className="group pt-8">
                             <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    02 / Structural Anchors &amp; Metabolic Baselines
+                                    02 / Structural Anchors & Metabolic Baselines
                                 </h3>
                                 <p className="text-sm font-light leading-relaxed text-neutral-400">
                                     Daily functional thresholds are fixed structural components. Daily conditioning cycles do not negotiate with shifting schedules or environmental friction.
@@ -152,7 +153,7 @@ export default function DisciplineSystemPage() {
                         <div className="group pt-8">
                             <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    03 / Evening Deceleration &amp; Biofeedback Analysis
+                                    03 / Evening Deceleration & Biofeedback Analysis
                                 </h3>
                                 <p className="text-sm font-light leading-relaxed text-neutral-400">
                                     All dynamic displays drop to zero emission bounds by 21:30. Core cognitive performance logs finalize before initializing the neurological recovery window.

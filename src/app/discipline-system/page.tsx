@@ -164,17 +164,6 @@ export default function DisciplineSystemPage() {
                     </div>
                 </section>
 
-                {/* System Archives Bottom Node */}
-                <footer className="mt-16 pt-8 border-t border-neutral-900 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="space-y-1">
-                        <div className="text-[10px] font-mono uppercase text-neutral-500">// System_Archives</div>
-                        <p className="text-xs text-neutral-400 font-light">Review detailed case studies on our complete database.</p>
-                    </div>
-                    <Link href="/archives" className="inline-flex items-center gap-2 text-xs font-mono uppercase text-amber-500 hover:text-amber-400 transition-colors">
-                        Read System Logs <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                </footer>
-
             </main>
         </div>
     );

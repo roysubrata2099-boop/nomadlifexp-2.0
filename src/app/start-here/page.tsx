@@ -53,14 +53,14 @@ interface DeploymentStep {
     output: string[];
 }
 
-// Optimized framework layout pointing directly to foundational target URLs for clean juice flow
+// Optimized framework layout pointing directly to foundational live category URLs
 const DEPLOYMENT_STEPS: readonly DeploymentStep[] = [
     {
         id: "STEP_01",
         systemCode: "MODULE_01 // DISCIPLINE ENGINE",
         title: "Discipline",
         description: "Build strong foundational habits that survive when temporary motivation runs out.",
-        route: "/blog/building-daily-discipline-habits-framework",
+        route: "/blog/category/discipline",
         linkTitle: "Read the foundational guide on building daily discipline protocols",
         input: "Simple, daily non-negotiable tasks",
         output: ["Unshakable consistency", "Elimination of procrastination", "Reliable daily execution"]
@@ -70,7 +70,7 @@ const DEPLOYMENT_STEPS: readonly DeploymentStep[] = [
         systemCode: "MODULE_02 // PHYSICAL OUTPUT ENGINE",
         title: "Fitness",
         description: "Optimize your training, movement patterns, and nutrition for maximum daily physical energy.",
-        route: "/blog/functional-fitness-strength-training-routines",
+        route: "/blog/category/fitness",
         linkTitle: "Deploy the absolute functional fitness and strength training protocol",
         input: "Structured strength and conditioning training",
         output: ["High physical energy levels", "Better body composition", "Long-term metabolic health"]
@@ -80,7 +80,7 @@ const DEPLOYMENT_STEPS: readonly DeploymentStep[] = [
         systemCode: "MODULE_03 // SOMATIC REGULATION ENGINE",
         title: "Yoga",
         description: "Improve physical mobility, release core tension, and learn to lower stress on command.",
-        route: "/blog/functional-yoga-mobility-routines-for-performance",
+        route: "/blog/category/yoga",
         linkTitle: "Access the systematic functional yoga mobility routine blueprint",
         input: "Targeted flexibility work and deep breathing control",
         output: ["Fluid physical mobility", "Lower daily stress levels", "Faster nervous system recovery"]
@@ -90,7 +90,7 @@ const DEPLOYMENT_STEPS: readonly DeploymentStep[] = [
         systemCode: "MODULE_04 // COGNITIVE CONTROL ENGINE",
         title: "Mindset",
         description: "Cut through digital distraction, overcome self-doubt, and lock in focus on what matters.",
-        route: "/blog/building-mental-focus-digital-distraction-immunity",
+        route: "/blog/category/mindset",
         linkTitle: "Initialize the guide on mental focus tracking and digital distraction immunity",
         input: "Daily focus tracking and mental auditing",
         output: ["Immunity to digital distraction", "Clear thinking under pressure", "Decisive action parameters"]
@@ -350,7 +350,7 @@ export default function StartHerePage() {
                     </p>
                     <div className="pt-4">
                         <Link
-                            href="/blog/building-daily-discipline-habits-framework"
+                            href="/blog/category/discipline"
                             title="Deploy your first discipline module entry step"
                             className="inline-block border border-cyan-500/50 bg-cyan-950/20 hover:bg-cyan-400 hover:text-black hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] font-mono text-xs uppercase tracking-[0.25em] px-8 py-4 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-none font-bold"
                         >

@@ -63,7 +63,7 @@ export default function DisciplineSystemPage() {
 
 
                     <Link
-                        href="/directory"
+                        href="/knowledge-index"
                         className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-400 transition-colors duration-200"
                     >
                         Return to Knowledge index

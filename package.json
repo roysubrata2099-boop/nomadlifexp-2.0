@@ -12,7 +12,7 @@
     "@contentlayer/utils": "^0.3.4",
     "contentlayer": "^0.3.4",
     "gray-matter": "^4.0.3",
-    "marked": "^18.0.5",
+    "marked": "^18.0.6",
     "next": "^15.0.0",
     "next-mdx-remote": "^6.0.0",
     "react": "^19.0.0",

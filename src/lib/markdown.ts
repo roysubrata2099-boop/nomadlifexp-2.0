@@ -1,13 +1,34 @@
+// src/lib/markdown.ts
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { marked } from "marked";
 
-const postsDirectory = path.join(process.cwd(), "content/posts");
+// Define a strict post interface for reliable compiler performance
+export interface PostData extends Record<string, unknown> {
+    slug: string;
+    title: string;
+    description: string;
+    category: string;
+    date: string;
+    contentHtml: string;
+}
 
-/**
- * 🛡️ LAYER 1 DEFENSE: Strict Path and Filename Sanitizer
- * Prevents Directory Traversal attacks (e.g., ../../etc/passwd)
- */
+// 🛡️ Auto-detect real content disk configurations safely
+function getPostsDirectory(): string {
+    const targets = [
+        path.join(process.cwd(), "content/posts"),
+        path.join(process.cwd(), "src/content/posts"),
+        path.join(process.cwd(), "posts"),
+    ];
+    for (const target of targets) {
+        if (fs.existsSync(target)) return target;
+    }
+    return targets[0];
+}
+
+const postsDirectory = getPostsDirectory();
+
 function cleanSlug(slug: unknown): string {
     if (typeof slug !== "string") return "";
     try {
@@ -21,23 +42,32 @@ function cleanSlug(slug: unknown): string {
     }
 }
 
-/**
- * SAFE CORE METHOD: Fetches all posts securely for static generation
- */
-export function getAllPosts(): Record<string, unknown>[] {
+export function getAllPosts(): PostData[] {
     try {
         if (!fs.existsSync(postsDirectory)) return [];
-
         const fileNames = fs.readdirSync(postsDirectory);
+
         return fileNames
             .filter((fileName) => fileName.endsWith(".md"))
             .map((fileName) => {
                 const fullPath = path.join(postsDirectory, fileName);
                 const fileContents = fs.readFileSync(fullPath, "utf8");
-                const { data } = matter(fileContents);
+                const { data, content } = matter(fileContents);
+
+                // Ensure full text conversion is accessible on aggregate list lookups
+                const parsedHtml = marked.parse(content, { async: false }) as string;
+
+                // 🛡️ UNIFY SLUG PATH GENERATION TO LOWERCASE
+                // This guarantees that generateStaticParams and links share the exact same URL structure
+                const uniformSlug = fileName.replace(/\.md$/, "").toLowerCase().trim();
 
                 return {
-                    slug: fileName.replace(/\.md$/, ""),
+                    slug: uniformSlug,
+                    title: data.title || fileName.replace(/\.md$/, "").replace(/-/g, " "),
+                    description: data.description || "",
+                    category: data.category || "discipline",
+                    date: data.date || "",
+                    contentHtml: parsedHtml,
                     ...data,
                 };
             });
@@ -47,23 +77,16 @@ export function getAllPosts(): Record<string, unknown>[] {
     }
 }
 
-/**
- * 🛡️ LAYER 2 DEFENSE: Case-Insensitive File Resolver
- * Guarantees that lowercase URLs resolve files like "How-To-Build.md" smoothly
- */
-export function getPostBySlug(rawSlug: string): Record<string, unknown> | null {
+export function getPostBySlug(rawSlug: string): PostData | null {
     const sanitizedSlug = cleanSlug(rawSlug);
     if (!sanitizedSlug) return null;
 
     try {
         if (!fs.existsSync(postsDirectory)) return null;
-
         const fileNames = fs.readdirSync(postsDirectory);
 
-        // Find match ignoring casing
         const matchedFile = fileNames.find((fileName) => {
-            const currentName = fileName.replace(/\.md$/, "").toLowerCase();
-            return currentName === sanitizedSlug;
+            return fileName.replace(/\.md$/, "").toLowerCase().trim() === sanitizedSlug;
         });
 
         if (!matchedFile) return null;
@@ -72,9 +95,16 @@ export function getPostBySlug(rawSlug: string): Record<string, unknown> | null {
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data, content } = matter(fileContents);
 
+        // Render full document body structure cleanly
+        const parsedHtml = marked.parse(content, { async: false }) as string;
+
         return {
-            slug: matchedFile.replace(/\.md$/, ""),
-            contentHtml: content, // Passes markdown content cleanly
+            slug: sanitizedSlug,
+            title: data.title || matchedFile.replace(/\.md$/, "").replace(/-/g, " "),
+            description: data.description || "",
+            category: data.category || "discipline",
+            date: data.date || "",
+            contentHtml: parsedHtml,
             ...data,
         };
     } catch (error) {

@@ -12,57 +12,86 @@ interface PageProps {
 
 // 🛡️ DYNAMIC METADATA ENGINE FOR MAXIMUM INDEXING QUALITY
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
-    const searchParams = await props.searchParams;
-    const cat = typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
+    try {
+        if (!props || !props.searchParams) {
+            return { title: "Self-Development System Map | NomadLifeXP" };
+        }
 
-    // Capitalize category names cleanly for professional title rendering
-    const displayCategory = cat !== "all" ? `${cat.charAt(0).toUpperCase() + cat.slice(1)} | ` : "";
+        const searchParams = await props.searchParams;
+        const cat = searchParams && typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
 
-    const pageTitle = `${displayCategory}Self-Development System Map | NomadLifeXP`;
-    const pageDescription = `Self-Development System Map [${cat.toUpperCase()}]: Deep strategies for lifestyle design, mindset cultivation, and physical performance optimization.`;
-    const pageUrl = cat !== "all" ? `https://nomadlifexp.com/blog?cat=${cat}` : "https://nomadlifexp.com/blog";
+        // Capitalize category names cleanly for professional title rendering
+        const displayCategory = cat !== "all" ? `${cat.charAt(0).toUpperCase() + cat.slice(1)} | ` : "";
 
-    return {
-        title: pageTitle,
-        description: pageDescription,
-        alternates: {
-            canonical: pageUrl,
-        },
-        openGraph: {
+        const pageTitle = `${displayCategory}Self-Development System Map | NomadLifeXP`;
+        const pageDescription = `Self-Development System Map [${cat.toUpperCase()}]: Deep strategies for lifestyle design, mindset cultivation, and physical performance optimization.`;
+        const pageUrl = cat !== "all" ? `https://nomadlifexp.com/blog?cat=${encodeURIComponent(cat)}` : "https://nomadlifexp.com/blog";
+
+        return {
             title: pageTitle,
             description: pageDescription,
-            url: pageUrl,
-            type: "website",
-        },
-    };
+            alternates: {
+                canonical: pageUrl,
+            },
+            openGraph: {
+                title: pageTitle,
+                description: pageDescription,
+                url: pageUrl,
+                type: "website",
+            },
+        };
+    } catch (error) {
+        console.error("METADATA_FALLBACK_FAULT:", error);
+        return { title: "Self-Development System Map | NomadLifeXP" };
+    }
 }
 
 export default async function BlogPage(props: PageProps) {
-    const searchParams = await props.searchParams;
+    // 🛡️ STRUCTURAL BOUNDARY PROTECTION FOR NEXT.JS 15 RUNTIMES
+    if (!props || !props.searchParams) {
+        return (
+            <div className="min-h-screen bg-[#050914] flex items-center justify-center font-mono text-xs text-neutral-600 uppercase">
+                // System operational initialization mismatch.
+            </div>
+        );
+    }
+
+    let searchParams;
+    try {
+        searchParams = await props.searchParams;
+    } catch (err) {
+        console.error("SEARCH_PARAMS_RESOLUTION_FAULT:", err);
+        searchParams = {};
+    }
 
     // Normalize user inputs cleanly
-    const rawQuery = typeof searchParams.q === "string" ? searchParams.q.trim() : "";
+    const rawQuery = searchParams && typeof searchParams.q === "string" ? searchParams.q.trim() : "";
     const queryParam = rawQuery.toLowerCase();
-    const categoryParam = typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
+    const categoryParam = searchParams && typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
 
     const rawPosts = getAllPosts();
     const safePosts = Array.isArray(rawPosts) ? rawPosts : [];
 
     // 🛡️ PROCESS AND MAP POST NODES SAFELY VIA SHARED SYSTEM TAXONOMY
-    const processedPosts = safePosts.map((p) => {
-        const titleText = p && typeof p.title === "string" ? p.title.trim() : "";
-        const rawCategory = p && typeof p.category === "string" ? p.category : "";
+    const processedPosts = safePosts
+        .filter(p => p && p.slug)
+        .map((p) => {
+            const titleText = p && typeof p.title === "string" ? p.title.trim() : "";
+            const rawCategory = p && typeof p.category === "string" ? p.category : "";
 
-        // Pass to standard central parsing protocol
-        const verifiedCategory = normalizeCategory(rawCategory, titleText);
+            // Pass to standard central parsing protocol
+            const verifiedCategory = normalizeCategory(rawCategory, titleText);
 
-        return {
-            slug: p && typeof p.slug === "string" ? p.slug.toLowerCase().trim() : "",
-            title: titleText || "Untitled Operational Node",
-            description: p && typeof p.description === "string" ? p.description.trim() : "",
-            category: verifiedCategory,
-        };
-    });
+            // Clean slug mapping to prevent case mismatches or bad encoding formatting
+            const generatedSlug = typeof p.slug === "string" ? p.slug.replace(/\.md$/, "").toLowerCase().trim() : "";
+
+            return {
+                slug: generatedSlug,
+                title: titleText || "Untitled Operational Node",
+                description: p && typeof p.description === "string" ? p.description.trim() : "",
+                category: verifiedCategory,
+            };
+        });
 
     const navigationCategories = ["all", "discipline", "fitness", "yoga", "mindset"];
 
@@ -149,36 +178,41 @@ export default async function BlogPage(props: PageProps) {
 
                         {filteredPosts.length > 0 ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {filteredPosts.map((post, idx) => (
-                                    <div
-                                        key={post.slug || `post-${idx}`}
-                                        className="border border-neutral-900 bg-neutral-950/40 p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300 rounded-none"
-                                    >
-                                        <div className="space-y-4 mb-6">
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-[9px] font-mono tracking-widest text-cyan-400 bg-cyan-950/30 px-2 py-0.5 uppercase border border-cyan-900/40">
-                                                    {post.category}
-                                                </span>
-                                                <span className="text-neutral-700 font-mono text-[9px] select-none">
-                                                    LOG_0{idx + 1}
-                                                </span>
-                                            </div>
-                                            <h3 className="text-white text-base font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200 line-clamp-2">
-                                                {post.title}
-                                            </h3>
-                                            <p className="text-xs font-light text-neutral-400 leading-relaxed line-clamp-2">
-                                                {post.description || "No supplemental manifest parameters indexable."}
-                                            </p>
-                                        </div>
-                                        {/* 🛡️ EXPLICIT DIRECTORY COMPLIANCE TARGET CORRECTION */}
-                                        <Link
-                                            href={`/blog/posts/${post.slug}`}
-                                            className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link"
+                                {filteredPosts.map((post, idx) => {
+                                    // 🛡️ CONSTRUCT AN ENCODED SECURE TARGET URL ROUTE 
+                                    const safePostSlug = encodeURIComponent(post.slug);
+
+                                    return (
+                                        <div
+                                            key={post.slug || `post-${idx}`}
+                                            className="border border-neutral-900 bg-neutral-950/40 p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300 rounded-none"
                                         >
-                                            Read Analysis <span className="transition-transform duration-200 group-hover/link:translate-x-1">&rarr;</span>
-                                        </Link>
-                                    </div>
-                                ))}
+                                            <div className="space-y-4 mb-6">
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-[9px] font-mono tracking-widest text-cyan-400 bg-cyan-950/30 px-2 py-0.5 uppercase border border-cyan-900/40">
+                                                        {post.category}
+                                                    </span>
+                                                    <span className="text-neutral-700 font-mono text-[9px] select-none">
+                                                        LOG_0{idx + 1}
+                                                    </span>
+                                                </div>
+                                                <h3 className="text-white text-base font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200 line-clamp-2">
+                                                    {post.title}
+                                                </h3>
+                                                <p className="text-xs font-light text-neutral-400 leading-relaxed line-clamp-2">
+                                                    {post.description || "No supplemental manifest parameters indexable."}
+                                                </p>
+                                            </div>
+
+                                            <Link
+                                                href={`/blog/posts/${safePostSlug}`}
+                                                className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link"
+                                            >
+                                                Read Analysis <span className="transition-transform duration-200 group-hover/link:translate-x-1">&rarr;</span>
+                                            </Link>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         ) : (
                             <div className="border border-dashed border-neutral-900 p-12 text-center">

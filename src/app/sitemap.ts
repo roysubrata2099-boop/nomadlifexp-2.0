@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const deploymentDate = new Date("2026-07-12T00:00:00Z");
 
     // 1. Structural Static Platform Nodes
-    const staticNodes = [
+    const staticNodes: MetadataRoute.Sitemap = [
         "",
         "/about",
         "/blog",
@@ -24,20 +24,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: deploymentDate,
-        changeFrequency: "weekly" as const,
+        changeFrequency: route === "" ? ("daily" as const) : ("weekly" as const),
         priority: route === "" ? 1.0 : 0.8,
     }));
 
-    // 2. Extract and Map Dynamic Markdown Slugs
+    // 2. Extract and Map Dynamic Markdown Slugs safely bypassing library type collisions
     const rawPosts = getAllPosts();
-    const safePosts = Array.isArray(rawPosts) ? rawPosts : [];
+    const safePosts = Array.isArray(rawPosts) ? (rawPosts as unknown as Record<string, unknown>[]) : [];
 
-    const dynamicNodes = safePosts
+    const dynamicNodes: MetadataRoute.Sitemap = safePosts
         .filter((post) => post && typeof post.slug === "string" && post.slug.trim() !== "")
         .map((post) => {
+            const rawSlug = post.slug as string;
+
             // Parse actual post dates if they exist to provide real signals to AI crawlers
             let postDate = deploymentDate;
-            if (post.date) {
+            if (typeof post.date === "string" || typeof post.date === "number") {
                 const parsed = new Date(post.date);
                 if (!isNaN(parsed.getTime())) {
                     postDate = parsed;
@@ -46,13 +48,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
             return {
                 // 🛡️ Enforce .toLowerCase() to perfectly match your routing rules
-                url: `${baseUrl}/blog/posts/${post.slug.trim().toLowerCase()}`,
+                url: `${baseUrl}/blog/posts/${rawSlug.trim().toLowerCase()}`,
                 lastModified: postDate,
                 changeFrequency: "monthly" as const,
                 priority: 0.6,
             };
         });
 
-    // 3. Unify Networks into a Single Target Array
+    // 3. Unify Arrays safely using explicit type-matching arrays
     return [...staticNodes, ...dynamicNodes];
 }

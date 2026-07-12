@@ -64,12 +64,12 @@ function NomadLifeXPMaster() {
         </nav>
       </header>
 
-      {/* HERO */}
+      {/* MAIN SYSTEM WRAPPER */}
       <main className="flex-grow flex flex-col items-center justify-center px-6 pt-32 pb-24 max-w-4xl w-full text-center mx-auto">
 
         <div className="mb-10">
           <span className="text-xs uppercase tracking-[0.3em] font-medium text-gray-400">
-            Core Framework
+            NomadLifeXP // Transformation Architecture
           </span>
 
           {/* 🛡️ 100% BULLETPROOF: Precision mapped parameters pointing to the main blog redesign */}
@@ -84,6 +84,7 @@ function NomadLifeXPMaster() {
           </div>
         </div>
 
+        {/* BRANDING HOOK */}
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight uppercase mb-12">
           Evolve in Motion
         </h1>
@@ -110,7 +111,8 @@ function NomadLifeXPMaster() {
           </Link>
         </div>
 
-        <div className="w-full aspect-video border border-white/10 rounded-2xl overflow-hidden mb-24">
+        {/* 📹 STACKED FIRST: ORIGINAL YOGA VIDEO RUNTIME ASSET */}
+        <div className="w-full aspect-video border border-white/10 rounded-2xl overflow-hidden mb-8">
           <video
             className="w-full h-full object-cover"
             controls
@@ -123,17 +125,54 @@ function NomadLifeXPMaster() {
           </video>
         </div>
 
-        <div className="text-center max-w-xl">
+        <div className="text-center max-w-xl mb-24">
           <h3 className="text-xl font-bold uppercase mb-3">
             From Chaos to Clarity
           </h3>
-
           <p className="text-sm text-gray-400 leading-relaxed">
             Cultivate internal attention controls, dissolve counterproductive
             stress variables, and systematically recalibrate your biological
             baseline.
           </p>
         </div>
+
+        {/* 🛡️ STACKED SECOND: SEO STRUCTURAL AUTHORITY MATRIX */}
+        <section className="w-full text-left grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-b border-white/5 py-16 mb-12 text-sm font-sans text-slate-400 leading-relaxed">
+
+          <div className="space-y-3">
+            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400">// 01 / WHAT IS NOMADLIFEXP?</h2>
+            <p>
+              NomadLifeXP is an integrated behavioral development architecture engineered to substitute fragile emotional motivation with absolute structural design.
+            </p>
+            <p>
+              By treating cognitive focus and physical energy outputs as direct engineering requirements, we strip away internal negotiation so consistent high performance runs effortlessly as your baseline function.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400">// 02 / INTENDED OPERATIONAL PROFILE</h2>
+            <p>
+              This architecture is engineered explicitly for high-performers looking to eliminate systemic execution bottlenecks and stabilize variance caused by volatile dopamine exposure.
+            </p>
+            <p>
+              Instead of relying on sporadic bursts of creative inspiration, this platform serves operators demanding rigid feedback loops, ambient focus guardrails, and systematic biological state calibration.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400">// 03 / PRIMARY SYSTEMS DEPLOYED</h2>
+            <p>
+              We bypass the friction of modern distraction by installing structured, interdependent development tracks:
+            </p>
+            <ul className="space-y-1.5 font-mono text-xs text-slate-300 pl-1 list-none">
+              <li><span className="text-cyan-400 mr-1">■</span> <strong>Discipline:</strong> Consistency under acute environmental friction.</li>
+              <li><span className="text-cyan-400 mr-1">■</span> <strong>Fitness:</strong> Mitochondrial energy output & posture mechanics.</li>
+              <li><span className="text-cyan-400 mr-1">■</span> <strong>Yoga:</strong> Cognitive attention tracking via respiration cycles.</li>
+              <li><span className="text-cyan-400 mr-1">■</span> <strong>Mindset:</strong> Deconstructing emotional biases for absolute clarity.</li>
+            </ul>
+          </div>
+
+        </section>
 
       </main>
 

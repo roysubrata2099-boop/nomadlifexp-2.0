@@ -1,4 +1,7 @@
+// src/app/blog/page.tsx
+
 import { getAllPosts } from "@/lib/markdown";
+import { normalizeCategory } from "@/lib/taxonomy";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -12,7 +15,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     const searchParams = await props.searchParams;
     const cat = typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
 
-    // Capitalize category names for professional title rendering
+    // Capitalize category names cleanly for professional title rendering
     const displayCategory = cat !== "all" ? `${cat.charAt(0).toUpperCase() + cat.slice(1)} | ` : "";
 
     const pageTitle = `${displayCategory}Self-Development System Map | NomadLifeXP`;
@@ -36,79 +39,27 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
 export default async function BlogPage(props: PageProps) {
     const searchParams = await props.searchParams;
-    const queryParam = typeof searchParams.q === "string" ? searchParams.q.toLowerCase().trim() : "";
+
+    // Normalize user inputs cleanly
+    const rawQuery = typeof searchParams.q === "string" ? searchParams.q.trim() : "";
+    const queryParam = rawQuery.toLowerCase();
     const categoryParam = typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
 
     const rawPosts = getAllPosts();
     const safePosts = Array.isArray(rawPosts) ? rawPosts : [];
 
-    // 🛡️ RE-ENGINEERED 100% BULLETPROOF STRING DETECTOR MATRIX
-    const matchCategoryByTitleAndMetadata = (title: string, rawCat: string): string => {
-        const t = title.toLowerCase();
-
-        if (
-            t.includes("reclaim your attention") ||
-            t.includes("self-discipline guide") ||
-            t.includes("lack discipline") ||
-            t.includes("procrastinate") ||
-            t.includes("discipline")
-        ) {
-            return "discipline";
-        }
-
-        if (
-            t.includes("workout videos") ||
-            t.includes("never actually exercise") ||
-            t.includes("fitness consistency") ||
-            t.includes("not about time") ||
-            t.includes("workout mindset") ||
-            t.includes("workout habit") ||
-            t.includes("outlasts your motivation") ||
-            t.includes("fitness") ||
-            t.includes("exercise")
-        ) {
-            return "fitness";
-        }
-
-        if (
-            t.includes("everything becomes still") ||
-            t.includes("headstand") ||
-            t.includes("forearm stand") ||
-            t.includes("forward bending") ||
-            t.includes("yoga") ||
-            t.includes("inversion")
-        ) {
-            return "yoga";
-        }
-
-        if (
-            t.includes("attention span") ||
-            t.includes("digital distraction") ||
-            t.includes("can’t focus") ||
-            t.includes("cant focus") ||
-            t.includes("mental clarity") ||
-            t.includes("overthinking") ||
-            t.includes("stuck in life") ||
-            t.includes("mindset")
-        ) {
-            return "mindset";
-        }
-
-        const c = rawCat.toLowerCase().trim();
-        if (c === "wellness") return "fitness";
-        if (c === "self growth" || c === "mental clarity") return "mindset";
-        return c || "discipline";
-    };
-
+    // 🛡️ PROCESS AND MAP POST NODES SAFELY VIA SHARED SYSTEM TAXONOMY
     const processedPosts = safePosts.map((p) => {
-        const titleText = p && typeof p.title === "string" ? p.title : "";
+        const titleText = p && typeof p.title === "string" ? p.title.trim() : "";
         const rawCategory = p && typeof p.category === "string" ? p.category : "";
-        const verifiedCategory = matchCategoryByTitleAndMetadata(titleText, rawCategory);
+
+        // Pass to standard central parsing protocol
+        const verifiedCategory = normalizeCategory(rawCategory, titleText);
 
         return {
-            slug: p && typeof p.slug === "string" ? p.slug : "",
+            slug: p && typeof p.slug === "string" ? p.slug.toLowerCase().trim() : "",
             title: titleText || "Untitled Operational Node",
-            description: p && typeof p.description === "string" ? p.description : "",
+            description: p && typeof p.description === "string" ? p.description.trim() : "",
             category: verifiedCategory,
         };
     });
@@ -159,7 +110,7 @@ export default async function BlogPage(props: PageProps) {
                         <input
                             type="text"
                             name="q"
-                            defaultValue={queryParam.toUpperCase()}
+                            defaultValue={rawQuery.toUpperCase()}
                             placeholder="QUERY STRATEGIES... (PRESS ENTER)"
                             className="w-full bg-neutral-950/60 border border-neutral-900 px-6 py-4 font-mono text-sm uppercase tracking-wider text-white placeholder-neutral-700 focus:outline-none focus:border-cyan-500/50 rounded-none transition-colors duration-200"
                         />
@@ -169,8 +120,8 @@ export default async function BlogPage(props: PageProps) {
                     <div className="flex flex-wrap gap-2 border-b border-neutral-900/60 pb-6">
                         {navigationCategories.map((cat) => {
                             const isActive = categoryParam === cat;
-                            const targetHref = queryParam
-                                ? `/blog?cat=${cat}&q=${encodeURIComponent(queryParam)}`
+                            const targetHref = rawQuery
+                                ? `/blog?cat=${cat}&q=${encodeURIComponent(rawQuery)}`
                                 : `/blog?cat=${cat}`;
 
                             return (
@@ -219,6 +170,7 @@ export default async function BlogPage(props: PageProps) {
                                                 {post.description || "No supplemental manifest parameters indexable."}
                                             </p>
                                         </div>
+                                        {/* 🛡️ EXPLICIT DIRECTORY COMPLIANCE TARGET CORRECTION */}
                                         <Link
                                             href={`/blog/posts/${post.slug}`}
                                             className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link"

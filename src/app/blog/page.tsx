@@ -2,23 +2,36 @@ import { getAllPosts } from "@/lib/markdown";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-    title: "Self-Development System Map | NomadLifeXP",
-    description: "Self-Development System Map: Deep strategies for lifestyle design, mindset cultivation, and physical performance optimization.",
-    alternates: {
-        canonical: "https://nomadlifexp.com/blog",
-    },
-    openGraph: {
-        title: "Self-Development System Map | NomadLifeXP",
-        description: "Self-Development System Map: Deep strategies for lifestyle design, mindset cultivation, and physical performance optimization.",
-        url: "https://nomadlifexp.com/blog",
-        type: "website",
-    },
-};
-
 interface PageProps {
     params: Promise<Record<string, string | string[] | undefined>>;
     searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
+
+// 🛡️ DYNAMIC METADATA ENGINE FOR MAXIMUM INDEXING QUALITY
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+    const searchParams = await props.searchParams;
+    const cat = typeof searchParams.cat === "string" ? searchParams.cat.toLowerCase().trim() : "all";
+
+    // Capitalize category names for professional title rendering
+    const displayCategory = cat !== "all" ? `${cat.charAt(0).toUpperCase() + cat.slice(1)} | ` : "";
+
+    const pageTitle = `${displayCategory}Self-Development System Map | NomadLifeXP`;
+    const pageDescription = `Self-Development System Map [${cat.toUpperCase()}]: Deep strategies for lifestyle design, mindset cultivation, and physical performance optimization.`;
+    const pageUrl = cat !== "all" ? `https://nomadlifexp.com/blog?cat=${cat}` : "https://nomadlifexp.com/blog";
+
+    return {
+        title: pageTitle,
+        description: pageDescription,
+        alternates: {
+            canonical: pageUrl,
+        },
+        openGraph: {
+            title: pageTitle,
+            description: pageDescription,
+            url: pageUrl,
+            type: "website",
+        },
+    };
 }
 
 export default async function BlogPage(props: PageProps) {
@@ -126,7 +139,6 @@ export default async function BlogPage(props: PageProps) {
                     </Link>
                 </div>
 
-                {/* Updated Page Header to Match New Title Request */}
                 <header className="mb-12 max-w-4xl space-y-4">
                     <div className="flex items-center gap-2">
                         <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
@@ -166,8 +178,8 @@ export default async function BlogPage(props: PageProps) {
                                     key={cat}
                                     href={targetHref}
                                     className={`px-5 py-2 font-mono text-xs uppercase tracking-widest border transition-all duration-200 rounded-none ${isActive
-                                            ? "bg-cyan-400 text-black border-cyan-400 font-bold"
-                                            : "bg-transparent border-neutral-900 text-neutral-500 hover:text-white hover:border-neutral-700"
+                                        ? "bg-cyan-400 text-black border-cyan-400 font-bold"
+                                        : "bg-transparent border-neutral-900 text-neutral-500 hover:text-white hover:border-neutral-700"
                                         }`}
                                 >
                                     {cat}
@@ -219,7 +231,7 @@ export default async function BlogPage(props: PageProps) {
                         ) : (
                             <div className="border border-dashed border-neutral-900 p-12 text-center">
                                 <p className="font-mono text-xs text-neutral-600 uppercase tracking-widest">
-                  // Zero index records matched filter parameters.
+                                    // Zero index records matched filter parameters.
                                 </p>
                             </div>
                         )}

@@ -33,7 +33,7 @@ const frameworkConfig: Record<string, { title: string; desc: string }> = {
         desc: "Biomechanical precision meets conscious regulation. Systematically clearing internal bandwidth and enhancing neural operational flexibility."
     },
     mindset: {
-        title: "Cognitive Architecture & Mindset Calibration",
+        title: "Cognitive Architecture & Calibration",
         desc: "Deconstructing emotional variance. Engineering a resilient conscious layer optimized to maintain high-velocity execution profiles under pressure."
     }
 };
@@ -47,6 +47,7 @@ export async function generateStaticParams() {
     ];
 }
 
+// 🛡️ DYNAMIC METADATA ENGINE FOR MAXIMUM PIPELINE PROTECTIONS
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { category } = await params;
     const targetCategory = normalize(category);
@@ -55,16 +56,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         desc: `NomadLifeXP operational dynamic execution pipeline matrix for ${category}.`
     };
 
+    const fullTitle = `${seoConfig.title} | NomadLifeXP`;
+    const canonicalUrl = `https://nomadlifexp.com/blog/category/${targetCategory}`;
+
     return {
-        title: `${seoConfig.title} | NomadLifeXP`,
+        title: fullTitle,
         description: seoConfig.desc,
         alternates: {
-            canonical: `https://nomadlifexp.com/blog/category/${targetCategory}`,
+            canonical: canonicalUrl,
         },
         openGraph: {
-            title: `${seoConfig.title} | NomadLifeXP`,
+            title: fullTitle,
             description: seoConfig.desc,
-            url: `https://nomadlifexp.com/blog/category/${targetCategory}`,
+            url: canonicalUrl,
             type: "website",
         },
     };

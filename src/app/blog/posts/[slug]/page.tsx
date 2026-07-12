@@ -1,7 +1,70 @@
 import { getPostBySlug, getAllPosts } from '@/lib/markdown';
+import type { Metadata } from "next";
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+
+type Props = {
+    params: Promise<{ slug: string }>;
+};
+
+// 🛡️ RE-ENGINEERED PROTECTION MATRIX FOR SLUG INSTANCES
+const matchCategoryByTitleAndMetadata = (title: string, rawCat: string): string => {
+    const t = title.toLowerCase();
+
+    if (
+        t.includes("reclaim your attention") ||
+        t.includes("self-discipline guide") ||
+        t.includes("lack discipline") ||
+        t.includes("procrastinate") ||
+        t.includes("discipline")
+    ) {
+        return "discipline";
+    }
+
+    if (
+        t.includes("workout videos") ||
+        t.includes("never actually exercise") ||
+        t.includes("fitness consistency") ||
+        t.includes("not about time") ||
+        t.includes("workout mindset") ||
+        t.includes("workout habit") ||
+        t.includes("outlasts your motivation") ||
+        t.includes("fitness") ||
+        t.includes("exercise")
+    ) {
+        return "fitness";
+    }
+
+    if (
+        t.includes("everything becomes still") ||
+        t.includes("headstand") ||
+        t.includes("forearm stand") ||
+        t.includes("forward bending") ||
+        t.includes("yoga") ||
+        t.includes("inversion")
+    ) {
+        return "yoga";
+    }
+
+    if (
+        t.includes("attention span") ||
+        t.includes("digital distraction") ||
+        t.includes("can’t focus") ||
+        t.includes("cant focus") ||
+        t.includes("mental clarity") ||
+        t.includes("overthinking") ||
+        t.includes("stuck in life") ||
+        t.includes("mindset")
+    ) {
+        return "mindset";
+    }
+
+    const c = rawCat.toLowerCase().trim();
+    if (c === "wellness") return "fitness";
+    if (c === "self growth" || c === "mental clarity") return "mindset";
+    return c || "discipline";
+};
 
 export async function generateStaticParams() {
     const posts = getAllPosts() || [];
@@ -10,9 +73,40 @@ export async function generateStaticParams() {
     })).filter(item => item.slug !== '');
 }
 
-type Props = {
-    params: Promise<{ slug: string }>;
-};
+// 🛡️ DYNAMIC METADATA ENGINE FOR MAXIMUM ARTICLE INDEXING RESOLUTION
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug } = await params;
+    const standardSlug = typeof slug === 'string' ? slug.trim() : '';
+
+    let post = getPostBySlug(standardSlug) || getPostBySlug(standardSlug.toLowerCase());
+
+    if (!post) {
+        return {
+            title: "System Log Entry | NomadLifeXP",
+            description: "NomadLifeXP system log database transmission entry."
+        };
+    }
+
+    const postTitle = typeof post.title === 'string' ? post.title : 'Untitled Operational Node';
+    const postDescription = typeof post.description === 'string' ? post.description : 'System processing manifest details.';
+
+    const pageTitle = `${postTitle} | NomadLifeXP`;
+    const canonicalUrl = `https://nomadlifexp.com/blog/posts/${standardSlug.toLowerCase()}`;
+
+    return {
+        title: pageTitle,
+        description: postDescription,
+        alternates: {
+            canonical: canonicalUrl,
+        },
+        openGraph: {
+            title: pageTitle,
+            description: postDescription,
+            url: canonicalUrl,
+            type: "article",
+        },
+    };
+}
 
 export default async function BlogPostPage({ params }: Props) {
     const { slug } = await params;
@@ -26,64 +120,6 @@ export default async function BlogPostPage({ params }: Props) {
     if (!post) {
         notFound();
     }
-
-    // 🛡️ RE-ENGINEERED PROTECTION MATRIX FOR SLUG INSTANCES
-    const matchCategoryByTitleAndMetadata = (title: string, rawCat: string): string => {
-        const t = title.toLowerCase();
-
-        if (
-            t.includes("reclaim your attention") ||
-            t.includes("self-discipline guide") ||
-            t.includes("lack discipline") ||
-            t.includes("procrastinate") ||
-            t.includes("discipline")
-        ) {
-            return "discipline";
-        }
-
-        if (
-            t.includes("workout videos") ||
-            t.includes("never actually exercise") ||
-            t.includes("fitness consistency") ||
-            t.includes("not about time") ||
-            t.includes("workout mindset") ||
-            t.includes("workout habit") ||
-            t.includes("outlasts your motivation") ||
-            t.includes("fitness") ||
-            t.includes("exercise")
-        ) {
-            return "fitness";
-        }
-
-        if (
-            t.includes("everything becomes still") ||
-            t.includes("headstand") ||
-            t.includes("forearm stand") ||
-            t.includes("forward bending") ||
-            t.includes("yoga") ||
-            t.includes("inversion")
-        ) {
-            return "yoga";
-        }
-
-        if (
-            t.includes("attention span") ||
-            t.includes("digital distraction") ||
-            t.includes("can’t focus") ||
-            t.includes("cant focus") ||
-            t.includes("mental clarity") ||
-            t.includes("overthinking") ||
-            t.includes("stuck in life") ||
-            t.includes("mindset")
-        ) {
-            return "mindset";
-        }
-
-        const c = rawCat.toLowerCase().trim();
-        if (c === "wellness") return "fitness";
-        if (c === "self growth" || c === "mental clarity") return "mindset";
-        return c || "discipline";
-    };
 
     const postTitle = typeof post.title === 'string' ? post.title : 'Untitled Operational Node';
     const postRawCategory = typeof post.category === 'string' ? post.category : '';

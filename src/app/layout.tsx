@@ -65,10 +65,56 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    // 🛡️ RE-ENGINEERED 10/10 SCHEMA METADATA GRAPH ENTITY MATRIX
+    // Written explicitly as a static constant object to avoid hydration mismatches or dynamic runtime evaluation script breaks.
+    const jsonLdSchema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://nomadlifexp.com/#organization",
+                "name": "NomadLifeXP",
+                "url": "https://nomadlifexp.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "@id": "https://nomadlifexp.com/#logo",
+                    "url": "https://nomadlifexp.com/og-main.jpg",
+                    "caption": "NomadLifeXP"
+                },
+                "image": {
+                    "@id": "https://nomadlifexp.com/#logo"
+                }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://nomadlifexp.com/#website",
+                "url": "https://nomadlifexp.com",
+                "name": "NomadLifeXP",
+                "publisher": {
+                    "@id": "https://nomadlifexp.com/#organization"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://nomadlifexp.com/blog?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        ]
+    };
+
     return (
         <html lang="en" className="scroll-smooth">
             <body className="antialiased bg-black text-white">
                 {children}
+
+                {/* 🛡️ INJECTED 10/10 AI VISIBILITY & GEO UNDERPINNINGS */}
+                <Script
+                    id="structured-data-core-architecture"
+                    type="application/ld+json"
+                    strategy="afterInteractive"
+                >
+                    {JSON.stringify(jsonLdSchema)}
+                </Script>
 
                 {/* Microsoft Clarity Analytics Tracking Infrastructure */}
                 <Script id="microsoft-clarity-init" strategy="afterInteractive">

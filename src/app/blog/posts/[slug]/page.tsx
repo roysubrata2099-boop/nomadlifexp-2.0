@@ -1,5 +1,6 @@
 import { getPostBySlug, getAllPosts } from '@/lib/markdown';
 import type { Metadata } from "next";
+import Script from "next/script";
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -124,10 +125,46 @@ export default async function BlogPostPage({ params }: Props) {
     const postTitle = typeof post.title === 'string' ? post.title : 'Untitled Operational Node';
     const postRawCategory = typeof post.category === 'string' ? post.category : '';
     const systemCategory = matchCategoryByTitleAndMetadata(postTitle, postRawCategory);
+    const postDescription = typeof post.description === 'string' ? post.description : 'System processing manifest details.';
 
+    // Safe standard formatting for client template logic rendering
     const displayDate = post.date instanceof Date
         ? post.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
         : String(post.date || 'PENDING_REGISTRY');
+
+    // 🛡️ Format standard schema date safely to avoid platform tracking syntax bugs
+    const isoDate = post.date instanceof Date
+        ? post.date.toISOString()
+        : new Date(post.date || Date.now()).toISOString();
+
+    const postUrl = `https://nomadlifexp.com/blog/posts/${standardSlug.toLowerCase()}`;
+
+    // 🛡️ 10/10 AI EXTRACTION GRAPH FOR DEEP CONTENT PARSING
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "@id": `${postUrl}/#post`,
+                "isPartOf": {
+                    "@id": "https://nomadlifexp.com/#website"
+                },
+                "mainEntityOfPage": postUrl,
+                "headline": postTitle,
+                "description": postDescription,
+                "datePublished": isoDate,
+                "dateModified": isoDate,
+                "author": {
+                    "@id": "https://nomadlifexp.com/#organization"
+                },
+                "publisher": {
+                    "@id": "https://nomadlifexp.com/#organization"
+                },
+                "image": "https://nomadlifexp.com/og-main.jpg",
+                "articleSection": systemCategory
+            }
+        ]
+    };
 
     return (
         <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
@@ -168,6 +205,15 @@ export default async function BlogPostPage({ params }: Props) {
                     </div>
                 </article>
             </main>
+
+            {/* 🛡️ INJECTED INDIVIDUAL POST SCHEMA IN THE BODY CLOSING ZONE */}
+            <Script
+                id={`schema-post-${standardSlug.toLowerCase()}`}
+                type="application/ld+json"
+                strategy="afterInteractive"
+            >
+                {JSON.stringify(articleSchema)}
+            </Script>
         </div>
     );
 }

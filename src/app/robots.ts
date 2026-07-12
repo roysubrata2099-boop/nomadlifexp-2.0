@@ -1,3 +1,5 @@
+// src/app/robots.ts
+
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
     return {
         rules: [
             {
-                // 🛡️ UNIVERSAL ENGINE TARGETING
+                // 🛡️ UNIVERSAL ENGINE ACCESSIBILITY (Classic Search & AI Web Search)
                 userAgent: '*',
                 allow: '/',
                 disallow: [
@@ -17,17 +19,27 @@ export default function robots(): MetadataRoute.Robots {
                 ],
             },
             {
-                // 🛡️ CONTENT SCRAPER AND AI RECONNAISSANCE BLOCK MATRIX
+                // 🛡️ PERMISSIVE MATRIX FOR AI SEARCH & KNOWLEDGE GENERATION
+                // Allowing these ensures your content is indexed by modern RAG architectures and AI search results.
                 userAgent: [
                     'GPTBot',
                     'ChatGPT-User',
                     'Google-Extended',
                     'Anthropic-AI',
                     'Claude-Web',
-                    'CCBot',
-                    'Omgilibot'
+                    'PerplexityBot',  // Added explicitly for Perplexity discovery
+                    'Applebot-Extended' // Added explicitly for Apple Intelligence discovery
                 ],
-                disallow: '/', // Fully locks data matrix away from LLM model harvesting engines
+                allow: [
+                    '/',
+                    '/blog/',
+                    '/blog/posts/'
+                ],
+                disallow: [
+                    '/_next/',
+                    '/api/',
+                    '/*?*'
+                ]
             }
         ],
         sitemap: `${baseUrl}/sitemap.xml`,

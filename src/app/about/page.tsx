@@ -1,13 +1,35 @@
-"use client";
+// src/app/about/page.tsx
 
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
+import Script from "next/script";
 
-/* ---------------- OPERATIONAL ABOUT CORE ---------------- */
+export const metadata: Metadata = {
+    title: "Operational Directive // Mission & Foundation",
+    description: "The core philosophy, underlying methodology, and existential directive of the NomadLifeXP platform.",
+    alternates: {
+        canonical: "https://nomadlifexp.com/about",
+    }
+};
+
 export default function AboutPage() {
+    const aboutSchema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": "https://nomadlifexp.com/about/#webpage",
+                "url": "https://nomadlifexp.com/about",
+                "name": "About NomadLifeXP // Mission & Philosophy",
+                "isPartOf": { "@id": "https://nomadlifexp.com/#website" },
+                "description": "The mission, operational philosophy, human optimization methodology, and foundational origin of NomadLifeXP."
+            }
+        ]
+    };
+
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
-
             {/* Ambient Lighting Background Accents */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" />
@@ -43,7 +65,7 @@ export default function AboutPage() {
                         </span>
                     </h1>
                     <p className="text-base md:text-lg font-light leading-relaxed max-w-3xl text-neutral-400 font-mono">
-                        NomadLifeXP is an integrated behavioral development architecture engineered to substitute fragile emotional motivation with absolute structural design.
+                        An integrated behavioral development architecture engineered to substitute fragile emotional motivation with absolute structural design.
                     </p>
                 </header>
 
@@ -62,42 +84,61 @@ export default function AboutPage() {
                         </div>
                     </div>
 
-                    {/* Operational Core Context Block */}
-                    <div className="max-w-3xl space-y-6">
-                        <p className="font-light leading-relaxed text-sm sm:text-base text-neutral-400 font-mono">
-                            Most modern performers possess no knowledge deficiency. The systemic bottleneck resides strictly within the <strong className="font-bold text-white uppercase tracking-wide text-cyan-400">execution matrix</strong>. Lacking structured feedback loops and ambient guardrails, even optimized intent collapses under acute dopamine exposure, baseline friction, and chaotic variance.
-                        </p>
+                    {/* Core Framework Requirements Module */}
+                    <div className="grid gap-8 md:grid-cols-2 text-sm font-light leading-relaxed text-neutral-400 font-mono">
+                        {/* 1. Founder Assembly */}
+                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5">
+                            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
+                                // 01 / FOUNDER ASSEMBLY
+                            </h3>
+                            <p className="text-xs text-neutral-400 leading-relaxed">
+                                Architected by a collective of technical optimization analysts, system engineers, and somatic practitioners. We specialize in isolating behavioral drift and converting fragmented biological intent into predictable algorithmic habits.
+                            </p>
+                        </div>
+
+                        {/* 2. System Mission */}
+                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5">
+                            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
+                                // 02 / SYSTEM MISSION
+                            </h3>
+                            <p className="text-xs text-neutral-400 leading-relaxed">
+                                To engineer an open-source framework that strips out cognitive noise and reclaims deep focus, physical capacity, and self-directed sovereignty for high-performance individuals.
+                            </p>
+                        </div>
+
+                        {/* 3. Operational Philosophy */}
+                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5">
+                            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
+                                // 03 / OPERATIONAL PHILOSOPHY
+                            </h3>
+                            <p className="text-xs text-neutral-400 leading-relaxed">
+                                Human expansion follows architecture, not emotion. Intentional constraint, systematic daily parameters, and structural baseline habits will consistently outexecute unguided creative motivation over long-term timelines.
+                            </p>
+                        </div>
+
+                        {/* 4. Biological Methodology */}
+                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5">
+                            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
+                                // 04 / BIOLOGICAL METHODOLOGY
+                            </h3>
+                            <p className="text-xs text-neutral-400 leading-relaxed">
+                                Integrating physiological resistance training, neuromuscular coordination, breath-driven focus control, and targeted mental frameworks to lower systematic friction and accelerate cognitive output.
+                            </p>
+                        </div>
                     </div>
 
-                    {/* Environmental Reality Box Pipeline */}
-                    <div className="w-full max-w-3xl space-y-2 border border-neutral-800 bg-neutral-950/40 p-6 rounded-none">
+                    {/* Environmental Reality Box Pipeline (5. Why This Exists) */}
+                    <div className="w-full max-w-full space-y-2 border border-neutral-800 bg-neutral-950/40 p-6 rounded-none">
                         <div className="flex justify-between items-center mb-2">
                             <label className="text-[10px] uppercase tracking-widest text-amber-500 font-mono block">
-                                // Environmental Reality // Why This System Exists
+                                // 05 / ENVIRONMENTAL REALITY // WHY THIS SYSTEM EXISTS
                             </label>
                         </div>
-                        <p className="text-sm font-light leading-relaxed text-neutral-400 font-mono">
-                            Modern computational lifestyle infrastructures are designed explicitly to commodify your attention. Hyper-compressed media networks and perpetual push configurations are eroding deep-focus states while destabilizing voluntary persistence. This system provides a defensive perimeter, systematically constructing consistent execution routines through strict automation instead of raw willpower.
+                        <p className="text-xs md:text-sm font-light leading-relaxed text-neutral-400 font-mono">
+                            Modern digital products are explicitly optimized to capture and monetize your attention. Hyper-stimulating data networks and algorithmic feeds create widespread cognitive fragmentation and voluntary exhaustion. NomadLifeXP acts as an operating framework designed to protect your attention budget and preserve execution capacity using reliable systems instead of unreliable willpower.
                         </p>
                     </div>
                 </div>
-
-                {/* Meta Philosophy Section */}
-                <section className="mb-24 space-y-6 max-w-5xl">
-                    <div className="w-full border-b border-neutral-900 pb-4">
-                        <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-500 font-bold">
-                            Operational Philosophy
-                        </h2>
-                    </div>
-                    <div className="grid gap-8 md:grid-cols-2 text-sm font-light leading-relaxed text-neutral-400 font-mono">
-                        <p>
-                            Human development is fundamentally structural, not emotional. Identity thresholds are never determined by cognitive preference; they are forged explicitly through the mechanical repetition of verified operational routines.
-                        </p>
-                        <p>
-                            Atomic habits executed on rigid temporal schedules compounding over extended horizons comfortably outperform sporadic, high-intensity creative bursts. Over deep timelines, discipline shifts to a baseline background function, terminating the need for internal cognitive negotiations.
-                        </p>
-                    </div>
-                </section>
 
                 {/* Core Pillars Mainframes Section */}
                 <section className="space-y-8">
@@ -118,9 +159,7 @@ export default function AboutPage() {
                                 key={idx}
                                 href={pillar.slug}
                                 className="border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm p-6 rounded-none flex flex-col justify-between transition-all duration-300 relative overflow-hidden group hover:border-cyan-500"
-                                style={{
-                                    minHeight: "180px"
-                                }}
+                                style={{ minHeight: "180px" }}
                             >
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center text-xs font-mono font-bold uppercase tracking-widest">
@@ -158,8 +197,11 @@ export default function AboutPage() {
                         Discipline // Fitness // Yoga // Mindset
                     </p>
                 </footer>
-
             </div>
+
+            <Script id="schema-about-page" type="application/ld+json" strategy="afterInteractive">
+                {JSON.stringify(aboutSchema)}
+            </Script>
         </div>
     );
 }

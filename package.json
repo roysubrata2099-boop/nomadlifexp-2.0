@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/audit-markdown.js",
+    "prebuild": "node scripts/build-posts.js && node scripts/audit-markdown.js",
     "build": "next build",
     "start": "next start"
   },

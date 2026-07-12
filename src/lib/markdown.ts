@@ -1,86 +1,84 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 
-const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+const postsDirectory = path.join(process.cwd(), "content/posts");
 
-export interface BlogPost {
-    slug: string;
-    title: string;
-    date: string | Date;
-    category: 'Fitness' | 'Yoga' | 'Mindset' | 'Discipline' | string;
-    description: string;
-    isStartHere?: boolean;
-    content: string;
+/**
+ * 🛡️ LAYER 1 DEFENSE: Strict Path and Filename Sanitizer
+ * Prevents Directory Traversal attacks (e.g., ../../etc/passwd)
+ */
+function cleanSlug(slug: unknown): string {
+    if (typeof slug !== "string") return "";
+    try {
+        return decodeURIComponent(slug)
+            .replace(/\.\.+\//g, "")
+            .replace(/[/\\]/g, "")
+            .toLowerCase()
+            .trim();
+    } catch {
+        return "";
+    }
 }
 
-// Get all posts sorted cleanly by date parameters
-export function getAllPosts(): BlogPost[] {
-    if (!fs.existsSync(postsDirectory)) return [];
-
+/**
+ * SAFE CORE METHOD: Fetches all posts securely for static generation
+ */
+export function getAllPosts(): Record<string, unknown>[] {
     try {
+        if (!fs.existsSync(postsDirectory)) return [];
+
         const fileNames = fs.readdirSync(postsDirectory);
-        const allPostsData = fileNames
-            .filter((fileName) => fileName.endsWith('.md'))
+        return fileNames
+            .filter((fileName) => fileName.endsWith(".md"))
             .map((fileName) => {
-                const slug = fileName.replace(/\.md$/, '');
                 const fullPath = path.join(postsDirectory, fileName);
-                const fileContents = fs.readFileSync(fullPath, 'utf8');
-                const { data, content } = matter(fileContents);
+                const fileContents = fs.readFileSync(fullPath, "utf8");
+                const { data } = matter(fileContents);
 
                 return {
-                    slug: slug.toLowerCase().trim(),
-                    title: typeof data.title === 'string' ? data.title : 'Untitled Node Blueprint',
-                    date: data.date ? data.date : new Date().toISOString(),
-                    category: typeof data.category === 'string' ? data.category : 'Discipline',
-                    description: typeof data.description === 'string' ? data.description : '',
-                    isStartHere: Boolean(data.isStartHere),
-                    content: content || '',
-                } as BlogPost;
+                    slug: fileName.replace(/\.md$/, ""),
+                    ...data,
+                };
             });
-
-        return allPostsData.sort((a, b) => {
-            const dateA = a.date instanceof Date ? a.date.getTime() : new Date(a.date).getTime();
-            const dateB = b.date instanceof Date ? b.date.getTime() : new Date(b.date).getTime();
-            return dateB - dateA;
-        });
     } catch (error) {
-        console.error("Critical Failure Reading File Manifest Directory Map:", error);
+        console.error("CRITICAL_MD_READ_ERROR:", error);
         return [];
     }
 }
 
-// 🛡️ RE-ENGINEERED COMPREHENSIVE CASE-INSENSITIVE FILE DETECTOR
-export function getPostBySlug(slug: string): BlogPost | null {
-    if (!slug || !fs.existsSync(postsDirectory)) return null;
-
-    const targetSlugNormalized = slug.toLowerCase().trim();
+/**
+ * 🛡️ LAYER 2 DEFENSE: Case-Insensitive File Resolver
+ * Guarantees that lowercase URLs resolve files like "How-To-Build.md" smoothly
+ */
+export function getPostBySlug(rawSlug: string): Record<string, unknown> | null {
+    const sanitizedSlug = cleanSlug(rawSlug);
+    if (!sanitizedSlug) return null;
 
     try {
+        if (!fs.existsSync(postsDirectory)) return null;
+
         const fileNames = fs.readdirSync(postsDirectory);
 
-        // Find the matched file on disk ignoring case variations completely
-        const matchedFileName = fileNames.find(file => {
-            const currentFileSlug = file.replace(/\.md$/, '').toLowerCase().trim();
-            return currentFileSlug === targetSlugNormalized;
+        // Find match ignoring casing
+        const matchedFile = fileNames.find((fileName) => {
+            const currentName = fileName.replace(/\.md$/, "").toLowerCase();
+            return currentName === sanitizedSlug;
         });
 
-        if (!matchedFileName) return null;
+        if (!matchedFile) return null;
 
-        const fullPath = path.join(postsDirectory, matchedFileName);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const fullPath = path.join(postsDirectory, matchedFile);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data, content } = matter(fileContents);
 
         return {
-            slug: targetSlugNormalized,
-            title: typeof data.title === 'string' ? data.title : 'Untitled Node Blueprint',
-            date: data.date ? data.date : new Date().toISOString(),
-            category: typeof data.category === 'string' ? data.category : 'Discipline',
-            description: typeof data.description === 'string' ? data.description : '',
-            isStartHere: Boolean(data.isStartHere),
-            content: content || '',
-        } as BlogPost;
-    } catch {
+            slug: matchedFile.replace(/\.md$/, ""),
+            contentHtml: content, // Passes markdown content cleanly
+            ...data,
+        };
+    } catch (error) {
+        console.error(`FAILED_TO_RESOLVE_SLUG: ${rawSlug}`, error);
         return null;
     }
 }

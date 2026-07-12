@@ -6,20 +6,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-// 🛡️ EXPLICIT COMPILER PATTERN FOR NEXT.JS 15 ROUTING
+// Next.js 15 Asynchronous Props Engine Mapping
 type PostPageProps = {
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-/**
- * 🛡️ SAFE SLUG SANITIZER
- */
 function sanitizeSlug(rawSlug: unknown): string {
     if (typeof rawSlug !== "string") return "";
     try {
-        const decoded = decodeURIComponent(rawSlug);
-        return decoded
+        return decodeURIComponent(rawSlug)
             .replace(/\.\.+\//g, "")
             .replace(/[/\\]/g, "")
             .toLowerCase()
@@ -40,7 +36,7 @@ export async function generateMetadata(props: PostPageProps): Promise<Metadata> 
         const decodedSlug = sanitizeSlug(resolvedParams.slug);
         if (!decodedSlug) return { title: "Node Defect // NomadLifeXP" };
 
-        const post = getPostBySlug(decodedSlug) as Record<string, unknown> | null;
+        const post = getPostBySlug(decodedSlug);
         if (!post) return { title: "Node Defect // NomadLifeXP" };
 
         const titleText = typeof post.title === "string" ? post.title.trim() : "Operational Node";
@@ -65,12 +61,12 @@ export async function generateMetadata(props: PostPageProps): Promise<Metadata> 
             },
         };
     } catch (error) {
-        console.error("CRITICAL_METADATA_FAILURE:", error);
+        console.error("METADATA_GENERATION_FAULT:", error);
         return { title: "System Fault // NomadLifeXP" };
     }
 }
 
-// 🛡️ STATIC COMPILATION ACCELERATOR MATRIX
+// 🛡️ STATIC COMPILATION ACCELERATOR MATRIX (Forcing lowercase paths)
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
     try {
         const posts = getAllPosts();
@@ -80,7 +76,7 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
             .map((post) => {
                 if (!post || typeof post.slug !== "string") return null;
                 const safeSlug = sanitizeSlug(post.slug);
-                return safeSlug ? { slug: safeSlug } : null;
+                return safeSlug ? { slug: safeSlug.toLowerCase() } : null;
             })
             .filter((item): item is { slug: string } => item !== null);
     } catch (error) {
@@ -89,7 +85,7 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
     }
 }
 
-// 🛡️ THE ENTRY COMPONENT 
+// 🛡️ ENTRY VIEW RENDER ENGINE
 export default async function BlogPostPage(props: PostPageProps) {
     const resolvedParams = await props.params;
     if (!resolvedParams || !resolvedParams.slug) return notFound();

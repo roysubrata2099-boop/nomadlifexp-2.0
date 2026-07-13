@@ -1,208 +1,151 @@
+import { getAllPosts, type PostData } from "@/lib/markdown";
+import { normalizeCategory } from "@/lib/taxonomy";
 import Link from "next/link";
 
-import {
-    getAllPosts,
-    slugify,
-    type PostData,
-} from "@/lib/markdown";
-
-import {
-    normalizeCategory,
-} from "@/lib/taxonomy";
-
-
+const slugify = (text: string) =>
+    text
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)+/g, "");
 
 interface SafePost {
-
     slug: string;
-
     title: string;
-
     description: string;
-
     category: string;
-
-    date?: string;
-
 }
 
-
-
-
 export default function BlogPage() {
+    const posts: SafePost[] = getAllPosts().map((post: PostData) => {
+        const category = normalizeCategory(
+            post.category ?? "uncategorized",
+            post.title ?? ""
+        );
 
+        return {
+            slug: slugify(post.slug),
+            title: post.title ?? "Untitled Post",
+            description:
+                post.description ?? "No description available.",
+            category: slugify(category),
+        };
+    });
 
-    const posts: SafePost[] =
-
-        getAllPosts()
-
-            .map((post: PostData) => {
-
-
-                const category =
-
-                    normalizeCategory(
-                        post.category,
-                        post.title
-                    );
-
-
-                return {
-
-                    slug:
-                        slugify(post.slug),
-
-
-                    title:
-                        post.title ||
-                        "Untitled Post",
-
-
-                    description:
-                        post.description ||
-                        "No description available.",
-
-
-                    category:
-                        slugify(category),
-
-
-                    date:
-                        post.date,
-
-                };
-
-
-            })
-
-            .filter(
-                (post, index, array) =>
-
-                    array.findIndex(
-                        item =>
-                            item.slug === post.slug
-                    )
-                    === index
-            )
-
-            .sort(
-                (a, b) =>
-                    (b.date ?? "")
-                        .localeCompare(
-                            a.date ?? ""
-                        )
-            );
-
-
-
-
-
-    if (posts.length === 0) {
-
-
+    if (!posts.length) {
         return (
-
-            <section className="max-w-7xl mx-auto px-6 py-12 text-center">
-
-
-                <h1 className="text-3xl font-bold mb-4">
+            <main className="max-w-5xl mx-auto px-6 py-12">
+                <h1 className="text-3xl font-bold text-white">
                     All Blog Posts
                 </h1>
 
-
-                <p className="text-gray-500">
+                <p className="mt-4 text-zinc-400">
                     No blog posts found.
                 </p>
-
-
-            </section>
-
+            </main>
         );
-
     }
 
-
-
-
-
     return (
+        <main className="max-w-6xl mx-auto px-6 py-12">
 
-        <section className="max-w-7xl mx-auto px-6 py-12">
+            <header className="mb-10">
+                <h1 className="text-4xl font-bold text-white">
+                    All Blog Posts
+                </h1>
+
+                <p className="mt-3 text-zinc-400">
+                    Explore articles on discipline, fitness, yoga, and mindset.
+                </p>
+            </header>
 
 
-            <h1 className="text-3xl font-bold mb-8">
-                All Blog Posts
-            </h1>
-
-
-
-
-            <ul className="space-y-6">
-
+            <section className="space-y-6">
 
                 {posts.map((post) => (
 
-
-                    <li
+                    <article
                         key={post.slug}
-                        className="border p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-zinc-900"
+                        className="
+                            rounded-2xl
+                            border
+                            border-zinc-800
+                            bg-zinc-950
+                            p-6
+                            hover:border-cyan-500/60
+                            transition-all
+                        "
                     >
 
-
                         <Link
-
                             href={`/blog/posts/${post.slug}`}
-
-                            className="text-2xl font-semibold text-blue-600 dark:text-blue-400 hover:underline"
-
+                            className="
+                                block
+                                text-2xl
+                                font-bold
+                                text-white
+                                hover:text-cyan-400
+                                transition-colors
+                            "
                         >
-
                             {post.title}
-
                         </Link>
 
 
-
-
-                        <p className="text-gray-600 dark:text-gray-300 line-clamp-3 my-3">
-
+                        <p
+                            className="
+                                mt-3
+                                text-zinc-300
+                                leading-relaxed
+                            "
+                        >
                             {post.description}
-
                         </p>
 
 
+                        <div className="mt-5">
+
+                            <Link
+                                href={`/blog/category/${post.category}`}
+                                className="
+                                    inline-flex
+                                    rounded-full
+                                    px-3
+                                    py-1
+                                    text-sm
+                                    font-medium
+                                    bg-cyan-950
+                                    text-cyan-300
+                                    hover:bg-cyan-900
+                                    transition-colors
+                                "
+                            >
+                                Category: {post.category.replace(/-/g, " ")}
+                            </Link>
+
+                        </div>
 
 
                         <Link
-
-                            href={`/blog/category/${post.category}`}
-
-                            className="inline-flex items-center px-3 py-1 text-xs font-medium text-cyan-600 bg-cyan-50 dark:text-cyan-400 dark:bg-cyan-950/50 rounded-full hover:bg-cyan-100"
-
+                            href={`/blog/posts/${post.slug}`}
+                            className="
+                                inline-block
+                                mt-5
+                                text-sm
+                                font-semibold
+                                text-cyan-400
+                                hover:underline
+                            "
                         >
-
-                            Category:
-                            {" "}
-                            {post.category.replace(
-                                /-/g,
-                                " "
-                            )}
-
+                            Read full article →
                         </Link>
 
-
-
-                    </li>
-
+                    </article>
 
                 ))}
 
+            </section>
 
-            </ul>
-
-
-        </section>
-
+        </main>
     );
-
 }

@@ -1,7 +1,11 @@
 ---
-title: "The Reason You Can't Focus Even When You Try Hard"
-category: "Mental Clarity"
-slug: "why-you-cannot-focus-overload"
+title: The Reason You Can't Focus Even When You Try Hard
+category: mindset
+slug: why-you-cannot-focus-overload
+displayPillar: MINDSET
+description: >-
+  You are not failing because of a lack of discipline. More often, you're
+  mentally overloaded.    You sit down determined to focus, yet with...
 ---
 
 You are not failing because of a lack of discipline. More often, you're **mentally overloaded**.

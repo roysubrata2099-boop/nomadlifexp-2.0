@@ -1,9 +1,13 @@
 ---
-title: "Self Discipline: Why You Lack It and How to Build It for Good"
-category: "discipline"
-slug: "how-to-build-self-discipline"
-author: "NomadLifeXP"
+title: 'Self Discipline: Why You Lack It and How to Build It for Good'
+category: discipline
+slug: how-to-build-self-discipline
+author: NomadLifeXP
 year: 2026
+displayPillar: DISCIPLINE
+description: >-
+  Self discipline is the ability to control your actions based on long term
+  goals instead of short term feelings. Most people do not lack mo...
 ---
 
 Self discipline is the ability to control your actions based on long term goals instead of short term feelings. Most people do not lack motivation. They lack systems that protect their attention from constant distraction.

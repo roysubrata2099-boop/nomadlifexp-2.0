@@ -1,10 +1,19 @@
 ---
-title: "What Happens When You Try Forearm Stand Yoga for Focus and Confidence"
-description: "Discover how the challenging Forearm Stand (Pincha Mayurasana) builds profound mental focus, unlocks authentic confidence, and cultivates deep emotional control through body awareness."
-slug: "forearm-stand-yoga-focus-confidence"
-date: 2026-07-01
-tags: ["Yoga", "Inversions", "Forearm Stand", "Focus", "Confidence"]
-category: "Wellness"
+title: What Happens When You Try Forearm Stand Yoga for Focus and Confidence
+description: >-
+  Discover how the challenging Forearm Stand (Pincha Mayurasana) builds profound
+  mental focus, unlocks authentic confidence, and cultivates deep emotional
+  control through body awareness.
+slug: forearm-stand-yoga-focus-confidence
+date: 2026-07-01T00:00:00.000Z
+tags:
+  - Yoga
+  - Inversions
+  - Forearm Stand
+  - Focus
+  - Confidence
+category: mindset
+displayPillar: MINDSET
 ---
 
 # What Happens When You Try Forearm Stand Yoga for Focus and Confidence

@@ -1,10 +1,20 @@
 ---
-title: "Fitness Is Not About Time: Mindset, Discipline, and Consistency over Motivation"
-description: "Stop waiting for the perfect, unbusy moment. Discover why long-term health and fitness depend on small daily actions rather than finding hours of free time."
-slug: "fitness-is-not-about-time"
-date: 2026-07-01
-tags: ["Fitness", "Discipline", "Consistency", "Habits", "Mindset"]
-category: "Self Growth"
+title: >-
+  Fitness Is Not About Time: Mindset, Discipline, and Consistency over
+  Motivation
+description: >-
+  Stop waiting for the perfect, unbusy moment. Discover why long-term health and
+  fitness depend on small daily actions rather than finding hours of free time.
+slug: fitness-is-not-about-time
+date: 2026-07-01T00:00:00.000Z
+tags:
+  - Fitness
+  - Discipline
+  - Consistency
+  - Habits
+  - Mindset
+category: fitness
+displayPillar: FITNESS
 ---
 
 # Fitness Is Not About Time

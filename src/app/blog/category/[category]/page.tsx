@@ -6,17 +6,26 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+interface RouteParams {
+    category: string;
+}
+
 interface CategoryPageProps {
-    params: Promise<{ category: string }>;
+    params: Promise<RouteParams>;
     searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 const VALID_CATEGORIES = ["discipline", "fitness", "yoga", "mindset"];
 
-// 🛡️ DYNAMIC SEO ENGINE FOR DYNAMIC PATH SEGMENTS
+// 🛡️ DYNAMIC SEO ENGINE WITH RUNTIME FALLBACK PROTECTION
 export async function generateMetadata(props: CategoryPageProps): Promise<Metadata> {
     try {
-        const { category } = await props.params;
+        if (!props || !props.params) {
+            return { title: "Category Node | NomadLifeXP" };
+        }
+
+        const resolvedParams = await props.params;
+        const category = resolvedParams?.category;
         const safeCategory = typeof category === "string" ? category.toLowerCase().trim() : "";
 
         if (!VALID_CATEGORIES.includes(safeCategory)) {
@@ -39,28 +48,43 @@ export async function generateMetadata(props: CategoryPageProps): Promise<Metada
                 type: "website",
             },
         };
-    } catch {
+    } catch (error) {
+        console.error("METADATA_GENERATION_FAULT:", error);
         return { title: "Category Node | NomadLifeXP" };
     }
 }
 
 // 🛡️ GENERATE STATIC SEGMENTS FOR OPTIMIZED BUILD COMPILATION
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<RouteParams[]> {
     return VALID_CATEGORIES.map((cat) => ({
         category: cat,
     }));
 }
 
+// 🛡️ REINFORCED CORE COMPONENT ENGINE
 export default async function CategoryPage(props: CategoryPageProps) {
-    // Unwrapping async parameters safely for Next.js 15 routing compliance
-    const { category } = await props.params;
+    // 1. Safe Unwrapping & Structural Boundary Protections
+    if (!props || !props.params) {
+        return notFound();
+    }
+
+    let resolvedParams: RouteParams;
+    try {
+        resolvedParams = await props.params;
+    } catch (err) {
+        console.error("PARAM_RESOLUTION_FAILURE:", err);
+        return notFound();
+    }
+
+    const category = resolvedParams?.category;
     const safeCategoryParam = typeof category === "string" ? category.toLowerCase().trim() : "";
 
-    // Instantly catch bad path modifications or random URLs
+    // Instantly catch bad path modifications or unmapped URLs
     if (!VALID_CATEGORIES.includes(safeCategoryParam)) {
         notFound();
     }
 
+    // 2. Data Gathering Layer
     const rawPosts = getAllPosts();
     const safePosts = Array.isArray(rawPosts) ? rawPosts : [];
 
@@ -73,7 +97,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
 
             // Pass properties to central parsing standard
             const verifiedCategory = normalizeCategory(rawCategory, titleText);
-            const generatedSlug = typeof p.slug === "string" ? p.slug.toLowerCase().trim() : "";
+            const generatedSlug = typeof p.slug === "string" ? p.slug.replace(/\.md$/, "").toLowerCase().trim() : "";
 
             return {
                 slug: generatedSlug,
@@ -87,28 +111,30 @@ export default async function CategoryPage(props: CategoryPageProps) {
     const displayCategoryName = safeCategoryParam.toUpperCase();
 
     return (
-        <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans overflow-hidden">
-            <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
+        <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans overflow-x-hidden">
+            {/* Cyber Grid Vector Effects */}
+            <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none z-0" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
             <main className="max-w-5xl mx-auto px-6 pt-36 pb-32 relative z-10">
                 <div className="mb-8">
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-500 hover:text-cyan-400 transition-colors duration-200"
+                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
                     >
-                        &larr; Return to System Map Registry
+                        <span className="transition-transform duration-200 group-hover:-translate-x-1">&larr;</span> Return to System Map Registry
                     </Link>
                 </div>
 
                 <header className="mb-16 space-y-4 border-b border-neutral-900 pb-8">
                     <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-cyan-400" />
+                        <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
                         <p className="text-xs uppercase tracking-[0.4em] font-mono text-cyan-400">
                             NomadLifeXP // Category Dynamic Index
                         </p>
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white uppercase">
-                        Category Node: <span className="text-cyan-400">{displayCategoryName}</span>
+                    <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white uppercase leading-none">
+                        Category Node: <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">{displayCategoryName}</span>
                     </h1>
                 </header>
 
@@ -124,15 +150,15 @@ export default async function CategoryPage(props: CategoryPageProps) {
 
                                 return (
                                     <div
-                                        key={post.slug}
-                                        className="border border-neutral-900 bg-neutral-950/40 p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300"
+                                        key={post.slug || `cat-post-${idx}`}
+                                        className="border border-neutral-900 bg-neutral-950/40 p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300 rounded-none"
                                     >
                                         <div className="space-y-4 mb-6">
                                             <div className="flex justify-between items-center">
                                                 <span className="text-[9px] font-mono tracking-widest text-cyan-400 bg-cyan-950/30 px-2 py-0.5 uppercase border border-cyan-900/40">
                                                     {post.category}
                                                 </span>
-                                                <span className="text-neutral-700 font-mono text-[9px]">
+                                                <span className="text-neutral-700 font-mono text-[9px] select-none">
                                                     CAT_NODE_0{idx + 1}
                                                 </span>
                                             </div>
@@ -148,14 +174,14 @@ export default async function CategoryPage(props: CategoryPageProps) {
                                             href={`/blog/posts/${safePostSlug}`}
                                             className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link"
                                         >
-                                            Access Analysis &rarr;
+                                            Access Analysis <span className="transition-transform duration-200 group-hover/link:translate-x-1">&rarr;</span>
                                         </Link>
                                     </div>
                                 );
                             })}
                         </div>
                     ) : (
-                        <div className="border border-dashed border-neutral-900 p-12 text-center">
+                        <div className="border border-dashed border-neutral-900 p-12 text-center bg-neutral-950/20">
                             <p className="font-mono text-xs text-neutral-600 uppercase tracking-widest">
                                 // No localized documents mapped to this dynamic index node.
                             </p>

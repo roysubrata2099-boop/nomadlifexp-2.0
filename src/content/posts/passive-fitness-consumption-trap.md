@@ -1,10 +1,19 @@
 ---
-title: "Why People Watch Workout Videos but Never Actually Exercise"
-description: "Discover why watching fitness content gives your brain a false sense of achievement and how to break free from passive consumption to build actual physical habits."
-slug: "passive-fitness-consumption-trap"
-date: 2026-07-01
-tags: ["Fitness", "Procrastination", "Discipline", "Habits", "Mindset"]
-category: "Self Growth"
+title: Why People Watch Workout Videos but Never Actually Exercise
+description: >-
+  Discover why watching fitness content gives your brain a false sense of
+  achievement and how to break free from passive consumption to build actual
+  physical habits.
+slug: passive-fitness-consumption-trap
+date: 2026-07-01T00:00:00.000Z
+tags:
+  - Fitness
+  - Procrastination
+  - Discipline
+  - Habits
+  - Mindset
+category: fitness
+displayPillar: FITNESS
 ---
 
 # Why People Watch Workout Videos but Never Actually Exercise

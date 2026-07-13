@@ -1,11 +1,19 @@
 ---
-title: "It’s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga"
-description: "Discover how simple forward bending yoga poses can release years of stored stress, calm your mind, and restore emotional balance without requiring extreme flexibility."
-slug: "forward-bending-yoga-stress-relief"
-date: 2026-07-01
-image: "/images/forward-bending-yoga-for-stress-relief.jpg"
-tags: ["Yoga", "Stress Relief", "Mindfulness", "Mental Health"]
-category: "Wellness"
+title: It’s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga
+description: >-
+  Discover how simple forward bending yoga poses can release years of stored
+  stress, calm your mind, and restore emotional balance without requiring
+  extreme flexibility.
+slug: forward-bending-yoga-stress-relief
+date: 2026-07-01T00:00:00.000Z
+image: /images/forward-bending-yoga-for-stress-relief.jpg
+tags:
+  - Yoga
+  - Stress Relief
+  - Mindfulness
+  - Mental Health
+category: yoga
+displayPillar: YOGA
 ---
 
 # It’s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga

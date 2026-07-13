@@ -1,9 +1,13 @@
-﻿---
-title: "Can You Rebuild Your Attention Span After Years of Digital Distraction?"
-category: "mindset"
-slug: "rebuild-your-attention-span"
-author: "NomadLifeXP"
+---
+title: Can You Rebuild Your Attention Span After Years of Digital Distraction?
+category: mindset
+slug: rebuild-your-attention-span
+author: NomadLifeXP
 year: 2026
+displayPillar: MINDSET
+description: >-
+  If reading feels harder than it used to, if silence feels uncomfortable, and
+  if your mind keeps jumping from one thing to another, you are...
 ---
 
 If reading feels harder than it used to, if silence feels uncomfortable, and if your mind keeps jumping from one thing to another, you are not alone. Modern life has completely altered how attention works. This shift didn't happen because people suddenly became lazy or weak; it happened because our everyday digital environment is explicitly engineered to pull focus away. 

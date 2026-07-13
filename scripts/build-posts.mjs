@@ -1,79 +1,102 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+// build-posts.mjs
+import fs from 'fs';
+import path from 'path';
 
-// Aligned Path Configurations
-const POSTS_DIR = path.join(process.cwd(), "src/content/posts");
-const OUTPUT_DIR = path.join(process.cwd(), "src/data");
+const DATA_FILE = path.join(process.cwd(), 'src/data/posts.json');
 
-// 100% Bulletproof Next.js Routing Correction Engine
-const linkReplacements = [
-    { old: /\.html/g, new: '' }, // Strips all .html references out instantly
-    { old: /href="\/attention-span"/g, new: 'href="/blog/posts/attention-span"' },
-    { old: /href="\/stop-procrastination"/g, new: 'href="/blog/posts/stop-procrastination"' },
-    { old: /href="\/stuck-in-life"/g, new: 'href="/blog/posts/stuck-in-life"' },
-    { old: /href="\/mental-clarity"/g, new: 'href="/blog/posts/mental-clarity-stop-overthinking-and-regain-focus"' },
-    { old: /href="\/self-discipline-guide"/g, new: 'href="/blog/posts/self-discipline-guide"' },
-    { old: /href="\/discipline-creates-freedom"/g, new: 'href="/blog/posts/discipline-creates-freedom"' },
-
-    // Markdown alternative syntax wrappers
-    { old: /\(\/attention-span\)/g, new: '(/blog/posts/attention-span)' },
-    { old: /\(\/stop-procrastination\)/g, new: '(/blog/posts/stop-procrastination)' },
-    { old: /\(\/stuck-in-life\)/g, new: '(/blog/posts/stuck-in-life)' },
-    { old: /\(\/mental-clarity\)/g, new: '(/blog/posts/mental-clarity-stop-overthinking-and-regain-focus)' },
-    { old: /\(\/self-discipline-guide\)/g, new: '(/blog/posts/self-discipline-guide)' },
-    { old: /\(\/discipline-creates-freedom\)/g, new: '(/blog/posts/discipline-creates-freedom)' }
-];
-
-function getFiles() {
-    if (!fs.existsSync(POSTS_DIR)) return [];
-    return fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md"));
+function cleanMarkdownLink(url) {
+    if (!url) return '';
+    return url
+        .replace(/\.md$/, '')          // strip .md extensions
+        .replace(/^[./\\]+/, '')       // strip leading paths
+        .split('/')                    // split deep directory paths
+        .pop()                         // grab final segment
+        .toLowerCase()
+        .trim();
 }
 
-function fixContentLinks(content) {
-    let updatedContent = content;
-    linkReplacements.forEach(rule => {
-        updatedContent = updatedContent.replace(rule.old, rule.new);
-    });
-    return updatedContent;
-}
+export function repairDatabase() {
+    try {
+        if (!fs.existsSync(DATA_FILE)) {
+            console.error(`❌ Data target missing: ${DATA_FILE}`);
+            return;
+        }
 
-function parsePost(file) {
-    const fullPath = path.join(POSTS_DIR, file);
-    const raw = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(raw);
+        const rawData = fs.readFileSync(DATA_FILE, 'utf8');
+        const posts = JSON.parse(rawData);
 
-    const protectedContent = fixContentLinks(content);
+        if (!Array.isArray(posts)) {
+            throw new Error("Invalid posts schema: Base dataset is not an array.");
+        }
 
-    if (protectedContent !== content) {
-        fs.writeFileSync(fullPath, matter.stringify(protectedContent, data), "utf8");
-        console.log(`\x1b[32m%s\x1b[0m`, `[BUILD RECOVERY] Fixed broken routing in: ${file}`);
+        const repaired = posts.map((post) => {
+            const relatedArticles = new Set();
+            const content = String(post.content || post.contentHtml || "");
+
+            // Match header sections implicitly ending at next Markdown header or file end
+            const sectionRegex = /##\s+(?:Related Articles|Recommended Reading)([\s\S]*?)(?:##|$)/i;
+            const sectionMatch = content.match(sectionRegex);
+
+            if (sectionMatch && sectionMatch[1]) {
+                const sectionBlock = sectionMatch[1];
+                // Captures standard markdown notation: [Anchor Title](Link Target)
+                const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+                let match;
+
+                while ((match = linkRegex.exec(sectionBlock)) !== null) {
+                    const rawTitle = match[1].trim().toLowerCase();
+                    const rawUrl = match[2].trim().toLowerCase();
+                    const parsedUrlSlug = cleanMarkdownLink(rawUrl);
+
+                    let matchedPost = null;
+
+                    // Strategy A: Direct matches against database slugs
+                    if (parsedUrlSlug && parsedUrlSlug !== '#') {
+                        matchedPost = posts.find(p => String(p.slug).toLowerCase().trim() === parsedUrlSlug);
+                    }
+
+                    // Strategy B: Title substring fallback (Fixes dead '#' links)
+                    if (!matchedPost && rawTitle.length > 3) {
+                        matchedPost = posts.find(p => {
+                            const postTitleClean = String(p.title).toLowerCase();
+                            return postTitleClean.includes(rawTitle) || rawTitle.includes(postTitleClean);
+                        });
+                    }
+
+                    // Strategy C: Structural Fuzzy Match fallback (Fixes truncated markdown titles)
+                    if (!matchedPost && rawTitle.length > 5) {
+                        const partialToken = rawTitle.slice(0, 8);
+                        matchedPost = posts.find(p => String(p.title).toLowerCase().includes(partialToken));
+                    }
+
+                    if (matchedPost) {
+                        const cleanTargetSlug = String(matchedPost.slug).toLowerCase().trim();
+                        if (cleanTargetSlug !== String(post.slug).toLowerCase().trim()) {
+                            relatedArticles.add(cleanTargetSlug);
+                        }
+                    }
+                }
+            }
+
+            // Safe Normalization Schema Mapper
+            return {
+                slug: String(post.slug || "").toLowerCase().trim(),
+                title: String(post.title || "Untitled Document"),
+                description: String(post.description || ""),
+                category: String(post.category || "discipline").toLowerCase().trim(),
+                displayPillar: String(post.displayPillar || "DISCIPLINE").toUpperCase().trim(),
+                date: String(post.date || new Date().toISOString().split('T')[0]),
+                contentHtml: content,
+                relatedArticles: Array.from(relatedArticles)
+            };
+        });
+
+        fs.writeFileSync(DATA_FILE, JSON.stringify(repaired, null, 2), 'utf8');
+        console.log("✅ 100% Secure Pipeline Sync: posts.json fully normalized.");
+    } catch (error) {
+        console.error("🚨 Critical Error Processing Data Pipeline:", error);
     }
-
-    return {
-        slug: file.replace(/\.md$/, "").toLowerCase(),
-        title: data.title || "Untitled",
-        description: data.description || protectedContent.slice(0, 140),
-        category: data.category || "uncategorized",
-        displayPillar: data.displayPillar || "BLOG",
-        content: protectedContent,
-    };
 }
 
-function build() {
-    if (!fs.existsSync(OUTPUT_DIR)) {
-        fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-    }
-
-    console.log('\x1b[36m%s\x1b[0m', '>> RUNNING COMPILATION & EMBEDDED PATH PROTECTION ENGINE...');
-    const posts = getFiles().map(parsePost);
-
-    fs.writeFileSync(
-        path.join(OUTPUT_DIR, "posts.json"),
-        JSON.stringify(posts, null, 2)
-    );
-
-    console.log(`✅ Generated ${posts.length} clean, 100% path-protected post profiles.`);
-}
-
-build();
+// Execute execution context automatically if launched standalone
+repairDatabase();

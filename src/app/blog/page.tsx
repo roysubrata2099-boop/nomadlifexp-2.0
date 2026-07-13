@@ -47,7 +47,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 }
 
 export default async function BlogPage(props: PageProps) {
-    // 🛡️ STRUCTURAL BOUNDARY PROTECTION FOR NEXT.JS 15 RUNTIMES
+    // 🛡️ STRUCTURAL BOUNDARY PROTECTION FOR NEXT.JS RUNTIMES
     if (!props || !props.searchParams) {
         return (
             <div className="min-h-screen bg-[#050914] flex items-center justify-center font-mono text-xs text-neutral-600 uppercase">
@@ -104,7 +104,7 @@ export default async function BlogPage(props: PageProps) {
     });
 
     return (
-        <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
+        <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden">
             <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
@@ -139,7 +139,7 @@ export default async function BlogPage(props: PageProps) {
                         <input
                             type="text"
                             name="q"
-                            defaultValue={rawQuery.toUpperCase()}
+                            defaultValue={rawQuery}
                             placeholder="QUERY STRATEGIES... (PRESS ENTER)"
                             className="w-full bg-neutral-950/60 border border-neutral-900 px-6 py-4 font-mono text-sm uppercase tracking-wider text-white placeholder-neutral-700 focus:outline-none focus:border-cyan-500/50 rounded-none transition-colors duration-200"
                         />

@@ -1,10 +1,19 @@
 ---
-title: "Why You Procrastinate and How to Stop It Permanently"
-description: "Procrastination isn't a time-management problem or a sign of laziness—it's an emotional regulation problem. Learn the psychology behind it and how to break the loop permanently."
-slug: "why-you-procrastinate-how-to-stop"
-date: 2026-07-01
-tags: ["Procrastination", "Productivity", "Discipline", "Mindset", "Psychology"]
-category: "Self Growth"
+title: Why You Procrastinate and How to Stop It Permanently
+description: >-
+  Procrastination isn't a time-management problem or a sign of laziness—it's an
+  emotional regulation problem. Learn the psychology behind it and how to break
+  the loop permanently.
+slug: why-you-procrastinate-how-to-stop
+date: 2026-07-01T00:00:00.000Z
+tags:
+  - Procrastination
+  - Productivity
+  - Discipline
+  - Mindset
+  - Psychology
+category: discipline
+displayPillar: DISCIPLINE
 ---
 
 # Why You Procrastinate and How to Stop It Permanently

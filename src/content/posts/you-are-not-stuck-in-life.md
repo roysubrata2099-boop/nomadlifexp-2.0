@@ -1,7 +1,13 @@
 ---
-title: "You Are Not Stuck Because You Lack Answers—Your Mind Is Too Comfortable to See Them"
-category: "Mental Clarity"
-slug: "you-are-not-stuck-in-life"
+title: >-
+  You Are Not Stuck Because You Lack Answers—Your Mind Is Too Comfortable to See
+  Them
+category: mindset
+slug: you-are-not-stuck-in-life
+displayPillar: MINDSET
+description: >-
+  > 'Breath is Power. Awareness is Transformation.'    Most people are not truly
+  lost. They are simply repeating familiar patterns without r...
 ---
 
 > **"Breath is Power. Awareness is Transformation."**

@@ -1,65 +1,31 @@
 // src/lib/taxonomy.ts
 
+const VALID_CATEGORIES = ["discipline", "fitness", "yoga", "mindset"];
+
 /**
- * Normalizes any category string or title phrase into one of the 4 core pillars.
+ * Normalizes frontmatter categories into official system tags.
+ * Falls back safely based on contextual hints if the category is undefined or corrupted.
  */
-export const normalizeCategory = (category: string = "", title: string = ""): string => {
-    const cleanTitle = title.toLowerCase();
-    const cleanCat = category.toLowerCase().trim();
+export function normalizeCategory(category: unknown, title?: string): string {
+    const safeCat = typeof category === "string" ? category.toLowerCase().trim() : "";
 
-    // 1. Evaluate Title Indicators First
-    if (
-        cleanTitle.includes("reclaim your attention") ||
-        cleanTitle.includes("self-discipline guide") ||
-        cleanTitle.includes("lack discipline") ||
-        cleanTitle.includes("procrastinate") ||
-        cleanTitle.includes("discipline")
-    ) {
-        return "discipline";
+    if (VALID_CATEGORIES.includes(safeCat)) {
+        return safeCat;
     }
 
-    if (
-        cleanTitle.includes("workout videos") ||
-        cleanTitle.includes("never actually exercise") ||
-        cleanTitle.includes("fitness consistency") ||
-        cleanTitle.includes("not about time") ||
-        cleanTitle.includes("workout mindset") ||
-        cleanTitle.includes("workout habit") ||
-        cleanTitle.includes("outlasts your motivation") ||
-        cleanTitle.includes("fitness") ||
-        cleanTitle.includes("exercise")
-    ) {
-        return "fitness";
-    }
+    // Contextual fallback mapping engine
+    const contentContext = `${safeCat} ${typeof title === 'string' ? title.toLowerCase() : ''}`;
 
-    if (
-        cleanTitle.includes("everything becomes still") ||
-        cleanTitle.includes("headstand") ||
-        cleanTitle.includes("forearm stand") ||
-        cleanTitle.includes("forward bending") ||
-        cleanTitle.includes("yoga") ||
-        cleanTitle.includes("inversion")
-    ) {
+    if (contentContext.includes("yoga") || contentContext.includes("breath") || contentContext.includes("meditation")) {
         return "yoga";
     }
-
-    if (
-        cleanTitle.includes("attention span") ||
-        cleanTitle.includes("digital distraction") ||
-        cleanTitle.includes("can’t focus") ||
-        cleanTitle.includes("cant focus") ||
-        cleanTitle.includes("mental clarity") ||
-        cleanTitle.includes("overthinking") ||
-        cleanTitle.includes("stuck in life") ||
-        cleanTitle.includes("mindset")
-    ) {
+    if (contentContext.includes("fit") || contentContext.includes("workout") || contentContext.includes("run") || contentContext.includes("body")) {
+        return "fitness";
+    }
+    if (contentContext.includes("mind") || contentContext.includes("focus") || contentContext.includes("think")) {
         return "mindset";
     }
 
-    // 2. Evaluate Explicit Category Fallbacks
-    if (cleanCat === "wellness") return "fitness";
-    if (cleanCat === "self growth" || cleanCat === "mental clarity") return "mindset";
-
-    // 3. Absolute Default Guard
-    return cleanCat || "discipline";
-};
+    // Default system fallback engine route
+    return "discipline";
+}

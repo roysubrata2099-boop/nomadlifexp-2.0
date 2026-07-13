@@ -1,10 +1,13 @@
 {
   "name": "nomadlifexp-2.0",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "prebuild": "node scripts/build-posts.js && node scripts/audit-markdown.js",
+    "audit:content": "node scripts/audit-markdown.js",
+    "build:content": "node scripts/build-posts.mjs",
+    "dev": "npm run build:content && npm run audit:content && next dev",
+    "prebuild": "npm run build:content && npm run audit:content",
     "build": "next build",
     "start": "next start"
   },
@@ -32,5 +35,8 @@
     "eslint": "^9.39.4",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }

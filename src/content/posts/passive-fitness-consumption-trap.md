@@ -1,19 +1,19 @@
 ---
-title: Why People Watch Workout Videos but Never Actually Exercise
-description: >-
+title: "Why People Watch Workout Videos but Never Actually Exercise"
+slug: passive-fitness-consumption-trap
+category: fitness
+updatedAt: "2026-07-01"
+author: NomadLifeXP
+description: >
   Discover why watching fitness content gives your brain a false sense of
   achievement and how to break free from passive consumption to build actual
   physical habits.
-slug: passive-fitness-consumption-trap
-date: 2026-07-01T00:00:00.000Z
-tags:
-  - Fitness
-  - Procrastination
-  - Discipline
-  - Habits
-  - Mindset
-category: fitness
-displayPillar: FITNESS
+relatedArticles:
+  - how-to-build-self-discipline
+  - consistency-myth-showing-up-beats-perfect
+  - stop-procrastination-permanently
+  - mental-clarity-stop-overthinking-and-regain-focus
+  - rebuild-attention-span-digital-distraction
 ---
 
 # Why People Watch Workout Videos but Never Actually Exercise
@@ -58,20 +58,10 @@ If you are stuck in the loop of passive fitness consumption, use these practical
 2. **Start Ridiculously Small:** Lower the barrier to entry so low that your brain can't argue with it. Walk down the street, stretch on the floor, or complete just 10 pushups.
 3. **Focus on Consistency Over Perfection:** A mediocre 10-minute workout that actually happens is infinitely better than a perfect 60-minute routine that stays saved in your video playlist.
 
-*(To understand how to master this mindset shift, read our core guide: **[Discipline Creates Freedom: The Truth Most People Realize Too Late](discipline-creates-freedom.md)**).*
+*(To understand how to master this mindset shift, read our core guide: **Discipline Creates Freedom: The Truth Most People Realize Too Late**).*
 
 ---
 
 ## Final Thoughts
 
 Watching content can absolutely serve as a spark to inspire you, but consumption alone will never change your life. Your physical reality shifts when your daily habits shift. Put down the screen, step onto the floor, and start moving.
-
----
-
-## Related Articles
-
-* [Self Discipline and Building Consistency](self-discipline-consistency-guide.md)
-* [How to Build Fitness Consistency](fitness-consistency-system.md)
-* [How to Stop Procrastination Permanently](how-to-stop-procrastination.md)
-* [Mental Clarity for Focus and Action](mental-clarity-focus.md)
-* [Rebuilding Attention Span in a Distracted World](rebuilding-attention-span.md)

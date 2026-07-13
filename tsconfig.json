@@ -18,14 +18,15 @@
     "jsx": "preserve",
     "incremental": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    // ✅ FIX (this removes red underline in most setups)
-    "baseUrl": "./src",
+    "noImplicitOverride": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "*"
+        "./src/*"
       ]
     },
     "plugins": [
@@ -36,7 +37,8 @@
   },
   "include": [
     "next-env.d.ts",
-    "src/**/*",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [

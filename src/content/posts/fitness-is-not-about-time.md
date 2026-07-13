@@ -1,20 +1,16 @@
 ---
-title: >-
-  Fitness Is Not About Time: Mindset, Discipline, and Consistency over
-  Motivation
-description: >-
+title: "Fitness Is Not About Time: Mindset, Discipline, and Consistency over Motivation"
+slug: fitness-is-not-about-time
+category: fitness
+updatedAt: "2026-07-01"
+author: NomadLifeXP
+description: >
   Stop waiting for the perfect, unbusy moment. Discover why long-term health and
   fitness depend on small daily actions rather than finding hours of free time.
-slug: fitness-is-not-about-time
-date: 2026-07-01T00:00:00.000Z
-tags:
-  - Fitness
-  - Discipline
-  - Consistency
-  - Habits
-  - Mindset
-category: fitness
-displayPillar: FITNESS
+relatedArticles:
+  - build-workout-habit-outlast-motivation
+  - consistency-myth-showing-up-beats-perfect
+  - motivation-independent-habits
 ---
 
 # Fitness Is Not About Time
@@ -105,14 +101,3 @@ Yes. Walking is one of the most effective, accessible, and highly sustainable fo
 ## Final Thought
 
 There will never be a perfect time to start. Stop waiting for the schedule to clear out. Start small, stay consistent, and let time do the heavy lifting.
-
----
-
-## Related Articles
-
-* [Discipline Creates Freedom](discipline-creates-freedom.md)
-* [Self Discipline Guide](self-discipline-guide.md)
-* [Fitness Consistency System](fitness-consistency-system.md)
-* [Why People Watch Workout Videos but Never Act](why-people-watch-workout-videos.md)
-* [Mental Clarity and Focus](mental-clarity-focus.md)
-* [NomadLifeXP Self Growth System for Discipline, Fitness, and Mindful Living](nomadlifexp-system.md)

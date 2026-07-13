@@ -1,153 +1,88 @@
 import fs from "fs";
 import path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import html from "remark-html";
 
-/**
- * Post shape used across the app
- */
-export interface PostItem {
+export interface PostData {
     slug: string;
-    title: string;
-    description: string;
-    category: string;
-    displayPillar: string;
+    title?: string;
+    description?: string;
+    category?: string;
+    updatedAt?: string;
+    date?: string;
+    author?: string;
+    contentHtml: string;
+    relatedArticles?: string[];
+    tags?: string[];
+    displayPillar?: string;
+    year?: number;
 }
 
-const POSTS_DIR = path.join(process.cwd(), "src/content/posts");
+const postsDirectory = path.join(process.cwd(), "src/content/blog");
 
 /**
- * Safely reads directory
+ * Normalize frontmatter safely
  */
-function safeReadDir(dir: string): string[] {
-    try {
-        if (!fs.existsSync(dir)) return [];
-        return fs.readdirSync(dir);
-    } catch {
-        return [];
-    }
-}
-
-/**
- * Safely reads file
- */
-function safeReadFile(filePath: string): string {
-    try {
-        if (!fs.existsSync(filePath)) return "";
-        return fs.readFileSync(filePath, "utf8") || "";
-    } catch {
-        return "";
-    }
-}
-
-/**
- * Extract title + description from markdown safely
- */
-function parseMarkdown(content: string) {
-    const lines = content.split("\n");
-
-    const h1 = lines.find(l => l.trim().startsWith("# "));
-    const title = h1 ? h1.replace("# ", "").trim() : "Untitled Post";
-
-    const cleaned = lines
-        .map(l => l.trim())
-        .filter(
-            l =>
-                l.length > 0 &&
-                !l.startsWith("#") &&
-                !l.startsWith("---")
-        );
-
-    const description =
-        cleaned.find(l => l.length > 40) ||
-        cleaned[0] ||
-        "No description available.";
-
-    return { title, description };
+function normalizeFrontmatter(data: Record<string, any>): Partial<PostData> {
+    return {
+        title: typeof data.title === "string" ? data.title : undefined,
+        description: typeof data.description === "string" ? data.description : undefined,
+        category: typeof data.category === "string" ? data.category : undefined,
+        updatedAt: typeof data.updatedAt === "string" ? data.updatedAt : (typeof data.date === "string" ? data.date : undefined),
+        date: typeof data.date === "string" ? data.date : undefined,
+        author: typeof data.author === "string" ? data.author : undefined,
+        relatedArticles: Array.isArray(data.relatedArticles) ? data.relatedArticles : undefined,
+        tags: Array.isArray(data.tags) ? data.tags : undefined,
+        displayPillar: typeof data.displayPillar === "string" ? data.displayPillar : undefined,
+        year: typeof data.year === "number" ? data.year : undefined,
+    };
 }
 
 /**
- * Infer category safely from slug
- * (you can improve later with frontmatter if needed)
+ * Get all posts
  */
-function inferCategory(slug: string): {
-    category: string;
-    displayPillar: string;
-} {
-    if (slug.includes("fitness")) {
-        return { category: "fitness", displayPillar: "FITNESS" };
-    }
+export function getAllPosts(): PostData[] {
+    const fileNames = fs.readdirSync(postsDirectory);
 
-    if (slug.includes("yoga")) {
-        return { category: "yoga", displayPillar: "YOGA" };
-    }
+    return fileNames
+        .filter((fileName) => fileName.endsWith(".md"))
+        .map((fileName) => {
+            const slug = fileName.replace(/\.md$/, "");
+            const fullPath = path.join(postsDirectory, fileName);
+            const fileContents = fs.readFileSync(fullPath, "utf8");
 
-    if (slug.includes("discipline")) {
-        return { category: "discipline", displayPillar: "DISCIPLINE" };
-    }
+            const matterResult = matter(fileContents);
+            const processedContent = remark().use(html).processSync(matterResult.content);
+            const contentHtml = processedContent.toString();
 
-    return { category: "mindset", displayPillar: "MINDSET" };
-}
+            const frontmatter = normalizeFrontmatter(matterResult.data);
 
-/**
- * Normalize slug safety
- */
-function normalizeSlug(file: string): string {
-    return file.replace(/\.md$/, "").toLowerCase();
-}
-
-/**
- * MAIN: Get all posts safely
- */
-export function getAllPosts(): PostItem[] {
-    const files = safeReadDir(POSTS_DIR);
-
-    if (!files.length) return [];
-
-    const posts: PostItem[] = [];
-
-    for (const file of files) {
-        if (!file.endsWith(".md")) continue;
-
-        const slug = normalizeSlug(file);
-        const filePath = path.join(POSTS_DIR, file);
-
-        const raw = safeReadFile(filePath);
-        if (!raw) continue;
-
-        const { title, description } = parseMarkdown(raw);
-        const { category, displayPillar } = inferCategory(slug);
-
-        posts.push({
-            slug,
-            title,
-            description,
-            category,
-            displayPillar,
+            return {
+                slug,
+                contentHtml,
+                ...frontmatter,
+            };
         });
-    }
-
-    return posts;
 }
 
 /**
- * Get single post by slug (safe lookup)
+ * Get single post by slug
  */
-export function getPostBySlug(slug: string): PostItem | null {
-    try {
-        const posts = getAllPosts();
-        return posts.find(p => p.slug === slug) || null;
-    } catch {
-        return null;
-    }
-}
+export function getPostBySlug(slug: string): PostData | null {
+    const fullPath = path.join(postsDirectory, `${slug}.md`);
+    if (!fs.existsSync(fullPath)) return null;
 
-/**
- * Get posts by category (safe filter)
- */
-export function getPostsByCategory(category: string): PostItem[] {
-    try {
-        const posts = getAllPosts();
-        return posts.filter(p => p.category === category);
-    } catch {
-        return [];
-    }
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const matterResult = matter(fileContents);
+    const processedContent = remark().use(html).processSync(matterResult.content);
+    const contentHtml = processedContent.toString();
+
+    const frontmatter = normalizeFrontmatter(matterResult.data);
+
+    return {
+        slug,
+        contentHtml,
+        ...frontmatter,
+    };
 }

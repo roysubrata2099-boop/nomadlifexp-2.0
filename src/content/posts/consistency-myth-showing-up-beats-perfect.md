@@ -1,13 +1,19 @@
 ---
-title: 'Fitness Consistency: Build Workout Discipline That Lasts'
-category: fitness
+title: "Fitness Consistency: Build Workout Discipline That Lasts"
 slug: consistency-myth-showing-up-beats-perfect
-date: '2026-06-24'
+category: fitness
+updatedAt: "2026-06-24"
 author: NomadLifeXP
-displayPillar: FITNESS
-description: >-
+description: >
   Absolute workout consistency beats high physical intensity every single time.
-  A brutal 2-hour workout once every two weeks does practicall...
+  A brutal 2-hour workout once every two weeks does practically nothing for your body
+  compared to a focused 30-minute session executed four times a week. Transformation
+  is a game of systemic adaptation, and your body will only adapt to what it experiences
+  regularly.
+relatedArticles:
+  - build-workout-habit-outlast-motivation
+  - workout-mindset-reset
+  - motivation-independent-habits
 ---
 
 Absolute workout consistency beats high physical intensity every single time. A brutal 2-hour workout once every two weeks does practically nothing for your body compared to a focused 30-minute session executed four times a week.

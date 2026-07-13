@@ -1,109 +1,196 @@
-// src/lib/markdown.ts
-
 import fs from "fs";
 import path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import html from "remark-html";
 
-export interface PostItem {
+export interface PostData {
     slug: string;
     title: string;
     description: string;
     category: string;
-    displayPillar: string;
+    updatedAt: string;
+    date: string;
+    author: string;
     contentHtml: string;
     relatedArticles: string[];
-    [key: string]: any;
+    tags: string[];
+    displayPillar: string;
+    year?: number;
 }
 
-// 🛡️ POINTING TO THE GENUINE DATA SOURCE Manifest
-const postsDatabasePath = path.join(process.cwd(), "src/data/posts.json");
+const postsDirectory = path.join(process.cwd(), "src/content/posts");
 
-/**
- * Infer category safely from slug
- */
-function inferCategory(slug: string): { category: string; displayPillar: string } {
-    const cleanSlug = String(slug || "").toLowerCase();
-    if (cleanSlug.includes("fitness")) {
-        return { category: "fitness", displayPillar: "FITNESS" };
-    }
-    if (cleanSlug.includes("yoga")) {
-        return { category: "yoga", displayPillar: "YOGA" };
-    }
-    if (cleanSlug.includes("discipline")) {
-        return { category: "discipline", displayPillar: "DISCIPLINE" };
-    }
-    return { category: "mindset", displayPillar: "MINDSET" };
+export const slugify = (text: string): string =>
+    text
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+function renderMarkdown(content: string): string {
+    return String(
+        remark()
+            .use(html, { sanitize: false })
+            .processSync(content)
+    );
 }
 
-/**
- * Safely reads the database manifest
- */
-function readPostsManifest(): any[] {
-    try {
-        if (!fs.existsSync(postsDatabasePath)) {
-            console.warn(`[SYSTEM WARN] Database file missing at: ${postsDatabasePath}`);
-            return [];
-        }
-        const rawData = fs.readFileSync(postsDatabasePath, "utf8");
-        const parsed = JSON.parse(rawData);
-        return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-        console.error("[CRITICAL DATA FAULT] Failed to parse posts.json source:", error);
+function normalizeFrontmatter(data: any) {
+    return {
+        title:
+            typeof data.title === "string"
+                ? data.title
+                : "Untitled Post",
+
+        description:
+            typeof data.description === "string"
+                ? data.description
+                : "",
+
+        category:
+            typeof data.category === "string"
+                ? data.category
+                : "uncategorized",
+
+        updatedAt:
+            typeof data.updatedAt === "string"
+                ? data.updatedAt
+                : data.date || new Date().toISOString(),
+
+        date:
+            typeof data.date === "string"
+                ? data.date
+                : new Date().toISOString(),
+
+        author:
+            typeof data.author === "string"
+                ? data.author
+                : "Anonymous",
+
+        relatedArticles:
+            Array.isArray(data.relatedArticles)
+                ? data.relatedArticles.map(slugify)
+                : [],
+
+        tags:
+            Array.isArray(data.tags)
+                ? data.tags
+                : [],
+
+        displayPillar:
+            typeof data.displayPillar === "string"
+                ? data.displayPillar
+                : "GENERAL",
+
+        year:
+            typeof data.year === "number"
+                ? data.year
+                : undefined,
+    };
+}
+
+
+export function getAllPosts(): PostData[] {
+
+    if (!fs.existsSync(postsDirectory)) {
+        console.error(
+            `Missing posts directory: ${postsDirectory}`
+        );
         return [];
     }
+
+
+    return fs.readdirSync(postsDirectory)
+        .filter(file => file.endsWith(".md"))
+        .map(file => {
+
+            const rawSlug = file.replace(".md", "");
+
+            const slug = slugify(rawSlug);
+
+            const fullPath =
+                path.join(postsDirectory, file);
+
+
+            const source =
+                fs.readFileSync(
+                    fullPath,
+                    "utf8"
+                );
+
+
+            const parsed =
+                matter(source);
+
+
+            return {
+                slug,
+                contentHtml:
+                    renderMarkdown(parsed.content),
+
+                ...normalizeFrontmatter(
+                    parsed.data
+                )
+            };
+
+        });
 }
 
-/**
- * MAIN: Get all posts safely from manifest database
- */
-export function getAllPosts(): PostItem[] {
-    try {
-        const manifest = readPostsManifest();
 
-        return manifest
-            .filter((post) => post && typeof post.slug === "string" && post.slug.trim().length > 0)
-            .map((post) => {
-                const slug = post.slug.toLowerCase().trim();
-                const { category, displayPillar } = inferCategory(slug);
 
-                return {
-                    ...post,
-                    slug,
-                    title: typeof post.title === "string" ? post.title.trim() : "Untitled Node",
-                    description: typeof post.description === "string" ? post.description.trim() : "No description available.",
-                    category: post.category || category,
-                    displayPillar: post.displayPillar || displayPillar,
-                    contentHtml: post.contentHtml || post.content || "",
-                    relatedArticles: Array.isArray(post.relatedArticles) ? post.relatedArticles : [],
-                };
-            });
-    } catch (error) {
-        console.error("[CRITICAL DATA FAULT] Failed compiling manifest list:", error);
-        return [];
-    }
-}
+export function getPostBySlug(
+    slug: string
+): PostData | null {
 
-/**
- * Get single post by slug (safe lookup)
- */
-export function getPostBySlug(slug: string): PostItem | null {
-    try {
-        const cleanSlug = slug.replace(/[^a-z0-9-_]/g, "").toLowerCase().trim();
-        const posts = getAllPosts();
-        return posts.find((p) => p.slug === cleanSlug) || null;
-    } catch {
+
+    if (!fs.existsSync(postsDirectory)) {
         return null;
     }
-}
 
-/**
- * Get posts by category (safe filter)
- */
-export function getPostsByCategory(category: string): PostItem[] {
-    try {
-        const cleanCategory = category.toLowerCase().trim();
-        const posts = getAllPosts();
-        return posts.filter((p) => p.category === cleanCategory);
-    } catch {
-        return [];
+
+    const target =
+        slugify(slug);
+
+
+    const file =
+        fs.readdirSync(postsDirectory)
+            .find(name =>
+                name.endsWith(".md") &&
+                slugify(
+                    name.replace(".md", "")
+                ) === target
+            );
+
+
+    if (!file) {
+        return null;
     }
+
+
+    const source =
+        fs.readFileSync(
+            path.join(postsDirectory, file),
+            "utf8"
+        );
+
+
+    const parsed =
+        matter(source);
+
+
+
+    return {
+        slug: target,
+
+        contentHtml:
+            renderMarkdown(
+                parsed.content
+            ),
+
+        ...normalizeFrontmatter(
+            parsed.data
+        )
+    };
+
 }

@@ -1,31 +1,133 @@
 // src/lib/taxonomy.ts
 
-const VALID_CATEGORIES = ["discipline", "fitness", "yoga", "mindset"];
+export const VALID_CATEGORIES = [
+    "discipline",
+    "fitness",
+    "yoga",
+    "mindset",
+] as const;
+
+
+export type Category =
+    typeof VALID_CATEGORIES[number];
+
+
+
+export function slugifyCategory(
+    value: string
+): string {
+
+    return value
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+}
+
+
+
 
 /**
- * Normalizes frontmatter categories into official system tags.
- * Falls back safely based on contextual hints if the category is undefined or corrupted.
+ * Converts any incoming category value
+ * into one of the official pillar routes.
+ *
+ * Guaranteed return:
+ * discipline | fitness | yoga | mindset
  */
-export function normalizeCategory(category: unknown, title?: string): string {
-    const safeCat = typeof category === "string" ? category.toLowerCase().trim() : "";
+export function normalizeCategory(
+    category: unknown,
+    title: string = ""
+): Category {
 
-    if (VALID_CATEGORIES.includes(safeCat)) {
-        return safeCat;
+
+    const incoming =
+        typeof category === "string"
+            ? slugifyCategory(category)
+            : "";
+
+
+
+    if (
+        VALID_CATEGORIES.includes(
+            incoming as Category
+        )
+    ) {
+        return incoming as Category;
     }
 
-    // Contextual fallback mapping engine
-    const contentContext = `${safeCat} ${typeof title === 'string' ? title.toLowerCase() : ''}`;
 
-    if (contentContext.includes("yoga") || contentContext.includes("breath") || contentContext.includes("meditation")) {
-        return "yoga";
-    }
-    if (contentContext.includes("fit") || contentContext.includes("workout") || contentContext.includes("run") || contentContext.includes("body")) {
-        return "fitness";
-    }
-    if (contentContext.includes("mind") || contentContext.includes("focus") || contentContext.includes("think")) {
-        return "mindset";
+
+    const context =
+        `${incoming} ${title}`
+            .toLowerCase();
+
+
+
+    const rules: Array<{
+        category: Category;
+        keywords: string[];
+    }> = [
+
+            {
+                category: "yoga",
+                keywords: [
+                    "yoga",
+                    "asana",
+                    "breath",
+                    "pranayama",
+                    "meditation",
+                    "stretch",
+                    "mobility",
+                ],
+            },
+
+
+            {
+                category: "fitness",
+                keywords: [
+                    "fitness",
+                    "workout",
+                    "training",
+                    "exercise",
+                    "strength",
+                    "muscle",
+                    "running",
+                    "gym",
+                ],
+            },
+
+
+            {
+                category: "mindset",
+                keywords: [
+                    "mindset",
+                    "focus",
+                    "mental",
+                    "clarity",
+                    "attention",
+                    "overthinking",
+                ],
+            },
+
+
+        ];
+
+
+
+    for (const rule of rules) {
+
+        if (
+            rule.keywords.some(
+                keyword =>
+                    context.includes(keyword)
+            )
+        ) {
+            return rule.category;
+        }
+
     }
 
-    // Default system fallback engine route
+
+
     return "discipline";
 }

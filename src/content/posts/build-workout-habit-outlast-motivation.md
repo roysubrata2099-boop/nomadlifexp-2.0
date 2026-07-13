@@ -1,13 +1,19 @@
 ---
 title: How to Build a Workout Habit That Outlasts Your Motivation
-category: fitness
 slug: build-workout-habit-outlast-motivation
-date: '2026-06-26'
+category: fitness
+updatedAt: "2026-06-26"
 author: NomadLifeXP
-displayPillar: FITNESS
-description: >-
-  Motivation is a volatile emotional state. If you only exercise when you feel
-  inspired, your fitness journey will remain completely inconsi...
+description: >
+  Motivation is a volatile emotional state. If you only exercise when you feel inspired,
+  your fitness journey will remain completely inconsistent. True behavioral change occurs
+  when training transforms from an emotional decision into an automatic identity choice.
+  By engineering environmental triggers and scaling down friction points, you can construct
+  a workout habit that executes seamlessly, even on your lowest energy days.
+relatedArticles:
+  - fitness-consistency-strategy
+  - workout-mindset-reset
+  - motivation-independent-habits
 ---
 
 Motivation is a volatile emotional state. If you only exercise when you feel inspired, your fitness journey will remain completely inconsistent.

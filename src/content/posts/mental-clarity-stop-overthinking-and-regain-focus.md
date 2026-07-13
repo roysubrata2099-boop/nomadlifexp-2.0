@@ -1,16 +1,21 @@
 ---
-title: 'Mental Clarity: How to Stop Overthinking and Improve Focus'
-category: mindset
+title: "Mental Clarity: How to Stop Overthinking and Improve Focus"
 slug: mental-clarity-stop-overthinking-and-regain-focus
+category: mindset
+updatedAt: "2026-07-05"
 author: NomadLifeXP
-date: '2026-07-05'
-description: >-
+description: >
   A practical guide to reducing overthinking, improving focus, and developing
   mental clarity.
-year: 2026
-displayPillar: MINDSET
+relatedArticles:
+  - how-to-build-self-discipline
+  - rebuild-attention-span-digital-distraction
+  - stop-procrastination-permanently
+  - headstand-benefits-body-mind-safety
+  - forearm-stand-yoga-focus-confidence
 ---
--------
+
+# Mental Clarity: How to Stop Overthinking and Improve Focus
 
 A practical guide that helps you reduce mental noise, improve focus, and regain control of your attention.
 
@@ -30,7 +35,7 @@ Most people try to force intrusive thoughts away. This rarely works because the 
 * **Recognize the patterns:** Most thoughts are simply repeated patterns, not groundbreaking new ideas.
 * **De-escalate the reaction:** When you observe without reacting, thoughts lose their emotional fuel. You are no longer trapped inside them—you are watching them from the outside.
 
-> 💡 *If overthinking is actively sabotaging your ability to act consistently, read the [Self-Discipline and Consistency Guide](self-discipline-comprehensive-guide.md).*
+> 💡 *If overthinking is actively sabotaging your ability to act consistently, read the [Self-Discipline and Consistency Guide](#).*
 
 ---
 
@@ -90,9 +95,9 @@ Mental clarity is not something you randomly find—it is a capacity you train.
 
 ---
 
-### Related Articles
+## Related Articles
 
-* [Self-Discipline and Consistency Guide](self-discipline-comprehensive-guide.md)
+* [Self-Discipline and Consistency Guide](#)
 * [Rebuilding Attention Span After Digital Distraction](#)
 * [What to Do When You Feel Stuck in Life](#)
 * [Headstand for Focus and Awareness](#)

@@ -1,194 +1,182 @@
-// src/app/blog/category/[category]/page.tsx
-
-import { getAllPosts } from "@/lib/markdown";
-import { normalizeCategory } from "@/lib/taxonomy";
-import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-interface RouteParams {
+import {
+    getAllPosts,
+    slugify,
+} from "@/lib/markdown";
+
+import {
+    VALID_CATEGORIES,
+    normalizeCategory,
+} from "@/lib/taxonomy";
+
+
+type CategoryParams = {
     category: string;
+};
+
+
+interface PageProps {
+    params: Promise<CategoryParams>;
 }
 
-interface CategoryPageProps {
-    params: Promise<RouteParams>;
-    searchParams: Promise<Record<string, string | string[] | undefined>>;
+
+
+export async function generateStaticParams() {
+
+    return VALID_CATEGORIES.map(
+        (category) => ({
+            category,
+        })
+    );
+
 }
 
-const VALID_CATEGORIES = ["discipline", "fitness", "yoga", "mindset"];
 
-// 🛡️ DYNAMIC SEO ENGINE WITH RUNTIME FALLBACK PROTECTION
-export async function generateMetadata(props: CategoryPageProps): Promise<Metadata> {
-    try {
-        if (!props || !props.params) {
-            return { title: "Category Node | NomadLifeXP" };
-        }
 
-        const resolvedParams = await props.params;
-        const category = resolvedParams?.category;
-        const safeCategory = typeof category === "string" ? category.toLowerCase().trim() : "";
+export default async function CategoryPage({
+    params,
+}: PageProps) {
 
-        if (!VALID_CATEGORIES.includes(safeCategory)) {
-            return { title: "Category Not Found | NomadLifeXP" };
-        }
 
-        const displayCategory = safeCategory.charAt(0).toUpperCase() + safeCategory.slice(1);
-        const pageTitle = `${displayCategory} System Node | NomadLifeXP`;
-        const pageDescription = `Deep strategies and internal systems relating to ${displayCategory}. Explore execution layouts and performance mindsets.`;
-        const pageUrl = `https://nomadlifexp.com/blog/category/${encodeURIComponent(safeCategory)}`;
+    const { category } = await params;
 
-        return {
-            title: pageTitle,
-            description: pageDescription,
-            alternates: { canonical: pageUrl },
-            openGraph: {
-                title: pageTitle,
-                description: pageDescription,
-                url: pageUrl,
-                type: "website",
-            },
-        };
-    } catch (error) {
-        console.error("METADATA_GENERATION_FAULT:", error);
-        return { title: "Category Node | NomadLifeXP" };
-    }
-}
 
-// 🛡️ GENERATE STATIC SEGMENTS FOR OPTIMIZED BUILD COMPILATION
-export async function generateStaticParams(): Promise<RouteParams[]> {
-    return VALID_CATEGORIES.map((cat) => ({
-        category: cat,
-    }));
-}
+    const categorySlug =
+        slugify(category);
 
-// 🛡️ REINFORCED CORE COMPONENT ENGINE
-export default async function CategoryPage(props: CategoryPageProps) {
-    // 1. Safe Unwrapping & Structural Boundary Protections
-    if (!props || !props.params) {
-        return notFound();
-    }
 
-    let resolvedParams: RouteParams;
-    try {
-        resolvedParams = await props.params;
-    } catch (err) {
-        console.error("PARAM_RESOLUTION_FAILURE:", err);
-        return notFound();
-    }
 
-    const category = resolvedParams?.category;
-    const safeCategoryParam = typeof category === "string" ? category.toLowerCase().trim() : "";
-
-    // Instantly catch bad path modifications or unmapped URLs
-    if (!VALID_CATEGORIES.includes(safeCategoryParam)) {
+    if (
+        !VALID_CATEGORIES.includes(
+            categorySlug as typeof VALID_CATEGORIES[number]
+        )
+    ) {
         notFound();
     }
 
-    // 2. Data Gathering Layer
-    const rawPosts = getAllPosts();
-    const safePosts = Array.isArray(rawPosts) ? rawPosts : [];
 
-    // Filter and normalize nodes based on the target category path
-    const categoryFilteredPosts = safePosts
-        .filter(p => p && p.slug)
-        .map((p) => {
-            const titleText = p && typeof p.title === "string" ? p.title.trim() : "";
-            const rawCategory = p && typeof p.category === "string" ? p.category : "";
 
-            // Pass properties to central parsing standard
-            const verifiedCategory = normalizeCategory(rawCategory, titleText);
-            const generatedSlug = typeof p.slug === "string" ? p.slug.replace(/\.md$/, "").toLowerCase().trim() : "";
+    const posts =
+        getAllPosts();
 
-            return {
-                slug: generatedSlug,
-                title: titleText || "Untitled Operational Node",
-                description: p && typeof p.description === "string" ? p.description.trim() : "",
-                category: verifiedCategory,
-            };
-        })
-        .filter((post) => post.category === safeCategoryParam);
 
-    const displayCategoryName = safeCategoryParam.toUpperCase();
+
+    const filteredPosts =
+        posts.filter((post) => {
+
+
+            const postCategory =
+                normalizeCategory(
+                    post.category,
+                    post.title
+                );
+
+
+            return (
+                slugify(postCategory)
+                === categorySlug
+            );
+
+
+        });
+
+
+
+    if (
+        filteredPosts.length === 0
+    ) {
+        notFound();
+    }
+
+
+
+    const displayTitle =
+        categorySlug
+            .charAt(0)
+            .toUpperCase()
+        +
+        categorySlug.slice(1);
+
+
 
     return (
-        <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans overflow-x-hidden">
-            {/* Cyber Grid Vector Effects */}
-            <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none z-0" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
-            <main className="max-w-5xl mx-auto px-6 pt-36 pb-32 relative z-10">
-                <div className="mb-8">
-                    <Link
-                        href="/blog"
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
+        <main className="max-w-5xl mx-auto px-6 py-12">
+
+
+            <Link
+                href="/blog"
+                className="text-sm text-cyan-600 hover:underline"
+            >
+                ← Back to all blogs
+            </Link>
+
+
+
+            <header className="mt-8 mb-10">
+
+
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+                    {displayTitle}
+                </h1>
+
+
+                <p className="mt-3 text-gray-600 dark:text-gray-400">
+                    Articles from the {displayTitle} pillar.
+                </p>
+
+
+            </header>
+
+
+
+
+            <section className="space-y-6">
+
+
+                {filteredPosts.map((post) => (
+
+                    <article
+                        key={post.slug}
+                        className="rounded-xl border p-6 bg-white dark:bg-zinc-900"
                     >
-                        <span className="transition-transform duration-200 group-hover:-translate-x-1">&larr;</span> Return to System Map Registry
-                    </Link>
-                </div>
 
-                <header className="mb-16 space-y-4 border-b border-neutral-900 pb-8">
-                    <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                        <p className="text-xs uppercase tracking-[0.4em] font-mono text-cyan-400">
-                            NomadLifeXP // Category Dynamic Index
+
+                        <Link
+                            href={`/blog/posts/${slugify(post.slug)}`}
+                            className="text-2xl font-semibold text-cyan-600 hover:underline"
+                        >
+                            {post.title}
+                        </Link>
+
+
+
+                        <p className="mt-3 text-gray-600 dark:text-gray-300">
+                            {post.description}
                         </p>
-                    </div>
-                    <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white uppercase leading-none">
-                        Category Node: <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">{displayCategoryName}</span>
-                    </h1>
-                </header>
 
-                <div className="space-y-6">
-                    <h2 className="text-xs font-mono tracking-[0.3em] uppercase text-neutral-500">
-                        Mapped Module Records ({categoryFilteredPosts.length})
-                    </h2>
 
-                    {categoryFilteredPosts.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {categoryFilteredPosts.map((post, idx) => {
-                                const safePostSlug = encodeURIComponent(post.slug);
 
-                                return (
-                                    <div
-                                        key={post.slug || `cat-post-${idx}`}
-                                        className="border border-neutral-900 bg-neutral-950/40 p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300 rounded-none"
-                                    >
-                                        <div className="space-y-4 mb-6">
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-[9px] font-mono tracking-widest text-cyan-400 bg-cyan-950/30 px-2 py-0.5 uppercase border border-cyan-900/40">
-                                                    {post.category}
-                                                </span>
-                                                <span className="text-neutral-700 font-mono text-[9px] select-none">
-                                                    CAT_NODE_0{idx + 1}
-                                                </span>
-                                            </div>
-                                            <h3 className="text-white text-base font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors duration-200 line-clamp-2">
-                                                {post.title}
-                                            </h3>
-                                            <p className="text-xs font-light text-neutral-400 leading-relaxed line-clamp-2">
-                                                {post.description || "No supplemental manifest parameters indexable."}
-                                            </p>
-                                        </div>
+                        <Link
+                            href={`/blog/posts/${slugify(post.slug)}`}
+                            className="inline-block mt-4 text-sm text-cyan-600 hover:underline"
+                        >
+                            Read full article →
+                        </Link>
 
-                                        <Link
-                                            href={`/blog/posts/${safePostSlug}`}
-                                            className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 transition-colors group/link"
-                                        >
-                                            Access Analysis <span className="transition-transform duration-200 group-hover/link:translate-x-1">&rarr;</span>
-                                        </Link>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    ) : (
-                        <div className="border border-dashed border-neutral-900 p-12 text-center bg-neutral-950/20">
-                            <p className="font-mono text-xs text-neutral-600 uppercase tracking-widest">
-                                // No localized documents mapped to this dynamic index node.
-                            </p>
-                        </div>
-                    )}
-                </div>
-            </main>
-        </div>
+
+                    </article>
+
+                ))}
+
+
+            </section>
+
+
+        </main>
+
     );
+
 }

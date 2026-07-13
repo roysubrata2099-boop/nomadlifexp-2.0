@@ -1,19 +1,19 @@
 ---
-title: What Happens When You Try Forearm Stand Yoga for Focus and Confidence
-description: >-
+title: "What Happens When You Try Forearm Stand Yoga for Focus and Confidence"
+slug: forearm-stand-yoga-focus-confidence
+category: yoga
+updatedAt: "2026-07-01"
+author: NomadLifeXP
+description: >
   Discover how the challenging Forearm Stand (Pincha Mayurasana) builds profound
   mental focus, unlocks authentic confidence, and cultivates deep emotional
   control through body awareness.
-slug: forearm-stand-yoga-focus-confidence
-date: 2026-07-01T00:00:00.000Z
-tags:
-  - Yoga
-  - Inversions
-  - Forearm Stand
-  - Focus
-  - Confidence
-category: mindset
-displayPillar: MINDSET
+relatedArticles:
+  - headstand-yoga-balance-strength
+  - forward-bending-yoga-stress-relief
+  - fitness-consistency-myth-showing-up
+  - mental-clarity-inner-awareness
+  - stuck-in-life-reset
 ---
 
 # What Happens When You Try Forearm Stand Yoga for Focus and Confidence
@@ -70,13 +70,3 @@ The more you try to force balance through raw muscular tension, the more unstabl
 Sometimes mental clarity does not start in the mind. It starts in the body. 
 
 Train your body. Calm your mind. Strengthen your focus. Everything else follows.
-
----
-
-## Related Articles
-
-* [Headstand Yoga Guide for Balance and Strength](headstand-benefits-body-mind-safety.md)
-* [Forward Bending Yoga for Flexibility and Release](forward-bending-yoga-stress-relief.md)
-* [Building Fitness Consistency for Long-Term Growth](self-discipline-consistency-guide.md)
-* [Mental Clarity Practices for Focus and Awareness](mental-clarity-inner-awareness.md)
-* [What to Do When You Feel Stuck in Life](what-to-do-when-stuck-in-life.md)

@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// 100% PROTECTED: Decoupled navigation matrix routing endpoints independently
+// 🛡️ 100% FIXED: Explicitly bound to your true system path structures
 const MAIN_NAVIGATION_NODES = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-  { label: "Discipline System", href: "/discipline-system" }, // Bound explicitly to system path
+  { label: "Discipline System", href: "/discipline" }, // Fixed pathway target mapping
 ];
 
 function NomadLifeXPMaster() {
@@ -72,15 +72,15 @@ function NomadLifeXPMaster() {
             NomadLifeXP // Transformation Architecture
           </span>
 
-          {/* 🛡️ 100% BULLETPROOF: Precision mapped parameters pointing to the main blog redesign */}
+          {/* 🛡️ 100% FIXED: Precision mapped routes pointing right to the new isolated pillars */}
           <div className="text-xs tracking-[0.25em] uppercase font-semibold text-cyan-300 mt-2 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
-            <Link href="/blog?cat=discipline" className="hover:text-white transition-colors duration-200">Discipline</Link>
+            <Link href="/discipline" className="hover:text-white transition-colors duration-200">Discipline</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/blog?cat=fitness" className="hover:text-white transition-colors duration-200">Fitness</Link>
+            <Link href="/fitness" className="hover:text-white transition-colors duration-200">Fitness</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/blog?cat=yoga" className="hover:text-white transition-colors duration-200">Yoga</Link>
+            <Link href="/yoga" className="hover:text-white transition-colors duration-200">Yoga</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/blog?cat=mindset" className="hover:text-white transition-colors duration-200">Mindset</Link>
+            <Link href="/mindset" className="hover:text-white transition-colors duration-200">Mindset</Link>
           </div>
         </div>
 
@@ -111,7 +111,7 @@ function NomadLifeXPMaster() {
           </Link>
         </div>
 
-        {/* 📹 STACKED FIRST: ORIGINAL YOGA VIDEO RUNTIME ASSET */}
+        {/* 📹 YOGA VIDEO RUNTIME ASSET */}
         <div className="w-full aspect-video border border-white/10 rounded-2xl overflow-hidden mb-8">
           <video
             className="w-full h-full object-cover"
@@ -136,7 +136,7 @@ function NomadLifeXPMaster() {
           </p>
         </div>
 
-        {/* 🛡️ STACKED SECOND: SEO STRUCTURAL AUTHORITY MATRIX */}
+        {/* SEO STRUCTURAL AUTHORITY MATRIX */}
         <section className="w-full text-left grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-b border-white/5 py-16 mb-12 text-sm font-sans text-slate-400 leading-relaxed">
 
           <div className="space-y-3">
@@ -232,6 +232,7 @@ function NomadLifeXPMaster() {
   );
 }
 
+// Complete Valid Default Export Object to fix Next 15 component crash
 export default function Page() {
   return <NomadLifeXPMaster />;
 }

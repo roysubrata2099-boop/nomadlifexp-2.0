@@ -2,12 +2,6 @@ import { getAllPosts, type PostData } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
 import Link from "next/link";
 
-const slugify = (text: string) =>
-    text
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)+/g, "");
 
 interface SafePost {
     slug: string;
@@ -16,243 +10,446 @@ interface SafePost {
     category: string;
 }
 
+
+const CATEGORY_ROUTES: Record<string, string> = {
+    discipline: "/discipline",
+    fitness: "/fitness",
+    yoga: "/yoga",
+    mindset: "/mindset",
+};
+
+
+const slugify = (text: string): string =>
+    text
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+
+
 export default function BlogPage() {
-    const posts: SafePost[] = getAllPosts().map((post: PostData) => {
-        const category = normalizeCategory(
-            post.category ?? "uncategorized",
-            post.title ?? ""
+
+
+    const rawPosts = getAllPosts() || [];
+
+
+    const posts: SafePost[] = rawPosts.map(
+        (post: PostData) => {
+
+            const category =
+                normalizeCategory(
+                    post.category ?? "",
+                    post.title ?? ""
+                );
+
+
+            return {
+
+                slug:
+                    slugify(
+                        post.slug ?? ""
+                    ),
+
+                title:
+                    post.title?.trim() ||
+                    "Untitled Knowledge Node",
+
+
+                description:
+                    post.description?.trim() ||
+                    "System description unavailable.",
+
+
+                category:
+                    slugify(category),
+
+            };
+
+        }
+    )
+        .filter(
+            post =>
+                post.slug.length > 0
         );
 
-        return {
-            slug: slugify(post.slug),
-            title: post.title ?? "Untitled Post",
-            description:
-                post.description ?? "No description available.",
-            category: slugify(category),
-        };
-    });
 
-    if (!posts.length) {
-        return (
-            <main className="max-w-6xl mx-auto px-6 py-12">
 
-                <header className="mb-10">
+    return (
+
+        <div
+            className="
+            relative
+            min-h-screen
+            bg-black
+            text-white
+            overflow-hidden
+            antialiased
+            "
+        >
+
+
+            {/* Ambient System Glow */}
+
+            <div
+                className="
+                absolute
+                top-0
+                left-1/3
+                w-[500px]
+                h-[500px]
+                bg-cyan-500/10
+                blur-[150px]
+                rounded-full
+                pointer-events-none
+                "
+            />
+
+
+            <div
+                className="
+                absolute
+                inset-0
+                bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)]
+                bg-[size:4rem_4rem]
+                pointer-events-none
+                "
+            />
+
+
+
+            <main
+                className="
+                relative
+                z-10
+                max-w-7xl
+                mx-auto
+                px-6
+                py-32
+                "
+            >
+
+
+
+                {/* Navigation */}
+
+                <nav
+                    className="
+                    flex
+                    gap-5
+                    border-b
+                    border-neutral-900
+                    pb-6
+                    mb-16
+                    font-mono
+                    text-xs
+                    tracking-[0.3em]
+                    uppercase
+                    "
+                >
 
                     <Link
                         href="/"
                         className="
-                            inline-flex
-                            items-center
-                            gap-2
-                            mb-8
-                            text-xs
-                            font-mono
-                            uppercase
-                            tracking-[0.3em]
-                            text-zinc-500
-                            hover:text-cyan-400
-                            transition-colors
+                        text-neutral-500
+                        hover:text-cyan-400
                         "
                     >
-                        <span aria-hidden="true">←</span>
-                        Return Home Node
+                        ← RETURN_TO_HOME
                     </Link>
 
-                    <p
-                        className="
-                            mb-4
-                            text-xs
-                            font-mono
-                            uppercase
-                            tracking-[0.4em]
-                            text-cyan-400
-                        "
-                    >
-                        NomadLifeXP // System Log Registry
-                    </p>
 
-                    <h1
-                        className="
-                            text-4xl
-                            font-bold
-                            text-white
-                        "
-                    >
-                        Self-Development
-                        <br />
-                        <span className="text-cyan-400">
-                            System Map
-                        </span>
-                    </h1>
-
-                </header>
-
-
-                <p className="mt-4 text-zinc-400">
-                    No system nodes found.
-                </p>
-
-            </main>
-        );
-    }
-
-
-    return (
-        <main className="max-w-6xl mx-auto px-6 py-12">
-
-            <header className="mb-10">
-
-                <Link
-                    href="/"
-                    className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        mb-8
-                        text-xs
-                        font-mono
-                        uppercase
-                        tracking-[0.3em]
-                        text-zinc-500
-                        hover:text-cyan-400
-                        transition-colors
-                    "
-                >
-                    <span aria-hidden="true">←</span>
-                    Return Home Node
-                </Link>
-
-
-                <p
-                    className="
-                        mb-4
-                        text-xs
-                        font-mono
-                        uppercase
-                        tracking-[0.4em]
-                        text-cyan-400
-                    "
-                >
-                    NomadLifeXP // System Log Registry
-                </p>
-
-
-                <h1
-                    className="
-                        text-4xl
-                        font-bold
-                        text-white
-                    "
-                >
-                    Self-Development
-                    <br />
-                    <span className="text-cyan-400">
-                        System Map
+                    <span className="text-neutral-800">
+                        /
                     </span>
-                </h1>
 
 
-                <p
+                    <span className="text-cyan-400">
+                        SYSTEM_DIRECTORY
+                    </span>
+
+
+                </nav>
+
+
+
+
+
+                {/* Hero */}
+
+                <header
                     className="
-                        mt-3
-                        text-zinc-400
+                    max-w-5xl
+                    mb-24
                     "
                 >
-                    Explore structured systems covering discipline, fitness,
-                    yoga, mindset, and personal evolution.
-                </p>
 
-            </header>
-
-
-            <section className="space-y-6">
-
-                {posts.map((post) => (
-
-                    <article
-                        key={post.slug}
+                    <div
                         className="
-                            rounded-2xl
-                            border
-                            border-zinc-800
-                            bg-zinc-950
-                            p-6
-                            hover:border-cyan-500/60
-                            transition-all
+                        flex
+                        items-center
+                        gap-3
+                        mb-6
                         "
                     >
 
-                        <Link
-                            href={`/blog/posts/${post.slug}`}
+                        <span
                             className="
-                                block
-                                text-2xl
-                                font-bold
-                                text-white
-                                hover:text-cyan-400
-                                transition-colors
+                            h-2
+                            w-2
+                            rounded-full
+                            bg-cyan-400
+                            animate-pulse
                             "
-                        >
-                            {post.title}
-                        </Link>
+                        />
 
 
                         <p
                             className="
-                                mt-3
-                                text-zinc-300
-                                leading-relaxed
+                            font-mono
+                            text-xs
+                            uppercase
+                            tracking-[0.4em]
+                            text-cyan-400
                             "
                         >
-                            {post.description}
+                            NomadLifeXP // Transformation Architecture
                         </p>
 
 
-                        <div className="mt-5">
+                    </div>
 
-                            <Link
-                                href={`/blog/category/${post.category}`}
+
+
+                    <h1
+                        className="
+                        text-5xl
+                        md:text-7xl
+                        font-black
+                        uppercase
+                        leading-none
+                        tracking-tight
+                        "
+                    >
+
+                        SELF DEVELOPMENT
+
+                        <br />
+
+                        <span
+                            className="
+                            bg-gradient-to-r
+                            from-white
+                            via-neutral-400
+                            to-cyan-400
+                            bg-clip-text
+                            text-transparent
+                            "
+                        >
+                            SYSTEM DATABASE
+                        </span>
+
+
+                    </h1>
+
+
+
+                    <p
+                        className="
+                        mt-8
+                        max-w-3xl
+                        text-neutral-400
+                        font-mono
+                        leading-relaxed
+                        "
+                    >
+                        Explore structured transformation systems covering
+                        discipline, fitness, yoga, mindset, and personal evolution.
+                        Each knowledge module connects directly to its operational pillar.
+                    </p>
+
+
+                </header>
+
+
+
+
+
+                {/* Blog Database */}
+
+                <section>
+
+
+                    <h2
+                        className="
+                        mb-8
+                        font-mono
+                        text-xs
+                        uppercase
+                        tracking-[0.4em]
+                        text-neutral-500
+                        "
+                    >
+                        // ACTIVE KNOWLEDGE MODULES
+                    </h2>
+
+
+
+
+                    {posts.length === 0 ? (
+
+                        <div
+                            className="
+                            border
+                            border-neutral-800
+                            bg-neutral-950
+                            p-8
+                            "
+                        >
+
+                            <p
                                 className="
-                                    inline-flex
-                                    rounded-full
-                                    px-3
-                                    py-1
-                                    text-sm
-                                    font-medium
-                                    bg-cyan-950
-                                    text-cyan-300
-                                    hover:bg-cyan-900
-                                    transition-colors
+                                text-neutral-400
+                                font-mono
+                                text-sm
                                 "
                             >
-                                Category:{" "}
-                                {post.category.replace(/-/g, " ")}
-                            </Link>
+                                [SYSTEM_INFO] No Blog Nodes Available.
+                            </p>
 
                         </div>
 
 
-                        <Link
-                            href={`/blog/posts/${post.slug}`}
+                    ) : (
+
+
+                        <div
                             className="
-                                inline-block
-                                mt-5
-                                text-sm
-                                font-semibold
-                                text-cyan-400
-                                hover:underline
+                            grid
+                            md:grid-cols-2
+                            gap-6
                             "
                         >
-                            Read full article →
-                        </Link>
 
 
-                    </article>
+                            {posts.map(
+                                post => (
 
-                ))}
+                                    <article
+                                        key={post.slug}
+                                        className="
+                                    border
+                                    border-neutral-800
+                                    bg-neutral-950/50
+                                    p-8
+                                    hover:border-cyan-500/40
+                                    transition
+                                    "
+                                    >
 
-            </section>
 
-        </main>
+                                        <h3
+                                            className="
+                                        text-xl
+                                        font-bold
+                                        uppercase
+                                        mb-4
+                                        "
+                                        >
+
+                                            {post.title}
+
+                                        </h3>
+
+
+
+                                        <p
+                                            className="
+                                        text-sm
+                                        text-neutral-400
+                                        leading-relaxed
+                                        mb-6
+                                        "
+                                        >
+
+                                            {post.description}
+
+                                        </p>
+
+
+
+
+                                        <Link
+
+                                            href={
+                                                CATEGORY_ROUTES[
+                                                post.category
+                                                ] || "/blog"
+                                            }
+
+                                            className="
+                                        inline-flex
+                                        mb-6
+                                        rounded-full
+                                        px-3
+                                        py-1
+                                        text-xs
+                                        uppercase
+                                        font-mono
+                                        bg-cyan-950
+                                        text-cyan-300
+                                        hover:bg-cyan-900
+                                        "
+                                        >
+
+                                            {post.category}
+
+                                        </Link>
+
+
+
+
+
+                                        <Link
+
+                                            href={`/blog/posts/${post.slug}`}
+
+                                            className="
+                                        block
+                                        text-xs
+                                        font-mono
+                                        uppercase
+                                        text-cyan-400
+                                        hover:text-cyan-300
+                                        "
+                                        >
+
+                                            READ ARTICLE →
+
+                                        </Link>
+
+
+
+                                    </article>
+
+                                ))}
+
+
+                        </div>
+
+                    )}
+
+
+
+                </section>
+
+
+
+            </main>
+
+
+        </div>
+
     );
+
 }

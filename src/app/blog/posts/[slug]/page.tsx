@@ -14,11 +14,9 @@ import {
 import RelatedArticles from "@/components/RelatedArticles";
 
 
-
 type PageParams = {
     slug: string;
 };
-
 
 
 interface PageProps {
@@ -27,16 +25,37 @@ interface PageProps {
 
 
 
+function safeText(value: unknown): string {
+    return typeof value === "string"
+        ? value.trim()
+        : "";
+}
+
+
+
 
 export async function generateStaticParams() {
 
-    const posts =
-        getAllPosts();
+    try {
+
+        const posts = getAllPosts();
+
+        if (!Array.isArray(posts)) {
+            return [];
+        }
 
 
-    return posts.map((post) => ({
-        slug: slugify(post.slug),
-    }));
+        return posts
+            .filter(post => post && post.slug)
+            .map(post => ({
+                slug: slugify(post.slug),
+            }));
+
+    } catch {
+
+        return [];
+
+    }
 
 }
 
@@ -49,19 +68,20 @@ export async function generateMetadata({
 }: PageProps) {
 
 
-    const { slug } =
-        await params;
+    const { slug } = await params;
 
 
     const post =
-        getPostBySlug(slug);
+        getPostBySlug(
+            slugify(slug)
+        );
 
 
 
     if (!post) {
 
         return {
-            title: "Article Not Found",
+            title: "Article Not Found | NomadLifeXP",
         };
 
     }
@@ -70,10 +90,14 @@ export async function generateMetadata({
 
     return {
 
-        title: post.title,
+        title:
+            safeText(post.title)
+            ||
+            "NomadLifeXP Article",
+
 
         description:
-            post.description,
+            safeText(post.description),
 
     };
 
@@ -118,36 +142,83 @@ export default async function BlogPostPage({
 
     const category =
         normalizeCategory(
-            post.category,
-            post.title
+            post.category ?? "",
+            post.title ?? ""
         );
 
 
 
     return (
 
-        <article className="max-w-4xl mx-auto px-6 py-12">
+        <article
+            className="
+            max-w-4xl
+            mx-auto
+            px-6
+            py-12
+            "
+        >
 
 
             <Link
+
                 href={`/blog/category/${slugify(category)}`}
-                className="text-sm text-cyan-600 hover:underline"
+
+                className="
+                text-sm
+                text-cyan-600
+                hover:underline
+                "
+
             >
+
                 ← Back to {category}
+
             </Link>
 
 
 
-            <header className="mt-6 mb-8 border-b pb-6">
 
 
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-                    {post.title}
+            <header
+                className="
+                mt-6
+                mb-8
+                border-b
+                pb-6
+                "
+            >
+
+
+                <h1
+                    className="
+                    text-4xl
+                    font-bold
+                    text-gray-900
+                    dark:text-white
+                    "
+                >
+
+                    {safeText(post.title)
+                        ||
+                        "Untitled Article"
+                    }
+
                 </h1>
 
 
-                <p className="mt-4 text-xl text-gray-600 dark:text-gray-400">
-                    {post.description}
+
+                <p
+                    className="
+                    mt-4
+                    text-xl
+                    text-gray-600
+                    dark:text-gray-400
+                    "
+                >
+
+                    {safeText(post.description)}
+
                 </p>
 
 
@@ -156,39 +227,74 @@ export default async function BlogPostPage({
 
 
 
+
             <div
-                className="prose dark:prose-invert max-w-none"
+
+                className="
+                prose
+                dark:prose-invert
+                max-w-none
+                "
+
                 dangerouslySetInnerHTML={{
-                    __html: post.contentHtml,
+
+                    __html:
+                        safeText(post.contentHtml)
+
                 }}
+
             />
+
 
 
 
 
             <RelatedArticles
-                currentSlug={post.slug}
-                relatedSlugs={
-                    post.relatedArticles ?? []
+
+                currentSlug={
+                    post.slug
                 }
+
+                relatedSlugs={
+                    Array.isArray(post.relatedArticles)
+                        ?
+                        post.relatedArticles
+                        :
+                        []
+                }
+
             />
 
 
 
 
 
-            <footer className="mt-12 pt-8 border-t">
-
+            <footer
+                className="
+                mt-12
+                pt-8
+                border-t
+                "
+            >
 
                 <Link
+
                     href="/blog"
-                    className="text-cyan-600 hover:underline"
+
+                    className="
+                    text-cyan-600
+                    hover:underline
+                    "
+
                 >
+
                     Return to all blogs →
+
                 </Link>
 
 
             </footer>
+
 
 
         </article>

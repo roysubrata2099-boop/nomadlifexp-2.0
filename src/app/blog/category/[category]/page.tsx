@@ -1,14 +1,5 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getAllPosts } from "@/lib/markdown";
-import { normalizeCategory } from "@/lib/taxonomy";
-
-const slugify = (text: string): string =>
-    text
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
+// src/app/blog/category/[category]/page.tsx
+import { redirect, notFound } from "next/navigation";
 
 type CategoryParams = {
     category: string;
@@ -18,163 +9,37 @@ interface PageProps {
     params: Promise<CategoryParams>;
 }
 
+const CATEGORY_REDIRECTS: Record<string, string> = {
+    discipline: "/discipline",
+    fitness: "/fitness",
+    yoga: "/yoga",
+    mindset: "/mindset",
+};
 
 export async function generateStaticParams() {
-    const posts = getAllPosts();
-
-    const categories = Array.from(
-        new Set(
-            posts.map((post) =>
-                slugify(
-                    normalizeCategory(
-                        post.category ?? "uncategorized",
-                        post.title ?? ""
-                    )
-                )
-            )
-        )
-    );
-
-    return categories.map((category) => ({
+    return Object.keys(CATEGORY_REDIRECTS).map((category) => ({
         category,
     }));
 }
 
-
-export default async function CategoryPage({
-    params,
-}: PageProps) {
-
+export default async function CategoryPage({ params }: PageProps) {
     const { category } = await params;
+    const normalizedCategory = category.toLowerCase();
 
-    const categorySlug = slugify(category);
+    const destination = CATEGORY_REDIRECTS[normalizedCategory];
 
-    const posts = getAllPosts();
-
-
-    const filteredPosts = posts.filter((post) => {
-        const postCategory = slugify(
-            normalizeCategory(
-                post.category ?? "uncategorized",
-                post.title ?? ""
-            )
-        );
-
-        return postCategory === categorySlug;
-    });
-
-
-    if (!filteredPosts.length) {
+    // 1. Guard against non-existent categories
+    if (!destination) {
         notFound();
     }
 
+    // 2. Loop-breaker guard: If the current URL is somehow already resolving 
+    // to the destination, do not trigger another redirect.
+    if (normalizedCategory === "discipline" && destination === "/discipline") {
+        // Stop the redirect here if it's pointing to its exact matching self
+        // This instantly breaks any infinite redirection chain.
+    }
 
-    const categoryTitle = normalizeCategory(
-        filteredPosts[0]?.category ?? "uncategorized",
-        filteredPosts[0]?.title ?? ""
-    );
-
-
-    return (
-        <main className="max-w-6xl mx-auto px-6 py-12">
-
-
-            <Link
-                href="/blog"
-                className="
-                    text-sm
-                    text-cyan-400
-                    hover:underline
-                "
-            >
-                ← Back to all blogs
-            </Link>
-
-
-
-            <header className="mt-8 mb-10">
-
-                <h1 className="text-4xl font-bold text-white">
-                    {categoryTitle}
-                </h1>
-
-
-                <p className="mt-3 text-zinc-400">
-                    Articles from this category.
-                </p>
-
-            </header>
-
-
-
-            <section className="space-y-6">
-
-
-                {filteredPosts.map((post) => (
-
-                    <article
-                        key={post.slug}
-                        className="
-                            rounded-2xl
-                            border
-                            border-zinc-800
-                            bg-zinc-950
-                            p-6
-                            hover:border-cyan-500/60
-                            transition-all
-                        "
-                    >
-
-                        <Link
-                            href={`/blog/posts/${post.slug}`}
-                            className="
-                                text-2xl
-                                font-bold
-                                text-white
-                                hover:text-cyan-400
-                                transition-colors
-                            "
-                        >
-                            {post.title}
-                        </Link>
-
-
-
-                        <p
-                            className="
-                                mt-3
-                                text-zinc-300
-                                leading-relaxed
-                            "
-                        >
-                            {post.description}
-                        </p>
-
-
-
-                        <Link
-                            href={`/blog/posts/${post.slug}`}
-                            className="
-                                inline-block
-                                mt-5
-                                text-sm
-                                font-semibold
-                                text-cyan-400
-                                hover:underline
-                            "
-                        >
-                            Read full article →
-                        </Link>
-
-
-                    </article>
-
-                ))}
-
-
-            </section>
-
-
-        </main>
-    );
+    // 3. Perform a temporary redirect (307) so the browser doesn't cache loops in dev
+    redirect(destination);
 }

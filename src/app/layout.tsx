@@ -20,7 +20,8 @@ export const metadata: Metadata = {
         default: "NomadLifeXP // Human Optimization Platform",
         template: "%s | NomadLifeXP",
     },
-    description: "A framework for somatic mechanics, focus systems, deep discipline, and cognitive architecture.",
+    // 🔥 FIXED: Extended description to 153 characters to perfectly satisfy Bing & Google SERP length requirements.
+    description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
     keywords: ["Somatic Mechanics", "Discipline Systems", "Mindset", "Yoga", "Cognitive Architecture", "Bio-Performance"],
     authors: [{ name: "NomadLifeXP Team" }],
     creator: "NomadLifeXP",
@@ -31,7 +32,8 @@ export const metadata: Metadata = {
         url: "https://nomadlifexp.com",
         siteName: "NomadLifeXP",
         title: "NomadLifeXP // Human Optimization Platform",
-        description: "A framework for somatic mechanics, focus systems, deep discipline, and cognitive architecture.",
+        // 🔥 FIXED: Synced OpenGraph to match the optimized 153-character meta length.
+        description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
         images: [
             {
                 url: "/og-main.jpg",
@@ -44,7 +46,8 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "NomadLifeXP // Human Optimization Platform",
-        description: "A framework for somatic mechanics, focus systems, deep discipline, and cognitive architecture.",
+        // 🔥 FIXED: Synced Twitter Card snippet.
+        description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
         images: ["/og-main.jpg"],
     },
     robots: {

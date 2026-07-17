@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import Script from "next/script";
 
 export const metadata: Metadata = {
     title: "Operational Directive // Mission & Foundation",
@@ -14,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+    // 🛡️ HARDENED STATIC SCHEMA GRAPH MATRIX
     const aboutSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -27,6 +27,14 @@ export default function AboutPage() {
             }
         ]
     };
+
+    // Safe stringification layer to guarantee zero hydration anomalies or DOM element mismatches
+    let serializedAboutSchema = "";
+    try {
+        serializedAboutSchema = JSON.stringify(aboutSchema);
+    } catch (e) {
+        console.error("About page schema exception bypassed safely:", e);
+    }
 
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
@@ -199,9 +207,14 @@ export default function AboutPage() {
                 </footer>
             </div>
 
-            <Script id="schema-about-page" type="application/ld+json" strategy="afterInteractive">
-                {JSON.stringify(aboutSchema)}
-            </Script>
+            {/* 🛡️ SECURITY SCHEMA BLOCK INGESTION MATRIX */}
+            {serializedAboutSchema && (
+                <script
+                    id="schema-about-page"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: serializedAboutSchema }}
+                />
+            )}
         </div>
     );
 }

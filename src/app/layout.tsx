@@ -69,7 +69,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     // 🛡️ RE-ENGINEERED 10/10 SCHEMA METADATA GRAPH ENTITY MATRIX
-    // Written explicitly as a static constant object to avoid hydration mismatches or dynamic runtime evaluation script breaks.
+    // Written explicitly as a static constant object with type safety to prevent structural compilation breaks.
     const jsonLdSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -78,10 +78,11 @@ export default function RootLayout({
                 "@id": "https://nomadlifexp.com/#organization",
                 "name": "NomadLifeXP",
                 "url": "https://nomadlifexp.com",
+                // ✅ FIXED: Updated logo schema mapping to use the dedicated brand asset path
                 "logo": {
                     "@type": "ImageObject",
                     "@id": "https://nomadlifexp.com/#logo",
-                    "url": "https://nomadlifexp.com/og-main.jpg",
+                    "url": "https://nomadlifexp.com/images/logo.png",
                     "caption": "NomadLifeXP"
                 },
                 "image": {
@@ -105,19 +106,27 @@ export default function RootLayout({
         ]
     };
 
+    // Safely serialize the JSON object to catch unforeseen formatting errors during compilation
+    let serializedSchema = "";
+    try {
+        serializedSchema = JSON.stringify(jsonLdSchema);
+    } catch (e) {
+        console.error("Schema serialization bypass triggered:", e);
+    }
+
     return (
         <html lang="en" className="scroll-smooth">
             <body className="antialiased bg-black text-white">
                 {children}
 
                 {/* 🛡️ INJECTED 10/10 AI VISIBILITY & GEO UNDERPINNINGS */}
-                <Script
-                    id="structured-data-core-architecture"
-                    type="application/ld+json"
-                    strategy="afterInteractive"
-                >
-                    {JSON.stringify(jsonLdSchema)}
-                </Script>
+                {serializedSchema && (
+                    <script
+                        id="structured-data-core-architecture"
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: serializedSchema }}
+                    />
+                )}
 
                 {/* Microsoft Clarity Analytics Tracking Infrastructure */}
                 <Script id="microsoft-clarity-init" strategy="afterInteractive">

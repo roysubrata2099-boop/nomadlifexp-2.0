@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import {
     getAllPosts,
@@ -67,6 +67,21 @@ export async function generateMetadata({
         return {
             title: `${exactTitle} | NomadLifeXP`,
             description: exactDesc,
+            alternates: {
+                canonical: `https://nomadlifexp.com/blog/posts/${slugify(slug)}`,
+            },
+            openGraph: {
+                title: `${exactTitle} | NomadLifeXP`,
+                description: exactDesc,
+                url: `https://nomadlifexp.com/blog/posts/${slugify(slug)}`,
+                type: "article",
+                siteName: "NomadLifeXP",
+            },
+            twitter: {
+                card: "summary_large_image",
+                title: `${exactTitle} | NomadLifeXP`,
+                description: exactDesc,
+            },
         };
     } catch {
         return {
@@ -105,90 +120,116 @@ export default async function BlogPostPage({
         category = "General";
     }
 
+    const cleanTitle = safeText(post.title) || "Untitled Article";
+    const cleanDescription = safeText(post.description) || "Transformation systems and insights.";
+    const currentPostSlug = typeof post.slug === "string" ? post.slug : slug;
+
+    // Structured Graph Metadata Setup
+    const jsonLdGraph = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Article",
+                "@id": `https://nomadlifexp.com/blog/posts/${slugify(currentPostSlug)}#article`,
+                "isPartOf": {
+                    "@type": "WebPage",
+                    "@id": `https://nomadlifexp.com/blog/posts/${slugify(currentPostSlug)}`
+                },
+                "headline": cleanTitle,
+                "description": cleanDescription,
+                "inLanguage": "en-US",
+                "mainEntityOfPage": `https://nomadlifexp.com/blog/posts/${slugify(currentPostSlug)}`,
+                "publisher": {
+                    "@type": "Organization",
+                    "@id": "https://nomadlifexp.com/#organization",
+                    "name": "NomadLifeXP",
+                    "url": "https://nomadlifexp.com"
+                },
+                "author": {
+                    "@type": "Person",
+                    "@id": "https://nomadlifexp.com/#author",
+                    "name": "NomadLifeXP Editorial Team"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": `https://nomadlifexp.com/blog/posts/${slugify(currentPostSlug)}#breadcrumb`,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://nomadlifexp.com"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Blog",
+                        "item": "https://nomadlifexp.com/blog"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": category,
+                        "item": `https://nomadlifexp.com/blog/category/${slugify(category)}`
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
+                        "name": cleanTitle,
+                        "item": `https://nomadlifexp.com/blog/posts/${slugify(currentPostSlug)}`
+                    }
+                ]
+            }
+        ]
+    };
+
     return (
-        <article
-            className="
-            max-w-4xl
-            mx-auto
-            px-6
-            py-12
-            "
-        >
-            <Link
-                href={`/blog/category/${slugify(category || "general")}`}
-                className="
-                text-sm
-                text-cyan-600
-                hover:underline
-                "
-            >
-                ← Back to {category}
-            </Link>
-
-            <header
-                className="
-                mt-6
-                mb-8
-                border-b
-                pb-6
-                "
-            >
-                <h1
-                    className="
-                    text-4xl
-                    font-bold
-                    text-gray-900
-                    dark:text-white
-                    "
-                >
-                    {safeText(post.title) || "Untitled Article"}
-                </h1>
-
-                <p
-                    className="
-                    mt-4
-                    text-xl
-                    text-gray-600
-                    dark:text-gray-400
-                    "
-                >
-                    {safeText(post.description)}
-                </p>
-            </header>
-
-            <div
-                className="
-                prose
-                dark:prose-invert
-                max-w-none
-                "
-                dangerouslySetInnerHTML={{
-                    __html: safeText(post.contentHtml)
-                }}
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
             />
 
-            <RelatedArticles
-                currentSlug={typeof post.slug === "string" ? post.slug : ""}
-                relatedSlugs={Array.isArray(post.relatedArticles) ? post.relatedArticles : []}
-            />
-
-            <footer
-                className="
-                mt-12
-                pt-8
-                border-t
-                "
-            >
+            <article className="max-w-4xl mx-auto px-6 py-12">
                 <Link
-                    href="/blog"
-                    className="
-                    text-cyan-600
-                    hover:underline
-                    "
+                    href={`/blog/category/${slugify(category || "general")}`}
+                    className="text-sm text-cyan-600 hover:underline inline-flex items-center gap-1"
                 >
-                    Return to all blogs →
+                    <span>&larr;</span> Back to {category}
                 </Link>
-            </footer>
-        </article>
+
+                <header className="mt-6 mb-8 border-b pb-6">
+                    <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+                        {cleanTitle}
+                    </h1>
+
+                    <p className="mt-4 text-xl text-gray-600 dark:text-gray-400">
+                        {cleanDescription}
+                    </p>
+                </header>
+
+                <div
+                    className="prose dark:prose-invert max-w-none"
+                    dangerouslySetInnerHTML={{
+                        __html: safeText(post.contentHtml)
+                    }}
+                />
+
+                <RelatedArticles
+                    currentSlug={typeof post.slug === "string" ? post.slug : ""}
+                    relatedSlugs={Array.isArray(post.relatedArticles) ? post.relatedArticles : []}
+                />
+
+                <footer className="mt-12 pt-8 border-t">
+                    <Link
+                        href="/blog"
+                        className="text-cyan-600 hover:underline inline-flex items-center gap-1"
+                    >
+                        Return to all blogs <span>&rarr;</span>
+                    </Link>
+                </footer>
+            </article>
+        </>
     );
 }

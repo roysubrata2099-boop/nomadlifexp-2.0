@@ -1,5 +1,7 @@
 // src/app/blog/category/[category]/page.tsx
+
 import { permanentRedirect, notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 type CategoryParams = {
     category: string;
@@ -28,9 +30,19 @@ export async function generateStaticParams() {
     }
 }
 
+// Insulates metadata compilation hooks from breaking before runtime evaluation
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        robots: {
+            index: false,
+            follow: true,
+        },
+    };
+}
+
 export default async function CategoryPage({ params }: PageProps) {
     // 1. Safe Parameter Unwrapping
-    const resolvedParams = await params.catch(() => null);
+    const resolvedParams = await params;
 
     if (!resolvedParams || !resolvedParams.category) {
         notFound();

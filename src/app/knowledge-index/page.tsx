@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset &amp; Yoga | NomadLifeXP",
+    title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset & Yoga | NomadLifeXP",
     description: "Explore the NomadLifeXP Human Optimization Masterclass Library. Learn self discipline, mental clarity, fitness consistency, yoga practices, habit systems, and personal development frameworks.",
     alternates: {
         canonical: "https://nomadlifexp.com/knowledge-index",
@@ -30,8 +30,6 @@ export const metadata: Metadata = {
     },
 };
 
-// FIXED: Cleaned up Next.js 15 page props. Because this is a static index page, 
-// we only need searchParams declared as a Promise.
 interface PageProps {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
@@ -45,14 +43,12 @@ function normalize(value: unknown): string {
 }
 
 export default async function KnowledgeIndexPage(props: PageProps) {
-    // FIXED: Correctly awaiting the searchParams promise from props
     const resolvedSearchParams = await props.searchParams;
     const query = normalize(resolvedSearchParams?.q);
     const category = normalize(resolvedSearchParams?.cat) || "all";
 
     const rawPosts = getAllPosts();
 
-    // FIXED: Maintained the original functional array type mapping to eliminate syntax errors
     const posts = Array.isArray(rawPosts)
         ? (rawPosts as Record<string, any>[]).map((post) => ({
             slug: typeof post.slug === "string" ? post.slug : "",
@@ -77,27 +73,50 @@ export default async function KnowledgeIndexPage(props: PageProps) {
         return acc;
     }, {});
 
-    const jsonLd = {
+    // 🛡️ GRAPH-UNIFIED METADATA STRUCTURE
+    const unifiedJsonLd = {
         "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "@id": "https://nomadlifexp.com/knowledge-index",
-        "name": "NomadLifeXP Human Optimization Masterclass Library",
-        "description": "A structured educational collection covering discipline, mindset, fitness, yoga and personal development.",
-        "url": "https://nomadlifexp.com/knowledge-index",
-        "about": ["Self Discipline", "Mental Clarity", "Fitness", "Yoga", "Personal Development", "Human Optimization"],
-        "publisher": {
-            "@type": "Organization",
-            "name": "NomadLifeXP",
-            "url": "https://nomadlifexp.com",
-        },
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": "https://nomadlifexp.com/knowledge-index/#collectionpage",
+                "url": "https://nomadlifexp.com/knowledge-index",
+                "name": "NomadLifeXP Human Optimization Masterclass Library",
+                "description": "A structured educational collection covering discipline, mindset, fitness, yoga and personal development.",
+                "isPartOf": { "@id": "https://nomadlifexp.com/#website" },
+                "about": [
+                    "Self Discipline",
+                    "Mental Clarity",
+                    "Fitness",
+                    "Yoga",
+                    "Personal Development",
+                    "Human Optimization"
+                ],
+                "publisher": {
+                    "@type": "Organization",
+                    "@id": "https://nomadlifexp.com/#organization",
+                    "name": "NomadLifeXP",
+                    "url": "https://nomadlifexp.com"
+                }
+            }
+        ]
     };
+
+    let serializedJsonLd = "";
+    try {
+        serializedJsonLd = JSON.stringify(unifiedJsonLd);
+    } catch (e) {
+        console.error("Knowledge index schema processing bypassed:", e);
+    }
 
     return (
         <div className="relative min-h-screen bg-[#03060f] text-[#E2E8F0] antialiased overflow-hidden">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            {serializedJsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: serializedJsonLd }}
+                />
+            )}
 
             <div className="absolute top-0 right-1/4 w-[700px] h-[700px] bg-cyan-500/[0.04] rounded-full blur-[180px] pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff01_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)] pointer-events-none" />
@@ -194,10 +213,10 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                         {categories.map((cat) => (
                             <Link
                                 key={cat}
-                                href={`/knowledge-index?cat=${cat}`}
+                                href={`/knowledge-index?cat=${cat}${query ? `&q=${encodeURIComponent(query)}` : ""}`}
                                 className={`px-4 py-2 border text-xs font-mono uppercase tracking-widest transition ${category === cat
-                                    ? "bg-cyan-400 text-black border-cyan-400"
-                                    : "border-neutral-900 text-neutral-500 hover:text-white"
+                                        ? "bg-cyan-400 text-black border-cyan-400"
+                                        : "border-neutral-900 text-neutral-500 hover:text-white"
                                     }`}
                             >
                                 {cat}

@@ -1,9 +1,8 @@
+// src/app/start-here/page.tsx
+
 import type { Metadata } from "next";
 import Link from "next/link";
 
-// ==========================================
-// 1. SAFELY DEFINED METADATA
-// ==========================================
 export const metadata: Metadata = {
     title: "System Initialization Protocol | NomadLifeXP",
     description: "Initialize the NomadLifeXP personal operating system. Build self-discipline, functional fitness strength, mobility, and razor-sharp focus through structured daily execution protocols.",
@@ -46,13 +45,9 @@ interface DeploymentStep {
     route: string;
     linkTitle: string;
     input: string;
-    output: string[];
+    output: readonly string[];
 }
 
-// ==========================================
-// 2. BULLETPROOF ROUTING PAYLOAD
-// ==========================================
-// Standard clean routes. Next.js handles these safely out of the box.
 const DEPLOYMENT_STEPS: readonly DeploymentStep[] = [
     {
         id: "STEP_01",
@@ -97,9 +92,6 @@ const DEPLOYMENT_STEPS: readonly DeploymentStep[] = [
 ] as const;
 
 export default function StartHerePage() {
-    // ==========================================
-    // 3. VALIDATED DATA STRUCTURES (SEO Graph)
-    // ==========================================
     const graphSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -158,19 +150,16 @@ export default function StartHerePage() {
 
     return (
         <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
-            {/* Safe injection of structured JSON-LD data */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(graphSchema) }}
             />
 
-            {/* Background elements optimized for rendering fallback stability */}
             <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none motion-reduce:hidden" aria-hidden="true" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" aria-hidden="true" />
 
             <main className="max-w-5xl mx-auto px-6 pt-24 md:pt-36 pb-32 relative z-10 animate-[fadeIn_0.5s_ease-out] motion-reduce:animate-none">
 
-                {/* Directory Navigation Links */}
                 <nav className="mb-12 flex flex-wrap items-center gap-4 border-b border-neutral-900/60 pb-6 text-xs font-mono uppercase tracking-widest text-neutral-500" aria-label="System Directory Navigation">
                     <Link href="/" className="hover:text-cyan-400 transition-colors duration-200 group focus:outline-none focus:ring-1 focus:ring-cyan-500 px-1 py-0.5">
                         <span className="inline-block transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none" aria-hidden="true">&larr;</span> SYSTEM_CORE_HOME
@@ -200,15 +189,14 @@ export default function StartHerePage() {
                                 A personal operating system designed to build predictable habits, physical strength, and mental focus through simple, structured daily protocols.
                             </p>
                             <p className="text-xs sm:text-sm md:text-base text-neutral-400 font-light leading-relaxed">
-                                True progress isn&apos;t built on temporary emotional motivation. NomadLifeXP takes the guesswork out of self-improvement by replacing erratic choices with non-negotiable micro-routines that automate your growth.
+                                True progress isn't built on temporary emotional motivation. NomadLifeXP takes the guesswork out of self-improvement by replacing erratic choices with non-negotiable micro-routines that automate your growth.
                             </p>
                             <p className="font-mono text-xs text-cyan-400/80 italic tracking-wider pt-1">
-                                &ldquo;Evolution requires execution.&rdquo;
+                                "Evolution requires execution."
                             </p>
                         </div>
                     </header>
 
-                    {/* Matrix Status Readout Block */}
                     <aside className="w-full border border-neutral-800 bg-neutral-950/80 p-6 font-mono text-xs rounded-none backdrop-blur-sm space-y-6 md:animate-[fadeIn_0.7s_ease-out] motion-reduce:animate-none">
                         <div>
                             <p className="text-neutral-600 uppercase tracking-widest text-[10px] mb-2 font-bold">// USER STATUS MATRIX</p>
@@ -248,7 +236,6 @@ export default function StartHerePage() {
                     </aside>
                 </div>
 
-                {/* Diagnostic Decorator Block */}
                 <div className="border border-neutral-900 bg-neutral-950/40 p-4 sm:p-5 font-mono text-xs text-neutral-500 flex flex-wrap gap-x-6 gap-y-2 mb-16 rounded-none backdrop-blur-sm">
                     <div className="flex items-center gap-2">
                         <span className="text-cyan-400 font-bold" aria-hidden="true">✓</span> INITIALIZE_SYSTEM_SUCCESS
@@ -261,7 +248,6 @@ export default function StartHerePage() {
                     </div>
                 </div>
 
-                {/* Content Layer (Balances the DOM elements vs Text Content Ratio safely) */}
                 <section className="space-y-8 mb-16 text-neutral-300 text-sm sm:text-base leading-relaxed font-light border-t border-neutral-900 pt-12">
                     <h2 className="text-xl font-black uppercase tracking-tight text-white font-mono">
                         // The Core Engineering Principles Behind the System
@@ -274,7 +260,6 @@ export default function StartHerePage() {
                     </p>
                 </section>
 
-                {/* Origin Narrative Layer */}
                 <div className="grid md:grid-cols-2 gap-12 mb-20 border-t border-b border-neutral-900/60 py-12">
                     <section className="space-y-4" aria-labelledby="origin-heading">
                         <div className="space-y-1">
@@ -313,7 +298,6 @@ export default function StartHerePage() {
                     </section>
                 </div>
 
-                {/* Progress Tracking Cards */}
                 <section className="space-y-6 mb-20" aria-label="System Framework Progression Tracks">
                     <header className="border-b border-neutral-900 pb-3">
                         <p className="font-mono text-xs uppercase tracking-widest text-neutral-500">
@@ -373,7 +357,6 @@ export default function StartHerePage() {
                     </div>
                 </section>
 
-                {/* Final Execution CTA */}
                 <section className="border border-neutral-900 bg-neutral-950/80 p-8 md:p-12 text-center space-y-6 relative rounded-none backdrop-blur-sm overflow-hidden" aria-label="Active System Trigger Deployment">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" aria-hidden="true" />
                     <div className="space-y-2">

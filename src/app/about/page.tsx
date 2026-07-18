@@ -5,11 +5,17 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Operational Directive // Mission & Foundation",
+    title: "Operational Directive // Mission & Foundation | NomadLifeXP",
     description: "The core philosophy, underlying methodology, and existential directive of the NomadLifeXP platform.",
     alternates: {
         canonical: "https://nomadlifexp.com/about",
-    }
+    },
+    openGraph: {
+        title: "Operational Directive // Mission & Core Foundation Blueprint",
+        description: "The core philosophy, underlying methodology, and existential directive of the NomadLifeXP platform.",
+        url: "https://nomadlifexp.com/about",
+        type: "website",
+    },
 };
 
 export default function AboutPage() {
@@ -53,7 +59,7 @@ export default function AboutPage() {
                         href="/"
                         className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
                     >
-                        <span className="transition-transform duration-200 group-hover:-translate-x-1">&larr;</span>
+                        <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">&larr;</span>
                         RETURN_TO_HOME
                     </Link>
                 </div>
@@ -105,13 +111,23 @@ export default function AboutPage() {
                         </div>
 
                         {/* 2. System Mission */}
-                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5">
-                            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
-                                // 02 / SYSTEM MISSION
-                            </h3>
-                            <p className="text-xs text-neutral-400 leading-relaxed">
-                                To engineer an open-source framework that strips out cognitive noise and reclaims deep focus, physical capacity, and self-directed sovereignty for high-performance individuals.
-                            </p>
+                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5 flex flex-col justify-between">
+                            <div className="space-y-2">
+                                <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
+                                    // 02 / SYSTEM MISSION
+                                </h3>
+                                <p className="text-xs text-neutral-400 leading-relaxed">
+                                    To engineer an open-source framework that strips out cognitive noise and reclaims deep focus, physical capacity, and self-directed sovereignty for high-performance individuals.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t border-neutral-900/60 mt-2">
+                                <Link
+                                    href="/start-here"
+                                    className="text-[11px] text-amber-500 uppercase tracking-wider font-bold hover:text-white transition-colors duration-200 inline-flex items-center gap-1"
+                                >
+                                    Initialize Setup Protocol &rarr;
+                                </Link>
+                            </div>
                         </div>
 
                         {/* 3. Operational Philosophy */}
@@ -125,13 +141,23 @@ export default function AboutPage() {
                         </div>
 
                         {/* 4. Biological Methodology */}
-                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5">
-                            <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
-                                // 04 / BIOLOGICAL METHODOLOGY
-                            </h3>
-                            <p className="text-xs text-neutral-400 leading-relaxed">
-                                Integrating physiological resistance training, neuromuscular coordination, breath-driven focus control, and targeted mental frameworks to lower systematic friction and accelerate cognitive output.
-                            </p>
+                        <div className="space-y-2 border border-neutral-900 bg-neutral-950/20 p-5 flex flex-col justify-between">
+                            <div className="space-y-2">
+                                <h3 className="text-xs font-bold text-white uppercase tracking-wider text-cyan-400">
+                                    // 04 / BIOLOGICAL METHODOLOGY
+                                </h3>
+                                <p className="text-xs text-neutral-400 leading-relaxed">
+                                    Integrating physiological resistance training, neuromuscular coordination, breath-driven focus control, and targeted mental frameworks to lower systematic friction and accelerate cognitive output.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t border-neutral-900/60 mt-2">
+                                <Link
+                                    href="/knowledge-index"
+                                    className="text-[11px] text-cyan-400 uppercase tracking-wider font-bold hover:text-white transition-colors duration-200 inline-flex items-center gap-1"
+                                >
+                                    Access Optimization Indexes &rarr;
+                                </Link>
+                            </div>
                         </div>
                     </div>
 

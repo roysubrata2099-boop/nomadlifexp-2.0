@@ -1,3 +1,5 @@
+// src/app/blog/posts/[slug]/page.tsx
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -22,6 +24,13 @@ interface PageProps {
     params: Promise<PageParams>;
 }
 
+// 100% Secure System Isolation Shield Matrix
+const RESERVED_SYSTEM_ROUTES = new Set([
+    "discipline-system",
+    "discipline-system-preview",
+    "dashboard"
+]);
+
 function safeText(value: unknown): string {
     return typeof value === "string" ? value.trim() : "";
 }
@@ -37,6 +46,8 @@ export async function generateStaticParams() {
 
         return posts
             .filter(post => post && typeof post.slug === "string")
+            // Absolute Compile-Time Protection Guard
+            .filter(post => !RESERVED_SYSTEM_ROUTES.has(slugify(post.slug)))
             .map(post => ({
                 slug: slugify(post.slug),
             }));
@@ -51,9 +62,14 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
     try {
         const { slug } = await params;
-        if (!slug) return { title: "Article | NomadLifeXP" };
+        const normalizedSlug = slugify(slug || "");
 
-        const post = getPostBySlug(slugify(slug));
+        // Return blank object instantly if system path requested to prevent dynamic collision
+        if (!normalizedSlug || RESERVED_SYSTEM_ROUTES.has(normalizedSlug)) {
+            return {};
+        }
+
+        const post = getPostBySlug(normalizedSlug);
 
         if (!post) {
             return {
@@ -68,12 +84,12 @@ export async function generateMetadata({
             title: `${exactTitle} | NomadLifeXP`,
             description: exactDesc,
             alternates: {
-                canonical: `https://nomadlifexp.com/blog/posts/${slugify(slug)}`,
+                canonical: `https://nomadlifexp.com/blog/posts/${normalizedSlug}`,
             },
             openGraph: {
                 title: `${exactTitle} | NomadLifeXP`,
                 description: exactDesc,
-                url: `https://nomadlifexp.com/blog/posts/${slugify(slug)}`,
+                url: `https://nomadlifexp.com/blog/posts/${normalizedSlug}`,
                 type: "article",
                 siteName: "NomadLifeXP",
             },
@@ -94,14 +110,16 @@ export default async function BlogPostPage({
     params,
 }: PageProps) {
     const { slug } = await params;
+    const normalizedSlug = slugify(slug || "");
 
-    if (!slug) {
+    // 100% Bulletproof Runtime Guard: Step aside if hitting system parameters
+    if (!normalizedSlug || RESERVED_SYSTEM_ROUTES.has(normalizedSlug)) {
         notFound();
     }
 
     let post;
     try {
-        post = getPostBySlug(slugify(slug));
+        post = getPostBySlug(normalizedSlug);
     } catch {
         notFound();
     }

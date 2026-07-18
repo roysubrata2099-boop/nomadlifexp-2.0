@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Somatic Habit Engineering &amp; Discipline System | NomadLifeXP",
+    title: "Somatic Habit Engineering & Discipline System | NomadLifeXP",
     description:
         "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
     alternates: {
         canonical: "https://nomadlifexp.com/discipline-system",
     },
     openGraph: {
-        title: "Somatic Habit Engineering &amp; Discipline System | NomadLifeXP",
+        title: "Discipline System & Somatic Habit Engineering Protocol | NomadLifeXP",
         description:
             "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
         url: "https://nomadlifexp.com/discipline-system",
@@ -173,7 +173,7 @@ export default function DisciplineSystemPage() {
                         <div className="group pt-2">
                             <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    01 / Digital Deliberation &amp; Attention Protection
+                                    01 / Digital Deliberation & Attention Protection
                                 </h3>
                                 <p className="text-sm font-light leading-relaxed text-neutral-400">
                                     Zero data ingestion before the morning somatic mobility sequence. High-leverage engineering blocks execute within a strict zero-notification chamber.
@@ -185,7 +185,7 @@ export default function DisciplineSystemPage() {
                         <div className="group pt-8">
                             <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    02 / Structural Anchors &amp; Metabolic Baselines
+                                    02 / Structural Anchors & Metabolic Baselines
                                 </h3>
                                 <p className="text-sm font-light leading-relaxed text-neutral-400">
                                     Daily functional thresholds are fixed structural components. Daily conditioning cycles do not negotiate with shifting schedules or environmental friction.
@@ -197,7 +197,7 @@ export default function DisciplineSystemPage() {
                         <div className="group pt-8">
                             <div className="space-y-2 max-w-5xl">
                                 <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    03 / Evening Deceleration &amp; Biofeedback Analysis
+                                    03 / Evening Deceleration & Biofeedback Analysis
                                 </h3>
                                 <p className="text-sm font-light leading-relaxed text-neutral-400">
                                     All dynamic displays drop to zero emission bounds by 21:30. Core cognitive performance logs finalize before initializing the neurological recovery window.

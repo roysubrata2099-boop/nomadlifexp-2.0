@@ -9,7 +9,7 @@ export const metadata: Metadata = {
         canonical: "https://nomadlifexp.com/recalibration",
     },
     openGraph: {
-        title: "Somatic Recalibration System // Phase III Network | NomadLifeXP",
+        title: "Phase III Network Overview // Somatic Recalibration Protocol | NomadLifeXP",
         description: "The operational override mechanism designed to reset neural baselines, clear cognitive accumulation, and restore optimal physiological alignment for high-velocity output.",
         url: "https://nomadlifexp.com/recalibration",
         type: "website",

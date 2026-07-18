@@ -53,7 +53,7 @@ export default function AboutPage() {
                         href="/"
                         className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors duration-200 group"
                     >
-                        <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
+                        <span className="transition-transform duration-200 group-hover:-translate-x-1">&larr;</span>
                         RETURN_TO_HOME
                     </Link>
                 </div>

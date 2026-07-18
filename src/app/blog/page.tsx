@@ -1,7 +1,13 @@
 import { getAllPosts, type PostData } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
 import Link from "next/link";
+import { Metadata } from "next";
 
+// 1. Immutable SEO Matrix (Overwrites global layout title cleanly)
+export const metadata: Metadata = {
+    title: "Self-Development System Database | NomadLifeXP",
+    description: "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
+};
 
 interface SafePost {
     slug: string;
@@ -10,7 +16,6 @@ interface SafePost {
     category: string;
 }
 
-
 const CATEGORY_ROUTES: Record<string, string> = {
     discipline: "/discipline",
     fitness: "/fitness",
@@ -18,65 +23,44 @@ const CATEGORY_ROUTES: Record<string, string> = {
     mindset: "/mindset",
 };
 
-
-const slugify = (text: string): string =>
-    text
+// Bulletproof URL Safe Normalizer
+const slugify = (text: string): string => {
+    if (!text) return "";
+    return text
         .toLowerCase()
         .trim()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
-
-
+};
 
 export default function BlogPage() {
+    // Hardened defensive mapping to eliminate runtime array reference crashes
+    const rawPosts = getAllPosts();
+    const safeRawPosts = Array.isArray(rawPosts) ? rawPosts : [];
 
+    const posts: SafePost[] = safeRawPosts
+        .map((post: PostData) => {
+            if (!post) return null;
 
-    const rawPosts = getAllPosts() || [];
+            // Fallback parameters to prevent undefined string matching crashes
+            const fallbackTitle = post.title?.trim() || "Untitled Knowledge Node";
+            const fallbackCategory = post.category?.trim() || "Uncategorized";
 
-
-    const posts: SafePost[] = rawPosts.map(
-        (post: PostData) => {
-
-            const category =
-                normalizeCategory(
-                    post.category ?? "",
-                    post.title ?? ""
-                );
-
+            const normalizedCategoryName = normalizeCategory(
+                fallbackCategory,
+                fallbackTitle
+            );
 
             return {
-
-                slug:
-                    slugify(
-                        post.slug ?? ""
-                    ),
-
-                title:
-                    post.title?.trim() ||
-                    "Untitled Knowledge Node",
-
-
-                description:
-                    post.description?.trim() ||
-                    "System description unavailable.",
-
-
-                category:
-                    slugify(category),
-
+                slug: slugify(post.slug || fallbackTitle),
+                title: fallbackTitle,
+                description: post.description?.trim() || "System description unavailable.",
+                category: slugify(normalizedCategoryName || "general"),
             };
-
-        }
-    )
-        .filter(
-            post =>
-                post.slug.length > 0
-        );
-
-
+        })
+        .filter((post): post is SafePost => post !== null && post.slug.length > 0);
 
     return (
-
         <div
             className="
             relative
@@ -87,10 +71,7 @@ export default function BlogPage() {
             antialiased
             "
         >
-
-
             {/* Ambient System Glow */}
-
             <div
                 className="
                 absolute
@@ -105,7 +86,6 @@ export default function BlogPage() {
                 "
             />
 
-
             <div
                 className="
                 absolute
@@ -115,8 +95,6 @@ export default function BlogPage() {
                 pointer-events-none
                 "
             />
-
-
 
             <main
                 className="
@@ -128,11 +106,7 @@ export default function BlogPage() {
                 py-32
                 "
             >
-
-
-
                 {/* Navigation */}
-
                 <nav
                     className="
                     flex
@@ -147,7 +121,6 @@ export default function BlogPage() {
                     uppercase
                     "
                 >
-
                     <Link
                         href="/"
                         className="
@@ -158,68 +131,19 @@ export default function BlogPage() {
                         ← RETURN_TO_HOME
                     </Link>
 
+                    <span className="text-neutral-800">/</span>
 
-                    <span className="text-neutral-800">
-                        /
-                    </span>
-
-
-                    <span className="text-cyan-400">
-                        SYSTEM_DIRECTORY
-                    </span>
-
-
+                    <span className="text-cyan-400">SYSTEM_DIRECTORY</span>
                 </nav>
 
-
-
-
-
                 {/* Hero */}
-
-                <header
-                    className="
-                    max-w-5xl
-                    mb-24
-                    "
-                >
-
-                    <div
-                        className="
-                        flex
-                        items-center
-                        gap-3
-                        mb-6
-                        "
-                    >
-
-                        <span
-                            className="
-                            h-2
-                            w-2
-                            rounded-full
-                            bg-cyan-400
-                            animate-pulse
-                            "
-                        />
-
-
-                        <p
-                            className="
-                            font-mono
-                            text-xs
-                            uppercase
-                            tracking-[0.4em]
-                            text-cyan-400
-                            "
-                        >
+                <header className="max-w-5xl mb-24">
+                    <div className="flex items-center gap-3 mb-6">
+                        <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                        <p className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                             NomadLifeXP // Transformation Architecture
                         </p>
-
-
                     </div>
-
-
 
                     <h1
                         className="
@@ -231,11 +155,8 @@ export default function BlogPage() {
                         tracking-tight
                         "
                     >
-
                         SELF DEVELOPMENT
-
                         <br />
-
                         <span
                             className="
                             bg-gradient-to-r
@@ -248,96 +169,33 @@ export default function BlogPage() {
                         >
                             SYSTEM DATABASE
                         </span>
-
-
                     </h1>
 
-
-
-                    <p
-                        className="
-                        mt-8
-                        max-w-3xl
-                        text-neutral-400
-                        font-mono
-                        leading-relaxed
-                        "
-                    >
+                    <p className="mt-8 max-w-3xl text-neutral-400 font-mono leading-relaxed">
                         Explore structured transformation systems covering
                         discipline, fitness, yoga, mindset, and personal evolution.
                         Each knowledge module connects directly to its operational pillar.
                     </p>
-
-
                 </header>
 
-
-
-
-
                 {/* Blog Database */}
-
                 <section>
-
-
-                    <h2
-                        className="
-                        mb-8
-                        font-mono
-                        text-xs
-                        uppercase
-                        tracking-[0.4em]
-                        text-neutral-500
-                        "
-                    >
+                    <h2 className="mb-8 font-mono text-xs uppercase tracking-[0.4em] text-neutral-500">
                         // ACTIVE KNOWLEDGE MODULES
                     </h2>
 
-
-
-
                     {posts.length === 0 ? (
-
-                        <div
-                            className="
-                            border
-                            border-neutral-800
-                            bg-neutral-950
-                            p-8
-                            "
-                        >
-
-                            <p
-                                className="
-                                text-neutral-400
-                                font-mono
-                                text-sm
-                                "
-                            >
+                        <div className="border border-neutral-800 bg-neutral-950 p-8">
+                            <p className="text-neutral-400 font-mono text-sm">
                                 [SYSTEM_INFO] No Blog Nodes Available.
                             </p>
-
                         </div>
-
-
                     ) : (
-
-
-                        <div
-                            className="
-                            grid
-                            md:grid-cols-2
-                            gap-6
-                            "
-                        >
-
-
-                            {posts.map(
-                                post => (
-
-                                    <article
-                                        key={post.slug}
-                                        className="
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {posts.map((post) => (
+                                <article
+                                    key={post.slug}
+                                    className="
                                     border
                                     border-neutral-800
                                     bg-neutral-950/50
@@ -345,49 +203,18 @@ export default function BlogPage() {
                                     hover:border-cyan-500/40
                                     transition
                                     "
-                                    >
+                                >
+                                    <h3 className="text-xl font-bold uppercase mb-4">
+                                        {post.title}
+                                    </h3>
 
+                                    <p className="text-sm text-neutral-400 leading-relaxed mb-6">
+                                        {post.description}
+                                    </p>
 
-                                        <h3
-                                            className="
-                                        text-xl
-                                        font-bold
-                                        uppercase
-                                        mb-4
-                                        "
-                                        >
-
-                                            {post.title}
-
-                                        </h3>
-
-
-
-                                        <p
-                                            className="
-                                        text-sm
-                                        text-neutral-400
-                                        leading-relaxed
-                                        mb-6
-                                        "
-                                        >
-
-                                            {post.description}
-
-                                        </p>
-
-
-
-
-                                        <Link
-
-                                            href={
-                                                CATEGORY_ROUTES[
-                                                post.category
-                                                ] || "/blog"
-                                            }
-
-                                            className="
+                                    <Link
+                                        href={CATEGORY_ROUTES[post.category] || "/blog"}
+                                        className="
                                         inline-flex
                                         mb-6
                                         rounded-full
@@ -400,21 +227,13 @@ export default function BlogPage() {
                                         text-cyan-300
                                         hover:bg-cyan-900
                                         "
-                                        >
+                                    >
+                                        {post.category}
+                                    </Link>
 
-                                            {post.category}
-
-                                        </Link>
-
-
-
-
-
-                                        <Link
-
-                                            href={`/blog/posts/${post.slug}`}
-
-                                            className="
+                                    <Link
+                                        href={`/blog/posts/${post.slug}`}
+                                        className="
                                         block
                                         text-xs
                                         font-mono
@@ -422,34 +241,15 @@ export default function BlogPage() {
                                         text-cyan-400
                                         hover:text-cyan-300
                                         "
-                                        >
-
-                                            READ ARTICLE →
-
-                                        </Link>
-
-
-
-                                    </article>
-
-                                ))}
-
-
+                                    >
+                                        READ ARTICLE →
+                                    </Link>
+                                </article>
+                            ))}
                         </div>
-
                     )}
-
-
-
                 </section>
-
-
-
             </main>
-
-
         </div>
-
     );
-
 }

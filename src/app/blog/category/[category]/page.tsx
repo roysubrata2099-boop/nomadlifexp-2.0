@@ -19,25 +19,38 @@ const CATEGORY_REDIRECTS: Record<string, string> = {
 
 // Generates static paths at build time for optimal Next.js performance
 export async function generateStaticParams() {
-    return Object.keys(CATEGORY_REDIRECTS).map((category) => ({
-        category,
-    }));
+    try {
+        return Object.keys(CATEGORY_REDIRECTS).map((category) => ({
+            category,
+        }));
+    } catch {
+        return [];
+    }
 }
 
 export default async function CategoryPage({ params }: PageProps) {
-    // Await the params safely as required by Next.js 15+
-    const { category } = await params;
+    // 1. Safe Parameter Unwrapping
+    const resolvedParams = await params.catch(() => null);
 
-    // Normalize input to prevent case-sensitivity bugs (e.g., /Fitness vs /fitness)
-    const normalizedCategory = category.toLowerCase();
+    if (!resolvedParams || !resolvedParams.category) {
+        notFound();
+    }
+
+    // 2. Bulletproof String Normalization Guard
+    let normalizedCategory = "";
+    try {
+        normalizedCategory = String(resolvedParams.category).toLowerCase().trim();
+    } catch {
+        notFound();
+    }
 
     const destination = CATEGORY_REDIRECTS[normalizedCategory];
 
-    // 1. Guard against non-existent categories (safely returns 404)
+    // 3. Guard against non-existent categories (safely returns 404)
     if (!destination) {
         notFound();
     }
 
-    // 2. Perform a clean 308 Permanent Redirect for optimal SEO juice
+    // 4. Perform a clean 308 Permanent Redirect for optimal SEO juice
     permanentRedirect(destination);
 }

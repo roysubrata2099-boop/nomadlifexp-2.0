@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset & Yoga | NomadLifeXP",
+    title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset &amp; Yoga | NomadLifeXP",
     description: "Explore the NomadLifeXP Human Optimization Masterclass Library. Learn self discipline, mental clarity, fitness consistency, yoga practices, habit systems, and personal development frameworks.",
     alternates: {
         canonical: "https://nomadlifexp.com/knowledge-index",
@@ -52,7 +52,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
 
     const rawPosts = getAllPosts();
 
-    // FIXED: Simplified the type assertion to an array of objects to fix the parser break
+    // FIXED: Maintained the original functional array type mapping to eliminate syntax errors
     const posts = Array.isArray(rawPosts)
         ? (rawPosts as Record<string, any>[]).map((post) => ({
             slug: typeof post.slug === "string" ? post.slug : "",
@@ -108,7 +108,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                         href="/"
                         className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors"
                     >
-                        ← SYSTEM_CORE_HOME
+                        &larr; SYSTEM_CORE_HOME
                     </Link>
                 </nav>
 
@@ -196,8 +196,8 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                                 key={cat}
                                 href={`/knowledge-index?cat=${cat}`}
                                 className={`px-4 py-2 border text-xs font-mono uppercase tracking-widest transition ${category === cat
-                                        ? "bg-cyan-400 text-black border-cyan-400"
-                                        : "border-neutral-900 text-neutral-500 hover:text-white"
+                                    ? "bg-cyan-400 text-black border-cyan-400"
+                                    : "border-neutral-900 text-neutral-500 hover:text-white"
                                     }`}
                             >
                                 {cat}
@@ -237,7 +237,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                                         href={`/blog/posts/${post.slug}`}
                                         className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-mono text-neutral-400 hover:text-cyan-400 transition-colors"
                                     >
-                                        ENTER_MODULE <span>→</span>
+                                        ENTER_MODULE <span>&rarr;</span>
                                     </Link>
                                 </div>
                             </article>

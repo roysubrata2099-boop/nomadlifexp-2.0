@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     },
 };
 
-// Force dynamic optimization to bypass sticky remote CDN and hosting router caches
+// Force dynamic execution to completely bypass server-side layout and route cache persistence
 export const dynamic = "force-dynamic";
 export const revalidate = false;
 
@@ -29,14 +29,14 @@ interface PageProps {
 }
 
 export default async function DisciplineSystemPage(props: PageProps) {
-    // Await params structurally to ensure dynamic rendering isolation / safety compliance
+    // Await params structurally to guarantee absolute runtime layout separation
     await props.params;
     await props.searchParams;
 
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-amber-500 selection:text-black overflow-hidden">
             {/* Ambient Lighting Accents */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-neutral-500/5 rounded-full blur-[140px] pointer-events-none" />
 
             {/* Technical Matrix Grid Background Overlay */}

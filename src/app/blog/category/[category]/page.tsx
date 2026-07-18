@@ -3,6 +3,10 @@
 import { permanentRedirect, notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+// Force request-time server evaluation to allow clean, runtime SEO 308 redirects
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type CategoryParams = {
     category: string;
 };
@@ -18,17 +22,6 @@ const CATEGORY_REDIRECTS: Record<string, string> = {
     yoga: "/yoga",
     mindset: "/mindset",
 };
-
-// Generates static paths at build time for optimal Next.js performance
-export async function generateStaticParams() {
-    try {
-        return Object.keys(CATEGORY_REDIRECTS).map((category) => ({
-            category,
-        }));
-    } catch {
-        return [];
-    }
-}
 
 // Insulates metadata compilation hooks from breaking before runtime evaluation
 export async function generateMetadata(): Promise<Metadata> {

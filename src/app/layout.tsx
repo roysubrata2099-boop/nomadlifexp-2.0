@@ -1,16 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import Link from "next/link";
 // @ts-ignore
 import "./globals.css";
 
-// Force absolute client container rules
 export const viewport: Viewport = {
     themeColor: "#000000",
     colorScheme: "dark",
     width: "device-width",
     initialScale: 1,
-    maximumScale: 5, // Allows accessibility scaling but prevents arbitrary zoom breaks
+    maximumScale: 5,
 };
 
 export const metadata: Metadata = {
@@ -64,7 +62,6 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    // 🛡️ RE-ENGINEERED 10/10 SCHEMA METADATA GRAPH ENTITY MATRIX
     const jsonLdSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -111,30 +108,13 @@ export default function RootLayout({
         <html lang="en" className="scroll-smooth">
             <body className="antialiased bg-black text-white flex flex-col min-h-screen">
 
-                {/* 🛡️ SYSTEM UTILITY OVERLAY HEADER */}
-                {/* Dynamically pipes crawl juice to your 'Start Here' page site-wide without disturbing main content layouts */}
-                <header className="w-full border-b border-neutral-900/60 bg-black/50 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
-                    <div className="max-w-5xl mx-auto flex justify-between items-center font-mono text-xs tracking-widest">
-                        <Link href="/" className="font-black text-white hover:text-cyan-400 transition-colors duration-200">
-                            NOMADLIFEXP // CORE
-                        </Link>
-                        <nav aria-label="Global Access Point">
-                            <Link
-                                href="/start-here"
-                                className="border border-cyan-500/30 bg-cyan-950/10 hover:bg-cyan-400 hover:text-black px-3 py-1.5 transition-all duration-300 uppercase font-bold"
-                            >
-                                [ START HERE ]
-                            </Link>
-                        </nav>
-                    </div>
-                </header>
-
-                {/* Main page template slot */}
-                <div className="flex-grow">
+                {/* 🛡️ RETAINS CLEAN STRUCTURAL PASS-THROUGH ONLY */}
+                {/* Your site's native header layout handles the menu flawlessly */}
+                <main className="flex-grow">
                     {children}
-                </div>
+                </main>
 
-                {/* 🛡️ INJECTED 10/10 AI VISIBILITY & GEO UNDERPINNINGS */}
+                {/* 🛡️ SCHEMA & METADATA ACCESSIBILITY LAYER */}
                 {serializedSchema && (
                     <script
                         id="structured-data-core-architecture"

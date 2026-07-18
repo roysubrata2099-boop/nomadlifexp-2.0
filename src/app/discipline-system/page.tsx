@@ -1,226 +1,252 @@
 // src/app/discipline-system/page.tsx
 
-import type { Metadata } from "next";
 import Link from "next/link";
+import type { Metadata } from "next";
 
+// Force static compile optimization for maximum Core Web Vitals delivery
+export const dynamic = "force-static";
+
+// 1. Enterprise SEO & Meta Engine Architecture
 export const metadata: Metadata = {
-    title: "Somatic Habit Engineering & Discipline System | NomadLifeXP",
-    description:
-        "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
+    title: "OPERATIONAL PROTOCOL // DISCIPLINE SYSTEM",
+    description: "The complete system blueprint for structural daily execution, routine control modules, and focus engineering frameworks.",
     alternates: {
         canonical: "https://nomadlifexp.com/discipline-system",
     },
     openGraph: {
-        title: "Discipline System & Somatic Habit Engineering Protocol | NomadLifeXP",
-        description:
-            "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
+        title: "OPERATIONAL PROTOCOL // DISCIPLINE SYSTEM",
+        description: "The complete system blueprint for structural daily execution, routine control modules, and focus engineering frameworks.",
         url: "https://nomadlifexp.com/discipline-system",
         type: "website",
+        siteName: "NomadLifeXP",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "OPERATIONAL PROTOCOL // DISCIPLINE SYSTEM",
+        description: "The complete system blueprint for structural daily execution, routine control modules, and focus engineering frameworks.",
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
     },
 };
 
+// Type definition enforcing clean structural typing interfaces
+interface SystemModule {
+    id: string;
+    title: string;
+    description: string;
+    href: string;
+    status: "OPERATIONAL" | "ONLINE" | "MAINTENANCE";
+    color: string;
+}
+
 export default function DisciplineSystemPage() {
+    // 2. Fault-Tolerant Native Application Data Schema
+    const SYSTEM_MODULES: SystemModule[] = [
+        {
+            id: "SYS-MOD-01",
+            title: "ROUTINE // EXECUTION ENGINE",
+            description: "Blueprints for morning and evening locking cycles. Eradicate choice fatigue at startup.",
+            href: "/blog/posts/morning-execution-protocol",
+            status: "OPERATIONAL",
+            color: "border-red-500/30 text-red-400"
+        },
+        {
+            id: "SYS-MOD-02",
+            title: "FOCUS // ENVIRONMENTAL ISOLATION",
+            description: "Digital declutter strategies, device blocking configurations, and deep-work chamber assembly.",
+            href: "/blog/posts/deep-work-isolation",
+            status: "OPERATIONAL",
+            color: "border-amber-500/30 text-amber-400"
+        },
+        {
+            id: "SYS-MOD-03",
+            title: "METRIC // ACCOUNTABILITY TRACE",
+            description: "System log templates for continuous execution tracking and weekly retrospective algorithms.",
+            href: "/knowledge-index",
+            status: "ONLINE",
+            color: "border-cyan-500/30 text-cyan-400"
+        }
+    ];
+
+    // 3. Deep Rich Snippet Injection (JSON-LD WebSite/Manual Schema Engine)
+    const structuredSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://nomadlifexp.com/discipline-system#webpage",
+        "url": "https://nomadlifexp.com/discipline-system",
+        "name": "Discipline System Protocol Index",
+        "description": "The complete system blueprint for structural daily execution, routine control modules, and focus engineering frameworks.",
+        "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://nomadlifexp.com/#website",
+            "url": "https://nomadlifexp.com/",
+            "name": "NomadLifeXP"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://nomadlifexp.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Discipline System",
+                    "item": "https://nomadlifexp.com/discipline-system"
+                }
+            ]
+        }
+    };
+
     return (
-        <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-amber-500 selection:text-black overflow-hidden">
-            {/* Ambient Lighting Accents */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-neutral-500/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="relative min-h-screen bg-black text-white font-mono selection:bg-red-500 selection:text-black antialiased overflow-hidden">
+            {/* Inject Crawlable SEO Schema Matrix */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredSchema) }}
+            />
 
-            {/* Technical Matrix Grid Background Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+            {/* Structural Vector Graphic Grid and Layer Blurs */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+            <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-red-600/5 blur-[160px] rounded-full pointer-events-none" />
 
-            {/* Content Area Matrix */}
-            <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
-                {/* Navigation Breadcrumb Node Block */}
-                <nav
-                    className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6"
-                    aria-label="Breadcrumb"
-                >
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-400 transition-colors duration-200 group"
-                    >
-                        <span
-                            className="transition-transform duration-200 group-hover:-translate-x-1"
-                            aria-hidden="true"
-                        >
-                            &larr;
-                        </span>
-                        RETURN_TO_HOME
-                    </Link>
+            <main className="relative z-10 max-w-6xl mx-auto px-6 py-32">
 
-                    <span
-                        className="text-neutral-800 font-mono text-xs"
-                        aria-hidden="true"
-                    >
-                        /
-                    </span>
+                {/* Section Navigation Header */}
+                <header className="border-b border-neutral-900 pb-12 mb-16">
+                    <nav aria-label="Breadcrumb" className="flex items-center gap-3 text-xs tracking-widest text-neutral-500 uppercase mb-6">
+                        <Link href="/blog" className="hover:text-red-400 transition-colors">CORE_ARCHIVE</Link>
+                        <span>/</span>
+                        <Link href="/start-here" className="hover:text-red-400 transition-colors">START_HERE</Link>
+                        <span>/</span>
+                        <span className="text-red-500" aria-current="page">DISCIPLINE_SYSTEM_MAP</span>
+                    </nav>
 
-                    <Link
-                        href="/knowledge-index"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-400 transition-colors duration-200"
-                    >
-                        Return to Knowledge index
-                    </Link>
-                </nav>
-
-                {/* Left-Aligned Technical Header Block */}
-                <header className="mb-16 max-w-5xl space-y-5">
-                    <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-                        <p className="text-xs uppercase tracking-[0.4em] font-mono text-amber-500">
-                            NomadLifeXP // Somatic Life Architecture
-                        </p>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div>
+                            <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter mb-4">
+                                DISCIPLINE_SYSTEM
+                            </h1>
+                            <p className="text-neutral-400 text-lg max-w-2xl font-sans leading-relaxed">
+                                This is not a collection of articles. This is a deliberate, end-to-end framework designed to engineer unshakeable reliability, eliminate reliance on motivation, and institutionalize consistency.
+                            </p>
+                        </div>
+                        <div className="border border-neutral-800 bg-neutral-950 p-4 text-xs shrink-0">
+                            <div className="text-neutral-600 mb-1">SYSTEM_INTEGRITY</div>
+                            <div className="text-red-500 font-bold flex items-center gap-2">
+                                <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                                OPTIMAL_COHERENCE
+                            </div>
+                        </div>
                     </div>
-
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">
-                        The Discipline System:
-                        <br />
-                        <span className="bg-gradient-to-r from-white via-neutral-200 to-amber-500 bg-clip-text text-transparent">
-                            Habit Engineering for High Output
-                        </span>
-                    </h1>
-
-                    <p className="text-base md:text-lg font-light leading-relaxed max-w-3xl text-neutral-400 font-mono">
-                        A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.
-                    </p>
                 </header>
 
-                {/* Phase Blocks Layout Wrapper */}
-                <section
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-                    aria-label="System Phases"
-                >
-                    {/* Phase I */}
-                    <div className="border border-neutral-900 p-8 bg-neutral-950/20 backdrop-blur-sm flex flex-col justify-between">
-                        <div className="space-y-4">
-                            <div className="font-mono text-xs text-amber-500 tracking-wider">
-                                Phase I // SYS_01
-                            </div>
-                            <h3 className="text-white text-lg font-bold uppercase tracking-tight">
-                                Internal Integrity
-                            </h3>
-                            <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                Fixing non-negotiable daily baselines to establish morning momentum. Read our analysis on isolating cognitive{" "}
-                                <Link
-                                    href="/mindset"
-                                    className="text-amber-500 hover:underline font-normal"
-                                >
-                                    focus controls and mindset configurations
-                                </Link>.
-                            </p>
-                        </div>
-                    </div>
+                {/* Dashboard Node Mapping Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
 
-                    {/* Phase II */}
-                    <div className="border border-neutral-900 p-8 bg-neutral-950/20 backdrop-blur-sm flex flex-col justify-between">
-                        <div className="space-y-4">
-                            <div className="font-mono text-xs text-amber-500 tracking-wider">
-                                Phase II // SYS_02
-                            </div>
-                            <h3 className="text-white text-lg font-bold uppercase tracking-tight">
-                                Physical Anchor
-                            </h3>
-                            <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                Integrating proactive kinetic sequences straight into neural networks. Review our active{" "}
-                                <Link
-                                    href="/fitness"
-                                    className="text-amber-500 hover:underline font-normal"
-                                >
-                                    metabolic fitness architectures
-                                </Link>.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Phase III */}
-                    <div className="border border-neutral-900 p-8 bg-neutral-950/20 backdrop-blur-sm flex flex-col justify-between">
-                        <div className="space-y-4">
-                            <div className="font-mono text-xs text-amber-500 tracking-wider">
-                                Phase III // SYS_03
-                            </div>
-                            <h3 className="text-white text-lg font-bold uppercase tracking-tight">
-                                Velocity Output
-                            </h3>
-                            <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                Channeling pristine physiological alignment directly into complex technical execution via real-time somatic feedback loops managed by the{" "}
-                                <Link
-                                    href="/recalibration"
-                                    className="text-amber-500 hover:underline font-normal"
-                                >
-                                    recalibration system
-                                </Link>.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Non-Negotiable Execution Parameters Console Matrix */}
-                <section className="flex flex-col gap-8 mb-16 bg-black border border-neutral-900 p-6 md:p-8 rounded-none relative">
-                    <div className="flex justify-between items-center border-b border-neutral-900 pb-4">
-                        <h2 className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase">
-                            // Non-Negotiable Execution Parameters
+                    {/* Primary Dashboard Stream Modules */}
+                    <section className="lg:col-span-2 space-y-6" aria-label="Core Execution Engine System Modules">
+                        <h2 className="text-xs font-bold tracking-widest text-neutral-500 uppercase">
+                            CORE_EXECUTION_MODULES
                         </h2>
-                        <div className="flex gap-1.5 items-center">
-                            <span className="w-1.5 h-1.5 bg-neutral-800" />
-                            <span className="w-1.5 h-1.5 bg-neutral-800" />
-                            <span className="w-1.5 h-1.5 bg-amber-500 animate-pulse" />
-                        </div>
-                    </div>
 
-                    <div className="space-y-8 divide-y divide-neutral-900 w-full">
-                        {/* Parameter 01 */}
-                        <div className="group pt-2">
-                            <div className="space-y-2 max-w-5xl">
-                                <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    01 / Digital Deliberation & Attention Protection
-                                </h3>
-                                <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                    Zero data ingestion before the morning somatic mobility sequence. High-leverage engineering blocks execute within a strict zero-notification chamber.
-                                </p>
-                            </div>
+                        <div className="space-y-4">
+                            {SYSTEM_MODULES.map((mod) => (
+                                <Link
+                                    key={mod.id}
+                                    href={mod.href}
+                                    className={`group block border ${mod.color} bg-neutral-950/40 p-6 hover:bg-neutral-950 hover:border-neutral-700 transition-all duration-200`}
+                                >
+                                    <div className="flex justify-between items-start mb-2">
+                                        <span className="text-xs text-neutral-600 font-bold tracking-wider">{mod.id}</span>
+                                        <span className="text-[10px] px-2 py-0.5 border border-neutral-800 text-neutral-500 uppercase bg-black">
+                                            {mod.status}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-lg font-bold text-neutral-200 group-hover:text-white mb-2 transition-colors">
+                                        {mod.title}
+                                    </h3>
+                                    <p className="text-sm text-neutral-500 font-sans leading-relaxed group-hover:text-neutral-400 transition-colors">
+                                        {mod.description}
+                                    </p>
+                                    <div className="mt-4 text-xs text-neutral-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                                        ACCESS_MODULE <span>→</span>
+                                    </div>
+                                </Link>
+                            ))}
                         </div>
+                    </section>
 
-                        {/* Parameter 02 */}
-                        <div className="group pt-8">
-                            <div className="space-y-2 max-w-5xl">
-                                <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    02 / Structural Anchors & Metabolic Baselines
-                                </h3>
-                                <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                    Daily functional thresholds are fixed structural components. Daily conditioning cycles do not negotiate with shifting schedules or environmental friction.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Parameter 03 */}
-                        <div className="group pt-8">
-                            <div className="space-y-2 max-w-5xl">
-                                <h3 className="text-white text-sm font-mono font-bold uppercase tracking-wider group-hover:text-amber-500 transition-colors duration-300">
-                                    03 / Evening Deceleration & Biofeedback Analysis
-                                </h3>
-                                <p className="text-sm font-light leading-relaxed text-neutral-400">
-                                    All dynamic displays drop to zero emission bounds by 21:30. Core cognitive performance logs finalize before initializing the neurological recovery window.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Collective Synchronization Section */}
-                <section className="border border-neutral-900 p-8 md:p-12 bg-neutral-950/10">
-                    <div className="space-y-4 max-w-4xl">
-                        <span className="text-[10px] font-mono tracking-widest text-neutral-500 uppercase block">
-                            // Collective Synchronization
-                        </span>
-                        <h2 className="text-2xl font-black uppercase text-white tracking-tight">
-                            Sync With the Execution Network
+                    {/* Secondary Navigation Linking Column */}
+                    <aside className="space-y-6" aria-label="System Deep Cross-Linking Nodes">
+                        <h2 className="text-xs font-bold tracking-widest text-neutral-500 uppercase">
+                            CROSS_SYSTEM_LINKS
                         </h2>
-                        <p className="text-sm font-light text-neutral-400 leading-relaxed">
-                            We compile raw biometric structures, workflow optimization scripts, and somatic baseline reviews into periodic tactical logs. Join an elite pool of operators executing around the globe.
-                        </p>
-                    </div>
-                </section>
+
+                        <div className="border border-neutral-900 bg-neutral-950/60 p-6 space-y-6">
+                            <div>
+                                <h3 className="text-xs font-bold uppercase text-neutral-400 mb-2">// ASSOCIATED ARCHIVES</h3>
+                                <p className="text-xs text-neutral-500 font-sans mb-3 leading-relaxed">
+                                    Review raw categorized entry logs sorted within the taxonomy layer database.
+                                </p>
+                                <Link
+                                    href="/discipline"
+                                    className="text-xs text-red-400 hover:text-red-300 underline underline-offset-4"
+                                >
+                                    VIEW_ALL_DISCIPLINE_POSTS
+                                </Link>
+                            </div>
+
+                            <hr className="border-neutral-900" />
+
+                            <div>
+                                <h3 className="text-xs font-bold uppercase text-neutral-400 mb-2">// KNOWLEDGE SECTOR</h3>
+                                <p className="text-xs text-neutral-500 font-sans mb-3 leading-relaxed">
+                                    Analyze cross-functional metrics linking physical fitness maps directly to discipline systems.
+                                </p>
+                                <Link
+                                    href="/knowledge-index"
+                                    className="text-xs text-cyan-400 hover:text-cyan-300 underline underline-offset-4"
+                                >
+                                    OPEN_KNOWLEDGE_INDEX
+                                </Link>
+                            </div>
+
+                            <hr className="border-neutral-900" />
+
+                            <div>
+                                <h3 className="text-xs font-bold uppercase text-neutral-400 mb-2">// PRIMARY ROADMAP</h3>
+                                <p className="text-xs text-neutral-500 font-sans mb-3 leading-relaxed">
+                                    New to the site? Access the comprehensive overview onboarding path.
+                                </p>
+                                <Link
+                                    href="/start-here"
+                                    className="text-xs text-amber-400 hover:text-amber-300 underline underline-offset-4"
+                                >
+                                    INITIATE_ONBOARDING
+                                </Link>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                {/* System Application Base Analytics Block */}
+                <footer className="pt-8 border-t border-neutral-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-neutral-600">
+                    <div>SYS_VERSION: 2.1.0_PROD</div>
+                    <div>© 2026 NOMADLIFEXP // DISCIPLINE FRAMEWORK</div>
+                </footer>
             </main>
         </div>
     );

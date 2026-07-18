@@ -3,9 +3,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-// Force highly optimized static engine generation
-export const dynamic = "force-static";
-
 export const metadata: Metadata = {
     title: "Somatic Habit Engineering & Discipline System | NomadLifeXP",
     description:
@@ -19,69 +16,12 @@ export const metadata: Metadata = {
             "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
         url: "https://nomadlifexp.com/discipline-system",
         type: "website",
-        siteName: "NomadLifeXP",
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Somatic Habit Engineering & Discipline System | NomadLifeXP",
-        description:
-            "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-        },
     },
 };
 
 export default function DisciplineSystemPage() {
-    // Structural JSON-LD for rich snippet schema validation
-    const structuredSchema = {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": "https://nomadlifexp.com/discipline-system#webpage",
-        "url": "https://nomadlifexp.com/discipline-system",
-        "name": "Somatic Habit Engineering & Discipline System",
-        "description": "A rigid framework designed to remove decision fatigue by automating daily physical and cognitive baselines.",
-        "isPartOf": {
-            "@type": "WebSite",
-            "@id": "https://nomadlifexp.com/#website",
-            "url": "https://nomadlifexp.com/",
-            "name": "NomadLifeXP"
-        },
-        "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://nomadlifexp.com/"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Discipline System",
-                    "item": "https://nomadlifexp.com/discipline-system"
-                }
-            ]
-        }
-    };
-
     return (
         <div className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-amber-500 selection:text-black overflow-hidden">
-            {/* Inject Structured Search Schema Map */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredSchema) }}
-            />
-
             {/* Ambient Lighting Accents */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-neutral-500/5 rounded-full blur-[140px] pointer-events-none" />

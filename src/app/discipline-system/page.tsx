@@ -8,13 +8,13 @@ export const metadata: Metadata = {
     description:
         "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
     alternates: {
-        canonical: "https://www.nomadlifexp.com/discipline-system",
+        canonical: "https://nomadlifexp.com/discipline-system",
     },
     openGraph: {
         title: "Discipline System & Somatic Habit Engineering Protocol | NomadLifeXP",
         description:
             "A rigid framework designed to remove decision fatigue. By automating daily physical and cognitive baselines, attention remains allocated strictly toward intentional, high-leverage execution.",
-        url: "https://www.nomadlifexp.com/discipline-system",
+        url: "https://nomadlifexp.com/discipline-system",
         type: "website",
     },
 };

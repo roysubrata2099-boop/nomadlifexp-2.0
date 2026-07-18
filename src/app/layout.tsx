@@ -1,7 +1,6 @@
-// src/app/layout.tsx
-
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import Link from "next/link";
 // @ts-ignore
 import "./globals.css";
 
@@ -20,7 +19,6 @@ export const metadata: Metadata = {
         default: "NomadLifeXP // Human Optimization Platform",
         template: "%s | NomadLifeXP",
     },
-    // 🔥 FIXED: Extended description to 153 characters to perfectly satisfy Bing & Google SERP length requirements.
     description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
     keywords: ["Somatic Mechanics", "Discipline Systems", "Mindset", "Yoga", "Cognitive Architecture", "Bio-Performance"],
     authors: [{ name: "NomadLifeXP Team" }],
@@ -32,7 +30,6 @@ export const metadata: Metadata = {
         url: "https://nomadlifexp.com",
         siteName: "NomadLifeXP",
         title: "NomadLifeXP // Human Optimization Platform",
-        // 🔥 FIXED: Synced OpenGraph to match the optimized 153-character meta length.
         description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
         images: [
             {
@@ -46,7 +43,6 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "NomadLifeXP // Human Optimization Platform",
-        // 🔥 FIXED: Synced Twitter Card snippet.
         description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
         images: ["/og-main.jpg"],
     },
@@ -69,7 +65,6 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     // 🛡️ RE-ENGINEERED 10/10 SCHEMA METADATA GRAPH ENTITY MATRIX
-    // Written explicitly as a static constant object with type safety to prevent structural compilation breaks.
     const jsonLdSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -78,7 +73,6 @@ export default function RootLayout({
                 "@id": "https://nomadlifexp.com/#organization",
                 "name": "NomadLifeXP",
                 "url": "https://nomadlifexp.com",
-                // ✅ FIXED: Updated logo schema mapping to use the dedicated brand asset path
                 "logo": {
                     "@type": "ImageObject",
                     "@id": "https://nomadlifexp.com/#logo",
@@ -106,7 +100,6 @@ export default function RootLayout({
         ]
     };
 
-    // Safely serialize the JSON object to catch unforeseen formatting errors during compilation
     let serializedSchema = "";
     try {
         serializedSchema = JSON.stringify(jsonLdSchema);
@@ -116,8 +109,30 @@ export default function RootLayout({
 
     return (
         <html lang="en" className="scroll-smooth">
-            <body className="antialiased bg-black text-white">
-                {children}
+            <body className="antialiased bg-black text-white flex flex-col min-h-screen">
+
+                {/* 🛡️ SYSTEM UTILITY OVERLAY HEADER */}
+                {/* Dynamically pipes crawl juice to your 'Start Here' page site-wide without disturbing main content layouts */}
+                <header className="w-full border-b border-neutral-900/60 bg-black/50 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+                    <div className="max-w-5xl mx-auto flex justify-between items-center font-mono text-xs tracking-widest">
+                        <Link href="/" className="font-black text-white hover:text-cyan-400 transition-colors duration-200">
+                            NOMADLIFEXP // CORE
+                        </Link>
+                        <nav aria-label="Global Access Point">
+                            <Link
+                                href="/start-here"
+                                className="border border-cyan-500/30 bg-cyan-950/10 hover:bg-cyan-400 hover:text-black px-3 py-1.5 transition-all duration-300 uppercase font-bold"
+                            >
+                                [ START HERE ]
+                            </Link>
+                        </nav>
+                    </div>
+                </header>
+
+                {/* Main page template slot */}
+                <div className="flex-grow">
+                    {children}
+                </div>
 
                 {/* 🛡️ INJECTED 10/10 AI VISIBILITY & GEO UNDERPINNINGS */}
                 {serializedSchema && (
@@ -143,6 +158,7 @@ export default function RootLayout({
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-V0M0XN8BBE"
                     strategy="afterInteractive"
+                    {...({} as any)}
                 />
 
                 {/* Google Analytics 4 Execution Routing Architecture */}

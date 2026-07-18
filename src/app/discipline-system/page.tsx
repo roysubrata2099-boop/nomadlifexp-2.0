@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     },
 };
 
-// Force static structural optimization to shield runtime execution execution bounds
-export const dynamic = "force-static";
+// Force dynamic optimization to bypass sticky remote CDN and hosting router caches
+export const dynamic = "force-dynamic";
 export const revalidate = false;
 
 interface PageProps {

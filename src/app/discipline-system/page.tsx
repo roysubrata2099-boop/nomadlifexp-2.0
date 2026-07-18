@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 /**
- * Production Metadata Blueprint
- * Hardened canonical URI mappings to prevent subdomain routing interception.
+ * Hardened Production SEO Metadata Block
  */
 export const metadata: Metadata = {
     title: "Somatic Habit Engineering & Discipline System | NomadLifeXP",
@@ -24,9 +23,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Hardened Execution Constraints
- * Instructs Next.js and downstream edge architectures to strip legacy cache layouts entirely
- * and re-evaluate this path explicitly on every individual network invocation.
+ * Strict Route Isolation Constraints
+ * Explicitly forces the Edge CDN layer to bypass sticky layout caches,
+ * ensuring zero bleed over into the dynamic dynamic /blog/posts/[slug] paths.
  */
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -38,7 +37,7 @@ interface PageProps {
 }
 
 export default async function DisciplineSystemPage(props: PageProps) {
-    // Structural Hydration Security Barrier: Resolves routing metadata layers safely
+    // Await structural route parameters to satisfy Next.js 15 asynchronous typings
     await props.params;
     await props.searchParams;
 
@@ -59,10 +58,10 @@ export default async function DisciplineSystemPage(props: PageProps) {
                     </Link>
                     <span className="select-none" aria-hidden="true">/</span>
                     <Link
-                        href="/knowledge-index"
+                        href="/blog"
                         className="text-[#999] hover:text-[#ffb400] no-underline transition-colors duration-200"
                     >
-                        Knowledge Index
+                        Index
                     </Link>
                 </nav>
 

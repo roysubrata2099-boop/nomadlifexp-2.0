@@ -51,8 +51,11 @@ export default function Navbar() {
                 {/* RESPONSIVE SCALING LINK DECK */}
                 <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono tracking-widest uppercase">
                     {navigationNodes.map((node) => {
-                        // Secure active calculation routing layer
-                        const isActive = currentPath === node.href || (node.href !== "/" && currentPath.startsWith(`${node.href}/`));
+                        // Strict Segment Matching Logic to prevent sub-string overlap bugs 
+                        // (e.g., matching /discipline-system incorrectly against /discipline)
+                        const isActive =
+                            currentPath === node.href ||
+                            (node.href !== "/" && currentPath.startsWith(`${node.href}/`));
 
                         return (
                             <Link

@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// 🛡️ 100% FIXED: Explicitly bound to your true system path structures
+// 🛡️ 100% FIXED: Precision bound to your correct target pathways
 const MAIN_NAVIGATION_NODES = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-  { label: "Discipline System", href: "/discipline" }, // Fixed pathway target mapping
+  { label: "Discipline System", href: "/discipline-system" }, // Corrected target link routing parameter
 ];
 
 function NomadLifeXPMaster() {
@@ -72,15 +72,15 @@ function NomadLifeXPMaster() {
             NomadLifeXP // Transformation Architecture
           </span>
 
-          {/* 🛡️ 100% FIXED: Precision mapped routes pointing right to the new isolated pillars */}
+          {/* 🛡️ 100% FIXED: Properly links the 4 core pillars to their exact blog category structures */}
           <div className="text-xs tracking-[0.25em] uppercase font-semibold text-cyan-300 mt-2 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
-            <Link href="/discipline" className="hover:text-white transition-colors duration-200">Discipline</Link>
+            <Link href="/blog/category/discipline" className="hover:text-white transition-colors duration-200">Discipline</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/fitness" className="hover:text-white transition-colors duration-200">Fitness</Link>
+            <Link href="/blog/category/fitness" className="hover:text-white transition-colors duration-200">Fitness</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/yoga" className="hover:text-white transition-colors duration-200">Yoga</Link>
+            <Link href="/blog/category/yoga" className="hover:text-white transition-colors duration-200">Yoga</Link>
             <span className="text-gray-600 font-normal">/</span>
-            <Link href="/mindset" className="hover:text-white transition-colors duration-200">Mindset</Link>
+            <Link href="/blog/category/mindset" className="hover:text-white transition-colors duration-200">Mindset</Link>
           </div>
         </div>
 
@@ -232,7 +232,6 @@ function NomadLifeXPMaster() {
   );
 }
 
-// Complete Valid Default Export Object to fix Next 15 component crash
 export default function Page() {
   return <NomadLifeXPMaster />;
 }

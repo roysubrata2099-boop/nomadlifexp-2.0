@@ -8,6 +8,7 @@ description: >
   Procrastination isn't a time-management problem or a sign of laziness—it's an
   emotional regulation problem. Learn the psychology behind it and how to break
   the loop permanently.
+image: "/images/blog/stop-procrastinating-permanently.jpg"
 relatedArticles:
   - mental-clarity-stop-overthinking-and-regain-focus
   - how-to-build-self-discipline
@@ -53,6 +54,7 @@ To break this loop, you must shift your approach from managing your time to mana
 Motivation is unreliable; it deserts you the moment you are tired or stressed. **Discipline is what allows you to take action even when motivation completely disappears.** Every time you act despite discomfort, you strengthen your discipline. Every time you choose distraction, you strengthen your procrastination.
 
 If you want to stop relying on erratic emotional waves and build real consistency, explore our full system:  
+
 👉 **The Discipline System: Build Consistency, Focus, and Self-Discipline**
 
 ---

@@ -4,6 +4,7 @@ slug: how-to-build-self-discipline
 category: discipline
 updatedAt: "2026-01-01"
 author: NomadLifeXP
+image: "/images/blog/self-discipline-build-it-for-good.jpg"
 description: >
   Self discipline is the ability to control your actions based on long-term
   goals instead of short-term feelings. Most people do not lack motivation.
@@ -27,6 +28,7 @@ Self discipline is the ability to control your actions based on long-term goals 
 Most people think they are lazy when they struggle with consistency. The real issue is the environment they live in every day. Phones, social media, notifications, and constant entertainment are designed to steal attention.
 
 ### The Real Reason You Lose Focus
+
 You are not weak. Your attention is overloaded. Every distraction drains mental energy and creates fatigue over time. This leads to overthinking, lack of clarity, and poor decision making.
 
 > **Struggling with mental overload?** Read our comprehensive guide: [Mental Clarity: How to Stop Overthinking and Improve Focus](#).
@@ -66,4 +68,5 @@ This guide is part of the **NomadLifeXP Discipline System**, designed to build f
 Self discipline is not about productivity. It is about gaining absolute control over your attention and your life direction. 
 
 ### Final Insight
+
 You do not need more motivation. You need fewer distractions and better systems.

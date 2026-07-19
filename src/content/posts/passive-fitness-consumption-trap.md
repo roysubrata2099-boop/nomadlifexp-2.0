@@ -4,6 +4,7 @@ slug: passive-fitness-consumption-trap
 category: fitness
 updatedAt: "2026-07-01"
 author: NomadLifeXP
+image: "/images/blog/passive-fitness-consumption-trap.jpg"
 description: >
   Discover why watching fitness content gives your brain a false sense of
   achievement and how to break free from passive consumption to build actual
@@ -11,7 +12,7 @@ description: >
 relatedArticles:
   - how-to-build-self-discipline
   - consistency-myth-showing-up-beats-perfect
-  - stop-procrastination-permanently
+  - stop-procrastinating-permanently
   - mental-clarity-stop-overthinking-and-regain-focus
   - rebuild-attention-span-digital-distraction
 ---
@@ -40,9 +41,11 @@ When you watch someone else work out, your brain experiences a psychological phe
 ## The Hidden Obstacles to Movement
 
 ### Comfort Keeps People Stuck
+
 Comfort feels safe, predictable, and warm, but it acts as a quiet barrier to growth. The reality of fitness is that it requires physical effort, sweat, and initial awkwardness. The life, energy, and body you want always start on the other side of that momentary discomfort.
 
 ### Why Motivation Fails
+
 Motivation is entirely temporary; it is an emotional state that comes and goes based on your sleep, mood, and stress levels. 
 
 * **Feelings vs. Systems:** If you wait until you *feel* like exercising, you will rarely do it. 

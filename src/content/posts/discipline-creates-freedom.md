@@ -4,6 +4,7 @@ slug: discipline-creates-freedom
 category: discipline
 updatedAt: "2026-07-14"
 author: NomadLifeXP
+image: "/images/blog/discipline-creates-freedom.jpg"
 description: >
   Discipline is not restriction. It is control over your attention, habits, and
   decisions. Learn how discipline creates true freedom by helping you master

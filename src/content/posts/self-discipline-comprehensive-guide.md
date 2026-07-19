@@ -4,6 +4,7 @@ slug: self-discipline-comprehensive-guide
 category: discipline
 updatedAt: "2026-01-01"
 author: NomadLifeXP
+image: "/images/blog/self-discipline-guide-rebuild-life.jpg"
 description: >
   Most people believe they lack discipline. They call themselves lazy,
   inconsistent, or unmotivated. But the truth is far more dangerous. The real
@@ -11,7 +12,7 @@ description: >
 relatedArticles:
   - mental-clarity-stop-overthinking-and-regain-focus
   - rebuild-your-attention-span
-  - stop-procrastination-permanently
+  - stop-procrastinating-permanently
   - passive-fitness-consumption-trap
   - discipline-creates-freedom
 ---
@@ -48,6 +49,7 @@ This hyper-stimulated environment directly creates:
 * **Low discomfort tolerance:** An inability to sit with boredom or friction.
 
 ### The Hidden Cost of Weak Discipline
+
 Without discipline, life drifts. You delay work, constantly restart goals, and avoid hard decisions. But the real damage is internal—**you stop trusting your own word.**
 
 ---
@@ -67,6 +69,7 @@ Discipline is a **system outcome**, not a personality trait. Systems decide your
 | **Identity**  | Self-Trust         | Becoming someone who keeps commitments. |
 
 ### Why Fitness, Yoga, and Meditation Matter
+
 Physical and mental practices are not separate from productivity. They build internal stability and direct control over your attention. **A distracted mind simply cannot build a disciplined life.**
 
 ---

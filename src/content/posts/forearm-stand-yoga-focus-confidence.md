@@ -4,6 +4,7 @@ slug: forearm-stand-yoga-focus-confidence
 category: yoga
 updatedAt: "2026-07-01"
 author: NomadLifeXP
+image: "/images/blog/forearm-stand-yoga-focus-confidence.jpg"
 description: >
   Discover how the challenging Forearm Stand (Pincha Mayurasana) builds profound
   mental focus, unlocks authentic confidence, and cultivates deep emotional
@@ -67,6 +68,7 @@ Control does not come from force. It comes from awareness.
 The more you try to force balance through raw muscular tension, the more unstable you become. Real confidence is not about never falling. It is about staying calm, collected, and curious while you learn.
 
 ### Final Thought
+
 Sometimes mental clarity does not start in the mind. It starts in the body. 
 
 Train your body. Calm your mind. Strengthen your focus. Everything else follows.

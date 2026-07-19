@@ -4,6 +4,7 @@ slug: forward-bending-yoga-stress-relief
 category: yoga
 updatedAt: "2026-07-01"
 author: NomadLifeXP
+image: "/images/blog/forward-bending-yoga-transform-body-mind.jpg"
 description: >
   Discover how simple forward bending yoga poses can release years of stored
   stress, calm your mind, and restore emotional balance without requiring
@@ -53,4 +54,5 @@ The benefits of incorporating forward folds into your daily routine are subtle b
 Sometimes healing does not come from doing more. It comes from slowing down and turning inward. True transformation often begins in stillness, not effort.
 
 ### Final Thought
+
 You do not need perfection to begin. One simple movement can slowly reset your body and mind.

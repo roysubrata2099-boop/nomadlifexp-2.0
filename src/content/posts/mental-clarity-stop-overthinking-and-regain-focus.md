@@ -4,6 +4,7 @@ slug: mental-clarity-stop-overthinking-and-regain-focus
 category: mindset
 updatedAt: "2026-07-05"
 author: NomadLifeXP
+image: "/images/blog/mental-clarity-stop-overthinking.jpg"
 description: >
   A practical guide to reducing overthinking, improving focus, and developing
   mental clarity.

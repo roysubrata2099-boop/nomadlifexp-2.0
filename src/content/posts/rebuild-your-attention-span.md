@@ -4,6 +4,7 @@ slug: rebuild-your-attention-span
 category: mindset
 updatedAt: "2026-07-01"
 author: NomadLifeXP
+image: "/images/blog/rebuild-attention-span-digital-distraction.jpg"
 description: >
   If reading feels harder than it used to, if silence feels uncomfortable, and
   if your mind keeps jumping from one thing to another, you are not alone.
@@ -12,7 +13,7 @@ description: >
 relatedArticles:
   - mental-clarity-stop-overthinking-and-regain-focus
   - how-to-build-self-discipline
-  - stop-procrastination-permanently
+  - stop-procrastinating-permanently
   - passive-fitness-consumption-trap
   - stuck-in-life-reset
 ---
@@ -30,6 +31,7 @@ Short-form videos, push notifications, endless scrolling feeds, and instant upda
 Your attention is not disappearing. It is simply being trained in a different direction. The core issue is not a lack of innate intelligence or capability—it is a chronic overload of stimulation.
 
 ### The Slow Breakdown of Focus
+
 This friction happens through repeated, small habits that slowly re-engineer your cognitive pathways. A quick check of your phone turns into minutes; minutes turn into hours of scattered attention. Over time, your brain begins to expect constant novelty. 
 
 Instead of staying with one task, it relentlessly searches for the next source of stimulation. Reading becomes more difficult, deep thinking feels exhausting, and even short periods of silence can feel uncomfortable. The more frequently your attention is interrupted, the harder it becomes to fully engage with meaningful work.
@@ -45,6 +47,7 @@ Your brain remains highly adaptable throughout your life. Every time you choose 
 Start with small, manageable adjustments rather than trying to eliminate every digital footprint all at once. Even 10 to 15 minutes of uninterrupted concentration is enough to begin rebuilding your attention baseline. As your focus improves, gradually extend these structural sessions.
 
 ### Core Attention Exercises
+
 * **Reduce Unnecessary Phone Checks:** Put physical distance between yourself and your device during work.
 * **Filter Noise:** Turn off non-essential notifications permanently.
 * **Single-Tasking:** Work on exactly one critical task at a time without switching browser tabs.

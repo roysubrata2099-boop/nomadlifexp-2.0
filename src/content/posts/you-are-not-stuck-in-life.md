@@ -9,6 +9,7 @@ description: >
   without realizing it. You are not stuck because you lack answers—you are stuck
   because your mind has become comfortable with the same thoughts, habits, and
   routines.
+image: "/images/blog/mind-too-comfortable-to-see-answers.jpg"
 relatedArticles:
   - mental-clarity-stop-overthinking-and-regain-focus
   - rebuild-your-attention-span
@@ -56,6 +57,7 @@ Yoga is more than physical movement. It is a practice of awareness.
 When movement and breathing work together, the mind gradually becomes quieter. Instead of reacting automatically, you begin observing your thoughts with greater clarity. Breath awareness encourages the nervous system to slow down, helping reduce mental noise while improving emotional balance and concentration.
 
 ### Cobra Pose (*Bhujangasana*): Finding Calm Through Awareness
+
 One posture that naturally encourages awareness is Cobra Pose (*Bhujangasana*). 
 
 As you gently lift your chest and lengthen your spine, your breathing naturally becomes deeper and more open. Rather than forcing flexibility or strength, Cobra Pose teaches patience. Remaining calm while experiencing mild discomfort helps develop a stronger connection between the body and the mind. Over time, this practice encourages greater stability, focus, and emotional resilience.

@@ -4,6 +4,7 @@ slug: consistency-myth-showing-up-beats-perfect
 category: fitness
 updatedAt: "2026-06-24"
 author: NomadLifeXP
+image: "/images/blog/fitness-consistency-build-workout-discipline.jpg"
 description: >
   Absolute workout consistency beats high physical intensity every single time.
   A brutal 2-hour workout once every two weeks does practically nothing for your body

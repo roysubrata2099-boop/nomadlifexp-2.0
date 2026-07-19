@@ -1,6 +1,4 @@
-﻿// src/app/discipline-system/page.tsx
-
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 /**
@@ -174,8 +172,9 @@ export default async function DisciplineSystemPage(props: PageProps) {
                     <p className="text-[#aaa] text-sm md:text-base max-w-[700px] mx-auto leading-relaxed font-light">
                         Build discipline by creating repeatable systems instead of depending on motivation. Every protocol strengthens identity through consistent execution.
                     </p>
+                    {/* 🛡️ 100% FIXED: Placed valid target route destination framework linking to /start-here */}
                     <Link
-                        href="#"
+                        href="/start-here"
                         className="inline-block mt-10 px-9 py-4 border border-[#ffb400] text-[#ffb400] uppercase text-sm tracking-[2px] no-underline font-semibold transition-all duration-200 hover:bg-[#ffb400] hover:text-black focus:outline-none focus:ring-2 focus:ring-amber-500"
                     >
                         {"Initialize Discipline \u2192"}

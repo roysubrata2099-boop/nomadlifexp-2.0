@@ -1,6 +1,7 @@
 // src/app/blog/posts/[slug]/page.tsx
 
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -79,6 +80,7 @@ export async function generateMetadata({
 
         const exactTitle = safeText(post.title) || "NomadLifeXP Article";
         const exactDesc = safeText(post.description) || "Transformation systems and insights.";
+        const exactImage = safeText(post.image);
 
         return {
             title: `${exactTitle} | NomadLifeXP`,
@@ -92,11 +94,13 @@ export async function generateMetadata({
                 url: `https://nomadlifexp.com/blog/posts/${normalizedSlug}`,
                 type: "article",
                 siteName: "NomadLifeXP",
+                images: exactImage ? [{ url: `https://nomadlifexp.com${exactImage}` }] : [],
             },
             twitter: {
                 card: "summary_large_image",
                 title: `${exactTitle} | NomadLifeXP`,
                 description: exactDesc,
+                images: exactImage ? [`https://nomadlifexp.com${exactImage}`] : [],
             },
         };
     } catch {
@@ -140,6 +144,7 @@ export default async function BlogPostPage({
 
     const cleanTitle = safeText(post.title) || "Untitled Article";
     const cleanDescription = safeText(post.description) || "Transformation systems and insights.";
+    const cleanImage = safeText(post.image);
     const currentPostSlug = typeof post.slug === "string" ? post.slug : slug;
 
     // Structured Graph Metadata Setup
@@ -157,6 +162,7 @@ export default async function BlogPostPage({
                 "description": cleanDescription,
                 "inLanguage": "en-US",
                 "mainEntityOfPage": `https://nomadlifexp.com/blog/posts/${slugify(currentPostSlug)}`,
+                ...(cleanImage && { "image": `https://nomadlifexp.com${cleanImage}` }),
                 "publisher": {
                     "@type": "Organization",
                     "@id": "https://nomadlifexp.com/#organization",
@@ -188,7 +194,7 @@ export default async function BlogPostPage({
                     {
                         "@type": "ListItem",
                         "position": 3,
-                        "name": category,
+                        "name": "category",
                         "item": `https://nomadlifexp.com/blog/category/${slugify(category)}`
                     },
                     {
@@ -226,6 +232,20 @@ export default async function BlogPostPage({
                         {cleanDescription}
                     </p>
                 </header>
+
+                {/* Secure Image Container Matrix - Injected Safely Here */}
+                {cleanImage && (
+                    <div className="relative w-full h-[250px] sm:h-[400px] mb-8 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+                        <Image
+                            src={cleanImage}
+                            alt={cleanTitle}
+                            fill
+                            priority
+                            sizes="(max-w-4xl) 100vw, 840px"
+                            className="object-cover transition-opacity duration-300"
+                        />
+                    </div>
+                )}
 
                 <div
                     className="prose dark:prose-invert max-w-none"

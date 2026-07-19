@@ -70,6 +70,7 @@ function safeImage(value: unknown): string {
 }
 
 
+
 export async function generateStaticParams() {
 
     try {
@@ -77,20 +78,30 @@ export async function generateStaticParams() {
         const posts = getAllPosts();
 
         return posts
-            .filter(post => {
+            .map(post => {
 
                 const slug =
                     safeSlug(post.slug);
 
-                return (
-                    slug.length > 0 &&
-                    !RESERVED_SYSTEM_ROUTES.has(slug)
-                );
+                if (
+                    !slug ||
+                    RESERVED_SYSTEM_ROUTES.has(slug)
+                ) {
+                    return null;
+                }
+
+                return {
+                    slug,
+                };
 
             })
-            .map(post => ({
-                slug: safeSlug(post.slug),
-            }));
+            .filter(
+                (
+                    item
+                ): item is { slug: string } =>
+                    item !== null
+            );
+
 
     } catch {
 
@@ -102,35 +113,39 @@ export async function generateStaticParams() {
 
 
 export async function generateMetadata(
-    { params }: PageProps
+    {
+        params,
+    }: PageProps
 ): Promise<Metadata> {
 
     try {
 
-        const { slug } =
-            await params;
+        const {
+            slug,
+        } = await params;
 
 
-        const normalizedSlug =
+        const cleanSlug =
             safeSlug(slug);
 
 
         if (
-            !normalizedSlug ||
-            RESERVED_SYSTEM_ROUTES.has(normalizedSlug)
+            !cleanSlug ||
+            RESERVED_SYSTEM_ROUTES.has(cleanSlug)
         ) {
             return {};
         }
 
 
         const post =
-            getPostBySlug(normalizedSlug);
+            getPostBySlug(cleanSlug);
 
 
         if (!post) {
 
             return {
-                title: "Article Not Found | NomadLifeXP",
+                title:
+                    "Article Not Found | NomadLifeXP",
             };
 
         }
@@ -150,11 +165,11 @@ export async function generateMetadata(
             safeImage(post.image);
 
 
+
         return {
 
             title:
                 `${title} | NomadLifeXP`,
-
 
             description,
 
@@ -162,22 +177,22 @@ export async function generateMetadata(
             alternates: {
 
                 canonical:
-                    `https://nomadlifexp.com/blog/posts/${normalizedSlug}`,
+                    `https://nomadlifexp.com/blog/posts/${cleanSlug}`,
 
             },
 
 
             openGraph: {
 
-                title:
-                    `${title} | NomadLifeXP`,
+                title,
 
                 description,
 
                 url:
-                    `https://nomadlifexp.com/blog/posts/${normalizedSlug}`,
+                    `https://nomadlifexp.com/blog/posts/${cleanSlug}`,
 
-                type: "article",
+                type:
+                    "article",
 
                 images:
                     image
@@ -197,8 +212,7 @@ export async function generateMetadata(
                 card:
                     "summary_large_image",
 
-                title:
-                    `${title} | NomadLifeXP`,
+                title,
 
                 description,
 
@@ -217,31 +231,35 @@ export async function generateMetadata(
     } catch {
 
         return {
-            title: "Article | NomadLifeXP",
+            title:
+                "Article | NomadLifeXP",
         };
 
     }
+
 }
 
 
 
 export default async function BlogPostPage(
-    { params }: PageProps
+    {
+        params,
+    }: PageProps
 ) {
 
+    const {
+        slug,
+    } = await params;
 
-    const { slug } =
-        await params;
 
-
-    const normalizedSlug =
+    const cleanSlug =
         safeSlug(slug);
 
 
 
     if (
-        !normalizedSlug ||
-        RESERVED_SYSTEM_ROUTES.has(normalizedSlug)
+        !cleanSlug ||
+        RESERVED_SYSTEM_ROUTES.has(cleanSlug)
     ) {
 
         notFound();
@@ -251,7 +269,7 @@ export default async function BlogPostPage(
 
 
     const post =
-        getPostBySlug(normalizedSlug);
+        getPostBySlug(cleanSlug);
 
 
 
@@ -292,8 +310,7 @@ export default async function BlogPostPage(
 
 
     const description =
-        safeText(post.description)
-        || "";
+        safeText(post.description);
 
 
     const image =
@@ -315,7 +332,7 @@ export default async function BlogPostPage(
         description,
 
         url:
-            `https://nomadlifexp.com/blog/posts/${normalizedSlug}`,
+            `https://nomadlifexp.com/blog/posts/${cleanSlug}`,
 
         publisher: {
 
@@ -349,21 +366,21 @@ export default async function BlogPostPage(
 
                 <Link
                     href={`/blog/category/${slugify(category)}`}
-                    className="text-cyan-600 hover:underline"
+                    className="text-sm text-cyan-600 hover:underline"
                 >
                     ← Back to {category}
                 </Link>
 
 
 
-                <header className="mt-6 mb-8">
+                <header className="mt-6 mb-8 border-b pb-6">
 
-                    <h1 className="text-4xl font-bold">
+                    <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
                         {title}
                     </h1>
 
 
-                    <p className="mt-4 text-xl text-gray-600">
+                    <p className="mt-4 text-xl text-gray-600 dark:text-gray-400">
                         {description}
                     </p>
 
@@ -373,7 +390,7 @@ export default async function BlogPostPage(
 
                 {image && (
 
-                    <div className="relative w-full h-[250px] sm:h-[400px] mb-8 overflow-hidden rounded-xl">
+                    <div className="relative w-full mb-8 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
 
                         <Image
 
@@ -381,13 +398,15 @@ export default async function BlogPostPage(
 
                             alt={title}
 
-                            fill
+                            width={1200}
+
+                            height={630}
 
                             priority
 
                             sizes="(max-width:896px) 100vw, 840px"
 
-                            className="object-cover"
+                            className="w-full h-auto object-contain"
 
                         />
 
@@ -402,10 +421,8 @@ export default async function BlogPostPage(
                     className="prose dark:prose-invert max-w-none"
 
                     dangerouslySetInnerHTML={{
-
                         __html:
                             safeText(post.contentHtml),
-
                     }}
 
                 />
@@ -425,6 +442,19 @@ export default async function BlogPostPage(
                     }
 
                 />
+
+
+
+                <footer className="mt-12 pt-8 border-t">
+
+                    <Link
+                        href="/blog"
+                        className="text-cyan-600 hover:underline"
+                    >
+                        Return to all blogs →
+                    </Link>
+
+                </footer>
 
 
             </article>

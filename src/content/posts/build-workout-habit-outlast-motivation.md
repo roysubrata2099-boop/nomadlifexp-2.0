@@ -4,6 +4,7 @@ slug: build-workout-habit-outlast-motivation
 category: fitness
 updatedAt: "2026-06-26"
 author: NomadLifeXP
+image: "/images/blog/build-workout-habit-outlast-motivation.webp"
 description: >
   Motivation is a volatile emotional state. If you only exercise when you feel inspired,
   your fitness journey will remain completely inconsistent. True behavioral change occurs

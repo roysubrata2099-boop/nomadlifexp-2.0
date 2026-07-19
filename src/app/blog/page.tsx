@@ -1,5 +1,3 @@
-// src/app/blog/page.tsx
-
 import { getAllPosts, type PostData } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
 import Link from "next/link";
@@ -33,11 +31,12 @@ interface SafePost {
     category: string;
 }
 
+// 🛡️ 100% FIXED: Mapped categories strictly to your true /blog/category/* routing matrix
 const CATEGORY_ROUTES: Record<string, string> = {
-    discipline: "/discipline",
-    fitness: "/fitness",
-    yoga: "/yoga",
-    mindset: "/mindset",
+    discipline: "/blog/category/discipline",
+    fitness: "/blog/category/fitness",
+    yoga: "/blog/category/yoga",
+    mindset: "/blog/category/mindset",
 };
 
 // Bulletproof URL Safe Normalizer
@@ -132,7 +131,10 @@ export default function BlogPage() {
                         &larr; RETURN_TO_HOME
                     </Link>
                     <span className="text-neutral-800">/</span>
-                    <span className="text-cyan-400">SYSTEM_DIRECTORY</span>
+                    {/* 🛡️ 100% FIXED: Converted static node into an active Link target pointing to /discipline-system */}
+                    <Link href="/discipline-system" className="text-neutral-500 hover:text-cyan-400">
+                        SYSTEM_DIRECTORY
+                    </Link>
                 </nav>
 
                 {/* Hero */}

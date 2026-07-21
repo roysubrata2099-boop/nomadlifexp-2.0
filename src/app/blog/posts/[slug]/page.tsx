@@ -1,73 +1,108 @@
-import Link from "next/link";
+import "server-only";
+
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import {
-    getAllPosts,
-    getPostBySlug,
-    slugify,
-} from "@/lib/markdown";
+    getAllMDXPosts,
+    getMDXPostBySlug,
+} from "@/lib/mdx";
 
-import {
-    normalizeCategory,
-} from "@/lib/taxonomy";
-
-import RelatedArticles from "@/components/RelatedArticles";
+import MDXRelatedArticles from "@/components/MDXRelatedArticles";
 
 
-type PageParams = {
-    slug: string;
+
+type PageProps = {
+    params: Promise<{
+        slug: string;
+    }>;
 };
 
 
-interface PageProps {
-    params: Promise<PageParams>;
-}
+
+const SITE_URL =
+    "https://nomadlifexp.com";
 
 
-const RESERVED_SYSTEM_ROUTES = new Set([
-    "admin",
-    "api",
-    "dashboard",
-    "login",
-    "signup",
-    "account",
-    "settings",
-    "discipline-system",
-    "discipline-system-preview",
-]);
+
+const RESERVED_SYSTEM_ROUTES =
+    new Set([
+        "admin",
+        "api",
+        "dashboard",
+        "login",
+        "signup",
+        "account",
+        "settings",
+        "blog",
+    ]);
 
 
-function safeText(value: unknown): string {
+
+function safeText(
+    value: unknown
+): string {
+
     return typeof value === "string"
         ? value.trim()
         : "";
+
 }
 
 
-function safeSlug(value: unknown): string {
-    if (typeof value !== "string") {
+
+function safeSlug(
+    value: unknown
+): string {
+
+    if (
+        typeof value !== "string"
+    ) {
         return "";
     }
 
-    return slugify(value);
+
+    return value
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+
 }
 
 
-function safeImage(value: unknown): string {
-    if (typeof value !== "string") {
+
+function safeImage(
+    value: unknown
+): string {
+
+    if (
+        typeof value !== "string"
+    ) {
         return "";
     }
 
-    const image = value.trim();
 
-    if (!image.startsWith("/")) {
+    const image =
+        value.trim();
+
+
+
+    if (
+        !image.startsWith("/")
+    ) {
         return "";
     }
+
 
     return image;
+
 }
+
+
 
 
 
@@ -75,26 +110,35 @@ export async function generateStaticParams() {
 
     try {
 
-        const posts = getAllPosts();
+        const posts =
+            getAllMDXPosts();
+
+
 
         return posts
-            .map(post => {
+            .map(
+                (post) => {
 
-                const slug =
-                    safeSlug(post.slug);
+                    const slug =
+                        safeSlug(
+                            post.slug
+                        );
 
-                if (
-                    !slug ||
-                    RESERVED_SYSTEM_ROUTES.has(slug)
-                ) {
-                    return null;
+
+                    if (
+                        !slug ||
+                        RESERVED_SYSTEM_ROUTES.has(slug)
+                    ) {
+                        return null;
+                    }
+
+
+                    return {
+                        slug,
+                    };
+
                 }
-
-                return {
-                    slug,
-                };
-
-            })
+            )
             .filter(
                 (
                     item
@@ -108,7 +152,11 @@ export async function generateStaticParams() {
         return [];
 
     }
+
 }
+
+
+
 
 
 
@@ -118,6 +166,7 @@ export async function generateMetadata(
     }: PageProps
 ): Promise<Metadata> {
 
+
     try {
 
         const {
@@ -125,8 +174,10 @@ export async function generateMetadata(
         } = await params;
 
 
+
         const cleanSlug =
             safeSlug(slug);
+
 
 
         if (
@@ -137,8 +188,12 @@ export async function generateMetadata(
         }
 
 
+
         const post =
-            getPostBySlug(cleanSlug);
+            await getMDXPostBySlug(
+                cleanSlug
+            );
+
 
 
         if (!post) {
@@ -151,14 +206,19 @@ export async function generateMetadata(
         }
 
 
+
         const title =
             safeText(post.title)
-            || "NomadLifeXP Article";
+            ||
+            "NomadLifeXP Article";
+
 
 
         const description =
             safeText(post.description)
-            || "Transformation systems and insights.";
+            ||
+            "Transformation systems and insights.";
+
 
 
         const image =
@@ -171,15 +231,18 @@ export async function generateMetadata(
             title:
                 `${title} | NomadLifeXP`,
 
+
             description,
+
 
 
             alternates: {
 
                 canonical:
-                    `https://nomadlifexp.com/blog/posts/${cleanSlug}`,
+                    `${SITE_URL}/blog/posts/${cleanSlug}`,
 
             },
+
 
 
             openGraph: {
@@ -188,18 +251,22 @@ export async function generateMetadata(
 
                 description,
 
+
                 url:
-                    `https://nomadlifexp.com/blog/posts/${cleanSlug}`,
+                    `${SITE_URL}/blog/posts/${cleanSlug}`,
+
 
                 type:
                     "article",
+
+
 
                 images:
                     image
                         ? [
                             {
                                 url:
-                                    `https://nomadlifexp.com${image}`,
+                                    `${SITE_URL}${image}`,
                             },
                         ]
                         : [],
@@ -207,19 +274,22 @@ export async function generateMetadata(
             },
 
 
+
             twitter: {
 
                 card:
                     "summary_large_image",
 
+
                 title,
 
                 description,
 
+
                 images:
                     image
                         ? [
-                            `https://nomadlifexp.com${image}`,
+                            `${SITE_URL}${image}`,
                         ]
                         : [],
 
@@ -241,15 +311,21 @@ export async function generateMetadata(
 
 
 
-export default async function BlogPostPage(
+
+
+
+
+export default async function MDXPostPage(
     {
         params,
     }: PageProps
 ) {
 
+
     const {
         slug,
     } = await params;
+
 
 
     const cleanSlug =
@@ -268,8 +344,11 @@ export default async function BlogPostPage(
 
 
 
+
     const post =
-        getPostBySlug(cleanSlug);
+        await getMDXPostBySlug(
+            cleanSlug
+        );
 
 
 
@@ -281,40 +360,39 @@ export default async function BlogPostPage(
 
 
 
-    let category =
-        "General";
-
-
-    try {
-
-        category =
-            normalizeCategory(
-                safeText(post.category),
-                safeText(post.title)
-            )
-            || "General";
-
-
-    } catch {
-
-        category =
-            "General";
-
-    }
-
 
 
     const title =
         safeText(post.title)
-        || "Untitled Article";
+        ||
+        "Untitled Article";
+
 
 
     const description =
         safeText(post.description);
 
 
+
+    const category =
+        safeSlug(post.category);
+
+
+
     const image =
         safeImage(post.image);
+
+
+
+    const relatedArticles =
+        Array.isArray(post.relatedArticles)
+            ? post.relatedArticles.filter(
+                (item): item is string =>
+                    typeof item === "string"
+            )
+            : [];
+
+
 
 
 
@@ -323,21 +401,45 @@ export default async function BlogPostPage(
         "@context":
             "https://schema.org",
 
+
         "@type":
             "Article",
+
 
         headline:
             title,
 
+
         description,
 
+
+        image:
+            image
+                ? `${SITE_URL}${image}`
+                : undefined,
+
+
         url:
-            `https://nomadlifexp.com/blog/posts/${cleanSlug}`,
+            `${SITE_URL}/blog/posts/${cleanSlug}`,
+
+
+        author: {
+
+            "@type":
+                "Organization",
+
+
+            name:
+                "NomadLifeXP",
+
+        },
+
 
         publisher: {
 
             "@type":
                 "Organization",
+
 
             name:
                 "NomadLifeXP",
@@ -348,116 +450,143 @@ export default async function BlogPostPage(
 
 
 
+
+
+
     return (
 
         <>
 
             <script
+
                 type="application/ld+json"
+
                 dangerouslySetInnerHTML={{
+
                     __html:
                         JSON.stringify(jsonLd),
+
                 }}
+
             />
+
 
 
             <article className="max-w-4xl mx-auto px-6 py-12">
 
 
-                <Link
-                    href={`/blog/category/${slugify(category)}`}
-                    className="text-sm text-cyan-600 hover:underline"
-                >
-                    ← Back to {category}
-                </Link>
+
+                <div className="mb-6">
+
+
+                    {category && (
+
+                        <Link
+
+                            href={`/blog/category/${category}`}
+
+                            className="text-sm text-cyan-600 hover:underline"
+
+                        >
+
+                            ← Back to {post.category}
+
+                        </Link>
+
+                    )}
+
+
+                </div>
 
 
 
-                <header className="mt-6 mb-8 border-b pb-6">
+
+
+                <header className="mb-10 border-b pb-6">
+
 
                     <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+
                         {title}
+
                     </h1>
 
 
+
                     <p className="mt-4 text-xl text-gray-600 dark:text-gray-400">
+
                         {description}
+
                     </p>
+
+
+
+
+
+                    {image && (
+
+                        <div className="relative mt-8 overflow-hidden rounded-xl">
+
+
+                            <Image
+
+                                src={image}
+
+                                alt={title}
+
+                                width={1200}
+
+                                height={630}
+
+                                priority
+
+                                sizes="(max-width:896px) 100vw, 896px"
+
+                                className="h-auto w-full object-cover"
+
+                            />
+
+
+                        </div>
+
+                    )}
+
+
 
                 </header>
 
 
 
-                {image && (
 
-                    <div className="relative w-full mb-8 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
 
-                        <Image
+                <div className="prose dark:prose-invert max-w-none">
 
-                            src={image}
+                    {post.content}
 
-                            alt={title}
-
-                            width={1200}
-
-                            height={630}
-
-                            priority
-
-                            sizes="(max-width:896px) 100vw, 840px"
-
-                            className="w-full h-auto object-contain"
-
-                        />
-
-                    </div>
-
-                )}
+                </div>
 
 
 
-                <div
-
-                    className="prose dark:prose-invert max-w-none"
-
-                    dangerouslySetInnerHTML={{
-                        __html:
-                            safeText(post.contentHtml),
-                    }}
-
-                />
 
 
-
-                <RelatedArticles
+                <MDXRelatedArticles
 
                     currentSlug={
                         post.slug
                     }
 
                     relatedSlugs={
-                        Array.isArray(post.relatedArticles)
-                            ? post.relatedArticles
-                            : []
+                        relatedArticles
                     }
 
                 />
 
 
 
-                <footer className="mt-12 pt-8 border-t">
-
-                    <Link
-                        href="/blog"
-                        className="text-cyan-600 hover:underline"
-                    >
-                        Return to all blogs →
-                    </Link>
-
-                </footer>
 
 
             </article>
+
 
         </>
 

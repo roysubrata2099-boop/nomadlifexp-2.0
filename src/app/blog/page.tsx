@@ -1,212 +1,566 @@
-import { getAllPosts, type PostData } from "@/lib/markdown";
-import { normalizeCategory } from "@/lib/taxonomy";
+import "server-only";
+
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-// 1. Immutable SEO Matrix (Overwrites global layout title cleanly)
+import { getAllMDXPosts } from "@/lib/mdx";
+
+
+const SITE_URL = "https://nomadlifexp.com";
+
+
 export const metadata: Metadata = {
-    title: "Self-Development System Database | NomadLifeXP",
-    description: "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
+
+    title:
+        "Self-Development System Database | NomadLifeXP",
+
+    description:
+        "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
+
     alternates: {
-        canonical: "https://nomadlifexp.com/blog",
+        canonical: `${SITE_URL}/blog`,
     },
+
     openGraph: {
-        title: "Self-Development System Database | NomadLifeXP",
-        description: "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
-        url: "https://nomadlifexp.com/blog",
-        type: "website",
-        siteName: "NomadLifeXP",
+
+        title:
+            "Self-Development System Database | NomadLifeXP",
+
+        description:
+            "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
+
+        url:
+            `${SITE_URL}/blog`,
+
+        type:
+            "website",
+
     },
+
     twitter: {
-        card: "summary_large_image",
-        title: "Self-Development System Database | NomadLifeXP",
-        description: "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
+
+        card:
+            "summary_large_image",
+
+        title:
+            "Self-Development System Database | NomadLifeXP",
+
+        description:
+            "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
+
     },
+
 };
 
-interface SafePost {
+
+
+type SafePost = {
+
     slug: string;
+
     title: string;
+
     description: string;
+
     category: string;
+
+    image: string;
+
+};
+
+
+
+
+
+function safeText(
+    value: unknown,
+    fallback: string
+): string {
+
+    if (
+        typeof value !== "string"
+    ) {
+
+        return fallback;
+
+    }
+
+
+    const clean =
+        value.trim();
+
+
+    return clean || fallback;
+
 }
 
-// 🛡️ 100% FIXED: Mapped categories strictly to your true /blog/category/* routing matrix
-const CATEGORY_ROUTES: Record<string, string> = {
-    discipline: "/blog/category/discipline",
-    fitness: "/blog/category/fitness",
-    yoga: "/blog/category/yoga",
-    mindset: "/blog/category/mindset",
-};
 
-// Bulletproof URL Safe Normalizer
-const slugify = (text: string): string => {
-    if (!text) return "";
-    return text
+
+
+
+function slugify(
+    value: string
+): string {
+
+    return value
+
         .toLowerCase()
+
         .trim()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
-};
 
-export default function BlogPage() {
-    // Hardened defensive mapping to eliminate runtime array reference crashes
-    const rawPosts = getAllPosts();
-    const safeRawPosts = Array.isArray(rawPosts) ? rawPosts : [];
+        .replace(
+            /[^a-z0-9]+/g,
+            "-"
+        )
 
-    const posts: SafePost[] = safeRawPosts
-        .map((post: PostData) => {
-            if (!post) return null;
+        .replace(
+            /^-+|-+$/g,
+            ""
+        );
 
-            // Fallback parameters to prevent undefined string matching crashes
-            const fallbackTitle = post.title?.trim() || "Untitled Knowledge Node";
-            const fallbackCategory = post.category?.trim() || "Uncategorized";
+}
 
-            const normalizedCategoryName = normalizeCategory(
-                fallbackCategory,
-                fallbackTitle
+
+
+
+
+function safeImage(
+    value: unknown
+): string {
+
+    if (
+        typeof value !== "string"
+    ) {
+
+        return "";
+
+    }
+
+
+    const image =
+        value.trim();
+
+
+    if (
+        !image.startsWith("/")
+    ) {
+
+        return "";
+
+    }
+
+
+    return image;
+
+}
+
+
+
+
+
+
+function normalizePosts(): SafePost[] {
+
+
+    try {
+
+
+        const raw =
+            getAllMDXPosts();
+
+
+
+        if (
+            !Array.isArray(raw)
+        ) {
+
+            return [];
+
+        }
+
+
+
+
+
+        const seen =
+            new Set<string>();
+
+
+
+
+
+        return raw
+
+            .map(
+                (post): SafePost | null => {
+
+
+                    const title =
+                        safeText(
+                            post.title,
+                            "Untitled Knowledge Node"
+                        );
+
+
+
+                    const slug =
+                        slugify(
+                            safeText(
+                                post.slug,
+                                title
+                            )
+                        );
+
+
+
+                    if (
+                        !slug ||
+                        seen.has(slug)
+                    ) {
+
+                        return null;
+
+                    }
+
+
+
+                    seen.add(slug);
+
+
+
+
+
+                    return {
+
+                        slug,
+
+                        title,
+
+                        description:
+                            safeText(
+                                post.description,
+                                "System description unavailable."
+                            ),
+
+
+                        category:
+                            slugify(
+                                safeText(
+                                    post.category,
+                                    "general"
+                                )
+                            ),
+
+
+                        image:
+                            safeImage(
+                                post.image
+                            ),
+
+                    };
+
+
+                }
+
+            )
+
+            .filter(
+                (
+                    post
+                ): post is SafePost =>
+                    post !== null
+            )
+
+            .sort(
+                (
+                    a,
+                    b
+                ) =>
+                    a.title.localeCompare(
+                        b.title
+                    )
             );
 
-            return {
-                slug: slugify(post.slug || fallbackTitle),
-                title: fallbackTitle,
-                description: post.description?.trim() || "System description unavailable.",
-                category: slugify(normalizedCategoryName || "general"),
-            };
-        })
-        .filter((post): post is SafePost => post !== null && post.slug.length > 0);
 
-    const archiveGraphSchema = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "CollectionPage",
-                "@id": "https://nomadlifexp.com/blog#collection",
-                "url": "https://nomadlifexp.com/blog",
-                "name": "Self-Development System Database | NomadLifeXP",
-                "description": "Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.",
-                "isPartOf": {
-                    "@type": "WebSite",
-                    "@id": "https://nomadlifexp.com/#website",
-                    "url": "https://nomadlifexp.com",
-                    "name": "NomadLifeXP"
-                }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "@id": "https://nomadlifexp.com/blog#breadcrumb",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Home",
-                        "item": "https://nomadlifexp.com"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "System Directory",
-                        "item": "https://nomadlifexp.com/blog"
-                    }
-                ]
-            }
-        ]
-    };
+
+    }
+
+    catch {
+
+
+        return [];
+
+    }
+
+}
+
+
+
+
+
+
+
+
+export default function BlogV2Page() {
+
+
+    const posts =
+        normalizePosts();
+
+
+
 
     return (
-        <div className="relative min-h-screen bg-black text-white overflow-hidden antialiased">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(archiveGraphSchema) }}
-            />
 
-            {/* Ambient System Glow */}
+
+        <div className="relative min-h-screen bg-black text-white overflow-hidden antialiased">
+
+
+
             <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
+
+
+
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
+
+
+
+
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-                {/* Navigation */}
+
+
+
+
+
                 <nav className="flex gap-5 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase">
-                    <Link href="/" className="text-neutral-500 hover:text-cyan-400">
-                        &larr; RETURN_TO_HOME
+
+
+                    <Link
+                        href="/"
+                        className="text-neutral-500 hover:text-cyan-400"
+                    >
+
+                        ← RETURN_TO_HOME
+
                     </Link>
-                    <span className="text-neutral-800">/</span>
-                    {/* 🛡️ 100% FIXED: Converted static node into an active Link target pointing to /discipline-system */}
-                    <Link href="/discipline-system" className="text-neutral-500 hover:text-cyan-400">
-                        SYSTEM_DIRECTORY
-                    </Link>
+
+
+                    <span className="text-neutral-800">
+                        /
+                    </span>
+
+
+                    <span className="text-cyan-400">
+                        MDX_DATABASE
+                    </span>
+
+
                 </nav>
 
-                {/* Hero */}
-                <header className="max-w-5xl mb-24">
-                    <div className="flex items-center gap-3 mb-6">
-                        <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                        <p className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                            NomadLifeXP // Transformation Architecture
-                        </p>
-                    </div>
 
-                    <h1 className="text-5xl md:text-7xl font-black uppercase leading-none tracking-tight">
+
+
+
+
+                <header className="max-w-5xl mb-24">
+
+
+                    <p className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
+
+                        NomadLifeXP // MDX Transformation Architecture
+
+                    </p>
+
+
+
+                    <h1 className="mt-6 text-5xl md:text-7xl font-black uppercase leading-none">
+
+
                         SELF DEVELOPMENT
+
                         <br />
+
                         <span className="bg-gradient-to-r from-white via-neutral-400 to-cyan-400 bg-clip-text text-transparent">
-                            SYSTEM DATABASE
+
+                            MDX DATABASE
+
                         </span>
+
+
                     </h1>
 
-                    <p className="mt-8 max-w-3xl text-neutral-400 font-mono text-sm sm:text-base leading-relaxed">
-                        Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution. Each knowledge module connects directly to its operational pillar.
+
+
+
+                    <p className="mt-8 max-w-3xl text-neutral-400 font-mono">
+
+                        Explore structured transformation systems covering discipline, fitness, yoga, mindset, and personal evolution.
+
                     </p>
+
+
                 </header>
 
-                {/* Blog Database */}
+
+
+
+
+
+
                 <section>
-                    <h2 className="mb-8 font-mono text-xs uppercase tracking-[0.4em] text-neutral-500">
-                        // ACTIVE KNOWLEDGE MODULES
-                    </h2>
 
-                    {posts.length === 0 ? (
-                        <div className="border border-neutral-800 bg-neutral-950 p-8">
-                            <p className="text-neutral-400 font-mono text-sm">
-                                [SYSTEM_INFO] No Blog Nodes Available.
-                            </p>
-                        </div>
-                    ) : (
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {posts.map((post) => (
+
+                    {posts.length === 0 && (
+
+                        <p className="text-neutral-500 font-mono">
+
+                            No articles available.
+
+                        </p>
+
+                    )}
+
+
+
+
+
+                    <div className="grid md:grid-cols-2 gap-8">
+
+
+
+                        {posts.map(
+                            (
+                                post
+                            ) => (
+
+
                                 <article
-                                    key={post.slug}
-                                    className="border border-neutral-800 bg-neutral-950/50 p-8 hover:border-cyan-500/40 transition-colors duration-200"
-                                >
-                                    <h3 className="text-xl font-bold uppercase mb-4 text-white">
-                                        {post.title}
-                                    </h3>
 
-                                    <p className="text-sm text-neutral-400 leading-relaxed mb-6 font-light">
+                                    key={post.slug}
+
+                                    className="border border-neutral-800 bg-neutral-950/50 p-8 rounded-2xl hover:border-cyan-500/40 transition"
+
+                                >
+
+
+
+                                    {post.image && (
+
+                                        <div className="relative w-full h-72 mb-6 rounded-xl overflow-hidden bg-neutral-900">
+
+
+                                            <Image
+
+                                                src={post.image}
+
+                                                alt={post.title}
+
+                                                fill
+
+                                                priority={false}
+
+                                                sizes="(max-width:768px) 100vw, 50vw"
+
+                                                className="object-contain"
+
+                                            />
+
+
+                                        </div>
+
+                                    )}
+
+
+
+
+
+
+
+                                    <h2 className="text-xl font-bold uppercase">
+
+                                        {post.title}
+
+                                    </h2>
+
+
+
+
+
+                                    <p className="mt-4 text-sm text-neutral-400">
+
                                         {post.description}
+
                                     </p>
 
-                                    <div className="mb-6">
+
+
+
+
+
+                                    <div className="mt-6">
+
+
                                         <Link
-                                            href={CATEGORY_ROUTES[post.category] || "/blog"}
-                                            className="inline-flex rounded-full px-3 py-1 text-xs uppercase font-mono bg-cyan-950 text-cyan-300 hover:bg-cyan-900 transition-colors duration-150"
+
+                                            href={`/blog/category/${post.category}`}
+
+                                            className="rounded-full px-3 py-1 text-xs uppercase font-mono bg-cyan-950 text-cyan-300"
+
                                         >
+
                                             {post.category}
+
                                         </Link>
+
+
                                     </div>
 
+
+
+
+
+
+
                                     <Link
+
                                         href={`/blog/posts/${post.slug}`}
-                                        className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:text-cyan-300 transition-colors duration-150"
+
+                                        className="mt-6 inline-flex text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300"
+
                                     >
-                                        READ ARTICLE <span>&rarr;</span>
+
+                                        READ ARTICLE →
+
                                     </Link>
+
+
+
+
+
                                 </article>
-                            ))}
-                        </div>
-                    )}
+
+
+                            )
+
+                        )}
+
+
+
+                    </div>
+
+
                 </section>
+
+
+
             </main>
+
+
         </div>
+
+
     );
+
 }

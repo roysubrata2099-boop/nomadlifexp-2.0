@@ -17,8 +17,16 @@ export const metadata: Metadata = {
         default: "NomadLifeXP // Human Optimization Platform",
         template: "%s | NomadLifeXP",
     },
-    description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
-    keywords: ["Somatic Mechanics", "Discipline Systems", "Mindset", "Yoga", "Cognitive Architecture", "Bio-Performance"],
+    description:
+        "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
+    keywords: [
+        "Somatic Mechanics",
+        "Discipline Systems",
+        "Mindset",
+        "Yoga",
+        "Cognitive Architecture",
+        "Bio-Performance",
+    ],
     authors: [{ name: "NomadLifeXP Team" }],
     creator: "NomadLifeXP",
 
@@ -28,7 +36,8 @@ export const metadata: Metadata = {
         url: "https://nomadlifexp.com",
         siteName: "NomadLifeXP",
         title: "NomadLifeXP // Human Optimization Platform",
-        description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
+        description:
+            "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
         images: [
             {
                 url: "/og-main.jpg",
@@ -38,12 +47,15 @@ export const metadata: Metadata = {
             },
         ],
     },
+
     twitter: {
         card: "summary_large_image",
         title: "NomadLifeXP // Human Optimization Platform",
-        description: "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
+        description:
+            "NomadLifeXP is a high-performance framework engineered for somatic mechanics, advanced focus systems, deep discipline architectures, and cognitive design.",
         images: ["/og-main.jpg"],
     },
+
     robots: {
         index: true,
         follow: true,
@@ -68,36 +80,38 @@ export default function RootLayout({
             {
                 "@type": "Organization",
                 "@id": "https://nomadlifexp.com/#organization",
-                "name": "NomadLifeXP",
-                "url": "https://nomadlifexp.com",
-                "logo": {
+                name: "NomadLifeXP",
+                url: "https://nomadlifexp.com",
+                logo: {
                     "@type": "ImageObject",
                     "@id": "https://nomadlifexp.com/#logo",
-                    "url": "https://nomadlifexp.com/images/logo.png",
-                    "caption": "NomadLifeXP"
+                    url: "https://nomadlifexp.com/images/logo.png",
+                    caption: "NomadLifeXP",
                 },
-                "image": {
-                    "@id": "https://nomadlifexp.com/#logo"
-                }
+                image: {
+                    "@id": "https://nomadlifexp.com/#logo",
+                },
             },
             {
                 "@type": "WebSite",
                 "@id": "https://nomadlifexp.com/#website",
-                "url": "https://nomadlifexp.com",
-                "name": "NomadLifeXP",
-                "publisher": {
-                    "@id": "https://nomadlifexp.com/#organization"
+                url: "https://nomadlifexp.com",
+                name: "NomadLifeXP",
+                publisher: {
+                    "@id": "https://nomadlifexp.com/#organization",
                 },
-                "potentialAction": {
+                potentialAction: {
                     "@type": "SearchAction",
-                    "target": "https://nomadlifexp.com/blog?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                }
-            }
-        ]
+                    target:
+                        "https://nomadlifexp.com/blog?q={search_term_string}",
+                    "query-input": "required name=search_term_string",
+                },
+            },
+        ],
     };
 
     let serializedSchema = "";
+
     try {
         serializedSchema = JSON.stringify(jsonLdSchema);
     } catch (e) {
@@ -108,50 +122,72 @@ export default function RootLayout({
         <html lang="en" className="scroll-smooth">
             <body className="antialiased bg-black text-white flex flex-col min-h-screen">
 
-                {/* 🛡️ RETAINS CLEAN STRUCTURAL PASS-THROUGH ONLY */}
-                {/* Your site's native header layout handles the menu flawlessly */}
                 <main className="flex-grow">
                     {children}
                 </main>
 
-                {/* 🛡️ SCHEMA & METADATA ACCESSIBILITY LAYER */}
+                {/* Structured Data SEO Layer */}
                 {serializedSchema && (
                     <script
                         id="structured-data-core-architecture"
                         type="application/ld+json"
-                        dangerouslySetInnerHTML={{ __html: serializedSchema }}
+                        dangerouslySetInnerHTML={{
+                            __html: serializedSchema,
+                        }}
                     />
                 )}
 
-                {/* Microsoft Clarity Analytics Tracking Infrastructure */}
-                <Script id="microsoft-clarity-init" strategy="afterInteractive">
+                {/* Microsoft Clarity Analytics */}
+                <Script
+                    id="microsoft-clarity-init"
+                    strategy="afterInteractive"
+                >
                     {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "x4hbg8q5cg");
-          `}
+                        (function(c,l,a,r,i,t,y){
+                            c[a]=c[a]||function(){
+                                (c[a].q=c[a].q||[]).push(arguments)
+                            };
+                            t=l.createElement(r);
+                            t.async=1;
+                            t.src="https://www.clarity.ms/tag/"+i;
+                            y=l.getElementsByTagName(r)[0];
+                            y.parentNode.insertBefore(t,y);
+                        })(window, document, "clarity", "script", "x4hbg8q5cg");
+                    `}
                 </Script>
 
-                {/* Google Tag Manager / Global Site Tag (gtag.js) Core Async Dependency */}
+
+                {/* Google Analytics 4 Multi Property Tracking */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-V0M0XN8BBE"
                     strategy="afterInteractive"
-                    {...({} as any)}
                 />
 
-                {/* Google Analytics 4 Execution Routing Architecture */}
-                <Script id="google-analytics-init" strategy="afterInteractive">
+                <Script
+                    id="google-analytics-init"
+                    strategy="afterInteractive"
+                >
                     {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-V0M0XN8BBE', {
-              page_path: window.location.pathname,
-            });
-          `}
+                        window.dataLayer = window.dataLayer || [];
+
+                        function gtag(){
+                            window.dataLayer.push(arguments);
+                        }
+
+                        gtag('js', new Date());
+
+                        // Primary GA4 Property
+                        gtag('config', 'G-V0M0XN8BBE', {
+                            page_path: window.location.pathname,
+                        });
+
+                        // Secondary GA4 Property
+                        gtag('config', 'G-B7KY4PQ8WN', {
+                            page_path: window.location.pathname,
+                        });
+                    `}
                 </Script>
+
             </body>
         </html>
     );

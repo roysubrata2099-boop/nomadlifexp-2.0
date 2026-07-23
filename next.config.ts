@@ -3,11 +3,9 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
-
 const withMDX = createMDX({
   extension: /\.mdx?$/,
 });
-
 
 const nextConfig: NextConfig = {
 
@@ -54,7 +52,25 @@ const nextConfig: NextConfig = {
   ],
 
 
-};
+  /* ==========================================================================
+     🔁 SEO PRESERVATION REDIRECTS
+     ========================================================================== */
+  async redirects() {
+    return [
+      {
+        source: "/blog.html",
+        destination: "/blog",
+        permanent: true,
+      },
 
+      {
+        source: "/fitness-consistency.html",
+        destination: "/blog/posts/passive-fitness-consumption-trap",
+        permanent: true,
+      },
+    ];
+  },
+
+};
 
 export default withMDX(nextConfig);

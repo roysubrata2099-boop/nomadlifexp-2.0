@@ -150,8 +150,13 @@ export default function NomadLifeXPMaster() {
             muted
             loop
             playsInline
+            preload="metadata"
+            poster="/images/yoga-mind-body-awareness.jpg"
           >
-            <source src="/videos/yoga.mp4" type="video/mp4" />
+            <source
+              src="/videos/yoga-mind-body-awareness.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
 

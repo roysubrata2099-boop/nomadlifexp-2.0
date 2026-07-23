@@ -12,62 +12,62 @@
     },
     {
       "source": "/attention-span.html",
-      "destination": "/blog/posts/your-attention-span-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/cant-focus.html",
-      "destination": "/blog/posts/your-cant-focus-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/discipline-blog.html",
-      "destination": "/blog/posts/your-discipline-blog-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/discipline-creates-freedom.html",
-      "destination": "/blog/posts/your-discipline-creates-freedom-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/fitness-is-not-about-time.html",
-      "destination": "/blog/posts/your-fitness-is-not-about-time-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/forearm-stand.html",
-      "destination": "/blog/posts/your-forearm-stand-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/forward-bending.html",
-      "destination": "/blog/posts/your-forward-bending-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/headstand.html",
-      "destination": "/blog/posts/your-headstand-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/mental-clarity.html",
-      "destination": "/blog/posts/your-mental-clarity-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/self-discipline-guide.html",
-      "destination": "/blog/posts/your-self-discipline-guide-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/stop-procrastination.html",
-      "destination": "/blog/posts/your-stop-procrastination-slug",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/stuck-in-life.html",
-      "destination": "/blog/posts/your-stuck-in-life-slug",
+      "destination": "/blog",
       "permanent": true
     }
   ]

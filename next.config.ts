@@ -10,38 +10,43 @@ const withMDX = createMDX({
 const nextConfig: NextConfig = {
 
   /* ==========================================================================
-     🛡️ BUILD SAFETY
+     BUILD SAFETY
      ========================================================================== */
+
   eslint: {
     ignoreDuringBuilds: true,
   },
 
 
   /* ==========================================================================
-     🔒 SECURITY / STABILITY DEFAULTS
+     SECURITY
      ========================================================================== */
+
   poweredByHeader: false,
 
 
   /* ==========================================================================
-     🚀 IMAGE CONFIGURATION
+     IMAGE CONFIGURATION
      ========================================================================== */
+
   images: {
     unoptimized: false,
   },
 
 
   /* ==========================================================================
-     ⚡ TYPESCRIPT SAFETY
+     TYPESCRIPT SAFETY
      ========================================================================== */
+
   typescript: {
     ignoreBuildErrors: false,
   },
 
 
   /* ==========================================================================
-     📝 MDX SUPPORT
+     MDX SUPPORT
      ========================================================================== */
+
   pageExtensions: [
     "ts",
     "tsx",
@@ -53,28 +58,25 @@ const nextConfig: NextConfig = {
 
 
   /* ==========================================================================
-     🔁 LEGACY URL SEO REDIRECTS
+     PERMANENT SEO REDIRECTS
+     Old HTML URLs → Current Next.js routes
      ========================================================================== */
+
   async redirects() {
     return [
 
-      // Old blog index
       {
         source: "/blog.html",
         destination: "/blog",
         permanent: true,
       },
 
-
-      // Confirmed moved article
       {
         source: "/fitness-consistency.html",
         destination: "/blog/posts/passive-fitness-consumption-trap",
         permanent: true,
       },
 
-
-      // Legacy HTML articles
       {
         source: "/attention-span.html",
         destination: "/blog",
@@ -151,5 +153,6 @@ const nextConfig: NextConfig = {
   },
 
 };
+
 
 export default withMDX(nextConfig);

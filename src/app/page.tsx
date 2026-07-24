@@ -190,8 +190,8 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION - Full Clear Visibility for Title */}
-      <section className="relative pt-40 sm:pt-48 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
+      {/* HERO SECTION */}
+      <section className="relative pt-36 sm:pt-44 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
         <div
           aria-hidden="true"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
@@ -199,7 +199,7 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6">
-            NomadLifeXP // Human Optimization Platform
+            NomadLifeXP
           </p>
 
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white">
@@ -211,7 +211,8 @@ export default function HomePage() {
             A complete personal evolution framework built around{" "}
             <strong className="text-white font-normal">
               discipline, fitness, yoga, and mindset.
-            </strong>{" "}
+            </strong>
+            <br />
             Build stronger systems. Create better habits. Become your next version.
           </p>
 
@@ -236,9 +237,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PHILOSOPHY & YOGA VIDEO - Strictly Centered */}
+      {/* PHILOSOPHY & YOGA VIDEO (CENTERED) */}
       <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center justify-center text-center">
-        <div className="w-full relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-12 shadow-2xl mx-auto">
+        <div className="w-full relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-12 shadow-2xl mx-auto flex items-center justify-center">
           <video
             className="w-full h-full object-cover block mx-auto"
             autoPlay
@@ -271,7 +272,8 @@ export default function HomePage() {
             The Four Foundations
           </p>
           <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-center">
-            Build Your <span className="text-cyan-400">Evolution System</span>
+            Build Your <br className="sm:hidden" />
+            <span className="text-cyan-400">Evolution System</span>
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base text-center">
             Four connected systems designed to transform your body, mind, habits, and lifestyle.
@@ -307,7 +309,7 @@ export default function HomePage() {
 
       {/* JOURNEY STEPS */}
       <section className="border-y border-white/10 bg-white/[0.01] py-16 text-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
             The Journey
           </p>
@@ -315,7 +317,7 @@ export default function HomePage() {
             From Chaos <span className="text-cyan-400">To Clarity</span>
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-5xl">
             {STEPS.map((step, idx) => (
               <div key={step} className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full border border-cyan-400/40 flex items-center justify-center font-bold text-cyan-300 mb-3 bg-[#050816]">
@@ -393,7 +395,7 @@ export default function HomePage() {
 
       {/* FAQ */}
       <section className="border-t border-white/10 py-16 bg-white/[0.01]">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <div className="text-center mb-10">
             <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
               FAQ
@@ -403,11 +405,11 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="space-y-4 text-center">
+          <div className="space-y-4 w-full text-left">
             {FAQ_ITEMS.map((faq) => (
               <details
                 key={faq.id}
-                className="group border border-white/10 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden text-left"
+                className="group border border-white/10 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden bg-white/[0.01]"
               >
                 <summary className="flex items-center justify-between font-bold uppercase text-sm cursor-pointer list-none">
                   <span>{faq.question}</span>
@@ -455,27 +457,7 @@ export default function HomePage() {
             Evolve in Motion
           </p>
 
-          <div className="flex justify-center items-center gap-4 mb-8 text-sm">
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-cyan-400 transition-colors"
-            >
-              YouTube
-            </a>
-            <span className="text-slate-600">|</span>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-cyan-400 transition-colors"
-            >
-              Instagram
-            </a>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-6 mb-10 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300">
+          <div className="flex justify-center items-center gap-6 mb-8 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300">
             <Link href="/about" className="hover:text-cyan-400 transition-colors">
               About
             </Link>

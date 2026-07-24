@@ -157,8 +157,8 @@ const STEPS: readonly string[] = [
 export default function HomePage() {
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased">
-      {/* FIXED NAVBAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/90 backdrop-blur-md">
+      {/* PROTECTED FIXED HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/95 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link
             href="/"
@@ -188,24 +188,24 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION - EXTRA TOP PADDING FOR FULL VISIBILITY */}
-      <section className="relative pt-44 sm:pt-52 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
+      {/* HERO SECTION - EXTRA PADDING PREVENTS HEADER OVERLAP */}
+      <section className="relative pt-48 sm:pt-56 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
         <div
           aria-hidden="true"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
         />
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
             NomadLifeXP // Human Optimization Platform
           </p>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white text-center">
             Evolve <br />
             <span className="text-cyan-400">in Motion</span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed mb-10 text-center">
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-10 text-center">
             A complete personal evolution framework built around{" "}
             <strong className="text-white font-normal">
               discipline, fitness, yoga, and mindset.
@@ -235,11 +235,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* YOGA VIDEO & PHILOSOPHY - CENTERED */}
-      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center justify-center text-center">
-        <div className="w-full relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-12 shadow-2xl mx-auto flex items-center justify-center">
+      {/* 100% PROTECTED CENTERED YOGA VIDEO SECTION */}
+      <section
+        style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%" }}
+        className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center"
+      >
+        <div
+          style={{ marginLeft: "auto", marginRight: "auto", width: "100%" }}
+          className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-12 shadow-2xl flex items-center justify-center"
+        >
           <video
-            className="w-full h-full object-cover block mx-auto"
+            style={{ display: "block", marginLeft: "auto", marginRight: "auto", width: "100%", height: "100%", objectFit: "cover" }}
             autoPlay
             muted
             loop
@@ -252,8 +258,8 @@ export default function HomePage() {
           </video>
         </div>
 
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3">
+        <div style={{ marginLeft: "auto", marginRight: "auto" }} className="max-w-2xl text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3 text-center">
             The Philosophy
           </p>
           <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-tight text-center">
@@ -266,7 +272,7 @@ export default function HomePage() {
       {/* FOUR FOUNDATIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
             The Four Foundations
           </p>
           <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-center">
@@ -285,19 +291,19 @@ export default function HomePage() {
               href={system.href}
               className="group flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all text-center"
             >
-              <span className="text-xs tracking-[0.3em] text-cyan-400 font-mono block mb-4">
+              <span className="text-xs tracking-[0.3em] text-cyan-400 font-mono block mb-4 text-center">
                 0{idx + 1}
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black uppercase mb-2">
+              <h3 className="text-2xl sm:text-3xl font-black uppercase mb-2 text-center">
                 {system.title}
               </h3>
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-4 text-center">
                 {system.subtitle}
               </p>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-md mx-auto">
+              <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-md mx-auto text-center">
                 {system.description}
               </p>
-              <span className="text-xs uppercase tracking-[0.2em] text-cyan-300 group-hover:translate-x-1 inline-block transition-transform">
+              <span className="text-xs uppercase tracking-[0.2em] text-cyan-300 group-hover:translate-x-1 inline-block transition-transform text-center">
                 Explore System &rarr;
               </span>
             </Link>
@@ -333,7 +339,7 @@ export default function HomePage() {
       {/* OUR MISSION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
             Our Mission
           </p>
           <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4 text-center">
@@ -363,7 +369,7 @@ export default function HomePage() {
       {/* KNOWLEDGE INDEX */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center border-t border-white/10">
         <div className="max-w-2xl mx-auto mb-12 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
             Knowledge Index
           </p>
           <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-3 text-center">
@@ -383,7 +389,7 @@ export default function HomePage() {
             >
               <h3 className="font-bold uppercase text-xl mb-2 text-center">{item.title}</h3>
               <p className="text-xs text-slate-400 mb-6 text-center">{item.text}</p>
-              <span className="text-xs uppercase tracking-[0.2em] text-cyan-300 group-hover:translate-x-1 inline-block transition-transform">
+              <span className="text-xs uppercase tracking-[0.2em] text-cyan-300 group-hover:translate-x-1 inline-block transition-transform text-center">
                 Explore &rarr;
               </span>
             </Link>
@@ -395,7 +401,7 @@ export default function HomePage() {
       <section className="border-t border-white/10 py-16 bg-white/[0.01]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <div className="text-center mb-10">
-            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
+            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
               FAQ
             </p>
             <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-center">
@@ -427,7 +433,7 @@ export default function HomePage() {
       {/* FINAL CTA */}
       <section className="py-20 px-4 text-center border-t border-white/10">
         <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-3">
+          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-3 text-center">
             Your Evolution Begins
           </p>
           <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-4 text-center">
@@ -445,17 +451,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FOOTER WITH SOCIAL LINKS AND DISTINCT DARK COLOR */}
+      {/* PROTECTED FOOTER WITH YOUTUBE & INSTAGRAM */}
       <footer className="border-t border-cyan-500/20 bg-[#02040a] py-16 px-4 text-center text-xs text-slate-400">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-          <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base">
+          <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base text-center">
             NOMADLIFE<span className="text-cyan-400">XP</span>
           </p>
-          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-8">
+          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-8 text-center">
             Evolve in Motion
           </p>
 
-          {/* YOUTUBE & INSTAGRAM FOOTER LINKS */}
           <div className="flex justify-center items-center gap-4 mb-8 text-sm">
             <a
               href="https://youtube.com"
@@ -491,7 +496,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <p className="text-slate-600 text-[11px]">
+          <p className="text-slate-600 text-[11px] text-center">
             © 2026 NomadLifeXP. All rights reserved.
           </p>
         </div>

@@ -1,49 +1,41 @@
 /* ==========================================================================
-   🚀 TAILWIND ENGINE INITIALIZATION & MATRIX CONTEXT
+   🚀 TAILWIND ENGINE INITIALIZATION
    ========================================================================== */
 @import "tailwindcss";
 
 /* ==========================================================================
-   🎨 BRAND PALETTE RESET (NAVY CONTEXT WITH ORIGINAL MATRICES SECURED)
+   🎨 BRAND PALETTE & CORE RESETS
    ========================================================================== */
 :root {
-  /* Secured Core Assets */
   --bg-surface-blue: #0f172a;
   --text-muted: #a7f3d0;
   --glow-cyan: #ffb700;
   --glow-amber: #f59e0b;
   --highlight-lime: #ffe57f;
-
-  /* ⭐ Premium Body Text */
   --body-text: #EDF6FF;
 }
 
-* {
+*,
+::before,
+::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-/* ==========================================================================
-   🌌 DEEP NAVY BLUE BACKGROUND LAYERING ENGINE
-   ========================================================================== */
+html,
 body {
   min-height: 100vh;
-
+  margin: 0;
+  padding: 0;
   background-color: #050914 !important;
-
   background:
     radial-gradient(circle at top, #0a1a3a 0%, transparent 45%),
     radial-gradient(circle at bottom, #050b1a 0%, transparent 40%),
     linear-gradient(135deg, #050914, #071428, #0a1a33) !important;
-
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-
   line-height: 1.65;
-
   -webkit-font-smoothing: antialiased;
-
   color: var(--body-text);
+  overflow-x: hidden;
 }
 
 a {
@@ -53,34 +45,26 @@ a {
 }
 
 /* ==========================================================================
-   ✨ CLEAN TRILL TEXT CONFIGURATION
+   ✨ TRILL TEXT UTILITY (SCOPED TO CLASS ONLY)
    ========================================================================== */
 .trill,
-.trill-text-target,
-h1,
-h2 {
+.trill-text-target {
   display: inline-block;
-
   background:
     linear-gradient(90deg,
       #ffffff,
       #7dd3fc,
       #38bdf8,
       #60a5fa,
-      #ffffff) !important;
-
-  background-size: 300% 100% !important;
-
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-
-  -webkit-text-fill-color: transparent !important;
-
+      #ffffff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow:
     0 0 10px rgba(56, 189, 248, .18),
     0 0 25px rgba(125, 211, 252, .10);
-
-  animation: trillShimmer 4s linear infinite !important;
+  animation: trillShimmer 4s linear infinite;
 }
 
 @keyframes trillShimmer {
@@ -94,138 +78,48 @@ h2 {
 }
 
 /* ==========================================================================
-   📖 PREMIUM BLOG BODY TEXT & CONTAINER READABILITY SHIELD
+   📖 SCOPED ARTICLE TYPOGRAPHY (PREVENTS LANDING PAGE OVERRIDES)
    ========================================================================== */
-p,
-li,
-td,
-figcaption,
-.blog-content div:not([class*="trill"]):not([class*="fiery"]):not([class*="glow"]),
-.ecosystem-nav-text,
-.ecosystem-nav-text * {
-  color: var(--body-text) !important;
-
-  /* 🛡️ Explicitly forces text-fill execution to avoid inheriting header transparency clones */
-  -webkit-text-fill-color: var(--body-text) !important;
-
-  font-size: 18px;
-
+.blog-content p,
+.blog-content li {
+  color: var(--body-text);
+  font-size: 1.125rem;
   line-height: 1.8;
-
-  opacity: 1 !important;
 }
 
-/* Links inside standard text elements inherit readable text variables with fallback safety */
-p a,
-li a,
-.ecosystem-nav-text a {
-  color: #38BDF8 !important;
-  /* High contrast cyan link highlight */
-  -webkit-text-fill-color: #38BDF8 !important;
+.blog-content p a,
+.blog-content li a {
+  color: #38BDF8;
   text-decoration: underline;
 }
 
-p a:hover,
-li a:hover,
-.ecosystem-nav-text a:hover {
-  color: #7DD3FC !important;
-  -webkit-text-fill-color: #7DD3FC !important;
+.blog-content p a:hover,
+.blog-content li a:hover {
+  color: #7DD3FC;
 }
 
-/* ==========================================================================
-   💬 BLOCKQUOTE
-   ========================================================================== */
 blockquote {
-  color: #DBEAFE !important;
-
+  color: #DBEAFE;
   border-left: 4px solid #38BDF8;
-
-  padding-left: 20px;
-
-  margin: 24px 0;
-
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
   font-style: italic;
 }
 
-/* ==========================================================================
-   📊 TABLES
-   ========================================================================== */
 table {
   width: 100%;
-
   border-collapse: collapse;
-
-  margin: 24px 0;
+  margin: 1.5rem 0;
 }
 
 th {
   background: rgba(30, 41, 59, .85);
-
-  color: #7DD3FC !important;
-
-  padding: 14px;
-
+  color: #7DD3FC;
+  padding: 0.875rem;
   text-align: left;
 }
 
 td {
   border-bottom: 1px solid rgba(255, 255, 255, .08);
-
-  padding: 14px;
-}
-
-/* ==========================================================================
-   ✨ FIERY PLASMA GLOW EFFECT
-   ========================================================================== */
-.fiery-glow-text {
-  color: #ffffff !important;
-
-  -webkit-text-fill-color: #ffffff !important;
-
-  text-shadow:
-    0 0 4px var(--glow-cyan),
-    0 0 12px var(--glow-cyan),
-    0 0 30px var(--glow-amber);
-
-  animation: flare 4s infinite alternate;
-}
-
-@keyframes flare {
-  0% {
-    opacity: .96;
-  }
-
-  100% {
-    opacity: 1;
-
-    text-shadow:
-      0 0 6px var(--glow-cyan),
-      0 0 18px var(--glow-cyan),
-      0 0 40px var(--glow-amber);
-  }
-}
-
-/* ==========================================================================
-   🖋️ BLOG READER HIGHLIGHTS
-   ========================================================================== */
-.blog-content strong,
-p strong,
-li strong {
-  color: #ffffff !important;
-
-  -webkit-text-fill-color: #ffffff !important;
-
-  font-weight: 700;
-
-  background:
-    linear-gradient(180deg,
-      transparent 65%,
-      rgba(255, 183, 0, .35) 100%) !important;
-
-  padding: 2px 4px;
-
-  border-radius: 2px;
-
-  text-shadow:
-    0 0 8px rgba(255, 183, 0, .7);
+  padding: 0.875rem;
 }

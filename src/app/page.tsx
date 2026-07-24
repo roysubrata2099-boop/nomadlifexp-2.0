@@ -160,7 +160,7 @@ export default function HomePage() {
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased">
       {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/80 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link
             href="/"
@@ -190,24 +190,24 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION (Compact height gap) */}
-      <section className="relative pt-32 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
+      {/* HERO SECTION - Full Clear Visibility for Title */}
+      <section className="relative pt-40 sm:pt-48 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
         <div
           aria-hidden="true"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
         />
 
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-4">
+        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6">
             NomadLifeXP // Human Optimization Platform
           </p>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-6">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white">
             Evolve <br />
             <span className="text-cyan-400">in Motion</span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed mb-8">
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed mb-10 text-center">
             A complete personal evolution framework built around{" "}
             <strong className="text-white font-normal">
               discipline, fitness, yoga, and mindset.
@@ -215,32 +215,32 @@ export default function HomePage() {
             Build stronger systems. Create better habits. Become your next version.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 w-full sm:w-auto">
             <Link
               href="/start-here"
-              className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(34,211,238,0.3)]"
+              className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(34,211,238,0.3)] text-center"
             >
               Begin Journey
             </Link>
             <Link
               href="/knowledge-index"
-              className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-xs hover:border-cyan-400 hover:text-cyan-300 transition"
+              className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-xs hover:border-cyan-400 hover:text-cyan-300 transition text-center"
             >
               Explore Knowledge
             </Link>
           </div>
 
-          <p className="text-[10px] uppercase tracking-[0.4em] text-slate-500">
+          <p className="text-[10px] uppercase tracking-[0.4em] text-slate-500 text-center">
             Scroll to evolve &darr;
           </p>
         </div>
       </section>
 
-      {/* PHILOSOPHY & YOGA VIDEO (Tightly bound to Hero) */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
-        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-10 shadow-2xl">
+      {/* PHILOSOPHY & YOGA VIDEO - Strictly Centered */}
+      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center justify-center text-center">
+        <div className="w-full relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-12 shadow-2xl mx-auto">
           <video
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover block mx-auto"
             autoPlay
             muted
             loop
@@ -253,11 +253,11 @@ export default function HomePage() {
           </video>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3">
             The Philosophy
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-tight text-center">
             Transformation is not a moment. <br />
             It is a system.
           </h2>
@@ -265,25 +265,25 @@ export default function HomePage() {
       </section>
 
       {/* CORE SYSTEMS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
-        <div className="max-w-3xl mx-auto mb-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="max-w-3xl mx-auto mb-12 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             The Four Foundations
           </p>
-          <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight">
+          <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-center">
             Build Your <span className="text-cyan-400">Evolution System</span>
           </h2>
-          <p className="mt-3 text-slate-400 text-sm sm:text-base">
+          <p className="mt-3 text-slate-400 text-sm sm:text-base text-center">
             Four connected systems designed to transform your body, mind, habits, and lifestyle.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
           {SYSTEMS.map((system, idx) => (
             <Link
               key={system.id}
               href={system.href}
-              className="group block p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all"
+              className="group flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all text-center"
             >
               <span className="text-xs tracking-[0.3em] text-cyan-400 font-mono block mb-4">
                 0{idx + 1}
@@ -294,7 +294,7 @@ export default function HomePage() {
               <p className="text-xs uppercase tracking-[0.2em] text-slate-400 mb-4">
                 {system.subtitle}
               </p>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              <p className="text-slate-300 text-sm leading-relaxed mb-6 max-w-md mx-auto">
                 {system.description}
               </p>
               <span className="text-xs uppercase tracking-[0.2em] text-cyan-300 group-hover:translate-x-1 inline-block transition-transform">
@@ -308,20 +308,20 @@ export default function HomePage() {
       {/* JOURNEY STEPS */}
       <section className="border-y border-white/10 bg-white/[0.01] py-16 text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
             The Journey
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-12">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-12 text-center">
             From Chaos <span className="text-cyan-400">To Clarity</span>
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
             {STEPS.map((step, idx) => (
-              <div key={step} className="flex flex-col items-center">
+              <div key={step} className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full border border-cyan-400/40 flex items-center justify-center font-bold text-cyan-300 mb-3 bg-[#050816]">
                   0{idx + 1}
                 </div>
-                <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider">
+                <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-center">
                   {step}
                 </h3>
               </div>
@@ -331,28 +331,28 @@ export default function HomePage() {
       </section>
 
       {/* MISSION & AUDIENCE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
-        <div className="max-w-3xl mx-auto mb-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="max-w-3xl mx-auto mb-12 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             Our Mission
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4 text-center">
             We don&apos;t chase motivation. <br />
             <span className="text-cyan-400">We build systems.</span>
           </h2>
-          <p className="text-slate-400 leading-relaxed text-sm sm:text-base">
+          <p className="text-slate-400 leading-relaxed text-sm sm:text-base text-center">
             NomadLifeXP helps individuals create sustainable personal transformation through structured habits, physical development, mindful movement, and mental resilience.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {AUDIENCE_ITEMS.map((item) => (
             <div
               key={item.id}
-              className="p-6 rounded-xl border border-white/10 bg-white/[0.02]"
+              className="p-6 rounded-xl border border-white/10 bg-white/[0.02] flex flex-col items-center text-center"
             >
-              <h3 className="font-bold uppercase text-lg mb-2">{item.title}</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <h3 className="font-bold uppercase text-lg mb-2 text-center">{item.title}</h3>
+              <p className="text-xs text-slate-400 leading-relaxed text-center">
                 {item.description}
               </p>
             </div>
@@ -362,27 +362,27 @@ export default function HomePage() {
 
       {/* KNOWLEDGE INDEX */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center border-t border-white/10">
-        <div className="max-w-2xl mx-auto mb-12">
+        <div className="max-w-2xl mx-auto mb-12 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             Knowledge Index
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-3">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-3 text-center">
             Explore. <span className="text-cyan-400">Learn. Evolve.</span>
           </h2>
-          <p className="text-slate-400 text-sm">
+          <p className="text-slate-400 text-sm text-center">
             A growing library of systems, frameworks, and insights designed to help you improve every area of life.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {KNOWLEDGE_ITEMS.map((item) => (
             <Link
               key={item.id}
               href={item.href}
-              className="group p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-cyan-400/50 transition-all"
+              className="group p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-cyan-400/50 transition-all flex flex-col items-center text-center"
             >
-              <h3 className="font-bold uppercase text-xl mb-2">{item.title}</h3>
-              <p className="text-xs text-slate-400 mb-6">{item.text}</p>
+              <h3 className="font-bold uppercase text-xl mb-2 text-center">{item.title}</h3>
+              <p className="text-xs text-slate-400 mb-6 text-center">{item.text}</p>
               <span className="text-xs uppercase tracking-[0.2em] text-cyan-300 group-hover:translate-x-1 inline-block transition-transform">
                 Explore &rarr;
               </span>
@@ -398,16 +398,16 @@ export default function HomePage() {
             <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
               FAQ
             </p>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-center">
               Questions Answered
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 text-center">
             {FAQ_ITEMS.map((faq) => (
               <details
                 key={faq.id}
-                className="group border border-white/10 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden"
+                className="group border border-white/10 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden text-left"
               >
                 <summary className="flex items-center justify-between font-bold uppercase text-sm cursor-pointer list-none">
                   <span>{faq.question}</span>
@@ -426,19 +426,19 @@ export default function HomePage() {
 
       {/* FINAL CTA */}
       <section className="py-20 px-4 text-center border-t border-white/10">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
           <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-3">
             Your Evolution Begins
           </p>
-          <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-4 text-center">
             Evolve <span className="text-cyan-400">in Motion</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mb-8">
+          <p className="text-slate-400 text-sm sm:text-base mb-8 text-center">
             The next version of yourself is built through small actions repeated consistently.
           </p>
           <Link
             href="/start-here"
-            className="inline-block px-10 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition"
+            className="inline-block px-10 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition text-center"
           >
             Start Your Journey
           </Link>
@@ -447,7 +447,7 @@ export default function HomePage() {
 
       {/* DISTINCT DARK FOOTER */}
       <footer className="border-t border-cyan-500/20 bg-[#02040a] py-16 px-4 text-center text-xs text-slate-400">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base">
             NOMADLIFE<span className="text-cyan-400">XP</span>
           </p>

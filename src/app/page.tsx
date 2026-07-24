@@ -1,151 +1,294 @@
+// app/page.tsx
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
-const MAIN_NAVIGATION_NODES = [
+// ================= TYPES =================
+interface System {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  href: string;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface AudienceItem {
+  id: string;
+  title: string;
+  description: string;
+}
+
+interface KnowledgeItem {
+  id: string;
+  title: string;
+  text: string;
+  href: string;
+}
+
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+// ================= DATA CONFIGURATION =================
+const SYSTEMS: readonly System[] = [
+  {
+    id: "system-discipline",
+    title: "Discipline",
+    subtitle: "The Foundation",
+    description:
+      "Build consistency, habits, focus, and the ability to execute regardless of circumstances.",
+    href: "/discipline-system",
+  },
+  {
+    id: "system-fitness",
+    title: "Fitness",
+    subtitle: "Physical Capability",
+    description:
+      "Develop strength, mobility, energy, and a body capable of supporting your mission.",
+    href: "/blog/category/fitness",
+  },
+  {
+    id: "system-yoga",
+    title: "Yoga",
+    subtitle: "Movement & Awareness",
+    description:
+      "Improve balance, breathing, recovery, and the connection between body and mind.",
+    href: "/blog/category/yoga",
+  },
+  {
+    id: "system-mindset",
+    title: "Mindset",
+    subtitle: "Inner Architecture",
+    description:
+      "Develop resilience, confidence, clarity, and the mental framework for growth.",
+    href: "/blog/category/mindset",
+  },
+];
+
+const NAVIGATION: readonly NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-  { label: "Discipline System", href: "/discipline-system" },
+  { label: "Systems", href: "/discipline-system" },
 ];
 
-export default function NomadLifeXPMaster() {
-  const currentPath = usePathname();
+const AUDIENCE_ITEMS: readonly AudienceItem[] = [
+  {
+    id: "audience-nomads",
+    title: "Digital Nomads",
+    description: "Create freedom while building discipline and intentional living.",
+  },
+  {
+    id: "audience-entrepreneurs",
+    title: "Entrepreneurs",
+    description: "Develop performance without sacrificing health and balance.",
+  },
+  {
+    id: "audience-creators",
+    title: "Creators",
+    description: "Build consistency, creativity, and long-term execution.",
+  },
+  {
+    id: "audience-growth",
+    title: "Growth Seekers",
+    description: "Improve habits, mindset, and lifestyle quality.",
+  },
+];
+
+const KNOWLEDGE_ITEMS: readonly KnowledgeItem[] = [
+  {
+    id: "knowledge-discipline",
+    title: "Discipline",
+    text: "Habits, routines, focus, consistency.",
+    href: "/blog/category/discipline",
+  },
+  {
+    id: "knowledge-fitness",
+    title: "Fitness",
+    text: "Strength, mobility, energy, performance.",
+    href: "/blog/category/fitness",
+  },
+  {
+    id: "knowledge-yoga",
+    title: "Yoga",
+    text: "Movement, breathing, awareness.",
+    href: "/blog/category/yoga",
+  },
+  {
+    id: "knowledge-mindset",
+    title: "Mindset",
+    text: "Growth, resilience, confidence.",
+    href: "/blog/category/mindset",
+  },
+];
+
+const FAQ_ITEMS: readonly FaqItem[] = [
+  {
+    id: "faq-what-is",
+    question: "What is NomadLifeXP?",
+    answer:
+      "NomadLifeXP is a personal evolution framework built around discipline, fitness, yoga, mindset, and intentional living.",
+  },
+  {
+    id: "faq-four-systems",
+    question: "What are the four systems?",
+    answer:
+      "The four foundations are Discipline, Fitness, Yoga, and Mindset. Together they create a complete transformation framework.",
+  },
+  {
+    id: "faq-who-for",
+    question: "Who is this for?",
+    answer:
+      "It is designed for anyone who wants stronger habits, better health, improved focus, and continuous growth.",
+  },
+  {
+    id: "faq-where-start",
+    question: "Where should I start?",
+    answer:
+      "Begin with the Start Here path and build your personal evolution system step by step.",
+  },
+];
+
+const STEPS: readonly string[] = [
+  "Awareness",
+  "Discipline",
+  "Strength",
+  "Balance",
+  "Evolution",
+];
+
+export default function HomePage() {
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between antialiased bg-[#060b18] text-white">
-      {/* HEADER */}
-      <header className="w-full border-b border-white/5 sticky top-0 z-50 backdrop-blur-md bg-[#060b18]/80">
-        <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 text-center">
+    <div className="min-h-screen bg-[#050816] text-white overflow-hidden selection:bg-cyan-400 selection:text-black">
+      {/* ================= HEADER ================= */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/70 backdrop-blur-xl">
+        <nav
+          aria-label="Main Navigation"
+          className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between"
+        >
           <Link
             href="/"
-            className="font-bold uppercase tracking-widest text-sm text-white hover:opacity-90 transition-opacity"
+            className="font-black tracking-[0.35em] text-sm uppercase focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded"
           >
-            NOMADLIFE<span style={{ color: "var(--glow-cyan)" }}>XP</span>
+            NOMADLIFE
+            <span className="text-cyan-400">XP</span>
           </Link>
 
-          <div className="flex items-center gap-x-6 md:gap-x-8 text-[11px] tracking-[0.2em] uppercase font-medium">
-            {MAIN_NAVIGATION_NODES.map((node) => {
-              const isActive = currentPath === node.href;
-
-              return (
-                <Link
-                  key={node.href}
-                  href={node.href}
-                  className="transition-colors hover:text-white"
-                  style={{
-                    color: isActive
-                      ? "var(--glow-cyan)"
-                      : "var(--text-muted, #94a3b8)",
-                    fontWeight: isActive ? "700" : "400",
-                  }}
-                >
-                  {node.label}
-                </Link>
-              );
-            })}
+          <div className="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.25em] text-slate-400">
+            {NAVIGATION.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="hover:text-cyan-300 transition-colors duration-200"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
 
           <Link
             href="/start-here"
-            className="text-[10px] uppercase tracking-widest px-5 py-2.5 border font-bold transition-all rounded-sm"
-            style={{
-              borderColor: "var(--glow-cyan)",
-              color: "var(--glow-cyan)",
-            }}
+            className="px-6 py-3 border border-cyan-400 text-cyan-300 text-xs uppercase tracking-[0.25em] font-bold hover:bg-cyan-400 hover:text-black transition-all duration-300"
           >
             Start Here
           </Link>
         </nav>
       </header>
 
-      {/* MAIN SYSTEM WRAPPER */}
-      <main className="flex-grow flex flex-col items-center justify-center px-6 pt-32 pb-24 max-w-4xl w-full text-center mx-auto">
-        {/* BRAND INTRO */}
-        <div className="mb-10">
-          <span className="text-xs uppercase tracking-[0.3em] font-medium text-gray-400">
-            NomadLifeXP // Transformation Architecture for Human Evolution
-          </span>
+      {/* ================= HERO ================= */}
+      <section className="relative min-h-screen flex items-center justify-center px-6 pt-32">
+        {/* Ambient background lights */}
+        <div
+          aria-hidden="true"
+          className="absolute top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-cyan-400/10 blur-[160px] pointer-events-none"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-yellow-400/10 blur-[140px] pointer-events-none"
+        />
 
-          <div className="text-xs tracking-[0.25em] uppercase font-semibold text-cyan-300 mt-2 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
+        <div className="relative z-10 max-w-5xl text-center">
+          <motion.p
+            initial={isMounted ? { opacity: 0, y: 20 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-xs uppercase tracking-[0.6em] text-cyan-300 mb-10"
+          >
+            NomadLifeXP
+          </motion.p>
+
+          <motion.h1
+            initial={isMounted ? { opacity: 0, scale: 0.95 } : false}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="text-6xl sm:text-7xl md:text-9xl font-black uppercase leading-[0.85] tracking-tight"
+          >
+            Evolve
+            <br />
+            <span className="text-cyan-400">in Motion</span>
+          </motion.h1>
+
+          <motion.p
+            initial={isMounted ? { opacity: 0 } : false}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="max-w-2xl mx-auto mt-12 text-lg text-slate-400 leading-relaxed"
+          >
+            A complete personal evolution framework built around
+            <span className="text-white">
+              {" "}discipline, fitness, yoga, and mindset.
+            </span>
+            <br />
+            Build stronger systems. Create better habits. Become your next version.
+          </motion.p>
+
+          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-5">
             <Link
-              href="/blog/category/discipline"
-              className="hover:text-white transition-colors duration-200"
+              href="/start-here"
+              className="px-10 py-5 bg-cyan-400 text-black font-bold uppercase tracking-[0.25em] text-xs hover:bg-cyan-300 transition shadow-[0_0_50px_rgba(34,211,238,.4)]"
             >
-              Discipline
+              Begin Journey
             </Link>
-            <span className="text-gray-600 font-normal">/</span>
+
             <Link
-              href="/blog/category/fitness"
-              className="hover:text-white transition-colors duration-200"
+              href="/knowledge-index"
+              className="px-10 py-5 border border-white/20 text-white font-bold uppercase tracking-[0.25em] text-xs hover:border-cyan-400 hover:text-cyan-300 transition"
             >
-              Fitness
-            </Link>
-            <span className="text-gray-600 font-normal">/</span>
-            <Link
-              href="/blog/category/yoga"
-              className="hover:text-white transition-colors duration-200"
-            >
-              Yoga
-            </Link>
-            <span className="text-gray-600 font-normal">/</span>
-            <Link
-              href="/blog/category/mindset"
-              className="hover:text-white transition-colors duration-200"
-            >
-              Mindset
+              Explore Knowledge
             </Link>
           </div>
+
+          <div className="mt-20 text-xs uppercase tracking-[0.5em] text-slate-500">
+            Scroll to evolve ↓
+          </div>
         </div>
+      </section>
 
-        {/* BRANDING HOOK */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight uppercase mb-12">
-          Evolve in Motion
-        </h1>
+      {/* ================= VIDEO EXPERIENCE ================= */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <div className="relative rounded-[32px] overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-cyan-400/10 blur-3xl pointer-events-none"
+          />
 
-        {/* SEO HERO COPY */}
-        <p className="text-sm sm:text-base max-w-2xl mx-auto leading-relaxed text-gray-400 mb-14">
-          NomadLifeXP is a personal transformation framework designed to help
-          individuals build stronger habits, improve physical performance,
-          develop mental clarity, and create a more intentional lifestyle.
-          <br />
-          <br />
-          Built around four foundational systems —{" "}
-          <strong className="text-gray-300">
-            Discipline, Fitness, Yoga, and Mindset
-          </strong>
-          , NomadLifeXP provides structured frameworks for developing
-          consistency, resilience, focus, and continuous personal growth.
-          <br />
-          <br />
-          In a world shaped by distraction, information overload, and
-          inconsistent routines, NomadLifeXP helps individuals build the
-          systems, habits, and identity required for long-term transformation.
-        </p>
-
-        {/* PRIMARY ACTIONS */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto mb-24">
-          <Link
-            href="/start-here"
-            className="w-full px-10 py-4 text-xs uppercase tracking-widest font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition"
-          >
-            Initialize System
-          </Link>
-
-          <Link
-            href="/blog"
-            className="w-full px-10 py-4 text-xs uppercase tracking-widest border border-white/20 text-white hover:border-cyan-400 transition"
-          >
-            Enter Knowledge Index
-          </Link>
-        </div>
-
-        {/* VIDEO ASSET */}
-        <div className="w-full aspect-video border border-white/10 rounded-2xl overflow-hidden mb-8">
           <video
-            className="w-full h-full object-cover"
-            controls
+            className="relative w-full aspect-video object-cover"
             autoPlay
             muted
             loop
@@ -157,439 +300,323 @@ export default function NomadLifeXPMaster() {
               src="/videos/yoga-mind-body-awareness.mp4"
               type="video/mp4"
             />
+            Your browser does not support video playback.
           </video>
         </div>
 
-        {/* FROM CHAOS TO CLARITY */}
-        <div className="text-center max-w-xl mb-24">
-          <h3 className="text-xl font-bold uppercase mb-3">
-            From Chaos to Clarity
-          </h3>
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Transformation begins when intention becomes structure.
+        <div className="text-center max-w-3xl mx-auto mt-16">
+          <p className="text-xs uppercase tracking-[0.5em] text-cyan-300 mb-6">
+            The Philosophy
+          </p>
+
+          <h2 className="text-4xl md:text-6xl font-black uppercase">
+            Transformation is not a moment.
             <br />
+            It is a system.
+          </h2>
+        </div>
+      </section>
+
+      {/* ================= FOUR CORE SYSTEMS ================= */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <div className="text-center mb-20">
+          <p className="text-xs uppercase tracking-[0.5em] text-cyan-300 mb-6">
+            The Four Foundations
+          </p>
+
+          <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tight">
+            Build Your
             <br />
-            Many people understand what they want to achieve but struggle with
-            consistency, focus, and maintaining progress over time.
-            <br />
-            <br />
-            NomadLifeXP connects behavioral discipline, physical performance,
-            mindful movement, mental resilience, and lifestyle design into a
-            structured system for continuous improvement.
+            <span className="text-cyan-400">Evolution System</span>
+          </h2>
+
+          <p className="max-w-2xl mx-auto mt-8 text-slate-400 leading-relaxed">
+            Four connected systems designed to transform your body, mind, habits,
+            and lifestyle.
           </p>
         </div>
 
-        {/* SEO AUTHORITY MATRIX */}
-        <section className="w-full text-left grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-b border-white/5 py-16 mb-12 text-sm font-sans text-slate-400 leading-relaxed">
-          <div className="space-y-3">
-            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400">
-              // 01 / WHAT IS NOMADLIFEXP?
-            </h2>
-            <p>
-              NomadLifeXP is an integrated personal development architecture
-              combining discipline systems, fitness principles, yoga practices,
-              mindset training, and intentional lifestyle design.
-            </p>
-            <p>
-              The framework is built around four interconnected pillars:
-              Discipline, Fitness, Yoga, and Mindset. Together, these systems
-              create a complete approach to personal transformation.
-            </p>
-            <p>
-              Instead of depending on temporary motivation, NomadLifeXP focuses
-              on repeatable structures, sustainable habits, and identity-based
-              behaviors that support long-term growth.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400">
-              // 02 / THE NOMADLIFEXP OPERATIONAL PROFILE
-            </h2>
-            <p>
-              NomadLifeXP is designed for individuals who want to remove
-              execution barriers and create sustainable performance habits.
-            </p>
-            <p>
-              Modern life creates challenges including digital distraction,
-              inconsistent routines, reduced physical activity, mental overload,
-              and loss of focus.
-            </p>
-            <p>
-              The framework explores practical systems for developing
-              discipline, improving fitness, strengthening resilience, increasing
-              awareness, and creating a more intentional lifestyle.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400">
-              // 03 / PRIMARY SYSTEMS DEPLOYED
-            </h2>
-            <p>
-              NomadLifeXP combines four connected development tracks:
-            </p>
-            <ul className="space-y-1.5 font-mono text-xs text-slate-300 pl-1 list-none">
-              <li>
-                <span className="text-cyan-400 mr-1">■</span>
-                <strong>Discipline:</strong> Building consistency, habits, focus, and reliable execution.
-              </li>
-              <li>
-                <span className="text-cyan-400 mr-1">■</span>
-                <strong>Fitness:</strong> Developing strength, mobility, energy, and physical capability.
-              </li>
-              <li>
-                <span className="text-cyan-400 mr-1">■</span>
-                <strong>Yoga:</strong> Improving awareness, breathing, balance, and mind-body connection.
-              </li>
-              <li>
-                <span className="text-cyan-400 mr-1">■</span>
-                <strong>Mindset:</strong> Developing resilience, clarity, confidence, and self-awareness.
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* FOUR CORE SYSTEMS */}
-        <section className="w-full text-left space-y-14 mb-24">
-          <div>
-            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-3">
-              // DISCIPLINE SYSTEM
-            </h2>
-            <h3 className="text-xl font-bold uppercase text-white mb-3">
-              The Foundation of Consistent Action
-            </h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Discipline is the ability to execute regardless of mood,
-              environment, or circumstance.
-              <br />
-              <br />
-              The Discipline System explores self-discipline habits, daily
-              routines, habit formation, productivity systems, focus
-              development, and consistency strategies.
-              <br />
-              <br />
-              Discipline transforms intention into action. Repeated action
-              becomes identity.
-            </p>
-            <Link
-              href="/discipline-system"
-              className="inline-block mt-4 text-xs uppercase tracking-widest text-cyan-300 hover:text-white transition"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {SYSTEMS.map((system, index) => (
+            <motion.div
+              key={system.id}
+              initial={isMounted ? { opacity: 0, y: 40 } : false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15 }}
             >
-              Explore Discipline System →
-            </Link>
-          </div>
+              <Link
+                href={system.href}
+                className="group block relative h-full p-10 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl hover:border-cyan-400/50 transition-all duration-500 overflow-hidden"
+              >
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"
+                />
 
-          <div>
-            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-3">
-              // FITNESS SYSTEM
-            </h2>
-            <h3 className="text-xl font-bold uppercase text-white mb-3">
-              Building Physical Capability
-            </h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              A strong body creates the foundation for a stronger life.
-              <br />
-              <br />
-              The Fitness System focuses on functional fitness, strength
-              development, mobility, energy optimization, travel-friendly
-              workouts, and sustainable health practices.
-              <br />
-              <br />
-              Fitness is not only about appearance. It is about developing
-              energy, confidence, and capability.
+                <div className="relative">
+                  <div className="text-xs tracking-[0.4em] uppercase text-cyan-300 mb-6">
+                    0{index + 1}
+                  </div>
+
+                  <h3 className="text-3xl font-black uppercase mb-3">
+                    {system.title}
+                  </h3>
+
+                  <p className="text-sm uppercase tracking-[0.25em] text-white/50 mb-6">
+                    {system.subtitle}
+                  </p>
+
+                  <p className="text-slate-400 leading-relaxed">
+                    {system.description}
+                  </p>
+
+                  <div className="mt-8 text-xs uppercase tracking-[0.35em] text-cyan-300 group-hover:text-white transition-colors duration-300">
+                    Explore System →
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= TRANSFORMATION PATH ================= */}
+      <section className="border-y border-white/10 bg-white/[0.02] py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <p className="text-xs uppercase tracking-[0.5em] text-cyan-300 mb-6">
+              The Journey
             </p>
-            <Link
-              href="/blog/category/fitness"
-              className="inline-block mt-4 text-xs uppercase tracking-widest text-cyan-300 hover:text-white transition"
-            >
-              Explore Fitness System →
-            </Link>
-          </div>
 
-          <div>
-            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-3">
-              // YOGA SYSTEM
+            <h2 className="text-4xl md:text-6xl font-black uppercase">
+              From Chaos
+              <br />
+              <span className="text-cyan-400">To Clarity</span>
             </h2>
-            <h3 className="text-xl font-bold uppercase text-white mb-3">
-              Movement, Awareness & Internal Balance
-            </h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Yoga connects physical movement with mental awareness.
-              <br />
-              <br />
-              The Yoga System explores breath control, flexibility, mobility,
-              meditation, stress regulation, and the connection between body
-              and mind.
-              <br />
-              <br />
-              Through conscious movement and awareness, yoga becomes a tool for
-              improving focus, recovery, and balance.
-            </p>
-            <Link
-              href="/blog/category/yoga"
-              className="inline-block mt-4 text-xs uppercase tracking-widest text-cyan-300 hover:text-white transition"
-            >
-              Explore Yoga System →
-            </Link>
           </div>
 
-          <div>
-            <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-3">
-              // MINDSET SYSTEM
-            </h2>
-            <h3 className="text-xl font-bold uppercase text-white mb-3">
-              The Architecture of Inner Strength
-            </h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Your external results are shaped by your internal framework.
-              <br />
-              <br />
-              The Mindset System explores growth mindset, mental resilience,
-              confidence development, emotional discipline, self-awareness,
-              and personal evolution.
-              <br />
-              <br />
-              A stronger mindset creates the ability to adapt, overcome
-              challenges, and continue moving forward.
-            </p>
-            <Link
-              href="/blog/category/mindset"
-              className="inline-block mt-4 text-xs uppercase tracking-widest text-cyan-300 hover:text-white transition"
-            >
-              Explore Mindset System →
-            </Link>
-          </div>
-        </section>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            {STEPS.map((step, index) => (
+              <div key={`step-${step}`} className="relative text-center">
+                <div className="mx-auto w-20 h-20 rounded-full border border-cyan-400/40 flex items-center justify-center text-cyan-300 font-bold bg-[#050816] shadow-[0_0_40px_rgba(34,211,238,.15)]">
+                  0{index + 1}
+                </div>
 
-        {/* PHILOSOPHY */}
-        <section className="w-full text-left border-t border-white/5 py-16 mb-12">
-          <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-6">
-            // 04 / THE NOMADLIFEXP PHILOSOPHY
+                <h3 className="mt-6 uppercase font-bold tracking-wider">
+                  {step}
+                </h3>
+
+                {index !== STEPS.length - 1 && (
+                  <div
+                    aria-hidden="true"
+                    className="hidden md:block absolute top-10 left-[70%] w-full h-px bg-white/10 pointer-events-none"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= MISSION ================= */}
+      <section className="max-w-5xl mx-auto px-6 py-32 text-center">
+        <p className="text-xs uppercase tracking-[0.5em] text-cyan-300 mb-8">
+          Our Mission
+        </p>
+
+        <h2 className="text-4xl md:text-7xl font-black uppercase leading-tight">
+          We don't chase motivation.
+          <br />
+          <span className="text-cyan-400">We build systems.</span>
+        </h2>
+
+        <p className="mt-10 text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto">
+          NomadLifeXP helps individuals create sustainable personal
+          transformation through structured habits, physical development, mindful
+          movement, and mental resilience.
+        </p>
+      </section>
+
+      {/* ================= AUDIENCE ================= */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {AUDIENCE_ITEMS.map((item) => (
+            <div
+              key={item.id}
+              className="p-8 rounded-2xl border border-white/10 bg-white/[0.03]"
+            >
+              <h3 className="text-xl font-bold uppercase mb-3">{item.title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= KNOWLEDGE INDEX ================= */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <div className="text-center mb-20">
+          <p className="text-xs uppercase tracking-[0.5em] text-cyan-300 mb-6">
+            Knowledge Index
+          </p>
+
+          <h2 className="text-4xl md:text-6xl font-black uppercase">
+            Explore.
+            <br />
+            <span className="text-cyan-400">Learn. Evolve.</span>
           </h2>
-          <p className="text-sm text-gray-400 leading-relaxed mb-4">
-            Transformation is not created through one decision.
+
+          <p className="mt-8 max-w-2xl mx-auto text-slate-400">
+            A growing library of systems, frameworks, and insights designed to
+            help you improve every area of life.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {KNOWLEDGE_ITEMS.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              className="group p-8 rounded-3xl border border-white/10 bg-white/[0.03] hover:bg-cyan-400/10 hover:border-cyan-400/50 transition duration-300"
+            >
+              <h3 className="font-bold uppercase text-xl mb-4">{item.title}</h3>
+
+              <p className="text-sm text-slate-400">{item.text}</p>
+
+              <div className="mt-6 text-xs uppercase tracking-[0.3em] text-cyan-300">
+                Explore →
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= FAQ ================= */}
+      <section className="border-y border-white/10 py-32 bg-white/[0.02]">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-xs uppercase tracking-[0.5em] text-cyan-300 mb-6">
+              FAQ
+            </p>
+
+            <h2 className="text-4xl md:text-6xl font-black uppercase">
+              Questions
+              <br />
+              Answered
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {FAQ_ITEMS.map((faq) => (
+              <details
+                key={faq.id}
+                className="group border border-white/10 rounded-2xl p-6 transition-all duration-300"
+              >
+                <summary className="cursor-pointer font-bold uppercase tracking-wide list-none flex justify-between items-center focus:outline-none">
+                  <span>{faq.question}</span>
+                  <span className="text-cyan-400 group-open:rotate-45 transition-transform duration-200">
+                    +
+                  </span>
+                </summary>
+
+                <p className="mt-5 text-slate-400 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FINAL CTA ================= */}
+      <section className="relative py-40 px-6 text-center overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cyan-400/10 blur-[140px] pointer-events-none"
+        />
+
+        <div className="relative max-w-4xl mx-auto">
+          <p className="uppercase tracking-[0.5em] text-xs text-cyan-300 mb-8">
+            Your Evolution Begins
+          </p>
+
+          <h2 className="text-5xl md:text-8xl font-black uppercase leading-none">
+            Evolve
             <br />
-            <br />
-            It is created through thousands of small actions repeated
+            <span className="text-cyan-400">in Motion</span>
+          </h2>
+
+          <p className="mt-10 text-slate-400 text-lg">
+            The next version of yourself is built through small actions repeated
             consistently.
           </p>
-          <p className="text-sm text-gray-400 leading-relaxed mb-6">
-            NomadLifeXP represents a lifestyle philosophy built around
-            intentional growth, structured improvement, and continuous
-            evolution.
-          </p>
-          <div className="space-y-2 text-cyan-300 font-semibold uppercase tracking-wide text-sm">
-            <p>Move with purpose.</p>
-            <p>Train with discipline.</p>
-            <p>Think with clarity.</p>
-            <p>Live with intention.</p>
-            <p>Evolve continuously.</p>
-          </div>
-        </section>
 
-        {/* AUDIENCE */}
-        <section className="w-full text-left border-t border-white/5 py-16 mb-12">
-          <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-8">
-            // WHO IS NOMADLIFEXP FOR?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-400">
-            <div>
-              <h3 className="text-white font-bold uppercase mb-2">
-                Digital Nomads
-              </h3>
-              <p>
-                Individuals creating freedom through travel, remote work,
-                intentional living, and personal development.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold uppercase mb-2">
-                Entrepreneurs & Creators
-              </h3>
-              <p>
-                People building their future while maintaining health,
-                discipline, creativity, and performance.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold uppercase mb-2">
-                Personal Growth Seekers
-              </h3>
-              <p>
-                Individuals committed to improving habits, mindset, routines,
-                and lifestyle quality.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold uppercase mb-2">
-                High Performers
-              </h3>
-              <p>
-                People seeking sustainable achievement without sacrificing
-                balance and wellbeing.
-              </p>
-            </div>
-          </div>
-        </section>
+          <Link
+            href="/start-here"
+            className="inline-block mt-12 px-12 py-5 bg-cyan-400 text-black font-bold uppercase tracking-[0.3em] text-xs hover:bg-cyan-300 transition duration-300"
+          >
+            Start Your Journey
+          </Link>
+        </div>
+      </section>
 
-        {/* KNOWLEDGE INDEX */}
-        <section className="w-full text-left border-t border-white/5 py-16 mb-12">
-          <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-6">
-            // THE KNOWLEDGE INDEX
-          </h2>
-          <p className="text-sm text-gray-400 leading-relaxed mb-8">
-            Explore systems and guides covering discipline, fitness, yoga,
-            mindset, lifestyle design, and continuous improvement.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-            <div>
-              <h3 className="text-white font-bold mb-2">Discipline</h3>
-              <p className="text-gray-400">
-                Building habits, routines, focus, productivity, and consistency.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-2">Fitness</h3>
-              <p className="text-gray-400">
-                Strength, movement, mobility, energy, and physical performance.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-2">Yoga</h3>
-              <p className="text-gray-400">
-                Mindfulness, breathwork, awareness, recovery, and balance.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-2">Mindset</h3>
-              <p className="text-gray-400">
-                Growth, resilience, confidence, awareness, and evolution.
-              </p>
-            </div>
-          </div>
-        </section>
+      {/* ================= FOOTER ================= */}
+      <footer className="border-t border-white/10 py-16 px-6 text-center">
+        <h3 className="font-black tracking-[0.4em] uppercase">
+          NomadLife
+          <span className="text-cyan-400">XP</span>
+        </h3>
 
-        {/* WHY NOMADLIFEXP */}
-        <section className="w-full text-left border-t border-white/5 py-16 mb-12">
-          <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-6">
-            // WHY NOMADLIFEXP?
-          </h2>
-          <p className="text-sm text-gray-400 leading-relaxed mb-6">
-            Transformation requires more than information.
-            <br />
-            <br />
-            It requires implementation.
-          </p>
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li>✓ Structured systems</li>
-            <li>✓ Practical frameworks</li>
-            <li>✓ Physical development</li>
-            <li>✓ Mental training</li>
-            <li>✓ Sustainable habits</li>
-          </ul>
-          <p className="text-sm text-gray-400 leading-relaxed mt-6">
-            Knowledge creates awareness.
-            <br />
-            Practice creates change.
-            <br />
-            Consistency creates transformation.
-          </p>
-        </section>
+        <p className="mt-4 text-xs uppercase tracking-[0.5em] text-cyan-300">
+          Evolve in Motion
+        </p>
 
-        {/* FAQ */}
-        <section className="w-full text-left border-t border-white/5 py-16 mb-12">
-          <h2 className="text-white font-mono uppercase tracking-wider text-xs font-bold text-cyan-400 mb-8">
-            // FREQUENTLY ASKED QUESTIONS
-          </h2>
-          <div className="space-y-8 text-sm text-gray-400">
-            <div>
-              <h3 className="text-white font-bold mb-2">
-                What is NomadLifeXP?
-              </h3>
-              <p>
-                NomadLifeXP is a personal transformation framework focused on
-                discipline, fitness, yoga, mindset, and intentional lifestyle
-                development.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-2">
-                What are the four pillars of NomadLifeXP?
-              </h3>
-              <p>
-                The four pillars are Discipline, Fitness, Yoga, and Mindset.
-                Together they create a complete framework for personal growth.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-2">
-                Is NomadLifeXP only for digital nomads?
-              </h3>
-              <p>
-                No. The principles apply to anyone seeking stronger habits,
-                improved health, better focus, and continuous development.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-white font-bold mb-2">
-                How does discipline improve personal growth?
-              </h3>
-              <p>
-                Discipline creates consistency by transforming positive actions
-                into repeatable systems.
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* FOOTER */}
-      <footer className="w-full border-t border-white/5 py-12 text-center text-xs font-mono">
-        <div
-          className="mb-4 tracking-widest uppercase text-[10px] transition-all duration-300"
-          style={{
-            color: "#ffca28",
-            textShadow: "0 0 12px rgba(255, 202, 40, 0.4)",
-          }}
-        >
-          Follow NomadLifeXP —{" "}
+        {/* Social Links */}
+        <div className="mt-8 text-xs uppercase tracking-[0.3em] text-slate-400">
+          <span className="text-slate-500 mr-2">Follow NomadLifeXP —</span>
           <a
-            className="mx-1 transition-all duration-300 underline underline-offset-4"
             href="https://youtube.com"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#ffca28" }}
+            className="hover:text-cyan-300 transition-colors duration-200"
           >
             YouTube
           </a>
-          <span className="text-amber-600/60 mx-1">|</span>
+          <span className="mx-2 text-slate-600">|</span>
           <a
-            className="mx-1 transition-all duration-300 underline underline-offset-4"
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#ffca28" }}
+            className="hover:text-cyan-300 transition-colors duration-200"
           >
             Instagram
           </a>
         </div>
 
-        <div className="tracking-wider text-neutral-600 mb-6">
-          © 2026 NomadLifeXP. All rights reserved.
+        {/* Internal Links */}
+        <div className="flex justify-center gap-8 mt-8 text-xs uppercase tracking-[0.25em] text-slate-500">
+          <Link href="/about" className="hover:text-cyan-300 transition">
+            About
+          </Link>
+          <Link href="/blog" className="hover:text-cyan-300 transition">
+            Blog
+          </Link>
+          <Link
+            href="/knowledge-index"
+            className="hover:text-cyan-300 transition"
+          >
+            Knowledge
+          </Link>
+          <Link href="/start-here" className="hover:text-cyan-300 transition">
+            Start
+          </Link>
         </div>
 
-        <Link
-          href="/knowledge-index"
-          className="inline-block transition-all duration-300 uppercase tracking-[0.2em] font-bold text-[11px]"
-          style={{
-            color: "#ffca28",
-            textShadow:
-              "0 0 12px rgba(255, 202, 40, 0.4), 0 0 25px rgba(255, 179, 0, 0.2)",
-          }}
-        >
-          Knowledge Index ↗
-        </Link>
+        <p className="mt-10 text-xs text-slate-600">
+          © 2026 NomadLifeXP. All rights reserved.
+        </p>
       </footer>
     </div>
   );

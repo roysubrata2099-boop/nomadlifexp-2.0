@@ -3,7 +3,6 @@
 
 import Link from "next/link";
 
-// Types
 interface System {
   readonly id: string;
   readonly title: string;
@@ -36,7 +35,6 @@ interface FaqItem {
   readonly answer: string;
 }
 
-// Config Data
 const SYSTEMS: readonly System[] = [
   {
     id: "system-discipline",
@@ -159,7 +157,7 @@ const STEPS: readonly string[] = [
 export default function HomePage() {
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased">
-      {/* HEADER */}
+      {/* FIXED NAVBAR */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link
@@ -190,8 +188,8 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION */}
-      <section className="relative pt-36 sm:pt-44 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
+      {/* HERO SECTION - EXTRA TOP PADDING FOR FULL VISIBILITY */}
+      <section className="relative pt-44 sm:pt-52 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
         <div
           aria-hidden="true"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
@@ -199,7 +197,7 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6">
-            NomadLifeXP
+            NomadLifeXP // Human Optimization Platform
           </p>
 
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white">
@@ -237,8 +235,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PHILOSOPHY & YOGA VIDEO (CENTERED) */}
-      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center justify-center text-center">
+      {/* YOGA VIDEO & PHILOSOPHY - CENTERED */}
+      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center justify-center text-center">
         <div className="w-full relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-12 shadow-2xl mx-auto flex items-center justify-center">
           <video
             className="w-full h-full object-cover block mx-auto"
@@ -265,7 +263,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CORE SYSTEMS */}
+      {/* FOUR FOUNDATIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
@@ -307,7 +305,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* JOURNEY STEPS */}
+      {/* THE JOURNEY */}
       <section className="border-y border-white/10 bg-white/[0.01] py-16 text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
@@ -332,7 +330,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MISSION & AUDIENCE */}
+      {/* OUR MISSION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
@@ -393,7 +391,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ SECTION */}
       <section className="border-t border-white/10 py-16 bg-white/[0.01]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
           <div className="text-center mb-10">
@@ -447,7 +445,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* DISTINCT DARK FOOTER */}
+      {/* FOOTER WITH SOCIAL LINKS AND DISTINCT DARK COLOR */}
       <footer className="border-t border-cyan-500/20 bg-[#02040a] py-16 px-4 text-center text-xs text-slate-400">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base">
@@ -457,7 +455,28 @@ export default function HomePage() {
             Evolve in Motion
           </p>
 
-          <div className="flex justify-center items-center gap-6 mb-8 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300">
+          {/* YOUTUBE & INSTAGRAM FOOTER LINKS */}
+          <div className="flex justify-center items-center gap-4 mb-8 text-sm">
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-cyan-400 transition-colors uppercase tracking-[0.15em] font-medium"
+            >
+              YouTube
+            </a>
+            <span className="text-slate-600">|</span>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-cyan-400 transition-colors uppercase tracking-[0.15em] font-medium"
+            >
+              Instagram
+            </a>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 mb-10 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300">
             <Link href="/about" className="hover:text-cyan-400 transition-colors">
               About
             </Link>

@@ -190,24 +190,24 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION */}
-      <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      {/* HERO SECTION (Compact height gap) */}
+      <section className="relative pt-32 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
         <div
           aria-hidden="true"
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
         />
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6">
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-4">
             NomadLifeXP // Human Optimization Platform
           </p>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-6">
             Evolve <br />
             <span className="text-cyan-400">in Motion</span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed mb-10">
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 leading-relaxed mb-8">
             A complete personal evolution framework built around{" "}
             <strong className="text-white font-normal">
               discipline, fitness, yoga, and mindset.
@@ -215,7 +215,7 @@ export default function HomePage() {
             Build stronger systems. Create better habits. Become your next version.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <Link
               href="/start-here"
               className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(34,211,238,0.3)]"
@@ -230,15 +230,15 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-16 text-[10px] uppercase tracking-[0.4em] text-slate-500">
+          <p className="text-[10px] uppercase tracking-[0.4em] text-slate-500">
             Scroll to evolve &darr;
-          </div>
+          </p>
         </div>
       </section>
 
-      {/* PHILOSOPHY / VIDEO */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-white/5 aspect-video max-w-5xl mx-auto">
+      {/* PHILOSOPHY & YOGA VIDEO (Tightly bound to Hero) */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video mb-10 shadow-2xl">
           <video
             className="w-full h-full object-cover"
             autoPlay
@@ -253,11 +253,11 @@ export default function HomePage() {
           </video>
         </div>
 
-        <div className="text-center max-w-2xl mx-auto mt-12">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             The Philosophy
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-snug">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-tight">
             Transformation is not a moment. <br />
             It is a system.
           </h2>
@@ -265,25 +265,25 @@ export default function HomePage() {
       </section>
 
       {/* CORE SYSTEMS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
+        <div className="max-w-3xl mx-auto mb-12">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             The Four Foundations
           </p>
           <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight">
             Build Your <span className="text-cyan-400">Evolution System</span>
           </h2>
-          <p className="mt-4 text-slate-400 text-sm sm:text-base">
+          <p className="mt-3 text-slate-400 text-sm sm:text-base">
             Four connected systems designed to transform your body, mind, habits, and lifestyle.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
           {SYSTEMS.map((system, idx) => (
             <Link
               key={system.id}
               href={system.href}
-              className="group block p-8 sm:p-10 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all"
+              className="group block p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all"
             >
               <span className="text-xs tracking-[0.3em] text-cyan-400 font-mono block mb-4">
                 0{idx + 1}
@@ -306,19 +306,19 @@ export default function HomePage() {
       </section>
 
       {/* JOURNEY STEPS */}
-      <section className="border-y border-white/10 bg-white/[0.01] py-16 sm:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3">
+      <section className="border-y border-white/10 bg-white/[0.01] py-16 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             The Journey
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-16">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-12">
             From Chaos <span className="text-cyan-400">To Clarity</span>
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
             {STEPS.map((step, idx) => (
               <div key={step} className="flex flex-col items-center">
-                <div className="w-16 h-16 rounded-full border border-cyan-400/40 flex items-center justify-center font-bold text-cyan-300 mb-4 bg-[#050816]">
+                <div className="w-16 h-16 rounded-full border border-cyan-400/40 flex items-center justify-center font-bold text-cyan-300 mb-3 bg-[#050816]">
                   0{idx + 1}
                 </div>
                 <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider">
@@ -331,12 +331,12 @@ export default function HomePage() {
       </section>
 
       {/* MISSION & AUDIENCE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
+        <div className="max-w-3xl mx-auto mb-12">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             Our Mission
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4">
             We don&apos;t chase motivation. <br />
             <span className="text-cyan-400">We build systems.</span>
           </h2>
@@ -345,7 +345,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
           {AUDIENCE_ITEMS.map((item) => (
             <div
               key={item.id}
@@ -361,12 +361,12 @@ export default function HomePage() {
       </section>
 
       {/* KNOWLEDGE INDEX */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 border-t border-white/10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-3">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center border-t border-white/10">
+        <div className="max-w-2xl mx-auto mb-12">
+          <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
             Knowledge Index
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-3">
             Explore. <span className="text-cyan-400">Learn. Evolve.</span>
           </h2>
           <p className="text-slate-400 text-sm">
@@ -374,7 +374,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
           {KNOWLEDGE_ITEMS.map((item) => (
             <Link
               key={item.id}
@@ -392,9 +392,9 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-white/10 py-16 sm:py-24 bg-white/[0.01]">
+      <section className="border-t border-white/10 py-16 bg-white/[0.01]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">
               FAQ
             </p>
@@ -425,12 +425,12 @@ export default function HomePage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 px-4 text-center border-t border-white/10">
+      <section className="py-20 px-4 text-center border-t border-white/10">
         <div className="max-w-3xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4">
+          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-3">
             Your Evolution Begins
           </p>
-          <h2 className="text-4xl sm:text-7xl font-black uppercase tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-4">
             Evolve <span className="text-cyan-400">in Motion</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mb-8">
@@ -445,33 +445,55 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 py-12 px-4 text-center text-xs text-slate-500">
-        <p className="font-black tracking-[0.3em] uppercase text-white mb-2">
-          NOMADLIFE<span className="text-cyan-400">XP</span>
-        </p>
-        <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-6">
-          Evolve in Motion
-        </p>
+      {/* DISTINCT DARK FOOTER */}
+      <footer className="border-t border-cyan-500/20 bg-[#02040a] py-16 px-4 text-center text-xs text-slate-400">
+        <div className="max-w-4xl mx-auto">
+          <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base">
+            NOMADLIFE<span className="text-cyan-400">XP</span>
+          </p>
+          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-8">
+            Evolve in Motion
+          </p>
 
-        <div className="flex justify-center gap-4 mb-6">
-          <a href="https://youtube.com" target="_blank" rel="noreferrer" className="hover:text-cyan-300 transition-colors">
-            YouTube
-          </a>
-          <span>|</span>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-cyan-300 transition-colors">
-            Instagram
-          </a>
+          <div className="flex justify-center items-center gap-4 mb-8 text-sm">
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-cyan-400 transition-colors"
+            >
+              YouTube
+            </a>
+            <span className="text-slate-600">|</span>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-cyan-400 transition-colors"
+            >
+              Instagram
+            </a>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 mb-10 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300">
+            <Link href="/about" className="hover:text-cyan-400 transition-colors">
+              About
+            </Link>
+            <Link href="/blog" className="hover:text-cyan-400 transition-colors">
+              Blog
+            </Link>
+            <Link href="/knowledge-index" className="hover:text-cyan-400 transition-colors">
+              Knowledge
+            </Link>
+            <Link href="/start-here" className="hover:text-cyan-400 transition-colors">
+              Start
+            </Link>
+          </div>
+
+          <p className="text-slate-600 text-[11px]">
+            © 2026 NomadLifeXP. All rights reserved.
+          </p>
         </div>
-
-        <div className="flex justify-center gap-6 mb-8 uppercase tracking-wider text-[11px]">
-          <Link href="/about" className="hover:text-cyan-300">About</Link>
-          <Link href="/blog" className="hover:text-cyan-300">Blog</Link>
-          <Link href="/knowledge-index" className="hover:text-cyan-300">Knowledge</Link>
-          <Link href="/start-here" className="hover:text-cyan-300">Start</Link>
-        </div>
-
-        <p>© 2026 NomadLifeXP. All rights reserved.</p>
       </footer>
     </div>
   );

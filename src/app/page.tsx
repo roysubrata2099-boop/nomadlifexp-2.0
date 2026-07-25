@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -131,7 +130,10 @@ export default function HomePage() {
       </header>
 
       {/* 2. HERO SECTION */}
-      <section className="relative pt-48 sm:pt-56 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
+      <section
+        className="relative pt-48 sm:pt-56 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center"
+        aria-labelledby="hero-title"
+      >
         <div
           aria-hidden="true"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
@@ -139,17 +141,33 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
-            NomadLifeXP // Human Optimization Platform
+            NomadLifeXP // Human Evolution System
           </p>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white text-center">
+          <h1
+            id="hero-title"
+            className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white text-center"
+          >
             Evolve <br />
-            <span className="text-cyan-400">in Motion</span>
+            <span className="text-cyan-400">in Motion.</span>
           </h1>
 
-          <p className="max-w-xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-10 text-center font-light">
-            A system for building a stronger body, a clearer mind, and a more intentional life.
+          <p className="max-w-xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
+            A structured transformation system for building discipline, physical strength, mental clarity, and a more intentional life.
           </p>
+
+          <div
+            className="flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-semibold text-cyan-400/80 mb-10 flex-wrap"
+            aria-label="NomadLifeXP four pillars"
+          >
+            <span>Discipline</span>
+            <span className="text-white/30">•</span>
+            <span>Fitness</span>
+            <span className="text-white/30">•</span>
+            <span>Yoga</span>
+            <span className="text-white/30">•</span>
+            <span>Mindset</span>
+          </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 w-full sm:w-auto">
             <Link
@@ -168,7 +186,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. CINEMATIC VIDEO SECTION (PURE EMOTION, NO TEXT BELOW) */}
+      {/* 3. CINEMATIC VIDEO SECTION */}
       <section
         style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%" }}
         className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center"
@@ -272,7 +290,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* 9. EVOLUTION LIBRARY */}
+      {/* 8. EVOLUTION LIBRARY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center border-t border-white/10">
         <div className="max-w-2xl mx-auto mb-12 text-center">
           <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-center">
@@ -296,7 +314,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11. FINAL CTA */}
+      {/* 9. FINAL CTA */}
       <section className="py-24 px-4 text-center border-t border-white/10 bg-white/[0.01]">
         <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
           <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
@@ -315,7 +333,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 12. FOOTER (WITH YOUTUBE & INSTAGRAM) */}
+      {/* 10. FOOTER */}
       <footer className="border-t border-cyan-500/20 bg-[#02040a] py-16 px-4 text-center text-xs text-slate-400">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base text-center">

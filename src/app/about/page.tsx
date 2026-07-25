@@ -1,7 +1,6 @@
-// src/app/about/page.tsx
-
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-    // 🛡️ HARDENED STATIC SCHEMA GRAPH MATRIX
+    // 🛡️ HARDENED STATIC SCHEMA GRAPH MATRIX (UPDATED WITH PERSON ENTITY FOR E-E-A-T)
     const aboutSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -30,6 +29,16 @@ export default function AboutPage() {
                 "name": "About NomadLifeXP // Mission & Philosophy",
                 "isPartOf": { "@id": "https://nomadlifexp.com/#website" },
                 "description": "The mission, operational philosophy, human optimization methodology, and foundational origin of NomadLifeXP."
+            },
+            {
+                "@type": "Person",
+                "@id": "https://nomadlifexp.com/about/#subrata-roy",
+                "name": "Subrata Roy",
+                "jobTitle": "Founder & Creator of NomadLifeXP",
+                "worksFor": {
+                    "@id": "https://nomadlifexp.com/#organization"
+                },
+                "image": "https://nomadlifexp.com/images/about/subrata-roy-founder-nomadlifexp.jpg"
             }
         ]
     };
@@ -78,10 +87,59 @@ export default function AboutPage() {
                             NomadLifeXP
                         </span>
                     </h1>
-                    <p className="text-base md:text-lg font-light leading-relaxed max-w-3xl text-neutral-400 font-mono">
-                        An integrated behavioral development architecture engineered to substitute fragile emotional motivation with absolute structural design.
-                    </p>
+                    <h2 className="text-base md:text-lg font-bold leading-relaxed max-w-3xl text-white font-mono">
+                        Founder & Creator of NomadLifeXP
+                        <br />
+                        Human Evolution System | Evolve in Motion 🏃‍♂️
+                        <br />
+                        Discipline • Fitness • Yoga • Mindset
+                    </h2>
                 </header>
+
+                {/* Founder Narrative & Portrait Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-center border border-neutral-900 bg-neutral-950/20 p-6 md:p-10">
+                    <div className="lg:col-span-5 relative group">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-indigo-500 rounded-none blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                        <div className="relative aspect-[4/5] w-full overflow-hidden border border-neutral-800 bg-black">
+                            <Image
+                                src="/images/about/subrata-roy-founder-nomadlifexp.jpg"
+                                alt="Subrata Roy, Founder and Creator of NomadLifeXP"
+                                fill
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 40vw"
+                                className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-500"
+                            />
+                            <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent">
+                                <span className="text-[10px] font-mono tracking-widest text-cyan-400 uppercase block">
+                                    // FOUNDER_ARCHITECT
+                                </span>
+                                <span className="text-sm font-bold tracking-tight text-white uppercase font-mono">
+                                    Subrata Roy
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-7 space-y-6 font-mono text-xs md:text-sm text-neutral-300 leading-relaxed font-light">
+                        <div className="space-y-2 border-l border-cyan-500/50 pl-4 py-1">
+                            <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-cyan-400">
+                                // SYSTEM ORIGIN NARRATIVE
+                            </h3>
+                            <p className="text-neutral-400">
+                                Like many people, I spent years chasing motivation, experiencing burnout, and struggling to build habits that lasted. Eventually, I realized motivation fades—but systems endure.
+                            </p>
+                        </div>
+                        <p className="text-neutral-400">
+                            Through my own journey of building discipline, training my body, and developing a stronger mindset, I discovered that lasting change comes from systems—not short bursts of motivation.
+                        </p>
+                        <p className="text-neutral-400">
+                            I created NomadLifeXP to help people build lasting transformation through structured habits, physical training, yoga, and personal growth.
+                        </p>
+                        <div className="p-4 bg-black border border-neutral-900 text-amber-500 tracking-wider font-semibold uppercase">
+                            Transformation is not about perfection. It is about becoming stronger through consistent action.
+                        </div>
+                    </div>
+                </div>
 
                 {/* System Control Console Block */}
                 <div className="flex flex-col gap-8 mb-16 bg-black border border-neutral-900 p-6 md:p-8 rounded-none relative">
@@ -106,7 +164,7 @@ export default function AboutPage() {
                                 // 01 / FOUNDER ASSEMBLY
                             </h3>
                             <p className="text-xs text-neutral-400 leading-relaxed">
-                                Architected by a collective of technical optimization analysts, system engineers, and somatic practitioners. We specialize in isolating behavioral drift and converting fragmented biological intent into predictable algorithmic habits.
+                                Built around core principles from behavioral science, physical training, movement, and mindset development. We specialize in isolating behavioral drift and converting fragmented intent into predictable daily habits.
                             </p>
                         </div>
 
@@ -117,7 +175,7 @@ export default function AboutPage() {
                                     // 02 / SYSTEM MISSION
                                 </h3>
                                 <p className="text-xs text-neutral-400 leading-relaxed">
-                                    To engineer an open-source framework that strips out cognitive noise and reclaims deep focus, physical capacity, and self-directed sovereignty for high-performance individuals.
+                                    To engineer an open framework that strips out cognitive noise and reclaims deep focus, physical capacity, and self-directed sovereignty for high-performance individuals.
                                 </p>
                             </div>
                             <div className="pt-4 border-t border-neutral-900/60 mt-2">

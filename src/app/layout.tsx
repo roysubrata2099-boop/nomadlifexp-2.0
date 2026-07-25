@@ -83,78 +83,107 @@ export const metadata: Metadata = {
     },
 };
 
+
 export default function RootLayout({
     children,
-}: {
+}: Readonly<{
     children: React.ReactNode;
-}) {
+}>) {
+
+    const jsonLdSchema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id":
+                    "https://www.nomadlifexp.com/#organization",
+
+                name: "NomadLifeXP",
+
+                url:
+                    "https://www.nomadlifexp.com",
+
+                description:
+                    "Personal transformation framework focused on discipline, fitness, yoga, mindset, habits, and intentional lifestyle design.",
+
+                logo: {
+                    "@type": "ImageObject",
+                    "@id":
+                        "https://www.nomadlifexp.com/#logo",
+                    url:
+                        "https://www.nomadlifexp.com/images/logo.png",
+                    caption:
+                        "NomadLifeXP",
+                },
+
+                knowsAbout: [
+                    "Discipline",
+                    "Fitness",
+                    "Yoga",
+                    "Mindset",
+                    "Habit Formation",
+                    "Lifestyle Design",
+                    "Personal Development",
+                ],
+
+                sameAs: [
+                    "https://www.youtube.com/@NomadLifeXP",
+                    "https://www.instagram.com/NomadLifeXP",
+                ],
+            },
+
+            {
+                "@type": "WebSite",
+                "@id":
+                    "https://www.nomadlifexp.com/#website",
+
+                url:
+                    "https://www.nomadlifexp.com",
+
+                name:
+                    "NomadLifeXP",
+
+                inLanguage:
+                    "en-US",
+
+                publisher: {
+                    "@id":
+                        "https://www.nomadlifexp.com/#organization",
+                },
+
+                potentialAction: {
+                    "@type": "SearchAction",
+
+                    target:
+                        "https://www.nomadlifexp.com/blog?q={search_term_string}",
+
+                    "query-input":
+                        "required name=search_term_string",
+                },
+            },
+        ],
+    };
+
+
     let serializedSchema = "";
 
     try {
-        const jsonLdSchema: Record<string, unknown> = {
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "Organization",
-                    "@id": "https://www.nomadlifexp.com/#organization",
-                    name: "NomadLifeXP",
-                    url: "https://www.nomadlifexp.com",
-                    description:
-                        "Personal transformation framework focused on discipline, fitness, yoga, mindset, habits, and intentional lifestyle design.",
-                    logo: {
-                        "@type": "ImageObject",
-                        "@id": "https://www.nomadlifexp.com/#logo",
-                        url: "https://www.nomadlifexp.com/images/logo.png",
-                        caption: "NomadLifeXP",
-                    },
-                    knowsAbout: [
-                        "Discipline",
-                        "Fitness",
-                        "Yoga",
-                        "Mindset",
-                        "Habit Formation",
-                        "Lifestyle Design",
-                        "Personal Development",
-                    ],
-                    sameAs: [
-                        "https://www.youtube.com/@NomadLifeXP",
-                        "https://www.instagram.com/NomadLifeXP",
-                    ],
-                },
-                {
-                    "@type": "WebSite",
-                    "@id": "https://www.nomadlifexp.com/#website",
-                    url: "https://www.nomadlifexp.com",
-                    name: "NomadLifeXP",
-                    inLanguage: "en-US",
-                    publisher: {
-                        "@id": "https://www.nomadlifexp.com/#organization",
-                    },
-                    potentialAction: {
-                        "@type": "SearchAction",
-                        target: "https://www.nomadlifexp.com/blog?q={search_term_string}",
-                        "query-input": "required name=search_term_string",
-                    },
-                },
-            ],
-        };
         serializedSchema = JSON.stringify(jsonLdSchema);
     } catch (error) {
-        console.error("Schema serialization failed:", error);
+        console.error(
+            "Schema serialization failed:",
+            error
+        );
     }
 
+
     return (
-        <html lang="en" className="scroll-smooth">
-            <body
-                className="
-                    antialiased
-                    bg-black
-                    text-white
-                    flex
-                    flex-col
-                    min-h-screen
-                "
-            >
+        <html
+            lang="en"
+            className="scroll-smooth"
+        >
+            <body className="antialiased bg-black text-white flex flex-col min-h-screen">
+
                 {serializedSchema && (
                     <script
                         id="structured-data-core-architecture"
@@ -166,34 +195,39 @@ export default function RootLayout({
                     />
                 )}
 
+
                 <main className="flex-grow">
                     {children}
                 </main>
 
+
+                {/* Microsoft Clarity */}
                 <Script
                     id="microsoft-clarity-init"
                     strategy="afterInteractive"
                 >
                     {`
-                    try {
-                        (function(c,l,a,r,i,t,y){
-                            c[a]=c[a]||function(){
-                                (c[a].q=c[a].q||[]).push(arguments)
-                            };
-                            t=l.createElement(r);
-                            t.async=1;
-                            t.src="https://www.clarity.ms/tag/"+i;
-                            y=l.getElementsByTagName(r)[0];
-                            if(y && y.parentNode) {
-                                y.parentNode.insertBefore(t,y);
-                            }
-                        })(window, document, "clarity", "script", "x4hbg8q5cg");
-                    } catch (e) {
-                        console.error("Clarity initialization failed:", e);
-                    }
+                    (function(c,l,a,r,i,t,y){
+                        c[a]=c[a]||function(){
+                            (c[a].q=c[a].q||[]).push(arguments)
+                        };
+
+                        t=l.createElement(r);
+                        t.async=1;
+                        t.src="https://www.clarity.ms/tag/"+i;
+
+                        y=l.getElementsByTagName(r)[0];
+
+                        if(y && y.parentNode){
+                            y.parentNode.insertBefore(t,y);
+                        }
+
+                    })(window, document, "clarity", "script", "x4hbg8q5cg");
                     `}
                 </Script>
 
+
+                {/* Google Analytics */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-V0M0XN8BBE"
                     strategy="afterInteractive"
@@ -204,19 +238,32 @@ export default function RootLayout({
                     strategy="afterInteractive"
                 >
                     {`
-                    try {
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){
-                            window.dataLayer.push(arguments);
-                        }
-                        gtag('js', new Date());
-                        gtag('config', 'G-V0M0XN8BBE');
-                        gtag('config', 'G-B7KY4PQ8WN');
-                    } catch (e) {
-                        console.error("Google Analytics initialization failed:", e);
+                    window.dataLayer = window.dataLayer || [];
+
+                    function gtag(){
+                        window.dataLayer.push(arguments);
                     }
+
+                    gtag('js', new Date());
+
+                    gtag(
+                        'config',
+                        'G-V0M0XN8BBE',
+                        {
+                            page_path: window.location.pathname
+                        }
+                    );
+
+                    gtag(
+                        'config',
+                        'G-B7KY4PQ8WN',
+                        {
+                            page_path: window.location.pathname
+                        }
+                    );
                     `}
                 </Script>
+
             </body>
         </html>
     );

@@ -1,16 +1,49 @@
 // src/app/sitemap.ts
 
-import { getAllPosts } from "@/lib/markdown";
 import type { MetadataRoute } from "next";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://nomadlifexp.com";
+import {
+    getAllMDXPosts,
+} from "@/lib/mdx";
 
-    // 🛡️ Fixed baseline capture date to prevent artificial drift on unchanged static pages
-    const deploymentDate = new Date("2026-07-12T00:00:00Z");
 
-    // 1. Structural Static Platform Nodes
-    const staticNodes: MetadataRoute.Sitemap = [
+const SITE_URL =
+    "https://nomadlifexp.com";
+
+
+const DEPLOYMENT_DATE =
+    new Date("2026-07-12T00:00:00Z");
+
+
+
+function safeSlug(
+    value: unknown
+): string {
+
+    if (
+        typeof value !== "string"
+    ) {
+        return "";
+    }
+
+
+    return value
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+
+}
+
+
+
+export default function sitemap()
+    : MetadataRoute.Sitemap {
+
+
+    const staticRoutes = [
+
         "",
         "/about",
         "/blog",
@@ -21,40 +54,104 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         "/discipline-system",
         "/knowledge-index",
         "/start-here",
-    ].map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: deploymentDate,
-        changeFrequency: route === "" ? ("daily" as const) : ("weekly" as const),
-        priority: route === "" ? 1.0 : 0.8,
-    }));
 
-    // 2. Extract and Map Dynamic Markdown Slugs safely bypassing library type collisions
-    const rawPosts = getAllPosts();
-    const safePosts = Array.isArray(rawPosts) ? (rawPosts as unknown as Record<string, unknown>[]) : [];
+    ];
 
-    const dynamicNodes: MetadataRoute.Sitemap = safePosts
-        .filter((post) => post && typeof post.slug === "string" && post.slug.trim() !== "")
-        .map((post) => {
-            const rawSlug = post.slug as string;
 
-            // Parse actual post dates if they exist to provide real signals to AI crawlers
-            let postDate = deploymentDate;
-            if (typeof post.date === "string" || typeof post.date === "number") {
-                const parsed = new Date(post.date);
-                if (!isNaN(parsed.getTime())) {
-                    postDate = parsed;
+
+    const staticNodes:
+        MetadataRoute.Sitemap =
+        staticRoutes.map(
+            (route) => ({
+
+                url:
+                    `${SITE_URL}${route}`,
+
+                lastModified:
+                    DEPLOYMENT_DATE,
+
+                changeFrequency:
+                    route === ""
+                        ? "daily"
+                        : "weekly",
+
+                priority:
+                    route === ""
+                        ? 1.0
+                        : 0.8,
+
+            })
+        );
+
+
+
+    let posts:
+        ReturnType<typeof getAllMDXPosts> = [];
+
+
+
+    try {
+
+        posts =
+            getAllMDXPosts();
+
+    } catch {
+
+        posts = [];
+
+    }
+
+
+
+
+    const dynamicNodes:
+        MetadataRoute.Sitemap =
+        posts
+            .map(
+                (post) => {
+
+                    const slug =
+                        safeSlug(
+                            post.slug
+                        );
+
+
+                    if (!slug) {
+
+                        return null;
+
+                    }
+
+
+
+                    return {
+
+                        url:
+                            `${SITE_URL}/blog/posts/${slug}`,
+
+                        lastModified:
+                            DEPLOYMENT_DATE,
+
+                        changeFrequency:
+                            "monthly" as const,
+
+                        priority:
+                            0.6,
+
+                    };
+
                 }
-            }
+            )
+            .filter(Boolean) as MetadataRoute.Sitemap;
 
-            return {
-                // 🛡️ Enforce .toLowerCase() to perfectly match your routing rules
-                url: `${baseUrl}/blog/posts/${rawSlug.trim().toLowerCase()}`,
-                lastModified: postDate,
-                changeFrequency: "monthly" as const,
-                priority: 0.6,
-            };
-        });
 
-    // 3. Unify Arrays safely using explicit type-matching arrays
-    return [...staticNodes, ...dynamicNodes];
+
+    return [
+
+        ...staticNodes,
+
+        ...dynamicNodes,
+
+    ];
+
 }

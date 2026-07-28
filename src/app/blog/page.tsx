@@ -127,6 +127,7 @@ export default function BlogV2Page() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-28">
+                {/* Navigation Breadcrumb */}
                 <nav className="flex items-center gap-3 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase">
                     <Link
                         href="/"
@@ -135,7 +136,12 @@ export default function BlogV2Page() {
                         ← RETURN_TO_HOME
                     </Link>
                     <span className="text-neutral-800">/</span>
-                    <span className="text-cyan-400 font-bold">SYSTEM_DATABASE</span>
+                    <Link
+                        href="/blog"
+                        className="text-cyan-400 font-bold hover:text-cyan-300 transition-colors"
+                    >
+                        SYSTEM_DATABASE
+                    </Link>
                 </nav>
 
                 <header className="max-w-5xl mb-20">
@@ -185,7 +191,7 @@ export default function BlogV2Page() {
 
                                         <div className="mb-4">
                                             <Link
-                                                href={`/blog/category/${post.category}`}
+                                                href={`/blog/category/${encodeURIComponent(post.category)}`}
                                                 className="inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-wider font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-800/40 hover:bg-cyan-900 transition-colors"
                                             >
                                                 {post.category}
@@ -203,7 +209,7 @@ export default function BlogV2Page() {
 
                                     <div className="mt-8 pt-4 border-t border-neutral-900">
                                         <Link
-                                            href={`/blog/posts/${post.slug}`}
+                                            href={`/blog/posts/${encodeURIComponent(post.slug)}`}
                                             className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
                                         >
                                             READ ARTICLE <span>&rarr;</span>

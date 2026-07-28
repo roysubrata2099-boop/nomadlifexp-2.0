@@ -59,7 +59,6 @@ function safeImage(value: unknown): string {
         return "";
     }
     const image = value.trim();
-    // Must start with '/' and not be a double slash or invalid protocol injection
     if (!image.startsWith("/") || image.startsWith("//")) {
         return "";
     }
@@ -133,7 +132,7 @@ export default function BlogV2Page() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-28">
-                {/* Navigation Breadcrumb with Active Link to /systems */}
+                {/* Navigation Breadcrumb - Target discipline-system */}
                 <nav className="flex items-center gap-3 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase">
                     <Link
                         href="/"
@@ -143,7 +142,7 @@ export default function BlogV2Page() {
                     </Link>
                     <span className="text-neutral-800">/</span>
                     <Link
-                        href="/systems"
+                        href="https://www.nomadlifexp.com/discipline-system"
                         className="text-cyan-400 font-bold hover:text-cyan-300 transition-colors cursor-pointer"
                     >
                         SYSTEM_DATABASE

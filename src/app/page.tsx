@@ -249,6 +249,20 @@ export default function HomePage() {
           </h2>
         </section>
 
+        {/* 1. NEW SECTION: WHAT IS NOMADLIFEXP? */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center border-t border-white/10 bg-white/[0.01]">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6 text-center">
+              What Is <span className="text-cyan-400">NomadLifeXP?</span>
+            </h2>
+            <p className="text-slate-300 leading-relaxed text-base sm:text-lg font-light text-center">
+              NomadLifeXP is a personal development system designed to build
+              self-discipline, better habits, physical fitness, mental clarity,
+              and sustainable personal growth through structured daily systems.
+            </p>
+          </div>
+        </section>
+
         {/* THE FOUR PILLARS */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center border-t border-white/10">
           <div className="max-w-3xl mx-auto mb-16 text-center">
@@ -315,6 +329,34 @@ export default function HomePage() {
           <p className="text-slate-300 leading-relaxed text-sm sm:text-base text-center max-w-2xl font-light">
             NomadLifeXP helps individuals create sustainable transformation through structured habits, physical development, mindful movement, and mental resilience.
           </p>
+        </section>
+
+        {/* 2. NEW SECTION: BUILT FOR THOSE WHO CHOOSE EVOLUTION */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center border-t border-white/10 bg-white/[0.01]">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6 text-center">
+              Built For Those Who <span className="text-cyan-400">Choose Evolution</span>
+            </h2>
+            <p className="text-slate-300 leading-relaxed text-base sm:text-lg font-light text-center">
+              NomadLifeXP is designed for people who want to create better habits,
+              improve fitness, develop mental resilience, increase focus, and build
+              a more intentional lifestyle.
+            </p>
+          </div>
+        </section>
+
+        {/* 3. NEW SECTION: WHY NOMADLIFEXP WAS BUILT */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center border-t border-white/10">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6 text-center">
+              Why <span className="text-cyan-400">NomadLifeXP</span> Was Built
+            </h2>
+            <p className="text-slate-300 leading-relaxed text-base sm:text-lg font-light text-center">
+              Information is everywhere, but consistent execution is rare.
+              NomadLifeXP was created to bridge the gap between knowing what to do
+              and building systems that make action sustainable.
+            </p>
+          </div>
         </section>
 
         {/* EVOLUTION LIBRARY */}

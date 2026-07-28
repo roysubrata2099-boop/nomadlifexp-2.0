@@ -42,7 +42,7 @@ function safeText(value: unknown, fallback: string): string {
     if (typeof value !== "string") {
         return fallback;
     }
-    const clean = value.trim();
+    const clean = value.replace(/[\u200B-\u200D\uFEFF]/g, "").trim();
     return clean || fallback;
 }
 
@@ -59,17 +59,28 @@ function safeImage(value: unknown): string {
         return "";
     }
     const image = value.trim();
-    if (!image.startsWith("/")) {
+    // Must start with '/' and not be a double slash or invalid protocol injection
+    if (!image.startsWith("/") || image.startsWith("//")) {
         return "";
     }
     return image;
+}
+
+function safeCategoryRoute(category: string): string {
+    const sanitized = slugify(category);
+    return sanitized ? `/blog/category/${encodeURIComponent(sanitized)}` : "/blog";
+}
+
+function safePostRoute(slug: string): string {
+    const sanitized = slugify(slug);
+    return sanitized ? `/blog/posts/${encodeURIComponent(sanitized)}` : "/blog";
 }
 
 function normalizePosts(): SafePost[] {
     try {
         const raw = getAllMDXPosts();
 
-        if (!Array.isArray(raw)) {
+        if (!Array.isArray(raw) || raw.length === 0) {
             return [];
         }
 
@@ -79,14 +90,11 @@ function normalizePosts(): SafePost[] {
             .map((post): SafePost | null => {
                 if (!post || typeof post !== "object") return null;
 
-                const title = safeText(
-                    (post as Record<string, unknown>).title,
-                    "Untitled Knowledge Node"
-                );
+                const record = post as Record<string, unknown>;
 
-                const slug = slugify(
-                    safeText((post as Record<string, unknown>).slug, title)
-                );
+                const title = safeText(record.title, "Untitled Knowledge Node");
+                const rawSlug = safeText(record.slug, title);
+                const slug = slugify(rawSlug);
 
                 if (!slug || seen.has(slug)) {
                     return null;
@@ -94,25 +102,23 @@ function normalizePosts(): SafePost[] {
 
                 seen.add(slug);
 
-                const categoryRaw = safeText(
-                    (post as Record<string, unknown>).category,
-                    "general"
-                );
+                const categoryRaw = safeText(record.category, "general");
 
                 return {
                     slug,
                     title,
                     description: safeText(
-                        (post as Record<string, unknown>).description,
+                        record.description,
                         "System description unavailable."
                     ),
                     category: slugify(categoryRaw) || "general",
-                    image: safeImage((post as Record<string, unknown>).image),
+                    image: safeImage(record.image),
                 };
             })
             .filter((post): post is SafePost => post !== null)
             .sort((a, b) => a.title.localeCompare(b.title));
-    } catch {
+    } catch (err) {
+        console.error("[POST_NORMALIZATION_ERROR]:", err);
         return [];
     }
 }
@@ -127,7 +133,7 @@ export default function BlogV2Page() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-28">
-                {/* Navigation Breadcrumb */}
+                {/* Navigation Breadcrumb with Active Link to /systems */}
                 <nav className="flex items-center gap-3 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase">
                     <Link
                         href="/"
@@ -137,8 +143,8 @@ export default function BlogV2Page() {
                     </Link>
                     <span className="text-neutral-800">/</span>
                     <Link
-                        href="/blog"
-                        className="text-cyan-400 font-bold hover:text-cyan-300 transition-colors"
+                        href="/systems"
+                        className="text-cyan-400 font-bold hover:text-cyan-300 transition-colors cursor-pointer"
                     >
                         SYSTEM_DATABASE
                     </Link>
@@ -191,7 +197,7 @@ export default function BlogV2Page() {
 
                                         <div className="mb-4">
                                             <Link
-                                                href={`/blog/category/${encodeURIComponent(post.category)}`}
+                                                href={safeCategoryRoute(post.category)}
                                                 className="inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-wider font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-800/40 hover:bg-cyan-900 transition-colors"
                                             >
                                                 {post.category}
@@ -209,7 +215,7 @@ export default function BlogV2Page() {
 
                                     <div className="mt-8 pt-4 border-t border-neutral-900">
                                         <Link
-                                            href={`/blog/posts/${encodeURIComponent(post.slug)}`}
+                                            href={safePostRoute(post.slug)}
                                             className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
                                         >
                                             READ ARTICLE <span>&rarr;</span>

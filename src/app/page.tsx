@@ -339,9 +339,22 @@ export default function HomePage() {
           <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base text-center">
             NOMADLIFE<span className="text-cyan-400">XP</span>
           </p>
-          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-8 text-center">
+          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-6 text-center">
             Evolve in Motion
           </p>
+
+          {/* MASTERCLASS KNOWLEDGE INDEX CALLOUT */}
+          <div className="w-full max-w-xl my-6 p-4 border border-cyan-500/20 bg-cyan-950/10 rounded-lg text-center hover:border-cyan-400/50 transition-colors">
+            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan-400 mb-1">
+              RESOURCE_LAYER
+            </p>
+            <Link
+              href="/knowledge-index"
+              className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-white hover:text-cyan-300 font-bold transition-colors"
+            >
+              NOMADLIFEXP // HUMAN OPTIMIZATION MASTERCLASS LIBRARY &rarr;
+            </Link>
+          </div>
 
           <div className="flex justify-center items-center gap-4 mb-8 text-sm">
             <a
@@ -369,6 +382,9 @@ export default function HomePage() {
             </Link>
             <Link href="/blog" className="hover:text-cyan-400 transition-colors">
               Blog
+            </Link>
+            <Link href="/knowledge-index" className="hover:text-cyan-400 transition-colors">
+              Masterclass Index
             </Link>
             <Link href="/discipline-system" className="hover:text-cyan-400 transition-colors">
               Systems

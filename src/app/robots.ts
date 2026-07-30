@@ -1,27 +1,24 @@
+// src/app/robots.ts
+
 import type { MetadataRoute } from 'next';
 
-export default function robots(): MetadataRoute.Robots {
-    const baseUrl = "https://nomadlifexp.com";
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://nomadlifexp.com").replace(/\/+$/, "");
 
+export default function robots(): MetadataRoute.Robots {
     return {
         rules: [
             {
-                // 🛡️ UNIVERSAL ENGINE ACCESSIBILITY (Classic Search & AI Web Search)
+                // 🛡️ Search Engine Crawlers & AI Assistants
                 userAgent: '*',
-                allow: [
-                    '/',
-                    '/_next/static/css/', // Safely allows bots to fetch core style sheets
-                    '/_next/static/chunks/' // Safely allows bots to fetch layout fragments
-                ],
+                allow: '/',
                 disallow: [
-                    '/_next/',       // Keeps core internal JS engines closed
-                    '/api/',         // Insulates internal backend routing pipelines
-                    '/*?*',          // Defends index against query string duplicate parameter pollution
-                    '/static/',      // Prevents listing raw resource directories
+                    '/api/',       // Protect backend API routes
+                    '/admin/',     // Prevent administrative panel indexing (if applicable)
+                    '/private/',   // Protect internal private assets
                 ],
             },
             {
-                // 🛡️ PERMISSIVE MATRIX FOR AI SEARCH & KNOWLEDGE GENERATION
+                // 🛡️ Dedicated AI Crawlers (Explicit access permission for knowledge scrapers)
                 userAgent: [
                     'GPTBot',
                     'ChatGPT-User',
@@ -29,22 +26,12 @@ export default function robots(): MetadataRoute.Robots {
                     'Anthropic-AI',
                     'Claude-Web',
                     'PerplexityBot',
-                    'Applebot-Extended'
+                    'Applebot-Extended',
                 ],
-                allow: [
-                    '/',
-                    '/blog/',
-                    '/blog/posts/',
-                    '/_next/static/css/',
-                    '/_next/static/chunks/'
-                ],
-                disallow: [
-                    '/_next/',
-                    '/api/',
-                    '/*?*'
-                ]
-            }
+                allow: '/',
+                disallow: ['/api/'],
+            },
         ],
-        sitemap: `${baseUrl}/sitemap.xml`,
+        sitemap: `${BASE_URL}/sitemap.xml`,
     };
 }

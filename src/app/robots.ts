@@ -10,15 +10,19 @@ export default function robots(): MetadataRoute.Robots {
             {
                 // 🛡️ Search Engine Crawlers & AI Assistants
                 userAgent: '*',
-                allow: '/',
+                allow: [
+                    '/',
+                    '/_next/image*',  // Explicitly allow Next.js Image Optimization route
+                    '/_next/static*', // Explicitly allow Next.js JS/CSS asset bundles
+                ],
                 disallow: [
                     '/api/',       // Protect backend API routes
-                    '/admin/',     // Prevent administrative panel indexing (if applicable)
+                    '/admin/',     // Prevent administrative panel indexing
                     '/private/',   // Protect internal private assets
                 ],
             },
             {
-                // 🛡️ Dedicated AI Crawlers (Explicit access permission for knowledge scrapers)
+                // 🛡️ Dedicated AI Crawlers
                 userAgent: [
                     'GPTBot',
                     'ChatGPT-User',
@@ -28,7 +32,11 @@ export default function robots(): MetadataRoute.Robots {
                     'PerplexityBot',
                     'Applebot-Extended',
                 ],
-                allow: '/',
+                allow: [
+                    '/',
+                    '/_next/image*',
+                    '/_next/static*',
+                ],
                 disallow: ['/api/'],
             },
         ],

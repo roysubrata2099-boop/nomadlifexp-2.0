@@ -13,6 +13,7 @@ export default function Navbar() {
         { label: "Start Here", href: "/start-here" },
         { label: "Knowledge Index", href: "/knowledge-index" },
         { label: "Blog", href: "/blog" },
+        { label: "Discipline", href: "/discipline" },
         { label: "Discipline System", href: "/discipline-system" },
         { label: "About", href: "/about" }
     ];
@@ -62,8 +63,8 @@ export default function Navbar() {
                                 key={node.href}
                                 href={node.href}
                                 className={`transition-colors py-1 relative group block ${isActive
-                                    ? "text-white font-bold"
-                                    : "text-neutral-500 hover:text-neutral-200"
+                                        ? "text-white font-bold"
+                                        : "text-neutral-500 hover:text-neutral-200"
                                     }`}
                             >
                                 {isActive && (

@@ -116,7 +116,7 @@ function normalizePosts(): SafePost[] {
                 };
             })
             .filter((post): post is SafePost => post !== null)
-            .sort((a, b) => a.title.localeCompare(b.title));
+            .sort((a, b) => (a?.title || "").localeCompare(b?.title || ""));
     } catch (err) {
         console.error("[POST_NORMALIZATION_ERROR]:", err);
         return [];
@@ -124,52 +124,76 @@ function normalizePosts(): SafePost[] {
 }
 
 export default function BlogV2Page() {
-    const posts = normalizePosts();
+    let posts: SafePost[] = [];
+    try {
+        posts = normalizePosts();
+    } catch {
+        posts = [];
+    }
 
-    const findPostByKeywords = (keywords: string[]) => {
+    const findPostByKeywords = (keywords: string[]): SafePost | undefined => {
+        if (!Array.isArray(keywords) || keywords.length === 0) return undefined;
         return posts.find((p) => {
-            const lowerTitle = (p?.title || "").toLowerCase();
-            return keywords.every((kw) => lowerTitle.includes(kw.toLowerCase()));
+            if (!p || typeof p.title !== "string") return false;
+            const lowerTitle = p.title.toLowerCase();
+            return keywords.every((kw) => typeof kw === "string" && lowerTitle.includes(kw.toLowerCase()));
         });
     };
 
     const featuredTitles = [
-        ["self-discipline", "why you lack"],
+        ["self discipline", "why you lack"],
         ["mental clarity", "overthinking"],
         ["fitness consistency", "workout discipline"],
         ["forward bending yoga"],
     ];
 
-    const featuredPosts = featuredTitles
-        .map((keywords) => findPostByKeywords(keywords))
-        .filter((p): p is SafePost => p !== undefined);
+    let featuredPosts: SafePost[] = [];
+    try {
+        featuredPosts = featuredTitles
+            .map((keywords) => findPostByKeywords(keywords))
+            .filter((p): p is SafePost => p !== undefined && p !== null);
+    } catch {
+        featuredPosts = [];
+    }
 
-    const finalFeaturedPosts = featuredPosts.length > 0 ? featuredPosts : posts.slice(0, 4);
+    const finalFeaturedPosts =
+        Array.isArray(featuredPosts) && featuredPosts.length > 0
+            ? featuredPosts
+            : Array.isArray(posts) ? posts.slice(0, 4) : [];
+
+    const getTopicCount = (categorySlug: string): number => {
+        try {
+            if (!Array.isArray(posts)) return 0;
+            return posts.filter((p) => p && typeof p.category === "string" && p.category.includes(categorySlug)).length || 4;
+        } catch {
+            return 4;
+        }
+    };
 
     const topics = [
         {
             name: "Discipline",
             slug: "discipline",
             description: "Build consistency, self-control, habits, and lasting discipline.",
-            count: posts.filter((p) => (p?.category || "").includes("discipline")).length || 4,
+            count: getTopicCount("discipline"),
         },
         {
             name: "Mindset",
             slug: "mindset",
             description: "Improve focus, attention, resilience, and better decision-making.",
-            count: posts.filter((p) => (p?.category || "").includes("mindset")).length || 4,
+            count: getTopicCount("mindset"),
         },
         {
             name: "Fitness",
             slug: "fitness",
             description: "Develop strength, consistency, movement, and physical capability.",
-            count: posts.filter((p) => (p?.category || "").includes("fitness")).length || 4,
+            count: getTopicCount("fitness"),
         },
         {
             name: "Yoga",
             slug: "yoga",
             description: "Cultivate mobility, balance, breathing, recovery, and mind-body connection.",
-            count: posts.filter((p) => (p?.category || "").includes("yoga")).length || 3,
+            count: getTopicCount("yoga"),
         },
     ];
 
@@ -211,7 +235,7 @@ export default function BlogV2Page() {
                         </p>
                     </div>
 
-                    {finalFeaturedPosts.length === 0 ? (
+                    {!finalFeaturedPosts || finalFeaturedPosts.length === 0 ? (
                         <div className="p-12 border border-neutral-900 bg-neutral-950/40 rounded-2xl text-center">
                             <p className="text-neutral-500 font-mono text-sm">
                                 No featured insights available at the moment.
@@ -219,54 +243,57 @@ export default function BlogV2Page() {
                         </div>
                     ) : (
                         <div className="grid md:grid-cols-2 gap-8">
-                            {finalFeaturedPosts.map((post) => (
-                                <article
-                                    key={`featured-${post.slug}`}
-                                    className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/50 rounded-2xl overflow-hidden hover:border-cyan-500/40 transition-all duration-300"
-                                >
-                                    <div>
-                                        {post.image ? (
-                                            <div className="relative w-full aspect-[16/9] bg-neutral-900 overflow-hidden">
-                                                <Image
-                                                    src={post.image}
-                                                    alt={post.title}
-                                                    fill
-                                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                                />
+                            {finalFeaturedPosts.map((post) => {
+                                if (!post || !post.slug) return null;
+                                return (
+                                    <article
+                                        key={`featured-${post.slug}`}
+                                        className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/50 rounded-2xl overflow-hidden hover:border-cyan-500/40 transition-all duration-300"
+                                    >
+                                        <div>
+                                            {post.image ? (
+                                                <div className="relative w-full aspect-[16/9] bg-neutral-900 overflow-hidden flex items-center justify-center">
+                                                    <Image
+                                                        src={post.image}
+                                                        alt={post.title || "Featured Insight"}
+                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                                        className="object-contain"
+                                                    />
+                                                </div>
+                                            ) : null}
+
+                                            <div className="p-8 pb-4">
+                                                <div className="mb-4">
+                                                    <Link
+                                                        href={safeCategoryRoute(post.category)}
+                                                        className="inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-wider font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-800/40 hover:bg-cyan-900 transition-colors"
+                                                    >
+                                                        {post.category || "General"}
+                                                    </Link>
+                                                </div>
+
+                                                <h3 className="text-xl font-bold uppercase tracking-tight group-hover:text-cyan-300 transition-colors">
+                                                    {post.title}
+                                                </h3>
+
+                                                <p className="mt-3 text-sm text-neutral-400 leading-relaxed font-light">
+                                                    {post.description}
+                                                </p>
                                             </div>
-                                        ) : null}
-
-                                        <div className="p-8 pb-4">
-                                            <div className="mb-4">
-                                                <Link
-                                                    href={safeCategoryRoute(post.category)}
-                                                    className="inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-wider font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-800/40 hover:bg-cyan-900 transition-colors"
-                                                >
-                                                    {post.category}
-                                                </Link>
-                                            </div>
-
-                                            <h3 className="text-xl font-bold uppercase tracking-tight group-hover:text-cyan-300 transition-colors">
-                                                {post.title}
-                                            </h3>
-
-                                            <p className="mt-3 text-sm text-neutral-400 leading-relaxed font-light">
-                                                {post.description}
-                                            </p>
                                         </div>
-                                    </div>
 
-                                    <div className="p-8 pt-4 mt-auto border-t border-neutral-900/60">
-                                        <Link
-                                            href={safePostRoute(post.slug)}
-                                            className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
-                                        >
-                                            READ ARTICLE <span>&rarr;</span>
-                                        </Link>
-                                    </div>
-                                </article>
-                            ))}
+                                        <div className="p-8 pt-4 mt-auto border-t border-neutral-900/60">
+                                            <Link
+                                                href={safePostRoute(post.slug)}
+                                                className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
+                                            >
+                                                READ ARTICLE <span>&rarr;</span>
+                                            </Link>
+                                        </div>
+                                    </article>
+                                );
+                            })}
                         </div>
                     )}
                 </section>
@@ -279,30 +306,33 @@ export default function BlogV2Page() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        {topics.map((topic) => (
-                            <Link
-                                key={topic.slug}
-                                href={`/blog/category/${topic.slug}`}
-                                className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/40 p-8 rounded-2xl hover:border-cyan-500/40 hover:bg-neutral-900/40 transition-all duration-300"
-                            >
-                                <div>
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h3 className="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-300 transition-colors">
-                                            {topic.name}
-                                        </h3>
-                                        <span className="font-mono text-xs text-neutral-500 bg-neutral-900 px-2.5 py-1 rounded-md border border-neutral-800">
-                                            {topic.count}
-                                        </span>
+                        {topics.map((topic) => {
+                            if (!topic || !topic.slug) return null;
+                            return (
+                                <Link
+                                    key={topic.slug}
+                                    href={`/blog/category/${topic.slug}`}
+                                    className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/40 p-8 rounded-2xl hover:border-cyan-500/40 hover:bg-neutral-900/40 transition-all duration-300"
+                                >
+                                    <div>
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-300 transition-colors">
+                                                {topic.name}
+                                            </h3>
+                                            <span className="font-mono text-xs text-neutral-500 bg-neutral-900 px-2.5 py-1 rounded-md border border-neutral-800">
+                                                {topic.count}
+                                            </span>
+                                        </div>
+                                        <p className="text-sm text-neutral-400 font-light leading-relaxed">
+                                            {topic.description}
+                                        </p>
                                     </div>
-                                    <p className="text-sm text-neutral-400 font-light leading-relaxed">
-                                        {topic.description}
-                                    </p>
-                                </div>
-                                <div className="mt-6 pt-4 border-t border-neutral-900 font-mono text-xs text-cyan-400 flex items-center gap-2">
-                                    EXPLORE TOPIC <span>&rarr;</span>
-                                </div>
-                            </Link>
-                        ))}
+                                    <div className="mt-6 pt-4 border-t border-neutral-900 font-mono text-xs text-cyan-400 flex items-center gap-2">
+                                        EXPLORE TOPIC <span>&rarr;</span>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </section>
 
@@ -316,7 +346,7 @@ export default function BlogV2Page() {
                         </p>
                     </div>
 
-                    {posts.length === 0 ? (
+                    {!posts || posts.length === 0 ? (
                         <div className="p-12 border border-neutral-900 bg-neutral-950/40 rounded-2xl text-center">
                             <p className="text-neutral-500 font-mono text-sm">
                                 No active knowledge nodes found in database.
@@ -324,54 +354,57 @@ export default function BlogV2Page() {
                         </div>
                     ) : (
                         <div className="grid md:grid-cols-2 gap-8">
-                            {posts.map((post) => (
-                                <article
-                                    key={post.slug}
-                                    className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/50 rounded-2xl overflow-hidden hover:border-cyan-500/40 transition-all duration-300"
-                                >
-                                    <div>
-                                        {post.image ? (
-                                            <div className="relative w-full aspect-[16/9] bg-neutral-900 overflow-hidden">
-                                                <Image
-                                                    src={post.image}
-                                                    alt={post.title}
-                                                    fill
-                                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                                />
+                            {posts.map((post) => {
+                                if (!post || !post.slug) return null;
+                                return (
+                                    <article
+                                        key={post.slug}
+                                        className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/50 rounded-2xl overflow-hidden hover:border-cyan-500/40 transition-all duration-300"
+                                    >
+                                        <div>
+                                            {post.image ? (
+                                                <div className="relative w-full aspect-[16/9] bg-neutral-900 overflow-hidden flex items-center justify-center">
+                                                    <Image
+                                                        src={post.image}
+                                                        alt={post.title || "Insight Article"}
+                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                                        className="object-contain"
+                                                    />
+                                                </div>
+                                            ) : null}
+
+                                            <div className="p-8 pb-4">
+                                                <div className="mb-4">
+                                                    <Link
+                                                        href={safeCategoryRoute(post.category)}
+                                                        className="inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-wider font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-800/40 hover:bg-cyan-900 transition-colors"
+                                                    >
+                                                        {post.category || "General"}
+                                                    </Link>
+                                                </div>
+
+                                                <h3 className="text-xl font-bold uppercase tracking-tight group-hover:text-cyan-300 transition-colors">
+                                                    {post.title}
+                                                </h3>
+
+                                                <p className="mt-3 text-sm text-neutral-400 leading-relaxed font-light">
+                                                    {post.description}
+                                                </p>
                                             </div>
-                                        ) : null}
-
-                                        <div className="p-8 pb-4">
-                                            <div className="mb-4">
-                                                <Link
-                                                    href={safeCategoryRoute(post.category)}
-                                                    className="inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-wider font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-800/40 hover:bg-cyan-900 transition-colors"
-                                                >
-                                                    {post.category}
-                                                </Link>
-                                            </div>
-
-                                            <h3 className="text-xl font-bold uppercase tracking-tight group-hover:text-cyan-300 transition-colors">
-                                                {post.title}
-                                            </h3>
-
-                                            <p className="mt-3 text-sm text-neutral-400 leading-relaxed font-light">
-                                                {post.description}
-                                            </p>
                                         </div>
-                                    </div>
 
-                                    <div className="p-8 pt-4 mt-auto border-t border-neutral-900/60">
-                                        <Link
-                                            href={safePostRoute(post.slug)}
-                                            className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
-                                        >
-                                            READ ARTICLE <span>&rarr;</span>
-                                        </Link>
-                                    </div>
-                                </article>
-                            ))}
+                                        <div className="p-8 pt-4 mt-auto border-t border-neutral-900/60">
+                                            <Link
+                                                href={safePostRoute(post.slug)}
+                                                className="inline-flex items-center gap-2 text-xs font-mono uppercase text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
+                                            >
+                                                READ ARTICLE <span>&rarr;</span>
+                                            </Link>
+                                        </div>
+                                    </article>
+                                );
+                            })}
                         </div>
                     )}
                 </section>

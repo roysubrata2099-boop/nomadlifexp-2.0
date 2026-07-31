@@ -46,7 +46,8 @@ function safeText(value: unknown, fallback: string): string {
     return clean || fallback;
 }
 
-function slugify(value: string): string {
+function slugify(value: unknown): string {
+    if (typeof value !== "string") return "";
     return value
         .toLowerCase()
         .trim()
@@ -65,12 +66,12 @@ function safeImage(value: unknown): string {
     return image;
 }
 
-function safeCategoryRoute(category: string): string {
+function safeCategoryRoute(category: unknown): string {
     const sanitized = slugify(category);
     return sanitized ? `/blog/category/${encodeURIComponent(sanitized)}` : "/blog";
 }
 
-function safePostRoute(slug: string): string {
+function safePostRoute(slug: unknown): string {
     const sanitized = slugify(slug);
     return sanitized ? `/blog/posts/${encodeURIComponent(sanitized)}` : "/blog";
 }
@@ -125,16 +126,22 @@ function normalizePosts(): SafePost[] {
 export default function BlogV2Page() {
     const posts = normalizePosts();
 
-    // Map exact requested featured titles
+    const findPostByKeywords = (keywords: string[]) => {
+        return posts.find((p) => {
+            const lowerTitle = (p?.title || "").toLowerCase();
+            return keywords.every((kw) => lowerTitle.includes(kw.toLowerCase()));
+        });
+    };
+
     const featuredTitles = [
-        "Self-Discipline: Why You Lack It and How to Build It for Good",
-        "Mental Clarity: How to Stop Overthinking and Improve Focus",
-        "Fitness Consistency: Build Workout Discipline That Lasts",
-        "It’s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
+        ["self-discipline", "why you lack"],
+        ["mental clarity", "overthinking"],
+        ["fitness consistency", "workout discipline"],
+        ["forward bending yoga"],
     ];
 
     const featuredPosts = featuredTitles
-        .map((title) => posts.find((p) => p.title.toLowerCase() === title.toLowerCase()))
+        .map((keywords) => findPostByKeywords(keywords))
         .filter((p): p is SafePost => p !== undefined);
 
     const finalFeaturedPosts = featuredPosts.length > 0 ? featuredPosts : posts.slice(0, 4);
@@ -144,36 +151,34 @@ export default function BlogV2Page() {
             name: "Discipline",
             slug: "discipline",
             description: "Build consistency, self-control, habits, and lasting discipline.",
-            count: posts.filter((p) => p.category.includes("discipline")).length || 4,
+            count: posts.filter((p) => (p?.category || "").includes("discipline")).length || 4,
         },
         {
             name: "Mindset",
             slug: "mindset",
             description: "Improve focus, attention, resilience, and better decision-making.",
-            count: posts.filter((p) => p.category.includes("mindset")).length || 4,
+            count: posts.filter((p) => (p?.category || "").includes("mindset")).length || 4,
         },
         {
             name: "Fitness",
             slug: "fitness",
             description: "Develop strength, consistency, movement, and physical capability.",
-            count: posts.filter((p) => p.category.includes("fitness")).length || 4,
+            count: posts.filter((p) => (p?.category || "").includes("fitness")).length || 4,
         },
         {
             name: "Yoga",
             slug: "yoga",
             description: "Cultivate mobility, balance, breathing, recovery, and mind-body connection.",
-            count: posts.filter((p) => p.category.includes("yoga")).length || 3,
+            count: posts.filter((p) => (p?.category || "").includes("yoga")).length || 3,
         },
     ];
 
     return (
         <div className="relative min-h-screen bg-black text-white overflow-hidden antialiased">
-            {/* Background glow effects */}
             <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-28">
-                {/* Navigation Breadcrumb */}
                 <nav className="flex items-center gap-3 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase">
                     <Link
                         href="/"
@@ -183,7 +188,6 @@ export default function BlogV2Page() {
                     </Link>
                 </nav>
 
-                {/* Header */}
                 <header className="max-w-5xl mb-20">
                     <h1 className="text-5xl md:text-7xl font-black uppercase leading-none tracking-tight">
                         HUMAN EVOLUTION <br />
@@ -197,7 +201,6 @@ export default function BlogV2Page() {
                     </p>
                 </header>
 
-                {/* Featured Insights Section */}
                 <section className="mb-24">
                     <div className="mb-10">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mb-2">
@@ -222,18 +225,17 @@ export default function BlogV2Page() {
                                     className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/50 rounded-2xl overflow-hidden hover:border-cyan-500/40 transition-all duration-300"
                                 >
                                     <div>
-                                        {post.image && (
-                                            <div className="relative w-full h-72 overflow-hidden bg-neutral-900">
+                                        {post.image ? (
+                                            <div className="relative w-full aspect-[16/9] bg-neutral-900 overflow-hidden">
                                                 <Image
                                                     src={post.image}
                                                     alt={post.title}
                                                     fill
-                                                    priority={false}
                                                     sizes="(max-width: 768px) 100vw, 50vw"
-                                                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                                                 />
                                             </div>
-                                        )}
+                                        ) : null}
 
                                         <div className="p-8 pb-4">
                                             <div className="mb-4">
@@ -269,7 +271,6 @@ export default function BlogV2Page() {
                     )}
                 </section>
 
-                {/* Explore By Topic Section */}
                 <section className="mb-24">
                     <div className="mb-10">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mb-2">
@@ -305,7 +306,6 @@ export default function BlogV2Page() {
                     </div>
                 </section>
 
-                {/* All Insights Section */}
                 <section className="mb-24">
                     <div className="mb-10">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mb-2">
@@ -330,18 +330,17 @@ export default function BlogV2Page() {
                                     className="group flex flex-col justify-between border border-neutral-800 bg-neutral-950/50 rounded-2xl overflow-hidden hover:border-cyan-500/40 transition-all duration-300"
                                 >
                                     <div>
-                                        {post.image && (
-                                            <div className="relative w-full h-72 overflow-hidden bg-neutral-900">
+                                        {post.image ? (
+                                            <div className="relative w-full aspect-[16/9] bg-neutral-900 overflow-hidden">
                                                 <Image
                                                     src={post.image}
                                                     alt={post.title}
                                                     fill
-                                                    priority={false}
                                                     sizes="(max-width: 768px) 100vw, 50vw"
-                                                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                                                 />
                                             </div>
-                                        )}
+                                        ) : null}
 
                                         <div className="p-8 pb-4">
                                             <div className="mb-4">
@@ -377,7 +376,6 @@ export default function BlogV2Page() {
                     )}
                 </section>
 
-                {/* Start Your Evolution Banner */}
                 <section className="border border-cyan-500/30 bg-gradient-to-b from-cyan-950/20 to-neutral-950/60 p-10 md:p-14 rounded-3xl text-center relative overflow-hidden">
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d410_1px,transparent_1px),linear-gradient(to_bottom,#06b6d410_1px,transparent_1px)] bg-[size:2rem_2rem] pointer-events-none" />
                     <div className="relative z-10 max-w-2xl mx-auto">

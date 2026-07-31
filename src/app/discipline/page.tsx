@@ -39,6 +39,7 @@ function getDisciplinePosts(): SystemPost[] {
                     post.title ?? ""
                 );
 
+                // Fixed category matching back to "discipline"
                 return category === "discipline";
             })
             .map((post) => ({

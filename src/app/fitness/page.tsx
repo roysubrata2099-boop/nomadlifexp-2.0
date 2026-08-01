@@ -1,9 +1,10 @@
+import "server-only";
+
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-// Force dynamic rendering to bypass Vercel's static data cache
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
@@ -22,6 +23,21 @@ export const metadata: Metadata = {
     },
 };
 
+function safeSlug(value: unknown): string {
+    if (typeof value !== "string") {
+        return "";
+    }
+    return value.trim().toLowerCase();
+}
+
+function safeText(value: unknown, fallback: string): string {
+    if (typeof value !== "string") {
+        return fallback;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : fallback;
+}
+
 function getFitnessPosts(): SystemPost[] {
     try {
         const posts = getAllPosts();
@@ -32,21 +48,24 @@ function getFitnessPosts(): SystemPost[] {
 
         return posts
             .filter((post) => {
-                if (!post) {
+                if (!post || typeof post !== "object") {
                     return false;
                 }
 
-                const category = normalizeCategory(
-                    post.category ?? "",
-                    post.title ?? ""
-                );
+                try {
+                    const rawCategory = typeof post.category === "string" ? post.category : "";
+                    const rawTitle = typeof post.title === "string" ? post.title : "";
 
-                return category.toLowerCase() === "fitness";
+                    const category = normalizeCategory(rawCategory, rawTitle);
+                    return safeSlug(category) === "fitness";
+                } catch {
+                    return false;
+                }
             })
             .map((post) => ({
-                slug: String(post.slug ?? "").trim(),
-                title: String(post.title ?? "").trim() || "Untitled Knowledge Node",
-                description: String(post.description ?? "").trim() || "System description unavailable.",
+                slug: safeSlug(post?.slug),
+                title: safeText(post?.title, "Untitled Knowledge Node"),
+                description: safeText(post?.description, "System description unavailable."),
             }))
             .filter((post) => post.slug.length > 0);
     } catch {

@@ -66,8 +66,13 @@ function safeImage(value: unknown): string {
 
 export async function generateStaticParams() {
     try {
-        const categories = getAllMDXPosts()
-            .map((post) => safeSlug(post.category))
+        const posts = getAllMDXPosts();
+        if (!Array.isArray(posts)) {
+            return [];
+        }
+
+        const categories = posts
+            .map((post) => safeSlug(post?.category))
             .filter((category) => ALLOWED_CATEGORIES.has(category));
 
         return [...new Set(categories)].map((category) => ({
@@ -81,34 +86,47 @@ export async function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: PageProps): Promise<Metadata> {
-    const { category } = await params;
-    const cleanCategory = safeSlug(category);
+    try {
+        const resolvedParams = await params;
+        const category = resolvedParams?.category;
+        const cleanCategory = safeSlug(category);
 
-    if (!ALLOWED_CATEGORIES.has(cleanCategory)) {
+        if (!ALLOWED_CATEGORIES.has(cleanCategory)) {
+            return {
+                title: "Category Not Found | NomadLifeXP",
+            };
+        }
+
+        const formattedCategory =
+            cleanCategory.charAt(0).toUpperCase() + cleanCategory.slice(1);
+
+        return {
+            title: `${formattedCategory} Articles | NomadLifeXP`,
+            description: `Explore ${cleanCategory} transformation systems and insights from NomadLifeXP.`,
+            alternates: {
+                canonical: `${SITE_URL}/blog/category/${cleanCategory}`,
+            },
+            robots: {
+                index: true,
+                follow: true,
+            },
+        };
+    } catch {
         return {
             title: "Category Not Found | NomadLifeXP",
         };
     }
-
-    const formattedCategory =
-        cleanCategory.charAt(0).toUpperCase() + cleanCategory.slice(1);
-
-    return {
-        title: `${formattedCategory} Articles | NomadLifeXP`,
-        description: `Explore ${cleanCategory} transformation systems and insights from NomadLifeXP.`,
-        alternates: {
-            canonical: `${SITE_URL}/blog/category/${cleanCategory}`,
-        },
-        robots: {
-            index: true,
-            follow: true,
-        },
-    };
 }
 
 export default async function MDXCategoryPage({ params }: PageProps) {
-    const { category } = await params;
-    const cleanCategory = safeSlug(category);
+    let resolvedParams;
+    try {
+        resolvedParams = await params;
+    } catch {
+        notFound();
+    }
+
+    const cleanCategory = safeSlug(resolvedParams?.category);
 
     if (!ALLOWED_CATEGORIES.has(cleanCategory)) {
         notFound();
@@ -117,15 +135,19 @@ export default async function MDXCategoryPage({ params }: PageProps) {
     let posts: SafePost[] = [];
 
     try {
-        posts = getAllMDXPosts()
-            .map((post) => ({
-                slug: safeSlug(post.slug),
-                title: safeText(post.title) || "Untitled Article",
-                description: safeText(post.description) || "No description available.",
-                category: safeSlug(post.category),
-                image: safeImage(post.image),
-            }))
-            .filter((post) => post.category === cleanCategory);
+        const rawPosts = getAllMDXPosts();
+        if (Array.isArray(rawPosts)) {
+            posts = rawPosts
+                .filter((post) => post && typeof post === "object")
+                .map((post) => ({
+                    slug: safeSlug(post.slug),
+                    title: safeText(post.title) || "Untitled Article",
+                    description: safeText(post.description) || "No description available.",
+                    category: safeSlug(post.category),
+                    image: safeImage(post.image),
+                }))
+                .filter((post) => post.category === cleanCategory && post.slug !== "");
+        }
     } catch {
         posts = [];
     }

@@ -3,6 +3,10 @@ import { normalizeCategory } from "@/lib/taxonomy";
 import type { Metadata } from "next";
 import Link from "next/link";
 
+// Force dynamic rendering to bypass Vercel's static data cache
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface SystemPost {
     slug: string;
     title: string;
@@ -14,7 +18,7 @@ export const metadata: Metadata = {
     description:
         "Fitness is an engineered execution system designed to build physical autonomy and resilience.",
     alternates: {
-        canonical: "https://www.nomadlifexp.com/blog/category/fitness",
+        canonical: "https://www.nomadlifexp.com/fitness",
     },
 };
 

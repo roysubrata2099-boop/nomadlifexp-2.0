@@ -12,11 +12,6 @@ export const metadata: Metadata = {
   },
 };
 
-interface NavItem {
-  label: string;
-  href: string;
-}
-
 interface Pillar {
   id: string;
   number: string;
@@ -31,13 +26,6 @@ interface LibraryItem {
   description: string;
   href: string;
 }
-
-const NAVIGATION: readonly NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Systems", href: "/discipline-system" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
-];
 
 const PILLARS: readonly Pillar[] = [
   {

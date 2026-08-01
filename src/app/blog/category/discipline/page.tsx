@@ -116,25 +116,25 @@ export default function DisciplinePage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 ó Awareness",
+                                title: "01 √π Awareness",
                                 subtext: "Understand your patterns, distractions, and behaviors.",
                                 text: "Before you can change your actions, you must understand what controls them."
                             },
                             {
                                 id: "02",
-                                title: "02 ó Control",
+                                title: "02 √π Control",
                                 subtext: "Regain control over your attention, impulses, and decisions.",
                                 text: "Discipline begins when you stop reacting and start choosing."
                             },
                             {
                                 id: "03",
-                                title: "03 ó Consistency",
+                                title: "03 √π Consistency",
                                 subtext: "Build systems that continue working even when motivation disappears.",
                                 text: "Small actions repeated over time create lasting transformation."
                             },
                             {
                                 id: "04",
-                                title: "04 ó Mastery",
+                                title: "04 √π Mastery",
                                 subtext: "Become someone who naturally acts according to your values.",
                                 text: "True discipline is not something you force. It becomes part of who you are."
                             },
@@ -181,7 +181,7 @@ export default function DisciplinePage() {
                                 step: "STEP 02",
                                 title: "Self Discipline: Why You Lack It and How to Build It for Good",
                                 subtitle: "Understand the problem",
-                                desc: "Self discipline is the ability to control your actions based on long-term goals instead of short-term feelings. Discover why most people do not lack motivationóthey lack systems that protect their attention from constant distraction.",
+                                desc: "Self discipline is the ability to control your actions based on long-term goals instead of short-term feelings. Discover why most people do not lack motivation√πthey lack systems that protect their attention from constant distraction.",
                                 slug: "self-discipline-why-you-lack-it-and-how-to-build-it-for-good"
                             },
                             {

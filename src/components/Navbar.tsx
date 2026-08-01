@@ -10,11 +10,10 @@ export default function Navbar() {
 
     const navigationNodes = [
         { label: "Home", href: "/" },
-        { label: "Start Here", href: "/start-here" },
-        { label: "Knowledge Index", href: "/knowledge-index" },
+        { label: "Systems", href: "/discipline-system" },
         { label: "Blog", href: "/blog" },
-        { label: "Discipline System", href: "/discipline-system" },
-        { label: "About", href: "/about" }
+        { label: "About", href: "/about" },
+        { label: "Start Here", href: "/start-here" }
     ];
 
     const isHomepage = currentPath === "/";
@@ -51,8 +50,6 @@ export default function Navbar() {
                 {/* RESPONSIVE SCALING LINK DECK */}
                 <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono tracking-widest uppercase">
                     {navigationNodes.map((node) => {
-                        // Strict Segment Matching Logic to prevent sub-string overlap bugs 
-                        // (e.g., matching /discipline-system incorrectly against /discipline)
                         const isActive =
                             currentPath === node.href ||
                             (node.href !== "/" && currentPath.startsWith(`${node.href}/`));
@@ -69,7 +66,7 @@ export default function Navbar() {
                                 {isActive && (
                                     <span className="text-cyan-400 mr-1 animate-pulse">//</span>
                                 )}
-                                {String(node.label || "").toLowerCase().replace(/ /g, "_")}
+                                {node.label}
                             </Link>
                         );
                     })}

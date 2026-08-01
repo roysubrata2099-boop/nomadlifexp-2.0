@@ -1,16 +1,7 @@
-
 "use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-interface Pillar {
-  readonly id: string;
-  readonly number: string;
-  readonly title: string;
-  readonly description: string;
-  readonly href: string;
-}
 
 interface NavItem {
   readonly label: string;
@@ -29,37 +20,6 @@ const NAVIGATION: readonly NavItem[] = [
   { label: "Systems", href: "/discipline-system" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-];
-
-const PILLARS: readonly Pillar[] = [
-  {
-    id: "pillar-discipline",
-    number: "01",
-    title: "Discipline",
-    description: "The foundation of consistency, focus, and execution.",
-    href: "/discipline",
-  },
-  {
-    id: "pillar-fitness",
-    number: "02",
-    title: "Fitness",
-    description: "Building physical capability, strength, and energy.",
-    href: "/blog/category/fitness",
-  },
-  {
-    id: "pillar-yoga",
-    number: "03",
-    title: "Yoga",
-    description: "Movement, awareness, breathing, and balance.",
-    href: "/blog/category/yoga",
-  },
-  {
-    id: "pillar-mindset",
-    number: "04",
-    title: "Mindset",
-    description: "The architecture of resilience, confidence, and growth.",
-    href: "/blog/category/mindset",
-  },
 ];
 
 const LIBRARY_ITEMS: readonly LibraryItem[] = [
@@ -250,30 +210,28 @@ export default function HomePage() {
           </h2>
         </section>
 
-        {/* THE FOUR PILLARS */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center border-t border-white/10">
-          <div className="max-w-3xl mx-auto mb-16 text-center">
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-center">
-              The Four Pillars
+        {/* EVOLUTION LIBRARY REPLACEMENT SECTION */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center border-t border-white/10">
+          <div className="max-w-2xl mx-auto mb-12 text-center">
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-center mb-4">
+              Evolution Library
             </h2>
+            <p className="text-slate-400 text-sm font-light">
+              Explore the systems, practices, and ideas that help you evolve.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center max-w-5xl mx-auto">
-            {PILLARS.map((pillar) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {LIBRARY_ITEMS.map((item) => (
               <Link
-                key={pillar.id}
-                href={pillar.href}
-                className="group flex flex-col items-center justify-center p-8 transition-all text-center border-b border-white/10 hover:border-cyan-400/50 focus:outline-none focus:border-cyan-400"
+                key={item.id}
+                href={item.href}
+                className="group p-8 rounded-xl border border-white/10 bg-white/[0.01] hover:border-cyan-400/50 transition-all flex flex-col items-center text-center focus:outline-none focus:ring-2 focus:ring-cyan-400"
               >
-                <span className="text-cyan-400 font-mono text-xl sm:text-2xl mb-2 font-bold">
-                  {pillar.number}
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-black uppercase mb-3 group-hover:text-cyan-300 transition-colors">
-                  {pillar.title}
+                <h3 className="font-bold uppercase text-2xl mb-2 text-center group-hover:text-cyan-300 transition-colors">
+                  {item.title}
                 </h3>
-                <p className="text-slate-300 text-sm leading-relaxed max-w-sm mx-auto font-light">
-                  {pillar.description}
-                </p>
+                <p className="text-xs text-slate-400 text-center">{item.description}</p>
               </Link>
             ))}
           </div>
@@ -316,30 +274,6 @@ export default function HomePage() {
           <p className="text-slate-300 leading-relaxed text-sm sm:text-base text-center max-w-2xl font-light">
             NomadLifeXP helps individuals create sustainable transformation through structured habits, physical development, mindful movement, and mental resilience.
           </p>
-        </section>
-
-        {/* EVOLUTION LIBRARY */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center border-t border-white/10">
-          <div className="max-w-2xl mx-auto mb-12 text-center">
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-center">
-              Evolution Library
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {LIBRARY_ITEMS.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                className="group p-8 rounded-xl border border-white/10 bg-white/[0.01] hover:border-cyan-400/50 transition-all flex flex-col items-center text-center focus:outline-none focus:ring-2 focus:ring-cyan-400"
-              >
-                <h3 className="font-bold uppercase text-2xl mb-2 text-center group-hover:text-cyan-300 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-slate-400 text-center">{item.description}</p>
-              </Link>
-            ))}
-          </div>
         </section>
 
         {/* FINAL CTA */}

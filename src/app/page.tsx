@@ -26,6 +26,7 @@ interface LibraryItem {
 const NAVIGATION: readonly NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Systems", href: "/discipline-system" },
+  { label: "Discipline", href: "/discipline" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
 ];
@@ -36,7 +37,7 @@ const PILLARS: readonly Pillar[] = [
     number: "01",
     title: "Discipline",
     description: "The foundation of consistency, focus, and execution.",
-    href: "/discipline-system",
+    href: "/discipline",
   },
   {
     id: "pillar-fitness",
@@ -418,6 +419,9 @@ export default function HomePage() {
             </Link>
             <Link href="/discipline-system" className="hover:text-cyan-400 transition-colors">
               Systems
+            </Link>
+            <Link href="/discipline" className="hover:text-cyan-400 transition-colors">
+              Discipline
             </Link>
             <Link href="/start-here" className="hover:text-cyan-400 transition-colors">
               Start

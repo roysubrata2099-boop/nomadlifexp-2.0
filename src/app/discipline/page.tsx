@@ -1,4 +1,4 @@
-// src/app/discipline/page.tsx
+// src/app/blog/category/discipline/page.tsx
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description:
         "Discipline is an engineered execution system designed to create long-term autonomy.",
     alternates: {
-        canonical: "https://www.nomadlifexp.com/discipline",
+        canonical: "https://www.nomadlifexp.com/blog/category/discipline",
     },
 };
 
@@ -53,7 +53,13 @@ function getDisciplinePosts(): SystemPost[] {
 }
 
 export default function DisciplinePage() {
-    const disciplineArticles = getDisciplinePosts();
+    let disciplineArticles: SystemPost[] = [];
+
+    try {
+        disciplineArticles = getDisciplinePosts();
+    } catch {
+        disciplineArticles = [];
+    }
 
     return (
         <main className="min-h-screen bg-black text-white antialiased">
@@ -233,7 +239,7 @@ export default function DisciplinePage() {
                             {[
                                 {
                                     title: "Discipline Creates Freedom",
-                                    description: "Discipline is not restriction. It is control over your attention, habits, and decisions. Learn how discipline creates true freedom by helping you master yourself and build a life with clarity, consistency, and purpose.",
+                                    description: "Discipline is not restriction. It is control over your attention, habits, and decisions. Learn why discipline creates true freedom by helping you master yourself and build a life with clarity, consistency, and purpose.",
                                     slug: "discipline-creates-freedom"
                                 },
                                 {
@@ -380,7 +386,7 @@ export default function DisciplinePage() {
 
                     <div className="grid sm:grid-cols-3 gap-6 font-mono text-xs uppercase">
                         <Link
-                            href="/mindset"
+                            href="/blog/category/mindset"
                             className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
                         >
                             <span className="block text-white font-bold mb-1">Mindset</span>
@@ -389,7 +395,7 @@ export default function DisciplinePage() {
                         </Link>
 
                         <Link
-                            href="/fitness"
+                            href="/blog/category/fitness"
                             className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
                         >
                             <span className="block text-white font-bold mb-1">Fitness</span>
@@ -398,7 +404,7 @@ export default function DisciplinePage() {
                         </Link>
 
                         <Link
-                            href="/yoga"
+                            href="/blog/category/yoga"
                             className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
                         >
                             <span className="block text-white font-bold mb-1">Yoga</span>

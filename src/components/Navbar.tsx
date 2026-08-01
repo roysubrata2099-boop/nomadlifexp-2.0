@@ -13,7 +13,6 @@ export default function Navbar() {
         { label: "Start Here", href: "/start-here" },
         { label: "Knowledge Index", href: "/knowledge-index" },
         { label: "Blog", href: "/blog" },
-        { label: "Discipline", href: "/discipline" },
         { label: "Discipline System", href: "/discipline-system" },
         { label: "About", href: "/about" }
     ];

@@ -217,46 +217,8 @@ export default function FitnessPage() {
         },
     ];
 
-    let jsonLdString = "[]";
-    try {
-        jsonLdString = JSON.stringify([
-            {
-                "@context": "https://schema.org",
-                "@type": "CollectionPage",
-                "name": "Fitness Architecture & Evolution Systems",
-                "description": "Build strength, mobility, endurance, and physical capability through structured training systems.",
-                "url": "https://nomadlifexp.com/blog/category/fitness"
-            },
-            {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Blog",
-                        "item": "https://nomadlifexp.com/blog"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "Fitness",
-                        "item": "https://nomadlifexp.com/blog/category/fitness"
-                    }
-                ]
-            }
-        ]);
-    } catch {
-        jsonLdString = "{}";
-    }
-
     return (
         <div className="relative min-h-screen bg-black text-white overflow-hidden antialiased selection:bg-cyan-400 selection:text-black">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: jsonLdString }}
-            />
-
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-32">

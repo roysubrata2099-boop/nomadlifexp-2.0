@@ -1,5 +1,3 @@
-// src/app/blog/category/discipline/page.tsx
-
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
 import type { Metadata } from "next";

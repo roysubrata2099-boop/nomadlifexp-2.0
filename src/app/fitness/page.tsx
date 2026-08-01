@@ -1,6 +1,7 @@
-import { getAllPosts } from "@/lib/markdown";
-import type { Metadata } from "next";
+import "server-only";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { getAllMDXPosts } from "@/lib/mdx";
 
 interface SystemPost {
     readonly slug: string;
@@ -57,7 +58,6 @@ function safeCategory(value: unknown): string {
     return safeString(value).toLowerCase().trim();
 }
 
-/* ================= SEO ================= */
 export const metadata: Metadata = {
     title: "Fitness Architecture & Evolution Systems | NomadLifeXP",
     description:
@@ -164,12 +164,11 @@ const CROSS_NODES: readonly CrossNode[] = [
     },
 ];
 
-/* ================= PAGE ================= */
-export default function FitnessPage() {
+export default async function FitnessPage() {
     let rawPosts: unknown[] = [];
 
     try {
-        const data = getAllPosts();
+        const data = await getAllMDXPosts();
         if (Array.isArray(data)) {
             rawPosts = data;
         }
@@ -217,19 +216,55 @@ export default function FitnessPage() {
         },
     ];
 
+    let jsonLdString = "[]";
+    try {
+        jsonLdString = JSON.stringify([
+            {
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Fitness Architecture & Evolution Systems",
+                "description": "Build strength, mobility, endurance, and physical capability through structured training systems.",
+                "url": "https://nomadlifexp.com/blog/category/fitness"
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Blog",
+                        "item": "https://nomadlifexp.com/blog"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Fitness",
+                        "item": "https://nomadlifexp.com/blog/category/fitness"
+                    }
+                ]
+            }
+        ]);
+    } catch {
+        jsonLdString = "{}";
+    }
+
     return (
         <div className="relative min-h-screen bg-black text-white overflow-hidden antialiased selection:bg-cyan-400 selection:text-black">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: jsonLdString }}
+            />
+
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-                {/* NAV */}
                 <nav className="mb-14 flex gap-5 font-mono text-xs uppercase tracking-[0.3em]">
                     <Link href="/blog" className="text-neutral-500 hover:text-cyan-400 transition">
                         &larr; RETURN TO BLOG
                     </Link>
                 </nav>
 
-                {/* HEADER */}
                 <header className="mb-24 max-w-4xl">
                     <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-400 mb-6">
                         NOMADLIFEXP // HUMAN EVOLUTION SYSTEM
@@ -251,7 +286,6 @@ export default function FitnessPage() {
                     </p>
                 </header>
 
-                {/* THE FITNESS EVOLUTION PATH */}
                 <section className="mb-28">
                     <div className="max-w-3xl mb-12">
                         <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-400 mb-2">
@@ -281,7 +315,6 @@ export default function FitnessPage() {
                     </div>
                 </section>
 
-                {/* START YOUR FITNESS TRANSFORMATION PATH */}
                 <section className="mb-28">
                     <div className="max-w-3xl mb-12">
                         <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-400 mb-2">
@@ -329,7 +362,6 @@ export default function FitnessPage() {
                     </div>
                 </section>
 
-                {/* FITNESS DATABASE */}
                 <section className="mb-28">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-neutral-900 pb-6 gap-4">
                         <div>
@@ -372,7 +404,6 @@ export default function FitnessPage() {
                     )}
                 </section>
 
-                {/* THE NOMADLIFEXP FITNESS FRAMEWORK */}
                 <section className="mb-28">
                     <div className="max-w-3xl mb-12">
                         <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-400 mb-2">
@@ -397,7 +428,6 @@ export default function FitnessPage() {
                     </div>
                 </section>
 
-                {/* WHY FITNESS MATTERS COMPARISON SECTION */}
                 <section className="mb-28">
                     <div className="max-w-3xl mb-12">
                         <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-400 mb-2">
@@ -441,7 +471,6 @@ export default function FitnessPage() {
                     </div>
                 </section>
 
-                {/* FITNESS SYSTEM FAQ SECTION */}
                 <section className="mb-28">
                     <div className="max-w-3xl mb-12">
                         <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-400 mb-2">
@@ -466,7 +495,6 @@ export default function FitnessPage() {
                     </div>
                 </section>
 
-                {/* START YOUR EVOLUTION CTA */}
                 <section className="border border-neutral-800 bg-neutral-950 p-10 md:p-16 text-center max-w-4xl mx-auto mb-28">
                     <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-400 mb-4">
                         START YOUR EVOLUTION
@@ -485,7 +513,6 @@ export default function FitnessPage() {
                     </Link>
                 </section>
 
-                {/* CONTINUE YOUR HUMAN EVOLUTION FOOTER NODES */}
                 <footer className="border-t border-neutral-900 pt-12">
                     <p className="text-xs font-mono uppercase tracking-[0.4em] text-neutral-500 mb-8">
                         CONTINUE YOUR HUMAN EVOLUTION

@@ -34,6 +34,7 @@ function getDisciplinePosts(): SystemPost[] {
         }
 
         return allPosts
+            .filter((post) => post !== null)
             .map((post) => ({
                 slug: safeSlug(post.slug),
                 title: safeText(post.title, "Untitled Knowledge Node"),

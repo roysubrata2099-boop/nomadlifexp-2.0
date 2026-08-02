@@ -296,6 +296,37 @@ export default function FitnessPage() {
                     ) : (
                         <p className="text-neutral-500 font-mono text-sm">No fitness nodes available currently.</p>
                     )}
+
+                    {filteredDatabaseArticles.length > 0 && (
+                        <div className="mt-12">
+                            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
+                                ADDITIONAL KNOWLEDGE NODES
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {filteredDatabaseArticles.map((post) => (
+                                    <article
+                                        key={post.slug}
+                                        className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
+                                    >
+                                        <div>
+                                            <h3 className="text-lg font-bold uppercase tracking-wide">
+                                                {post.title}
+                                            </h3>
+                                            <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
+                                                {post.description}
+                                            </p>
+                                        </div>
+                                        <Link
+                                            href={`/blog/posts/${post.slug}`}
+                                            className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
+                                        >
+                                            READ ARTICLE &rarr;
+                                        </Link>
+                                    </article>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </section>
 
                 {/* The NomadLifeXP Fitness Framework Matrix */}

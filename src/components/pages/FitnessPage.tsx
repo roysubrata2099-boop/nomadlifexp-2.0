@@ -15,11 +15,11 @@ interface SystemPost {
 }
 
 export const metadata: Metadata = {
-    title: "Fitness & Physical Architecture | NomadLifeXP",
+    title: "Discipline & Autonomy Architecture | NomadLifeXP",
     description:
-        "Fitness is an engineered execution system designed to build physical autonomy and resilience.",
+        "Discipline is the foundation of personal evolution. Build attention control, habits, consistency, and self-mastery.",
     alternates: {
-        canonical: "https://www.nomadlifexp.com/fitness",
+        canonical: "https://www.nomadlifexp.com/discipline",
     },
 };
 
@@ -38,7 +38,7 @@ function safeText(value: unknown, fallback: string): string {
     return trimmed.length > 0 ? trimmed : fallback;
 }
 
-function getFitnessPosts(): SystemPost[] {
+function getDisciplinePosts(): SystemPost[] {
     try {
         const posts = getAllPosts();
 
@@ -57,7 +57,7 @@ function getFitnessPosts(): SystemPost[] {
                     const rawTitle = typeof post.title === "string" ? post.title : "";
 
                     const category = normalizeCategory(rawCategory, rawTitle);
-                    return safeSlug(category) === "fitness";
+                    return safeSlug(category) === "discipline";
                 } catch {
                     return false;
                 }
@@ -73,14 +73,37 @@ function getFitnessPosts(): SystemPost[] {
     }
 }
 
-export default function FitnessPage() {
-    let fitnessArticles: SystemPost[] = [];
+export default function DisciplinePage() {
+    let disciplineArticles: SystemPost[] = [];
 
     try {
-        fitnessArticles = getFitnessPosts();
+        disciplineArticles = getDisciplinePosts();
     } catch {
-        fitnessArticles = [];
+        disciplineArticles = [];
     }
+
+    const featuredDisciplineArticles = [
+        {
+            title: "Discipline Creates Freedom",
+            description: "Discipline is not restriction. It is control over your attention, habits, and decisions. Learn how discipline creates true freedom by helping you master yourself and build a life with clarity, consistency, and purpose.",
+            slug: "discipline-creates-freedom"
+        },
+        {
+            title: "Self Discipline: Why You Lack It and How to Build It for Good",
+            description: "Self discipline is the ability to control your actions based on long-term goals instead of short-term feelings. Most people do not lack motivation. They lack systems that protect their attention from constant distraction.",
+            slug: "self-discipline-why-you-lack-it"
+        },
+        {
+            title: "Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life",
+            description: "Most people believe they lack discipline. They call themselves lazy, inconsistent, or unmotivated. But the truth is far more dangerous. The real problem is not weakness—the real problem is attention.",
+            slug: "self-discipline-guide-reclaim-attention"
+        },
+        {
+            title: "Why You Procrastinate and How to Stop It Permanently",
+            description: "Procrastination isn't a time-management problem or a sign of laziness—it's an emotional regulation problem. Learn the psychology behind it and how to break the loop permanently.",
+            slug: "why-you-procrastinate-and-how-to-stop-it"
+        }
+    ];
 
     return (
         <main className="min-h-screen bg-black text-white antialiased">
@@ -90,7 +113,7 @@ export default function FitnessPage() {
                 <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
 
                 {/* Navigation Layer */}
-                <nav className="relative z-15 flex gap-4 mb-16 pb-6 border-b border-neutral-900 font-mono text-xs uppercase tracking-[0.3em]">
+                <nav className="relative z-10 flex gap-4 mb-16 pb-6 border-b border-neutral-900 font-mono text-xs uppercase tracking-[0.3em]">
                     <Link
                         href="/blog"
                         className="text-neutral-500 hover:text-cyan-400 transition-colors"
@@ -100,7 +123,7 @@ export default function FitnessPage() {
 
                     <span className="text-neutral-800">/</span>
 
-                    <span className="text-neutral-400">fitness</span>
+                    <span className="text-neutral-400">discipline</span>
                 </nav>
 
                 {/* Page Header */}
@@ -110,56 +133,56 @@ export default function FitnessPage() {
                     </p>
 
                     <h1 className="text-5xl md:text-7xl font-black uppercase leading-none">
-                        Fitness
+                        Discipline
                     </h1>
 
                     <p className="mt-6 text-xl font-medium text-neutral-200">
-                        The Physical Architecture of Resilience
+                        The Foundation of Personal Evolution
                     </p>
 
                     <p className="mt-4 max-w-3xl text-neutral-400 font-mono leading-relaxed">
-                        Fitness is not just aesthetics or temporary transformation. It is an engineered execution system designed to build physical autonomy, strength, and structural resilience so you can move through the world without restriction.
+                        Discipline is not punishment. It is not restriction. It is the ability to direct your attention, control your actions, and consistently move toward the person you choose to become.
                     </p>
 
                     <p className="mt-4 max-w-3xl text-neutral-400 font-mono leading-relaxed">
-                        In a lifestyle defined by travel, mobility, and shifting environments, your physical foundation must remain unshakeable. The NomadLifeXP Fitness System explores how strength training, functional movement, recovery, and daily consistency compound into lifelong vitality.
+                        In a world designed to constantly distract you, discipline becomes the foundation for freedom. The NomadLifeXP Discipline System explores how attention, habits, consistency, and self-control work together to help you rebuild your life from the inside out.
                     </p>
                 </header>
 
                 {/* Theoretical Foundations Grid / Evolution Path */}
                 <section className="mb-24">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                        THE FITNESS EVOLUTION PATH
+                        THE DISCIPLINE EVOLUTION PATH
                     </h2>
                     <p className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
-                        A framework for building structural strength, movement capacity, and physical durability.
+                        A framework for rebuilding control, consistency, and self-mastery.
                     </p>
 
                     <div className="grid md:grid-cols-4 gap-6">
                         {[
                             {
                                 id: "01",
-                                title: "01 — Foundation",
-                                subtext: "Establish baseline strength, joint integrity, and movement patterns.",
-                                text: "Before chasing intensity, build a body that can handle mechanical load safely."
+                                title: "01 — Awareness",
+                                subtext: "Understand your patterns, distractions, and behaviors.",
+                                text: "Before you can change your actions, you must understand what controls them."
                             },
                             {
                                 id: "02",
-                                title: "02 — Adaptation",
-                                subtext: "Progressive overload, resistance training, and functional capacity.",
-                                text: "Force the body to adapt by systematically increasing physical demands over time."
+                                title: "02 — Control",
+                                subtext: "Regain control over your attention, impulses, and decisions.",
+                                text: "Discipline begins when you stop reacting and start choosing."
                             },
                             {
                                 id: "03",
                                 title: "03 — Consistency",
-                                subtext: "Build sustainable training systems that travel with you anywhere.",
-                                text: "Fitness is maintained through lifelong habits, not short-term bootcamps."
+                                subtext: "Build systems that continue working even when motivation disappears.",
+                                text: "Small actions repeated over time create lasting transformation."
                             },
                             {
                                 id: "04",
-                                title: "04 — Autonomy",
-                                subtext: "A resilient, capable physical vessel ready for any challenge.",
-                                text: "True fitness gives you the freedom to move, explore, and perform without physical limits."
+                                title: "04 — Mastery",
+                                subtext: "Become someone who naturally acts according to your values.",
+                                text: "True discipline is not something you force. It becomes part of who you are."
                             },
                         ].map((module) => (
                             <div
@@ -182,102 +205,24 @@ export default function FitnessPage() {
                     </div>
                 </section>
 
-                {/* Structured Recommended Path Section */}
-                <section className="mb-24">
-                    <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                        START YOUR PHYSICAL TRANSFORMATION
-                    </h2>
-                    <p className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
-                        New to the fitness system? Begin here. Follow the recommended path:
-                    </p>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {[
-                            {
-                                step: "STEP 01",
-                                title: "Building Physical Autonomy: The NomadLifeXP Strength Blueprint",
-                                subtitle: "The core foundation",
-                                desc: "Discover how to structure your training for long-term durability, functional strength, and physical self-reliance regardless of your location or travel schedule.",
-                                slug: "building-physical-autonomy-strength-blueprint"
-                            },
-                            {
-                                step: "STEP 02",
-                                title: "Progressive Overload: The Ultimate Driver of Muscle and Strength",
-                                subtitle: "The growth engine",
-                                desc: "Understand the core law of physical evolution. Learn how to systematically track metrics, increase mechanical tension, and prevent training plateaus.",
-                                slug: "progressive-overload-driver-of-muscle-and-strength"
-                            },
-                            {
-                                step: "STEP 03",
-                                title: "Recovery Architecture: Sleep, Nutrition, and Nervous System Reset",
-                                subtitle: "The recovery protocol",
-                                desc: "Training breaks you down, but recovery builds you back stronger. Learn how to optimize sleep architecture, macronutrient timing, and nervous system replenishment.",
-                                slug: "recovery-architecture-sleep-nutrition-nervous-system"
-                            },
-                            {
-                                step: "STEP 04",
-                                title: "Minimalist Training: Staying Strong on the Road",
-                                subtitle: "The nomadic system",
-                                desc: "How to maintain high-level physical conditioning, muscle mass, and joint health using bodyweight frameworks, minimal equipment, and hotel gym hacks.",
-                                slug: "minimalist-training-staying-strong-on-the-road"
-                            }
-                        ].map((item) => (
-                            <div key={item.step} className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between">
-                                <div>
-                                    <span className="font-mono text-xs text-cyan-400 uppercase tracking-widest">{item.step} // {item.subtitle}</span>
-                                    <h3 className="mt-3 text-xl font-bold uppercase tracking-wide">{item.title}</h3>
-                                    <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">{item.desc}</p>
-                                </div>
-                                <Link
-                                    href={`/blog/posts/${item.slug}`}
-                                    className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
-                                >
-                                    READ ARTICLE &rarr;
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
                 {/* Active Knowledge Modules Database */}
                 <section className="mb-24">
                     <div className="flex justify-between items-end mb-8 border-b border-neutral-900 pb-4">
                         <div>
                             <h2 className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-1">
-                                FITNESS DATABASE
+                                DISCIPLINE DATABASE
                             </h2>
                             <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider">
-                                Explore Physical Training & Resilience Systems
+                                Explore Discipline Transformation Systems
                             </p>
                         </div>
                         <span className="font-mono text-xs text-neutral-400">
-                            {fitnessArticles.length > 0 ? `${fitnessArticles.length} ARTICLES` : "DYNAMIC DATABASE"}
+                            {featuredDisciplineArticles.length} ARTICLES
                         </span>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        {(fitnessArticles.length > 0 ? fitnessArticles : [
-                            {
-                                title: "Building Physical Autonomy: The NomadLifeXP Strength Blueprint",
-                                description: "Discover how to structure your training for long-term durability, functional strength, and physical self-reliance regardless of your location or travel schedule.",
-                                slug: "building-physical-autonomy-strength-blueprint"
-                            },
-                            {
-                                title: "Progressive Overload: The Ultimate Driver of Muscle and Strength",
-                                description: "Understand the core law of physical evolution. Learn how to systematically track metrics, increase mechanical tension, and prevent training plateaus.",
-                                slug: "progressive-overload-driver-of-muscle-and-strength"
-                            },
-                            {
-                                title: "Recovery Architecture: Sleep, Nutrition, and Nervous System Reset",
-                                description: "Training breaks you down, but recovery builds you back stronger. Learn how to optimize sleep architecture, macronutrient timing, and nervous system replenishment.",
-                                slug: "recovery-architecture-sleep-nutrition-nervous-system"
-                            },
-                            {
-                                title: "Minimalist Training: Staying Strong on the Road",
-                                description: "How to maintain high-level physical conditioning, muscle mass, and joint health using bodyweight frameworks, minimal equipment, and hotel gym hacks.",
-                                slug: "minimalist-training-staying-strong-on-the-road"
-                            }
-                        ]).map((post) => (
+                        {featuredDisciplineArticles.map((post) => (
                             <article
                                 key={post.slug}
                                 className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
@@ -299,53 +244,85 @@ export default function FitnessPage() {
                             </article>
                         ))}
                     </div>
+
+                    {disciplineArticles.length > 0 && (
+                        <div className="mt-12">
+                            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
+                                ADDITIONAL KNOWLEDGE NODES
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {disciplineArticles.map((post) => (
+                                    <article
+                                        key={post.slug}
+                                        className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
+                                    >
+                                        <div>
+                                            <h3 className="text-lg font-bold uppercase tracking-wide">
+                                                {post.title}
+                                            </h3>
+                                            <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
+                                                {post.description}
+                                            </p>
+                                        </div>
+                                        <Link
+                                            href={`/blog/posts/${post.slug}`}
+                                            className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
+                                        >
+                                            READ ARTICLE &rarr;
+                                        </Link>
+                                    </article>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </section>
 
-                {/* The NomadLifeXP Fitness Framework Matrix */}
+                {/* The NomadLifeXP Discipline Framework Matrix */}
                 <section className="mb-24 border border-neutral-900 bg-neutral-950/60 p-8 md:p-12">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                        THE NOMADLIFEXP FITNESS FRAMEWORK
+                        THE NOMADLIFEXP DISCIPLINE FRAMEWORK
                     </h2>
                     <p className="mb-10 text-xl font-bold uppercase tracking-wide">
-                        Four Pillars of Physical Mastery
+                        Four Elements That Create Self-Mastery
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-8 font-mono">
                         <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">Strength</h3>
-                            <p className="text-sm text-neutral-400 leading-relaxed">Absolute and relative strength acts as your physical armor. Build mechanical power that protects joints and ensures capability.</p>
+                            <h3 className="text-white font-bold uppercase mb-2">Attention</h3>
+                            <p className="text-sm text-neutral-400 leading-relaxed">Your attention determines your direction. Learn to protect your focus from distraction and reclaim control over your mental energy.</p>
                         </div>
                         <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">Mobility</h3>
-                            <p className="text-sm text-neutral-400 leading-relaxed">Strength without range of motion is fragile. Maintain joint health, fluid movement, and active flexibility across all planes.</p>
+                            <h3 className="text-white font-bold uppercase mb-2">Habits</h3>
+                            <p className="text-sm text-neutral-400 leading-relaxed">Your daily actions shape your future identity. Build systems that make positive behavior easier and more consistent.</p>
                         </div>
                         <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">Conditioning</h3>
-                            <p className="text-sm text-neutral-400 leading-relaxed">Build metabolic engine efficiency and cardiovascular resilience to sustain prolonged physical output under stress.</p>
+                            <h3 className="text-white font-bold uppercase mb-2">Action</h3>
+                            <p className="text-sm text-neutral-400 leading-relaxed">Progress comes from execution. Discipline transforms intentions into repeated action.</p>
                         </div>
                         <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">Longevity</h3>
-                            <p className="text-sm text-neutral-400 leading-relaxed">Train with an eye on tomorrow. Design workouts that enhance health span, structural integrity, and long-term vitality.</p>
+                            <h3 className="text-white font-bold uppercase mb-2">Identity</h3>
+                            <p className="text-sm text-neutral-400 leading-relaxed">The highest level of discipline is becoming someone who naturally follows through. Your habits become your character.</p>
                         </div>
                     </div>
                 </section>
 
-                {/* Why Fitness Matters Matrix */}
+                {/* Why Discipline Matters Matrix */}
                 <section className="mb-24 grid md:grid-cols-2 gap-8">
                     <div className="border border-red-950/50 bg-neutral-950 p-8">
-                        <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-red-400 mb-6">WHY FITNESS MATTERS // WITHOUT IT:</h3>
+                        <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-red-400 mb-6">WHY DISCIPLINE MATTERS // WITHOUT IT:</h3>
                         <ul className="space-y-3 font-mono text-sm text-neutral-400 list-disc list-inside">
-                            <li>Physical vitality declines prematurely.</li>
-                            <li>Energy levels drop, creating chronic mental fatigue.</li>
-                            <li>The body becomes fragile, prone to injury and postural decay.</li>
+                            <li>Goals remain unfinished.</li>
+                            <li>Knowledge remains unused.</li>
+                            <li>Potential remains unrealized.</li>
                         </ul>
                     </div>
                     <div className="border border-cyan-950/50 bg-neutral-950 p-8">
-                        <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-400 mb-6">WHY FITNESS MATTERS // WITH IT:</h3>
+                        <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-400 mb-6">WHY DISCIPLINE MATTERS // WITH IT:</h3>
                         <ul className="space-y-3 font-mono text-sm text-neutral-400 list-disc list-inside">
-                            <li>Energy and metabolic health operate at maximum efficiency.</li>
-                            <li>Mental clarity and stress resilience dramatically improve.</li>
-                            <li>You command complete physical autonomy anywhere in the world.</li>
+                            <li>Attention becomes focused.</li>
+                            <li>Actions become intentional.</li>
+                            <li>Progress becomes consistent.</li>
+                            <li>Personal transformation becomes possible.</li>
                         </ul>
                     </div>
                 </section>
@@ -353,13 +330,13 @@ export default function FitnessPage() {
                 {/* Call To Action Box */}
                 <section className="mb-24 border border-cyan-900/40 bg-neutral-950 p-10 text-center">
                     <h2 className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-3">
-                        FORGE YOUR VESSEL
+                        START YOUR EVOLUTION
                     </h2>
                     <p className="text-2xl md:text-3xl font-black uppercase tracking-wide mb-4">
-                        Master Your Physical Architecture
+                        Build Your Personal Operating System
                     </p>
                     <p className="text-neutral-400 font-mono text-sm max-w-xl mx-auto mb-8">
-                        Your body is the vehicle for your human experience. Build the strength, mobility, and discipline required to run it at elite levels.
+                        Discipline is where transformation begins. Create the systems that allow your mind, body, and life to evolve.
                     </p>
                     <Link
                         href="/blog"
@@ -375,26 +352,26 @@ export default function FitnessPage() {
                         CONTINUE YOUR HUMAN EVOLUTION
                     </h2>
                     <p className="mb-6 font-mono text-xs text-neutral-600 uppercase">
-                        Fitness is your physical engine. Continue developing the other pillars:
+                        Discipline is the foundation. Continue developing the other pillars:
                     </p>
 
                     <div className="grid sm:grid-cols-3 gap-6 font-mono text-xs uppercase">
-                        <Link
-                            href="/blog/category/discipline"
-                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
-                        >
-                            <span className="block text-white font-bold mb-1">Discipline</span>
-                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">Master attention, systems, habits, and execution consistency.</span>
-                            <span className="text-cyan-400">EXPLORE DISCIPLINE &rarr;</span>
-                        </Link>
-
                         <Link
                             href="/blog/category/mindset"
                             className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
                         >
                             <span className="block text-white font-bold mb-1">Mindset</span>
-                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">Develop mental clarity, resilience, and emotional control.</span>
+                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">Develop mental clarity, resilience, and stronger decision-making.</span>
                             <span className="text-cyan-400">EXPLORE MINDSET &rarr;</span>
+                        </Link>
+
+                        <Link
+                            href="/blog/category/fitness"
+                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
+                        >
+                            <span className="block text-white font-bold mb-1">Fitness</span>
+                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">Build physical strength, movement, and consistency.</span>
+                            <span className="text-cyan-400">EXPLORE FITNESS &rarr;</span>
                         </Link>
 
                         <Link
@@ -402,7 +379,7 @@ export default function FitnessPage() {
                             className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
                         >
                             <span className="block text-white font-bold mb-1">Yoga</span>
-                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">Develop active balance, deep mobility, and nervous system recovery.</span>
+                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">Develop balance, awareness, recovery, and mind-body connection.</span>
                             <span className="text-cyan-400">EXPLORE YOGA &rarr;</span>
                         </Link>
                     </div>

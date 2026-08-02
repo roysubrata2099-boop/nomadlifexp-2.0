@@ -4,61 +4,52 @@ import FitnessPage from "@/components/pages/FitnessPage";
 import DisciplinePage from "@/components/pages/DisciplinePage";
 import YogaPage from "@/components/pages/YogaPage";
 import MindsetPage from "@/components/pages/MindsetPage";
-import type { Metadata } from "next";
+
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-interface PageProps {
+type PageProps = {
     params: Promise<{
         category: string;
     }>;
-}
+};
 
-const VALID_CATEGORIES = new Set([
-    "discipline",
+
+const PILLARS = new Set([
     "fitness",
+    "discipline",
     "yoga",
     "mindset",
 ]);
 
-function safeSlug(value: unknown): string {
+
+function normalizeSlug(value: unknown): string {
+
     if (typeof value !== "string") {
         return "";
     }
+
     return value
         .trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
+        .toLowerCase();
 }
 
-export async function generateMetadata(props: PageProps): Promise<Metadata> {
-    try {
-        const params = await props.params;
-        const rawCategory = safeSlug(params?.category);
 
-        if (!VALID_CATEGORIES.has(rawCategory)) {
-            return {
-                title: "Category Not Found | NomadLifeXP",
-                robots: {
-                    index: false,
-                    follow: false,
-                },
-            };
-        }
 
-        const categoryName = rawCategory.charAt(0).toUpperCase() + rawCategory.slice(1);
+export async function generateMetadata(
+    { params }: PageProps
+): Promise<Metadata> {
 
-        return {
-            title: `${categoryName} Architecture & Systems | NomadLifeXP`,
-            description: `Explore engineered execution systems, articles, and knowledge nodes under the ${categoryName} category on NomadLifeXP.`,
-            alternates: {
-                canonical: `https://www.nomadlifexp.com/blog/category/${rawCategory}`,
-            },
-        };
-    } catch {
+    const { category } = await params;
+
+    const slug = normalizeSlug(category);
+
+
+    if (!PILLARS.has(slug)) {
+
         return {
             title: "Category Not Found | NomadLifeXP",
             robots: {
@@ -67,34 +58,66 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
             },
         };
     }
+
+
+    const title =
+        slug.charAt(0).toUpperCase() +
+        slug.slice(1);
+
+
+    return {
+
+        title: `${title} Architecture & Systems | NomadLifeXP`,
+
+        description:
+            `Explore the NomadLifeXP ${title} evolution system.`,
+
+        alternates: {
+            canonical:
+                `https://www.nomadlifexp.com/blog/category/${slug}`,
+        },
+    };
 }
 
-export default async function CategoryPage(props: PageProps) {
-    try {
-        const resolvedParams = await props.params;
-        const categorySlug = safeSlug(resolvedParams?.category);
 
-        if (!VALID_CATEGORIES.has(categorySlug)) {
-            notFound();
-        }
 
-        switch (categorySlug) {
-            case "fitness":
-                return <FitnessPage />;
+export default async function CategoryPage(
+    { params }: PageProps
+) {
 
-            case "discipline":
-                return <DisciplinePage />;
+    const { category } = await params;
 
-            case "yoga":
-                return <YogaPage />;
+    const slug = normalizeSlug(category);
 
-            case "mindset":
-                return <MindsetPage />;
 
-            default:
-                notFound();
-        }
-    } catch {
+
+    if (!PILLARS.has(slug)) {
         notFound();
+    }
+
+
+
+    switch (slug) {
+
+
+        case "fitness":
+            return <FitnessPage />;
+
+
+        case "discipline":
+            return <DisciplinePage />;
+
+
+        case "yoga":
+            return <YogaPage />;
+
+
+        case "mindset":
+            return <MindsetPage />;
+
+
+        default:
+            notFound();
+
     }
 }

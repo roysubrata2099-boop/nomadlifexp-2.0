@@ -1,6 +1,5 @@
 import "server-only";
 
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -108,7 +107,7 @@ export default function DisciplinePage() {
                     ]).map((post) => (
                         <article
                             key={post.slug || Math.random().toString()}
-                            className="border border-neutral-800 bg-neutral-950 p-6 flex flex-col justify-between"
+                            className="border border-neutral-800 bg-neutral-950 p-6 flex flex-col justify-between rounded-xl"
                         >
                             <div>
                                 <h3 className="text-lg font-bold uppercase tracking-wide text-white">

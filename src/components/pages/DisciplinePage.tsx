@@ -113,9 +113,6 @@ export default function DisciplinePage() {
         }
     ];
 
-    const coreSlugs = new Set(coreSteps.map(s => s.slug));
-    const dynamicAdditionalArticles = disciplineArticles.filter(post => !coreSlugs.has(post.slug));
-
     return (
         <main className="min-h-screen bg-black text-white antialiased">
             <div className="relative max-w-7xl mx-auto px-6 py-24">
@@ -239,81 +236,47 @@ export default function DisciplinePage() {
                     </div>
                 </section>
 
-                <section className="mb-24">
-                    <div className="flex justify-between items-end mb-8 border-b border-neutral-900 pb-4">
-                        <div>
-                            <h2 className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-1">
-                                DISCIPLINE DATABASE
-                            </h2>
-                            <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider">
-                                Explore Core Discipline Framework Articles
-                            </p>
+                {disciplineArticles.length > 0 && (
+                    <section className="mb-24">
+                        <div className="flex justify-between items-end mb-8 border-b border-neutral-900 pb-4">
+                            <div>
+                                <h2 className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-1">
+                                    DISCIPLINE DATABASE
+                                </h2>
+                                <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider">
+                                    Explore Core Discipline Framework Articles
+                                </p>
+                            </div>
+                            <span className="font-mono text-xs text-neutral-400">
+                                {disciplineArticles.length} ARTICLES
+                            </span>
                         </div>
-                        <span className="font-mono text-xs text-neutral-400">
-                            {coreSteps.length} ARTICLES
-                        </span>
-                    </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {coreSteps.map((post) => (
-                            <article
-                                key={post.slug}
-                                className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
-                            >
-                                <div>
-                                    <h3 className="text-lg font-bold uppercase tracking-wide">
-                                        {post.title}
-                                    </h3>
-                                    <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
-                                        {post.desc}
-                                    </p>
-                                </div>
-                                <Link
-                                    href={`/blog/posts/${post.slug}`}
-                                    className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {disciplineArticles.map((post) => (
+                                <article
+                                    key={post.slug}
+                                    className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
                                 >
-                                    READ ARTICLE &rarr;
-                                </Link>
-                            </article>
-                        ))}
-                    </div>
-
-                    {dynamicAdditionalArticles.length > 0 && (
-                        <div className="mt-12">
-                            <div className="flex justify-between items-end mb-6 border-b border-neutral-900 pb-4">
-                                <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
-                                    ADDITIONAL KNOWLEDGE NODES
-                                </h3>
-                                <span className="font-mono text-xs text-neutral-400">
-                                    {dynamicAdditionalArticles.length} ARTICLES
-                                </span>
-                            </div>
-                            <div className="grid md:grid-cols-2 gap-6">
-                                {dynamicAdditionalArticles.map((post) => (
-                                    <article
-                                        key={post.slug}
-                                        className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
+                                    <div>
+                                        <h3 className="text-lg font-bold uppercase tracking-wide">
+                                            {post.title}
+                                        </h3>
+                                        <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
+                                            {post.description}
+                                        </p>
+                                    </div>
+                                    <Link
+                                        href={`/blog/posts/${post.slug}`}
+                                        className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
                                     >
-                                        <div>
-                                            <h3 className="text-lg font-bold uppercase tracking-wide">
-                                                {post.title}
-                                            </h3>
-                                            <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
-                                                {post.description}
-                                            </p>
-                                        </div>
-                                        <Link
-                                            href={`/blog/posts/${post.slug}`}
-                                            className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
-                                        >
-                                            READ ARTICLE &rarr;
-                                        </Link>
-                                    </article>
-                                ))}
-                            </div>
+                                        READ ARTICLE &rarr;
+                                    </Link>
+                                </article>
+                            ))}
                         </div>
-                    )}
-                </section>
+                    </section>
+                )}
 
                 <section className="mb-24 border border-neutral-900 bg-neutral-950/60 p-8 md:p-12">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
@@ -401,7 +364,7 @@ export default function DisciplinePage() {
 
                         <Link
                             href="/blog/category/fitness"
-                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
+                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-neutral-700 transition-colors block"
                         >
                             <span className="block text-white font-bold mb-1">Fitness</span>
                             <span className="text-neutral-500 text-[10px] lowercase block mb-3">Build physical strength, movement, and consistency.</span>
@@ -410,7 +373,7 @@ export default function DisciplinePage() {
 
                         <Link
                             href="/blog/category/yoga"
-                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
+                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-neutral-700 transition-colors block"
                         >
                             <span className="block text-white font-bold mb-1">Yoga</span>
                             <span className="text-neutral-500 text-[10px] lowercase block mb-3">Develop balance, awareness, recovery, and mind-body connection.</span>

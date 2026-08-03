@@ -113,7 +113,6 @@ export default function DisciplinePage() {
         }
     ];
 
-    // Filter out core steps from dynamic entries to completely eliminate article duplication across sections
     const coreSlugs = new Set(coreSteps.map(s => s.slug));
     const dynamicAdditionalArticles = disciplineArticles.filter(post => !coreSlugs.has(post.slug));
 
@@ -121,10 +120,8 @@ export default function DisciplinePage() {
         <main className="min-h-screen bg-black text-white antialiased">
             <div className="relative max-w-7xl mx-auto px-6 py-24">
 
-                {/* Visual Background Accent */}
                 <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-                {/* Navigation Layer */}
                 <nav className="relative z-10 flex gap-4 mb-16 pb-6 border-b border-neutral-900 font-mono text-xs uppercase tracking-[0.3em]">
                     <Link
                         href="/blog"
@@ -138,7 +135,6 @@ export default function DisciplinePage() {
                     <span className="text-neutral-400">discipline</span>
                 </nav>
 
-                {/* Page Header */}
                 <header className="relative z-10 mb-24">
                     <p className="mb-6 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                         NOMADLIFEXP // HUMAN EVOLUTION SYSTEM
@@ -161,7 +157,6 @@ export default function DisciplinePage() {
                     </p>
                 </header>
 
-                {/* Theoretical Foundations Grid / Evolution Path */}
                 <section className="mb-24">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                         THE DISCIPLINE EVOLUTION PATH
@@ -217,7 +212,6 @@ export default function DisciplinePage() {
                     </div>
                 </section>
 
-                {/* Structured Recommended Path Section */}
                 <section className="mb-24">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                         START YOUR DISCIPLINE TRANSFORMATION
@@ -245,7 +239,6 @@ export default function DisciplinePage() {
                     </div>
                 </section>
 
-                {/* Active Knowledge Modules Database */}
                 <section className="mb-24">
                     <div className="flex justify-between items-end mb-8 border-b border-neutral-900 pb-4">
                         <div>
@@ -285,7 +278,6 @@ export default function DisciplinePage() {
                         ))}
                     </div>
 
-                    {/* Additional Knowledge Nodes fetched safely from markdown */}
                     {dynamicAdditionalArticles.length > 0 && (
                         <div className="mt-12">
                             <div className="flex justify-between items-end mb-6 border-b border-neutral-900 pb-4">
@@ -323,7 +315,6 @@ export default function DisciplinePage() {
                     )}
                 </section>
 
-                {/* The NomadLifeXP Discipline Framework Matrix */}
                 <section className="mb-24 border border-neutral-900 bg-neutral-950/60 p-8 md:p-12">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                         THE NOMADLIFEXP DISCIPLINE FRAMEWORK
@@ -352,7 +343,6 @@ export default function DisciplinePage() {
                     </div>
                 </section>
 
-                {/* Why Discipline Matters Matrix */}
                 <section className="mb-24 grid md:grid-cols-2 gap-8">
                     <div className="border border-red-950/50 bg-neutral-950 p-8">
                         <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-red-400 mb-6">WHY DISCIPLINE MATTERS // WITHOUT IT:</h3>
@@ -373,7 +363,6 @@ export default function DisciplinePage() {
                     </div>
                 </section>
 
-                {/* Call To Action Box */}
                 <section className="mb-24 border border-cyan-900/40 bg-neutral-950 p-10 text-center">
                     <h2 className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-3">
                         START YOUR EVOLUTION
@@ -392,7 +381,6 @@ export default function DisciplinePage() {
                     </Link>
                 </section>
 
-                {/* Cross-Connect Alternative Modules */}
                 <footer className="border-t border-neutral-900 pt-10">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-neutral-500">
                         CONTINUE YOUR HUMAN EVOLUTION

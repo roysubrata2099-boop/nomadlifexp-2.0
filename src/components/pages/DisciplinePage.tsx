@@ -82,37 +82,6 @@ export default function DisciplinePage() {
         disciplineArticles = [];
     }
 
-    const coreSteps = [
-        {
-            step: "STEP 01",
-            title: "Discipline Creates Freedom",
-            subtitle: "The foundation principle",
-            desc: "Discipline is not restriction. It is control over your attention, habits, and decisions. Learn why discipline creates true freedom by helping you master yourself and build a life with clarity, consistency, and purpose.",
-            slug: "discipline-creates-freedom"
-        },
-        {
-            step: "STEP 02",
-            title: "Self Discipline: Why You Lack It and How to Build It for Good",
-            subtitle: "Understand the problem",
-            desc: "Self discipline is the ability to control your actions based on long-term goals instead of short-term feelings. Discover why most people do not lack motivation—they lack systems that protect their attention from constant distraction.",
-            slug: "self-discipline-why-you-lack-it"
-        },
-        {
-            step: "STEP 03",
-            title: "Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life",
-            subtitle: "Build the system",
-            desc: "Most people believe they lack discipline. They call themselves lazy, inconsistent, or unmotivated. But the deeper problem is often attention. Learn how to rebuild focus, strengthen habits, and create a more intentional life.",
-            slug: "self-discipline-guide-reclaim-attention"
-        },
-        {
-            step: "STEP 04",
-            title: "Why You Procrastinate and How to Stop It Permanently",
-            subtitle: "Remove the barrier",
-            desc: "Procrastination is not simply a time-management problem. It is often connected to emotions, avoidance, and internal resistance. Understand the psychology behind procrastination and learn how to break the cycle.",
-            slug: "why-you-procrastinate-and-how-to-stop-it"
-        }
-    ];
-
     return (
         <main className="min-h-screen bg-black text-white antialiased">
             <div className="relative max-w-7xl mx-auto px-6 py-24">
@@ -209,45 +178,18 @@ export default function DisciplinePage() {
                     </div>
                 </section>
 
-                <section className="mb-24">
-                    <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                        START YOUR DISCIPLINE TRANSFORMATION
-                    </h2>
-                    <p className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
-                        New to discipline? Begin here. Follow the recommended path:
-                    </p>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {coreSteps.map((item) => (
-                            <div key={item.step} className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between">
-                                <div>
-                                    <span className="font-mono text-xs text-cyan-400 uppercase tracking-widest">{item.step} // {item.subtitle}</span>
-                                    <h3 className="mt-3 text-xl font-bold uppercase tracking-wide">{item.title}</h3>
-                                    <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">{item.desc}</p>
-                                </div>
-                                <Link
-                                    href={`/blog/posts/${item.slug}`}
-                                    className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
-                                >
-                                    READ ARTICLE &rarr;
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-
                 {disciplineArticles.length > 0 && (
                     <section className="mb-24">
                         <div className="flex justify-between items-end mb-8 border-b border-neutral-900 pb-4">
                             <div>
-                                <h2 className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-1">
-                                    DISCIPLINE DATABASE
+                                <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
+                                    START YOUR DISCIPLINE TRANSFORMATION
                                 </h2>
-                                <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider">
-                                    Explore Core Discipline Framework Articles
+                                <p className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
+                                    New to discipline? Begin here. Follow the recommended path:
                                 </p>
                             </div>
-                            <span className="font-mono text-xs text-neutral-400">
+                            <span className="font-mono text-xs text-neutral-400 mb-1">
                                 {disciplineArticles.length} ARTICLES
                             </span>
                         </div>

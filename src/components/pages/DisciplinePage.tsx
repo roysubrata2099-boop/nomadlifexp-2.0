@@ -82,28 +82,40 @@ export default function DisciplinePage() {
         disciplineArticles = [];
     }
 
-    const featuredDisciplineArticles = [
+    const coreSteps = [
         {
+            step: "STEP 01",
             title: "Discipline Creates Freedom",
-            description: "Discipline is not restriction. It is control over your attention, habits, and decisions. Learn how discipline creates true freedom by helping you master yourself and build a life with clarity, consistency, and purpose.",
+            subtitle: "The foundation principle",
+            desc: "Discipline is not restriction. It is control over your attention, habits, and decisions. Learn why discipline creates true freedom by helping you master yourself and build a life with clarity, consistency, and purpose.",
             slug: "discipline-creates-freedom"
         },
         {
+            step: "STEP 02",
             title: "Self Discipline: Why You Lack It and How to Build It for Good",
-            description: "Self discipline is the ability to control your actions based on long-term goals instead of short-term feelings. Most people do not lack motivation. They lack systems that protect their attention from constant distraction.",
+            subtitle: "Understand the problem",
+            desc: "Self discipline is the ability to control your actions based on long-term goals instead of short-term feelings. Discover why most people do not lack motivation—they lack systems that protect their attention from constant distraction.",
             slug: "self-discipline-why-you-lack-it"
         },
         {
+            step: "STEP 03",
             title: "Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life",
-            description: "Most people believe they lack discipline. They call themselves lazy, inconsistent, or unmotivated. But the truth is far more dangerous. The real problem is not weakness—the real problem is attention.",
+            subtitle: "Build the system",
+            desc: "Most people believe they lack discipline. They call themselves lazy, inconsistent, or unmotivated. But the deeper problem is often attention. Learn how to rebuild focus, strengthen habits, and create a more intentional life.",
             slug: "self-discipline-guide-reclaim-attention"
         },
         {
+            step: "STEP 04",
             title: "Why You Procrastinate and How to Stop It Permanently",
-            description: "Procrastination isn't a time-management problem or a sign of laziness—it's an emotional regulation problem. Learn the psychology behind it and how to break the loop permanently.",
+            subtitle: "Remove the barrier",
+            desc: "Procrastination is not simply a time-management problem. It is often connected to emotions, avoidance, and internal resistance. Understand the psychology behind procrastination and learn how to break the cycle.",
             slug: "why-you-procrastinate-and-how-to-stop-it"
         }
     ];
+
+    // Filter out core steps from dynamic entries to completely eliminate article duplication across sections
+    const coreSlugs = new Set(coreSteps.map(s => s.slug));
+    const dynamicAdditionalArticles = disciplineArticles.filter(post => !coreSlugs.has(post.slug));
 
     return (
         <main className="min-h-screen bg-black text-white antialiased">
@@ -215,36 +227,7 @@ export default function DisciplinePage() {
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        {[
-                            {
-                                step: "STEP 01",
-                                title: "Discipline Creates Freedom",
-                                subtitle: "The foundation principle",
-                                desc: "Discipline is not restriction. It is control over your attention, habits, and decisions. Learn why discipline creates true freedom by helping you master yourself and build a life with clarity, consistency, and purpose.",
-                                slug: "discipline-creates-freedom"
-                            },
-                            {
-                                step: "STEP 02",
-                                title: "Self Discipline: Why You Lack It and How to Build It for Good",
-                                subtitle: "Understand the problem",
-                                desc: "Self discipline is the ability to control your actions based on long-term goals instead of short-term feelings. Discover why most people do not lack motivation—they lack systems that protect their attention from constant distraction.",
-                                slug: "self-discipline-why-you-lack-it"
-                            },
-                            {
-                                step: "STEP 03",
-                                title: "Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life",
-                                subtitle: "Build the system",
-                                desc: "Most people believe they lack discipline. They call themselves lazy, inconsistent, or unmotivated. But the deeper problem is often attention. Learn how to rebuild focus, strengthen habits, and create a more intentional life.",
-                                slug: "self-discipline-guide-reclaim-attention"
-                            },
-                            {
-                                step: "STEP 04",
-                                title: "Why You Procrastinate and How to Stop It Permanently",
-                                subtitle: "Remove the barrier",
-                                desc: "Procrastination is not simply a time-management problem. It is often connected to emotions, avoidance, and internal resistance. Understand the psychology behind procrastination and learn how to break the cycle.",
-                                slug: "why-you-procrastinate-and-how-to-stop-it"
-                            }
-                        ].map((item) => (
+                        {coreSteps.map((item) => (
                             <div key={item.step} className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between">
                                 <div>
                                     <span className="font-mono text-xs text-cyan-400 uppercase tracking-widest">{item.step} // {item.subtitle}</span>
@@ -270,16 +253,16 @@ export default function DisciplinePage() {
                                 DISCIPLINE DATABASE
                             </h2>
                             <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider">
-                                Explore Discipline Transformation Systems
+                                Explore Core Discipline Framework Articles
                             </p>
                         </div>
                         <span className="font-mono text-xs text-neutral-400">
-                            {featuredDisciplineArticles.length} ARTICLES
+                            {coreSteps.length} ARTICLES
                         </span>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        {featuredDisciplineArticles.map((post) => (
+                        {coreSteps.map((post) => (
                             <article
                                 key={post.slug}
                                 className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
@@ -289,7 +272,7 @@ export default function DisciplinePage() {
                                         {post.title}
                                     </h3>
                                     <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
-                                        {post.description}
+                                        {post.desc}
                                     </p>
                                 </div>
                                 <Link
@@ -302,13 +285,19 @@ export default function DisciplinePage() {
                         ))}
                     </div>
 
-                    {disciplineArticles.length > 0 && (
+                    {/* Additional Knowledge Nodes fetched safely from markdown */}
+                    {dynamicAdditionalArticles.length > 0 && (
                         <div className="mt-12">
-                            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
-                                ADDITIONAL KNOWLEDGE NODES
-                            </h3>
+                            <div className="flex justify-between items-end mb-6 border-b border-neutral-900 pb-4">
+                                <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500">
+                                    ADDITIONAL KNOWLEDGE NODES
+                                </h3>
+                                <span className="font-mono text-xs text-neutral-400">
+                                    {dynamicAdditionalArticles.length} ARTICLES
+                                </span>
+                            </div>
                             <div className="grid md:grid-cols-2 gap-6">
-                                {disciplineArticles.map((post) => (
+                                {dynamicAdditionalArticles.map((post) => (
                                     <article
                                         key={post.slug}
                                         className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"

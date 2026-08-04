@@ -154,8 +154,8 @@ export default function HomePage() {
               <span className="text-cyan-400">in Motion.</span>
             </h1>
 
-            <p className="max-w-xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
-              A structured transformation system for building discipline, physical strength, mental clarity, and a more intentional life.
+            <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
+              NomadLifeXP is a human evolution framework built to develop unbreakable discipline, strengthen your body, sharpen your mind, and transform your life through structured daily systems, intentional habits, and continuous growth.
             </p>
 
             <div

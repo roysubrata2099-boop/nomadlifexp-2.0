@@ -4,45 +4,45 @@ import Link from "next/link";
 const SITE_URL = "https://nomadlifexp.com";
 
 /**
- * Hardened Production SEO Metadata Block (Optimized)
+ * Hardened Production SEO Metadata Block (Optimized for Self-Discipline System)
  */
 export const metadata: Metadata = {
-    title: "The Discipline System: Build Self-Discipline & Better Habits | NomadLifeXP",
+    title: "The Discipline System | Build Self-Discipline & Lasting Habits",
     description:
-        "Build self-discipline through identity-based habits, structured routines, and practical systems designed to improve focus, productivity, consistency, and personal growth.",
+        "Build self-discipline, build lasting habits, and transform your identity with the NomadLifeXP Discipline System. A Human Optimization foundation system designed for focus, consistency, and sustainable behaviour change.",
     keywords: [
-        "self discipline",
-        "build habits",
-        "habit formation",
-        "discipline system",
-        "morning routine",
-        "identity based habits",
-        "productivity system",
-        "personal development",
-        "stop procrastinating",
-        "improve focus",
-        "daily routine",
-        "consistency",
-        "behaviour change",
-        "motivation vs discipline",
-        "mental clarity",
+        "Self-Discipline System",
+        "Discipline System",
+        "Human Optimization System",
+        "Habit Building System",
+        "Identity-Based Habits",
+        "Build Lasting Habits",
+        "Daily Discipline Routine",
+        "Personal Development System",
+        "Behaviour Change System",
+        "Productivity System",
+        "Focus Improvement System",
+        "Morning Routine System",
+        "Self Improvement Framework",
+        "High Performance Habits",
+        "Lifestyle Optimization",
     ],
     alternates: {
-        canonical: `${SITE_URL}/discipline-system`,
+        canonical: `${SITE_URL}/self-discipline-system`,
     },
     openGraph: {
-        title: "The Discipline System: Build Self-Discipline & Better Habits | NomadLifeXP",
+        title: "The Discipline System | Build Self-Discipline & Lasting Habits",
         description:
-            "Build self-discipline through identity-based habits, structured routines, and practical systems designed to improve focus, productivity, consistency, and personal growth.",
-        url: `${SITE_URL}/discipline-system`,
+            "Build self-discipline, build lasting habits, and transform your identity with the NomadLifeXP Discipline System. A Human Optimization foundation system designed for focus, consistency, and sustainable behaviour change.",
+        url: `${SITE_URL}/self-discipline-system`,
         siteName: "NomadLifeXP",
         type: "article",
     },
     twitter: {
         card: "summary_large_image",
-        title: "The Discipline System: Build Self-Discipline & Better Habits",
+        title: "The Discipline System | Build Self-Discipline & Lasting Habits",
         description:
-            "Build self-discipline through identity-based habits, structured routines, and practical systems designed to improve focus, productivity, and consistency.",
+            "Build self-discipline, build lasting habits, and transform your identity with the NomadLifeXP Discipline System.",
     },
     robots: {
         index: true,
@@ -58,21 +58,27 @@ export const metadata: Metadata = {
 };
 
 /**
- * Strict Route Isolation Constraints
+ * Strict Route Isolation Constraints for Next.js App Router
  */
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 export const revalidate = 0;
 
 interface PageProps {
-    params: Promise<Record<string, string | string[] | undefined>>;
-    searchParams: Promise<Record<string, string | string[] | undefined>>;
+    params?: Promise<Record<string, string | string[] | undefined>>;
+    searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }
 
-// Multi-layered Schema Markup for Search Engines
+// Multi-layered JSON-LD Schema Markup for Search Engines
 const jsonLdSchema = {
     "@context": "https://schema.org",
     "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": `${SITE_URL}/#website`,
+            "url": SITE_URL,
+            "name": "NomadLifeXP"
+        },
         {
             "@type": "Organization",
             "@id": `${SITE_URL}/#organization`,
@@ -81,43 +87,51 @@ const jsonLdSchema = {
             "logo": `${SITE_URL}/logo.png`,
         },
         {
-            "@type": "Article",
-            "@id": `${SITE_URL}/discipline-system#article`,
-            "headline": "The Discipline System: Build Habits, Develop Self-Discipline & Shape Your Identity",
-            "description":
-                "The Discipline System is a habit-building framework designed to help you develop self-discipline, create consistent daily routines, improve focus, and build lasting behavioural change.",
-            "url": `${SITE_URL}/discipline-system`,
+            "@type": "WebPage",
+            "@id": `${SITE_URL}/self-discipline-system#webpage`,
+            "url": `${SITE_URL}/self-discipline-system`,
+            "name": "The Discipline System | Build Self-Discipline & Lasting Habits",
             "inLanguage": "en-US",
-            "mainEntityOfPage": `${SITE_URL}/discipline-system`,
-            "author": {
+            "isPartOf": {
+                "@id": `${SITE_URL}/#website`
+            }
+        },
+        {
+            "@type": "Service",
+            "@id": `${SITE_URL}/self-discipline-system#service`,
+            "name": "The Discipline System",
+            "provider": {
                 "@type": "Organization",
-                "name": "NomadLifeXP",
-                "url": SITE_URL,
+                "name": "NomadLifeXP"
             },
-            "publisher": {
-                "@type": "Organization",
-                "name": "NomadLifeXP",
-                "url": SITE_URL,
-            },
+            "description": "The Discipline System is the foundation system of the NomadLifeXP Human Optimization System, designed to build self-discipline, lasting habits, and structured daily routines."
         },
         {
             "@type": "FAQPage",
-            "@id": `${SITE_URL}/discipline-system#faq`,
+            "@id": `${SITE_URL}/self-discipline-system#faq`,
             "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is the Discipline System?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The Discipline System is the foundation system of the NomadLifeXP Human Optimization System, designed to build self-discipline, lasting habits, and structured daily routines."
+                    }
+                },
                 {
                     "@type": "Question",
                     "name": "How do you build self-discipline?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Self-discipline is developed through consistent habits, structured routines, reduced distractions, and repeated actions that become part of your identity.",
+                        "text": "Self-discipline develops through structured routines, repeated actions, reduced distractions, and systems that reinforce identity.",
                     },
                 },
                 {
                     "@type": "Question",
-                    "name": "How long does it take to build a habit?",
+                    "name": "How long does it take to build lasting habits?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Habit formation depends on the behaviour, environment, and consistency. Long-term change comes from repeating intentional actions until they become natural parts of your routine.",
+                        "text": "Habit formation depends on behaviour, environment, and consistency. Sustainable change comes through repeated intentional action.",
                     },
                 },
                 {
@@ -125,7 +139,7 @@ const jsonLdSchema = {
                     "name": "How can I stop relying on motivation?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Motivation naturally changes. Systems and routines create consistency by making important behaviours easier to execute regardless of temporary emotions.",
+                        "text": "Motivation changes. Systems create consistency by making important behaviours easier to execute.",
                     },
                 },
                 {
@@ -133,32 +147,43 @@ const jsonLdSchema = {
                     "name": "What are identity-based habits?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Identity-based habits focus on becoming the type of person who naturally performs a behaviour instead of only chasing a specific outcome.",
+                        "text": "Identity-based habits focus on becoming the type of person who naturally performs desired behaviours.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is Somatic Habit Engineering?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Somatic Habit Engineering connects physical and physiological triggers with repeatable behaviours to strengthen habit consistency.",
                     },
                 },
             ],
         },
         {
             "@type": "BreadcrumbList",
-            "@id": `${SITE_URL}/discipline-system#breadcrumb`,
+            "@id": `${SITE_URL}/self-discipline-system#breadcrumb`,
             "itemListElement": [
                 {
                     "@type": "ListItem",
+                    "@id": `${SITE_URL}/#listItem`,
                     "position": 1,
                     "name": "Home",
                     "item": SITE_URL,
                 },
                 {
                     "@type": "ListItem",
+                    "@id": `${SITE_URL}/systems#listItem`,
                     "position": 2,
-                    "name": "Index",
-                    "item": `${SITE_URL}/blog`,
+                    "name": "Systems",
+                    "item": `${SITE_URL}/systems`,
                 },
                 {
                     "@type": "ListItem",
+                    "@id": `${SITE_URL}/self-discipline-system#listItem`,
                     "position": 3,
                     "name": "Discipline System",
-                    "item": `${SITE_URL}/discipline-system`,
+                    "item": `${SITE_URL}/self-discipline-system`,
                 },
             ],
         },
@@ -166,9 +191,13 @@ const jsonLdSchema = {
 };
 
 export default async function DisciplineSystemPage(props: PageProps) {
-    // Await structural route parameters for Next.js 15 asynchronous typings
-    await props.params;
-    await props.searchParams;
+    // Bullet-proof async resolution guarding against undefined props during build or runtime execution
+    if (props?.params) {
+        await props.params;
+    }
+    if (props?.searchParams) {
+        await props.searchParams;
+    }
 
     return (
         <>
@@ -194,242 +223,379 @@ export default async function DisciplineSystemPage(props: PageProps) {
                         </Link>
                         <span className="select-none" aria-hidden="true">/</span>
                         <Link
-                            href="/blog"
+                            href="/systems"
                             className="text-[#999] hover:text-[#ffb400] no-underline transition-colors duration-200"
                         >
-                            Index
+                            Systems
+                        </Link>
+                        <span className="select-none" aria-hidden="true">/</span>
+                        <Link
+                            href="/self-discipline-system"
+                            className="text-[#ffb400] no-underline transition-colors duration-200"
+                        >
+                            Discipline System
                         </Link>
                     </nav>
 
                     {/* Hero Layout Frame */}
                     <header className="py-16 md:py-20 max-w-5xl">
                         <p className="text-[#ffb400] text-[12px] tracking-[4px] uppercase mb-5 font-mono">
-                            NomadLifeXP // Somatic Life Architecture
+                            NOMADLIFEXP // HUMAN EVOLUTION SYSTEM
                         </p>
 
-                        {/* 1. Improved H1 */}
                         <h1 className="text-4xl md:text-[56px] lg:text-[60px] font-black leading-tight mb-7 tracking-tight uppercase">
-                            The Discipline System:<br />
-                            <span className="text-[#ffb400]">Build Habits, Develop Self-Discipline & Shape Your Identity</span>
+                            The Discipline System™:<br />
+                            <span className="text-[#ffb400]">Self-Discipline System for Human Optimization</span>
                         </h1>
 
-                        <p className="text-[#aaa] max-w-[800px] text-lg md:text-xl font-light leading-relaxed mb-8">
-                            Transform your identity through embodied habits, structured routines, and practical systems that build lasting self-discipline and unlock your highest potential.
+                        <p className="text-[#aaa] max-w-[800px] text-lg md:text-xl font-light leading-relaxed mb-6 uppercase tracking-wide">
+                            The Foundation System of Human Optimization
                         </p>
 
-                        {/* 2. SEO Introduction */}
                         <div className="bg-[#101010] border-l-2 border-[#ffb400] p-6 md:p-8 max-w-[850px] my-8">
-                            <p className="text-[#ccc] text-base md:text-lg leading-relaxed font-light">
-                                The Discipline System is a habit-building framework designed to help you develop self-discipline, create consistent daily routines, improve focus, and build lasting behavioural change. By combining identity-based habits, structured routines, and practical systems, this framework helps you replace motivation-dependent actions with sustainable discipline.
+                            <p className="text-[#ccc] text-base md:text-lg leading-relaxed font-light mb-4">
+                                The Discipline System is the foundation system of the NomadLifeXP Human Optimization System — a self-discipline framework designed to build lasting habits, structured routines, and behavioural systems that create sustainable transformation.
                             </p>
+                            <p className="text-[#ffb400] font-mono uppercase text-sm tracking-widest font-bold">
+                                Stop relying on motivation. Motivation fades. Systems endure. Build the systems that make disciplined action your natural operating state.
+                            </p>
+                        </div>
+
+                        <div className="mt-8">
+                            <Link
+                                href="#thirty-day-system"
+                                className="inline-block bg-[#ffb400] text-black font-mono font-bold uppercase text-sm tracking-wider px-8 py-4 hover:bg-white transition-colors duration-200"
+                            >
+                                Begin Your Discipline System →
+                            </Link>
                         </div>
                     </header>
 
-                    {/* 3. New Section: What Is The Discipline System? */}
+                    {/* What Is The Discipline System? */}
                     <section className="mb-20 space-y-6" aria-label="Overview of The Discipline System">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
                             What Is The Discipline System?
                         </h2>
-                        <div className="border border-[#222] bg-[#101010] p-8 md:p-10">
+                        <div className="border border-[#222] bg-[#101010] p-8 md:p-10 space-y-6">
                             <p className="text-[#aaa] text-base md:text-lg leading-relaxed font-light">
-                                The Discipline System is a structured approach to building self-discipline through repeatable habits, environmental design, and identity-based behaviour. Instead of relying on temporary motivation, the system creates routines that make disciplined actions easier to maintain over time.
+                                The Discipline System is a structured self-discipline framework designed to help you develop consistency, improve focus, and create lasting behavioural change through structured execution.
+                            </p>
+                            <p className="text-white font-mono text-sm tracking-wider uppercase">The framework combines:</p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                {[
+                                    "Identity-based habits",
+                                    "Habit building systems",
+                                    "Daily discipline routines",
+                                    "Environmental design",
+                                    "Somatic anchors",
+                                    "Attention protection",
+                                    "Behaviour change principles",
+                                ].map((item, idx) => (
+                                    <div key={idx} className="border border-[#222] bg-[#0d0d0d] p-4 flex items-center gap-3">
+                                        <span className="text-[#ffb400]">✓</span>
+                                        <span className="text-sm text-[#ccc] font-light">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-[#aaa] text-base md:text-lg leading-relaxed font-light pt-4 border-t border-[#222]">
+                                Transformation is not created through temporary motivation. Transformation is created through systems that reshape your actions, reinforce your identity, and improve your ability to execute.
                             </p>
                         </div>
                     </section>
 
-                    {/* Science & Theory Node */}
-                    <section className="mb-20 space-y-8" aria-label="Identity and Habit Engineering Theory">
+                    {/* The Foundation System of Human Optimization */}
+                    <section className="mb-20 space-y-8" aria-label="Human Optimization Hierarchy">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
-                            How Systems Shift Your Core Identity
+                            The Foundation System of Human Optimization
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="border border-[#222] bg-[#101010] p-8">
-                                <h3 className="text-xl font-bold uppercase text-[#ffb400] mb-3">
-                                    Identity-Based Habit Formation
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div className="space-y-6 border border-[#222] bg-[#101010] p-8">
+                                <h3 className="text-xl font-bold uppercase text-[#ffb400]">
+                                    Discipline Is The First Layer Of Evolution
                                 </h3>
                                 <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Lasting change does not stem from outcome goals; it stems from identity shifts. Every repeated system proves your capability to yourself, converting conscious effort into automated baseline discipline.
+                                    Human optimization begins with control over daily behaviour. Before developing physical performance, strength, fitness, mobility, recovery, mental performance, or personal growth, you must build the foundation that controls your actions.
+                                </p>
+                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
+                                    The Discipline System creates the behavioural foundation for the complete NomadLifeXP Human Optimization System.
                                 </p>
                             </div>
-                            <div className="border border-[#222] bg-[#101010] p-8">
-                                <h3 className="text-xl font-bold uppercase text-[#ffb400] mb-3">
-                                    Somatic Anchor Mechanics
-                                </h3>
-                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Habit Engineering links your desired mental state to physical anchors—movement, hydration, breath, and light exposure—eliminating decision friction and preserving daily executive energy.
-                                </p>
+
+                            <div className="border border-[#222] bg-[#101010] p-8 text-center font-mono space-y-3">
+                                <div className="text-xs text-[#555] uppercase tracking-widest">// System Hierarchy</div>
+                                <div className="p-3 bg-[#0d0d0d] border border-[#222] text-[#ffb400] font-bold text-sm uppercase">HUMAN EVOLUTION</div>
+                                <div className="text-[#777]">↑</div>
+                                <div className="p-3 bg-[#0d0d0d] border border-[#222] text-white text-sm uppercase">HUMAN OPTIMIZATION SYSTEM</div>
+                                <div className="text-[#777]">↑</div>
+                                <div className="p-3 bg-[#0d0d0d] border border-[#222] text-white text-sm uppercase">FOUNDATION SYSTEM</div>
+                                <div className="text-[#777]">↑</div>
+                                <div className="p-3 bg-[#0d0d0d] border border-[#ffb400] text-black font-bold text-sm uppercase bg-[#ffb400]">DISCIPLINE SYSTEM</div>
+                                <div className="text-[#777]">↑</div>
+                                <div className="text-xs text-[#aaa] pt-2 tracking-wide">Identity → Habits → Actions → Results</div>
                             </div>
                         </div>
                     </section>
 
-                    {/* 4. Optimised Phase Titles Matrix */}
-                    <section
-                        className="grid grid-cols-1 md:grid-cols-3 gap-6 my-20"
-                        aria-label="Operational Phase Protocols"
-                    >
-                        {/* Phase I */}
-                        <article className="border border-[#222] bg-[#101010] p-9 transition-all duration-200 hover:border-[#ffb400] hover:-translate-y-1.5 flex flex-col justify-between">
-                            <div>
-                                <div className="text-[#ffb400] text-[12px] font-mono mb-4 tracking-wider">
-                                    Phase I // SYS_01
-                                </div>
-                                <h3 className="text-2xl font-bold mb-4 tracking-tight uppercase">
-                                    Internal Integrity: Morning Routine & Mental Clarity System
-                                </h3>
-                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Establish morning grounding protocols that reduce cognitive friction, improve focus, and create a stable foundation for disciplined daily execution.
-                                </p>
-                            </div>
-                        </article>
+                    {/* The Discipline Architecture™ */}
+                    <section className="mb-20 space-y-8" aria-label="The Discipline Architecture Framework">
+                        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
+                            The Discipline Architecture™: A Complete Self-Discipline Framework
+                        </h2>
+                        <p className="text-[#aaa] text-base font-light">
+                            The Discipline Architecture combines psychology, physiology, and structured execution to create sustainable discipline.
+                        </p>
 
-                        {/* Phase II */}
-                        <article className="border border-[#222] bg-[#101010] p-9 transition-all duration-200 hover:border-[#ffb400] hover:-translate-y-1.5 flex flex-col justify-between">
-                            <div>
-                                <div className="text-[#ffb400] text-[12px] font-mono mb-4 tracking-wider">
-                                    Phase II // SYS_02
-                                </div>
-                                <h3 className="text-2xl font-bold mb-4 tracking-tight uppercase">
-                                    Physical Baselines: Exercise, Movement & Healthy Habits System
-                                </h3>
-                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Convert physical health, daily movement, and energy management into sustainable routines that support long-term performance.
-                                </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">D — DAILY STRUCTURE</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Remove Decision Fatigue</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light mb-3">Create routines that eliminate mental friction.</p>
+                                <ul className="space-y-1.5 text-xs text-[#ccc] font-light">
+                                    <li>✓ Morning routines</li>
+                                    <li>✓ Daily planning systems</li>
+                                    <li>✓ Evening reset protocols</li>
+                                    <li>✓ Consistent execution patterns</li>
+                                </ul>
                             </div>
-                        </article>
 
-                        {/* Phase III */}
-                        <article className="border border-[#222] bg-[#101010] p-9 transition-all duration-200 hover:border-[#ffb400] hover:-translate-y-1.5 flex flex-col justify-between">
-                            <div>
-                                <div className="text-[#ffb400] text-[12px] font-mono mb-4 tracking-wider">
-                                    Phase III // SYS_03
-                                </div>
-                                <h3 className="text-2xl font-bold mb-4 tracking-tight uppercase">
-                                    Velocity Output: Productivity & High Performance System
-                                </h3>
-                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Combine mental stability and physical foundations to improve productivity, consistency, and long-term execution.
-                                </p>
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">I — IDENTITY ALIGNMENT</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Shape Your Core Identity</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light mb-3">Your repeated actions become evidence of who you are becoming.</p>
+                                <p className="text-xs text-[#ccc] font-light">Build the identity of a disciplined person through consistent daily behavior.</p>
                             </div>
-                        </article>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">S — SOMATIC ANCHORS</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Use Physical Triggers</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light mb-3">Ground habits in physiological state changes.</p>
+                                <ul className="space-y-1.5 text-xs text-[#ccc] font-light">
+                                    <li>✓ Movement</li>
+                                    <li>✓ Hydration</li>
+                                    <li>✓ Sunlight exposure</li>
+                                    <li>✓ Breath control</li>
+                                </ul>
+                            </div>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">C — COGNITIVE CONTROL</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Protect Mental Energy</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light mb-3">Shield executive functions from depletion.</p>
+                                <ul className="space-y-1.5 text-xs text-[#ccc] font-light">
+                                    <li>✓ Digital distractions reduction</li>
+                                    <li>✓ Reactive inputs filtering</li>
+                                    <li>✓ Unnecessary decisions elimination</li>
+                                </ul>
+                            </div>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">I — INTENTIONAL EXECUTION</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Turn Goals Into Action</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light mb-3">Translate abstract targets into concrete steps.</p>
+                                <ul className="space-y-1.5 text-xs text-[#ccc] font-light">
+                                    <li>✓ Deep work habits</li>
+                                    <li>✓ Focus systems</li>
+                                    <li>✓ Priority execution</li>
+                                </ul>
+                            </div>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">P — PHYSICAL FOUNDATIONS</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Support Your Biology</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light mb-3">Fuel discipline through optimal physical vitality.</p>
+                                <ul className="space-y-1.5 text-xs text-[#ccc] font-light">
+                                    <li>✓ Exercise routines</li>
+                                    <li>✓ Nutrition guidelines</li>
+                                    <li>✓ Recovery protocols</li>
+                                    <li>✓ Energy management</li>
+                                </ul>
+                            </div>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">L — LIFESTYLE DESIGN</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Optimize Environment</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light">Create an ambient environment that fully supports your desired identity and actions.</p>
+                            </div>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">I — INTERNAL INTEGRITY</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Build Self-Trust</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light">Develop unshakeable personal accountability by consistently keeping commitments made to yourself.</p>
+                            </div>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <div className="text-[#ffb400] font-mono text-xs mb-2 font-bold tracking-widest">N — NEURAL REINFORCEMENT & E — EVOLUTION</div>
+                                <h3 className="text-lg font-bold uppercase text-white mb-2">Compound & Evolve</h3>
+                                <p className="text-xs md:text-sm text-[#aaa] font-light">Repeated behaviors strengthen neural pathways, compounding performance through continuous lifelong development.</p>
+                            </div>
+                        </div>
                     </section>
 
-                    {/* 5. Daily Discipline Routine Section */}
-                    <section className="mb-20 space-y-8" aria-label="Daily Discipline Routine Protocols">
+                    {/* The 30-Day Discipline System™ */}
+                    <section id="thirty-day-system" className="mb-20 space-y-8" aria-label="The 30-Day Discipline System Phases">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
-                            Daily Discipline Routine
+                            The 30-Day Discipline System™: Build Your New Operating System
                         </h2>
-                        <p className="text-[#aaa] text-base md:text-lg font-light">
-                            A disciplined life is built through simple actions repeated consistently.
+                        <p className="text-[#aaa] text-base font-light">
+                            A structured habit formation system designed to create discipline through progressive execution across 3 distinct phases.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {/* Morning Activation */}
-                            <div className="border border-[#222] bg-[#101010] p-8">
-                                <h3 className="text-xl font-bold uppercase text-[#ffb400] mb-5 font-mono">
-                                    Morning Activation
-                                </h3>
-                                <ul className="space-y-3 text-[#aaa] text-sm md:text-base font-light">
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Hydration</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Sunlight exposure</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Movement</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Planning</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Focus preparation</li>
-                                </ul>
-                            </div>
-
-                            {/* Daily Execution */}
-                            <div className="border border-[#222] bg-[#101010] p-8">
-                                <h3 className="text-xl font-bold uppercase text-[#ffb400] mb-5 font-mono">
-                                    Daily Execution
-                                </h3>
-                                <ul className="space-y-3 text-[#aaa] text-sm md:text-base font-light">
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Deep work</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Exercise</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Nutrition</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Habit completion</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Focus protection</li>
-                                </ul>
-                            </div>
-
-                            {/* Evening Reset */}
-                            <div className="border border-[#222] bg-[#101010] p-8">
-                                <h3 className="text-xl font-bold uppercase text-[#ffb400] mb-5 font-mono">
-                                    Evening Reset
-                                </h3>
-                                <ul className="space-y-3 text-[#aaa] text-sm md:text-base font-light">
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Digital shutdown</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Reflection</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Recovery preparation</li>
-                                    <li className="flex items-center gap-3"><span className="text-[#ffb400]">✓</span> Sleep optimisation</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* 7. Benefits Section */}
-                    <section className="mb-20 space-y-8" aria-label="Benefits of The Discipline System">
-                        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
-                            Benefits of The Discipline System
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                            {[
-                                "Build stronger self-discipline",
-                                "Create consistent daily habits",
-                                "Reduce procrastination",
-                                "Improve focus and productivity",
-                                "Develop mental clarity",
-                                "Strengthen personal accountability",
-                                "Create sustainable routines",
-                                "Build confidence through action",
-                            ].map((benefit, idx) => (
-                                <div key={idx} className="border border-[#222] bg-[#101010] p-5 flex items-start gap-3">
-                                    <span className="text-[#ffb400] font-bold">✓</span>
-                                    <span className="text-sm md:text-base text-[#ccc] font-light">{benefit}</span>
+                            {/* Phase I */}
+                            <div className="border border-[#222] bg-[#101010] p-8 flex flex-col justify-between">
+                                <div>
+                                    <div className="text-[#ffb400] text-[12px] font-mono mb-2 tracking-wider">Phase I // Days 1–10</div>
+                                    <h3 className="text-xl font-bold mb-4 uppercase tracking-tight text-white">Internal Integrity: Build Control</h3>
+                                    <div className="space-y-4">
+                                        <div>
+                                            <p className="text-xs font-mono text-[#777] uppercase mb-2">Focus Protocols:</p>
+                                            <ul className="space-y-1.5 text-xs text-[#aaa] font-light">
+                                                <li>✓ Consistent wake time</li>
+                                                <li>✓ Hydration routine</li>
+                                                <li>✓ Morning sunlight</li>
+                                                <li>✓ Movement practice</li>
+                                                <li>✓ Planning system</li>
+                                                <li>✓ Attention protection</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            ))}
+                                <div className="mt-6 pt-4 border-t border-[#222]">
+                                    <span className="text-xs font-mono text-[#ffb400]">Outcome: Develop control over your environment, focus, and daily actions.</span>
+                                </div>
+                            </div>
+
+                            {/* Phase II */}
+                            <div className="border border-[#222] bg-[#101010] p-8 flex flex-col justify-between">
+                                <div>
+                                    <div className="text-[#ffb400] text-[12px] font-mono mb-2 tracking-wider">Phase II // Days 11–20</div>
+                                    <h3 className="text-xl font-bold mb-4 uppercase tracking-tight text-white">Physical Baselines: Build Energy</h3>
+                                    <div className="space-y-4">
+                                        <div>
+                                            <p className="text-xs font-mono text-[#777] uppercase mb-2">Focus Protocols:</p>
+                                            <ul className="space-y-1.5 text-xs text-[#aaa] font-light">
+                                                <li>✓ Strength training</li>
+                                                <li>✓ Mobility practice</li>
+                                                <li>✓ Nutrition structure</li>
+                                                <li>✓ Recovery habits</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-6 pt-4 border-t border-[#222]">
+                                    <span className="text-xs font-mono text-[#ffb400]">Outcome: Create the physical foundation required for long-term performance.</span>
+                                </div>
+                            </div>
+
+                            {/* Phase III */}
+                            <div className="border border-[#222] bg-[#101010] p-8 flex flex-col justify-between">
+                                <div>
+                                    <div className="text-[#ffb400] text-[12px] font-mono mb-2 tracking-wider">Phase III // Days 21–30</div>
+                                    <h3 className="text-xl font-bold mb-4 uppercase tracking-tight text-white">Velocity Output: Build Performance</h3>
+                                    <div className="space-y-4">
+                                        <div>
+                                            <p className="text-xs font-mono text-[#777] uppercase mb-2">Focus Protocols:</p>
+                                            <ul className="space-y-1.5 text-xs text-[#aaa] font-light">
+                                                <li>✓ Deep work execution</li>
+                                                <li>✓ Productivity systems</li>
+                                                <li>✓ Focus protection</li>
+                                                <li>✓ Execution consistency</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-6 pt-4 border-t border-[#222]">
+                                    <span className="text-xs font-mono text-[#ffb400]">Outcome: Transform discipline into measurable real-world performance.</span>
+                                </div>
+                            </div>
                         </div>
                     </section>
 
-                    {/* Secure Parameter Console Module */}
-                    <section
-                        className="border border-[#222] p-8 md:p-10 mb-20 bg-transparent relative"
-                        aria-label="Execution Rules Matrix"
-                    >
-                        <h2 className="text-[#777] font-mono mb-9 uppercase tracking-wider text-xs select-none">
-                            {"// Non-Negotiable System Execution Parameters"}
+                    {/* Daily Discipline Routine™ */}
+                    <section className="mb-20 space-y-8" aria-label="Daily Discipline Routine">
+                        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
+                            Daily Discipline Routine™
                         </h2>
+                        <p className="text-[#aaa] text-base font-light">
+                            A structured daily template designed to maintain momentum and eliminate guesswork from execution.
+                        </p>
 
-                        <div className="space-y-0 divide-y divide-[#222]">
-                            <div className="py-7 first:pt-0 border-t border-transparent">
-                                <h3 className="text-white font-mono font-bold text-lg mb-2.5 uppercase tracking-wide">
-                                    01 / Attention Protection
-                                </h3>
-                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Zero reactive inputs (social media, notifications, news) before completing your core morning identity habit.
-                                </p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="border border-[#222] bg-[#101010] p-8">
+                                <h3 className="text-lg font-bold uppercase text-[#ffb400] mb-2 font-mono">Morning Activation</h3>
+                                <p className="text-xs text-[#777] uppercase mb-4">Create a strong start.</p>
+                                <ul className="space-y-2.5 text-sm text-[#aaa] font-light">
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Hydration</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Sunlight exposure</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Movement</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Breath activation</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Planning</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Focus preparation</li>
+                                </ul>
                             </div>
 
-                            <div className="py-7">
-                                <h3 className="text-white font-mono font-bold text-lg mb-2.5 uppercase tracking-wide">
-                                    02 / Embodied Anchors
-                                </h3>
-                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Physical movement, hydration, and deliberate sunlight exposure act as fixed daily execution anchors.
-                                </p>
+                            <div className="border border-[#222] bg-[#101010] p-8">
+                                <h3 className="text-lg font-bold uppercase text-[#ffb400] mb-2 font-mono">Daily Execution</h3>
+                                <p className="text-xs text-[#777] uppercase mb-4">Protect your progress.</p>
+                                <ul className="space-y-2.5 text-sm text-[#aaa] font-light">
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Deep work</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Exercise</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Nutrition</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Habit completion</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Attention management</li>
+                                </ul>
                             </div>
 
-                            <div className="py-7 last:pb-0">
-                                <h3 className="text-white font-mono font-bold text-lg mb-2.5 uppercase tracking-wide">
-                                    03 / Cognitive Offload & Shutdown
-                                </h3>
-                                <p className="text-[#aaa] text-sm md:text-base leading-relaxed font-light">
-                                    Formal digital disconnect and daily review protocol to optimize sleep recovery and cognitive reset.
-                                </p>
+                            <div className="border border-[#222] bg-[#101010] p-8">
+                                <h3 className="text-lg font-bold uppercase text-[#ffb400] mb-2 font-mono">Evening Reset</h3>
+                                <p className="text-xs text-[#777] uppercase mb-4">Prepare for recovery.</p>
+                                <ul className="space-y-2.5 text-sm text-[#aaa] font-light">
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Digital shutdown</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Reflection</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Recovery preparation</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Sleep optimisation</li>
+                                </ul>
                             </div>
                         </div>
                     </section>
 
-                    {/* Comparison Data Matrix for Featured Snippets */}
+                    {/* Attention Protection System & Somatic Engineering */}
+                    <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20" aria-label="Advanced Systems">
+                        <div className="border border-[#222] bg-[#101010] p-8 space-y-4">
+                            <h2 className="text-xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-3 font-mono text-[#ffb400]">
+                                Attention Protection System™
+                            </h2>
+                            <p className="text-xs text-[#777] uppercase tracking-wider">Control Your Inputs</p>
+                            <p className="text-sm text-[#aaa] font-light leading-relaxed">
+                                Your attention determines your direction. The Discipline System protects focus by reducing reactive inputs before completing your core identity actions.
+                            </p>
+                            <ul className="space-y-2 text-sm text-[#ccc] font-light pt-2">
+                                <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Protect Focus</li>
+                                <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Protect Energy</li>
+                                <li className="flex items-center gap-2"><span className="text-[#ffb400]">✓</span> Protect Mental Clarity</li>
+                            </ul>
+                        </div>
+
+                        <div className="border border-[#222] bg-[#101010] p-8 space-y-4">
+                            <h2 className="text-xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-3 font-mono text-[#ffb400]">
+                                Somatic Habit Engineering™
+                            </h2>
+                            <p className="text-xs text-[#777] uppercase tracking-wider">Discipline Through The Body</p>
+                            <p className="text-sm text-[#aaa] font-light leading-relaxed">
+                                Discipline is not built through willpower alone. Physical anchors create reliable behaviour triggers.
+                            </p>
+                            <div className="space-y-1.5 text-xs text-[#ccc] font-mono">
+                                <div>• Movement creates activation.</div>
+                                <div>• Sunlight creates rhythm.</div>
+                                <div>• Breathing creates regulation.</div>
+                                <div>• Hydration creates awareness.</div>
+                            </div>
+                            <p className="text-xs text-[#ffb400] font-light pt-1">Your body becomes part of your discipline system.</p>
+                        </div>
+                    </section>
+
+                    {/* Comparison Data Matrix */}
                     <section className="mb-20 space-y-6" aria-label="System Comparison Matrix">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
                             Motivation-Based Effort vs. Identity-Based Systems
@@ -439,32 +605,89 @@ export default async function DisciplineSystemPage(props: PageProps) {
                                 <thead className="bg-[#101010] text-[#ffb400] uppercase border-b border-[#222]">
                                     <tr>
                                         <th className="p-4">Execution Vector</th>
-                                        <th className="p-4">Traditional Motivation</th>
-                                        <th className="p-4">Identity-Based Systems</th>
+                                        <th className="p-4">Motivation-Based Effort</th>
+                                        <th className="p-4">Identity-Based System</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-[#222] text-[#aaa]">
                                     <tr>
                                         <td className="p-4 font-bold text-white">Driver</td>
-                                        <td className="p-4 text-[#666]">Temporary Feelings & Mood</td>
-                                        <td className="p-4 text-[#ffb400]">Pre-Scripted Habits & Identity</td>
+                                        <td className="p-4 text-[#666]">Temporary Feelings</td>
+                                        <td className="p-4 text-[#ffb400]">Structured Behaviours</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-4 font-bold text-white">Consistency</td>
+                                        <td className="p-4 text-[#666]">Unpredictable</td>
+                                        <td className="p-4 text-[#ffb400]">Repeatable</td>
                                     </tr>
                                     <tr>
                                         <td className="p-4 font-bold text-white">Decision Energy</td>
-                                        <td className="p-4 text-[#666]">High (Causes Exhaustion)</td>
-                                        <td className="p-4 text-[#ffb400]">Zero (Automated Baseline)</td>
+                                        <td className="p-4 text-[#666]">High (Causes Burnout)</td>
+                                        <td className="p-4 text-[#ffb400]">Reduced (Automated)</td>
                                     </tr>
                                     <tr>
                                         <td className="p-4 font-bold text-white">Outcome</td>
-                                        <td className="p-4 text-[#666]">Inconsistent Bursts</td>
-                                        <td className="p-4 text-[#ffb400]">Sustained High Potential</td>
+                                        <td className="p-4 text-[#666]">Short-term Bursts</td>
+                                        <td className="p-4 text-[#ffb400]">Sustainable Transformation</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </section>
 
-                    {/* 6. Expanded Frequently Asked Questions */}
+                    {/* Benefits Section */}
+                    <section className="mb-20 space-y-8" aria-label="Benefits of The Discipline System">
+                        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
+                            Benefits Of The Discipline System™
+                        </h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            {[
+                                "Build self-discipline",
+                                "Build lasting habits",
+                                "Improve focus",
+                                "Reduce procrastination",
+                                "Increase productivity",
+                                "Develop accountability",
+                                "Strengthen confidence",
+                                "Create sustainable routines",
+                                "Support human optimization",
+                            ].map((benefit, idx) => (
+                                <div key={idx} className="border border-[#222] bg-[#101010] p-5 flex items-start gap-3">
+                                    <span className="text-[#ffb400] font-bold">✓</span>
+                                    <span className="text-sm text-[#ccc] font-light">{benefit}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Integration Hierarchy Connection */}
+                    <section className="border border-[#222] bg-[#101010] p-8 md:p-12 mb-20 space-y-6 text-center" aria-label="System Integration">
+                        <h2 className="text-xl md:text-2xl font-bold uppercase text-white tracking-wide">
+                            The Discipline System Within Human Optimization
+                        </h2>
+                        <div className="max-w-2xl mx-auto space-y-4 text-sm text-[#aaa] font-light">
+                            <p className="p-3 bg-[#0d0d0d] border border-[#222] text-[#ffb400] font-bold">
+                                The Discipline System creates the foundation.
+                            </p>
+                            <div className="text-[#555]">↓</div>
+                            <p className="p-3 bg-[#0d0d0d] border border-[#222]">
+                                The Fitness System develops physical capability.
+                            </p>
+                            <div className="text-[#555]">↓</div>
+                            <p className="p-3 bg-[#0d0d0d] border border-[#222]">
+                                The Yoga System improves mobility, awareness, and recovery.
+                            </p>
+                            <div className="text-[#555]">↓</div>
+                            <p className="p-3 bg-[#0d0d0d] border border-[#222]">
+                                The Mindset System develops resilience and mental performance.
+                            </p>
+                        </div>
+                        <p className="text-white font-mono text-xs uppercase tracking-widest pt-4">
+                            Together, they create the NomadLifeXP Human Optimization System.
+                        </p>
+                    </section>
+
+                    {/* Expanded Frequently Asked Questions */}
                     <section className="mb-20 space-y-8" aria-label="Frequently Asked Questions">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#222] pb-4">
                             Frequently Asked Questions
@@ -473,19 +696,28 @@ export default async function DisciplineSystemPage(props: PageProps) {
                         <div className="space-y-6">
                             <div className="border border-[#222] bg-[#101010] p-6">
                                 <h3 className="text-lg font-bold text-white uppercase mb-2">
-                                    How do you build self-discipline?
+                                    What is the Discipline System?
                                 </h3>
                                 <p className="text-sm md:text-base text-[#aaa] font-light leading-relaxed">
-                                    Self-discipline is developed through consistent habits, structured routines, reduced distractions, and repeated actions that become part of your identity.
+                                    The Discipline System is the foundation system of the NomadLifeXP Human Optimization System, designed to build self-discipline, lasting habits, and structured daily routines.
                                 </p>
                             </div>
 
                             <div className="border border-[#222] bg-[#101010] p-6">
                                 <h3 className="text-lg font-bold text-white uppercase mb-2">
-                                    How long does it take to build a habit?
+                                    How do you build self-discipline?
                                 </h3>
                                 <p className="text-sm md:text-base text-[#aaa] font-light leading-relaxed">
-                                    Habit formation depends on the behaviour, environment, and consistency. Long-term change comes from repeating intentional actions until they become natural parts of your routine.
+                                    Self-discipline develops through structured routines, repeated actions, reduced distractions, and systems that reinforce identity.
+                                </p>
+                            </div>
+
+                            <div className="border border-[#222] bg-[#101010] p-6">
+                                <h3 className="text-lg font-bold text-white uppercase mb-2">
+                                    How long does it take to build lasting habits?
+                                </h3>
+                                <p className="text-sm md:text-base text-[#aaa] font-light leading-relaxed">
+                                    Habit formation depends on behaviour, environment, and consistency. Sustainable change comes through repeated intentional action.
                                 </p>
                             </div>
 
@@ -494,7 +726,7 @@ export default async function DisciplineSystemPage(props: PageProps) {
                                     How can I stop relying on motivation?
                                 </h3>
                                 <p className="text-sm md:text-base text-[#aaa] font-light leading-relaxed">
-                                    Motivation naturally changes. Systems and routines create consistency by making important behaviours easier to execute regardless of temporary emotions.
+                                    Motivation changes. Systems create consistency by making important behaviours easier to execute. Motivation fades. Systems endure.
                                 </p>
                             </div>
 
@@ -503,7 +735,7 @@ export default async function DisciplineSystemPage(props: PageProps) {
                                     What are identity-based habits?
                                 </h3>
                                 <p className="text-sm md:text-base text-[#aaa] font-light leading-relaxed">
-                                    Identity-based habits focus on becoming the type of person who naturally performs a behaviour instead of only chasing a specific outcome.
+                                    Identity-based habits focus on becoming the type of person who naturally performs desired behaviours.
                                 </p>
                             </div>
 
@@ -512,34 +744,28 @@ export default async function DisciplineSystemPage(props: PageProps) {
                                     What is Somatic Habit Engineering?
                                 </h3>
                                 <p className="text-sm md:text-base text-[#aaa] font-light leading-relaxed">
-                                    Somatic Habit Engineering grounds daily routines in physical and physiological triggers rather than relying on volatile mental willpower or changing motivation levels.
-                                </p>
-                            </div>
-
-                            <div className="border border-[#222] bg-[#101010] p-6">
-                                <h3 className="text-lg font-bold text-white uppercase mb-2">
-                                    How fast can I unlock my potential with this system?
-                                </h3>
-                                <p className="text-sm md:text-base text-[#aaa] font-light leading-relaxed">
-                                    Phase I (Internal Integrity) stabilizes within 24 to 48 hours. Full somatic habit automation across all 3 phases consolidates within 21 to 30 days of consistent execution.
+                                    Somatic Habit Engineering connects physical and physiological triggers with repeatable behaviours to strengthen habit consistency.
                                 </p>
                             </div>
                         </div>
                     </section>
 
-                    {/* Execution Network Sync Terminal Block */}
+                    {/* Final CTA Terminal Block */}
                     <section className="border border-[#222] bg-[#0d0d0d] p-10 md:p-16 text-center mb-20 relative overflow-hidden">
-                        <h2 className="text-3xl md:text-4xl font-black mb-5 uppercase tracking-tight text-white">
-                            Sync With the Execution Network
+                        <h2 className="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tight text-white">
+                            Start Your Evolution
                         </h2>
-                        <p className="text-[#aaa] text-sm md:text-base max-w-[700px] mx-auto leading-relaxed font-light">
-                            Build discipline by creating repeatable systems instead of depending on motivation. Every protocol strengthens identity through consistent execution.
+                        <p className="text-xs font-mono text-[#ffb400] uppercase tracking-widest mb-4">
+                            Begin The Discipline System™
+                        </p>
+                        <p className="text-[#aaa] text-sm md:text-base max-w-[700px] mx-auto leading-relaxed font-light mb-8">
+                            Build the foundation required for your Human Optimization journey. Create the systems. Build the habits. Transform your identity.
                         </p>
                         <Link
-                            href="/start-here"
-                            className="inline-block mt-10 px-9 py-4 border border-[#ffb400] text-[#ffb400] uppercase text-sm tracking-[2px] no-underline font-semibold transition-all duration-200 hover:bg-[#ffb400] hover:text-black focus:outline-none focus:ring-2 focus:ring-amber-500"
+                            href="#thirty-day-system"
+                            className="inline-block bg-[#ffb400] text-black font-mono font-bold uppercase text-sm tracking-wider px-8 py-4 hover:bg-white transition-colors duration-200"
                         >
-                            {"Initialize Discipline \u2192"}
+                            Begin Phase I →
                         </Link>
                     </section>
 

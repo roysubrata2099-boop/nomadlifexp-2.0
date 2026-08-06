@@ -12,6 +12,7 @@ interface LibraryItem {
   readonly id: string;
   readonly title: string;
   readonly description: string;
+  readonly details: string;
   readonly href: string;
 }
 
@@ -25,36 +26,59 @@ const NAVIGATION: readonly NavItem[] = [
 const LIBRARY_ITEMS: readonly LibraryItem[] = [
   {
     id: "lib-discipline",
-    title: "Discipline",
+    title: "Discipline System",
     description: "Habits. Focus. Consistency.",
+    details: "Build self-discipline, create powerful routines, and develop the consistency required for long-term growth.",
     href: "/blog/category/discipline",
   },
   {
     id: "lib-fitness",
-    title: "Fitness",
+    title: "Fitness System",
     description: "Strength. Mobility. Performance.",
+    details: "Improve physical capability through strength, movement, recovery, and performance training.",
     href: "/blog/category/fitness",
   },
   {
     id: "lib-yoga",
-    title: "Yoga",
+    title: "Yoga System",
     description: "Movement. Awareness. Recovery.",
+    details: "Develop flexibility, mobility, breath control, and mind-body connection through intentional movement.",
     href: "/blog/category/yoga",
   },
   {
     id: "lib-mindset",
-    title: "Mindset",
+    title: "Mindset System",
     description: "Growth. Resilience. Confidence.",
+    details: "Strengthen mental performance through focus, resilience, confidence, and continuous improvement.",
     href: "/blog/category/mindset",
   },
 ];
 
-const STEPS: readonly string[] = [
-  "Awareness",
-  "Discipline",
-  "Strength",
-  "Balance",
-  "Evolution",
+const JOURNEY_STEPS: readonly { readonly step: string; readonly desc: string }[] = [
+  { step: "Awareness", desc: "Understand yourself, your habits, and your current state." },
+  { step: "Discipline", desc: "Create systems that build consistency and control." },
+  { step: "Strength", desc: "Develop physical and mental resilience." },
+  { step: "Balance", desc: "Align performance, recovery, and lifestyle." },
+  { step: "Evolution", desc: "Continue improving through lifelong growth." },
+];
+
+const OPTIMIZATION_BENEFITS: readonly string[] = [
+  "Stronger Body",
+  "Sharper Mind",
+  "Better Habits",
+  "Greater Discipline",
+  "Improved Performance",
+  "Sustainable Growth",
+];
+
+const RESOURCE_LINKS: readonly string[] = [
+  "Discipline Systems",
+  "Fitness Training",
+  "Yoga Practices",
+  "Mindset Frameworks",
+  "Habit Building",
+  "Lifestyle Optimization",
+  "Personal Development",
 ];
 
 /**
@@ -143,19 +167,23 @@ export default function HomePage() {
 
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
-              NomadLifeXP // Human Evolution System
+              NOMADLIFEXP // HUMAN EVOLUTION SYSTEM
             </p>
 
             <h1
               id="hero-title"
-              className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-none mb-8 text-white text-center"
+              className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-none mb-8 text-white text-center"
             >
-              Evolve <br />
-              <span className="text-cyan-400">in Motion.</span>
+              Human Optimization Through <br />
+              <span className="text-cyan-400">Discipline, Fitness, Yoga &amp; Mindset</span>
             </h1>
 
-            <p className="max-w-xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
-              A structured transformation system for building discipline, physical strength, mental clarity, and a more intentional life.
+            <p className="text-sm font-semibold tracking-widest text-cyan-300 uppercase mb-4">
+              Evolve in Motion.
+            </p>
+
+            <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
+              NomadLifeXP is a Human Optimization Platform and Human Evolution System designed to develop discipline, fitness, yoga, mindset, and habits through structured systems for life transformation.
             </p>
 
             <div
@@ -176,7 +204,7 @@ export default function HomePage() {
                 href="/start-here"
                 className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(34,211,238,0.3)] text-center focus:outline-none focus:ring-2 focus:ring-white"
               >
-                Begin Journey
+                Start Your Evolution
               </Link>
               <Link
                 href="/discipline-system"
@@ -201,23 +229,26 @@ export default function HomePage() {
         {/* PHILOSOPHY SECTION */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
           <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
-            The Philosophy
+            THE PHILOSOPHY
           </p>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-tight text-center max-w-4xl">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-tight text-center max-w-4xl mb-6">
             Transformation <br className="hidden sm:inline" />
             is not a moment. <br />
             <span className="text-cyan-400">It is a system.</span>
           </h2>
+          <p className="max-w-xl mx-auto text-slate-300 text-sm sm:text-base font-light leading-relaxed text-center">
+            Transformation happens through consistent action, intentional habits, and structured systems that improve your body, mind, and lifestyle.
+          </p>
         </section>
 
-        {/* EVOLUTION LIBRARY REPLACEMENT SECTION */}
+        {/* HUMAN OPTIMIZATION SYSTEMS (LIBRARY) */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center border-t border-white/10">
           <div className="max-w-2xl mx-auto mb-12 text-center">
             <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-center mb-4">
-              Evolution Library
+              Human Optimization Library
             </h2>
             <p className="text-slate-400 text-sm font-light">
-              Explore the systems, practices, and ideas that help you evolve.
+              Explore the systems, practices, and frameworks designed to help you evolve.
             </p>
           </div>
 
@@ -231,7 +262,8 @@ export default function HomePage() {
                 <h3 className="font-bold uppercase text-2xl mb-2 text-center group-hover:text-cyan-300 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-xs text-slate-400 text-center">{item.description}</p>
+                <p className="text-xs font-semibold text-cyan-400/90 mb-3 text-center">{item.description}</p>
+                <p className="text-xs text-slate-400 text-center font-light">{item.details}</p>
               </Link>
             ))}
           </div>
@@ -241,22 +273,77 @@ export default function HomePage() {
         <section className="border-y border-white/10 bg-white/[0.01] py-20 text-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
             <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
-              The Journey
+              THE JOURNEY
             </p>
             <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-16 text-center">
               From Chaos <span className="text-cyan-400">To Clarity</span>
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-5xl">
-              {STEPS.map((step, idx) => (
-                <div key={step} className="flex flex-col items-center text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-6xl">
+              {JOURNEY_STEPS.map((item, idx) => (
+                <div key={item.step} className="flex flex-col items-center text-center p-4">
                   <div className="w-16 h-16 rounded-full border border-cyan-400/40 flex items-center justify-center font-bold text-cyan-300 mb-4 bg-[#050816] text-sm">
                     0{idx + 1}
                   </div>
-                  <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-center">
-                    {step}
+                  <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-center mb-2">
+                    {item.step}
                   </h3>
+                  <p className="text-xs text-slate-400 font-light text-center leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* WHY HUMAN OPTIMIZATION SECTION */}
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center flex flex-col items-center">
+          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
+            Why Human Optimization?
+          </p>
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-8 text-center leading-tight">
+            Build The Next <br />
+            <span className="text-cyan-400">Version Of Yourself</span>
+          </h2>
+          <p className="text-slate-300 text-sm sm:text-base font-light mb-12 text-center max-w-xl">
+            Human optimization is the process of improving every dimension of your life:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">
+            {OPTIMIZATION_BENEFITS.map((benefit) => (
+              <div
+                key={benefit}
+                className="p-4 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-wider text-slate-200"
+              >
+                <span className="text-cyan-400 font-bold" aria-hidden="true">✓</span>
+                <span>{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* RESOURCES PREVIEW SECTION */}
+        <section className="border-t border-white/10 bg-white/[0.01] py-20 px-4 text-center">
+          <div className="max-w-4xl mx-auto flex flex-col items-center">
+            <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
+              Resources
+            </p>
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-8 text-center">
+              Human Optimization Library
+            </h2>
+            <p className="text-slate-400 text-sm font-light mb-10 text-center">
+              Explore professional execution tracks:
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-3 max-w-2xl">
+              {RESOURCE_LINKS.map((res) => (
+                <span
+                  key={res}
+                  className="px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-950/10 text-cyan-300 text-xs font-mono uppercase tracking-wider"
+                >
+                  {res}
+                </span>
               ))}
             </div>
           </div>
@@ -265,14 +352,14 @@ export default function HomePage() {
         {/* MISSION */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center flex flex-col items-center">
           <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
-            Our Mission
+            OUR MISSION
           </p>
           <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-6 text-center leading-tight">
             We don&apos;t chase motivation. <br />
             <span className="text-cyan-400">We build systems.</span>
           </h2>
           <p className="text-slate-300 leading-relaxed text-sm sm:text-base text-center max-w-2xl font-light">
-            NomadLifeXP helps individuals create sustainable transformation through structured habits, physical development, mindful movement, and mental resilience.
+            NomadLifeXP helps individuals create sustainable transformation through structured habits, physical development, mindful movement, mental resilience, and continuous growth.
           </p>
         </section>
 
@@ -280,12 +367,15 @@ export default function HomePage() {
         <section className="py-24 px-4 text-center border-t border-white/10 bg-white/[0.01]">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
             <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
-              Your Evolution Begins
+              YOUR EVOLUTION BEGINS
             </p>
             <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-8 text-center">
               Build The Next <br />
               <span className="text-cyan-400">Version Of Yourself</span>
             </h2>
+            <p className="text-slate-400 text-sm font-light mb-10 max-w-xl text-center">
+              Start creating the systems, habits, and mindset required for lifelong human optimization.
+            </p>
             <Link
               href="/start-here"
               className="inline-block px-10 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition text-center shadow-[0_0_30px_rgba(34,211,238,0.2)] focus:outline-none focus:ring-2 focus:ring-white"
@@ -302,7 +392,10 @@ export default function HomePage() {
           <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base text-center">
             NOMADLIFE<span className="text-cyan-400">XP</span>
           </p>
-          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-6 text-center">
+          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-2 text-center">
+            Human Optimization Platform
+          </p>
+          <p className="uppercase tracking-[0.3em] text-[10px] text-slate-500 mb-6 text-center">
             Evolve in Motion
           </p>
 

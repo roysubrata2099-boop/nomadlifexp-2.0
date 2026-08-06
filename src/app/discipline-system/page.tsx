@@ -2,7 +2,6 @@
 import Link from "next/link";
 
 const SITE_URL = "https://nomadlifexp.com";
-const BRAND_YELLOW = "#D6A500";
 
 /**
  * Hardened Production SEO Metadata Block (Optimized for Self-Discipline System)

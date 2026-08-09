@@ -1,68 +1,79 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Metadata } from "next";
+import CinematicBrandVideo from "@/components/CinematicBrandVideo";
+import MobileNavMenu from "@/components/MobileNavMenu";
+
+interface SystemItem {
+  readonly id: string;
+  readonly number: string;
+  readonly title: string;
+  readonly coreFocus: string;
+  readonly description: string;
+  readonly primaryOutcome: string;
+  readonly href: string;
+}
 
 interface NavItem {
   readonly label: string;
   readonly href: string;
 }
 
-interface LibraryItem {
-  readonly id: string;
-  readonly title: string;
-  readonly coreFocus: string;
-  readonly primaryOutcome: string;
-  readonly href: string;
-}
-
 const NAVIGATION: readonly NavItem[] = [
-  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Systems", href: "/discipline-system" },
   { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
+  { label: "Masterclass", href: "/knowledge-index" },
+  { label: "Start", href: "/start-here" },
 ];
 
-const LIBRARY_ITEMS: readonly LibraryItem[] = [
+const FOUR_SYSTEMS: readonly SystemItem[] = [
   {
-    id: "lib-discipline",
+    id: "sys-discipline",
+    number: "01",
     title: "Discipline System",
-    coreFocus: "Habits. Focus. Consistency.",
-    primaryOutcome: "Engineering daily routines, behavioral control, and long-term behavioral persistence.",
+    coreFocus: "HABITS. FOCUS. CONSISTENCY.",
+    description: "Build the ability to act with intention, follow through, and create consistency that lasts.",
+    primaryOutcome: "Stronger routines. Better focus. Greater self-control.",
     href: "/blog/category/discipline",
   },
   {
-    id: "lib-fitness",
+    id: "sys-fitness",
+    number: "02",
     title: "Fitness System",
-    coreFocus: "Strength. Mobility. Performance.",
-    primaryOutcome: "Developing physical capacity, structural strength, endurance, and active recovery.",
+    coreFocus: "STRENGTH. MOBILITY. PERFORMANCE.",
+    description: "Build physical capacity through strength, movement, conditioning, and intelligent recovery.",
+    primaryOutcome: "A stronger, more capable, more resilient body.",
     href: "/blog/category/fitness",
   },
   {
-    id: "lib-yoga",
+    id: "sys-yoga",
+    number: "03",
     title: "Yoga System",
-    coreFocus: "Movement. Awareness. Recovery.",
-    primaryOutcome: "Cultivating flexibility, joint mobility, breath regulation, and mind-body cohesion.",
+    coreFocus: "MOVEMENT. AWARENESS. RECOVERY.",
+    description: "Develop mobility, breath, body awareness, balance, and deeper control through mindful movement.",
+    primaryOutcome: "Better movement. Better recovery. Greater mind-body connection.",
     href: "/blog/category/yoga",
   },
   {
-    id: "lib-mindset",
+    id: "sys-mindset",
+    number: "04",
     title: "Mindset System",
-    coreFocus: "Growth. Resilience. Confidence.",
-    primaryOutcome: "Sharpening psychological fortitude, emotional resilience, and continuous cognitive scaling.",
+    coreFocus: "GROWTH. RESILIENCE. CONFIDENCE.",
+    description: "Develop the mental foundations required to handle pressure, overcome resistance, and keep evolving.",
+    primaryOutcome: "Greater resilience. Stronger confidence. A growth-oriented mind.",
     href: "/blog/category/mindset",
   },
 ];
 
-const JOURNEY_STEPS: readonly { readonly step: string; readonly desc: string }[] = [
-  { step: "Awareness", desc: "Understand yourself, your habits, and your current state." },
-  { step: "Discipline", desc: "Create systems that build consistency and control." },
-  { step: "Strength", desc: "Develop physical and mental resilience." },
-  { step: "Balance", desc: "Align performance, recovery, and lifestyle." },
-  { step: "Evolution", desc: "Continue improving through lifelong growth." },
+const JOURNEY_STAGES: readonly { readonly step: string; readonly title: string; readonly desc: string }[] = [
+  { step: "01", title: "AWARENESS", desc: "Understand yourself, your habits, and your current state." },
+  { step: "02", title: "DISCIPLINE", desc: "Create systems that turn intention into consistent action." },
+  { step: "03", title: "STRENGTH", desc: "Develop physical and mental resilience." },
+  { step: "04", title: "BALANCE", desc: "Align performance, recovery, movement, and lifestyle." },
+  { step: "05", title: "EVOLUTION", desc: "Keep learning, adapting, and becoming more capable." },
 ];
 
-const OPTIMIZATION_BENEFITS: readonly string[] = [
+const OPTIMIZATION_OUTCOMES: readonly string[] = [
   "Stronger Body",
   "Sharper Mind",
   "Better Habits",
@@ -71,59 +82,49 @@ const OPTIMIZATION_BENEFITS: readonly string[] = [
   "Sustainable Growth",
 ];
 
-const RESOURCE_LINKS: readonly string[] = [
-  "Discipline Systems",
-  "Fitness Training",
-  "Yoga Practices",
-  "Mindset Frameworks",
-  "Habit Building",
-  "Lifestyle Optimization",
-  "Personal Development",
+const KNOWLEDGE_CATEGORIES: readonly { readonly title: string; readonly focus: string; readonly href: string }[] = [
+  { title: "DISCIPLINE", focus: "Habits · Focus · Consistency", href: "/blog/category/discipline" },
+  { title: "FITNESS", focus: "Training · Strength · Recovery", href: "/blog/category/fitness" },
+  { title: "YOGA", focus: "Movement · Breath · Mobility", href: "/blog/category/yoga" },
+  { title: "MINDSET", focus: "Resilience · Confidence · Growth", href: "/blog/category/mindset" },
+  { title: "HABITS", focus: "Routines · Systems · Behavior", href: "/blog/category/habits" },
+  { title: "LIFESTYLE", focus: "Balance · Performance · Longevity", href: "/blog/category/lifestyle" },
 ];
 
-/**
- * Hydration-safe Video Player Component
- */
-function ClientVideo() {
-  const [isMounted, setIsMounted] = useState(false);
+const SOCIAL_LINKS = {
+  youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com",
+  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com",
+};
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return (
-      <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center text-slate-600 text-xs tracking-widest uppercase">
-        Loading System Media...
-      </div>
-    );
-  }
-
-  return (
-    <video
-      className="w-full h-full object-cover block"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      poster="/images/yoga-mind-body-awareness.jpg"
-    >
-      <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  );
-}
+export const metadata: Metadata = {
+  title: "NomadLifeXP // Human Optimization Platform",
+  description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
+  openGraph: {
+    title: "NomadLifeXP // Human Optimization Platform",
+    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems.",
+    url: "https://nomadlifexp.com",
+    siteName: "NomadLifeXP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NomadLifeXP // Human Optimization Platform",
+    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems.",
+  },
+};
 
 export default function HomePage() {
   return (
-    <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased flex flex-col justify-between">
-      {/* NAVIGATION HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/90 backdrop-blur-md">
+    <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased flex flex-col justify-between font-sans">
+      <div aria-hidden="true" className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[10%] left-[25%] w-[500px] h-[500px] rounded-full bg-cyan-500/[0.02] blur-[160px]" />
+      </div>
+
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link
             href="/"
-            className="font-black tracking-[0.25em] text-sm uppercase flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            className="font-black tracking-[0.25em] text-sm uppercase flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded group"
             aria-label="NomadLifeXP Home"
           >
             NOMADLIFE<span className="text-cyan-400">XP</span>
@@ -144,50 +145,39 @@ export default function HomePage() {
             ))}
           </nav>
 
-          <Link
-            href="/start-here"
-            className="px-5 py-2.5 border border-cyan-400 text-cyan-300 text-xs uppercase tracking-[0.2em] font-bold hover:bg-cyan-400 hover:text-black transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
-          >
-            Start Here
-          </Link>
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              href="/start-here"
+              className="px-5 py-2.5 border border-cyan-400 text-cyan-300 text-xs uppercase tracking-[0.2em] font-bold hover:bg-cyan-400 hover:text-black transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            >
+              Start Here
+            </Link>
+          </div>
+
+          <MobileNavMenu navigationItems={NAVIGATION} />
         </div>
       </header>
 
-      {/* MAIN CONTENT AREA */}
-      <main id="main-content" className="flex-grow">
-        {/* HERO SECTION */}
+      <main id="main-content" className="flex-grow relative z-10">
         <section
-          className="relative pt-48 sm:pt-56 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center"
+          className="relative pt-48 sm:pt-60 pb-16 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center"
           aria-labelledby="hero-title"
         >
-          <div
-            aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-cyan-400/10 blur-[120px] pointer-events-none"
-          />
-
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
-              NOMADLIFEXP // HUMAN EVOLUTION SYSTEM
+            <p className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
+              HUMAN OPTIMIZATION PLATFORM
             </p>
 
             <h1
               id="hero-title"
-              className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-none mb-8 text-white text-center"
+              className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight leading-[0.95] mb-6 text-white text-center"
             >
-              Human Optimization Through <br />
-              <span className="text-cyan-400">Discipline, Fitness, Yoga &amp; Mindset</span>
+              BUILD YOURSELF <br />
+              <span className="text-cyan-400">LIKE A SYSTEM.</span>
             </h1>
 
-            <p className="text-sm font-semibold tracking-widest text-cyan-300 uppercase mb-4">
-              Evolve in Motion.
-            </p>
-
-            <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
-              NomadLifeXP is a Human Optimization Platform and Human Evolution System designed to develop discipline, fitness, yoga, mindset, and habits through structured systems for life transformation.
-            </p>
-
             <div
-              className="flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-semibold text-cyan-400/80 mb-10 flex-wrap"
+              className="flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] font-mono font-semibold text-cyan-300/80 mb-6 flex-wrap"
               aria-label="System Pillars"
             >
               <span>Discipline</span>
@@ -199,78 +189,98 @@ export default function HomePage() {
               <span>Mindset</span>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 w-full sm:w-auto">
+            <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
+              NomadLifeXP is a human optimization platform built around structured systems for developing your body, mind, habits, and capacity for lifelong growth.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <Link
                 href="/start-here"
-                className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(34,211,238,0.3)] text-center focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition shadow-[0_0_25px_rgba(34,211,238,0.25)] text-center focus:outline-none focus:ring-2 focus:ring-white"
               >
-                Start Your Evolution
+                START YOUR EVOLUTION &rarr;
               </Link>
               <Link
                 href="/discipline-system"
                 className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-xs hover:border-cyan-400 hover:text-cyan-300 transition text-center focus:outline-none focus:ring-2 focus:ring-cyan-400"
               >
-                Explore Systems
+                EXPLORE SYSTEMS &rarr;
               </Link>
             </div>
           </div>
         </section>
 
-        {/* CINEMATIC VIDEO SECTION */}
         <section
-          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center w-full flex flex-col items-center"
-          aria-label="NomadLifeXP Overview Video"
+          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center w-full flex flex-col items-center"
+          aria-label="NomadLifeXP Brand Film"
         >
-          <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 bg-white/5 aspect-video shadow-2xl flex items-center justify-center">
-            <ClientVideo />
+          <div className="w-full flex flex-col items-center mb-6">
+            <span className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-2">
+              EVOLVE IN MOTION
+            </span>
+            <p className="text-xs font-mono tracking-[0.3em] uppercase text-slate-400">
+              MOVEMENT // BREATH // CONTROL
+            </p>
+          </div>
+
+          <CinematicBrandVideo />
+
+          <p className="mt-6 text-slate-300 text-sm font-light max-w-lg">
+            Yoga for movement, awareness, mobility, breath, and recovery.
+          </p>
+        </section>
+
+        <section className="py-24 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
+          <div className="max-w-4xl mx-auto flex flex-col items-center">
+            <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
+              THE PHILOSOPHY
+            </p>
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[1.05] text-center mb-6">
+              Transformation <br className="hidden sm:inline" />
+              is not a moment. <br />
+              <span className="text-cyan-400">It is a system.</span>
+            </h2>
+            <p className="max-w-xl mx-auto text-slate-300 text-sm sm:text-base font-light leading-relaxed text-center mb-6">
+              Real transformation is built through consistent action, intentional habits, structured routines, and systems that compound over time.
+            </p>
+            <p className="text-xs font-mono tracking-[0.3em] uppercase text-cyan-300/80">
+              Motivation fades. Systems endure.
+            </p>
           </div>
         </section>
 
-        {/* PHILOSOPHY SECTION */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-6 text-center">
-            THE PHILOSOPHY
-          </p>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-tight text-center max-w-4xl mb-6">
-            Transformation <br className="hidden sm:inline" />
-            is not a moment. <br />
-            <span className="text-cyan-400">It is a system.</span>
-          </h2>
-          <p className="max-w-xl mx-auto text-slate-300 text-sm sm:text-base font-light leading-relaxed text-center mb-6">
-            Transformation happens through consistent action, intentional habits, structured routines, and systems that improve your body, mind, and lifestyle over time.
-          </p>
-          <p className="text-xs font-mono tracking-[0.3em] uppercase text-cyan-300/80">
-            Motivation fades. Systems endure.
-          </p>
-        </section>
-
-        {/* HUMAN OPTIMIZATION SYSTEMS (LIBRARY & CORE PILLARS) */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center border-t border-white/10">
           <div className="max-w-3xl mx-auto mb-16 text-center">
             <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-3">
-              THE HUMAN OPTIMIZATION SYSTEM
+              THE FOUR SYSTEMS
             </p>
             <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-center mb-4">
-              Core Pillars: The Four Systems
+              Four systems. One direction.
             </h2>
             <p className="text-slate-400 text-sm font-light">
-              The platform&apos;s engine relies on four interdependent pillars designed to upgrade human performance.
+              The NomadLifeXP framework brings together four interconnected systems designed to develop a stronger, more capable, and more balanced human.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
-            {LIBRARY_ITEMS.map((item) => (
+            {FOUR_SYSTEMS.map((item) => (
               <Link
                 key={item.id}
                 href={item.href}
-                className="group p-8 rounded-xl border border-white/10 bg-white/[0.01] hover:border-cyan-400/50 transition-all flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="group p-8 rounded-xl border border-white/10 bg-[#050816]/60 hover:border-cyan-400/50 transition-all flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-cyan-400"
               >
                 <div>
+                  <div className="text-cyan-400 font-mono text-xs tracking-widest font-bold mb-4">
+                    {item.number} // SYSTEM
+                  </div>
                   <h3 className="font-bold uppercase text-2xl mb-2 group-hover:text-cyan-300 transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-xs font-mono font-semibold text-cyan-400/90 mb-4 tracking-wider">
                     {item.coreFocus}
+                  </p>
+                  <p className="text-xs text-slate-300 font-light leading-relaxed mb-4">
+                    {item.description}
                   </p>
                   <div className="border-t border-white/10 pt-4 mt-2">
                     <p className="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-1">
@@ -282,59 +292,86 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="mt-6 text-xs font-bold uppercase tracking-widest text-cyan-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                  Explore System &rarr;
+                  ENTER SYSTEM &rarr;
                 </div>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* THE JOURNEY */}
-        <section className="border-y border-white/10 bg-white/[0.01] py-20 text-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2 text-center">
-              THE JOURNEY
+        <section className="max-w-4xl mx-auto px-4 py-8 text-center">
+          <div className="p-6 rounded-xl border border-cyan-500/20 bg-cyan-950/10 backdrop-blur-sm flex flex-col items-center">
+            <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-cyan-400 mb-2">
+              THE NOMADLIFEXP FRAMEWORK
+            </span>
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white font-bold">
+              4 SYSTEMS → 5 STAGES → 1 CONTINUOUS PROCESS
             </p>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-16 text-center">
-              From Chaos <span className="text-cyan-400">To Clarity</span>
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-8 w-full max-w-6xl">
-              {JOURNEY_STEPS.map((item, idx) => (
-                <div key={item.step} className="flex flex-col items-center text-center p-4">
-                  <div className="w-16 h-16 rounded-full border border-cyan-400/40 flex items-center justify-center font-bold text-cyan-300 mb-4 bg-[#050816] text-sm">
-                    0{idx + 1}
-                  </div>
-                  <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-center mb-2">
-                    {item.step}
-                  </h3>
-                  <p className="text-xs text-slate-400 font-light text-center leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
-        {/* WHY HUMAN OPTIMIZATION SECTION */}
+        <section className="border-y border-white/10 bg-white/[0.01] py-24 text-center">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+            <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-3 text-center">
+              THE JOURNEY
+            </p>
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4 text-center">
+              From Chaos <span className="text-cyan-400">To Clarity</span>
+            </h2>
+            <p className="text-slate-400 text-sm font-light mb-16 text-center max-w-md">
+              Every transformation begins with awareness and develops through deliberate action.
+            </p>
+
+            <div className="w-full max-w-2xl flex flex-col items-center gap-4 mb-12">
+              {JOURNEY_STAGES.map((stage, index) => (
+                <div key={stage.step} className="w-full flex flex-col items-center">
+                  <div className="w-full p-6 rounded-lg border border-white/10 bg-[#050816]/40 hover:border-cyan-400/40 transition-colors text-left flex items-start gap-6">
+                    <span className="font-mono text-cyan-400 font-bold text-sm tracking-widest pt-0.5">
+                      {stage.step} —
+                    </span>
+                    <div>
+                      <h3 className="text-xs font-bold font-mono uppercase tracking-widest text-white mb-1">
+                        {stage.title}
+                      </h3>
+                      <p className="text-xs text-slate-400 font-light leading-relaxed">
+                        {stage.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  {index < JOURNEY_STAGES.length - 1 && (
+                    <div className="h-6 w-[1px] bg-cyan-500/30 my-1" aria-hidden="true" />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <p className="text-xs font-mono tracking-[0.3em] uppercase text-cyan-300/80">
+              THE PROCESS NEVER STOPS.
+            </p>
+          </div>
+        </section>
+
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center flex flex-col items-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
-            Why Human Optimization?
+          <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
+            WHY HUMAN OPTIMIZATION?
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-8 text-center leading-tight">
-            Build The Next <br />
-            <span className="text-cyan-400">Version Of Yourself</span>
+          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-6 text-center leading-tight">
+            Build the next <br />
+            <span className="text-cyan-400">version of yourself</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base font-light mb-12 text-center max-w-xl">
-            Human optimization is the continuous process of improving every dimension of your life through structured systems and intentional action:
+          <p className="text-slate-300 text-sm sm:text-base font-light mb-2 text-center max-w-xl">
+            Human optimization is not about becoming perfect.
+          </p>
+          <p className="text-slate-400 text-sm font-light mb-12 text-center max-w-xl">
+            It is about becoming stronger, sharper, healthier, and more capable—one system at a time.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">
-            {OPTIMIZATION_BENEFITS.map((benefit) => (
+            {OPTIMIZATION_OUTCOMES.map((benefit) => (
               <div
                 key={benefit}
-                className="p-4 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-wider text-slate-200"
+                className="p-4 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-200"
               >
                 <span className="text-cyan-400 font-bold" aria-hidden="true">✓</span>
                 <span>{benefit}</span>
@@ -343,87 +380,103 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* RESOURCES PREVIEW SECTION */}
         <section className="border-t border-white/10 bg-white/[0.01] py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto flex flex-col items-center">
-            <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
-              Resources
+          <div className="max-w-5xl mx-auto flex flex-col items-center">
+            <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
+              KNOWLEDGE LIBRARY
             </p>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-8 text-center">
-              Human Optimization Library
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4 text-center">
+              Learn. Apply. Evolve.
             </h2>
-            <p className="text-slate-400 text-sm font-light mb-10 text-center">
-              Explore professional execution tracks:
+            <p className="text-slate-400 text-sm font-light mb-12 text-center max-w-md">
+              Explore practical frameworks, guides, and ideas designed to help you turn knowledge into action.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-3 max-w-2xl">
-              {RESOURCE_LINKS.map((res) => (
-                <span
-                  key={res}
-                  className="px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-950/10 text-cyan-300 text-xs font-mono uppercase tracking-wider"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl mb-12 text-left">
+              {KNOWLEDGE_CATEGORIES.map((cat) => (
+                <Link
+                  key={cat.title}
+                  href={cat.href}
+                  className="p-6 rounded-xl border border-white/10 bg-white/[0.01] hover:border-cyan-400/50 transition-all flex flex-col justify-between group focus:outline-none focus:ring-2 focus:ring-cyan-400"
                 >
-                  {res}
-                </span>
+                  <div>
+                    <h3 className="font-bold uppercase text-lg text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs font-mono text-slate-400">
+                      {cat.focus}
+                    </p>
+                  </div>
+                  <div className="mt-6 text-xs font-bold uppercase tracking-widest text-cyan-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                    &rarr;
+                  </div>
+                </Link>
               ))}
             </div>
+
+            <Link
+              href="/knowledge-index"
+              className="inline-block px-8 py-3 border border-cyan-400 text-cyan-300 text-xs uppercase tracking-[0.2em] font-bold hover:bg-cyan-400 hover:text-black transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            >
+              EXPLORE THE LIBRARY &rarr;
+            </Link>
           </div>
         </section>
 
-        {/* MISSION */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center flex flex-col items-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
+          <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
             OUR MISSION
           </p>
           <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-6 text-center leading-tight">
             We don&apos;t chase motivation. <br />
             <span className="text-cyan-400">We build systems.</span>
           </h2>
-          <p className="text-slate-300 leading-relaxed text-sm sm:text-base text-center max-w-2xl font-light">
-            NomadLifeXP helps individuals create sustainable transformation through structured habits, physical development, mindful movement, mental resilience, and continuous growth.
+          <p className="text-slate-300 leading-relaxed text-sm sm:text-base text-center max-w-2xl font-light mb-6">
+            NomadLifeXP exists to help people create sustainable transformation through discipline, physical development, mindful movement, mental resilience, and continuous growth.
+          </p>
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-300/80">
+            The goal isn&apos;t a temporary peak. <br />
+            It&apos;s a better baseline.
           </p>
         </section>
 
-        {/* FINAL CTA */}
         <section className="py-24 px-4 text-center border-t border-white/10 bg-white/[0.01]">
           <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-            <p className="text-xs uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
-              YOUR EVOLUTION BEGINS
+            <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-4 text-center">
+              YOUR EVOLUTION BEGINS HERE.
             </p>
-            <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-8 text-center">
-              Build The Next <br />
-              <span className="text-cyan-400">Version Of Yourself</span>
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4 text-center">
+              BUILD. ADAPT. EVOLVE.
             </h2>
-            <p className="text-slate-400 text-sm font-light mb-10 max-w-xl text-center">
-              Start creating the systems, habits, and mindset required for lifelong human optimization.
+            <p className="text-slate-400 text-sm font-light mb-2 max-w-xl text-center">
+              You don&apos;t need more motivation.
+            </p>
+            <p className="text-slate-300 text-sm font-semibold mb-10 max-w-xl text-center">
+              You need a system you can follow.
             </p>
             <Link
               href="/start-here"
               className="inline-block px-10 py-4 bg-cyan-400 text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-cyan-300 transition text-center shadow-[0_0_30px_rgba(34,211,238,0.2)] focus:outline-none focus:ring-2 focus:ring-white"
             >
-              Start Your Journey
+              START YOUR EVOLUTION &rarr;
             </Link>
           </div>
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="border-t border-cyan-500/20 bg-[#02040a] py-16 px-4 text-center text-xs text-slate-400">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           <p className="font-black tracking-[0.3em] uppercase text-white mb-1 text-base text-center">
             NOMADLIFE<span className="text-cyan-400">XP</span>
           </p>
-          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-2 text-center">
+          <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-2 text-center font-mono">
             Human Optimization Platform
           </p>
-          <p className="uppercase tracking-[0.3em] text-[10px] text-slate-500 mb-6 text-center">
-            Evolve in Motion
+          <p className="uppercase tracking-[0.3em] text-[10px] text-slate-500 mb-6 text-center font-mono">
+            Evolve in Motion.
           </p>
 
-          {/* MASTERCLASS KNOWLEDGE INDEX CALLOUT */}
           <div className="w-full max-w-xl my-6 p-4 border border-cyan-500/20 bg-cyan-950/10 rounded-lg text-center hover:border-cyan-400/50 transition-colors">
-            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-cyan-400 mb-1">
-              RESOURCE_LAYER
-            </p>
             <Link
               href="/knowledge-index"
               className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-white hover:text-cyan-300 font-bold transition-colors focus:outline-none focus:underline"
@@ -432,9 +485,27 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="flex justify-center items-center gap-4 mb-8 text-sm">
+          <nav className="flex flex-wrap justify-center gap-6 mb-6 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300" aria-label="Footer Navigation">
+            <Link href="/about" className="hover:text-cyan-400 transition-colors">
+              About
+            </Link>
+            <Link href="/discipline-system" className="hover:text-cyan-400 transition-colors">
+              Systems
+            </Link>
+            <Link href="/blog" className="hover:text-cyan-400 transition-colors">
+              Blog
+            </Link>
+            <Link href="/knowledge-index" className="hover:text-cyan-400 transition-colors">
+              Masterclass
+            </Link>
+            <Link href="/start-here" className="hover:text-cyan-400 transition-colors">
+              Start
+            </Link>
+          </nav>
+
+          <div className="flex justify-center items-center gap-4 mb-8 text-sm font-mono">
             <a
-              href="https://youtube.com"
+              href={SOCIAL_LINKS.youtube}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-400 transition-colors uppercase tracking-[0.15em] font-medium focus:outline-none focus:underline"
@@ -442,9 +513,9 @@ export default function HomePage() {
             >
               YouTube
             </a>
-            <span className="text-slate-600" aria-hidden="true">|</span>
+            <span className="text-slate-600" aria-hidden="true">·</span>
             <a
-              href="https://instagram.com"
+              href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-400 transition-colors uppercase tracking-[0.15em] font-medium focus:outline-none focus:underline"
@@ -454,25 +525,7 @@ export default function HomePage() {
             </a>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-6 mb-10 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300" aria-label="Footer Navigation">
-            <Link href="/about" className="hover:text-cyan-400 transition-colors">
-              About
-            </Link>
-            <Link href="/blog" className="hover:text-cyan-400 transition-colors">
-              Blog
-            </Link>
-            <Link href="/knowledge-index" className="hover:text-cyan-400 transition-colors">
-              Masterclass Index
-            </Link>
-            <Link href="/discipline-system" className="hover:text-cyan-400 transition-colors">
-              Systems
-            </Link>
-            <Link href="/start-here" className="hover:text-cyan-400 transition-colors">
-              Start
-            </Link>
-          </nav>
-
-          <p className="text-slate-600 text-[11px] text-center">
+          <p className="text-slate-600 text-[11px] text-center font-mono">
             © 2026 NomadLifeXP. All rights reserved.
           </p>
         </div>

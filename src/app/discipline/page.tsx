@@ -11,8 +11,8 @@ interface NavItem {
 interface LibraryItem {
   readonly id: string;
   readonly title: string;
-  readonly description: string;
-  readonly details: string;
+  readonly coreFocus: string;
+  readonly primaryOutcome: string;
   readonly href: string;
 }
 
@@ -27,29 +27,29 @@ const LIBRARY_ITEMS: readonly LibraryItem[] = [
   {
     id: "lib-discipline",
     title: "Discipline System",
-    description: "Habits. Focus. Consistency.",
-    details: "Build self-discipline, create powerful routines, and develop the consistency required for long-term growth.",
+    coreFocus: "Habits. Focus. Consistency.",
+    primaryOutcome: "Engineering daily routines, behavioral control, and long-term behavioral persistence.",
     href: "/blog/category/discipline",
   },
   {
     id: "lib-fitness",
     title: "Fitness System",
-    description: "Strength. Mobility. Performance.",
-    details: "Improve physical capability through strength, movement, recovery, and performance training.",
+    coreFocus: "Strength. Mobility. Performance.",
+    primaryOutcome: "Developing physical capacity, structural strength, endurance, and active recovery.",
     href: "/blog/category/fitness",
   },
   {
     id: "lib-yoga",
     title: "Yoga System",
-    description: "Movement. Awareness. Recovery.",
-    details: "Develop flexibility, mobility, breath control, and mind-body connection through intentional movement.",
+    coreFocus: "Movement. Awareness. Recovery.",
+    primaryOutcome: "Cultivating flexibility, joint mobility, breath regulation, and mind-body cohesion.",
     href: "/blog/category/yoga",
   },
   {
     id: "lib-mindset",
     title: "Mindset System",
-    description: "Growth. Resilience. Confidence.",
-    details: "Strengthen mental performance through focus, resilience, confidence, and continuous improvement.",
+    coreFocus: "Growth. Resilience. Confidence.",
+    primaryOutcome: "Sharpening psychological fortitude, emotional resilience, and continuous cognitive scaling.",
     href: "/blog/category/mindset",
   },
 ];
@@ -236,34 +236,54 @@ export default function HomePage() {
             is not a moment. <br />
             <span className="text-cyan-400">It is a system.</span>
           </h2>
-          <p className="max-w-xl mx-auto text-slate-300 text-sm sm:text-base font-light leading-relaxed text-center">
-            Transformation happens through consistent action, intentional habits, and structured systems that improve your body, mind, and lifestyle.
+          <p className="max-w-xl mx-auto text-slate-300 text-sm sm:text-base font-light leading-relaxed text-center mb-6">
+            Transformation happens through consistent action, intentional habits, structured routines, and systems that improve your body, mind, and lifestyle over time.
+          </p>
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-cyan-300/80">
+            Motivation fades. Systems endure.
           </p>
         </section>
 
-        {/* HUMAN OPTIMIZATION SYSTEMS (LIBRARY) */}
+        {/* HUMAN OPTIMIZATION SYSTEMS (LIBRARY & CORE PILLARS) */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center border-t border-white/10">
-          <div className="max-w-2xl mx-auto mb-12 text-center">
+          <div className="max-w-3xl mx-auto mb-16 text-center">
+            <p className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-3">
+              THE HUMAN OPTIMIZATION SYSTEM
+            </p>
             <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-center mb-4">
-              Human Optimization Library
+              Core Pillars: The Four Systems
             </h2>
             <p className="text-slate-400 text-sm font-light">
-              Explore the systems, practices, and frameworks designed to help you evolve.
+              The platform&apos;s engine relies on four interdependent pillars designed to upgrade human performance.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
             {LIBRARY_ITEMS.map((item) => (
               <Link
                 key={item.id}
                 href={item.href}
-                className="group p-8 rounded-xl border border-white/10 bg-white/[0.01] hover:border-cyan-400/50 transition-all flex flex-col items-center text-center focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="group p-8 rounded-xl border border-white/10 bg-white/[0.01] hover:border-cyan-400/50 transition-all flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-cyan-400"
               >
-                <h3 className="font-bold uppercase text-2xl mb-2 text-center group-hover:text-cyan-300 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs font-semibold text-cyan-400/90 mb-3 text-center">{item.description}</p>
-                <p className="text-xs text-slate-400 text-center font-light">{item.details}</p>
+                <div>
+                  <h3 className="font-bold uppercase text-2xl mb-2 group-hover:text-cyan-300 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs font-mono font-semibold text-cyan-400/90 mb-4 tracking-wider">
+                    {item.coreFocus}
+                  </p>
+                  <div className="border-t border-white/10 pt-4 mt-2">
+                    <p className="text-[10px] uppercase font-mono tracking-widest text-slate-500 mb-1">
+                      Primary Outcome:
+                    </p>
+                    <p className="text-xs text-slate-300 font-light leading-relaxed">
+                      {item.primaryOutcome}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-6 text-xs font-bold uppercase tracking-widest text-cyan-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                  Explore System &rarr;
+                </div>
               </Link>
             ))}
           </div>
@@ -307,7 +327,7 @@ export default function HomePage() {
             <span className="text-cyan-400">Version Of Yourself</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base font-light mb-12 text-center max-w-xl">
-            Human optimization is the process of improving every dimension of your life:
+            Human optimization is the continuous process of improving every dimension of your life through structured systems and intentional action:
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">

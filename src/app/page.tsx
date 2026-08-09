@@ -16,6 +16,18 @@ interface NavItem {
   readonly href: string;
 }
 
+interface JourneyStage {
+  readonly step: string;
+  readonly title: string;
+  readonly desc: string;
+}
+
+interface KnowledgeCategory {
+  readonly title: string;
+  readonly focus: string;
+  readonly href: string;
+}
+
 const NAVIGATION: readonly NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Systems", href: "/discipline-system" },
@@ -62,7 +74,7 @@ const FOUR_SYSTEMS: readonly SystemItem[] = [
   },
 ];
 
-const JOURNEY_STAGES: readonly { readonly step: string; readonly title: string; readonly desc: string }[] = [
+const JOURNEY_STAGES: readonly JourneyStage[] = [
   { step: "01", title: "AWARENESS", desc: "Understand yourself, your habits, and your current state." },
   { step: "02", title: "DISCIPLINE", desc: "Create systems that turn intention into consistent action." },
   { step: "03", title: "STRENGTH", desc: "Develop physical and mental resilience." },
@@ -79,7 +91,7 @@ const OPTIMIZATION_OUTCOMES: readonly string[] = [
   "Sustainable Growth",
 ];
 
-const KNOWLEDGE_CATEGORIES: readonly { readonly title: string; readonly focus: string; readonly href: string }[] = [
+const KNOWLEDGE_CATEGORIES: readonly KnowledgeCategory[] = [
   { title: "DISCIPLINE", focus: "Habits · Focus · Consistency", href: "/blog/category/discipline" },
   { title: "FITNESS", focus: "Training · Strength · Recovery", href: "/blog/category/fitness" },
   { title: "YOGA", focus: "Movement · Breath · Mobility", href: "/blog/category/yoga" },
@@ -87,8 +99,8 @@ const KNOWLEDGE_CATEGORIES: readonly { readonly title: string; readonly focus: s
 ];
 
 const SOCIAL_LINKS = {
-  youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com",
-  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com",
+  youtube: (typeof process !== "undefined" && process.env.NEXT_PUBLIC_YOUTUBE_URL) || "https://youtube.com",
+  instagram: (typeof process !== "undefined" && process.env.NEXT_PUBLIC_INSTAGRAM_URL) || "https://instagram.com",
 };
 
 export const metadata: Metadata = {
@@ -204,12 +216,11 @@ export default function HomePage() {
         </section>
 
         <section
-          className="relative w-full h-[70vh] sm:h-[85vh] min-h-[500px] overflow-hidden my-12 flex items-center justify-center"
+          className="relative w-full h-[70vh] sm:h-[85vh] min-h-[500px] overflow-hidden my-12 flex items-center justify-center bg-cyan-950/20"
           aria-label="NomadLifeXP Cinematic Showcase"
         >
-          {/* Background Video - Cleared dark filters for full facial visibility */}
           <video
-            className="absolute inset-0 w-full h-full object-cover scale-105"
+            className="absolute inset-0 w-full h-full object-contain sm:object-cover object-center"
             src="/videos/yoga-mind-body-awareness.mp4"
             autoPlay
             muted
@@ -217,18 +228,16 @@ export default function HomePage() {
             playsInline
           />
 
-          {/* Lightened Gradient Overlays (Subtle top/bottom fade only, crystal clear center) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/80 via-transparent to-[#050816]/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/70 via-transparent to-[#050816]/70 pointer-events-none" />
 
-          {/* Floating Cinematic Overlay Content with Drop Shadows */}
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center">
-            <span className="text-xs font-mono uppercase tracking-[0.5em] text-cyan-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            <span className="text-xs font-mono font-extrabold uppercase tracking-[0.5s] text-cyan-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               EVOLVE IN MOTION
             </span>
             <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-wider text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               Movement // Breath // Control
             </h2>
-            <p className="text-slate-100 text-xs sm:text-sm font-light max-w-md tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            <p className="text-slate-100 text-xs sm:text-sm font-light max-w-md tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               Yoga for movement, awareness, mobility, breath, and recovery.
             </p>
           </div>
@@ -476,7 +485,7 @@ export default function HomePage() {
           <p className="uppercase tracking-[0.3em] text-[10px] text-cyan-400 mb-2 text-center font-mono">
             Human Optimization Platform
           </p>
-          <p className="uppercase tracking-[0.3em] text-[10px] text-slate-500 mb-6 text-center font-mono">
+          <p className="uppercase tracking-[0.3em] text-[10px] text-slate-300 mb-6 text-center font-mono font-bold">
             Evolve in Motion.
           </p>
 

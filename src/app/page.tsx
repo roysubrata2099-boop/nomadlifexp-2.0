@@ -217,12 +217,13 @@ export default function HomePage() {
           </div>
 
           <div className="w-full aspect-video max-w-3xl rounded-xl overflow-hidden border border-white/10 bg-[#050816] shadow-2xl relative">
-            <iframe
-              className="w-full h-full absolute inset-0"
-              src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID&controls=0&showinfo=0&rel=0&modestbranding=1"
-              title="NomadLifeXP Yoga Movement & Breath"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+            <video
+              className="w-full h-full object-cover absolute inset-0"
+              src="/videos/yoga-body-awareness.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
             />
           </div>
 

@@ -207,9 +207,9 @@ export default function HomePage() {
           className="relative w-full h-[70vh] sm:h-[85vh] min-h-[500px] overflow-hidden my-12 flex items-center justify-center"
           aria-label="NomadLifeXP Cinematic Showcase"
         >
-          {/* Background Video with Cinematic Cover */}
+          {/* Background Video - Cleared dark filters for full facial visibility */}
           <video
-            className="absolute inset-0 w-full h-full object-cover scale-105 filter brightness-90 contrast-105"
+            className="absolute inset-0 w-full h-full object-cover scale-105"
             src="/videos/yoga-mind-body-awareness.mp4"
             autoPlay
             muted
@@ -217,20 +217,18 @@ export default function HomePage() {
             playsInline
           />
 
-          {/* Cinematic Vignette & Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-transparent to-[#050816] pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050816]/60 via-transparent to-[#050816]/60 pointer-events-none" />
-          <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+          {/* Lightened Gradient Overlays (Subtle top/bottom fade only, crystal clear center) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/80 via-transparent to-[#050816]/80 pointer-events-none" />
 
-          {/* Floating Cinematic Overlay Content */}
+          {/* Floating Cinematic Overlay Content with Drop Shadows */}
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center">
-            <span className="text-xs font-mono uppercase tracking-[0.5em] text-cyan-300 mb-3 drop-shadow-md">
+            <span className="text-xs font-mono uppercase tracking-[0.5em] text-cyan-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               EVOLVE IN MOTION
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-wider text-white mb-4 drop-shadow-lg">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-wider text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               Movement // Breath // Control
             </h2>
-            <p className="text-slate-200 text-xs sm:text-sm font-light max-w-md tracking-wide drop-shadow">
+            <p className="text-slate-100 text-xs sm:text-sm font-light max-w-md tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               Yoga for movement, awareness, mobility, breath, and recovery.
             </p>
           </div>

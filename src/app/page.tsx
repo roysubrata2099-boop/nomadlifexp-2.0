@@ -204,32 +204,36 @@ export default function HomePage() {
         </section>
 
         <section
-          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center w-full flex flex-col items-center"
-          aria-label="NomadLifeXP Brand Film"
+          className="relative w-full h-[70vh] sm:h-[85vh] min-h-[500px] overflow-hidden my-12 flex items-center justify-center"
+          aria-label="NomadLifeXP Cinematic Showcase"
         >
-          <div className="w-full flex flex-col items-center mb-6">
-            <span className="text-xs font-mono uppercase tracking-[0.4em] text-cyan-300 mb-2">
+          {/* Background Video with Cinematic Cover */}
+          <video
+            className="absolute inset-0 w-full h-full object-cover scale-105 filter brightness-90 contrast-105"
+            src="/videos/yoga-mind-body-awareness.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+
+          {/* Cinematic Vignette & Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-transparent to-[#050816] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050816]/60 via-transparent to-[#050816]/60 pointer-events-none" />
+          <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+
+          {/* Floating Cinematic Overlay Content */}
+          <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center">
+            <span className="text-xs font-mono uppercase tracking-[0.5em] text-cyan-300 mb-3 drop-shadow-md">
               EVOLVE IN MOTION
             </span>
-            <p className="text-xs font-mono tracking-[0.3em] uppercase text-slate-400">
-              MOVEMENT // BREATH // CONTROL
+            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-wider text-white mb-4 drop-shadow-lg">
+              Movement // Breath // Control
+            </h2>
+            <p className="text-slate-200 text-xs sm:text-sm font-light max-w-md tracking-wide drop-shadow">
+              Yoga for movement, awareness, mobility, breath, and recovery.
             </p>
           </div>
-
-          <div className="w-full aspect-video max-w-3xl rounded-xl overflow-hidden border border-white/10 bg-[#050816] shadow-2xl relative">
-            <video
-              className="w-full h-full object-cover absolute inset-0"
-              src="/videos/yoga-body-awareness.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-          </div>
-
-          <p className="mt-6 text-slate-300 text-sm font-light max-w-lg">
-            Yoga for movement, awareness, mobility, breath, and recovery.
-          </p>
         </section>
 
         <section className="py-24 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">

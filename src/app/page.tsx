@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import CinematicBrandVideo from "@/components/CinematicBrandVideo";
-import MobileNavMenu from "@/components/MobileNavMenu";
+import YogaVideo from "@/components/YogaVideo";
 
 interface SystemItem {
   readonly id: string;
@@ -153,8 +152,6 @@ export default function HomePage() {
               Start Here
             </Link>
           </div>
-
-          <MobileNavMenu navigationItems={NAVIGATION} />
         </div>
       </header>
 
@@ -223,7 +220,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <CinematicBrandVideo />
+          <YogaVideo />
 
           <p className="mt-6 text-slate-300 text-sm font-light max-w-lg">
             Yoga for movement, awareness, mobility, breath, and recovery.

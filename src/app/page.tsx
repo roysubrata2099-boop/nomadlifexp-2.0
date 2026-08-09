@@ -21,7 +21,6 @@ const NAVIGATION: readonly NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Systems", href: "/discipline-system" },
   { label: "Blog", href: "/blog" },
-  { label: "Masterclass", href: "/knowledge-index" },
   { label: "Start", href: "/start-here" },
 ];
 
@@ -86,8 +85,6 @@ const KNOWLEDGE_CATEGORIES: readonly { readonly title: string; readonly focus: s
   { title: "FITNESS", focus: "Training · Strength · Recovery", href: "/blog/category/fitness" },
   { title: "YOGA", focus: "Movement · Breath · Mobility", href: "/blog/category/yoga" },
   { title: "MINDSET", focus: "Resilience · Confidence · Growth", href: "/blog/category/mindset" },
-  { title: "HABITS", focus: "Routines · Systems · Behavior", href: "/blog/category/habits" },
-  { title: "LIFESTYLE", focus: "Balance · Performance · Longevity", href: "/blog/category/lifestyle" },
 ];
 
 const SOCIAL_LINKS = {
@@ -100,7 +97,7 @@ export const metadata: Metadata = {
   description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
   openGraph: {
     title: "NomadLifeXP // Human Optimization Platform",
-    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems.",
+    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
     url: "https://nomadlifexp.com",
     siteName: "NomadLifeXP",
     type: "website",
@@ -108,7 +105,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "NomadLifeXP // Human Optimization Platform",
-    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems.",
+    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
   },
 };
 
@@ -170,7 +167,7 @@ export default function HomePage() {
               className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tight leading-[0.95] mb-6 text-white text-center"
             >
               BUILD YOURSELF <br />
-              <span className="text-cyan-400">LIKE A SYSTEM.</span>
+              <span className="text-cyan-400">LIKE A SYSTEM</span>
             </h1>
 
             <div
@@ -187,7 +184,7 @@ export default function HomePage() {
             </div>
 
             <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
-              NomadLifeXP is a human optimization platform built around structured systems for developing your body, mind, habits, and capacity for lifelong growth.
+              NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
@@ -389,7 +386,7 @@ export default function HomePage() {
               Explore practical frameworks, guides, and ideas designed to help you turn knowledge into action.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl mb-12 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl mb-12 text-left">
               {KNOWLEDGE_CATEGORIES.map((cat) => (
                 <Link
                   key={cat.title}
@@ -491,9 +488,6 @@ export default function HomePage() {
             </Link>
             <Link href="/blog" className="hover:text-cyan-400 transition-colors">
               Blog
-            </Link>
-            <Link href="/knowledge-index" className="hover:text-cyan-400 transition-colors">
-              Masterclass
             </Link>
             <Link href="/start-here" className="hover:text-cyan-400 transition-colors">
               Start

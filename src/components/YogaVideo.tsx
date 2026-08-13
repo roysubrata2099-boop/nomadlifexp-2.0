@@ -9,12 +9,15 @@ export default function YogaVideo() {
                     muted
                     loop
                     playsInline
+                    poster="/images/yoga-mind-body-awareness.jpg"
                 >
                     {/* Fixed path pointing to the videos subfolder */}
-                    <source src="/videos/yoga.mp4" type="video/mp4" />
+                    <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
         </section>
     );
 }
+
+

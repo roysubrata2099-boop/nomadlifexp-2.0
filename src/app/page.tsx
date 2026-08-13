@@ -233,7 +233,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Robust Cinematic Video Showcase Section */}
         <section
           className="relative w-full h-[70vh] sm:h-[85vh] min-h-[500px] overflow-hidden my-12 flex items-center justify-center bg-cyan-950/20"
           aria-label="NomadLifeXP Cinematic Showcase"

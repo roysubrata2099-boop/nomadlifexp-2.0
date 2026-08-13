@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface SystemItem {
   readonly id: string;
@@ -99,41 +100,45 @@ const KNOWLEDGE_CATEGORIES: readonly KnowledgeCategory[] = [
   { title: "MINDSET", focus: "Resilience · Confidence · Growth", href: "/blog/category/mindset" },
 ];
 
-const SOCIAL_LINKS = {
-  youtube:
-    (typeof process !== "undefined" && process.env.NEXT_PUBLIC_YOUTUBE_URL) ||
-    "https://youtube.com",
-  instagram:
-    (typeof process !== "undefined" && process.env.NEXT_PUBLIC_INSTAGRAM_URL) ||
-    "https://instagram.com",
-};
-
-// Explicitly marked as a Client Component
+// Error-free Client Video Component with fallback handling
 function ClientVideoPlayer() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    setIsPlaying(true);
+  }, []);
+
   return (
-    <video
-      className="absolute inset-0 w-full h-full object-cover object-center"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      controls={false}
-      disablePictureInPicture
-      aria-hidden="true"
-      onCanPlay={(e) => {
-        e.currentTarget.play().catch(() => {
-          // Silently catch blocks from restrictive browser autoplay policies
-        });
-      }}
-    >
-      <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-cyan-950/40">
+      {isPlaying && (
+        <video
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          controls={false}
+          disablePictureInPicture
+          aria-hidden="true"
+          onCanPlay={(e) => {
+            e.currentTarget.play().catch(() => {
+              // Silently catch blocks from restrictive browser autoplay policies
+            });
+          }}
+        >
+          <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
+    </div>
   );
 }
 
 export default function HomePage() {
+  const youtubeUrl = process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com";
+  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com";
+
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased flex flex-col justify-between font-sans">
       <div
@@ -557,7 +562,7 @@ export default function HomePage() {
 
           <div className="flex justify-center items-center gap-4 mb-8 text-sm font-mono">
             <a
-              href={SOCIAL_LINKS.youtube}
+              href={youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-400 transition-colors uppercase tracking-[0.15em] font-medium focus:outline-none focus:underline"
@@ -569,7 +574,7 @@ export default function HomePage() {
               ·
             </span>
             <a
-              href={SOCIAL_LINKS.instagram}
+              href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-400 transition-colors uppercase tracking-[0.15em] font-medium focus:outline-none focus:underline"

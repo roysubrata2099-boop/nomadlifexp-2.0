@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type JSX } from "react";
 
 interface SystemItem {
   readonly id: string;
@@ -100,19 +100,38 @@ const KNOWLEDGE_CATEGORIES: readonly KnowledgeCategory[] = [
   { title: "MINDSET", focus: "Resilience · Confidence · Growth", href: "/blog/category/mindset" },
 ];
 
-// Error-free Client Video Component with fallback handling
-function ClientVideoPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
+function ClientVideoPlayer(): JSX.Element {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasError, setHasError] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsPlaying(true);
+    const video = videoRef.current;
+    if (!video) return;
+
+    const tryPlay = (): void => {
+      video.play().catch((): void => { });
+    };
+
+    tryPlay();
+
+    video.addEventListener("loadeddata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+
+    const timer = setTimeout(tryPlay, 500);
+
+    return () => {
+      clearTimeout(timer);
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+    };
   }, []);
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-cyan-950/40">
-      {isPlaying && (
+      {!hasError ? (
         <video
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
           autoPlay
           muted
           loop
@@ -121,30 +140,51 @@ function ClientVideoPlayer() {
           controls={false}
           disablePictureInPicture
           aria-hidden="true"
-          onCanPlay={(e) => {
-            e.currentTarget.play().catch(() => {
-              // Silently catch blocks from restrictive browser autoplay policies
-            });
-          }}
+          poster="/images/yoga-poster.jpg"
+          onError={(): void => setHasError(true)}
         >
           <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+      ) : (
+        <div className="absolute inset-0 bg-cyan-950/60" />
       )}
     </div>
   );
 }
 
-export default function HomePage() {
-  const youtubeUrl = process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com";
-  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com";
+export default function HomePage(): JSX.Element {
+  const youtubeUrl: string = process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com";
+  const instagramUrl: string = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com";
+
+  useEffect(() => {
+    // Content Protection: Prevent right-click context menu and asset inspection shortcuts
+    const handleContextMenu = (e: MouseEvent): void => {
+      e.preventDefault();
+    };
+
+    const handleKeyDown = (e: KeyboardEvent): void => {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) ||
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased flex flex-col justify-between font-sans">
-      <div
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
-      >
+    <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased flex flex-col justify-content font-sans select-none">
+      <div aria-hidden="true" className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[10%] left-[25%] w-[500px] h-[500px] rounded-full bg-cyan-500/[0.02] blur-[160px]" />
       </div>
 
@@ -162,7 +202,7 @@ export default function HomePage() {
             className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.2em] font-medium text-slate-400"
             aria-label="Main Navigation"
           >
-            {NAVIGATION.map((item) => (
+            {NAVIGATION.map((item: NavItem) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -207,17 +247,11 @@ export default function HomePage() {
               aria-label="System Pillars"
             >
               <span>Discipline</span>
-              <span className="text-white/30" aria-hidden="true">
-                •
-              </span>
+              <span className="text-white/30" aria-hidden="true">•</span>
               <span>Fitness</span>
-              <span className="text-white/30" aria-hidden="true">
-                •
-              </span>
+              <span className="text-white/30" aria-hidden="true">•</span>
               <span>Yoga</span>
-              <span className="text-white/30" aria-hidden="true">
-                •
-              </span>
+              <span className="text-white/30" aria-hidden="true">•</span>
               <span>Mindset</span>
             </div>
 
@@ -301,7 +335,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
-            {FOUR_SYSTEMS.map((item) => (
+            {FOUR_SYSTEMS.map((item: SystemItem) => (
               <Link
                 key={item.id}
                 href={item.href}
@@ -362,11 +396,8 @@ export default function HomePage() {
             </p>
 
             <div className="w-full max-w-2xl flex flex-col items-center gap-4 mb-12">
-              {JOURNEY_STAGES.map((stage, index) => (
-                <div
-                  key={stage.step}
-                  className="w-full flex flex-col items-center"
-                >
+              {JOURNEY_STAGES.map((stage: JourneyStage, index: number) => (
+                <div key={stage.step} className="w-full flex flex-col items-center">
                   <div className="w-full p-6 rounded-lg border border-white/10 bg-[#050816]/40 hover:border-cyan-400/40 transition-colors text-left flex items-start gap-6">
                     <span className="font-mono text-cyan-400 font-bold text-sm tracking-widest pt-0.5">
                       {stage.step} —
@@ -382,10 +413,7 @@ export default function HomePage() {
                   </div>
 
                   {index < JOURNEY_STAGES.length - 1 && (
-                    <div
-                      className="h-6 w-[1px] bg-cyan-500/30 my-1"
-                      aria-hidden="true"
-                    />
+                    <div className="h-6 w-[1px] bg-cyan-500/30 my-1" aria-hidden="true" />
                   )}
                 </div>
               ))}
@@ -414,7 +442,7 @@ export default function HomePage() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">
-            {OPTIMIZATION_OUTCOMES.map((benefit) => (
+            {OPTIMIZATION_OUTCOMES.map((benefit: string) => (
               <div
                 key={benefit}
                 className="p-4 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-200"
@@ -442,7 +470,7 @@ export default function HomePage() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl mb-12 text-left">
-              {KNOWLEDGE_CATEGORIES.map((cat) => (
+              {KNOWLEDGE_CATEGORIES.map((cat: KnowledgeCategory) => (
                 <Link
                   key={cat.title}
                   href={cat.href}
@@ -543,19 +571,13 @@ export default function HomePage() {
             <Link href="/about" className="hover:text-cyan-400 transition-colors">
               About
             </Link>
-            <Link
-              href="/discipline-system"
-              className="hover:text-cyan-400 transition-colors"
-            >
+            <Link href="/discipline-system" className="hover:text-cyan-400 transition-colors">
               Systems
             </Link>
             <Link href="/blog" className="hover:text-cyan-400 transition-colors">
               Blog
             </Link>
-            <Link
-              href="/start-here"
-              className="hover:text-cyan-400 transition-colors"
-            >
+            <Link href="/start-here" className="hover:text-cyan-400 transition-colors">
               Start
             </Link>
           </nav>

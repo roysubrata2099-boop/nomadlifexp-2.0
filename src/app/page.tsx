@@ -99,16 +99,22 @@ const KNOWLEDGE_CATEGORIES: readonly KnowledgeCategory[] = [
 ];
 
 const SOCIAL_LINKS = {
-  youtube: (typeof process !== "undefined" && process.env.NEXT_PUBLIC_YOUTUBE_URL) || "https://youtube.com",
-  instagram: (typeof process !== "undefined" && process.env.NEXT_PUBLIC_INSTAGRAM_URL) || "https://instagram.com",
+  youtube:
+    (typeof process !== "undefined" && process.env.NEXT_PUBLIC_YOUTUBE_URL) ||
+    "https://youtube.com",
+  instagram:
+    (typeof process !== "undefined" && process.env.NEXT_PUBLIC_INSTAGRAM_URL) ||
+    "https://instagram.com",
 };
 
 export const metadata: Metadata = {
   title: "NomadLifeXP // Human Optimization Platform",
-  description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
+  description:
+    "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
   openGraph: {
     title: "NomadLifeXP // Human Optimization Platform",
-    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
+    description:
+      "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
     url: "https://nomadlifexp.com",
     siteName: "NomadLifeXP",
     type: "website",
@@ -116,14 +122,18 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "NomadLifeXP // Human Optimization Platform",
-    description: "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
+    description:
+      "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
   },
 };
 
 export default function HomePage() {
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased flex flex-col justify-between font-sans">
-      <div aria-hidden="true" className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+      >
         <div className="absolute top-[10%] left-[25%] w-[500px] h-[500px] rounded-full bg-cyan-500/[0.02] blur-[160px]" />
       </div>
 
@@ -186,16 +196,24 @@ export default function HomePage() {
               aria-label="System Pillars"
             >
               <span>Discipline</span>
-              <span className="text-white/30" aria-hidden="true">•</span>
+              <span className="text-white/30" aria-hidden="true">
+                •
+              </span>
               <span>Fitness</span>
-              <span className="text-white/30" aria-hidden="true">•</span>
+              <span className="text-white/30" aria-hidden="true">
+                •
+              </span>
               <span>Yoga</span>
-              <span className="text-white/30" aria-hidden="true">•</span>
+              <span className="text-white/30" aria-hidden="true">
+                •
+              </span>
               <span>Mindset</span>
             </div>
 
             <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 leading-relaxed mb-8 text-center font-light">
-              NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.
+              NomadLifeXP helps you build discipline, fitness, mindset, and habits
+              through structured systems designed for lifelong growth and human
+              evolution.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
@@ -215,23 +233,35 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Robust Cinematic Video Showcase Section */}
         <section
           className="relative w-full h-[70vh] sm:h-[85vh] min-h-[500px] overflow-hidden my-12 flex items-center justify-center bg-cyan-950/20"
           aria-label="NomadLifeXP Cinematic Showcase"
         >
           <video
-            className="absolute inset-0 w-full h-full object-contain sm:object-cover object-center"
-            src="/videos/yoga-mind-body-awareness.mp4"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             autoPlay
             muted
             loop
             playsInline
-          />
+            preload="auto"
+            controls={false}
+            disablePictureInPicture
+            aria-hidden="true"
+            onCanPlay={(e) => {
+              e.currentTarget.play().catch(() => {
+                // Silently catch blocks from restrictive browser autoplay policies
+              });
+            }}
+          >
+            <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
 
           <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/70 via-transparent to-[#050816]/70 pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center">
-            <span className="text-xs font-mono font-extrabold uppercase tracking-[0.5s] text-cyan-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            <span className="text-xs font-mono font-extrabold uppercase tracking-[0.3em] sm:tracking-[0.5em] text-cyan-300 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               EVOLVE IN MOTION
             </span>
             <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-wider text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
@@ -254,7 +284,8 @@ export default function HomePage() {
               <span className="text-cyan-400">It is a system.</span>
             </h2>
             <p className="max-w-xl mx-auto text-slate-300 text-sm sm:text-base font-light leading-relaxed text-center mb-6">
-              Real transformation is built through consistent action, intentional habits, structured routines, and systems that compound over time.
+              Real transformation is built through consistent action, intentional
+              habits, structured routines, and systems that compound over time.
             </p>
             <p className="text-xs font-mono tracking-[0.3em] uppercase text-cyan-300/80">
               Motivation fades. Systems endure.
@@ -271,7 +302,9 @@ export default function HomePage() {
               Four systems. One direction.
             </h2>
             <p className="text-slate-400 text-sm font-light">
-              The NomadLifeXP framework brings together four interconnected systems designed to develop a stronger, more capable, and more balanced human.
+              The NomadLifeXP framework brings together four interconnected systems
+              designed to develop a stronger, more capable, and more balanced
+              human.
             </p>
           </div>
 
@@ -313,7 +346,7 @@ export default function HomePage() {
         </section>
 
         <section className="max-w-4xl mx-auto px-4 py-8 text-center">
-          <div className="p-6 rounded-xl border border-cyan-500/20 bg-cyan-950/10 backdrop-blur-sm flex flex-col items-center">
+          <div className="p-6 rounded-xl border border-cyan-500/20 bg-cyan-950/15 backdrop-blur-sm flex flex-col items-center">
             <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-cyan-400 mb-2">
               THE NOMADLIFEXP FRAMEWORK
             </span>
@@ -332,12 +365,16 @@ export default function HomePage() {
               From Chaos <span className="text-cyan-400">To Clarity</span>
             </h2>
             <p className="text-slate-400 text-sm font-light mb-16 text-center max-w-md">
-              Every transformation begins with awareness and develops through deliberate action.
+              Every transformation begins with awareness and develops through
+              deliberate action.
             </p>
 
             <div className="w-full max-w-2xl flex flex-col items-center gap-4 mb-12">
               {JOURNEY_STAGES.map((stage, index) => (
-                <div key={stage.step} className="w-full flex flex-col items-center">
+                <div
+                  key={stage.step}
+                  className="w-full flex flex-col items-center"
+                >
                   <div className="w-full p-6 rounded-lg border border-white/10 bg-[#050816]/40 hover:border-cyan-400/40 transition-colors text-left flex items-start gap-6">
                     <span className="font-mono text-cyan-400 font-bold text-sm tracking-widest pt-0.5">
                       {stage.step} —
@@ -353,7 +390,10 @@ export default function HomePage() {
                   </div>
 
                   {index < JOURNEY_STAGES.length - 1 && (
-                    <div className="h-6 w-[1px] bg-cyan-500/30 my-1" aria-hidden="true" />
+                    <div
+                      className="h-6 w-[1px] bg-cyan-500/30 my-1"
+                      aria-hidden="true"
+                    />
                   )}
                 </div>
               ))}
@@ -377,7 +417,8 @@ export default function HomePage() {
             Human optimization is not about becoming perfect.
           </p>
           <p className="text-slate-400 text-sm font-light mb-12 text-center max-w-xl">
-            It is about becoming stronger, sharper, healthier, and more capable—one system at a time.
+            It is about becoming stronger, sharper, healthier, and more
+            capable—one system at a time.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">
@@ -386,7 +427,9 @@ export default function HomePage() {
                 key={benefit}
                 className="p-4 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-200"
               >
-                <span className="text-cyan-400 font-bold" aria-hidden="true">✓</span>
+                <span className="text-cyan-400 font-bold" aria-hidden="true">
+                  ✓
+                </span>
                 <span>{benefit}</span>
               </div>
             ))}
@@ -402,7 +445,8 @@ export default function HomePage() {
               Learn. Apply. Evolve.
             </h2>
             <p className="text-slate-400 text-sm font-light mb-12 text-center max-w-md">
-              Explore practical frameworks, guides, and ideas designed to help you turn knowledge into action.
+              Explore practical frameworks, guides, and ideas designed to help
+              you turn knowledge into action.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl mb-12 text-left">
@@ -445,7 +489,9 @@ export default function HomePage() {
             <span className="text-cyan-400">We build systems.</span>
           </h2>
           <p className="text-slate-300 leading-relaxed text-sm sm:text-base text-center max-w-2xl font-light mb-6">
-            NomadLifeXP exists to help people create sustainable transformation through discipline, physical development, mindful movement, mental resilience, and continuous growth.
+            NomadLifeXP exists to help people create sustainable transformation
+            through discipline, physical development, mindful movement, mental
+            resilience, and continuous growth.
           </p>
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-300/80">
             The goal isn&apos;t a temporary peak. <br />
@@ -498,17 +544,26 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-6 mb-6 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300" aria-label="Footer Navigation">
+          <nav
+            className="flex flex-wrap justify-center gap-6 mb-6 uppercase tracking-[0.2em] text-[11px] font-semibold text-slate-300"
+            aria-label="Footer Navigation"
+          >
             <Link href="/about" className="hover:text-cyan-400 transition-colors">
               About
             </Link>
-            <Link href="/discipline-system" className="hover:text-cyan-400 transition-colors">
+            <Link
+              href="/discipline-system"
+              className="hover:text-cyan-400 transition-colors"
+            >
               Systems
             </Link>
             <Link href="/blog" className="hover:text-cyan-400 transition-colors">
               Blog
             </Link>
-            <Link href="/start-here" className="hover:text-cyan-400 transition-colors">
+            <Link
+              href="/start-here"
+              className="hover:text-cyan-400 transition-colors"
+            >
               Start
             </Link>
           </nav>
@@ -523,7 +578,9 @@ export default function HomePage() {
             >
               YouTube
             </a>
-            <span className="text-slate-600" aria-hidden="true">·</span>
+            <span className="text-slate-600" aria-hidden="true">
+              ·
+            </span>
             <a
               href={SOCIAL_LINKS.instagram}
               target="_blank"

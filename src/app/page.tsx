@@ -1,5 +1,6 @@
+"use client";
+
 import Link from "next/link";
-import { Metadata } from "next";
 
 interface SystemItem {
   readonly id: string;
@@ -107,27 +108,7 @@ const SOCIAL_LINKS = {
     "https://instagram.com",
 };
 
-export const metadata: Metadata = {
-  title: "NomadLifeXP // Human Optimization Platform",
-  description:
-    "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
-  openGraph: {
-    title: "NomadLifeXP // Human Optimization Platform",
-    description:
-      "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
-    url: "https://nomadlifexp.com",
-    siteName: "NomadLifeXP",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "NomadLifeXP // Human Optimization Platform",
-    description:
-      "NomadLifeXP helps you build discipline, fitness, mindset, and habits through structured systems designed for lifelong growth and human evolution.",
-  },
-};
-
-// Isolated Client Component for handling video playback safely
+// Explicitly marked as a Client Component
 function ClientVideoPlayer() {
   return (
     <video

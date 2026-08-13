@@ -127,6 +127,31 @@ export const metadata: Metadata = {
   },
 };
 
+// Isolated Client Component for handling video playback safely
+function ClientVideoPlayer() {
+  return (
+    <video
+      className="absolute inset-0 w-full h-full object-cover object-center"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      controls={false}
+      disablePictureInPicture
+      aria-hidden="true"
+      onCanPlay={(e) => {
+        e.currentTarget.play().catch(() => {
+          // Silently catch blocks from restrictive browser autoplay policies
+        });
+      }}
+    >
+      <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  );
+}
+
 export default function HomePage() {
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black overflow-x-hidden antialiased flex flex-col justify-between font-sans">
@@ -237,25 +262,7 @@ export default function HomePage() {
           className="relative w-full h-[70vh] sm:h-[85vh] min-h-[500px] overflow-hidden my-12 flex items-center justify-center bg-cyan-950/20"
           aria-label="NomadLifeXP Cinematic Showcase"
         >
-          <video
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            controls={false}
-            disablePictureInPicture
-            aria-hidden="true"
-            onCanPlay={(e) => {
-              e.currentTarget.play().catch(() => {
-                // Silently catch blocks from restrictive browser autoplay policies
-              });
-            }}
-          >
-            <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <ClientVideoPlayer />
 
           <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/70 via-transparent to-[#050816]/70 pointer-events-none" />
 

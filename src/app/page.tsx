@@ -3,35 +3,11 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type JSX } from "react";
 
-// --- INTERFACES ---
-interface SystemItem {
-  readonly id: string;
-  readonly number: string;
-  readonly title: string;
-  readonly coreFocus: string;
-  readonly description: string;
-  readonly primaryOutcome: string;
-  readonly href: string;
-}
-
 interface NavItem {
   readonly label: string;
   readonly href: string;
 }
 
-interface JourneyStage {
-  readonly step: string;
-  readonly title: string;
-  readonly desc: string;
-}
-
-interface KnowledgeCategory {
-  readonly title: string;
-  readonly focus: string;
-  readonly href: string;
-}
-
-// --- DATA ---
 const NAVIGATION: readonly NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Systems", href: "/discipline-system" },
@@ -39,46 +15,6 @@ const NAVIGATION: readonly NavItem[] = [
   { label: "Start", href: "/start-here" },
 ];
 
-const FOUR_SYSTEMS: readonly SystemItem[] = [
-  {
-    id: "sys-discipline",
-    number: "01",
-    title: "Discipline System",
-    coreFocus: "HABITS. FOCUS. CONSISTENCY.",
-    description: "Build the ability to act with intention, follow through, and create consistency that lasts.",
-    primaryOutcome: "Stronger routines. Better focus. Greater self-control.",
-    href: "/blog/category/discipline",
-  },
-  {
-    id: "sys-fitness",
-    number: "02",
-    title: "Fitness System",
-    coreFocus: "STRENGTH. MOBILITY. PERFORMANCE.",
-    description: "Build physical capacity through strength, movement, conditioning, and intelligent recovery.",
-    primaryOutcome: "A stronger, more capable, more resilient body.",
-    href: "/blog/category/fitness",
-  },
-  {
-    id: "sys-yoga",
-    number: "03",
-    title: "Yoga System",
-    coreFocus: "MOVEMENT. AWARENESS. RECOVERY.",
-    description: "Develop mobility, breath, body awareness, balance, and deeper control through mindful movement.",
-    primaryOutcome: "Better movement. Better recovery. Greater mind-body connection.",
-    href: "/blog/category/yoga",
-  },
-  {
-    id: "sys-mindset",
-    number: "04",
-    title: "Mindset System",
-    coreFocus: "GROWTH. RESILIENCE. CONFIDENCE.",
-    description: "Develop the mental foundations required to handle pressure, overcome resistance, and keep evolving.",
-    primaryOutcome: "Greater resilience. Stronger confidence. A growth-oriented mind.",
-    href: "/blog/category/mindset",
-  },
-];
-
-// --- COMPONENTS ---
 function ClientVideoPlayer(): JSX.Element {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasError, setHasError] = useState<boolean>(false);
@@ -137,7 +73,6 @@ export default function HomePage(): JSX.Element {
   const instagramUrl: string = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com/nomadlifexp";
 
   useEffect(() => {
-    // Content Protection
     const handleContextMenu = (e: MouseEvent): void => { e.preventDefault(); };
     const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || (e.ctrlKey && e.key === "U")) {

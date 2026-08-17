@@ -154,8 +154,8 @@ function ClientVideoPlayer(): JSX.Element {
 }
 
 export default function HomePage(): JSX.Element {
-  const youtubeUrl: string = process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com";
-  const instagramUrl: string = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com";
+  const youtubeUrl: string = "https://www.youtube.com/@nomadlifexp";
+  const instagramUrl: string = "https://www.instagram.com/nomadlifexp";
 
   useEffect(() => {
     // Content Protection: Prevent right-click context menu and asset inspection shortcuts
@@ -377,7 +377,7 @@ export default function HomePage(): JSX.Element {
               THE NOMADLIFEXP FRAMEWORK
             </span>
             <p className="text-xs font-mono uppercase tracking-[0.2em] text-white font-bold">
-              4 SYSTEMS → 5 STAGES → 1 CONTINUOUS PROCESS
+              4 SYSTEMS &rarr; 5 STAGES &rarr; 1 CONTINUOUS PROCESS
             </p>
           </div>
         </section>
@@ -400,7 +400,7 @@ export default function HomePage(): JSX.Element {
                 <div key={stage.step} className="w-full flex flex-col items-center">
                   <div className="w-full p-6 rounded-lg border border-white/10 bg-[#050816]/40 hover:border-cyan-400/40 transition-colors text-left flex items-start gap-6">
                     <span className="font-mono text-cyan-400 font-bold text-sm tracking-widest pt-0.5">
-                      {stage.step} —
+                      {stage.step} &mdash;
                     </span>
                     <div>
                       <h3 className="text-xs font-bold font-mono uppercase tracking-widest text-white mb-1">
@@ -438,7 +438,7 @@ export default function HomePage(): JSX.Element {
           </p>
           <p className="text-slate-400 text-sm font-light mb-12 text-center max-w-xl">
             It is about becoming stronger, sharper, healthier, and more
-            capable—one system at a time.
+            capable&mdash;one system at a time.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">
@@ -448,7 +448,7 @@ export default function HomePage(): JSX.Element {
                 className="p-4 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-200"
               >
                 <span className="text-cyan-400 font-bold" aria-hidden="true">
-                  ✓
+                  &checkmark;
                 </span>
                 <span>{benefit}</span>
               </div>
@@ -593,7 +593,7 @@ export default function HomePage(): JSX.Element {
               YouTube
             </a>
             <span className="text-slate-600" aria-hidden="true">
-              ·
+              &middot;
             </span>
             <a
               href={instagramUrl}
@@ -607,7 +607,7 @@ export default function HomePage(): JSX.Element {
           </div>
 
           <p className="text-slate-600 text-[11px] text-center font-mono">
-            © 2026 NomadLifeXP. All rights reserved.
+            &copy; 2026 NomadLifeXP. All rights reserved.
           </p>
         </div>
       </footer>

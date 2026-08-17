@@ -611,7 +611,8 @@ export default function HomePage(): JSX.Element {
             </Link>
             <p className="text-xs text-slate-500 font-mono mt-1">&copy; {new Date().getFullYear()} NomadLifeXP. All rights reserved.</p>
           </div>
-          <div className="flex items-center gap-6 text-xs font-mono uppercase">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono uppercase">
+            <Link href="/knowledge-index" className="text-slate-400 hover:text-cyan-400 transition-colors">Knowledge Index</Link>
             <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">YouTube</a>
             <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">Instagram</a>
             <Link href="/about" className="text-slate-400 hover:text-cyan-400 transition-colors">About</Link>

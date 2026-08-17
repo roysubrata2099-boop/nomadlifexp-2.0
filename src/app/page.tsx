@@ -199,14 +199,25 @@ export default function HomePage(): JSX.Element {
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black font-sans flex flex-col justify-between">
 
-      {/* Header */}
+      {/* Navbar with System, Blog, and Start */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
           <Link href="/" className="font-black tracking-[0.25em] text-sm uppercase">
             NOMADLIFE<span className="text-cyan-400">XP</span>
           </Link>
+          <nav className="hidden md:flex items-center gap-8">
+            <Link href="#systems" className="text-xs uppercase font-bold text-slate-300 hover:text-cyan-400 transition-colors">
+              Systems
+            </Link>
+            <Link href="/blog" className="text-xs uppercase font-bold text-slate-300 hover:text-cyan-400 transition-colors">
+              Blog
+            </Link>
+            <Link href="/start-here" className="text-xs uppercase font-bold text-slate-300 hover:text-cyan-400 transition-colors">
+              Start Here
+            </Link>
+          </nav>
           <div className="flex gap-4">
-            <Link href="/start-here" className="text-xs uppercase font-bold text-cyan-300 hover:text-cyan-200 transition-colors">
+            <Link href="/start-here" className="px-4 py-2 bg-cyan-400 text-black font-bold uppercase text-xs tracking-wider hover:bg-cyan-300 transition-colors">
               Start Your Evolution &rarr;
             </Link>
           </div>
@@ -235,14 +246,14 @@ export default function HomePage(): JSX.Element {
               <Link href="/start-here" className="px-8 py-4 bg-cyan-400 text-black font-bold uppercase text-xs tracking-wider hover:bg-cyan-300 transition-colors">
                 Start Your Evolution &rarr;
               </Link>
-              <Link href="/discipline-system" className="px-8 py-4 border border-white/20 text-white font-bold uppercase text-xs tracking-wider hover:bg-white/5 transition-colors">
+              <Link href="#systems" className="px-8 py-4 border border-white/20 text-white font-bold uppercase text-xs tracking-wider hover:bg-white/5 transition-colors">
                 Explore the Systems &rarr;
               </Link>
             </div>
           </div>
         </section>
 
-        {/* 2. CINEMATIC VIDEO (WITH DEDICATED CINEMATIC YOGA EMBED / PREVIEW) */}
+        {/* 2. CINEMATIC YOGA VIDEO SECTION */}
         <section className="py-12 px-4 max-w-6xl mx-auto">
           <div className="relative w-full aspect-video border border-white/10 bg-black/60 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-950/40 via-[#050816] to-slate-900/40" />
@@ -357,7 +368,7 @@ export default function HomePage(): JSX.Element {
         </section>
 
         {/* 6. FOUR SYSTEMS */}
-        <section className="py-24 max-w-7xl mx-auto px-4 border-t border-white/5">
+        <section id="systems" className="py-24 max-w-7xl mx-auto px-4 border-t border-white/5 scroll-mt-24">
           <h2 className="text-5xl font-black uppercase text-center mb-16 tracking-tight">The Four Systems</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {DETAILED_SYSTEMS.map((system) => (
@@ -535,7 +546,7 @@ export default function HomePage(): JSX.Element {
 
       </main>
 
-      {/* FOOTER WITH ORIGINAL YOUTUBE AND INSTAGRAM LINKS */}
+      {/* PREVIOUS FOOTER LAYOUT */}
       <footer className="border-t border-white/10 bg-[#03050c] py-12 px-4">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div>

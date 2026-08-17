@@ -207,23 +207,30 @@ function ClientVideoPlayer(): JSX.Element {
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-cyan-950/40">
       {!hasError ? (
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          controls={false}
-          disablePictureInPicture
-          aria-hidden="true"
-          poster="/images/yoga-poster.jpg"
-          onError={(): void => setHasError(true)}
-        >
-          <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <>
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            controls={false}
+            disablePictureInPicture
+            aria-hidden="true"
+            poster="/images/yoga-poster.jpg"
+            onError={(): void => setHasError(true)}
+          >
+            <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {/* Invisible shield layer over the video element to prevent direct right-click or native video saving */}
+          <div
+            className="absolute inset-0 z-10 pointer-events-auto"
+            onContextMenu={(e) => e.preventDefault()}
+          />
+        </>
       ) : (
         <div className="absolute inset-0 bg-cyan-950/60" />
       )}
@@ -237,22 +244,37 @@ export default function HomePage(): JSX.Element {
 
   useEffect(() => {
     const handleContextMenu = (e: MouseEvent): void => { e.preventDefault(); };
+    const handleSelectStart = (e: Event): void => { e.preventDefault(); };
+    const handleCopy = (e: Event): void => { e.preventDefault(); };
+    const handleDragStart = (e: Event): void => { e.preventDefault(); };
+
     const handleKeyDown = (e: KeyboardEvent): void => {
-      if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || (e.ctrlKey && e.key === "U")) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C" || e.key === "K")) ||
+        (e.ctrlKey && (e.key === "U" || e.key === "S" || e.key === "P"))
+      ) {
         e.preventDefault();
       }
     };
 
     document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("selectstart", handleSelectStart);
+    document.addEventListener("copy", handleCopy);
+    document.addEventListener("dragstart", handleDragStart);
     document.addEventListener("keydown", handleKeyDown);
+
     return () => {
       document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("selectstart", handleSelectStart);
+      document.removeEventListener("copy", handleCopy);
+      document.removeEventListener("dragstart", handleDragStart);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black font-sans flex flex-col justify-between">
+    <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black font-sans flex flex-col justify-between select-none">
 
       {/* NAVBAR */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050816]/90 backdrop-blur-xl">
@@ -304,7 +326,7 @@ export default function HomePage(): JSX.Element {
 
           <div className="relative w-full max-w-5xl mx-auto h-[50vh] rounded-2xl overflow-hidden border border-white/10 my-8 shadow-2xl">
             <ClientVideoPlayer />
-            <div className="absolute inset-0 z-10 flex items-center justify-center text-center pointer-events-none">
+            <div className="absolute inset-0 z-20 flex items-center justify-center text-center pointer-events-none">
               <span className="text-xs font-mono uppercase tracking-[0.4em] bg-black/60 px-4 py-2 border border-white/20 backdrop-blur-md text-cyan-300">Cinematic Video</span>
             </div>
           </div>
@@ -568,13 +590,9 @@ export default function HomePage(): JSX.Element {
             <p className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400">Your evolution begins here.</p>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight">Build. Adapt. Evolve.</h2>
             <p className="text-slate-300 text-base md:text-lg">
-              You do not need more motivation. <br />
-              <strong className="text-white">YOU NEED A SYSTEM YOU CAN FOLLOW.</strong>
+              You do not need to optimize everything at once. Start with awareness, build consistency through discipline, and let your systems compound over time.
             </p>
-            <p className="text-slate-400 text-sm font-mono">
-              Start where you are. Build what matters. Become more capable.
-            </p>
-            <div className="pt-6">
+            <div className="pt-4">
               <Link href="/start-here" className="inline-block px-8 py-4 bg-cyan-400 text-black font-bold uppercase text-xs tracking-wider hover:bg-cyan-300 transition-colors">
                 Start Your Evolution &rarr;
               </Link>
@@ -586,20 +604,22 @@ export default function HomePage(): JSX.Element {
 
       {/* FOOTER */}
       <footer className="border-t border-white/10 bg-[#03050c] py-12 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>
-            <Link href="/" className="font-black tracking-[0.25em] text-sm uppercase block mb-2">
-              NOMADLIFE<span className="text-cyan-400">XP</span> // Human Optimization Masterclass
+            <Link href="/" className="font-black tracking-[0.25em] text-sm uppercase">
+              NOMADLIFE<span className="text-cyan-400">XP</span>
             </Link>
-            <p className="text-xs text-slate-400 font-mono mb-1">Human Optimization Masterclass Library</p>
-            <p className="text-xs text-slate-500 font-mono">&copy; {new Date().getFullYear()} NomadLifeXP. All rights reserved.</p>
+            <p className="text-xs text-slate-500 font-mono mt-1">&copy; {new Date().getFullYear()} NomadLifeXP. All rights reserved.</p>
           </div>
-          <div className="flex items-center gap-6">
-            <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-cyan-400">YouTube &rarr;</a>
-            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-cyan-400">Instagram &rarr;</a>
+          <div className="flex items-center gap-6 text-xs font-mono uppercase">
+            <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">YouTube</a>
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">Instagram</a>
+            <Link href="/about" className="text-slate-400 hover:text-cyan-400 transition-colors">About</Link>
+            <Link href="/blog" className="text-slate-400 hover:text-cyan-400 transition-colors">Blog</Link>
           </div>
         </div>
       </footer>
+
     </div>
   );
 }

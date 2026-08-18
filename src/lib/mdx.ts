@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import YouTubeShort from "@/components/YouTubeShort";
 
 
 const mdxDirectory = path.join(
@@ -106,6 +107,10 @@ export async function getMDXPostBySlug(
                 parseFrontmatter:
                     false,
 
+            },
+
+            components: {
+                YouTubeShort,
             },
 
         });

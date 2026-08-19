@@ -23,31 +23,31 @@ export const metadata: Metadata = {
 const systems = [
     {
         name: "Mindset",
-        href: "/mindset",
+        href: "/blog/category/mindset",
         description:
             "Mental clarity, attention management, focus, awareness, resilience, and intentional thinking.",
     },
     {
         name: "Discipline",
-        href: "/discipline",
+        href: "/blog/category/discipline",
         description:
             "Habit formation, consistency, execution, routines, focus, self-control, and personal responsibility.",
     },
     {
         name: "Fitness",
-        href: "/fitness",
+        href: "/blog/category/fitness",
         description:
             "Strength, conditioning, mobility, physical capability, training consistency, and sustainable development.",
     },
     {
         name: "Yoga",
-        href: "/yoga",
+        href: "/blog/category/yoga",
         description:
             "Movement, mobility, breathing, balance, body awareness, recovery, and mind-body connection.",
     },
     {
         name: "Recalibration",
-        href: "/recalibration",
+        href: "/discipline-system",
         description:
             "Recovery, reflection, energy management, nervous-system awareness, and sustainable progression.",
     },
@@ -114,8 +114,7 @@ const externalProfiles = [
     {
         name: "LinkedIn",
         href: "https://www.linkedin.com/company/nomadlifexp",
-        description:
-            "Official NomadLifeXP company presence on LinkedIn.",
+        description: "Official NomadLifeXP company presence on LinkedIn.",
     },
     {
         name: "Medium",
@@ -132,44 +131,37 @@ const externalProfiles = [
     {
         name: "Facebook",
         href: "https://www.facebook.com/nomadlifexp",
-        description:
-            "Official NomadLifeXP Facebook page.",
+        description: "Official NomadLifeXP Facebook page.",
     },
     {
         name: "GitHub",
         href: "https://github.com/roysubrata2099-boop/nomadlifexp",
-        description:
-            "NomadLifeXP's official GitHub repository.",
+        description: "NomadLifeXP's official GitHub repository.",
     },
     {
         name: "Pinterest",
         href: "https://in.pinterest.com/nomadlifexp",
-        description:
-            "Official NomadLifeXP Pinterest presence.",
+        description: "Official NomadLifeXP Pinterest presence.",
     },
     {
         name: "Instagram",
         href: "https://www.instagram.com/nomadlifexp",
-        description:
-            "Official NomadLifeXP Instagram profile.",
+        description: "Official NomadLifeXP Instagram profile.",
     },
     {
         name: "YouTube",
         href: "https://www.youtube.com/@nomadlifexp",
-        description:
-            "Official NomadLifeXP YouTube channel.",
+        description: "Official NomadLifeXP YouTube channel.",
     },
     {
         name: "Threads",
         href: "https://www.threads.com/@nomadlifexp",
-        description:
-            "Official NomadLifeXP Threads profile.",
+        description: "Official NomadLifeXP Threads profile.",
     },
     {
         name: "Blogger",
         href: "https://nomadlifexp.blogspot.com",
-        description:
-            "NomadLifeXP's official Blogger publication.",
+        description: "NomadLifeXP's official Blogger publication.",
     },
 ];
 
@@ -235,9 +227,7 @@ export default function ConnectPage() {
                         Official Website
                     </p>
 
-                    <h2 className="mt-3 text-2xl font-bold">
-                        NomadLifeXP
-                    </h2>
+                    <h2 className="mt-3 text-2xl font-bold">NomadLifeXP</h2>
 
                     <p className="mt-3 max-w-3xl leading-7 text-neutral-300">
                         The official NomadLifeXP website is the canonical source for the
@@ -245,12 +235,12 @@ export default function ConnectPage() {
                         knowledge resources, and articles.
                     </p>
 
-                    <a
-                        href={SITE_URL}
+                    <Link
+                        href="/"
                         className="mt-6 inline-flex rounded-full border border-white/20 px-5 py-3 text-sm font-semibold transition hover:border-white/50 hover:bg-white/10"
                     >
                         Visit nomadlifexp.com →
-                    </a>
+                    </Link>
                 </div>
             </section>
 
@@ -261,9 +251,7 @@ export default function ConnectPage() {
                         Human Evolution System
                     </p>
 
-                    <h2 className="mt-3 text-3xl font-bold">
-                        The NomadLifeXP Systems
-                    </h2>
+                    <h2 className="mt-3 text-3xl font-bold">The NomadLifeXP Systems</h2>
 
                     <p className="mt-4 leading-7 text-neutral-300">
                         NomadLifeXP organizes personal development into interconnected
@@ -310,9 +298,7 @@ export default function ConnectPage() {
                                 href={resource.href}
                                 className="rounded-xl border border-white/10 p-5 transition hover:border-white/25 hover:bg-white/[0.04]"
                             >
-                                <h3 className="font-bold">
-                                    {resource.name} →
-                                </h3>
+                                <h3 className="font-bold">{resource.name} →</h3>
 
                                 <p className="mt-2 text-sm leading-6 text-neutral-400">
                                     {resource.description}
@@ -329,9 +315,7 @@ export default function ConnectPage() {
                     Knowledge Library
                 </p>
 
-                <h2 className="mt-3 text-3xl font-bold">
-                    Explore Articles by Category
-                </h2>
+                <h2 className="mt-3 text-3xl font-bold">Explore Articles by Category</h2>
 
                 <div className="mt-8 flex flex-wrap gap-3">
                     {categories.map((category) => (
@@ -399,9 +383,7 @@ export default function ConnectPage() {
                         Founder &amp; Creator
                     </p>
 
-                    <h2 className="mt-3 text-3xl font-bold">
-                        Subrata Roy
-                    </h2>
+                    <h2 className="mt-3 text-3xl font-bold">Subrata Roy</h2>
 
                     <p className="mt-5 leading-7 text-neutral-300">
                         Subrata Roy is the founder and creator of NomadLifeXP. The platform

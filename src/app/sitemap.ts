@@ -3,12 +3,18 @@
 import type { MetadataRoute } from "next";
 import { getAllMDXPosts } from "@/lib/mdx";
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://nomadlifexp.com").replace(/\/+$/, "");
+const SITE_URL = (
+    process.env.NEXT_PUBLIC_SITE_URL || "https://nomadlifexp.com"
+).replace(/\/+$/, "");
 
-function parseValidDate(dateInput: string | Date | undefined): Date {
-    if (!dateInput) return new Date();
-    const parsed = new Date(dateInput);
-    return isNaN(parsed.getTime()) ? new Date() : parsed;
+function parseValidDate(dateInput: unknown): Date | undefined {
+    if (!dateInput) {
+        return undefined;
+    }
+
+    const parsed = new Date(String(dateInput));
+
+    return Number.isNaN(parsed.getTime()) ? undefined : parsed;
 }
 
 function safeSlug(value: unknown): string {
@@ -21,64 +27,194 @@ function safeSlug(value: unknown): string {
         .toLowerCase()
         .replace(/[^a-z0-9-]/g, "-")
         .replace(/-+/g, "-")
-        .replace(/^-|-$/g, "");
+        .replace(/^-+|-+$/g, "");
 }
 
-// FIX 1: Explicitly mark sitemap function as ASYNC to support modern Next.js metadata API
+function absoluteUrl(path: string): string {
+    if (path === "/") {
+        return SITE_URL;
+    }
+
+    return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const currentDate = new Date();
+    /*
+     * IMPORTANT:
+     * These are only routes that currently exist in the application.
+     * Do not add speculative URLs here because sitemap URLs should resolve
+     * to real canonical pages.
+     */
+    const staticRoutes: Array<{
+        path: string;
+        priority: number;
+        changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+    }> = [
+            {
+                path: "/",
+                priority: 1.0,
+                changeFrequency: "weekly",
+            },
 
-    const staticRoutes = [
-        "",
-        "/about",
-        "/blog",
-        "/fitness",
-        "/mindset",
-        "/yoga",
-        "/discipline",
-        "/discipline-system",
-        "/knowledge-index",
-        "/start-here",
-    ];
+            // Core pages
+            {
+                path: "/about",
+                priority: 0.8,
+                changeFrequency: "monthly",
+            },
+            {
+                path: "/start-here",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/knowledge-index",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
 
-    // FIX 2: Use MetadataRoute.Sitemap[number] for single-item mapping
-    const staticNodes: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
-        url: `${SITE_URL}${route}`,
-        lastModified: currentDate,
-        changeFrequency: route === "" ? ("daily" as const) : ("weekly" as const),
-        priority: route === "" ? 1.0 : 0.8,
-    }));
+            // Core systems
+            {
+                path: "/discipline",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/discipline-system",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/fitness",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/mindset",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/yoga",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/recalibration",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
 
-    // Safely await posts whether getAllMDXPosts returns a Promise or an Array
+            // Blog hub
+            {
+                path: "/blog",
+                priority: 0.9,
+                changeFrequency: "weekly",
+            },
+
+            // Blog categories
+            {
+                path: "/blog/category/discipline",
+                priority: 0.8,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/blog/category/fitness",
+                priority: 0.8,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/blog/category/yoga",
+                priority: 0.8,
+                changeFrequency: "weekly",
+            },
+            {
+                path: "/blog/category/mindset",
+                priority: 0.8,
+                changeFrequency: "weekly",
+            },
+
+            // Official resources / external identity hub
+            {
+                path: "/connect",
+                priority: 0.7,
+                changeFrequency: "monthly",
+            },
+        ];
+
+    const staticNodes: MetadataRoute.Sitemap = staticRoutes.map(
+        ({ path, priority, changeFrequency }) => ({
+            url: absoluteUrl(path),
+            priority,
+            changeFrequency,
+        })
+    );
+
+    /*
+     * Load all real MDX articles.
+     *
+     * If the content system fails, the sitemap still returns all static
+     * routes instead of taking down the sitemap endpoint.
+     */
     let rawPosts: unknown = [];
 
     try {
         rawPosts = await getAllMDXPosts();
     } catch (error) {
-        console.error("Sitemap compilation error fetching MDX posts:", error);
-        rawPosts = [];
+        console.error(
+            "Sitemap: failed to load MDX posts. Returning static routes only.",
+            error
+        );
     }
 
     const posts = Array.isArray(rawPosts) ? rawPosts : [];
 
     const dynamicNodes: MetadataRoute.Sitemap = posts
         .map((post): MetadataRoute.Sitemap[number] | null => {
-            const slug = safeSlug(post?.slug);
+            if (!post || typeof post !== "object") {
+                return null;
+            }
+
+            const postRecord = post as Record<string, unknown>;
+
+            const slug = safeSlug(postRecord.slug);
 
             if (!slug) {
                 return null;
             }
 
-            const postDate = parseValidDate(post?.updatedAt || post?.date);
+            /*
+             * Prefer updatedAt, then date.
+             * If neither is valid, omit lastModified rather than falsely
+             * claiming that the article changed today.
+             */
+            const lastModified =
+                parseValidDate(postRecord.updatedAt) ??
+                parseValidDate(postRecord.date);
 
             return {
-                url: `${SITE_URL}/blog/posts/${slug}`,
-                lastModified: postDate,
-                changeFrequency: "monthly" as const,
-                priority: 0.6,
+                url: absoluteUrl(`/blog/posts/${slug}`),
+                ...(lastModified ? { lastModified } : {}),
+                changeFrequency: "monthly",
+                priority: 0.7,
             };
         })
-        .filter((node): node is MetadataRoute.Sitemap[number] => node !== null);
+        .filter(
+            (node): node is MetadataRoute.Sitemap[number] => node !== null
+        );
 
-    return [...staticNodes, ...dynamicNodes];
+    /*
+     * Prevent duplicate URLs if a future content change accidentally
+     * produces the same URL more than once.
+     */
+    const seen = new Set<string>();
+
+    return [...staticNodes, ...dynamicNodes].filter((entry) => {
+        if (seen.has(entry.url)) {
+            return false;
+        }
+
+        seen.add(entry.url);
+        return true;
+    });
 }

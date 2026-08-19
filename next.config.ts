@@ -59,11 +59,32 @@ const nextConfig: NextConfig = {
 
   /* ==========================================================================
      PERMANENT SEO REDIRECTS
-     Old HTML URLs → Current Next.js routes
+     Old URLs → Current Next.js routes
      ========================================================================== */
 
   async redirects() {
     return [
+
+      /* ----------------------------------------------------------------------
+         MIGRATION FIXES
+         ---------------------------------------------------------------------- */
+
+      {
+        source: "/index.html",
+        destination: "/",
+        permanent: true,
+      },
+
+      {
+        source: "/blog/posts/stop-procrastination",
+        destination: "/blog/posts/why-you-procrastinate-how-to-stop",
+        permanent: true,
+      },
+
+
+      /* ----------------------------------------------------------------------
+         EXISTING REDIRECTS — UNCHANGED
+         ---------------------------------------------------------------------- */
 
       {
         source: "/blog.html",

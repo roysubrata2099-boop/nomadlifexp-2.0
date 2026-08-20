@@ -6,14 +6,14 @@ const SITE_URL = "https://nomadlifexp.com";
 export const metadata: Metadata = {
     title: "Official NomadLifeXP Resources & Profiles",
     description:
-        "Official NomadLifeXP website, personal-development systems, knowledge library, and verified external profiles including LinkedIn, Medium, YouTube, Instagram, Threads, Facebook, Pinterest, Quora, GitHub, and Blogger.",
+        "Explore the official NomadLifeXP Human Evolution System, knowledge library, personal-development resources, and official external profiles.",
     alternates: {
         canonical: `${SITE_URL}/connect`,
     },
     openGraph: {
         title: "Official NomadLifeXP Resources & Profiles",
         description:
-            "Explore the official NomadLifeXP website, knowledge systems, articles, and external profiles.",
+            "Explore the official NomadLifeXP Human Evolution System, knowledge systems, articles, and official external profiles.",
         url: `${SITE_URL}/connect`,
         siteName: "NomadLifeXP",
         type: "website",
@@ -22,30 +22,35 @@ export const metadata: Metadata = {
 
 const systems = [
     {
+        number: "01",
         name: "Mindset",
         href: "/blog/category/mindset",
         description:
             "Mental clarity, attention management, focus, awareness, resilience, and intentional thinking.",
     },
     {
+        number: "02",
         name: "Discipline",
         href: "/blog/category/discipline",
         description:
             "Habit formation, consistency, execution, routines, focus, self-control, and personal responsibility.",
     },
     {
+        number: "03",
         name: "Fitness",
         href: "/blog/category/fitness",
         description:
             "Strength, conditioning, mobility, physical capability, training consistency, and sustainable development.",
     },
     {
+        number: "04",
         name: "Yoga",
         href: "/blog/category/yoga",
         description:
             "Movement, mobility, breathing, balance, body awareness, recovery, and mind-body connection.",
     },
     {
+        number: "05",
         name: "Recalibration",
         href: "/discipline-system",
         description:
@@ -57,7 +62,8 @@ const internalResources = [
     {
         name: "Homepage",
         href: "/",
-        description: "The main NomadLifeXP entry point and Human Evolution System.",
+        description:
+            "The main NomadLifeXP entry point and Human Evolution System.",
     },
     {
         name: "About NomadLifeXP",
@@ -183,8 +189,7 @@ const jsonLd = {
 
 export default function ConnectPage() {
     return (
-        <main className="min-h-screen bg-black text-white">
-            {/* Structured data */}
+        <main className="min-h-screen overflow-hidden bg-[#050914] text-[#EDF6FF]">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -192,115 +197,186 @@ export default function ConnectPage() {
                 }}
             />
 
-            {/* Header */}
-            <section className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
+            {/* HERO */}
+            <section className="relative border-b border-sky-400/10 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.13),transparent_32%),linear-gradient(135deg,#050914,#071428_55%,#0a1a33)]">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.025)_1px,transparent_1px)] bg-[size:42px_42px]" />
+
+                <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12 lg:py-28">
+                    <div className="max-w-5xl">
+                        <div className="mb-7 flex items-center gap-3 text-xs font-mono font-semibold uppercase tracking-[0.28em] text-sky-400">
+                            <span className="h-px w-10 bg-sky-400" />
+                            NOMADLIFEXP // OFFICIAL RESOURCES
+                        </div>
+
+                        <h1 className="max-w-4xl text-5xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-white sm:text-6xl lg:text-8xl">
+                            Official
+                            <span className="block text-sky-400">
+                                Resources
+                            </span>
+                            <span className="block">&amp; Profiles</span>
+                        </h1>
+
+                        <p className="mt-8 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
+                            The official directory for NomadLifeXP systems,
+                            knowledge resources, articles, and verified external
+                            profiles built around the Human Evolution System.
+                        </p>
+
+                        <div className="mt-10 flex flex-wrap gap-3">
+                            <Link
+                                href="/start-here"
+                                className="rounded-lg bg-sky-400 px-6 py-3 text-sm font-black uppercase tracking-wider text-[#050914] shadow-[0_0_30px_rgba(56,189,248,0.15)] transition hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-[#050914]"
+                            >
+                                Start Here →
+                            </Link>
+
+                            <Link
+                                href="/knowledge-index"
+                                className="rounded-lg border border-sky-400/20 bg-white/[0.03] px-6 py-3 text-sm font-black uppercase tracking-wider text-slate-200 transition hover:border-sky-400/50 hover:bg-sky-400/10 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                            >
+                                Knowledge Index →
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="mt-14 grid max-w-4xl gap-3 sm:grid-cols-3">
+                        {[
+                            ["01", "Systems"],
+                            ["02", "Knowledge"],
+                            ["03", "Presence"],
+                        ].map(([number, label]) => (
+                            <div
+                                key={number}
+                                className="border-l border-sky-400/30 bg-black/20 px-5 py-4 backdrop-blur-sm"
+                            >
+                                <p className="font-mono text-xs text-sky-400">
+                                    {number}
+                                </p>
+                                <p className="mt-1 text-sm font-bold uppercase tracking-wider text-slate-200">
+                                    {label}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* CANONICAL SOURCE */}
+            <section className="border-b border-white/10 bg-[#071428]">
+                <div className="mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:px-12">
+                    <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+                        <div>
+                            <p className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
+                                00 // CANONICAL SOURCE
+                            </p>
+
+                            <h2 className="mt-3 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
+                                NomadLifeXP
+                            </h2>
+
+                            <p className="mt-4 max-w-3xl leading-7 text-slate-300">
+                                The official NomadLifeXP website is the
+                                canonical source for the platform&apos;s
+                                personal-development systems, frameworks,
+                                knowledge resources, and articles.
+                            </p>
+                        </div>
+
+                        <Link
+                            href="/"
+                            className="inline-flex w-fit rounded-lg border border-sky-400/30 bg-sky-400/10 px-6 py-3 text-sm font-black uppercase tracking-wider text-sky-300 transition hover:border-sky-400 hover:bg-sky-400 hover:text-[#050914] focus:outline-none focus:ring-2 focus:ring-sky-400"
+                        >
+                            Visit nomadlifexp.com →
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* SYSTEMS */}
+            <section className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
                 <div className="max-w-4xl">
-                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-neutral-400">
-                        NOMADLIFEXP // OFFICIAL RESOURCES
+                    <p className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
+                        01 // HUMAN EVOLUTION SYSTEM
                     </p>
 
-                    <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                        Official NomadLifeXP
-                        <br />
-                        Resources &amp; Profiles
-                    </h1>
+                    <h2 className="mt-3 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
+                        The NomadLifeXP Systems
+                    </h2>
 
-                    <p className="mt-6 max-w-3xl text-lg leading-8 text-neutral-300">
-                        Explore the official NomadLifeXP website, personal-development
-                        systems, knowledge library, and external profiles created around
-                        the Human Evolution System.
-                    </p>
-
-                    <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-400">
-                        NomadLifeXP is a self-development and personal-growth knowledge
-                        platform focused on discipline, fitness, yoga, mindset, mental
-                        clarity, habit formation, resilience, and sustainable behavioral
-                        change.
-                    </p>
-                </div>
-            </section>
-
-            {/* Official website */}
-            <section className="border-y border-white/10 bg-white/[0.03]">
-                <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                        Official Website
-                    </p>
-
-                    <h2 className="mt-3 text-2xl font-bold">NomadLifeXP</h2>
-
-                    <p className="mt-3 max-w-3xl leading-7 text-neutral-300">
-                        The official NomadLifeXP website is the canonical source for the
-                        platform&apos;s personal-development systems, frameworks,
-                        knowledge resources, and articles.
-                    </p>
-
-                    <Link
-                        href="/"
-                        className="mt-6 inline-flex rounded-full border border-white/20 px-5 py-3 text-sm font-semibold transition hover:border-white/50 hover:bg-white/10"
-                    >
-                        Visit nomadlifexp.com →
-                    </Link>
-                </div>
-            </section>
-
-            {/* Core systems */}
-            <section className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
-                <div className="max-w-3xl">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                        Human Evolution System
-                    </p>
-
-                    <h2 className="mt-3 text-3xl font-bold">The NomadLifeXP Systems</h2>
-
-                    <p className="mt-4 leading-7 text-neutral-300">
-                        NomadLifeXP organizes personal development into interconnected
-                        systems designed to help people build stronger habits, physical
-                        capability, mental clarity, awareness, and sustainable personal
-                        growth.
+                    <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+                        Interconnected systems for building stronger habits,
+                        physical capability, mental clarity, awareness, and
+                        sustainable personal growth.
                     </p>
                 </div>
 
-                <div className="mt-10 grid gap-5 md:grid-cols-2">
+                <div className="mt-12 grid gap-4 md:grid-cols-2">
                     {systems.map((system) => (
                         <Link
                             key={system.href}
                             href={system.href}
-                            className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-white/25 hover:bg-white/[0.06]"
+                            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#071428]/80 p-7 transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:bg-[#0a1a33] hover:shadow-[0_15px_50px_rgba(0,0,0,0.3)] focus:outline-none focus:ring-2 focus:ring-sky-400"
                         >
-                            <h3 className="text-xl font-bold group-hover:text-white">
-                                {system.name} System →
-                            </h3>
+                            <div className="absolute right-0 top-0 h-32 w-32 translate-x-10 -translate-y-10 rounded-full bg-sky-400/5 blur-3xl transition group-hover:bg-sky-400/15" />
 
-                            <p className="mt-3 leading-7 text-neutral-400">
-                                {system.description}
-                            </p>
+                            <div className="relative">
+                                <div className="flex items-start justify-between gap-5">
+                                    <span className="font-mono text-xs font-bold tracking-widest text-sky-400">
+                                        {system.number}
+                                    </span>
+
+                                    <span className="text-xl text-slate-600 transition group-hover:text-sky-400">
+                                        ↗
+                                    </span>
+                                </div>
+
+                                <h3 className="mt-7 text-2xl font-black uppercase tracking-tight text-white">
+                                    {system.name}
+                                </h3>
+
+                                <p className="mt-3 max-w-xl leading-7 text-slate-400">
+                                    {system.description}
+                                </p>
+
+                                <div className="mt-7 h-px w-full bg-white/10">
+                                    <div className="h-px w-0 bg-sky-400 transition-all duration-500 group-hover:w-20" />
+                                </div>
+                            </div>
                         </Link>
                     ))}
                 </div>
             </section>
 
-            {/* Internal resources */}
-            <section className="border-y border-white/10 bg-white/[0.02]">
-                <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                        Internal Knowledge
+            {/* INTERNAL RESOURCES */}
+            <section className="border-y border-white/10 bg-[#071428]/70">
+                <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
+                    <p className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
+                        02 // INTERNAL KNOWLEDGE
                     </p>
 
-                    <h2 className="mt-3 text-3xl font-bold">
-                        Official NomadLifeXP Resources
+                    <h2 className="mt-3 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
+                        Official Resources
                     </h2>
 
-                    <div className="mt-10 grid gap-4 md:grid-cols-2">
-                        {internalResources.map((resource) => (
+                    <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                        {internalResources.map((resource, index) => (
                             <Link
                                 key={resource.href}
                                 href={resource.href}
-                                className="rounded-xl border border-white/10 p-5 transition hover:border-white/25 hover:bg-white/[0.04]"
+                                className="group rounded-xl border border-white/10 bg-[#050914]/70 p-6 transition hover:border-sky-400/30 hover:bg-[#0a1a33] focus:outline-none focus:ring-2 focus:ring-sky-400"
                             >
-                                <h3 className="font-bold">{resource.name} →</h3>
+                                <div className="font-mono text-xs text-sky-400">
+                                    {String(index + 1).padStart(2, "0")}
+                                </div>
 
-                                <p className="mt-2 text-sm leading-6 text-neutral-400">
+                                <h3 className="mt-5 font-black uppercase tracking-tight text-white">
+                                    {resource.name}
+                                    <span className="ml-2 text-slate-600 transition group-hover:text-sky-400">
+                                        →
+                                    </span>
+                                </h3>
+
+                                <p className="mt-3 text-sm leading-6 text-slate-400">
                                     {resource.description}
                                 </p>
                             </Link>
@@ -309,65 +385,93 @@ export default function ConnectPage() {
                 </div>
             </section>
 
-            {/* Categories */}
-            <section className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                    Knowledge Library
-                </p>
+            {/* KNOWLEDGE LIBRARY */}
+            <section className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
+                <div className="max-w-3xl">
+                    <p className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
+                        03 // KNOWLEDGE LIBRARY
+                    </p>
 
-                <h2 className="mt-3 text-3xl font-bold">Explore Articles by Category</h2>
+                    <h2 className="mt-3 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
+                        Explore by Category
+                    </h2>
 
-                <div className="mt-8 flex flex-wrap gap-3">
-                    {categories.map((category) => (
+                    <p className="mt-5 leading-7 text-slate-400">
+                        Navigate directly into the core knowledge areas of the
+                        NomadLifeXP publishing system.
+                    </p>
+                </div>
+
+                <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    {categories.map((category, index) => (
                         <Link
                             key={category.href}
                             href={category.href}
-                            className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold transition hover:border-white/40 hover:bg-white/10"
+                            className="group rounded-xl border border-white/10 bg-[#071428] px-5 py-5 transition hover:border-sky-400/40 hover:bg-[#0a1a33] focus:outline-none focus:ring-2 focus:ring-sky-400"
                         >
-                            {category.name} →
+                            <span className="font-mono text-xs text-sky-400">
+                                {String(index + 1).padStart(2, "0")}
+                            </span>
+
+                            <span className="mt-3 block font-bold uppercase tracking-wide text-slate-200">
+                                {category.name}
+                            </span>
+
+                            <span className="mt-3 block text-sm text-slate-600 transition group-hover:text-sky-400">
+                                Explore →
+                            </span>
                         </Link>
                     ))}
                 </div>
             </section>
 
-            {/* External profiles */}
-            <section className="border-y border-white/10 bg-white/[0.03]">
-                <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
-                    <div className="max-w-3xl">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                            Official External Presence
+            {/* EXTERNAL PRESENCE */}
+            <section className="border-y border-white/10 bg-[linear-gradient(135deg,#050914,#071428)]">
+                <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
+                    <div className="max-w-4xl">
+                        <p className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
+                            04 // OFFICIAL EXTERNAL PRESENCE
                         </p>
 
-                        <h2 className="mt-3 text-3xl font-bold">
+                        <h2 className="mt-3 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
                             NomadLifeXP Across the Web
                         </h2>
 
-                        <p className="mt-4 leading-7 text-neutral-300">
-                            These are the official NomadLifeXP external profiles and
-                            publishing channels. They extend the NomadLifeXP knowledge
-                            ecosystem beyond the main website.
+                        <p className="mt-5 text-lg leading-8 text-slate-300">
+                            Official external profiles and publishing channels
+                            extending the NomadLifeXP knowledge ecosystem
+                            beyond the main website.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {externalProfiles.map((profile) => (
+                    <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {externalProfiles.map((profile, index) => (
                             <a
                                 key={profile.href}
                                 href={profile.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group rounded-2xl border border-white/10 bg-black/20 p-6 transition hover:border-white/30 hover:bg-white/[0.05]"
+                                className="group rounded-2xl border border-white/10 bg-[#071428]/70 p-6 transition duration-300 hover:-translate-y-1 hover:border-sky-400/35 hover:bg-[#0a1a33] focus:outline-none focus:ring-2 focus:ring-sky-400"
                             >
-                                <h3 className="text-lg font-bold group-hover:text-white">
+                                <div className="flex items-start justify-between gap-4">
+                                    <span className="font-mono text-xs text-sky-400">
+                                        {String(index + 1).padStart(2, "0")}
+                                    </span>
+
+                                    <span className="text-slate-600 transition group-hover:text-sky-400">
+                                        ↗
+                                    </span>
+                                </div>
+
+                                <h3 className="mt-7 text-xl font-black uppercase tracking-tight text-white">
                                     {profile.name}
-                                    <span className="ml-2 text-neutral-500">↗</span>
                                 </h3>
 
-                                <p className="mt-3 text-sm leading-6 text-neutral-400">
+                                <p className="mt-3 text-sm leading-6 text-slate-400">
                                     {profile.description}
                                 </p>
 
-                                <p className="mt-4 break-all text-xs text-neutral-600">
+                                <p className="mt-5 break-all font-mono text-[10px] leading-5 text-slate-600 transition group-hover:text-slate-500">
                                     {profile.href}
                                 </p>
                             </a>
@@ -376,50 +480,59 @@ export default function ConnectPage() {
                 </div>
             </section>
 
-            {/* Founder */}
-            <section className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
-                <div className="max-w-4xl rounded-2xl border border-white/10 bg-white/[0.03] p-8 sm:p-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                        Founder &amp; Creator
-                    </p>
+            {/* FOUNDER */}
+            <section className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
+                <div className="relative overflow-hidden rounded-3xl border border-sky-400/15 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.10),transparent_35%),#071428] p-8 sm:p-12">
+                    <div className="relative max-w-4xl">
+                        <p className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-sky-400">
+                            05 // FOUNDER &amp; CREATOR
+                        </p>
 
-                    <h2 className="mt-3 text-3xl font-bold">Subrata Roy</h2>
+                        <h2 className="mt-3 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
+                            Subrata Roy
+                        </h2>
 
-                    <p className="mt-5 leading-7 text-neutral-300">
-                        Subrata Roy is the founder and creator of NomadLifeXP. The platform
-                        was developed around practical exploration of discipline,
-                        consistency, physical training, yoga, mindset development, and
-                        sustainable personal growth.
-                    </p>
+                        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+                            Subrata Roy is the founder and creator of
+                            NomadLifeXP. The platform was developed around
+                            practical exploration of discipline, consistency,
+                            physical training, yoga, mindset development, and
+                            sustainable personal growth.
+                        </p>
 
-                    <Link
-                        href="/about"
-                        className="mt-6 inline-flex rounded-full border border-white/20 px-5 py-3 text-sm font-semibold transition hover:border-white/50 hover:bg-white/10"
-                    >
-                        Learn About NomadLifeXP →
-                    </Link>
+                        <Link
+                            href="/about"
+                            className="mt-8 inline-flex rounded-lg border border-sky-400/30 bg-sky-400/10 px-6 py-3 text-sm font-black uppercase tracking-wider text-sky-300 transition hover:border-sky-400 hover:bg-sky-400 hover:text-[#050914] focus:outline-none focus:ring-2 focus:ring-sky-400"
+                        >
+                            Learn About NomadLifeXP →
+                        </Link>
+                    </div>
                 </div>
             </section>
 
-            {/* Footer CTA */}
-            <section className="border-t border-white/10">
-                <div className="mx-auto max-w-6xl px-6 py-16 text-center sm:px-8 lg:px-12">
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                        NOMADLIFEXP
+            {/* FINAL CTA */}
+            <section className="border-t border-sky-400/10 bg-[#030711]">
+                <div className="mx-auto max-w-5xl px-6 py-24 text-center sm:px-8">
+                    <p className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-sky-400">
+                        NOMADLIFEXP // EVOLUTION PROTOCOL
                     </p>
 
-                    <h2 className="mt-4 text-3xl font-bold">
-                        Become Stronger. Build Discipline. Evolve Every Day.
+                    <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-black uppercase leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                        Become Stronger.
+                        <span className="block text-sky-400">
+                            Build Discipline.
+                        </span>
+                        <span className="block">Evolve Every Day.</span>
                     </h2>
 
-                    <p className="mx-auto mt-4 max-w-2xl leading-7 text-neutral-400">
-                        Explore the Human Evolution System and build your next version
-                        through consistent action.
+                    <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400">
+                        Explore the Human Evolution System and build your next
+                        version through consistent action.
                     </p>
 
                     <Link
                         href="/"
-                        className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-neutral-200"
+                        className="mt-9 inline-flex rounded-lg bg-sky-400 px-7 py-4 text-sm font-black uppercase tracking-wider text-[#050914] shadow-[0_0_35px_rgba(56,189,248,0.18)] transition hover:bg-sky-300 hover:shadow-[0_0_45px_rgba(56,189,248,0.28)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-[#030711]"
                     >
                         Start Your Evolution →
                     </Link>

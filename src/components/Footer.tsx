@@ -1,10 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 /* ---------------- OPERATIONAL FOOTER COMPONENT ---------------- */
 export default function Footer() {
     const socialNodes = [
         { name: "YouTube", href: "https://www.youtube.com/@nomadlifexp" },
-        { name: "Instagram", href: "https://www.instagram.com/nomadlifexp/" }
+        { name: "Instagram", href: "https://www.instagram.com/nomadlifexp/" },
     ];
 
     return (
@@ -17,7 +17,7 @@ export default function Footer() {
                         Follow NomadLifeXP
                     </h5>
 
-                    <div className="flex justify-center items-center gap-6 text-xs font-mono">
+                    <div className="flex flex-wrap justify-center items-center gap-6 text-xs font-mono">
                         {socialNodes.map((node) => (
                             <Link
                                 key={node.name}
@@ -29,6 +29,13 @@ export default function Footer() {
                                 {node.name}
                             </Link>
                         ))}
+
+                        <Link
+                            href="/connect"
+                            className="text-neutral-400 hover:text-white hover:underline decoration-neutral-700 underline-offset-4 transition-colors"
+                        >
+                            Official Links & Profiles
+                        </Link>
                     </div>
                 </div>
 

@@ -617,6 +617,7 @@ export default function HomePage(): JSX.Element {
             <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 transition-colors">Instagram</a>
             <Link href="/about" className="text-slate-400 hover:text-cyan-400 transition-colors">About</Link>
             <Link href="/blog" className="text-slate-400 hover:text-cyan-400 transition-colors">Blog</Link>
+            <Link href="/connect" className="text-slate-400 hover:text-cyan-400 transition-colors">Connect</Link>
           </div>
         </div>
       </footer>

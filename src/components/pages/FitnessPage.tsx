@@ -740,10 +740,12 @@ export default function FitnessPage() {
                                 Physical capacity can decline through
                                 prolonged inactivity.
                             </li>
+
                             <li>
                                 Reduced strength and movement capacity can
                                 limit daily capability.
                             </li>
+
                             <li>
                                 Inconsistent training makes long-term progress
                                 harder to sustain.
@@ -761,14 +763,17 @@ export default function FitnessPage() {
                                 Strength and physical capacity support everyday
                                 movement.
                             </li>
+
                             <li>
                                 Consistent activity supports physical and
                                 mental resilience.
                             </li>
+
                             <li>
                                 Mobility and conditioning expand physical
                                 capability.
                             </li>
+
                             <li>
                                 A capable body creates greater freedom to move
                                 and explore.
@@ -799,12 +804,23 @@ export default function FitnessPage() {
                         supporting the life you want to live.
                     </p>
 
-                    <Link
-                        href="/blog"
-                        className="inline-block bg-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-black transition-colors hover:bg-cyan-400"
-                    >
-                        START YOUR EVOLUTION &rarr;
-                    </Link>
+                    <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                        {/* START YOUR EVOLUTION */}
+                        <Link
+                            href="/blog"
+                            className="inline-block bg-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-black transition-colors hover:bg-cyan-400"
+                        >
+                            START YOUR EVOLUTION &rarr;
+                        </Link>
+
+                        {/* EXPLORE FITNESS ARTICLES */}
+                        <Link
+                            href="/fitness#fitness-database"
+                            className="inline-block border border-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-cyan-400 transition-colors hover:bg-cyan-500 hover:text-black"
+                        >
+                            EXPLORE FITNESS ARTICLES &rarr;
+                        </Link>
+                    </div>
                 </section>
 
                 {/* Cross-pillar navigation */}

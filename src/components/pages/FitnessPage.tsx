@@ -274,7 +274,6 @@ export default function FitnessPage() {
                     "@id": `${PAGE_URL}#fitness-articles`,
                 },
             },
-
             {
                 "@type": "BreadcrumbList",
                 "@id": `${PAGE_URL}#breadcrumbs`,
@@ -293,7 +292,6 @@ export default function FitnessPage() {
                     },
                 ],
             },
-
             {
                 "@type": "ItemList",
                 "@id": `${PAGE_URL}#fitness-articles`,
@@ -594,13 +592,14 @@ export default function FitnessPage() {
 
                 {/* Knowledge database */}
                 <section
-                    className="mb-24"
-                    aria-labelledby="fitness-database"
+                    id="fitness-database"
+                    className="mb-24 scroll-mt-24"
+                    aria-labelledby="fitness-database-heading"
                 >
                     <div className="mb-8 flex items-end justify-between border-b border-neutral-900 pb-4">
                         <div>
                             <h2
-                                id="fitness-database"
+                                id="fitness-database-heading"
                                 className="mb-1 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400"
                             >
                                 FITNESS DATABASE
@@ -820,8 +819,9 @@ export default function FitnessPage() {
                     </p>
 
                     <div className="grid gap-6 font-mono text-xs uppercase sm:grid-cols-3">
+                        {/* Fitness Articles */}
                         <Link
-                            href="/fitness"
+                            href="/fitness#fitness-database"
                             className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
                         >
                             <span className="mb-1 block font-bold text-white">
@@ -838,6 +838,7 @@ export default function FitnessPage() {
                             </span>
                         </Link>
 
+                        {/* All Knowledge */}
                         <Link
                             href="/blog"
                             className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
@@ -856,6 +857,7 @@ export default function FitnessPage() {
                             </span>
                         </Link>
 
+                        {/* Discipline */}
                         <Link
                             href="/blog/category/discipline"
                             className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"

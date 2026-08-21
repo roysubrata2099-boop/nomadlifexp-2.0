@@ -590,7 +590,7 @@ export default function FitnessPage() {
                     </section>
                 )}
 
-                {/* Knowledge database */}
+                {/* Fitness Articles Database */}
                 <section
                     id="fitness-database"
                     className="mb-24 scroll-mt-24"
@@ -740,12 +740,10 @@ export default function FitnessPage() {
                                 Physical capacity can decline through
                                 prolonged inactivity.
                             </li>
-
                             <li>
                                 Reduced strength and movement capacity can
                                 limit daily capability.
                             </li>
-
                             <li>
                                 Inconsistent training makes long-term progress
                                 harder to sustain.
@@ -763,17 +761,14 @@ export default function FitnessPage() {
                                 Strength and physical capacity support everyday
                                 movement.
                             </li>
-
                             <li>
                                 Consistent activity supports physical and
                                 mental resilience.
                             </li>
-
                             <li>
                                 Mobility and conditioning expand physical
                                 capability.
                             </li>
-
                             <li>
                                 A capable body creates greater freedom to move
                                 and explore.
@@ -805,7 +800,7 @@ export default function FitnessPage() {
                     </p>
 
                     <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                        {/* START YOUR EVOLUTION */}
+                        {/* CTA 1 — goes to the main knowledge/blog system */}
                         <Link
                             href="/blog"
                             className="inline-block bg-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-black transition-colors hover:bg-cyan-400"
@@ -813,7 +808,7 @@ export default function FitnessPage() {
                             START YOUR EVOLUTION &rarr;
                         </Link>
 
-                        {/* EXPLORE FITNESS ARTICLES */}
+                        {/* CTA 2 — stays on THIS FITNESS PAGE and jumps to its article database */}
                         <Link
                             href="/fitness#fitness-database"
                             className="inline-block border border-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-cyan-400 transition-colors hover:bg-cyan-500 hover:text-black"
@@ -834,44 +829,8 @@ export default function FitnessPage() {
                         the other pillars:
                     </p>
 
-                    <div className="grid gap-6 font-mono text-xs uppercase sm:grid-cols-3">
-                        {/* Fitness Articles */}
-                        <Link
-                            href="/fitness#fitness-database"
-                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
-                        >
-                            <span className="mb-1 block font-bold text-white">
-                                Fitness Articles
-                            </span>
-
-                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
-                                Explore strength, mobility, conditioning,
-                                workout habits, and physical resilience.
-                            </span>
-
-                            <span className="text-cyan-400">
-                                EXPLORE FITNESS ARTICLES &rarr;
-                            </span>
-                        </Link>
-
-                        {/* All Knowledge */}
-                        <Link
-                            href="/blog"
-                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
-                        >
-                            <span className="mb-1 block font-bold text-white">
-                                All Knowledge
-                            </span>
-
-                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
-                                Explore the complete NomadLifeXP knowledge
-                                system across every pillar.
-                            </span>
-
-                            <span className="text-cyan-400">
-                                EXPLORE ALL KNOWLEDGE &rarr;
-                            </span>
-                        </Link>
+                    <div className="grid gap-6 font-mono text-xs uppercase sm:grid-cols-2">
+                        {/* All Knowledge removed intentionally */}
 
                         {/* Discipline */}
                         <Link
@@ -889,6 +848,25 @@ export default function FitnessPage() {
 
                             <span className="text-cyan-400">
                                 EXPLORE DISCIPLINE &rarr;
+                            </span>
+                        </Link>
+
+                        {/* Blog */}
+                        <Link
+                            href="/blog"
+                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
+                        >
+                            <span className="mb-1 block font-bold text-white">
+                                Knowledge System
+                            </span>
+
+                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
+                                Continue exploring the NomadLifeXP human
+                                evolution system.
+                            </span>
+
+                            <span className="text-cyan-400">
+                                CONTINUE EVOLUTION &rarr;
                             </span>
                         </Link>
                     </div>

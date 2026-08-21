@@ -206,7 +206,7 @@ export default function RootLayout({
                 {/* Microsoft Clarity */}
                 <Script
                     id="microsoft-clarity-init"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 >
                     {`
                     (function(c,l,a,r,i,t,y){
@@ -231,12 +231,12 @@ export default function RootLayout({
                 {/* Google Analytics */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-V0M0XN8BBE"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 />
 
                 <Script
                     id="google-analytics-init"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 >
                     {`
                     window.dataLayer = window.dataLayer || [];

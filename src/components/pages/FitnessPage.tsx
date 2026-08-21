@@ -86,6 +86,7 @@ function safeSlug(value: unknown): string {
     if (typeof value !== "string") {
         return "";
     }
+
     return value.trim().toLowerCase();
 }
 
@@ -106,6 +107,8 @@ function getFitnessPosts(): SystemPost[] {
         if (!Array.isArray(posts)) {
             return [];
         }
+
+        const seen = new Set<string>();
 
         return posts
             .filter((post) => {
@@ -145,11 +148,60 @@ function getFitnessPosts(): SystemPost[] {
                     "System description unavailable."
                 ),
             }))
-            .filter((post) => post.slug.length > 0);
+            .filter((post) => {
+                if (!post.slug) {
+                    return false;
+                }
+
+                if (seen.has(post.slug)) {
+                    return false;
+                }
+
+                seen.add(post.slug);
+
+                return true;
+            });
     } catch {
         return [];
     }
 }
+
+const featuredFitnessArticles = [
+    {
+        title: "How to Build a Workout Habit That Outlasts Your Motivation",
+        description:
+            "Motivation is a volatile emotional state. If you only exercise when you feel inspired, your fitness journey will remain inconsistent. Build a workout habit by engineering environmental triggers, reducing friction, and making training easier to execute even on low-energy days.",
+        slug: "how-to-build-a-workout-habit",
+        step: "STEP 01",
+        subtitle: "THE FOUNDATION",
+    },
+    {
+        title: "Fitness Consistency: Build Workout Discipline That Lasts",
+        description:
+            "Workout consistency beats occasional bursts of intensity. Sustainable fitness is built through repeatable training, recovery, and behavioral systems that continue working across changing schedules and environments.",
+        slug: "fitness-consistency-build-workout-discipline",
+        step: "STEP 02",
+        subtitle: "THE GROWTH ENGINE",
+    },
+    {
+        title:
+            "Fitness Is Not About Time: Mindset, Discipline, and Consistency over Motivation",
+        description:
+            "Stop waiting for the perfect, unbusy moment. Long-term fitness depends on small, repeatable actions rather than finding unlimited free time.",
+        slug: "fitness-is-not-about-time",
+        step: "STEP 03",
+        subtitle: "THE CONSISTENCY PROTOCOL",
+    },
+    {
+        title:
+            "Why People Watch Workout Videos but Never Actually Exercise",
+        description:
+            "Fitness information is not the same as physical progress. Understand why consuming workout content can feel productive and learn how to move from passive information toward consistent physical action.",
+        slug: "why-people-watch-workout-videos",
+        step: "STEP 04",
+        subtitle: "THE EXECUTION SYSTEM",
+    },
+];
 
 export default function FitnessPage() {
     let fitnessArticles: SystemPost[] = [];
@@ -160,105 +212,106 @@ export default function FitnessPage() {
         fitnessArticles = [];
     }
 
-    const featuredFitnessArticles = [
-        {
-            title: "How to Build a Workout Habit That Outlasts Your Motivation",
-            description:
-                "Motivation is a volatile emotional state. If you only exercise when you feel inspired, your fitness journey will remain inconsistent. True behavioral change occurs when training transforms from an emotional decision into an automatic identity choice. By engineering environmental triggers and reducing friction, you can construct a workout habit that executes even on low-energy days.",
-            slug: "how-to-build-a-workout-habit",
-            step: "STEP 01",
-            subtitle: "The core foundation",
-        },
-        {
-            title: "Fitness Consistency: Build Workout Discipline That Lasts",
-            description:
-                "Workout consistency beats occasional bursts of intensity. A focused training session performed regularly creates the repeated stimulus your body needs to adapt. Sustainable fitness is a system built around training, recovery, and habits that can survive changing schedules and environments.",
-            slug: "fitness-consistency-build-workout-discipline",
-            step: "STEP 02",
-            subtitle: "The growth engine",
-        },
-        {
-            title:
-                "Fitness Is Not About Time: Mindset, Discipline, and Consistency over Motivation",
-            description:
-                "Stop waiting for the perfect, unbusy moment. Discover why long-term health and fitness depend on small, repeatable actions rather than finding hours of free time.",
-            slug: "fitness-is-not-about-time",
-            step: "STEP 03",
-            subtitle: "The recovery protocol",
-        },
-        {
-            title:
-                "Why People Watch Workout Videos but Never Actually Exercise",
-            description:
-                "Discover why consuming fitness content can create a false sense of progress and how to move from passive information consumption toward consistent physical action.",
-            slug: "why-people-watch-workout-videos",
-            step: "STEP 04",
-            subtitle: "The nomadic system",
-        },
-    ];
-
-    const filteredFeaturedArticles =
-        featuredFitnessArticles.filter((article) =>
+    const filteredFeaturedArticles = featuredFitnessArticles.filter(
+        (article) =>
             fitnessArticles.some(
                 (existing) => existing.slug === article.slug
             )
-        );
-
-    const filteredDatabaseArticles = fitnessArticles.filter(
-        (article) =>
-            !featuredFitnessArticles.some(
-                (featured) => featured.slug === article.slug
-            )
     );
+
+    const featuredSlugs = new Set(
+        filteredFeaturedArticles.map((article) => article.slug)
+    );
+
+    const additionalArticles = fitnessArticles.filter(
+        (article) => !featuredSlugs.has(article.slug)
+    );
+
+    const totalArticles = fitnessArticles.length;
 
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        name: "Fitness: Build Strength, Mobility & Physical Resilience",
-        headline: "Fitness: The Physical Architecture of Resilience",
-        description:
-            "Build strength, mobility, conditioning and workout consistency with the NomadLifeXP Fitness System.",
-        url: PAGE_URL,
-        isPartOf: {
-            "@type": "WebSite",
-            name: "NomadLifeXP",
-            url: SITE_URL,
-        },
-        about: [
+        "@graph": [
             {
-                "@type": "Thing",
-                name: "Physical fitness",
+                "@type": "WebPage",
+                "@id": `${PAGE_URL}#webpage`,
+                name: "Fitness: Build Strength, Mobility & Physical Resilience",
+                headline:
+                    "Fitness: The Physical Architecture of Resilience",
+                description:
+                    "Build strength, mobility, conditioning and workout consistency with the NomadLifeXP Fitness System.",
+                url: PAGE_URL,
+                inLanguage: "en-US",
+                isPartOf: {
+                    "@type": "WebSite",
+                    "@id": `${SITE_URL}#website`,
+                    name: "NomadLifeXP",
+                    url: SITE_URL,
+                },
+                about: [
+                    {
+                        "@type": "Thing",
+                        name: "Physical fitness",
+                    },
+                    {
+                        "@type": "Thing",
+                        name: "Strength training",
+                    },
+                    {
+                        "@type": "Thing",
+                        name: "Mobility",
+                    },
+                    {
+                        "@type": "Thing",
+                        name: "Physical resilience",
+                    },
+                    {
+                        "@type": "Thing",
+                        name: "Workout consistency",
+                    },
+                ],
+                mainEntity: {
+                    "@id": `${PAGE_URL}#fitness-articles`,
+                },
             },
+
             {
-                "@type": "Thing",
-                name: "Strength training",
+                "@type": "BreadcrumbList",
+                "@id": `${PAGE_URL}#breadcrumbs`,
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Blog",
+                        item: `${SITE_URL}/blog`,
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: "Fitness",
+                        item: PAGE_URL,
+                    },
+                ],
             },
+
             {
-                "@type": "Thing",
-                name: "Mobility",
-            },
-            {
-                "@type": "Thing",
-                name: "Physical resilience",
-            },
-            {
-                "@type": "Thing",
-                name: "Workout consistency",
+                "@type": "ItemList",
+                "@id": `${PAGE_URL}#fitness-articles`,
+                name: "NomadLifeXP Fitness Articles",
+                description:
+                    "Fitness articles covering strength, mobility, conditioning, workout habits, consistency, and physical resilience.",
+                numberOfItems: totalArticles,
+                itemListOrder: "https://schema.org/ItemListOrderAscending",
+                itemListElement: fitnessArticles.map(
+                    (post, index) => ({
+                        "@type": "ListItem",
+                        position: index + 1,
+                        name: post.title,
+                        url: `${SITE_URL}/blog/posts/${post.slug}`,
+                    })
+                ),
             },
         ],
-        mainEntity: {
-            "@type": "ItemList",
-            name: "NomadLifeXP Fitness Articles",
-            numberOfItems: fitnessArticles.length,
-            itemListElement: fitnessArticles.map(
-                (post, index) => ({
-                    "@type": "ListItem",
-                    position: index + 1,
-                    name: post.title,
-                    url: `${SITE_URL}/blog/posts/${post.slug}`,
-                })
-            ),
-        },
     };
 
     return (
@@ -270,24 +323,30 @@ export default function FitnessPage() {
                 }}
             />
 
-            <div className="relative max-w-7xl mx-auto px-6 py-24">
+            <div className="relative mx-auto max-w-7xl px-6 py-24">
 
-                {/* Visual Background Accent */}
-                <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
+                {/* Background atmosphere */}
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-1/3 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[150px]"
+                />
 
-                {/* Navigation Layer */}
+                {/* Breadcrumb navigation */}
                 <nav
                     aria-label="Breadcrumb"
-                    className="relative z-10 flex gap-4 mb-16 pb-6 border-b border-neutral-900 font-mono text-xs uppercase tracking-[0.3em]"
+                    className="relative z-10 mb-16 flex gap-4 border-b border-neutral-900 pb-6 font-mono text-xs uppercase tracking-[0.3em]"
                 >
                     <Link
                         href="/blog"
-                        className="text-neutral-500 hover:text-cyan-400 transition-colors"
+                        className="text-neutral-500 transition-colors hover:text-cyan-400"
                     >
                         &larr; RETURN_TO_BLOG
                     </Link>
 
-                    <span className="text-neutral-800">
+                    <span
+                        aria-hidden="true"
+                        className="text-neutral-800"
+                    >
                         /
                     </span>
 
@@ -299,40 +358,57 @@ export default function FitnessPage() {
                     </span>
                 </nav>
 
-                {/* Page Header */}
+                {/* Hero */}
                 <header className="relative z-10 mb-24">
                     <p className="mb-6 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                         NOMADLIFEXP // HUMAN EVOLUTION SYSTEM
                     </p>
 
-                    <h1 className="text-5xl md:text-7xl font-black uppercase leading-none">
+                    <h1 className="max-w-6xl text-5xl font-black uppercase leading-none md:text-7xl">
                         Fitness: The Physical Architecture of Resilience
                     </h1>
 
-                    <p className="mt-6 text-xl font-medium text-neutral-200">
+                    <p className="mt-6 max-w-4xl text-xl font-medium text-neutral-200">
                         Build strength, mobility, conditioning, consistency,
                         and physical resilience for a body designed to move.
                     </p>
 
-                    <p className="mt-4 max-w-3xl text-neutral-400 font-mono leading-relaxed">
+                    <p className="mt-4 max-w-3xl font-mono leading-relaxed text-neutral-400">
                         Fitness is not just aesthetics or temporary
-                        transformation. It is an engineered system designed
-                        to build physical autonomy, strength, and structural
-                        resilience so you can move through the world without
-                        unnecessary restriction.
+                        transformation. It is a physical system designed to
+                        build strength, movement capacity, resilience, and
+                        autonomy so you can move through the world with fewer
+                        unnecessary limitations.
                     </p>
 
-                    <p className="mt-4 max-w-3xl text-neutral-400 font-mono leading-relaxed">
-                        In a lifestyle defined by travel, mobility, and
-                        shifting environments, your physical foundation must
-                        remain resilient. The NomadLifeXP Fitness System
-                        explores how strength training, functional movement,
-                        recovery, conditioning, and daily consistency compound
-                        into lifelong physical capability.
+                    <p className="mt-4 max-w-3xl font-mono leading-relaxed text-neutral-400">
+                        In a lifestyle defined by movement, travel, and
+                        changing environments, your physical foundation needs
+                        to remain adaptable. The NomadLifeXP Fitness System
+                        explores how strength training, mobility, conditioning,
+                        recovery, and consistency compound into long-term
+                        physical capability.
                     </p>
+
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        {[
+                            "STRENGTH",
+                            "MOBILITY",
+                            "CONDITIONING",
+                            "CONSISTENCY",
+                            "LONGEVITY",
+                        ].map((tag) => (
+                            <span
+                                key={tag}
+                                className="border border-cyan-900/60 bg-cyan-950/20 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-400"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
                 </header>
 
-                {/* Fitness Evolution Path */}
+                {/* Evolution path */}
                 <section
                     className="mb-24"
                     aria-labelledby="fitness-evolution-path"
@@ -344,12 +420,12 @@ export default function FitnessPage() {
                         THE FITNESS EVOLUTION PATH
                     </h2>
 
-                    <p className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
+                    <p className="mb-8 max-w-3xl font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
                         A framework for building strength, movement capacity,
                         physical resilience, and long-term fitness.
                     </p>
 
-                    <div className="grid md:grid-cols-4 gap-6">
+                    <div className="grid gap-6 md:grid-cols-4">
                         {[
                             {
                                 id: "01",
@@ -363,7 +439,7 @@ export default function FitnessPage() {
                                 id: "02",
                                 title: "02 — Adaptation",
                                 subtext:
-                                    "Use progressive overload, resistance training, and functional movement.",
+                                    "Use progressive resistance, movement practice, and conditioning.",
                                 text:
                                     "Challenge the body systematically so strength, capacity, and performance can adapt over time.",
                             },
@@ -371,25 +447,25 @@ export default function FitnessPage() {
                                 id: "03",
                                 title: "03 — Consistency",
                                 subtext:
-                                    "Build sustainable training systems that travel with you anywhere.",
+                                    "Build sustainable training systems that survive changing schedules and environments.",
                                 text:
-                                    "Fitness is maintained through repeatable habits, not short-term workout programs.",
+                                    "Fitness is maintained through repeatable habits, not short-term bursts of motivation.",
                             },
                             {
                                 id: "04",
                                 title: "04 — Autonomy",
                                 subtext:
-                                    "Build a resilient and capable body ready for changing environments.",
+                                    "Build a resilient body ready for movement, exploration, and changing demands.",
                                 text:
-                                    "True fitness gives you greater freedom to move, explore, and perform with confidence.",
+                                    "True fitness creates greater freedom to move, perform, travel, and participate in life.",
                             },
                         ].map((module) => (
-                            <div
+                            <article
                                 key={module.id}
-                                className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
+                                className="flex flex-col justify-between border border-neutral-800 bg-neutral-950 p-8"
                             >
                                 <div>
-                                    <h3 className="mb-3 text-cyan-400 font-mono text-xs uppercase tracking-wider">
+                                    <h3 className="mb-3 font-mono text-xs uppercase tracking-wider text-cyan-400">
                                         {module.title}
                                     </h3>
 
@@ -398,15 +474,15 @@ export default function FitnessPage() {
                                     </p>
                                 </div>
 
-                                <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+                                <p className="font-mono text-xs leading-relaxed text-neutral-400">
                                     {module.text}
                                 </p>
-                            </div>
+                            </article>
                         ))}
                     </div>
                 </section>
 
-                {/* How To Build Fitness Consistency */}
+                {/* Build consistency */}
                 <section
                     className="mb-24"
                     aria-labelledby="build-fitness"
@@ -418,24 +494,24 @@ export default function FitnessPage() {
                         HOW TO BUILD CONSISTENT FITNESS
                     </h2>
 
-                    <p className="mb-8 max-w-3xl font-mono text-sm text-neutral-400 leading-relaxed">
-                        Sustainable fitness is built through repeatable
-                        systems rather than relying on motivation. Develop
-                        training habits that make movement, recovery, and
-                        physical progress part of your normal routine.
+                    <p className="mb-8 max-w-3xl font-mono text-sm leading-relaxed text-neutral-400">
+                        Sustainable fitness comes from repeatable systems
+                        rather than relying on motivation. Build training,
+                        recovery, and movement habits that fit your real life
+                        and continue working when your schedule changes.
                     </p>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid gap-6 md:grid-cols-2">
                         {[
                             {
                                 title: "Build a Workout Habit",
                                 text:
-                                    "Create a realistic training routine that fits your schedule, environment, and current fitness level.",
+                                    "Create a realistic training routine that fits your schedule, environment, current ability, and available equipment.",
                             },
                             {
                                 title: "Train for Strength",
                                 text:
-                                    "Use progressive resistance and controlled movement to develop useful physical strength and capability.",
+                                    "Use progressive resistance and controlled movement to develop useful strength and physical capability.",
                             },
                             {
                                 title: "Improve Mobility",
@@ -445,66 +521,68 @@ export default function FitnessPage() {
                             {
                                 title: "Stay Consistent",
                                 text:
-                                    "Reduce friction, plan around your environment, and keep training even when motivation fluctuates.",
+                                    "Reduce friction, plan around your environment, and keep training even when motivation naturally fluctuates.",
                             },
                         ].map((item) => (
-                            <div
+                            <article
                                 key={item.title}
                                 className="border border-neutral-800 bg-neutral-950 p-8"
                             >
-                                <h3 className="mb-3 text-white font-bold uppercase tracking-wide">
+                                <h3 className="mb-3 font-bold uppercase tracking-wide text-white">
                                     {item.title}
                                 </h3>
 
-                                <p className="text-sm text-neutral-400 font-mono leading-relaxed">
+                                <p className="font-mono text-sm leading-relaxed text-neutral-400">
                                     {item.text}
                                 </p>
-                            </div>
+                            </article>
                         ))}
                     </div>
                 </section>
 
-                {/* Structured Recommended Path */}
+                {/* Recommended progression */}
                 {filteredFeaturedArticles.length > 0 && (
                     <section
                         className="mb-24"
                         aria-labelledby="fitness-transformation"
                     >
-                        <h2
-                            id="fitness-transformation"
-                            className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400"
-                        >
-                            START YOUR FITNESS TRANSFORMATION
-                        </h2>
+                        <div className="mb-8 border-b border-neutral-900 pb-4">
+                            <h2
+                                id="fitness-transformation"
+                                className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400"
+                            >
+                                START YOUR FITNESS TRANSFORMATION
+                            </h2>
 
-                        <p className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
-                            Learn how to build workout habits, fitness
-                            consistency, discipline, and sustainable training.
-                        </p>
+                            <p className="max-w-3xl font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
+                                Follow the progression from building the habit
+                                to executing a sustainable physical system.
+                            </p>
+                        </div>
 
-                        <div className="grid md:grid-cols-2 gap-6">
+                        <div className="grid gap-6 md:grid-cols-2">
                             {filteredFeaturedArticles.map((item) => (
                                 <article
                                     key={item.step}
-                                    className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
+                                    className="flex flex-col justify-between border border-neutral-800 bg-neutral-950 p-8 transition-colors hover:border-cyan-900"
                                 >
                                     <div>
-                                        <span className="font-mono text-xs text-cyan-400 uppercase tracking-widest">
+                                        <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
                                             {item.step} // {item.subtitle}
                                         </span>
 
-                                        <h3 className="mt-3 text-xl font-bold uppercase tracking-wide">
+                                        <h3 className="mt-3 text-xl font-bold uppercase tracking-wide text-white">
                                             {item.title}
                                         </h3>
 
-                                        <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
+                                        <p className="mt-4 font-mono text-sm leading-relaxed text-neutral-400">
                                             {item.description}
                                         </p>
                                     </div>
 
                                     <Link
                                         href={`/blog/posts/${item.slug}`}
-                                        className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
+                                        className="mt-8 inline-block font-mono text-xs uppercase tracking-wider text-cyan-400 transition-colors hover:text-white"
                                     >
                                         READ ARTICLE &rarr;
                                     </Link>
@@ -514,99 +592,74 @@ export default function FitnessPage() {
                     </section>
                 )}
 
-                {/* Active Knowledge Modules Database */}
+                {/* Knowledge database */}
                 <section
                     className="mb-24"
                     aria-labelledby="fitness-database"
                 >
-                    <div className="flex justify-between items-end mb-8 border-b border-neutral-900 pb-4">
+                    <div className="mb-8 flex items-end justify-between border-b border-neutral-900 pb-4">
                         <div>
                             <h2
                                 id="fitness-database"
-                                className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-1"
+                                className="mb-1 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400"
                             >
                                 FITNESS DATABASE
                             </h2>
 
-                            <p className="font-mono text-xs text-neutral-500 uppercase tracking-wider">
+                            <p className="max-w-2xl font-mono text-xs uppercase tracking-wider text-neutral-500">
                                 Explore strength training, mobility,
-                                conditioning, habits, and physical resilience
+                                conditioning, habits, and physical resilience.
                             </p>
                         </div>
 
-                        <span className="font-mono text-xs text-neutral-400">
-                            {fitnessArticles.length} ARTICLES
+                        <span className="ml-6 whitespace-nowrap font-mono text-xs text-neutral-400">
+                            {totalArticles}{" "}
+                            {totalArticles === 1 ? "ARTICLE" : "ARTICLES"}
                         </span>
                     </div>
 
-                    {fitnessArticles.length > 0 ? (
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {fitnessArticles.map((post) => (
+                    {additionalArticles.length > 0 ? (
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {additionalArticles.map((post) => (
                                 <article
                                     key={post.slug}
-                                    className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
+                                    className="flex flex-col justify-between border border-neutral-800 bg-neutral-950 p-8 transition-colors hover:border-cyan-900"
                                 >
                                     <div>
-                                        <h3 className="text-lg font-bold uppercase tracking-wide">
+                                        <h3 className="text-lg font-bold uppercase tracking-wide text-white">
                                             {post.title}
                                         </h3>
 
-                                        <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
+                                        <p className="mt-4 font-mono text-sm leading-relaxed text-neutral-400">
                                             {post.description}
                                         </p>
                                     </div>
 
                                     <Link
                                         href={`/blog/posts/${post.slug}`}
-                                        className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
+                                        className="mt-8 inline-block font-mono text-xs uppercase tracking-wider text-cyan-400 transition-colors hover:text-white"
                                     >
                                         READ ARTICLE &rarr;
                                     </Link>
                                 </article>
                             ))}
                         </div>
-                    ) : (
-                        <p className="text-neutral-500 font-mono text-sm">
+                    ) : filteredFeaturedArticles.length === 0 ? (
+                        <p className="font-mono text-sm text-neutral-500">
                             No fitness nodes available currently.
                         </p>
-                    )}
-
-                    {filteredDatabaseArticles.length > 0 && (
-                        <div className="mt-12">
-                            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 mb-6">
-                                ADDITIONAL KNOWLEDGE NODES
-                            </h3>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-                                {filteredDatabaseArticles.map((post) => (
-                                    <article
-                                        key={post.slug}
-                                        className="border border-neutral-800 bg-neutral-950 p-8 flex flex-col justify-between"
-                                    >
-                                        <div>
-                                            <h3 className="text-lg font-bold uppercase tracking-wide">
-                                                {post.title}
-                                            </h3>
-
-                                            <p className="mt-4 text-sm text-neutral-400 font-mono leading-relaxed">
-                                                {post.description}
-                                            </p>
-                                        </div>
-
-                                        <Link
-                                            href={`/blog/posts/${post.slug}`}
-                                            className="inline-block mt-8 text-cyan-400 text-xs font-mono uppercase tracking-wider hover:text-white transition-colors"
-                                        >
-                                            READ ARTICLE &rarr;
-                                        </Link>
-                                    </article>
-                                ))}
-                            </div>
+                    ) : (
+                        <div className="border border-neutral-900 bg-neutral-950/50 p-8">
+                            <p className="font-mono text-sm leading-relaxed text-neutral-500">
+                                The featured fitness path above contains the
+                                current knowledge nodes. More fitness articles
+                                will appear here as the library expands.
+                            </p>
                         </div>
                     )}
                 </section>
 
-                {/* Fitness Framework */}
+                {/* Framework */}
                 <section
                     className="mb-24 border border-neutral-900 bg-neutral-950/60 p-8 md:p-12"
                     aria-labelledby="fitness-framework"
@@ -622,119 +675,126 @@ export default function FitnessPage() {
                         Four Pillars of Physical Mastery
                     </p>
 
-                    <div className="grid md:grid-cols-2 gap-8 font-mono">
-                        <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">
+                    <div className="grid gap-8 font-mono md:grid-cols-2">
+                        <article className="border-l border-cyan-500/40 pl-6">
+                            <h3 className="mb-2 font-bold uppercase text-white">
                                 Strength
                             </h3>
 
-                            <p className="text-sm text-neutral-400 leading-relaxed">
+                            <p className="text-sm leading-relaxed text-neutral-400">
                                 Build useful physical strength and mechanical
                                 capacity that supports movement, performance,
-                                and resilience.
+                                independence, and resilience.
                             </p>
-                        </div>
+                        </article>
 
-                        <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">
+                        <article className="border-l border-cyan-500/40 pl-6">
+                            <h3 className="mb-2 font-bold uppercase text-white">
                                 Mobility
                             </h3>
 
-                            <p className="text-sm text-neutral-400 leading-relaxed">
+                            <p className="text-sm leading-relaxed text-neutral-400">
                                 Develop usable range of motion, movement
-                                quality, joint function, and active flexibility
-                                across different planes of movement.
+                                quality, joint function, and control across
+                                different positions and planes of movement.
                             </p>
-                        </div>
+                        </article>
 
-                        <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">
+                        <article className="border-l border-cyan-500/40 pl-6">
+                            <h3 className="mb-2 font-bold uppercase text-white">
                                 Conditioning
                             </h3>
 
-                            <p className="text-sm text-neutral-400 leading-relaxed">
+                            <p className="text-sm leading-relaxed text-neutral-400">
                                 Develop cardiovascular and metabolic capacity
                                 so you can sustain physical effort and recover
-                                effectively.
+                                effectively between demanding activities.
                             </p>
-                        </div>
+                        </article>
 
-                        <div className="border-l border-cyan-500/40 pl-6">
-                            <h3 className="text-white font-bold uppercase mb-2">
+                        <article className="border-l border-cyan-500/40 pl-6">
+                            <h3 className="mb-2 font-bold uppercase text-white">
                                 Longevity
                             </h3>
 
-                            <p className="text-sm text-neutral-400 leading-relaxed">
+                            <p className="text-sm leading-relaxed text-neutral-400">
                                 Train for long-term physical capability by
                                 balancing performance, recovery, movement
                                 quality, and sustainable health habits.
                             </p>
-                        </div>
+                        </article>
                     </div>
                 </section>
 
-                {/* Why Fitness Matters */}
+                {/* Why fitness matters */}
                 <section
-                    className="mb-24 grid md:grid-cols-2 gap-8"
+                    className="mb-24 grid gap-8 md:grid-cols-2"
                     aria-label="Why fitness matters"
                 >
-                    <div className="border border-red-950/50 bg-neutral-950 p-8">
-                        <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-red-400 mb-6">
+                    <article className="border border-red-950/50 bg-neutral-950 p-8">
+                        <h2 className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-red-400">
                             WHY FITNESS MATTERS // WITHOUT IT:
                         </h2>
 
-                        <ul className="space-y-3 font-mono text-sm text-neutral-400 list-disc list-inside">
+                        <ul className="list-inside list-disc space-y-3 font-mono text-sm text-neutral-400">
                             <li>
-                                Physical capacity can decline through inactivity.
+                                Physical capacity can decline through
+                                prolonged inactivity.
                             </li>
                             <li>
-                                Reduced strength and movement can limit daily capability.
+                                Reduced strength and movement capacity can
+                                limit daily capability.
                             </li>
                             <li>
-                                Inconsistent training makes long-term progress harder to sustain.
+                                Inconsistent training makes long-term progress
+                                harder to sustain.
                             </li>
                         </ul>
-                    </div>
+                    </article>
 
-                    <div className="border border-cyan-950/50 bg-neutral-950 p-8">
-                        <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-400 mb-6">
+                    <article className="border border-cyan-950/50 bg-neutral-950 p-8">
+                        <h2 className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-cyan-400">
                             WHY FITNESS MATTERS // WITH IT:
                         </h2>
 
-                        <ul className="space-y-3 font-mono text-sm text-neutral-400 list-disc list-inside">
+                        <ul className="list-inside list-disc space-y-3 font-mono text-sm text-neutral-400">
                             <li>
-                                Strength and physical capacity support everyday movement.
+                                Strength and physical capacity support everyday
+                                movement.
                             </li>
                             <li>
-                                Consistent activity supports physical and mental resilience.
+                                Consistent activity supports physical and
+                                mental resilience.
                             </li>
                             <li>
-                                Better mobility and conditioning expand physical capability.
+                                Mobility and conditioning expand physical
+                                capability.
                             </li>
                             <li>
-                                A capable body creates greater freedom to move and explore.
+                                A capable body creates greater freedom to move
+                                and explore.
                             </li>
                         </ul>
-                    </div>
+                    </article>
                 </section>
 
-                {/* Call To Action */}
+                {/* Primary CTA */}
                 <section
                     className="mb-24 border border-cyan-900/40 bg-neutral-950 p-10 text-center"
                     aria-labelledby="forge-your-vessel"
                 >
                     <h2
                         id="forge-your-vessel"
-                        className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400 mb-3"
+                        className="mb-3 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400"
                     >
                         FORGE YOUR VESSEL
                     </h2>
 
-                    <p className="text-2xl md:text-3xl font-black uppercase tracking-wide mb-4">
+                    <p className="mb-4 text-2xl font-black uppercase tracking-wide md:text-3xl">
                         Master Your Physical Architecture
                     </p>
 
-                    <p className="text-neutral-400 font-mono text-sm max-w-xl mx-auto mb-8">
+                    <p className="mx-auto mb-8 max-w-xl font-mono text-sm text-neutral-400">
                         Build the strength, mobility, conditioning, and
                         consistency required to create a body capable of
                         supporting the life you want to live.
@@ -742,34 +802,35 @@ export default function FitnessPage() {
 
                     <Link
                         href="/blog"
-                        className="inline-block bg-cyan-500 text-black font-mono text-xs uppercase tracking-[0.3em] px-8 py-4 font-bold hover:bg-cyan-400 transition-colors"
+                        className="inline-block bg-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-black transition-colors hover:bg-cyan-400"
                     >
-                        START HERE &rarr;
+                        START YOUR EVOLUTION &rarr;
                     </Link>
                 </section>
 
-                {/* Cross-Connect Alternative Modules */}
+                {/* Cross-pillar navigation */}
                 <footer className="border-t border-neutral-900 pt-10">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-neutral-500">
                         CONTINUE YOUR HUMAN EVOLUTION
                     </h2>
 
-                    <p className="mb-6 font-mono text-xs text-neutral-600 uppercase">
+                    <p className="mb-6 font-mono text-xs uppercase text-neutral-600">
                         Fitness is your physical engine. Continue developing
                         the other pillars:
                     </p>
 
-                    <div className="grid sm:grid-cols-3 gap-6 font-mono text-xs uppercase">
+                    <div className="grid gap-6 font-mono text-xs uppercase sm:grid-cols-3">
                         <Link
                             href="/blog/category/discipline"
-                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
+                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
                         >
-                            <span className="block text-white font-bold mb-1">
+                            <span className="mb-1 block font-bold text-white">
                                 Discipline
                             </span>
 
-                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">
-                                Master attention, systems, habits, and execution consistency.
+                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
+                                Master attention, systems, habits, and
+                                execution consistency.
                             </span>
 
                             <span className="text-cyan-400">
@@ -779,14 +840,15 @@ export default function FitnessPage() {
 
                         <Link
                             href="/blog/category/mindset"
-                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
+                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
                         >
-                            <span className="block text-white font-bold mb-1">
+                            <span className="mb-1 block font-bold text-white">
                                 Mindset
                             </span>
 
-                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">
-                                Develop mental clarity, resilience, and emotional control.
+                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
+                                Develop mental clarity, resilience, and
+                                stronger decision-making.
                             </span>
 
                             <span className="text-cyan-400">
@@ -796,14 +858,15 @@ export default function FitnessPage() {
 
                         <Link
                             href="/blog/category/yoga"
-                            className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
+                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
                         >
-                            <span className="block text-white font-bold mb-1">
+                            <span className="mb-1 block font-bold text-white">
                                 Yoga
                             </span>
 
-                            <span className="text-neutral-500 text-[10px] lowercase block mb-3">
-                                Develop active balance, mobility, recovery, and mind-body connection.
+                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
+                                Develop mobility, recovery, balance, and
+                                mind-body connection.
                             </span>
 
                             <span className="text-cyan-400">

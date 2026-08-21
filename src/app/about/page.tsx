@@ -4,7 +4,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Operational Directive // Mission & Foundation | NomadLifeXP",
+    title: "Operational Directive // Mission & Foundation",
     description: "The core philosophy, underlying methodology, and existential directive of the NomadLifeXP platform.",
     alternates: {
         canonical: "https://nomadlifexp.com/about",

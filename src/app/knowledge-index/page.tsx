@@ -5,13 +5,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset & Yoga | NomadLifeXP",
+    title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset & Yoga",
     description: "Explore the NomadLifeXP Human Optimization Masterclass Library. Learn self discipline, mental clarity, fitness consistency, yoga practices, habit systems, and personal development frameworks.",
     alternates: {
         canonical: "https://nomadlifexp.com/knowledge-index",
     },
     openGraph: {
-        title: "Human Optimization Masterclass Library | NomadLifeXP",
+        title: "Human Optimization Masterclass Library",
         description: "A structured learning system covering discipline, mindset, fitness, yoga, focus, habits, and human optimization.",
         url: "https://nomadlifexp.com/knowledge-index",
         type: "website",

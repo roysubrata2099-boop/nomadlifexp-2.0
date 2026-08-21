@@ -9,14 +9,14 @@ import { getAllMDXPosts } from "@/lib/mdx";
 const SITE_URL = "https://nomadlifexp.com";
 
 export const metadata: Metadata = {
-    title: "Human Evolution Insights | NomadLifeXP",
+    title: "Human Evolution Insights",
     description:
         "Thoughtful articles exploring discipline, mindset, fitness, yoga, attention, habits, and long-term personal transformation.",
     alternates: {
         canonical: `${SITE_URL}/blog`,
     },
     openGraph: {
-        title: "Human Evolution Insights | NomadLifeXP",
+        title: "Human Evolution Insights",
         description:
             "Thoughtful articles exploring discipline, mindset, fitness, yoga, attention, habits, and long-term personal transformation.",
         url: `${SITE_URL}/blog`,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Human Evolution Insights | NomadLifeXP",
+        title: "Human Evolution Insights",
         description:
             "Thoughtful articles exploring discipline, mindset, fitness, yoga, attention, habits, and long-term personal transformation.",
     },

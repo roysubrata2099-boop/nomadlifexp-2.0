@@ -15,7 +15,7 @@ interface SystemPost {
 }
 
 export const metadata: Metadata = {
-    title: "Fitness & Physical Architecture | NomadLifeXP",
+    title: "Fitness & Physical Architecture",
     description:
         "Fitness is an engineered execution system designed to build physical autonomy and resilience.",
     alternates: {

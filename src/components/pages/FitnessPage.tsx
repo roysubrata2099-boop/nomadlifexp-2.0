@@ -301,7 +301,8 @@ export default function FitnessPage() {
                 description:
                     "Fitness articles covering strength, mobility, conditioning, workout habits, consistency, and physical resilience.",
                 numberOfItems: totalArticles,
-                itemListOrder: "https://schema.org/ItemListOrderAscending",
+                itemListOrder:
+                    "https://schema.org/ItemListOrderAscending",
                 itemListElement: fitnessArticles.map(
                     (post, index) => ({
                         "@type": "ListItem",
@@ -324,7 +325,6 @@ export default function FitnessPage() {
             />
 
             <div className="relative mx-auto max-w-7xl px-6 py-24">
-
                 {/* Background atmosphere */}
                 <div
                     aria-hidden="true"
@@ -821,6 +821,42 @@ export default function FitnessPage() {
 
                     <div className="grid gap-6 font-mono text-xs uppercase sm:grid-cols-3">
                         <Link
+                            href="/fitness"
+                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
+                        >
+                            <span className="mb-1 block font-bold text-white">
+                                Fitness Articles
+                            </span>
+
+                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
+                                Explore strength, mobility, conditioning,
+                                workout habits, and physical resilience.
+                            </span>
+
+                            <span className="text-cyan-400">
+                                EXPLORE FITNESS ARTICLES &rarr;
+                            </span>
+                        </Link>
+
+                        <Link
+                            href="/blog"
+                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
+                        >
+                            <span className="mb-1 block font-bold text-white">
+                                All Knowledge
+                            </span>
+
+                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
+                                Explore the complete NomadLifeXP knowledge
+                                system across every pillar.
+                            </span>
+
+                            <span className="text-cyan-400">
+                                EXPLORE ALL KNOWLEDGE &rarr;
+                            </span>
+                        </Link>
+
+                        <Link
                             href="/blog/category/discipline"
                             className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
                         >
@@ -835,42 +871,6 @@ export default function FitnessPage() {
 
                             <span className="text-cyan-400">
                                 EXPLORE DISCIPLINE &rarr;
-                            </span>
-                        </Link>
-
-                        <Link
-                            href="/blog/category/mindset"
-                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
-                        >
-                            <span className="mb-1 block font-bold text-white">
-                                Mindset
-                            </span>
-
-                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
-                                Develop mental clarity, resilience, and
-                                stronger decision-making.
-                            </span>
-
-                            <span className="text-cyan-400">
-                                EXPLORE MINDSET &rarr;
-                            </span>
-                        </Link>
-
-                        <Link
-                            href="/blog/category/yoga"
-                            className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
-                        >
-                            <span className="mb-1 block font-bold text-white">
-                                Yoga
-                            </span>
-
-                            <span className="mb-3 block text-[10px] lowercase text-neutral-500">
-                                Develop mobility, recovery, balance, and
-                                mind-body connection.
-                            </span>
-
-                            <span className="text-cyan-400">
-                                EXPLORE YOGA &rarr;
                             </span>
                         </Link>
                     </div>

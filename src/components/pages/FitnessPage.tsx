@@ -541,12 +541,13 @@ export default function FitnessPage() {
                 {/* Recommended progression */}
                 {filteredFeaturedArticles.length > 0 && (
                     <section
-                        className="mb-24"
-                        aria-labelledby="fitness-transformation"
+                        id="fitness-transformation"
+                        className="mb-24 scroll-mt-24"
+                        aria-labelledby="fitness-transformation-heading"
                     >
                         <div className="mb-8 border-b border-neutral-900 pb-4">
                             <h2
-                                id="fitness-transformation"
+                                id="fitness-transformation-heading"
                                 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400"
                             >
                                 START YOUR FITNESS TRANSFORMATION
@@ -740,10 +741,12 @@ export default function FitnessPage() {
                                 Physical capacity can decline through
                                 prolonged inactivity.
                             </li>
+
                             <li>
                                 Reduced strength and movement capacity can
                                 limit daily capability.
                             </li>
+
                             <li>
                                 Inconsistent training makes long-term progress
                                 harder to sustain.
@@ -761,14 +764,17 @@ export default function FitnessPage() {
                                 Strength and physical capacity support everyday
                                 movement.
                             </li>
+
                             <li>
                                 Consistent activity supports physical and
                                 mental resilience.
                             </li>
+
                             <li>
                                 Mobility and conditioning expand physical
                                 capability.
                             </li>
+
                             <li>
                                 A capable body creates greater freedom to move
                                 and explore.
@@ -800,7 +806,7 @@ export default function FitnessPage() {
                     </p>
 
                     <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                        {/* CTA 1 — goes to the main knowledge/blog system */}
+                        {/* START YOUR EVOLUTION */}
                         <Link
                             href="/blog"
                             className="inline-block bg-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-black transition-colors hover:bg-cyan-400"
@@ -808,9 +814,13 @@ export default function FitnessPage() {
                             START YOUR EVOLUTION &rarr;
                         </Link>
 
-                        {/* CTA 2 — stays on THIS FITNESS PAGE and jumps to its article database */}
+                        {/* EXPLORE FITNESS ARTICLES
+                            IMPORTANT:
+                            This stays on the current /fitness page
+                            and jumps to START YOUR FITNESS TRANSFORMATION.
+                        */}
                         <Link
-                            href="/fitness#fitness-database"
+                            href="#fitness-transformation"
                             className="inline-block border border-cyan-500 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-cyan-400 transition-colors hover:bg-cyan-500 hover:text-black"
                         >
                             EXPLORE FITNESS ARTICLES &rarr;
@@ -830,8 +840,6 @@ export default function FitnessPage() {
                     </p>
 
                     <div className="grid gap-6 font-mono text-xs uppercase sm:grid-cols-2">
-                        {/* All Knowledge removed intentionally */}
-
                         {/* Discipline */}
                         <Link
                             href="/blog/category/discipline"
@@ -851,7 +859,7 @@ export default function FitnessPage() {
                             </span>
                         </Link>
 
-                        {/* Blog */}
+                        {/* Knowledge System */}
                         <Link
                             href="/blog"
                             className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"

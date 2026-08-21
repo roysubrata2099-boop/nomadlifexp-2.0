@@ -14,6 +14,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
     metadataBase: new URL("https://www.nomadlifexp.com"),
 
+    // Pinterest website verification
+    verification: {
+        other: {
+            "p:domain_verify":
+                "80172532b3cdb4c34c3c365d6b942e63",
+        },
+    },
+
     alternates: {
         canonical: "/",
     },
@@ -83,13 +91,11 @@ export const metadata: Metadata = {
     },
 };
 
-
 export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
     const jsonLdSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -164,7 +170,6 @@ export default function RootLayout({
         ],
     };
 
-
     let serializedSchema = "";
 
     try {
@@ -175,7 +180,6 @@ export default function RootLayout({
             error
         );
     }
-
 
     return (
         <html
@@ -195,11 +199,9 @@ export default function RootLayout({
                     />
                 )}
 
-
                 <main className="flex-grow">
                     {children}
                 </main>
-
 
                 {/* Microsoft Clarity */}
                 <Script
@@ -225,7 +227,6 @@ export default function RootLayout({
                     })(window, document, "clarity", "script", "x4hbg8q5cg");
                     `}
                 </Script>
-
 
                 {/* Google Analytics */}
                 <Script

@@ -219,7 +219,7 @@ function ClientVideoPlayer(): JSX.Element {
             controls={false}
             disablePictureInPicture
             aria-hidden="true"
-            poster="/images/yoga-poster.jpg"
+            poster="/images/yoga-mind-body-awareness.jpg"
             onError={(): void => setHasError(true)}
           >
             <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />
@@ -324,7 +324,7 @@ export default function HomePage(): JSX.Element {
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight">Evolve In Motion</h2>
           </div>
 
-          <div className="relative w-full max-w-5xl mx-auto h-[60vh] md:h-[70vh] rounded-2xl overflow-hidden border border-white/10 my-8 shadow-2xl bg-[#03050c]">
+          <div className="relative w-full aspect-video overflow-hidden bg-[#03050c]">
             <ClientVideoPlayer />
             <div className="absolute top-6 left-6 z-20 pointer-events-none">
               <span className="text-xs font-mono uppercase tracking-[0.4em] bg-black/60 px-4 py-2 border border-white/20 backdrop-blur-md text-cyan-300">Cinematic Video</span>
@@ -625,3 +625,11 @@ export default function HomePage(): JSX.Element {
     </div>
   );
 }
+
+
+
+
+
+
+
+

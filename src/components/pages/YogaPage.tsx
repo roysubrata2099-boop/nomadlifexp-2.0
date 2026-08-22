@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -263,17 +263,17 @@ export default function YogaPage() {
             description:
                 "Explore how balance, posture, inversion practice, body awareness, and controlled attention can make challenging yoga practices useful for developing physical and mental control.",
             slug:
-                "what-happens-when-you-try-forearm-stand-yoga-for-focus-and-confidence",
+                "forearm-stand-yoga-focus-confidence",
             step: "STEP 01",
             subtitle: "THE FOUNDATION",
         },
         {
             title:
-                "It’s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
+                "Itâ€™s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
             description:
                 "Explore forward bending yoga for mobility, flexibility, body awareness, controlled breathing, and a more deliberate relationship with physical tension and movement.",
             slug:
-                "its-never-too-late-to-transform-your-body-and-mind-with-forward-bending-yoga",
+                "forward-bending-yoga-stress-relief",
             step: "STEP 02",
             subtitle: "THE REGULATION SYSTEM",
         },
@@ -283,7 +283,7 @@ export default function YogaPage() {
             description:
                 "Explore stillness, meditation, breath awareness, reduced stimulation, and focused attention as practical ways to develop greater mental clarity and presence.",
             slug:
-                "what-happens-in-your-mind-when-everything-becomes-still",
+                "headstand-benefits-body-mind-safety",
             step: "STEP 03",
             subtitle: "THE STILLNESS SYSTEM",
         },
@@ -433,7 +433,7 @@ export default function YogaPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 — Awareness",
+                                title: "01 â€” Awareness",
                                 subtext:
                                     "Develop Body Intelligence",
                                 text:
@@ -441,7 +441,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "02",
-                                title: "02 — Regulation",
+                                title: "02 â€” Regulation",
                                 subtext:
                                     "Create More Control",
                                 text:
@@ -449,7 +449,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "03",
-                                title: "03 — Integration",
+                                title: "03 â€” Integration",
                                 subtext:
                                     "Connect Mind and Movement",
                                 text:
@@ -457,7 +457,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "04",
-                                title: "04 — Mastery",
+                                title: "04 â€” Mastery",
                                 subtext:
                                     "Build Somatic Autonomy",
                                 text:
@@ -648,7 +648,7 @@ export default function YogaPage() {
                             BREATH
                             <br />
                             <span className="text-neutral-600">
-                                ↓
+                                â†“
                             </span>
                             <br />
                             AWARENESS
@@ -658,7 +658,7 @@ export default function YogaPage() {
                             AWARENESS
                             <br />
                             <span className="text-neutral-600">
-                                ↓
+                                â†“
                             </span>
                             <br />
                             MOVEMENT
@@ -668,7 +668,7 @@ export default function YogaPage() {
                             MOVEMENT
                             <br />
                             <span className="text-neutral-600">
-                                ↓
+                                â†“
                             </span>
                             <br />
                             STILLNESS
@@ -678,7 +678,7 @@ export default function YogaPage() {
                             STILLNESS
                             <br />
                             <span className="text-neutral-600">
-                                ↓
+                                â†“
                             </span>
                             <br />
                             AWARENESS
@@ -1590,3 +1590,4 @@ export default function YogaPage() {
         </main>
     );
 }
+

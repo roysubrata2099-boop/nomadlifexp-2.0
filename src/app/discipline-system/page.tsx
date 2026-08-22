@@ -2,6 +2,7 @@
 import Link from "next/link";
 
 const SITE_URL = "https://nomadlifexp.com";
+const PAGE_URL = `${SITE_URL}/discipline-system`;
 
 /**
  * Production SEO Metadata Block (Optimized for Search Intent & Branding)
@@ -26,13 +27,13 @@ export const metadata: Metadata = {
         "NomadLifeXP"
     ],
     alternates: {
-        canonical: `${SITE_URL}/self-discipline-system`,
+        canonical: PAGE_URL,
     },
     openGraph: {
         title: "The Discipline System | Build Self-Discipline & Lasting Habits",
         description:
             "A structured framework for behaviour change, habit formation, and human optimization.",
-        url: `${SITE_URL}/self-discipline-system`,
+        url: PAGE_URL,
         siteName: "NomadLifeXP",
         type: "article",
     },
@@ -66,8 +67,8 @@ const jsonLdSchema = {
         },
         {
             "@type": "WebPage",
-            "@id": `${SITE_URL}/self-discipline-system#webpage`,
-            "url": `${SITE_URL}/self-discipline-system`,
+            "@id": `${PAGE_URL}#webpage`,
+            "url": PAGE_URL,
             "name": "The Discipline System | Build Self-Discipline & Lasting Habits",
             "inLanguage": "en-US",
             "isPartOf": {
@@ -76,7 +77,7 @@ const jsonLdSchema = {
         },
         {
             "@type": "Service",
-            "@id": `${SITE_URL}/self-discipline-system#service`,
+            "@id": `${PAGE_URL}#service`,
             "name": "The Discipline System",
             "provider": {
                 "@id": `${SITE_URL}/#organization`
@@ -85,7 +86,7 @@ const jsonLdSchema = {
         },
         {
             "@type": "FAQPage",
-            "@id": `${SITE_URL}/self-discipline-system#faq`,
+            "@id": `${PAGE_URL}#faq`,
             "mainEntity": [
                 {
                     "@type": "Question",
@@ -131,7 +132,7 @@ const jsonLdSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": `${SITE_URL}/self-discipline-system#breadcrumb`,
+            "@id": `${PAGE_URL}#breadcrumb`,
             "itemListElement": [
                 {
                     "@type": "ListItem",
@@ -145,7 +146,7 @@ const jsonLdSchema = {
                     "@id": `${SITE_URL}/#listItem`,
                     "position": 2,
                     "name": "Discipline System",
-                    "item": `${SITE_URL}/self-discipline-system`,
+                    "item": PAGE_URL,
                 }
             ]
         }
@@ -507,3 +508,4 @@ export default function DisciplineSystemPage() {
         </>
     );
 }
+

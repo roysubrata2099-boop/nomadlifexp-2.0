@@ -11,6 +11,7 @@ import {
 } from "@/lib/mdx";
 
 import MDXRelatedArticles from "@/components/MDXRelatedArticles";
+import { SITE_URL } from "@/lib/site";
 
 type PageProps = {
     params: Promise<{
@@ -18,8 +19,7 @@ type PageProps = {
     }>;
 };
 
-const SITE_URL =
-    "https://nomadlifexp.com";
+
 
 const RESERVED_SYSTEM_ROUTES =
     new Set([
@@ -302,7 +302,7 @@ export default async function MDXPostPage(
                             href={`/blog/category/${category}`}
                             className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
                         >
-                            ← Back to {post.category}
+                            â† Back to {post.category}
                         </Link>
                     )}
                 </div>

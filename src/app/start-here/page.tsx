@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
     title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
     description:
-        "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+        "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
     keywords:
         "daily discipline system, practical fitness habits, core stability training, mental focus framework, behavioral habits engine, functional mobility routines, digital distraction immunity, personal operating system",
     robots: {
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
         description:
-            "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+            "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
         url: "https://www.nomadlifexp.com/start-here",
         type: "website",
         siteName: "NomadLifeXP",
         images: [
             {
-                url: "https://nomadlifexp.com/og-main.jpg",
+                url: "https://www.nomadlifexp.com/og-main.jpg",
                 width: 1200,
                 height: 630,
                 alt: "NomadLifeXP Personal Operating System",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
         title: "Evolve In Motion | Personal Development System | NomadLifeXP",
         description:
             "Build self-discipline, functional fitness strength, mobility, and razor-sharp focus through structured daily execution protocols.",
-        images: ["https://nomadlifexp.com/og-main.jpg"],
+        images: ["https://www.nomadlifexp.com/og-main.jpg"],
     },
 };
 
@@ -155,50 +155,50 @@ export default function StartHerePage() {
         "@graph": [
             {
                 "@type": "WebSite",
-                "@id": "https://nomadlifexp.com/#website",
-                url: "https://nomadlifexp.com",
+                "@id": "https://www.nomadlifexp.com/#website",
+                url: "https://www.nomadlifexp.com",
                 name: "NomadLifeXP",
                 description: "Human optimization frameworks for physical capability and mental clarity.",
-                publisher: { "@id": "https://nomadlifexp.com/#organization" },
+                publisher: { "@id": "https://www.nomadlifexp.com/#organization" },
             },
             {
                 "@type": "Organization",
-                "@id": "https://nomadlifexp.com/#organization",
+                "@id": "https://www.nomadlifexp.com/#organization",
                 name: "NomadLifeXP",
-                url: "https://nomadlifexp.com",
+                url: "https://www.nomadlifexp.com",
                 logo: {
                     "@type": "ImageObject",
-                    "@id": "https://nomadlifexp.com/#logo",
-                    url: "https://nomadlifexp.com/logo.png",
+                    "@id": "https://www.nomadlifexp.com/#logo",
+                    url: "https://www.nomadlifexp.com/logo.png",
                     caption: "NomadLifeXP Logo",
                 },
             },
             {
                 "@type": "Person",
-                "@id": "https://nomadlifexp.com/#author",
+                "@id": "https://www.nomadlifexp.com/#author",
                 name: "NomadLifeXP Editorial Team",
-                url: "https://nomadlifexp.com/about",
+                url: "https://www.nomadlifexp.com/about",
             },
             {
                 "@type": "WebPage",
-                "@id": "https://nomadlifexp.com/start-here",
+                "@id": "https://www.nomadlifexp.com/start-here",
                 url: "https://www.nomadlifexp.com/start-here",
                 name: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
                 description:
-                    "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
-                isPartOf: { "@type": "WebSite", "@id": "https://nomadlifexp.com/#website" },
-                author: { "@id": "https://nomadlifexp.com/#author" },
+                    "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+                isPartOf: { "@type": "WebSite", "@id": "https://www.nomadlifexp.com/#website" },
+                author: { "@id": "https://www.nomadlifexp.com/#author" },
                 inLanguage: "en-US",
                 datePublished: "2026-01-10T08:00:00+00:00",
                 dateModified: "2026-07-29T00:00:00+00:00",
                 primaryImageOfPage: {
                     "@type": "ImageObject",
-                    url: "https://nomadlifexp.com/og-main.jpg",
+                    url: "https://www.nomadlifexp.com/og-main.jpg",
                 },
             },
             {
                 "@type": "FAQPage",
-                "@id": "https://nomadlifexp.com/start-here/#faq",
+                "@id": "https://www.nomadlifexp.com/start-here/#faq",
                 mainEntity: FAQS.map((faq) => ({
                     "@type": "Question",
                     name: faq.question,
@@ -210,10 +210,10 @@ export default function StartHerePage() {
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "https://nomadlifexp.com/start-here/#breadcrumb",
+                "@id": "https://www.nomadlifexp.com/start-here/#breadcrumb",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "System Home", item: "https://nomadlifexp.com" },
-                    { "@type": "ListItem", position: 2, name: "Start Here Sequence", item: "https://nomadlifexp.com/start-here" },
+                    { "@type": "ListItem", position: 1, name: "System Home", item: "https://www.nomadlifexp.com" },
+                    { "@type": "ListItem", position: 2, name: "Start Here Sequence", item: "https://www.nomadlifexp.com/start-here" },
                 ],
             },
         ],
@@ -413,7 +413,7 @@ export default function StartHerePage() {
                                             {step.highlights.map((item, idx) => (
                                                 <div key={idx} className="flex items-center gap-2 text-neutral-400">
                                                     <span className="text-cyan-400 font-bold" aria-hidden="true">
-                                                        ✓
+                                                        âœ“
                                                     </span>
                                                     <span>{item}</span>
                                                 </div>

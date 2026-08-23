@@ -1,8 +1,6 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 
-const BASE_URL = (
-    process.env.NEXT_PUBLIC_SITE_URL || "https://nomadlifexp.com"
-).replace(/\/+$/, "");
+const CANONICAL_SITE_URL = "https://www.nomadlifexp.com";
 
 export default function robots(): MetadataRoute.Robots {
     return {
@@ -15,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
                 "/private/",
             ],
         },
-        sitemap: `${BASE_URL}/sitemap.xml`,
+        sitemap: `${CANONICAL_SITE_URL}/sitemap.xml`,
     };
 }

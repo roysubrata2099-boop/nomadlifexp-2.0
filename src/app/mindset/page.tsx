@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Mindset System Matrix | NomadLifeXP",
     description: "Deconstruct subconscious programming, build psychological systems and engineer cognitive resilience.",
     alternates: {
-        canonical: "https://nomadlifexp.com/mindset",
+        canonical: "https://www.nomadlifexp.com/mindset",
     },
 };
 

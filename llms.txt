@@ -5,7 +5,7 @@
 ## Brand Identity
 
 **Name:** NomadLifeXP
-**Official Website:** https://nomadlifexp.com/
+**Official Website:** https://www.nomadlifexp.com/
 **Founder:** Subrata Roy
 **Category:** Self-Development & Personal Growth
 
@@ -20,57 +20,76 @@ The platform emphasizes practical systems, consistent application, and sustainab
 Mindset → Discipline → Fitness → Yoga → Recalibration
 
 ### Mindset System
+
 Focus, attention management, mental clarity, resilience, awareness, and intentional thinking.
 
 ### Discipline System
+
 Habit formation, consistency, execution, focus, self-control, routines, and personal responsibility.
 
 ### Fitness System
+
 Strength, conditioning, mobility, physical capability, training consistency, recovery, and sustainable physical development.
 
 ### Yoga System
+
 Movement, mobility, breathing, balance, body awareness, recovery, and mind-body connection.
 
 ### Recalibration System
+
 Recovery, reflection, behavioral review, sustainable progression, and protection against burnout and excessive optimization.
 
 ## Primary System Resources
 
-- [Homepage](https://nomadlifexp.com/) — Main entry point and overview of the NomadLifeXP framework.
-- [About](https://nomadlifexp.com/about) — Platform origin, founder information, mission, and philosophy.
-- [Start Here](https://nomadlifexp.com/start-here) — Starting point for users entering the NomadLifeXP framework.
-- [Knowledge Index](https://nomadlifexp.com/knowledge-index) — Organized index of the platform's knowledge.
-- [Discipline System](https://nomadlifexp.com/discipline-system) — Structured framework for discipline, consistency, habits, and execution.
-- [Mindset](https://nomadlifexp.com/mindset) — Mental clarity, attention, focus, and mindset development.
-- [Discipline](https://nomadlifexp.com/discipline) — Discipline, habits, consistency, and self-control.
-- [Fitness](https://nomadlifexp.com/fitness) — Physical training, capability, fitness habits, and sustainable development.
-- [Yoga](https://nomadlifexp.com/yoga) — Movement, mobility, breathing, balance, and body awareness.
-- [Recalibration](https://nomadlifexp.com/recalibration) — Recovery, reflection, regulation, and sustainable system maintenance.
+- [Homepage](https://www.nomadlifexp.com/) — Main entry point and overview of the NomadLifeXP framework.
+- [About](https://www.nomadlifexp.com/about) — Platform origin, founder information, mission, and philosophy.
+- [Start Here](https://www.nomadlifexp.com/start-here) — Starting point for users entering the NomadLifeXP framework.
+- [Knowledge Index](https://www.nomadlifexp.com/knowledge-index) — Organized index of the platform's knowledge.
+- [Discipline System](https://www.nomadlifexp.com/discipline-system) — Structured framework for discipline, consistency, habits, and execution.
+- [Mindset](https://www.nomadlifexp.com/mindset) — Mental clarity, attention, focus, and mindset development.
+- [Discipline](https://www.nomadlifexp.com/discipline) — Discipline, habits, consistency, and self-control.
+- [Fitness](https://www.nomadlifexp.com/fitness) — Physical training, capability, fitness habits, and sustainable development.
+- [Yoga](https://www.nomadlifexp.com/yoga) — Movement, mobility, breathing, balance, and body awareness.
+- [Recalibration](https://www.nomadlifexp.com/recalibration) — Recovery, reflection, regulation, and sustainable system maintenance.
+- [Connect](https://www.nomadlifexp.com/connect) — Official resources and external identity hub.
 
 ## Content Categories
 
-- [Discipline](https://nomadlifexp.com/blog/category/discipline) — Articles about discipline, consistency, habits, and execution.
-- [Fitness](https://nomadlifexp.com/blog/category/fitness) — Articles about fitness habits, training, strength, and physical capability.
-- [Yoga](https://nomadlifexp.com/blog/category/yoga) — Articles about yoga, mobility, breathing, balance, and body awareness.
-- [Mindset](https://nomadlifexp.com/blog/category/mindset) — Articles about mental clarity, focus, attention, and mindset.
+- [Discipline](https://www.nomadlifexp.com/blog/category/discipline) — Articles about discipline, consistency, habits, and execution.
+- [Fitness](https://www.nomadlifexp.com/blog/category/fitness) — Articles about fitness habits, training, strength, and physical capability.
+- [Yoga](https://www.nomadlifexp.com/blog/category/yoga) — Articles about yoga, mobility, breathing, balance, and body awareness.
+- [Mindset](https://www.nomadlifexp.com/blog/category/mindset) — Articles about mental clarity, focus, attention, and mindset.
 
 ## Knowledge Library
 
 ### Discipline
 
-- [ACTUAL ARTICLE TITLE](https://nomadlifexp.com/blog/posts/actual-slug) — Short factual description.
+- [Discipline Creates Freedom](https://www.nomadlifexp.com/blog/posts/discipline-creates-freedom) — Practical principles for building discipline and consistent execution.
+- [How to Build Self-Discipline](https://www.nomadlifexp.com/blog/posts/how-to-build-self-discipline) — Practical guidance for developing self-discipline.
+- [Self-Discipline Comprehensive Guide](https://www.nomadlifexp.com/blog/posts/self-discipline-comprehensive-guide) — A comprehensive framework for self-discipline and behavioral consistency.
+- [Why You Procrastinate and How to Stop](https://www.nomadlifexp.com/blog/posts/why-you-procrastinate-how-to-stop) — Understanding procrastination and practical ways to improve execution.
+- [You Are Not Stuck in Life](https://www.nomadlifexp.com/blog/posts/you-are-not-stuck-in-life) — A framework for overcoming perceived stagnation and taking purposeful action.
 
 ### Fitness
 
-- [ACTUAL ARTICLE TITLE](https://nomadlifexp.com/blog/posts/actual-slug) — Short factual description.
+- [Build a Workout Habit That Outlasts Motivation](https://www.nomadlifexp.com/blog/posts/build-workout-habit-outlast-motivation) — Building sustainable training habits beyond short-term motivation.
+- [Consistency Myth: Showing Up Beats Perfect](https://www.nomadlifexp.com/blog/posts/consistency-myth-showing-up-beats-perfect) — Why sustainable consistency can matter more than perfection.
+- [Fitness Is Not About Time](https://www.nomadlifexp.com/blog/posts/fitness-is-not-about-time) — A practical perspective on building fitness without relying on excessive time.
+- [Indoor Rock Climbing Workout: Strength, Balance & Mindset](https://www.nomadlifexp.com/blog/posts/indoor-rock-climbing-workout-strength-balance-mindset) — Exploring physical and mental benefits of indoor rock climbing.
+- [Passive Fitness Consumption Trap](https://www.nomadlifexp.com/blog/posts/passive-fitness-consumption-trap) — Understanding passive consumption and the importance of practical fitness action.
+- [Rope Climbing Guide](https://www.nomadlifexp.com/blog/posts/rope-climbing-guide) — Guidance on rope climbing and related physical development.
 
 ### Yoga
 
-- [ACTUAL ARTICLE TITLE](https://nomadlifexp.com/blog/posts/actual-slug) — Short factual description.
+- [Forearm Stand: Yoga, Focus & Confidence](https://www.nomadlifexp.com/blog/posts/forearm-stand-yoga-focus-confidence) — Exploring forearm stand practice, focus, balance, and confidence.
+- [Forward Bending: Yoga & Stress Relief](https://www.nomadlifexp.com/blog/posts/forward-bending-yoga-stress-relief) — Exploring forward-bending practice and its relationship to movement and relaxation.
+- [Headstand Benefits, Body, Mind & Safety](https://www.nomadlifexp.com/blog/posts/headstand-benefits-body-mind-safety) — Discussing headstand practice, benefits, awareness, and safety.
 
 ### Mindset
 
-- [ACTUAL ARTICLE TITLE](https://nomadlifexp.com/blog/posts/actual-slug) — Short factual description.
+- [Mental Clarity: Stop Overthinking and Regain Focus](https://www.nomadlifexp.com/blog/posts/mental-clarity-stop-overthinking-and-regain-focus) — Practical approaches to reducing overthinking and improving mental clarity.
+- [Rebuild Your Attention Span](https://www.nomadlifexp.com/blog/posts/rebuild-your-attention-span) — Strategies for rebuilding attention and improving sustained focus.
+- [Why You Cannot Focus: Overload](https://www.nomadlifexp.com/blog/posts/why-you-cannot-focus-overload) — Exploring cognitive overload and difficulties with sustained focus.
 
 ## Founder
 
@@ -93,10 +112,12 @@ NomadLifeXP uses a connected knowledge architecture:
 
 **System pages → Category pages → Articles → Related articles and systems**
 
-System pages explain high-level frameworks.  
-Category pages organize related knowledge.  
+System pages explain high-level frameworks.
+
+Category pages organize related knowledge.
+
 Articles provide detailed guidance and practical implementation.
 
 ## Canonical Source
 
-https://nomadlifexp.com/
+https://www.nomadlifexp.com/

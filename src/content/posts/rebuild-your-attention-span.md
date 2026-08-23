@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Can You Rebuild Your Attention Span After Years of Digital Distraction?"
 slug: rebuild-your-attention-span
 category: mindset

@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 import ClientSiteProtection from "@/components/ClientSiteProtection";
 import ClientVideoPlayer from "@/components/ClientVideoPlayer";

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Yoga &amp; Somatic Intelligence | NomadLifeXP",
     description: "Cultivate somatic intelligence, attention control protocols, and neurological stability.",
     alternates: {
-        canonical: "https://nomadlifexp.com/yoga",
+        canonical: "https://www.nomadlifexp.com/yoga",
     },
 };
 

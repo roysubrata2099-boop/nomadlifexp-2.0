@@ -6,12 +6,12 @@ export const metadata: Metadata = {
     title: "Somatic Recalibration System // Phase III Network | NomadLifeXP",
     description: "The operational override mechanism designed to reset neural baselines, clear cognitive accumulation, and restore optimal physiological alignment for high-velocity output.",
     alternates: {
-        canonical: "https://nomadlifexp.com/recalibration",
+        canonical: "https://www.nomadlifexp.com/recalibration",
     },
     openGraph: {
         title: "Phase III Network Overview // Somatic Recalibration Protocol | NomadLifeXP",
         description: "The operational override mechanism designed to reset neural baselines, clear cognitive accumulation, and restore optimal physiological alignment for high-velocity output.",
-        url: "https://nomadlifexp.com/recalibration",
+        url: "https://www.nomadlifexp.com/recalibration",
         type: "website",
     },
 };

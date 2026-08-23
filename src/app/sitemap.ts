@@ -1,11 +1,16 @@
-// src/app/sitemap.ts
-
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 import { getAllMDXPosts } from "@/lib/mdx";
 
-const SITE_URL = (
-    process.env.NEXT_PUBLIC_SITE_URL || "https://nomadlifexp.com"
-).replace(/\/+$/, "");
+/*
+ * Canonical production origin.
+ *
+ * IMPORTANT:
+ * The website's canonical domain is:
+ * https://www.nomadlifexp.com
+ *
+ * Keep sitemap URLs on the canonical HTTPS + www origin.
+ */
+const CANONICAL_SITE_URL = "https://www.nomadlifexp.com";
 
 function parseValidDate(dateInput: unknown): Date | undefined {
     if (!dateInput) {
@@ -31,19 +36,24 @@ function safeSlug(value: unknown): string {
 }
 
 function absoluteUrl(path: string): string {
-    if (path === "/") {
-        return SITE_URL;
-    }
+    const normalizedPath =
+        path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
 
-    return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+    return `${CANONICAL_SITE_URL}${normalizedPath}`;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     /*
      * IMPORTANT:
-     * These are only routes that currently exist in the application.
-     * Do not add speculative URLs here because sitemap URLs should resolve
-     * to real canonical pages.
+     * Only include URLs that currently exist as canonical application routes.
+     *
+     * Do NOT include:
+     * - /index.html
+     * - /blog.html
+     * - old .html URLs
+     * - non-www URLs
+     * - HTTP URLs
+     * - redirect destinations that themselves redirect
      */
     const staticRoutes: Array<{
         path: string;
@@ -153,8 +163,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     /*
      * Load all real MDX articles.
      *
-     * If the content system fails, the sitemap still returns all static
-     * routes instead of taking down the sitemap endpoint.
+     * If the content system fails, return static routes only.
+     * This prevents the sitemap endpoint from failing completely.
      */
     let rawPosts: unknown = [];
 
@@ -185,8 +195,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
             /*
              * Prefer updatedAt, then date.
-             * If neither is valid, omit lastModified rather than falsely
-             * claiming that the article changed today.
+             *
+             * Do not generate a fake lastModified date when metadata
+             * is missing or invalid.
              */
             const lastModified =
                 parseValidDate(postRecord.updatedAt) ??
@@ -204,8 +215,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         );
 
     /*
-     * Prevent duplicate URLs if a future content change accidentally
-     * produces the same URL more than once.
+     * Prevent duplicate canonical URLs.
      */
     const seen = new Set<string>();
 

@@ -8,12 +8,12 @@ export const metadata: Metadata = {
     title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset & Yoga",
     description: "Explore the NomadLifeXP Human Optimization Masterclass Library. Learn self discipline, mental clarity, fitness consistency, yoga practices, habit systems, and personal development frameworks.",
     alternates: {
-        canonical: "https://nomadlifexp.com/knowledge-index",
+        canonical: "https://www.nomadlifexp.com/knowledge-index",
     },
     openGraph: {
         title: "Human Optimization Masterclass Library",
         description: "A structured learning system covering discipline, mindset, fitness, yoga, focus, habits, and human optimization.",
-        url: "https://nomadlifexp.com/knowledge-index",
+        url: "https://www.nomadlifexp.com/knowledge-index",
         type: "website",
         siteName: "NomadLifeXP",
     },
@@ -73,17 +73,17 @@ export default async function KnowledgeIndexPage(props: PageProps) {
         return acc;
     }, {});
 
-    // 🛡️ GRAPH-UNIFIED METADATA STRUCTURE
+    // ðŸ›¡ï¸ GRAPH-UNIFIED METADATA STRUCTURE
     const unifiedJsonLd = {
         "@context": "https://schema.org",
         "@graph": [
             {
                 "@type": "CollectionPage",
-                "@id": "https://nomadlifexp.com/knowledge-index/#collectionpage",
-                "url": "https://nomadlifexp.com/knowledge-index",
+                "@id": "https://www.nomadlifexp.com/knowledge-index/#collectionpage",
+                "url": "https://www.nomadlifexp.com/knowledge-index",
                 "name": "NomadLifeXP Human Optimization Masterclass Library",
                 "description": "A structured educational collection covering discipline, mindset, fitness, yoga and personal development.",
-                "isPartOf": { "@id": "https://nomadlifexp.com/#website" },
+                "isPartOf": { "@id": "https://www.nomadlifexp.com/#website" },
                 "about": [
                     "Self Discipline",
                     "Mental Clarity",
@@ -94,9 +94,9 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                 ],
                 "publisher": {
                     "@type": "Organization",
-                    "@id": "https://nomadlifexp.com/#organization",
+                    "@id": "https://www.nomadlifexp.com/#organization",
                     "name": "NomadLifeXP",
-                    "url": "https://nomadlifexp.com"
+                    "url": "https://www.nomadlifexp.com"
                 }
             }
         ]

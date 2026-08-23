@@ -7,38 +7,38 @@ export const metadata: Metadata = {
     title: "Operational Directive // Mission & Foundation",
     description: "The core philosophy, underlying methodology, and existential directive of the NomadLifeXP platform.",
     alternates: {
-        canonical: "https://nomadlifexp.com/about",
+        canonical: "https://www.nomadlifexp.com/about",
     },
     openGraph: {
         title: "Operational Directive // Mission & Core Foundation Blueprint",
         description: "The core philosophy, underlying methodology, and existential directive of the NomadLifeXP platform.",
-        url: "https://nomadlifexp.com/about",
+        url: "https://www.nomadlifexp.com/about",
         type: "website",
     },
 };
 
 export default function AboutPage() {
-    // 🛡️ HARDENED STATIC SCHEMA GRAPH MATRIX (TYPE-SAFE & VALIDATED)
+    // ðŸ›¡ï¸ HARDENED STATIC SCHEMA GRAPH MATRIX (TYPE-SAFE & VALIDATED)
     const aboutSchema = {
         "@context": "https://schema.org",
         "@graph": [
             {
                 "@type": "WebPage",
-                "@id": "https://nomadlifexp.com/about/#webpage",
-                "url": "https://nomadlifexp.com/about",
+                "@id": "https://www.nomadlifexp.com/about/#webpage",
+                "url": "https://www.nomadlifexp.com/about",
                 "name": "About NomadLifeXP // Mission & Philosophy",
-                "isPartOf": { "@id": "https://nomadlifexp.com/#website" },
+                "isPartOf": { "@id": "https://www.nomadlifexp.com/#website" },
                 "description": "The mission, operational philosophy, human optimization methodology, and foundational origin of NomadLifeXP."
             },
             {
                 "@type": "Person",
-                "@id": "https://nomadlifexp.com/about/#subrata-roy",
+                "@id": "https://www.nomadlifexp.com/about/#subrata-roy",
                 "name": "Subrata Roy",
                 "jobTitle": "Founder & Creator of NomadLifeXP",
                 "worksFor": {
-                    "@id": "https://nomadlifexp.com/#organization"
+                    "@id": "https://www.nomadlifexp.com/#organization"
                 },
-                "image": "https://nomadlifexp.com/images/about/subrata-roy-founder-nomadlifexp.jpg"
+                "image": "https://www.nomadlifexp.com/images/about/subrata-roy-founder-nomadlifexp.jpg"
             }
         ]
     };
@@ -106,9 +106,9 @@ export default function AboutPage() {
                         </Link>
                     </div>
                     <div className="text-xs font-mono text-neutral-400 pt-2 flex flex-wrap gap-3">
-                        <span>Evolve in Motion 🏃‍♂️</span>
-                        <span>•</span>
-                        <span>Discipline • Fitness • Yoga • Mindset</span>
+                        <span>Evolve in Motion ðŸƒâ€â™‚ï¸</span>
+                        <span>â€¢</span>
+                        <span>Discipline â€¢ Fitness â€¢ Yoga â€¢ Mindset</span>
                     </div>
                 </header>
 
@@ -145,7 +145,7 @@ export default function AboutPage() {
                                 // FOUNDER ORIGIN
                             </h2>
                             <p className="text-white font-bold text-base md:text-lg">
-                                Founder & Creator — Subrata Roy
+                                Founder & Creator â€” Subrata Roy
                             </p>
                         </div>
                         <p>
@@ -171,9 +171,9 @@ export default function AboutPage() {
                         </p>
 
                         <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                            <p>• How do I become more consistent?</p>
-                            <p>• How do I build discipline?</p>
-                            <p>• How do I create lasting change?</p>
+                            <p>â€¢ How do I become more consistent?</p>
+                            <p>â€¢ How do I build discipline?</p>
+                            <p>â€¢ How do I create lasting change?</p>
                         </div>
 
                         <p>
@@ -185,9 +185,9 @@ export default function AboutPage() {
                         </p>
 
                         <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                            <p>• I would set goals.</p>
-                            <p>• I would create plans.</p>
-                            <p>• I would commit to change.</p>
+                            <p>â€¢ I would set goals.</p>
+                            <p>â€¢ I would create plans.</p>
+                            <p>â€¢ I would commit to change.</p>
                         </div>
 
                         <p>
@@ -218,9 +218,9 @@ export default function AboutPage() {
                                 It is created through small actions repeated consistently:
                             </p>
                             <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                                <p>• The workouts you complete.</p>
-                                <p>• The habits you maintain.</p>
-                                <p>• The decisions you make when nobody is watching.</p>
+                                <p>â€¢ The workouts you complete.</p>
+                                <p>â€¢ The habits you maintain.</p>
+                                <p>â€¢ The decisions you make when nobody is watching.</p>
                             </div>
                             <p>
                                 These moments shape your identity. They determine the person you become.
@@ -237,7 +237,7 @@ export default function AboutPage() {
                                 <p className="text-amber-400">You become stronger by building the systems that create change.</p>
                             </div>
                             <p className="text-neutral-300">
-                                My mission is to help people evolve beyond their current limitations and become stronger versions of themselves — one disciplined action at a time.
+                                My mission is to help people evolve beyond their current limitations and become stronger versions of themselves â€” one disciplined action at a time.
                             </p>
                             <div className="pt-2 font-bold text-amber-400 tracking-wider">
                                 <p>Motivation fades.</p>
@@ -279,11 +279,11 @@ export default function AboutPage() {
                                     Core Objectives
                                 </h2>
                                 <ul className="text-xs text-neutral-300 space-y-2">
-                                    <li className="flex items-center gap-2">✓ Rebuild discipline</li>
-                                    <li className="flex items-center gap-2">✓ Strengthen the body</li>
-                                    <li className="flex items-center gap-2">✓ Improve mental clarity</li>
-                                    <li className="flex items-center gap-2">✓ Develop control over attention</li>
-                                    <li className="flex items-center gap-2">✓ Create meaningful daily habits</li>
+                                    <li className="flex items-center gap-2">âœ“ Rebuild discipline</li>
+                                    <li className="flex items-center gap-2">âœ“ Strengthen the body</li>
+                                    <li className="flex items-center gap-2">âœ“ Improve mental clarity</li>
+                                    <li className="flex items-center gap-2">âœ“ Develop control over attention</li>
+                                    <li className="flex items-center gap-2">âœ“ Create meaningful daily habits</li>
                                 </ul>
                             </div>
                             <div className="pt-4 border-t border-neutral-800 mt-2">
@@ -488,7 +488,7 @@ export default function AboutPage() {
                             Your Next Version Is Built Daily.
                         </h2>
                         <p className="text-xs text-neutral-400 uppercase tracking-widest">
-                            Discipline • Fitness • Yoga • Mindset
+                            Discipline â€¢ Fitness â€¢ Yoga â€¢ Mindset
                         </p>
                     </div>
                     <div className="pt-4">
@@ -507,12 +507,12 @@ export default function AboutPage() {
                         NOMADLIFEXP // Built for people who choose growth over comfort.
                     </p>
                     <p className="text-neutral-400 text-[10px] uppercase tracking-[0.4em] font-semibold">
-                        © NomadLifeXP • Evolve in Motion 🏃‍♂️
+                        Â© NomadLifeXP â€¢ Evolve in Motion ðŸƒâ€â™‚ï¸
                     </p>
                 </footer>
             </div>
 
-            {/* 🛡️ SECURITY SCHEMA BLOCK INGESTION MATRIX */}
+            {/* ðŸ›¡ï¸ SECURITY SCHEMA BLOCK INGESTION MATRIX */}
             {serializedAboutSchema && (
                 <script
                     id="schema-about-page"

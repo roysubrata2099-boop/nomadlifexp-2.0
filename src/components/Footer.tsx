@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 /* ---------------- OPERATIONAL FOOTER COMPONENT ---------------- */
 export default function Footer() {

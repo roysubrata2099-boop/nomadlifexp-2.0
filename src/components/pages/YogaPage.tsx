@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";

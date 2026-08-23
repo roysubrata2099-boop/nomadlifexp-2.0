@@ -1,7 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
-const SITE_URL = "https://nomadlifexp.com";
+const SITE_URL = "https://www.nomadlifexp.com";
 const PAGE_URL = `${SITE_URL}/discipline-system`;
 
 /**

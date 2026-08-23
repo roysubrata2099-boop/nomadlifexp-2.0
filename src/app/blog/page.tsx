@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 import { getAllMDXPosts } from "@/lib/mdx";
 
-const SITE_URL = "https://nomadlifexp.com";
+const SITE_URL = "https://www.nomadlifexp.com";
 
 export const metadata: Metadata = {
     title: "Human Evolution Insights",
@@ -208,7 +208,7 @@ export default function BlogV2Page() {
                         href="/"
                         className="text-neutral-500 hover:text-cyan-400 transition-colors"
                     >
-                        ← HOME
+                        â† HOME
                     </Link>
                 </nav>
 

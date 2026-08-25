@@ -24,7 +24,7 @@ export interface PostData {
 
 const postsDirectory = path.join(
     process.cwd(),
-    "src/content/posts"
+    "src/content/posts-mdx"
 );
 
 
@@ -199,7 +199,7 @@ function getPostFiles(): string[] {
         return files.filter(
             file =>
                 typeof file === "string" &&
-                file.endsWith(".md")
+                file.endsWith(".mdx")
         );
 
 
@@ -248,7 +248,7 @@ export function getAllPosts(): PostData[] {
 
                 const slug =
                     slugify(
-                        file.replace(/\.md$/, "")
+                        file.replace(/\.mdx$/, "")
                     );
 
 

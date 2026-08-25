@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const POSTS_DIR = path.join(process.cwd(), "src/content/posts");
+const POSTS_DIR = path.join(process.cwd(), "src/content/posts-mdx");
 const OUTPUT_FILE = path.join(process.cwd(), "src/data/posts.json");
 
 // 100% Bulletproof Route Protection Rules
@@ -24,7 +24,7 @@ const linkReplacements = [
 
 function getAllMarkdownFiles() {
     if (!fs.existsSync(POSTS_DIR)) return [];
-    return fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md"));
+    return fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
 }
 
 function fixContentLinks(content) {

@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -19,8 +19,6 @@ type PageProps = {
     }>;
 };
 
-
-
 const RESERVED_SYSTEM_ROUTES =
     new Set([
         "admin",
@@ -33,20 +31,14 @@ const RESERVED_SYSTEM_ROUTES =
         "blog",
     ]);
 
-function safeText(
-    value: unknown
-): string {
+function safeText(value: unknown): string {
     return typeof value === "string"
         ? value.trim()
         : "";
 }
 
-function safeSlug(
-    value: unknown
-): string {
-    if (
-        typeof value !== "string"
-    ) {
+function safeSlug(value: unknown): string {
+    if (typeof value !== "string") {
         return "";
     }
 
@@ -58,52 +50,50 @@ function safeSlug(
         .replace(/^-|-$/g, "");
 }
 
-function safeImage(
-    value: unknown
-): string {
-    if (
-        typeof value !== "string"
-    ) {
+function safeImage(value: unknown): string {
+    if (typeof value !== "string") {
         return "";
     }
 
-    const image =
-        value.trim();
+    const image = value.trim();
 
-    if (
-        !image.startsWith("/")
-    ) {
+    if (!image.startsWith("/")) {
         return "";
     }
 
     return image;
 }
 
+function absoluteUrl(pathname: string): string {
+    const normalizedPath =
+        pathname === "/"
+            ? ""
+            : pathname.startsWith("/")
+                ? pathname
+                : `/${pathname}`;
+
+    return `${SITE_URL}${normalizedPath}`;
+}
+
 export async function generateStaticParams() {
     try {
-        const posts =
-            getAllMDXPosts();
+        const posts = getAllMDXPosts();
 
         return posts
-            .map(
-                (post) => {
-                    const slug =
-                        safeSlug(
-                            post.slug
-                        );
+            .map((post) => {
+                const slug = safeSlug(post.slug);
 
-                    if (
-                        !slug ||
-                        RESERVED_SYSTEM_ROUTES.has(slug)
-                    ) {
-                        return null;
-                    }
-
-                    return {
-                        slug,
-                    };
+                if (
+                    !slug ||
+                    RESERVED_SYSTEM_ROUTES.has(slug)
+                ) {
+                    return null;
                 }
-            )
+
+                return {
+                    slug,
+                };
+            })
             .filter(
                 (
                     item
@@ -121,12 +111,9 @@ export async function generateMetadata(
     }: PageProps
 ): Promise<Metadata> {
     try {
-        const {
-            slug,
-        } = await params;
+        const { slug } = await params;
 
-        const cleanSlug =
-            safeSlug(slug);
+        const cleanSlug = safeSlug(slug);
 
         if (
             !cleanSlug ||
@@ -136,9 +123,7 @@ export async function generateMetadata(
         }
 
         const post =
-            await getMDXPostBySlug(
-                cleanSlug
-            );
+            await getMDXPostBySlug(cleanSlug);
 
         if (!post) {
             return {
@@ -148,54 +133,58 @@ export async function generateMetadata(
         }
 
         const title =
-            safeText(post.title)
-            ||
+            safeText(post.title) ||
             "NomadLifeXP Article";
 
         const description =
-            safeText(post.description)
-            ||
+            safeText(post.description) ||
             "Transformation systems and insights.";
 
         const image =
             safeImage(post.image);
 
+        const canonicalUrl =
+            absoluteUrl(
+                `/blog/posts/${cleanSlug}`
+            );
+
         return {
             title:
                 `${title} | NomadLifeXP`,
             description,
+
             alternates: {
-                canonical:
-                    `${SITE_URL}/blog/posts/${cleanSlug}`,
+                canonical: canonicalUrl,
             },
+
             openGraph: {
                 title,
                 description,
-                url:
-                    `${SITE_URL}/blog/posts/${cleanSlug}`,
-                type:
-                    "article",
-                images:
-                    image
-                        ? [
-                            {
-                                url:
-                                    `${SITE_URL}${image}`,
-                            },
-                        ]
-                        : [],
+                url: canonicalUrl,
+                type: "article",
+
+                images: image
+                    ? [
+                        {
+                            url:
+                                absoluteUrl(image),
+                            alt: title,
+                        },
+                    ]
+                    : [],
             },
+
             twitter: {
                 card:
                     "summary_large_image",
                 title,
                 description,
-                images:
-                    image
-                        ? [
-                            `${SITE_URL}${image}`,
-                        ]
-                        : [],
+
+                images: image
+                    ? [
+                        absoluteUrl(image),
+                    ]
+                    : [],
             },
         };
     } catch {
@@ -211,12 +200,9 @@ export default async function MDXPostPage(
         params,
     }: PageProps
 ) {
-    const {
-        slug,
-    } = await params;
+    const { slug } = await params;
 
-    const cleanSlug =
-        safeSlug(slug);
+    const cleanSlug = safeSlug(slug);
 
     if (
         !cleanSlug ||
@@ -226,17 +212,14 @@ export default async function MDXPostPage(
     }
 
     const post =
-        await getMDXPostBySlug(
-            cleanSlug
-        );
+        await getMDXPostBySlug(cleanSlug);
 
     if (!post) {
         notFound();
     }
 
     const title =
-        safeText(post.title)
-        ||
+        safeText(post.title) ||
         "Untitled Article";
 
     const description =
@@ -245,8 +228,27 @@ export default async function MDXPostPage(
     const category =
         safeSlug(post.category);
 
+    const categoryName =
+        safeText(post.category)
+            .replace(/[-_]+/g, " ")
+            .replace(/\b\w/g, (char) =>
+                char.toUpperCase()
+            );
+
     const image =
         safeImage(post.image);
+
+    const articleUrl =
+        absoluteUrl(
+            `/blog/posts/${cleanSlug}`
+        );
+
+    const categoryUrl =
+        category
+            ? absoluteUrl(
+                `/blog/category/${category}`
+            )
+            : "";
 
     const relatedArticles =
         Array.isArray(post.relatedArticles)
@@ -256,38 +258,117 @@ export default async function MDXPostPage(
             )
             : [];
 
-    const jsonLd = {
-        "@context":
-            "https://schema.org",
-        "@type":
-            "Article",
-        headline:
-            title,
-        description,
-        image:
-            image
-                ? `${SITE_URL}${image}`
-                : undefined,
-        url:
-            `${SITE_URL}/blog/posts/${cleanSlug}`,
+    /*
+     * Article structured data.
+     *
+     * Only fields that are actually available from the
+     * current MDX content model are included.
+     *
+     * No artificial publication dates, authors, ratings,
+     * or other unsupported claims are generated.
+     */
+    const articleJsonLd = {
+        "@type": "Article",
+        "@id": `${articleUrl}#article`,
+        headline: title,
+        description: description || undefined,
+
+        image: image
+            ? [absoluteUrl(image)]
+            : undefined,
+
+        url: articleUrl,
+
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": articleUrl,
+        },
+
+        articleSection:
+            categoryName || undefined,
+
         author: {
-            "@type":
-                "Organization",
-            name:
-                "NomadLifeXP",
+            "@id":
+                `${SITE_URL}/#organization`,
         },
+
         publisher: {
-            "@type":
-                "Organization",
-            name:
-                "NomadLifeXP",
+            "@id":
+                `${SITE_URL}/#organization`,
         },
+
+        isPartOf: {
+            "@id":
+                `${SITE_URL}/#website`,
+        },
+    };
+
+    /*
+     * Breadcrumb structured data.
+     *
+     * The article itself is the final breadcrumb item.
+     * The category item is included only when a valid
+     * category exists in the MDX frontmatter.
+     */
+    const breadcrumbItems = [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: SITE_URL,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: absoluteUrl("/blog"),
+        },
+    ];
+
+    if (category && categoryName) {
+        breadcrumbItems.push({
+            "@type": "ListItem",
+            position: 3,
+            name: categoryName,
+            item: categoryUrl,
+        });
+    }
+
+    breadcrumbItems.push({
+        "@type": "ListItem",
+        position:
+            category && categoryName
+                ? 4
+                : 3,
+        name: title,
+        item: articleUrl,
+    });
+
+    const breadcrumbJsonLd = {
+        "@type": "BreadcrumbList",
+        "@id": `${articleUrl}#breadcrumb`,
+        itemListElement: breadcrumbItems,
+    };
+
+    /*
+     * Connect the article and breadcrumb to the
+     * site-wide Organization and WebSite entities
+     * already defined in the root layout.
+     */
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            articleJsonLd,
+            breadcrumbJsonLd,
+        ],
     };
 
     return (
         <>
             <script
+                id="article-structured-data"
                 type="application/ld+json"
+                suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html:
                         JSON.stringify(jsonLd),
@@ -302,21 +383,22 @@ export default async function MDXPostPage(
                             href={`/blog/category/${category}`}
                             className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
                         >
-                            â† Back to {post.category}
+                            ← Back to {categoryName}
                         </Link>
                     )}
                 </div>
 
                 <header className="mb-10 border-b border-white/15 pb-6">
 
-                    {/* Explicitly colored heading and description to fix invisibility over dark background */}
                     <h1 className="text-4xl font-extrabold text-white tracking-tight">
                         {title}
                     </h1>
 
-                    <p className="mt-4 text-xl text-[#EDF6FF]/90">
-                        {description}
-                    </p>
+                    {description && (
+                        <p className="mt-4 text-xl text-[#EDF6FF]/90">
+                            {description}
+                        </p>
+                    )}
 
                     {image && (
                         <div className="relative mt-8 overflow-hidden rounded-xl border border-white/10 shadow-lg">
@@ -334,21 +416,17 @@ export default async function MDXPostPage(
 
                 </header>
 
-                {/* Added the 'blog-content' class wrapper to activate your custom CSS typography rules */}
                 <div className="blog-content prose prose-lg dark:prose-invert max-w-none text-[#EDF6FF]">
                     {post.content}
                 </div>
 
                 <MDXRelatedArticles
-                    currentSlug={
-                        post.slug
-                    }
-                    relatedSlugs={
-                        relatedArticles
-                    }
+                    currentSlug={post.slug}
+                    relatedSlugs={relatedArticles}
                 />
 
             </article>
         </>
     );
 }
+

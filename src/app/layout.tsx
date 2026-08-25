@@ -3,6 +3,13 @@ import Script from "next/script";
 
 import "./globals.css";
 
+const SITE_URL = "https://www.nomadlifexp.com";
+const SITE_NAME = "NomadLifeXP";
+
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+const LOGO_ID = `${SITE_URL}/#logo`;
+
 export const viewport: Viewport = {
     themeColor: "#000000",
     colorScheme: "dark",
@@ -12,9 +19,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://www.nomadlifexp.com"),
+    metadataBase: new URL(SITE_URL),
 
-    // Pinterest website verification
     verification: {
         other: {
             "p:domain_verify":
@@ -50,13 +56,13 @@ export const metadata: Metadata = {
         },
     ],
 
-    creator: "NomadLifeXP",
+    creator: SITE_NAME,
 
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "https://www.nomadlifexp.com",
-        siteName: "NomadLifeXP",
+        url: SITE_URL,
+        siteName: SITE_NAME,
         title: "NomadLifeXP // Human Optimization Platform",
         description:
             "A structured human optimization framework covering discipline, fitness, yoga, mindset, habits, and intentional living.",
@@ -91,96 +97,102 @@ export const metadata: Metadata = {
     },
 };
 
+/**
+ * Site-wide structured data.
+ *
+ * Organization = NomadLifeXP's identity.
+ * WebSite = NomadLifeXP's canonical website.
+ *
+ * The two entities are connected through stable @id values.
+ */
+const jsonLdSchema = {
+    "@context": "https://schema.org",
+
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": ORGANIZATION_ID,
+
+            name: SITE_NAME,
+
+            url: SITE_URL,
+
+            description:
+                "NomadLifeXP is a personal transformation framework focused on discipline, fitness, yoga, mindset, habits, and intentional lifestyle design.",
+
+            logo: {
+                "@type": "ImageObject",
+                "@id": LOGO_ID,
+                url: `${SITE_URL}/images/logo.png`,
+                caption: SITE_NAME,
+            },
+
+            knowsAbout: [
+                "Discipline",
+                "Fitness",
+                "Yoga",
+                "Mindset",
+                "Habit Formation",
+                "Lifestyle Design",
+                "Personal Development",
+            ],
+
+            sameAs: [
+                "https://www.linkedin.com/company/nomadlifexp",
+                "https://medium.com/@roy.subrata2099",
+                "https://www.quora.com/profile/NomadLifeXP",
+                "https://www.facebook.com/nomadlifexp",
+                "https://github.com/roysubrata2099-boop/nomadlifexp",
+                "https://in.pinterest.com/nomadlifexp",
+                "https://www.instagram.com/nomadlifexp",
+                "https://www.youtube.com/@nomadlifexp",
+                "https://www.threads.com/@nomadlifexp",
+                "https://nomadlifexp.blogspot.com",
+            ],
+        },
+
+        {
+            "@type": "WebSite",
+            "@id": WEBSITE_ID,
+
+            url: SITE_URL,
+
+            name: SITE_NAME,
+
+            description:
+                "NomadLifeXP is a personal transformation framework focused on discipline, fitness, yoga, mindset, habits, and intentional lifestyle design.",
+
+            inLanguage: "en-US",
+
+            publisher: {
+                "@id": ORGANIZATION_ID,
+            },
+        },
+    ],
+};
+
+/**
+ * Defensive JSON-LD serialization.
+ *
+ * Structured-data failure must never prevent the application
+ * from rendering its actual content.
+ */
+let serializedSchema: string | null = null;
+
+try {
+    serializedSchema = JSON.stringify(jsonLdSchema);
+} catch (error) {
+    console.error(
+        "NomadLifeXP structured data serialization failed:",
+        error
+    );
+}
+
 export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const jsonLdSchema = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Organization",
-                "@id":
-                    "https://www.nomadlifexp.com/#organization",
-
-                name: "NomadLifeXP",
-
-                url:
-                    "https://www.nomadlifexp.com",
-
-                description:
-                    "Personal transformation framework focused on discipline, fitness, yoga, mindset, habits, and intentional lifestyle design.",
-
-                logo: {
-                    "@type": "ImageObject",
-                    "@id":
-                        "https://www.nomadlifexp.com/#logo",
-                    url:
-                        "https://www.nomadlifexp.com/images/logo.png",
-                    caption:
-                        "NomadLifeXP",
-                },
-
-                knowsAbout: [
-                    "Discipline",
-                    "Fitness",
-                    "Yoga",
-                    "Mindset",
-                    "Habit Formation",
-                    "Lifestyle Design",
-                    "Personal Development",
-                ],
-
-                sameAs: [
-                    "https://www.youtube.com/@NomadLifeXP",
-                    "https://www.instagram.com/NomadLifeXP",
-                ],
-            },
-
-            {
-                "@type": "WebSite",
-                "@id":
-                    "https://www.nomadlifexp.com/#website",
-
-                url:
-                    "https://www.nomadlifexp.com",
-
-                name:
-                    "NomadLifeXP",
-
-                inLanguage:
-                    "en-US",
-
-                publisher: {
-                    "@id":
-                        "https://www.nomadlifexp.com/#organization",
-                },
-
-                potentialAction: {
-                    "@type": "SearchAction",
-
-                    target:
-                        "https://www.nomadlifexp.com/blog?q={search_term_string}",
-
-                    "query-input":
-                        "required name=search_term_string",
-                },
-            },
-        ],
-    };
-
-    let serializedSchema = "";
-
-    try {
-        serializedSchema = JSON.stringify(jsonLdSchema);
-    } catch (error) {
-        console.error(
-            "Schema serialization failed:",
-            error
-        );
-    }
-
     return (
         <html
             lang="en"
@@ -188,9 +200,9 @@ export default function RootLayout({
         >
             <body className="antialiased bg-black text-white flex flex-col min-h-screen">
 
-                {serializedSchema && (
+                {serializedSchema !== null && (
                     <script
-                        id="structured-data-core-architecture"
+                        id="nomadlifexp-core-structured-data"
                         type="application/ld+json"
                         suppressHydrationWarning
                         dangerouslySetInnerHTML={{
@@ -223,7 +235,6 @@ export default function RootLayout({
                         if(y && y.parentNode){
                             y.parentNode.insertBefore(t,y);
                         }
-
                     })(window, document, "clarity", "script", "x4hbg8q5cg");
                     `}
                 </Script>

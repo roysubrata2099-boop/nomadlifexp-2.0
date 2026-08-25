@@ -1280,7 +1280,7 @@ export default function MindsetPage() {
 
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            href="/blog"
+                            href="/mindset"
                             className="inline-block bg-cyan-500 text-black font-mono text-xs uppercase tracking-[0.3em] px-8 py-4 font-bold hover:bg-cyan-400 transition-colors"
                         >
                             EXPLORE MINDSET SYSTEM &rarr;

@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 const POSTS_DIR = path.join(
     process.cwd(),
-    "src/content/posts"
+    "src/content/posts-mdx"
 );
 
 const VALID_CATEGORIES = [
@@ -65,7 +65,7 @@ function runAudit() {
         fs.readdirSync(POSTS_DIR)
             .filter(
                 file =>
-                    file.endsWith(".md")
+                    file.endsWith(".mdx")
             );
 
 

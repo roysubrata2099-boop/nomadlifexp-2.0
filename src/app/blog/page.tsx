@@ -208,8 +208,7 @@ export default function BlogV2Page() {
                         href="/"
                         className="text-neutral-500 hover:text-cyan-400 transition-colors"
                     >
-                        â† HOME
-                    </Link>
+                        &larr; HOME</Link>
                 </nav>
 
                 <header className="max-w-5xl mb-20">

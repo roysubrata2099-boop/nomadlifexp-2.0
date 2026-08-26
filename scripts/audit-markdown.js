@@ -176,7 +176,7 @@ function runAudit() {
 
         const expectedSlug =
             file
-                .replace(/\.md$/i, "")
+                .replace(/\.mdx$/i, "")
                 .toLowerCase()
                 .trim();
 

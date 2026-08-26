@@ -317,7 +317,7 @@ export function getPostBySlug(
             const fileSlug =
                 slugify(
                     file.replace(
-                        /\.mdx$,
+                        /\.mdx$/,
                         ""
                     )
                 );

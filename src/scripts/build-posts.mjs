@@ -54,7 +54,7 @@ function buildPosts() {
         }
 
         return {
-            slug: file.replace(".md", ""),
+            slug: file.replace(".mdx", ""),
             title: data.title || "Untitled",
             description: data.description || protectedContent.slice(0, 140),
             category: data.category || "uncategorized",

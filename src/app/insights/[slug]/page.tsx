@@ -1,4 +1,4 @@
-﻿import { redirect, notFound } from "next/navigation";
+﻿import { redirect } from "next/navigation";
 
 type PageProps = {
     params: Promise<{
@@ -35,3 +35,4 @@ export default async function InsightsRedirect({
 
     redirect(`/blog/posts/${targetSlug}`);
 }
+

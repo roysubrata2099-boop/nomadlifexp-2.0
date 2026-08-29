@@ -106,9 +106,9 @@ export default function AboutPage() {
                         </Link>
                     </div>
                     <div className="text-xs font-mono text-neutral-400 pt-2 flex flex-wrap gap-3">
-                        <span>Evolve in Motion Ã°Å¸ÂÆ’Ã¢â‚¬ÂÃ¢â„¢â€šÃ¯Â¸Â</span>
-                        <span>Ã¢â‚¬Â¢</span>
-                        <span>Discipline Ã¢â‚¬Â¢ Fitness Ã¢â‚¬Â¢ Yoga Ã¢â‚¬Â¢ Mindset</span>
+                        <span>Evolve in Motion</span>
+                        <span>&bull;</span>
+                        <span>Discipline &bull; Fitness &bull; Yoga &bull; Mindset</span>
                     </div>
                 </header>
 
@@ -145,7 +145,7 @@ export default function AboutPage() {
                                 // FOUNDER ORIGIN
                             </h2>
                             <p className="text-white font-bold text-base md:text-lg">
-                                Founder & Creator Ã¢â‚¬â€ Subrata Roy
+                                Founder & Creator &mdash; Subrata Roy
                             </p>
                         </div>
                         <p>
@@ -171,9 +171,9 @@ export default function AboutPage() {
                         </p>
 
                         <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                            <p>Ã¢â‚¬Â¢ How do I become more consistent?</p>
-                            <p>Ã¢â‚¬Â¢ How do I build discipline?</p>
-                            <p>Ã¢â‚¬Â¢ How do I create lasting change?</p>
+                            <p>&bull; How do I become more consistent?</p>
+                            <p>&bull; How do I build discipline?</p>
+                            <p>&bull; How do I create lasting change?</p>
                         </div>
 
                         <p>
@@ -185,9 +185,9 @@ export default function AboutPage() {
                         </p>
 
                         <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                            <p>Ã¢â‚¬Â¢ I would set goals.</p>
-                            <p>Ã¢â‚¬Â¢ I would create plans.</p>
-                            <p>Ã¢â‚¬Â¢ I would commit to change.</p>
+                                    <p>&bull; I would set goals.</p>
+                                    <p>&bull; I would create plans.</p>
+                                    <p>&bull; I would commit to change.</p>
                         </div>
 
                         <p>
@@ -218,9 +218,9 @@ export default function AboutPage() {
                                 It is created through small actions repeated consistently:
                             </p>
                             <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                                <p>Ã¢â‚¬Â¢ The workouts you complete.</p>
-                                <p>Ã¢â‚¬Â¢ The habits you maintain.</p>
-                                <p>Ã¢â‚¬Â¢ The decisions you make when nobody is watching.</p>
+                                <p>&bull; The workouts you complete.</p>
+                                <p>&bull; The habits you maintain.</p>
+                                <p>&bull; The decisions you make when nobody is watching.</p>
                             </div>
                             <p>
                                 These moments shape your identity. They determine the person you become.
@@ -279,11 +279,11 @@ export default function AboutPage() {
                                     Core Objectives
                                 </h2>
                                 <ul className="text-xs text-neutral-300 space-y-2">
-                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Rebuild discipline</li>
-                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Strengthen the body</li>
-                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Improve mental clarity</li>
-                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Develop control over attention</li>
-                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Create meaningful daily habits</li>
+                                    <li className="flex items-center gap-2">&#10003; Rebuild discipline</li>
+                                    <li className="flex items-center gap-2">&#10003; Strengthen the body</li>
+                                    <li className="flex items-center gap-2">&#10003; Improve mental clarity</li>
+                                    <li className="flex items-center gap-2">&#10003; Develop control over your actions</li>
+                                    <li className="flex items-center gap-2">&#10003; Create meaningful daily habits</li>
                                 </ul>
                             </div>
                             <div className="pt-4 border-t border-neutral-800 mt-2">
@@ -488,7 +488,7 @@ export default function AboutPage() {
                             Your Next Version Is Built Daily.
                         </h2>
                         <p className="text-xs text-neutral-400 uppercase tracking-widest">
-                            Discipline Ã¢â‚¬Â¢ Fitness Ã¢â‚¬Â¢ Yoga Ã¢â‚¬Â¢ Mindset
+                            Discipline &bull; Fitness &bull; Yoga &bull; Mindset
                         </p>
                     </div>
                     <div className="pt-4">
@@ -507,7 +507,7 @@ export default function AboutPage() {
                         NOMADLIFEXP // Built for people who choose growth over comfort.
                     </p>
                     <p className="text-neutral-400 text-[10px] uppercase tracking-[0.4em] font-semibold">
-                        Ã‚Â© NomadLifeXP Ã¢â‚¬Â¢ Evolve in Motion Ã°Å¸ÂÆ’Ã¢â‚¬ÂÃ¢â„¢â€šÃ¯Â¸Â
+                        © NomadLifeXP • Evolve in Motion 🏃‍♂️
                     </p>
                 </footer>
             </div>
@@ -523,4 +523,5 @@ export default function AboutPage() {
         </main>
     );
 }
+
 

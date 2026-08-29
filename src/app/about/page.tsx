@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-    // ðŸ›¡ï¸ HARDENED STATIC SCHEMA GRAPH MATRIX (TYPE-SAFE & VALIDATED)
+    // Ã°Å¸â€ºÂ¡Ã¯Â¸Â HARDENED STATIC SCHEMA GRAPH MATRIX (TYPE-SAFE & VALIDATED)
     const aboutSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -106,9 +106,9 @@ export default function AboutPage() {
                         </Link>
                     </div>
                     <div className="text-xs font-mono text-neutral-400 pt-2 flex flex-wrap gap-3">
-                        <span>Evolve in Motion ðŸƒâ€â™‚ï¸</span>
-                        <span>â€¢</span>
-                        <span>Discipline â€¢ Fitness â€¢ Yoga â€¢ Mindset</span>
+                        <span>Evolve in Motion Ã°Å¸ÂÆ’Ã¢â‚¬ÂÃ¢â„¢â€šÃ¯Â¸Â</span>
+                        <span>Ã¢â‚¬Â¢</span>
+                        <span>Discipline Ã¢â‚¬Â¢ Fitness Ã¢â‚¬Â¢ Yoga Ã¢â‚¬Â¢ Mindset</span>
                     </div>
                 </header>
 
@@ -145,7 +145,7 @@ export default function AboutPage() {
                                 // FOUNDER ORIGIN
                             </h2>
                             <p className="text-white font-bold text-base md:text-lg">
-                                Founder & Creator â€” Subrata Roy
+                                Founder & Creator Ã¢â‚¬â€ Subrata Roy
                             </p>
                         </div>
                         <p>
@@ -171,9 +171,9 @@ export default function AboutPage() {
                         </p>
 
                         <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                            <p>â€¢ How do I become more consistent?</p>
-                            <p>â€¢ How do I build discipline?</p>
-                            <p>â€¢ How do I create lasting change?</p>
+                            <p>Ã¢â‚¬Â¢ How do I become more consistent?</p>
+                            <p>Ã¢â‚¬Â¢ How do I build discipline?</p>
+                            <p>Ã¢â‚¬Â¢ How do I create lasting change?</p>
                         </div>
 
                         <p>
@@ -185,9 +185,9 @@ export default function AboutPage() {
                         </p>
 
                         <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                            <p>â€¢ I would set goals.</p>
-                            <p>â€¢ I would create plans.</p>
-                            <p>â€¢ I would commit to change.</p>
+                            <p>Ã¢â‚¬Â¢ I would set goals.</p>
+                            <p>Ã¢â‚¬Â¢ I would create plans.</p>
+                            <p>Ã¢â‚¬Â¢ I would commit to change.</p>
                         </div>
 
                         <p>
@@ -218,9 +218,9 @@ export default function AboutPage() {
                                 It is created through small actions repeated consistently:
                             </p>
                             <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                                <p>â€¢ The workouts you complete.</p>
-                                <p>â€¢ The habits you maintain.</p>
-                                <p>â€¢ The decisions you make when nobody is watching.</p>
+                                <p>Ã¢â‚¬Â¢ The workouts you complete.</p>
+                                <p>Ã¢â‚¬Â¢ The habits you maintain.</p>
+                                <p>Ã¢â‚¬Â¢ The decisions you make when nobody is watching.</p>
                             </div>
                             <p>
                                 These moments shape your identity. They determine the person you become.
@@ -237,7 +237,7 @@ export default function AboutPage() {
                                 <p className="text-amber-400">You become stronger by building the systems that create change.</p>
                             </div>
                             <p className="text-neutral-300">
-                                My mission is to help people evolve beyond their current limitations and become stronger versions of themselves â€” one disciplined action at a time.
+                                My mission is to help people evolve beyond their current limitations and become stronger versions of themselves Ã¢â‚¬â€ one disciplined action at a time.
                             </p>
                             <div className="pt-2 font-bold text-amber-400 tracking-wider">
                                 <p>Motivation fades.</p>
@@ -279,11 +279,11 @@ export default function AboutPage() {
                                     Core Objectives
                                 </h2>
                                 <ul className="text-xs text-neutral-300 space-y-2">
-                                    <li className="flex items-center gap-2">âœ“ Rebuild discipline</li>
-                                    <li className="flex items-center gap-2">âœ“ Strengthen the body</li>
-                                    <li className="flex items-center gap-2">âœ“ Improve mental clarity</li>
-                                    <li className="flex items-center gap-2">âœ“ Develop control over attention</li>
-                                    <li className="flex items-center gap-2">âœ“ Create meaningful daily habits</li>
+                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Rebuild discipline</li>
+                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Strengthen the body</li>
+                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Improve mental clarity</li>
+                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Develop control over attention</li>
+                                    <li className="flex items-center gap-2">Ã¢Å“â€œ Create meaningful daily habits</li>
                                 </ul>
                             </div>
                             <div className="pt-4 border-t border-neutral-800 mt-2">
@@ -488,7 +488,7 @@ export default function AboutPage() {
                             Your Next Version Is Built Daily.
                         </h2>
                         <p className="text-xs text-neutral-400 uppercase tracking-widest">
-                            Discipline â€¢ Fitness â€¢ Yoga â€¢ Mindset
+                            Discipline Ã¢â‚¬Â¢ Fitness Ã¢â‚¬Â¢ Yoga Ã¢â‚¬Â¢ Mindset
                         </p>
                     </div>
                     <div className="pt-4">
@@ -507,12 +507,12 @@ export default function AboutPage() {
                         NOMADLIFEXP // Built for people who choose growth over comfort.
                     </p>
                     <p className="text-neutral-400 text-[10px] uppercase tracking-[0.4em] font-semibold">
-                        Â© NomadLifeXP â€¢ Evolve in Motion ðŸƒâ€â™‚ï¸
+                        Ã‚Â© NomadLifeXP Ã¢â‚¬Â¢ Evolve in Motion Ã°Å¸ÂÆ’Ã¢â‚¬ÂÃ¢â„¢â€šÃ¯Â¸Â
                     </p>
                 </footer>
             </div>
 
-            {/* ðŸ›¡ï¸ SECURITY SCHEMA BLOCK INGESTION MATRIX */}
+            {/* Ã°Å¸â€ºÂ¡Ã¯Â¸Â SECURITY SCHEMA BLOCK INGESTION MATRIX */}
             {serializedAboutSchema && (
                 <script
                     id="schema-about-page"
@@ -523,3 +523,4 @@ export default function AboutPage() {
         </main>
     );
 }
+

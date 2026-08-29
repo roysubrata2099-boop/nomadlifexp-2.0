@@ -43,6 +43,7 @@ interface FaqItem {
 
 const NAVIGATION: readonly NavItem[] = [
   { label: "About", href: "/about" },
+  { label: "Digital Nomads", href: "/digital-nomads" },
   { label: "Systems", href: "/discipline-system" },
   { label: "Blog", href: "/blog" },
   { label: "Start", href: "/start-here" },
@@ -896,6 +897,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 

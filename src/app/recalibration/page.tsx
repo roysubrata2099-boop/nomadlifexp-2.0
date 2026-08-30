@@ -3,19 +3,44 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const SITE_URL = "https://www.nomadlifexp.com";
+
 export const metadata: Metadata = {
-    title: "Somatic Recalibration, Yoga & Recovery | NomadLifeXP",
+    title: "Somatic Recalibration for Breath, Movement & Recovery | NomadLifeXP",
     description:
-        "A practical somatic recalibration system using breath, mindful movement, visual rest, awareness and yoga-based recovery to help reset after cognitive and physical overload.",
+        "Explore a practical somatic recalibration system using breath, gentle movement, visual rest, awareness, and yoga-based recovery after screen time, cognitive overload, and prolonged inactivity.",
+    keywords: [
+        "somatic recalibration",
+        "recalibration",
+        "breath reset",
+        "breathing exercises",
+        "movement recovery",
+        "mindful movement",
+        "visual rest",
+        "body awareness",
+        "yoga recovery",
+        "yoga breath",
+        "yoga mobility",
+        "screen time recovery",
+        "cognitive overload recovery",
+        "NomadLifeXP",
+    ],
     alternates: {
-        canonical: "https://www.nomadlifexp.com/recalibration",
+        canonical: `${SITE_URL}/recalibration`,
     },
     openGraph: {
-        title: "Somatic Recalibration, Yoga & Recovery | NomadLifeXP",
+        title: "Somatic Recalibration for Breath, Movement & Recovery | NomadLifeXP",
         description:
-            "A practical somatic recalibration system using breath, mindful movement, visual rest, awareness and yoga-based recovery to help reset after cognitive and physical overload.",
-        url: "https://www.nomadlifexp.com/recalibration",
+            "A practical reset system using breath, gentle movement, visual rest, awareness, and yoga-based recovery after cognitive and physical overload.",
+        url: `${SITE_URL}/recalibration`,
+        siteName: "NomadLifeXP",
         type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Somatic Recalibration for Breath, Movement & Recovery | NomadLifeXP",
+        description:
+            "A practical reset system using breath, movement, awareness, visual rest, and yoga-based recovery.",
     },
 };
 
@@ -41,7 +66,7 @@ const protocols = [
         code: "MOVEMENT_RESET",
         title: "Structural Decompression",
         description:
-            "Break prolonged static positioning with gentle movement. Stand, lengthen through the spine, relax the shoulders, move the neck comfortably, and reconnect with a natural standing position. Do not force a range of motion or hold through pain.",
+            "Break prolonged static positioning with gentle movement. Stand, lengthen through the spine, relax the shoulders, move the neck comfortably, and reconnect with a natural standing position. Do not force a range of motion or continue through pain.",
         tags: ["MOVEMENT", "MOBILITY", "POSTURE"],
     },
     {
@@ -87,7 +112,7 @@ const feedbackLoops = [
         number: "01",
         title: "Autonomic Awareness",
         description:
-            "Notice changes in breathing, tension, restlessness, and general arousal before they become overwhelming. Awareness comes before intervention.",
+            "Notice changes in breathing, tension, restlessness, and general arousal before they become overwhelming. Awareness creates the opportunity to pause and respond.",
     },
     {
         number: "02",
@@ -111,17 +136,29 @@ export default function RecalibrationPage() {
                 AMBIENT SYSTEM LIGHTING
             ========================================================== */}
 
-            <div className="pointer-events-none absolute left-1/4 top-0 h-[520px] w-[520px] rounded-full bg-[#38BDF8]/[0.055] blur-[150px]" />
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute left-1/4 top-0 h-[520px] w-[520px] rounded-full bg-[#38BDF8]/[0.055] blur-[150px]"
+            />
 
-            <div className="pointer-events-none absolute right-1/4 top-[35%] h-[500px] w-[500px] rounded-full bg-[#FFB700]/[0.035] blur-[150px]" />
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-1/4 top-[35%] h-[500px] w-[500px] rounded-full bg-[#FFB700]/[0.035] blur-[150px]"
+            />
 
-            <div className="pointer-events-none absolute bottom-0 right-1/3 h-[500px] w-[500px] rounded-full bg-[#60A5FA]/[0.035] blur-[150px]" />
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-0 right-1/3 h-[500px] w-[500px] rounded-full bg-[#60A5FA]/[0.035] blur-[150px]"
+            />
 
             {/* =========================================================
                 TECHNICAL GRID
             ========================================================== */}
 
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#38BDF808_1px,transparent_1px),linear-gradient(to_bottom,#38BDF808_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_65%,transparent_100%)]" />
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#38BDF808_1px,transparent_1px),linear-gradient(to_bottom,#38BDF808_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_65%,transparent_100%)]"
+            />
 
             {/* =========================================================
                 MAIN CONTENT
@@ -142,11 +179,12 @@ export default function RecalibrationPage() {
                         className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-[#EDF6FF] transition-colors duration-200 hover:text-[#38BDF8]"
                     >
                         <span
-                            className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
                         >
                             ←
                         </span>
+
                         <span>NOMADLIFEXP</span>
                     </Link>
 
@@ -183,7 +221,10 @@ export default function RecalibrationPage() {
                 <header className="mb-24 max-w-6xl">
 
                     <div className="mb-6 flex items-center gap-3">
-                        <span className="h-2 w-2 animate-pulse rounded-full bg-[#38BDF8] shadow-[0_0_12px_#38BDF8]" />
+                        <span
+                            aria-hidden="true"
+                            className="h-2 w-2 animate-pulse rounded-full bg-[#38BDF8] shadow-[0_0_12px_#38BDF8]"
+                        />
 
                         <p className="font-mono text-xs uppercase tracking-[0.4em] text-[#38BDF8]">
                             System Module // SYS_03_RECALIBRATION
@@ -193,6 +234,7 @@ export default function RecalibrationPage() {
                     <h1 className="text-4xl font-black uppercase leading-[0.94] tracking-tight text-white md:text-6xl lg:text-7xl">
                         Somatic Recalibration:
                         <br />
+
                         <span className="bg-gradient-to-r from-[#FFFFFF] via-[#7DD3FC] to-[#FFB700] bg-clip-text text-transparent">
                             Real-Time Systems for Breath,
                             <br className="hidden md:block" />
@@ -223,7 +265,11 @@ export default function RecalibrationPage() {
                     </div>
 
                     <div className="mt-10 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-[#526B84]">
-                        <span className="h-px w-10 bg-[#38BDF8]/40" />
+                        <span
+                            aria-hidden="true"
+                            className="h-px w-10 bg-[#38BDF8]/40"
+                        />
+
                         INTERRUPT THE LOAD // RECONNECT WITH THE BODY
                     </div>
                 </header>
@@ -362,7 +408,7 @@ export default function RecalibrationPage() {
                                         </span>
 
                                         <span className="font-mono text-xs text-[#31506F]">
-                                            0{protocol.number}
+                                            {protocol.number}
                                         </span>
                                     </div>
 
@@ -414,8 +460,8 @@ export default function RecalibrationPage() {
                             </h2>
 
                             <p className="text-sm font-light leading-8 text-[#A7B8CC] md:text-base">
-                                Yoga gives the recalibration system a physical practice:
-                                controlled movement, breath awareness, mobility, balance,
+                                Yoga can provide a broader physical practice for
+                                movement, breath awareness, mobility, balance,
                                 stillness, and attention. The objective is not simply
                                 flexibility. It is developing a more conscious
                                 relationship between body, breath, movement, and mind.
@@ -438,6 +484,7 @@ export default function RecalibrationPage() {
                             className="group inline-flex shrink-0 items-center justify-center gap-3 border border-[#FFB700] bg-[#FFB700]/[0.04] px-6 py-4 font-mono text-xs uppercase tracking-[0.2em] text-[#FFB700] transition-all duration-200 hover:bg-[#FFB700] hover:text-black"
                         >
                             Explore Yoga
+
                             <span
                                 aria-hidden="true"
                                 className="transition-transform duration-200 group-hover:translate-x-1"
@@ -591,7 +638,6 @@ export default function RecalibrationPage() {
                                 LOAD → NOTICE → INTERRUPT → RECALIBRATE → RETURN
                             </p>
                         </div>
-
                     </div>
                 </section>
 
@@ -619,8 +665,8 @@ export default function RecalibrationPage() {
                             </h2>
 
                             <p className="text-sm font-light leading-7 text-[#8297AC]">
-                                Recalibration is the interruption. Yoga is the
-                                ongoing practice of movement, breath, awareness,
+                                Recalibration is the interruption. Yoga can become
+                                the ongoing practice of movement, breath, awareness,
                                 mobility, balance, and recovery.
                             </p>
 

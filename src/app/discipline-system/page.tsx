@@ -10,7 +10,7 @@ const PAGE_URL = `${SITE_URL}/discipline-system`;
 export const metadata: Metadata = {
     title: "The Discipline System | Build Self-Discipline & Lasting Habits",
     description:
-        "Build self-discipline, lasting habits, focus, and consistent routines with the NomadLifeXP Discipline System ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â a structured framework for behaviour change and human optimization.",
+        "Build self-discipline, lasting habits, focus, and consistent routines with the NomadLifeXP Discipline System ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â a structured framework for behaviour change and human optimization.",
     keywords: [
         "Self-Discipline System",
         "Discipline System",
@@ -304,61 +304,61 @@ export default function DisciplineSystemPage() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">D ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â DAILY STRUCTURE</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">D → DAILY STRUCTURE</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Eradicate Fatigue</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Build rigid morning routines, planning blocks, and evening reset checklists to eliminate decision fatigue.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â IDENTITY ALIGNMENT</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I → IDENTITY ALIGNMENT</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Shape Core Persona</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Let repeated daily actions serve as literal empirical evidence of the person you are actively choosing to become.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">S ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â SOMATIC ANCHORS</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">S → SOMATIC ANCHORS</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Physiological Cues</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">NomadLifeXP calls this Somatic Habit Engineering: utilizing movement, hydration, and environmental exposure as physical anchors for habit execution.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">C ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â COGNITIVE CONTROL</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">C → COGNITIVE CONTROL</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Protect Attention</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Aggressively shield mental energy by minimizing digital distractions, reactive inputs, and unnecessary micro-choices.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â INTENTIONAL EXECUTION</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I → INTENTIONAL EXECUTION</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Velocity Output</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Translate high-level targets into strict, uncompromising deep-work blocks and focus schedules.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">P ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â PHYSICAL FOUNDATIONS</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">P → PHYSICAL FOUNDATIONS</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Cellular Support</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Back your behavioural discipline with structured physical movement, targeted nutrition, and rigorous recovery cycles.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">L ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â LIFESTYLE DESIGN</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">L → LIFESTYLE DESIGN</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Environment Architecture</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Modify your physical and digital surroundings so that desired actions take minimal activation energy.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â INTERNAL INTEGRITY</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I → INTERNAL INTEGRITY</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Unyielding Self-Trust</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Build compounding self-respect by strictly keeping minor, non-negotiable commitments made to yourself.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">N ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â NEURAL REINFORCEMENT</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">N → NEURAL REINFORCEMENT</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Wiring Pathways</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Strengthen neuro-pathways through mechanical consistency, making positive habits automated over time.</p>
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-6 md:col-span-3">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">E ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â EVOLUTION PROTOCOL</div>
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">E → EVOLUTION PROTOCOL</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Recursive Scaling</h3>
                                 <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Continuously review, audit, and optimize your systems for lifelong human development and upward progression.</p>
                             </div>

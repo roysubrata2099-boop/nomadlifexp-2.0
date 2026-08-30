@@ -328,7 +328,7 @@ export default function YogaPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            â†
+                            &larr;
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -466,7 +466,7 @@ export default function YogaPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 â€” Awareness",
+                                title: "01 &mdash; Awareness",
                                 subtext:
                                     "Develop Body Intelligence",
                                 text:
@@ -474,7 +474,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "02",
-                                title: "02 â€” Regulation",
+                                title: "02 &mdash; Regulation",
                                 subtext:
                                     "Create More Control",
                                 text:
@@ -482,7 +482,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "03",
-                                title: "03 â€” Integration",
+                                title: "03 &mdash; Integration",
                                 subtext:
                                     "Connect Mind and Movement",
                                 text:
@@ -490,7 +490,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "04",
-                                title: "04 â€” Mastery",
+                                title: "04 &mdash; Mastery",
                                 subtext:
                                     "Build Somatic Autonomy",
                                 text:
@@ -681,7 +681,7 @@ export default function YogaPage() {
                             BREATH
                             <br />
                             <span className="text-neutral-600">
-                                â†‘
+                                &uarr;
                             </span>
                             <br />
                             AWARENESS
@@ -691,7 +691,7 @@ export default function YogaPage() {
                             AWARENESS
                             <br />
                             <span className="text-neutral-600">
-                                â†‘
+                                &uarr;
                             </span>
                             <br />
                             MOVEMENT
@@ -701,7 +701,7 @@ export default function YogaPage() {
                             MOVEMENT
                             <br />
                             <span className="text-neutral-600">
-                                â†‘
+                                &uarr;
                             </span>
                             <br />
                             STILLNESS
@@ -711,7 +711,7 @@ export default function YogaPage() {
                             STILLNESS
                             <br />
                             <span className="text-neutral-600">
-                                â†‘
+                                &uarr;
                             </span>
                             <br />
                             AWARENESS
@@ -1623,6 +1623,5 @@ export default function YogaPage() {
         </main>
     );
 }
-
 
 

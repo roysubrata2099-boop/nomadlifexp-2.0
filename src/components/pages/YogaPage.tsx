@@ -269,7 +269,7 @@ export default function YogaPage() {
         },
         {
             title:
-                "Itâ€™s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
+                "It's Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
             description:
                 "Explore forward bending yoga for mobility, flexibility, body awareness, controlled breathing, and a more deliberate relationship with physical tension and movement.",
             slug:
@@ -315,33 +315,55 @@ export default function YogaPage() {
                 <div
                     aria-hidden="true"
                     className="pointer-events-none absolute left-1/3 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[150px]"
-                />
-
-                {/* Navigation */}
+                />                {/* Navigation */}
                 <nav
-                    aria-label="Breadcrumb"
-                    className="relative z-10 mb-16 flex gap-4 border-b border-neutral-900 pb-6 font-mono text-xs uppercase tracking-[0.3em]"
+                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900 pb-6"
+                    aria-label="Page navigation"
                 >
                     <Link
-                        href="/blog"
-                        className="text-neutral-500 transition-colors hover:text-cyan-400"
+                        href="/"
+                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors group"
                     >
-                        &larr; RETURN_TO_BLOG
+                        <span
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                            aria-hidden="true"
+                        >
+                            ←
+                        </span>
+                        <span>NOMADLIFEXP</span>
                     </Link>
 
-                    <span
-                        aria-hidden="true"
-                        className="text-neutral-800"
-                    >
-                        /
-                    </span>
+                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Home
+                            </Link>
+                        </li>
 
-                    <span
-                        aria-current="page"
-                        className="text-neutral-400"
-                    >
-                        yoga
-                    </span>
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/blog"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Blog
+                            </Link>
+                        </li>
+
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li className="text-cyan-400" aria-current="page">
+                            Yoga
+                        </li>
+                    </ol>
                 </nav>
 
                 {/* Page Header */}
@@ -433,7 +455,7 @@ export default function YogaPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 â€” Awareness",
+                                title: "01 — Awareness",
                                 subtext:
                                     "Develop Body Intelligence",
                                 text:
@@ -441,7 +463,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "02",
-                                title: "02 â€” Regulation",
+                                title: "02 — Regulation",
                                 subtext:
                                     "Create More Control",
                                 text:
@@ -449,7 +471,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "03",
-                                title: "03 â€” Integration",
+                                title: "03 — Integration",
                                 subtext:
                                     "Connect Mind and Movement",
                                 text:
@@ -457,7 +479,7 @@ export default function YogaPage() {
                             },
                             {
                                 id: "04",
-                                title: "04 â€” Mastery",
+                                title: "04 — Mastery",
                                 subtext:
                                     "Build Somatic Autonomy",
                                 text:
@@ -648,7 +670,7 @@ export default function YogaPage() {
                             BREATH
                             <br />
                             <span className="text-neutral-600">
-                                â†“
+                                ↑
                             </span>
                             <br />
                             AWARENESS
@@ -658,7 +680,7 @@ export default function YogaPage() {
                             AWARENESS
                             <br />
                             <span className="text-neutral-600">
-                                â†“
+                                ↑
                             </span>
                             <br />
                             MOVEMENT
@@ -668,7 +690,7 @@ export default function YogaPage() {
                             MOVEMENT
                             <br />
                             <span className="text-neutral-600">
-                                â†“
+                                ↑
                             </span>
                             <br />
                             STILLNESS
@@ -678,7 +700,7 @@ export default function YogaPage() {
                             STILLNESS
                             <br />
                             <span className="text-neutral-600">
-                                â†“
+                                ↑
                             </span>
                             <br />
                             AWARENESS
@@ -1590,4 +1612,5 @@ export default function YogaPage() {
         </main>
     );
 }
+
 

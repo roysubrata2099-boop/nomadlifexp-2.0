@@ -1,4 +1,4 @@
-// src/app/recalibration/page.tsx
+﻿// src/app/recalibration/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -28,24 +28,43 @@ export default function RecalibrationPage() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
             {/* Content Area Matrix */}
-            <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
-
-                {/* Navigation Breadcrumb Node Block */}
-                <nav className="mb-12 flex flex-wrap items-center gap-6 border-b border-neutral-900 pb-6" aria-label="Breadcrumb">
-                    <Link
-                        href="/discipline-system"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-400 transition-colors duration-200 group"
-                    >
-                        <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">&larr;</span>
-                        RETURN_TO_DISCIPLINE_SYSTEM
-                    </Link>
-                    <span className="text-neutral-800 font-mono text-xs" aria-hidden="true">/</span>
+            <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">                
+                {/* Navigation */}
+                <nav
+                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900 pb-6"
+                    aria-label="Page navigation"
+                >
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-amber-400 transition-colors duration-200"
+                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-amber-400 transition-colors duration-200 group"
                     >
-                        SYS_HOME
+                        <span
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                            aria-hidden="true"
+                        >
+                            ←
+                        </span>
+                        <span>NOMADLIFEXP</span>
                     </Link>
+
+                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-amber-400 transition-colors"
+                            >
+                                Home
+                            </Link>
+                        </li>
+
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li className="text-amber-400" aria-current="page">
+                            Recalibration
+                        </li>
+                    </ol>
                 </nav>
 
                 {/* Left-Aligned Technical Header Block */}
@@ -155,3 +174,4 @@ export default function RecalibrationPage() {
         </div>
     );
 }
+

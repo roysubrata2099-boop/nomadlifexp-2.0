@@ -381,28 +381,55 @@ export default function MindsetPage() {
 
                 {/* Visual Background Accent */}
 
-                <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
-
-                {/* Navigation */}
-
+                <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />                {/* Navigation */}
                 <nav
-                    aria-label="Breadcrumb navigation"
-                    className="relative z-10 flex gap-4 mb-16 pb-6 border-b border-neutral-900 font-mono text-xs uppercase tracking-[0.3em]"
+                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900 pb-6"
+                    aria-label="Page navigation"
                 >
                     <Link
-                        href="/blog"
-                        className="text-neutral-500 hover:text-cyan-400 transition-colors"
+                        href="/"
+                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors group"
                     >
-                        &larr; RETURN_TO_BLOG
+                        <span
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                            aria-hidden="true"
+                        >
+                            ←
+                        </span>
+                        <span>NOMADLIFEXP</span>
                     </Link>
 
-                    <span className="text-neutral-800">
-                        /
-                    </span>
+                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Home
+                            </Link>
+                        </li>
 
-                    <span className="text-neutral-400">
-                        mindset
-                    </span>
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/blog"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Blog
+                            </Link>
+                        </li>
+
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li className="text-cyan-400" aria-current="page">
+                            Mindset
+                        </li>
+                    </ol>
                 </nav>
 
                 {/* Page Header */}
@@ -912,7 +939,7 @@ export default function MindsetPage() {
                                     className="border border-neutral-800 bg-black p-4 flex items-center space-x-3"
                                 >
                                     <span className="text-cyan-400">
-                                        ✓
+                                        ?
                                     </span>
 
                                     <span className="text-neutral-300">
@@ -1440,3 +1467,4 @@ export default function MindsetPage() {
         </main>
     );
 }
+

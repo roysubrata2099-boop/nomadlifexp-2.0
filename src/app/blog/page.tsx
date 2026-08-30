@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -203,12 +203,36 @@ export default function BlogV2Page() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-28">
-                <nav className="flex items-center gap-3 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase">
+                <nav
+                    className="flex flex-col gap-3 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase"
+                    aria-label="Page navigation"
+                >
                     <Link
                         href="/"
-                        className="text-neutral-500 hover:text-cyan-400 transition-colors"
+                        className="inline-flex items-center gap-2 text-white hover:text-cyan-400 transition-colors"
                     >
-                        &larr; HOME</Link>
+                        <span aria-hidden="true">←</span>
+                        <span>NOMADLIFEXP</span>
+                    </Link>
+
+                    <ol className="flex items-center gap-3">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Home
+                            </Link>
+                        </li>
+
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li className="text-cyan-400" aria-current="page">
+                            Blog
+                        </li>
+                    </ol>
                 </nav>
 
                 <header className="max-w-5xl mb-20">
@@ -432,3 +456,4 @@ export default function BlogV2Page() {
         </div>
     );
 }
+

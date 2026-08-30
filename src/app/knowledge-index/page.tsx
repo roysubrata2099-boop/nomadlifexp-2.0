@@ -73,7 +73,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
         return acc;
     }, {});
 
-    // ðŸ›¡ï¸ GRAPH-UNIFIED METADATA STRUCTURE
+    // ??? GRAPH-UNIFIED METADATA STRUCTURE
     const unifiedJsonLd = {
         "@context": "https://schema.org",
         "@graph": [
@@ -122,13 +122,41 @@ export default async function KnowledgeIndexPage(props: PageProps) {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff01_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)] pointer-events-none" />
 
             <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
-                <nav className="mb-12 flex items-center border-b border-neutral-900/60 pb-6" aria-label="Breadcrumb">
+                <nav
+                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900/60 pb-6"
+                    aria-label="Page navigation"
+                >
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neutral-500 hover:text-cyan-400 transition-colors"
+                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors group"
                     >
-                        &larr; SYSTEM_CORE_HOME
+                        <span
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                            aria-hidden="true"
+                        >
+                            ←
+                        </span>
+                        <span>NOMADLIFEXP</span>
                     </Link>
+
+                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Home
+                            </Link>
+                        </li>
+
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li className="text-cyan-400" aria-current="page">
+                            Knowledge Index
+                        </li>
+                    </ol>
                 </nav>
 
                 <header className="mb-20 space-y-8">
@@ -301,3 +329,4 @@ export default async function KnowledgeIndexPage(props: PageProps) {
         </div>
     );
 }
+

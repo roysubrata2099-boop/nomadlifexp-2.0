@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
     title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
     description:
-        "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+        "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
     keywords:
         "daily discipline system, practical fitness habits, core stability training, mental focus framework, behavioral habits engine, functional mobility routines, digital distraction immunity, personal operating system",
     robots: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
         description:
-            "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+            "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
         url: "https://www.nomadlifexp.com/start-here",
         type: "website",
         siteName: "NomadLifeXP",
@@ -185,7 +185,7 @@ export default function StartHerePage() {
                 url: "https://www.nomadlifexp.com/start-here",
                 name: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
                 description:
-                    "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+                    "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
                 isPartOf: { "@type": "WebSite", "@id": "https://www.nomadlifexp.com/#website" },
                 author: { "@id": "https://www.nomadlifexp.com/#author" },
                 inLanguage: "en-US",
@@ -237,32 +237,42 @@ export default function StartHerePage() {
             />
 
             <main className="max-w-5xl mx-auto px-6 pt-24 md:pt-36 pb-32 relative z-10 animate-[fadeIn_0.5s_ease-out] motion-reduce:animate-none">
-                {/* Navigation Breadcrumb */}
+                {/* Navigation */}
                 <nav
-                    className="mb-12 flex flex-wrap items-center gap-4 border-b border-neutral-900/60 pb-6 text-xs font-mono uppercase tracking-widest text-neutral-500"
-                    aria-label="System Directory Navigation"
+                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900/60 pb-6 text-xs font-mono uppercase tracking-widest"
+                    aria-label="Page navigation"
                 >
                     <Link
                         href="/"
-                        className="hover:text-cyan-400 transition-colors duration-200 group focus:outline-none focus:ring-1 focus:ring-cyan-500 px-1 py-0.5"
+                        className="inline-flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-200 group"
                     >
                         <span
-                            className="inline-block transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none"
+                            className="transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none"
                             aria-hidden="true"
                         >
-                            &larr;
-                        </span>{" "}
-                        SYSTEM_CORE_HOME
+                            ←
+                        </span>
+                        <span>NOMADLIFEXP</span>
                     </Link>
-                    <span className="text-neutral-800" aria-hidden="true">
-                        /
-                    </span>
-                    <Link
-                        href="/blog"
-                        className="hover:text-cyan-400 transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-cyan-500 px-1 py-0.5"
-                    >
-                        RETURN_TO_DIRECTORY
-                    </Link>
+
+                    <ol className="flex items-center gap-3">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-cyan-400 transition-colors duration-200"
+                            >
+                                Home
+                            </Link>
+                        </li>
+
+                        <li className="text-neutral-800" aria-hidden="true">
+                            /
+                        </li>
+
+                        <li className="text-cyan-400" aria-current="page">
+                            Start Here
+                        </li>
+                    </ol>
                 </nav>
 
                 {/* Hero Section */}
@@ -413,7 +423,7 @@ export default function StartHerePage() {
                                             {step.highlights.map((item, idx) => (
                                                 <div key={idx} className="flex items-center gap-2 text-neutral-400">
                                                     <span className="text-cyan-400 font-bold" aria-hidden="true">
-                                                        âœ“
+                                                        ?
                                                     </span>
                                                     <span>{item}</span>
                                                 </div>
@@ -553,3 +563,4 @@ export default function StartHerePage() {
         </div>
     );
 }
+

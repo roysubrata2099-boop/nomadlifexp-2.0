@@ -327,33 +327,55 @@ export default function FitnessPage() {
                 <div
                     aria-hidden="true"
                     className="pointer-events-none absolute left-1/3 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[150px]"
-                />
-
-                {/* Breadcrumb navigation */}
+                />                {/* Navigation */}
                 <nav
-                    aria-label="Breadcrumb"
-                    className="relative z-10 mb-16 flex gap-4 border-b border-neutral-900 pb-6 font-mono text-xs uppercase tracking-[0.3em]"
+                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900 pb-6"
+                    aria-label="Page navigation"
                 >
                     <Link
-                        href="/blog"
-                        className="text-neutral-500 transition-colors hover:text-cyan-400"
+                        href="/"
+                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors group"
                     >
-                        &larr; RETURN_TO_BLOG
+                        <span
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                            aria-hidden="true"
+                        >
+                            ←
+                        </span>
+                        <span>NOMADLIFEXP</span>
                     </Link>
 
-                    <span
-                        aria-hidden="true"
-                        className="text-neutral-800"
-                    >
-                        /
-                    </span>
+                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Home
+                            </Link>
+                        </li>
 
-                    <span
-                        className="text-neutral-400"
-                        aria-current="page"
-                    >
-                        fitness
-                    </span>
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li>
+                            <Link
+                                href="/blog"
+                                className="text-white hover:text-cyan-400 transition-colors"
+                            >
+                                Blog
+                            </Link>
+                        </li>
+
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li className="text-cyan-400" aria-current="page">
+                            Fitness
+                        </li>
+                    </ol>
                 </nav>
 
                 {/* Hero */}
@@ -883,3 +905,4 @@ export default function FitnessPage() {
         </main>
     );
 }
+

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-    // Ã°Å¸â€ºÂ¡Ã¯Â¸Â HARDENED STATIC SCHEMA GRAPH MATRIX (TYPE-SAFE & VALIDATED)
+    // ??? HARDENED STATIC SCHEMA GRAPH MATRIX (TYPE-SAFE & VALIDATED)
     const aboutSchema = {
         "@context": "https://schema.org",
         "@graph": [
@@ -61,16 +61,42 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" aria-hidden="true" />
 
             <div className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
-
-                {/* Back to Main Directory Navigation Protocol Link */}
-                <nav className="mb-12" aria-label="Breadcrumb">
+                {/* Navigation */}
+                <nav
+                    className="mb-12 flex flex-col gap-3"
+                    aria-label="Page navigation"
+                >
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-neutral-400 hover:text-cyan-400 transition-colors duration-200 group"
+                        className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors duration-200 group"
                     >
-                        <span className="transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true">&larr;</span>
-                        RETURN_TO_HOME
+                        <span
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                            aria-hidden="true"
+                        >
+                            ←
+                        </span>
+                        <span>NOMADLIFEXP</span>
                     </Link>
+
+                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
+                        <li>
+                            <Link
+                                href="/"
+                                className="text-white hover:text-cyan-400 transition-colors duration-200"
+                            >
+                                Home
+                            </Link>
+                        </li>
+
+                        <li aria-hidden="true" className="text-neutral-500">
+                            /
+                        </li>
+
+                        <li className="text-cyan-400" aria-current="page">
+                            About
+                        </li>
+                    </ol>
                 </nav>
 
                 {/* Hero Section */}
@@ -237,7 +263,7 @@ export default function AboutPage() {
                                 <p className="text-amber-400">You become stronger by building the systems that create change.</p>
                             </div>
                             <p className="text-neutral-300">
-                                My mission is to help people evolve beyond their current limitations and become stronger versions of themselves Ã¢â‚¬â€ one disciplined action at a time.
+                                My mission is to help people evolve beyond their current limitations and become stronger versions of themselves — one disciplined action at a time.
                             </p>
                             <div className="pt-2 font-bold text-amber-400 tracking-wider">
                                 <p>Motivation fades.</p>
@@ -512,7 +538,7 @@ export default function AboutPage() {
                 </footer>
             </div>
 
-            {/* Ã°Å¸â€ºÂ¡Ã¯Â¸Â SECURITY SCHEMA BLOCK INGESTION MATRIX */}
+            {/* ??? SECURITY SCHEMA BLOCK INGESTION MATRIX */}
             {serializedAboutSchema && (
                 <script
                     id="schema-about-page"
@@ -523,5 +549,6 @@ export default function AboutPage() {
         </main>
     );
 }
+
 
 

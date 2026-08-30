@@ -169,28 +169,28 @@ const OUTCOMES: readonly OutcomeItem[] = [
 const KNOWLEDGE_CATEGORIES: readonly KnowledgeCard[] = [
   {
     title: "DISCIPLINE",
-    focus: "Habits â€¢ Focus â€¢ Consistency",
+    focus: "Habits • Focus • Consistency",
     description:
       "Practical approaches to building discipline, creating better routines, improving focus, and becoming more consistent.",
     href: "/blog/category/discipline",
   },
   {
     title: "FITNESS",
-    focus: "Training â€¢ Strength â€¢ Recovery",
+    focus: "Training • Strength • Recovery",
     description:
       "Guides for developing strength, physical capacity, mobility, conditioning, performance, and recovery.",
     href: "/blog/category/fitness",
   },
   {
     title: "YOGA",
-    focus: "Movement â€¢ Breath â€¢ Mobility",
+    focus: "Movement • Breath • Mobility",
     description:
       "Explore yoga, mobility, breathing, body awareness, balance, recovery, and mindful movement.",
     href: "/blog/category/yoga",
   },
   {
     title: "MINDSET",
-    focus: "Resilience â€¢ Confidence â€¢ Growth",
+    focus: "Resilience • Confidence • Growth",
     description:
       "Develop a stronger mindset through resilience, self awareness, confidence, growth, and intentional thinking.",
     href: "/mindset",
@@ -289,7 +289,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xs md:text-sm font-mono tracking-widest uppercase text-slate-400 mb-6">
-              Discipline â€¢ Fitness â€¢ Yoga â€¢ Mindset
+              Discipline • Fitness • Yoga • Mindset
             </p>
 
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -320,7 +320,7 @@ export default function HomePage() {
         <section className="relative w-full py-24 px-4 overflow-hidden border-b border-white/10">
           <div className="max-w-5xl mx-auto relative z-20 text-center mb-12">
             <p className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400 mb-2">
-              Movement â€¢ Breath â€¢ Control
+              Movement • Breath • Control
             </p>
 
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight">

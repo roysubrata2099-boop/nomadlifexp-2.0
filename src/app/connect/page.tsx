@@ -227,14 +227,14 @@ export default function ConnectPage() {
                                 href="/start-here"
                                 className="rounded-lg bg-sky-400 px-6 py-3 text-sm font-black uppercase tracking-wider text-[#050914] shadow-[0_0_30px_rgba(56,189,248,0.15)] transition hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-[#050914]"
                             >
-                                Start Here â†’
+                                Start Here →
                             </Link>
 
                             <Link
                                 href="/knowledge-index"
                                 className="rounded-lg border border-sky-400/20 bg-white/[0.03] px-6 py-3 text-sm font-black uppercase tracking-wider text-slate-200 transition hover:border-sky-400/50 hover:bg-sky-400/10 focus:outline-none focus:ring-2 focus:ring-sky-400"
                             >
-                                Knowledge Index â†’
+                                Knowledge Index →
                             </Link>
                         </div>
                     </div>
@@ -286,7 +286,7 @@ export default function ConnectPage() {
                             href="/"
                             className="inline-flex w-fit rounded-lg border border-sky-400/30 bg-sky-400/10 px-6 py-3 text-sm font-black uppercase tracking-wider text-sky-300 transition hover:border-sky-400 hover:bg-sky-400 hover:text-[#050914] focus:outline-none focus:ring-2 focus:ring-sky-400"
                         >
-                            Visit nomadlifexp.com â†’
+                            Visit nomadlifexp.com →
                         </Link>
                     </div>
                 </div>
@@ -325,9 +325,7 @@ export default function ConnectPage() {
                                         {system.number}
                                     </span>
 
-                                    <span className="text-xl text-slate-600 transition group-hover:text-sky-400">
-                                        â†—
-                                    </span>
+                                    <span className="text-xl text-slate-600 transition group-hover:text-sky-400">→</span>
                                 </div>
 
                                 <h3 className="mt-7 text-2xl font-black uppercase tracking-tight text-white">
@@ -371,9 +369,7 @@ export default function ConnectPage() {
 
                                 <h3 className="mt-5 font-black uppercase tracking-tight text-white">
                                     {resource.name}
-                                    <span className="ml-2 text-slate-600 transition group-hover:text-sky-400">
-                                        â†’
-                                    </span>
+                                    <span className="ml-2 text-slate-600 transition group-hover:text-sky-400">→</span>
                                 </h3>
 
                                 <p className="mt-3 text-sm leading-6 text-slate-400">
@@ -418,7 +414,7 @@ export default function ConnectPage() {
                             </span>
 
                             <span className="mt-3 block text-sm text-slate-600 transition group-hover:text-sky-400">
-                                Explore â†’
+                                Explore →
                             </span>
                         </Link>
                     ))}
@@ -458,9 +454,7 @@ export default function ConnectPage() {
                                         {String(index + 1).padStart(2, "0")}
                                     </span>
 
-                                    <span className="text-slate-600 transition group-hover:text-sky-400">
-                                        â†—
-                                    </span>
+                                    <span className="text-slate-600 transition group-hover:text-sky-400">→</span>
                                 </div>
 
                                 <h3 className="mt-7 text-xl font-black uppercase tracking-tight text-white">
@@ -504,7 +498,7 @@ export default function ConnectPage() {
                             href="/about"
                             className="mt-8 inline-flex rounded-lg border border-sky-400/30 bg-sky-400/10 px-6 py-3 text-sm font-black uppercase tracking-wider text-sky-300 transition hover:border-sky-400 hover:bg-sky-400 hover:text-[#050914] focus:outline-none focus:ring-2 focus:ring-sky-400"
                         >
-                            Learn About NomadLifeXP â†’
+                            Learn About NomadLifeXP →
                         </Link>
                     </div>
                 </div>
@@ -534,7 +528,7 @@ export default function ConnectPage() {
                         href="/"
                         className="mt-9 inline-flex rounded-lg bg-sky-400 px-7 py-4 text-sm font-black uppercase tracking-wider text-[#050914] shadow-[0_0_35px_rgba(56,189,248,0.18)] transition hover:bg-sky-300 hover:shadow-[0_0_45px_rgba(56,189,248,0.28)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-[#030711]"
                     >
-                        Start Your Evolution â†’
+                        Start Your Evolution →
                     </Link>
                 </div>
             </section>

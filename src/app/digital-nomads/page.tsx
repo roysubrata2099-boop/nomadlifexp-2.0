@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://www.nomadlifexp.com';
@@ -336,42 +336,7 @@ export default function DigitalNomadsPage() {
 
                 <div id="main-content">
 
-                    {/* =================================================
-                        BREADCRUMBS
-                    ================================================== */}
-
-                    <nav
-                        aria-label="Breadcrumb"
-                        className="mx-auto max-w-6xl px-6 pt-6"
-                    >
-                        <ol className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-                            <li>
-                                <Link
-                                    href="/"
-                                    className="transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                                >
-                                    Home
-                                </Link>
-                            </li>
-
-                            <li
-                                aria-hidden="true"
-                                className="text-zinc-700"
-                            >
-                                /
-                            </li>
-
-                            <li
-                                className="text-cyan-400"
-                                aria-current="page"
-                            >
-                                Digital Nomads
-                            </li>
-                        </ol>
-                    </nav>
-
-
-                    {/* =================================================
+{/* =================================================
                         HERO
                     ================================================== */}
 
@@ -1054,7 +1019,7 @@ export default function DigitalNomadsPage() {
                                 aria-label="Footer navigation"
                                 className="mt-8"
                             >
-                                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 font-mono text-[10px] uppercase tracking-widest text-white">
                                     <li>
                                         <Link
                                             href="/"
@@ -1084,7 +1049,7 @@ export default function DigitalNomadsPage() {
                                 </ul>
                             </nav>
 
-                            <div className="mt-8 text-[10px] font-mono uppercase tracking-widest text-zinc-700">
+                            <div className="mt-8 text-[10px] font-mono uppercase tracking-widest text-white">
                                 © {new Date().getFullYear()} NomadLifeXP
                             </div>
 
@@ -1096,3 +1061,11 @@ export default function DigitalNomadsPage() {
         </>
     );
 }
+
+
+
+
+
+
+
+

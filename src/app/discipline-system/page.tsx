@@ -163,22 +163,35 @@ export default function DisciplineSystemPage() {
 
             <div className="bg-[#050914] text-white min-h-screen font-sans antialiased selection:bg-[#ffb700] selection:text-black overflow-x-hidden">
                 <div className="max-w-[1200px] w-[92%] mx-auto relative z-10">
-
-                    {/* Navigation Breadcrumb */}
+                    {/* Navigation */}
                     <nav
-                        className="py-10 border-b border-[#1e293b] flex items-center gap-5 text-[#94a3b8] uppercase text-[13px] tracking-[2px]"
-                        aria-label="Breadcrumb"
+                        className="py-10 border-b border-[#1e293b] flex flex-col gap-3 text-[13px] tracking-[2px]"
+                        aria-label="Page navigation"
                     >
                         <Link
                             href="/"
-                            className="text-[#999] hover:text-[#ffb700] no-underline transition-colors duration-200"
+                            className="inline-flex items-center gap-2 text-white hover:text-[#ffb700] no-underline transition-colors duration-200 uppercase"
                         >
-                            ← Return Home
+                            <span aria-hidden="true">←</span>
+                            <span>NOMADLIFEXP</span>
                         </Link>
-                        <span>/</span>
-                        <span className="text-[#ffb700]">
-                            Discipline System
-                        </span>
+
+                        <ol className="flex items-center gap-3 uppercase text-[#94a3b8]">
+                            <li>
+                                <Link
+                                    href="/"
+                                    className="hover:text-white transition-colors duration-200"
+                                >
+                                    Home
+                                </Link>
+                            </li>
+
+                            <li aria-hidden="true">/</li>
+
+                            <li className="text-[#ffb700]" aria-current="page">
+                                Discipline System
+                            </li>
+                        </ol>
                     </nav>
 
                     {/* Hero Layout Frame */}
@@ -213,7 +226,7 @@ export default function DisciplineSystemPage() {
                                 href="#thirty-day-system"
                                 className="inline-block bg-[#ffb700] text-black font-mono font-bold uppercase text-sm tracking-wider px-8 py-4 hover:bg-white transition-colors duration-200"
                             >
-                                Explore The Implementation Protocol →
+                                Explore The Implementation Protocol ?
                             </Link>
                         </div>
                     </header>
@@ -228,12 +241,12 @@ export default function DisciplineSystemPage() {
                         </p>
                         <p className="text-sm font-mono text-[#94a3b8] uppercase tracking-wider">The framework integrates:</p>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#dbeafe] font-light">
-                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Identity-based habit design</li>
-                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Systematic environmental setup</li>
-                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Daily execution routines</li>
-                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Somatic habit engineering</li>
-                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Attention protection layers</li>
-                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Progressive behaviour protocols</li>
+                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Identity-based habit design</li>
+                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Systematic environmental setup</li>
+                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Daily execution routines</li>
+                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Somatic habit engineering</li>
+                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Attention protection layers</li>
+                            <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Progressive behaviour protocols</li>
                         </ul>
                         <div className="pt-4 border-t border-[#1e293b] space-y-2">
                             <p className="text-white font-medium text-sm md:text-base">Real transformation is never created through temporary emotional surges.</p>
@@ -257,22 +270,22 @@ export default function DisciplineSystemPage() {
                                 </p>
                                 <p className="text-xs font-mono text-[#94a3b8] uppercase">Before scaling:</p>
                                 <ul className="space-y-2 text-xs md:text-sm text-[#dbeafe] font-light">
-                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Physical performance & strength</li>
-                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Cellular and systemic recovery</li>
-                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Advanced cognitive output</li>
-                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">✓</span> Long-term lifestyle scaling</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Physical performance & strength</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Cellular and systemic recovery</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Advanced cognitive output</li>
+                                    <li className="flex items-center gap-2"><span className="text-[#ffb700]">?</span> Long-term lifestyle scaling</li>
                                 </ul>
                             </div>
 
                             <div className="border border-[#1e293b] bg-[#0f172a] p-8 text-center font-mono space-y-3">
                                 <div className="text-xs text-[#64748b] uppercase tracking-widest">// System Hierarchy</div>
                                 <div className="p-3 bg-[#0d0d0d] border border-[#1e293b] text-white text-sm uppercase">HUMAN EVOLUTION</div>
-                                <div className="text-[#94a3b8]">↑</div>
+                                <div className="text-[#94a3b8]">?</div>
                                 <div className="p-3 bg-[#0d0d0d] border border-[#1e293b] text-white text-sm uppercase">HUMAN OPTIMIZATION SYSTEM</div>
-                                <div className="text-[#94a3b8]">↑</div>
+                                <div className="text-[#94a3b8]">?</div>
                                 <div className="p-3 bg-[#0d0d0d] border border-[#ffb700] text-black font-bold text-sm uppercase bg-[#ffb700]">DISCIPLINE SYSTEM (FOUNDATION)</div>
-                                <div className="text-[#94a3b8]">↑</div>
-                                <div className="p-3 bg-[#0d0d0d] border border-[#1e293b] text-[#ffb700] text-xs uppercase font-bold">Identity → Habits → Actions → Results</div>
+                                <div className="text-[#94a3b8]">?</div>
+                                <div className="p-3 bg-[#0d0d0d] border border-[#1e293b] text-[#ffb700] text-xs uppercase font-bold">Identity ? Habits ? Actions ? Results</div>
                             </div>
                         </div>
                     </section>
@@ -373,11 +386,11 @@ export default function DisciplineSystemPage() {
                                     <p className="text-xs font-mono text-[#94a3b8] uppercase mb-4">Days 1–10</p>
                                     <p className="text-xs font-mono text-[#a7f3d0] uppercase mb-2">Core Focus:</p>
                                     <ul className="space-y-2 text-xs text-[#dbeafe] font-light mb-6">
-                                        <li>✓ Non-negotiable wake times</li>
-                                        <li>✓ Immediate morning hydration</li>
-                                        <li>✓ Natural sunlight synchronization</li>
-                                        <li>✓ Somatic anchor introduction</li>
-                                        <li>✓ Daily planning systems</li>
+                                        <li>? Non-negotiable wake times</li>
+                                        <li>? Immediate morning hydration</li>
+                                        <li>? Natural sunlight synchronization</li>
+                                        <li>? Somatic anchor introduction</li>
+                                        <li>? Daily planning systems</li>
                                     </ul>
                                 </div>
                                 <div className="border-t border-[#1e293b] pt-4">
@@ -394,10 +407,10 @@ export default function DisciplineSystemPage() {
                                     <p className="text-xs font-mono text-[#94a3b8] uppercase mb-4">Days 11–20</p>
                                     <p className="text-xs font-mono text-[#a7f3d0] uppercase mb-2">Core Focus:</p>
                                     <ul className="space-y-2 text-xs text-[#dbeafe] font-light mb-6">
-                                        <li>✓ Resistance training consistency</li>
-                                        <li>✓ Mobility & movement routines</li>
-                                        <li>✓ Targeted nutritional structures</li>
-                                        <li>✓ Sleep hygiene optimization</li>
+                                        <li>? Resistance training consistency</li>
+                                        <li>? Mobility & movement routines</li>
+                                        <li>? Targeted nutritional structures</li>
+                                        <li>? Sleep hygiene optimization</li>
                                     </ul>
                                 </div>
                                 <div className="border-t border-[#1e293b] pt-4">
@@ -414,10 +427,10 @@ export default function DisciplineSystemPage() {
                                     <p className="text-xs font-mono text-[#94a3b8] uppercase mb-4">Days 21–30</p>
                                     <p className="text-xs font-mono text-[#a7f3d0] uppercase mb-2">Core Focus:</p>
                                     <ul className="space-y-2 text-xs text-[#dbeafe] font-light mb-6">
-                                        <li>✓ Deep work blocks</li>
-                                        <li>✓ Output tracking systems</li>
-                                        <li>✓ Focus-shielding rules</li>
-                                        <li>✓ Uninterrupted workflow execution</li>
+                                        <li>? Deep work blocks</li>
+                                        <li>? Output tracking systems</li>
+                                        <li>? Focus-shielding rules</li>
+                                        <li>? Uninterrupted workflow execution</li>
                                     </ul>
                                 </div>
                                 <div className="border-t border-[#1e293b] pt-4">
@@ -440,19 +453,19 @@ export default function DisciplineSystemPage() {
                             <div className="border border-[#1e293b] bg-[#0f172a] p-6 space-y-3">
                                 <h3 className="text-lg font-bold uppercase text-[#ff0055]">Morning Activation (06:00 – 09:00)</h3>
                                 <ul className="space-y-2 text-xs md:text-sm text-[#dbeafe] font-light">
-                                    <li>✓ Immediate physical get-up with zero snooze</li>
-                                    <li>✓ 10-minute natural outdoor light exposure</li>
-                                    <li>✓ Somatic movement & breath activation</li>
-                                    <li>✓ Uninterrupted deep work execution block</li>
+                                    <li>? Immediate physical get-up with zero snooze</li>
+                                    <li>? 10-minute natural outdoor light exposure</li>
+                                    <li>? Somatic movement & breath activation</li>
+                                    <li>? Uninterrupted deep work execution block</li>
                                 </ul>
                             </div>
                             <div className="border border-[#1e293b] bg-[#0f172a] p-6 space-y-3">
                                 <h3 className="text-lg font-bold uppercase text-[#00f0ff]">Evening Reset (20:00 – 22:00)</h3>
                                 <ul className="space-y-2 text-xs md:text-sm text-[#dbeafe] font-light">
-                                    <li>✓ Digital sunset & communication blackout</li>
-                                    <li>✓ Pre-layout of physical workspace for tomorrow</li>
-                                    <li>✓ Self-integrity audit against daily commitments</li>
-                                    <li>✓ Complete neurological cool-down for rest</li>
+                                    <li>? Digital sunset & communication blackout</li>
+                                    <li>? Pre-layout of physical workspace for tomorrow</li>
+                                    <li>? Self-integrity audit against daily commitments</li>
+                                    <li>? Complete neurological cool-down for rest</li>
                                 </ul>
                             </div>
                         </div>
@@ -498,7 +511,7 @@ export default function DisciplineSystemPage() {
                                 href="/"
                                 className="inline-block text-[#ffb700] hover:text-white font-mono text-sm uppercase tracking-wider transition-colors duration-200"
                             >
-                                ← Return to System Dashboard
+                                ? Return to System Dashboard
                             </Link>
                         </div>
                     </footer>
@@ -508,4 +521,5 @@ export default function DisciplineSystemPage() {
         </>
     );
 }
+
 

@@ -10,7 +10,7 @@ const PAGE_URL = `${SITE_URL}/discipline-system`;
 export const metadata: Metadata = {
     title: "The Discipline System | Build Self-Discipline & Lasting Habits",
     description:
-        "Build self-discipline, lasting habits, focus, and consistent routines with the NomadLifeXP Discipline System Ã¢â‚¬â€ a structured framework for behaviour change and human optimization.",
+        "Build self-discipline, lasting habits, focus, and consistent routines with the NomadLifeXP Discipline System ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â a structured framework for behaviour change and human optimization.",
     keywords: [
         "Self-Discipline System",
         "Discipline System",
@@ -161,11 +161,11 @@ export default function DisciplineSystemPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
             />
 
-            <div className="bg-black text-white min-h-screen font-sans antialiased selection:bg-white selection:text-black overflow-x-hidden">
+            <div className="bg-[#050914] text-white min-h-screen font-sans antialiased selection:bg-white selection:text-black overflow-x-hidden">
                 <div className="max-w-[1200px] w-[92%] mx-auto relative z-10">
                     {/* Navigation */}
                     <nav
-                        className="py-10 border-b border-[#333333] flex flex-col gap-3 text-[13px] tracking-[2px]"
+                        className="py-10 border-b border-[#0A1A33] flex flex-col gap-3 text-[13px] tracking-[2px]"
                         aria-label="Page navigation"
                     >
                         <Link
@@ -176,7 +176,7 @@ export default function DisciplineSystemPage() {
                             <span>NOMADLIFEXP</span>
                         </Link>
 
-                        <ol className="flex items-center gap-3 uppercase text-[#9ca3af]">
+                        <ol className="flex items-center gap-3 uppercase text-[#7DD3FC]">
                             <li>
                                 <Link
                                     href="/"
@@ -205,15 +205,15 @@ export default function DisciplineSystemPage() {
                             <span className="text-white">The Foundation System of Human Optimization</span>
                         </h1>
 
-                        <p className="text-[#d1d5db] max-w-[800px] text-lg md:text-xl font-light leading-relaxed mb-6 uppercase tracking-wide">
+                        <p className="text-[#EDF6FF] max-w-[800px] text-lg md:text-xl font-light leading-relaxed mb-6 uppercase tracking-wide">
                             Build Self-Discipline. Build Lasting Habits. Transform Your Identity.
                         </p>
 
-                        <div className="bg-[#111111] border-l-2 border-white p-6 md:p-8 max-w-[850px] my-8 space-y-4">
-                            <p className="text-[#e5e7eb] text-base md:text-lg leading-relaxed font-light">
+                        <div className="bg-[#071428] border-l-2 border-[#38BDF8] p-6 md:p-8 max-w-[850px] my-8 space-y-4">
+                            <p className="text-[#EDF6FF] text-base md:text-lg leading-relaxed font-light">
                                 The Discipline System is a structured framework for developing consistency, improving focus, and creating lasting behavioural change as the core foundation of the NomadLifeXP Human Optimization System.
                             </p>
-                            <p className="text-white font-semibold italic text-sm md:text-base border-l border-white pl-4 py-1">
+                            <p className="text-white font-semibold italic text-sm md:text-base border-l border-[#38BDF8] pl-4 py-1">
                                 Stop relying on motivation. Motivation fades. Systems endure.
                             </p>
                             <p className="text-white font-mono uppercase text-sm tracking-widest font-bold pt-2">
@@ -224,7 +224,7 @@ export default function DisciplineSystemPage() {
                         <div className="mt-8">
                             <Link
                                 href="#thirty-day-system"
-                                className="inline-block bg-white text-black font-mono font-bold uppercase text-sm tracking-wider px-8 py-4 hover:bg-white transition-colors duration-200"
+                                className="inline-block bg-[#38BDF8] text-[#050914] font-mono font-bold uppercase text-sm tracking-wider px-8 py-4 border border-[#38BDF8] hover:bg-[#7DD3FC] hover:border-[#7DD3FC] transition-colors duration-200"
                             >
                                 Explore The Implementation Protocol &rarr;
                             </Link>
@@ -232,15 +232,15 @@ export default function DisciplineSystemPage() {
                     </header>
 
                     {/* What Is The Discipline System? */}
-                    <section className="mb-20 space-y-6 border border-[#333333] bg-[#111111] p-8 md:p-12" aria-label="What Is The Discipline System">
+                    <section className="mb-20 space-y-6 border border-[#0A1A33] bg-[#071428] p-8 md:p-12" aria-label="What Is The Discipline System">
                         <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white">
                             What Is The Discipline System?
                         </h2>
-                        <p className="text-[#d1d5db] text-base md:text-lg font-light leading-relaxed">
+                        <p className="text-[#EDF6FF] text-base md:text-lg font-light leading-relaxed">
                             It is a dedicated framework built to help you master consistency, eliminate friction, and reshape your behavioral architecture through structured daily execution.
                         </p>
-                        <p className="text-sm font-mono text-[#9ca3af] uppercase tracking-wider">The framework integrates:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#e5e7eb] font-light">
+                        <p className="text-sm font-mono text-[#7DD3FC] uppercase tracking-wider">The framework integrates:</p>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-[#EDF6FF] font-light">
                             <li className="flex items-center gap-2"><span className="text-white">?</span> Identity-based habit design</li>
                             <li className="flex items-center gap-2"><span className="text-white">?</span> Systematic environmental setup</li>
                             <li className="flex items-center gap-2"><span className="text-white">?</span> Daily execution routines</li>
@@ -248,7 +248,7 @@ export default function DisciplineSystemPage() {
                             <li className="flex items-center gap-2"><span className="text-white">?</span> Attention protection layers</li>
                             <li className="flex items-center gap-2"><span className="text-white">?</span> Progressive behaviour protocols</li>
                         </ul>
-                        <div className="pt-4 border-t border-[#333333] space-y-2">
+                        <div className="pt-4 border-t border-[#0A1A33] space-y-2">
                             <p className="text-white font-medium text-sm md:text-base">Real transformation is never created through temporary emotional surges.</p>
                             <p className="text-white text-sm md:text-base font-light">It is achieved through systems that reshape actions, anchor identity, and expand execution bandwidth.</p>
                         </div>
@@ -256,20 +256,20 @@ export default function DisciplineSystemPage() {
 
                     {/* The Foundation System of Human Optimization */}
                     <section className="mb-20 space-y-8" aria-label="Evolution Framework">
-                        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#333333] pb-4">
+                        <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white border-b border-[#0A1A33] pb-4">
                             The Foundation System of Human Optimization
                         </h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                            <div className="space-y-6 border border-[#333333] bg-[#111111] p-8">
+                            <div className="space-y-6 border border-[#0A1A33] bg-[#071428] p-8">
                                 <h3 className="text-xl font-bold uppercase text-white">
                                     Discipline Is The First Layer Of Evolution
                                 </h3>
-                                <p className="text-[#d1d5db] text-sm md:text-base leading-relaxed font-light">
+                                <p className="text-[#EDF6FF] text-sm md:text-base leading-relaxed font-light">
                                     Human optimization begins with absolute control over daily behaviour. Before targeting physical conditioning, recovery, mental performance, or complex growth metrics, you must lock down the baseline framework controlling your everyday actions.
                                 </p>
-                                <p className="text-xs font-mono text-[#9ca3af] uppercase">Before scaling:</p>
-                                <ul className="space-y-2 text-xs md:text-sm text-[#e5e7eb] font-light">
+                                <p className="text-xs font-mono text-[#7DD3FC] uppercase">Before scaling:</p>
+                                <ul className="space-y-2 text-xs md:text-sm text-[#EDF6FF] font-light">
                                     <li className="flex items-center gap-2"><span className="text-white">?</span> Physical performance & strength</li>
                                     <li className="flex items-center gap-2"><span className="text-white">?</span> Cellular and systemic recovery</li>
                                     <li className="flex items-center gap-2"><span className="text-white">?</span> Advanced cognitive output</li>
@@ -277,115 +277,115 @@ export default function DisciplineSystemPage() {
                                 </ul>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-8 text-center font-mono space-y-3">
-                                <div className="text-xs text-[#6b7280] uppercase tracking-widest">// System Hierarchy</div>
-                                <div className="p-3 bg-black border border-[#333333] text-white text-sm uppercase">HUMAN EVOLUTION</div>
-                                <div className="text-[#9ca3af]">?</div>
-                                <div className="p-3 bg-black border border-[#333333] text-white text-sm uppercase">HUMAN OPTIMIZATION SYSTEM</div>
-                                <div className="text-[#9ca3af]">?</div>
-                                <div className="p-3 bg-black border border-white text-black font-bold text-sm uppercase bg-white">DISCIPLINE SYSTEM (FOUNDATION)</div>
-                                <div className="text-[#9ca3af]">?</div>
-                                <div className="text-[#9ca3af]">&rarr;</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-8 text-center font-mono space-y-3">
+                                <div className="text-xs text-[#60A5FA] uppercase tracking-widest">// System Hierarchy</div>
+                                <div className="p-3 bg-[#050914] border border-[#0A1A33] text-white text-sm uppercase">HUMAN EVOLUTION</div>
+                                <div className="text-[#7DD3FC]">?</div>
+                                <div className="p-3 bg-[#050914] border border-[#0A1A33] text-white text-sm uppercase">HUMAN OPTIMIZATION SYSTEM</div>
+                                <div className="text-[#7DD3FC]">?</div>
+                                <div className="p-3 bg-[#050914] border border-[#38BDF8] text-black font-bold text-sm uppercase bg-white">DISCIPLINE SYSTEM (FOUNDATION)</div>
+                                <div className="text-[#7DD3FC]">?</div>
+                                <div className="text-[#7DD3FC]">&rarr;</div>
                             </div>
                         </div>
                     </section>
 
                     {/* The Discipline Architecture&trade; */}
                     <section className="mb-20 space-y-8" aria-label="Discipline Architecture">
-                        <div className="border-b border-[#333333] pb-4">
+                        <div className="border-b border-[#0A1A33] pb-4">
                             <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white">
                                 The Discipline Architecture&trade;
                             </h2>
                             <p className="text-sm font-mono text-white uppercase tracking-widest mt-1">The Interconnected Operating Model</p>
                         </div>
-                        <p className="text-[#d1d5db] text-base font-light">
+                        <p className="text-[#EDF6FF] text-base font-light">
                             DISCIPLINE operates as an integrated architecture: each layer reinforces the next, seamlessly moving from routine design and identity mapping to physiological triggers, environmental layout, and long-term evolution.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">D ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â DAILY STRUCTURE</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">D ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â DAILY STRUCTURE</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Eradicate Fatigue</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Build rigid morning routines, planning blocks, and evening reset checklists to eliminate decision fatigue.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Build rigid morning routines, planning blocks, and evening reset checklists to eliminate decision fatigue.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â IDENTITY ALIGNMENT</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â IDENTITY ALIGNMENT</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Shape Core Persona</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Let repeated daily actions serve as literal empirical evidence of the person you are actively choosing to become.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Let repeated daily actions serve as literal empirical evidence of the person you are actively choosing to become.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">S ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â SOMATIC ANCHORS</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">S ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â SOMATIC ANCHORS</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Physiological Cues</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">NomadLifeXP calls this Somatic Habit Engineering: utilizing movement, hydration, and environmental exposure as physical anchors for habit execution.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">NomadLifeXP calls this Somatic Habit Engineering: utilizing movement, hydration, and environmental exposure as physical anchors for habit execution.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">C ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â COGNITIVE CONTROL</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">C ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â COGNITIVE CONTROL</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Protect Attention</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Aggressively shield mental energy by minimizing digital distractions, reactive inputs, and unnecessary micro-choices.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Aggressively shield mental energy by minimizing digital distractions, reactive inputs, and unnecessary micro-choices.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â INTENTIONAL EXECUTION</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â INTENTIONAL EXECUTION</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Velocity Output</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Translate high-level targets into strict, uncompromising deep-work blocks and focus schedules.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Translate high-level targets into strict, uncompromising deep-work blocks and focus schedules.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">P ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â PHYSICAL FOUNDATIONS</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">P ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â PHYSICAL FOUNDATIONS</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Cellular Support</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Back your behavioural discipline with structured physical movement, targeted nutrition, and rigorous recovery cycles.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Back your behavioural discipline with structured physical movement, targeted nutrition, and rigorous recovery cycles.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">L ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â LIFESTYLE DESIGN</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">L ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â LIFESTYLE DESIGN</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Environment Architecture</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Modify your physical and digital surroundings so that desired actions take minimal activation energy.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Modify your physical and digital surroundings so that desired actions take minimal activation energy.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â INTERNAL INTEGRITY</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">I ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â INTERNAL INTEGRITY</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Unyielding Self-Trust</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Build compounding self-respect by strictly keeping minor, non-negotiable commitments made to yourself.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Build compounding self-respect by strictly keeping minor, non-negotiable commitments made to yourself.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">N ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â NEURAL REINFORCEMENT</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">N ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â NEURAL REINFORCEMENT</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Wiring Pathways</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Strengthen neuro-pathways through mechanical consistency, making positive habits automated over time.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Strengthen neuro-pathways through mechanical consistency, making positive habits automated over time.</p>
                             </div>
 
-                            <div className="border border-[#333333] bg-[#111111] p-6 md:col-span-3">
-                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">E ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â EVOLUTION PROTOCOL</div>
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 md:col-span-3">
+                                <div className="text-white font-mono text-xs mb-2 font-bold tracking-widest">E ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â EVOLUTION PROTOCOL</div>
                                 <h3 className="text-lg font-bold uppercase text-white mb-2">Recursive Scaling</h3>
-                                <p className="text-xs md:text-sm text-[#d1d5db] font-light">Continuously review, audit, and optimize your systems for lifelong human development and upward progression.</p>
+                                <p className="text-xs md:text-sm text-[#EDF6FF] font-light">Continuously review, audit, and optimize your systems for lifelong human development and upward progression.</p>
                             </div>
                         </div>
                     </section>
 
                     {/* The 30-Day Implementation Protocol */}
                     <section id="thirty-day-system" className="mb-20 space-y-8" aria-label="30-Day Implementation Protocol">
-                        <div className="border-b border-[#333333] pb-4">
+                        <div className="border-b border-[#0A1A33] pb-4">
                             <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white">
                                 The 30-Day Implementation Protocol
                             </h2>
                             <p className="text-sm font-mono text-white uppercase tracking-widest mt-1">A Structured System Deployment Sequence</p>
                         </div>
-                        <p className="text-[#d1d5db] text-base font-light">
+                        <p className="text-[#EDF6FF] text-base font-light">
                             This 30-day block serves as an intensive onboarding phase to install the system components. It is an implementation structure&mdash;not a guarantee of overnight transformation.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {/* Phase I */}
-                            <div className="border border-[#333333] bg-[#111111] p-8 flex flex-col justify-between space-y-4">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-8 flex flex-col justify-between space-y-4">
                                 <div>
                                     <div className="text-white text-[12px] font-mono mb-1 tracking-wider">Phase I // Internal Integrity</div>
                                     <h3 className="text-xl font-bold mb-2 uppercase tracking-tight text-white">Establish Control</h3>
-                                    <p className="text-xs font-mono text-[#9ca3af] uppercase mb-4">Days 1&ndash;10</p>
-                                    <p className="text-xs font-mono text-[#d1d5db] uppercase mb-2">Core Focus:</p>
-                                    <ul className="space-y-2 text-xs text-[#e5e7eb] font-light mb-6">
+                                    <p className="text-xs font-mono text-[#7DD3FC] uppercase mb-4">Days 1&ndash;10</p>
+                                    <p className="text-xs font-mono text-[#EDF6FF] uppercase mb-2">Core Focus:</p>
+                                    <ul className="space-y-2 text-xs text-[#EDF6FF] font-light mb-6">
                                         <li>? Non-negotiable wake times</li>
                                         <li>? Immediate morning hydration</li>
                                         <li>? Natural sunlight synchronization</li>
@@ -393,49 +393,49 @@ export default function DisciplineSystemPage() {
                                         <li>? Daily planning systems</li>
                                     </ul>
                                 </div>
-                                <div className="border-t border-[#333333] pt-4">
+                                <div className="border-t border-[#0A1A33] pt-4">
                                     <p className="text-[11px] font-mono text-white uppercase mb-1">Milestone Outcome:</p>
-                                    <p className="text-xs text-[#d1d5db] font-light">Mastery over morning friction, basic inputs, and self-trust anchors.</p>
+                                    <p className="text-xs text-[#EDF6FF] font-light">Mastery over morning friction, basic inputs, and self-trust anchors.</p>
                                 </div>
                             </div>
 
                             {/* Phase II */}
-                            <div className="border border-[#333333] bg-[#111111] p-8 flex flex-col justify-between space-y-4">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-8 flex flex-col justify-between space-y-4">
                                 <div>
                                     <div className="text-white text-[12px] font-mono mb-1 tracking-wider">Phase II // Physical Baselines</div>
                                     <h3 className="text-xl font-bold mb-2 uppercase tracking-tight text-white">Optimize Energy</h3>
-                                    <p className="text-xs font-mono text-[#9ca3af] uppercase mb-4">Days 11&ndash;20</p>
-                                    <p className="text-xs font-mono text-[#d1d5db] uppercase mb-2">Core Focus:</p>
-                                    <ul className="space-y-2 text-xs text-[#e5e7eb] font-light mb-6">
+                                    <p className="text-xs font-mono text-[#7DD3FC] uppercase mb-4">Days 11&ndash;20</p>
+                                    <p className="text-xs font-mono text-[#EDF6FF] uppercase mb-2">Core Focus:</p>
+                                    <ul className="space-y-2 text-xs text-[#EDF6FF] font-light mb-6">
                                         <li>? Resistance training consistency</li>
                                         <li>? Mobility & movement routines</li>
                                         <li>? Targeted nutritional structures</li>
                                         <li>? Sleep hygiene optimization</li>
                                     </ul>
                                 </div>
-                                <div className="border-t border-[#333333] pt-4">
+                                <div className="border-t border-[#0A1A33] pt-4">
                                     <p className="text-[11px] font-mono text-white uppercase mb-1">Milestone Outcome:</p>
-                                    <p className="text-xs text-[#d1d5db] font-light">Robust biological stamina required to power high-output execution.</p>
+                                    <p className="text-xs text-[#EDF6FF] font-light">Robust biological stamina required to power high-output execution.</p>
                                 </div>
                             </div>
 
                             {/* Phase III */}
-                            <div className="border border-[#333333] bg-[#111111] p-8 flex flex-col justify-between space-y-4">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-8 flex flex-col justify-between space-y-4">
                                 <div>
                                     <div className="text-white text-[12px] font-mono mb-1 tracking-wider">Phase III // Velocity Output</div>
                                     <h3 className="text-xl font-bold mb-2 uppercase tracking-tight text-white">Scale Performance</h3>
-                                    <p className="text-xs font-mono text-[#9ca3af] uppercase mb-4">Days 21&ndash;30</p>
-                                    <p className="text-xs font-mono text-[#d1d5db] uppercase mb-2">Core Focus:</p>
-                                    <ul className="space-y-2 text-xs text-[#e5e7eb] font-light mb-6">
+                                    <p className="text-xs font-mono text-[#7DD3FC] uppercase mb-4">Days 21&ndash;30</p>
+                                    <p className="text-xs font-mono text-[#EDF6FF] uppercase mb-2">Core Focus:</p>
+                                    <ul className="space-y-2 text-xs text-[#EDF6FF] font-light mb-6">
                                         <li>? Deep work blocks</li>
                                         <li>? Output tracking systems</li>
                                         <li>? Focus-shielding rules</li>
                                         <li>? Uninterrupted workflow execution</li>
                                     </ul>
                                 </div>
-                                <div className="border-t border-[#333333] pt-4">
+                                <div className="border-t border-[#0A1A33] pt-4">
                                     <p className="text-[11px] font-mono text-white uppercase mb-1">Milestone Outcome:</p>
-                                    <p className="text-xs text-[#d1d5db] font-light">Converting structured discipline into tangible, high-leverage work output.</p>
+                                    <p className="text-xs text-[#EDF6FF] font-light">Converting structured discipline into tangible, high-leverage work output.</p>
                                 </div>
                             </div>
                         </div>
@@ -443,25 +443,25 @@ export default function DisciplineSystemPage() {
 
                     {/* Daily Discipline Routine&trade; */}
                     <section className="mb-20 space-y-8" aria-label="Daily Discipline Routine">
-                        <div className="border-b border-[#333333] pb-4">
+                        <div className="border-b border-[#0A1A33] pb-4">
                             <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white">
                                 Daily Discipline Routine&trade;
                             </h2>
                             <p className="text-sm font-mono text-white uppercase tracking-widest mt-1">The Mechanical Daily Anchors</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="border border-[#333333] bg-[#111111] p-6 space-y-3">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-3">
                                 <h3 className="text-lg font-bold uppercase text-white">Morning Activation (06:00 &rarr; 09:00)</h3>
-                                <ul className="space-y-2 text-xs md:text-sm text-[#e5e7eb] font-light">
+                                <ul className="space-y-2 text-xs md:text-sm text-[#EDF6FF] font-light">
                                     <li>? Immediate physical get-up with zero snooze</li>
                                     <li>? 10-minute natural outdoor light exposure</li>
                                     <li>? Somatic movement & breath activation</li>
                                     <li>? Uninterrupted deep work execution block</li>
                                 </ul>
                             </div>
-                            <div className="border border-[#333333] bg-[#111111] p-6 space-y-3">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-3">
                                 <h3 className="text-lg font-bold uppercase text-white">Evening Reset (20:00 &rarr; 22:00)</h3>
-                                <ul className="space-y-2 text-xs md:text-sm text-[#e5e7eb] font-light">
+                                <ul className="space-y-2 text-xs md:text-sm text-[#EDF6FF] font-light">
                                     <li>? Digital sunset & communication blackout</li>
                                     <li>? Pre-layout of physical workspace for tomorrow</li>
                                     <li>? Self-integrity audit against daily commitments</li>
@@ -473,39 +473,39 @@ export default function DisciplineSystemPage() {
 
                     {/* Core FAQ Section */}
                     <section className="mb-20 space-y-8" aria-label="FAQ">
-                        <div className="border-b border-[#333333] pb-4">
+                        <div className="border-b border-[#0A1A33] pb-4">
                             <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white">
                                 Frequently Asked Questions
                             </h2>
                         </div>
                         <div className="space-y-4">
-                            <div className="border border-[#333333] bg-[#111111] p-6 space-y-2">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-2">
                                 <h3 className="text-base font-bold text-white uppercase">How do you build self-discipline?</h3>
-                                <p className="text-sm text-[#d1d5db] font-light">Self-discipline develops through structured routines, repeated actions, reduced distractions, and systems that reinforce identity.</p>
+                                <p className="text-sm text-[#EDF6FF] font-light">Self-discipline develops through structured routines, repeated actions, reduced distractions, and systems that reinforce identity.</p>
                             </div>
-                            <div className="border border-[#333333] bg-[#111111] p-6 space-y-2">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-2">
                                 <h3 className="text-base font-bold text-white uppercase">How long does it take to build lasting habits?</h3>
-                                <p className="text-sm text-[#d1d5db] font-light">Habit formation depends on behaviour, environment, and consistency. Sustainable change comes through repeated intentional action rather than fixed day counts.</p>
+                                <p className="text-sm text-[#EDF6FF] font-light">Habit formation depends on behaviour, environment, and consistency. Sustainable change comes through repeated intentional action rather than fixed day counts.</p>
                             </div>
-                            <div className="border border-[#333333] bg-[#111111] p-6 space-y-2">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-2">
                                 <h3 className="text-base font-bold text-white uppercase">How can I stop relying on motivation?</h3>
-                                <p className="text-sm text-[#d1d5db] font-light">Motivation changes constantly. Systems create consistency by making important behaviours easier to execute. Motivation fades; systems endure.</p>
+                                <p className="text-sm text-[#EDF6FF] font-light">Motivation changes constantly. Systems create consistency by making important behaviours easier to execute. Motivation fades; systems endure.</p>
                             </div>
-                            <div className="border border-[#333333] bg-[#111111] p-6 space-y-2">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-2">
                                 <h3 className="text-base font-bold text-white uppercase">What are identity-based habits?</h3>
-                                <p className="text-sm text-[#d1d5db] font-light">Identity-based habits focus on becoming the type of person who naturally performs desired behaviours through repeated evidence.</p>
+                                <p className="text-sm text-[#EDF6FF] font-light">Identity-based habits focus on becoming the type of person who naturally performs desired behaviours through repeated evidence.</p>
                             </div>
-                            <div className="border border-[#333333] bg-[#111111] p-6 space-y-2">
+                            <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-2">
                                 <h3 className="text-base font-bold text-white uppercase">What is Somatic Habit Engineering?</h3>
-                                <p className="text-sm text-[#d1d5db] font-light">NomadLifeXP's framework for connecting physical and physiological triggers, such as movement and breath control, with repeatable behaviours to anchor habit consistency.</p>
+                                <p className="text-sm text-[#EDF6FF] font-light">NomadLifeXP's framework for connecting physical and physiological triggers, such as movement and breath control, with repeatable behaviours to anchor habit consistency.</p>
                             </div>
                         </div>
                     </section>
 
                     {/* Footer CTA */}
-                    <footer className="py-12 border-t border-[#333333] text-center space-y-4 mb-10">
-                        <p className="text-xs font-mono text-[#9ca3af] uppercase tracking-widest">NomadLifeXP Human Optimization Engine</p>
-                        <p className="text-sm text-[#d1d5db]">Ready to deploy your optimization framework?</p>
+                    <footer className="py-12 border-t border-[#0A1A33] text-center space-y-4 mb-10">
+                        <p className="text-xs font-mono text-[#7DD3FC] uppercase tracking-widest">NomadLifeXP Human Optimization Engine</p>
+                        <p className="text-sm text-[#EDF6FF]">Ready to deploy your optimization framework?</p>
                         <div>
                             <Link
                                 href="/"

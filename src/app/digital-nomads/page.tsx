@@ -1,5 +1,3 @@
-// src/app/digital-nomads/page.tsx
-
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -68,9 +66,8 @@ const pillars = [
         heading: 'Digital Nomad Discipline',
         description:
             'Build structure, consistency, focus, and personal standards when your environment no longer provides them for you. Create routines that travel with you.',
-        href: 'https://www.nomadlifexp.com/blog/category/discipline',
+        href: '/blog/category/discipline/',
         cta: 'EXPLORE DISCIPLINE →',
-        internal: false,
     },
     {
         number: '02',
@@ -78,9 +75,8 @@ const pillars = [
         heading: 'Digital Nomad Fitness',
         description:
             'Build strength, conditioning, mobility, and physical capability without relying on a permanent gym or predictable training environment.',
-        href: 'https://www.nomadlifexp.com/blog/category/fitness',
+        href: '/blog/category/fitness/',
         cta: 'EXPLORE NOMAD FITNESS →',
-        internal: false,
     },
     {
         number: '03',
@@ -88,9 +84,8 @@ const pillars = [
         heading: 'Digital Nomad Yoga',
         description:
             'Use movement, breath, mobility, and awareness to support recovery and physical balance through flights, changing schedules, and life on the road.',
-        href: 'https://www.nomadlifexp.com/blog/category/yoga',
+        href: '/blog/category/yoga/',
         cta: 'EXPLORE NOMAD YOGA →',
-        internal: false,
     },
     {
         number: '04',
@@ -98,11 +93,10 @@ const pillars = [
         heading: 'Digital Nomad Mindset',
         description:
             'Develop mental clarity, adaptability, perspective, and resilience while navigating unfamiliar environments, uncertainty, and constant change.',
-        href: 'https://www.nomadlifexp.com/blog/category/mindset',
+        href: '/blog/category/mindset/',
         cta: 'EXPLORE NOMAD MINDSET →',
-        internal: false,
     },
-];
+] as const;
 
 const problems = [
     {
@@ -135,7 +129,7 @@ const problems = [
         description:
             'Build awareness, clarity, adaptability, and recovery into a life defined by constant change.',
     },
-];
+] as const;
 
 const resources = [
     {
@@ -143,30 +137,30 @@ const resources = [
         title: 'Build consistency',
         description:
             'Routines, habits, focus, structure, and discipline for life on the move.',
-        href: 'https://www.nomadlifexp.com/blog/category/discipline',
+        href: '/blog/category/discipline/',
     },
     {
         label: 'FITNESS',
         title: 'Build physical capacity',
         description:
             'Strength, mobility, conditioning, bodyweight training, and fitness while traveling.',
-        href: 'https://www.nomadlifexp.com/blog/category/fitness',
+        href: '/blog/category/fitness/',
     },
     {
         label: 'YOGA',
         title: 'Build mobility and awareness',
         description:
             'Breath, movement, recovery, flexibility, and body awareness on the road.',
-        href: 'https://www.nomadlifexp.com/blog/category/yoga',
+        href: '/blog/category/yoga/',
     },
     {
         label: 'MINDSET',
         title: 'Build mental adaptability',
         description:
             'Mental clarity, resilience, perspective, focus, and navigating uncertainty.',
-        href: 'https://www.nomadlifexp.com/blog/category/mindset',
+        href: '/blog/category/mindset/',
     },
-];
+] as const;
 
 const articles = [
     {
@@ -197,8 +191,16 @@ const articles = [
             'Build focus, adaptability, resilience, and mental clarity while living in constantly changing environments.',
         href: '/mindset/mental-clarity-for-digital-nomads/',
     },
-];
+] as const;
 
+/**
+ * JSON-LD
+ *
+ * The JSON is serialized and then escaped before being placed inside
+ * the application/ld+json script element.
+ *
+ * This prevents characters such as < from being interpreted as HTML.
+ */
 function JsonLd() {
     const structuredData = {
         '@context': 'https://schema.org',
@@ -208,6 +210,7 @@ function JsonLd() {
                 '@id': `${SITE_URL}/#website`,
                 url: SITE_URL,
                 name: 'NomadLifeXP',
+                inLanguage: 'en',
             },
             {
                 '@type': 'Organization',
@@ -255,11 +258,13 @@ function JsonLd() {
         ],
     };
 
+    const safeJsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+
     return (
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-                __html: JSON.stringify(structuredData),
+                __html: safeJsonLd,
             }}
         />
     );
@@ -275,18 +280,66 @@ export default function DigitalNomadsPage() {
                 {/* =====================================================
                     ACCESSIBLE SKIP LINK
                 ====================================================== */}
+
                 <a
                     href="#main-content"
-                    className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-cyan-400 focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:font-bold focus:text-black"
+                    className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-cyan-400 focus:px-4 focus:py-3 focus:font-mono focus:text-xs focus:font-bold focus:text-black focus:outline-none"
                 >
                     Skip to main content
                 </a>
+
+
+                {/* =====================================================
+                    NAVBAR
+                ====================================================== */}
+
+                <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050816]/95 backdrop-blur-md">
+                    <nav
+                        aria-label="Primary navigation"
+                        className="mx-auto flex min-h-16 max-w-6xl items-center justify-between px-6"
+                    >
+                        <Link
+                            href="/"
+                            aria-label="NomadLifeXP Home"
+                            className="font-mono text-xs font-bold tracking-[0.2em] text-white transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+                        >
+                            NOMADLIFEXP
+                        </Link>
+
+                        <ol className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] sm:text-xs">
+                            <li>
+                                <Link
+                                    href="/"
+                                    className="text-zinc-400 transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                                >
+                                    Home
+                                </Link>
+                            </li>
+
+                            <li
+                                aria-hidden="true"
+                                className="text-zinc-600"
+                            >
+                                /
+                            </li>
+
+                            <li
+                                aria-current="page"
+                                className="text-cyan-400"
+                            >
+                                Digital Nomads
+                            </li>
+                        </ol>
+                    </nav>
+                </header>
+
 
                 <div id="main-content">
 
                     {/* =================================================
                         BREADCRUMBS
                     ================================================== */}
+
                     <nav
                         aria-label="Breadcrumb"
                         className="mx-auto max-w-6xl px-6 pt-6"
@@ -301,9 +354,17 @@ export default function DigitalNomadsPage() {
                                 </Link>
                             </li>
 
-                            <li aria-hidden="true">/</li>
+                            <li
+                                aria-hidden="true"
+                                className="text-zinc-700"
+                            >
+                                /
+                            </li>
 
-                            <li className="text-cyan-400" aria-current="page">
+                            <li
+                                className="text-cyan-400"
+                                aria-current="page"
+                            >
                                 Digital Nomads
                             </li>
                         </ol>
@@ -313,6 +374,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         HERO
                     ================================================== */}
+
                     <section
                         aria-labelledby="page-title"
                         className="mx-auto max-w-6xl px-6 pb-20 pt-20 text-center md:pb-28 md:pt-28"
@@ -388,6 +450,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         CORE POSITIONING
                     ================================================== */}
+
                     <section className="border-y border-white/10 bg-[#03050c]">
                         <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
                             <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
@@ -443,10 +506,11 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         FRAMEWORK
                     ================================================== */}
+
                     <section
                         id="systems"
                         aria-labelledby="framework-heading"
-                        className="mx-auto max-w-6xl scroll-mt-8 px-6 py-24 md:py-28"
+                        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24 md:py-28"
                     >
                         <div className="mx-auto max-w-3xl text-center">
                             <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
@@ -470,11 +534,9 @@ export default function DigitalNomadsPage() {
                         <div className="mx-auto mt-14 max-w-4xl">
                             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                                 {pillars.map((pillar) => (
-                                    <a
+                                    <Link
                                         key={pillar.number}
                                         href={pillar.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
                                         className="group border border-white/10 bg-[#03050c] p-6 text-center transition hover:border-cyan-400/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                                     >
                                         <span className="font-mono text-xs text-cyan-400">
@@ -488,7 +550,7 @@ export default function DigitalNomadsPage() {
                                         <span className="mt-3 block font-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-cyan-400">
                                             EXPLORE →
                                         </span>
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
 
@@ -520,6 +582,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         FOUR SYSTEMS
                     ================================================== */}
+
                     <section
                         aria-labelledby="systems-heading"
                         className="border-y border-white/10 bg-[#03050c]"
@@ -566,14 +629,12 @@ export default function DigitalNomadsPage() {
                                             {pillar.description}
                                         </p>
 
-                                        <a
+                                        <Link
                                             href={pillar.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
                                             className="mt-6 inline-flex min-h-10 items-center font-mono text-xs text-cyan-400 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                                         >
                                             {pillar.cta}
-                                        </a>
+                                        </Link>
                                     </article>
                                 ))}
                             </div>
@@ -584,6 +645,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         PROBLEMS
                     ================================================== */}
+
                     <section
                         aria-labelledby="problems-heading"
                         className="mx-auto max-w-6xl px-6 py-24 md:py-28"
@@ -630,6 +692,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         HUMAN OPTIMIZATION
                     ================================================== */}
+
                     <section className="border-y border-white/10 bg-[#03050c]">
                         <div className="mx-auto max-w-5xl px-6 py-24 md:py-28">
 
@@ -714,6 +777,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         CORE PHILOSOPHY
                     ================================================== */}
+
                     <section className="mx-auto max-w-5xl px-6 py-24 text-center md:py-32">
 
                         <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
@@ -743,8 +807,9 @@ export default function DigitalNomadsPage() {
 
 
                     {/* =================================================
-                        GUIDES
+                        FIELD MANUAL / GUIDES
                     ================================================== */}
+
                     <section
                         aria-labelledby="guides-heading"
                         className="border-y border-white/10 bg-[#03050c]"
@@ -812,6 +877,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         RESOURCE HUB
                     ================================================== */}
+
                     <section
                         aria-labelledby="resources-heading"
                         className="border-t border-white/10"
@@ -838,11 +904,9 @@ export default function DigitalNomadsPage() {
 
                             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                                 {resources.map((resource) => (
-                                    <a
+                                    <Link
                                         key={resource.label}
                                         href={resource.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
                                         className="group border border-white/10 bg-[#03050c] p-5 transition hover:border-cyan-400/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                                     >
                                         <span className="font-mono text-xs text-cyan-400">
@@ -860,7 +924,7 @@ export default function DigitalNomadsPage() {
                                         <span className="mt-4 block font-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-cyan-400">
                                             EXPLORE →
                                         </span>
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
 
@@ -871,6 +935,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         AUTHORITY / EDITORIAL STANDARD
                     ================================================== */}
+
                     <section className="border-y border-white/10 bg-[#03050c]">
                         <div className="mx-auto max-w-5xl px-6 py-20 md:py-24">
 
@@ -926,6 +991,7 @@ export default function DigitalNomadsPage() {
                     {/* =================================================
                         FINAL CTA
                     ================================================== */}
+
                     <section className="mx-auto max-w-5xl px-6 py-24 text-center md:py-32">
 
                         <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
@@ -966,8 +1032,9 @@ export default function DigitalNomadsPage() {
 
 
                     {/* =================================================
-                        FINAL BRAND
+                        FOOTER
                     ================================================== */}
+
                     <footer className="border-t border-white/10 bg-[#03050c]">
                         <div className="mx-auto max-w-4xl px-6 py-16 text-center">
 
@@ -979,35 +1046,47 @@ export default function DigitalNomadsPage() {
                                 ADAPT ANYWHERE. BUILD YOURSELF EVERYWHERE.
                             </p>
 
-                            <p className="mt-5 text-sm text-zinc-500">
+                            <p className="mt-5 text-sm font-medium text-zinc-400">
                                 Your environment changes. Your foundation doesn&apos;t.
                             </p>
 
                             <nav
                                 aria-label="Footer navigation"
-                                className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500"
+                                className="mt-8"
                             >
-                                <Link
-                                    href="/"
-                                    className="transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                                >
-                                    Home
-                                </Link>
+                                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                                    <li>
+                                        <Link
+                                            href="/"
+                                            className="transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                                        >
+                                            Home
+                                        </Link>
+                                    </li>
 
-                                <Link
-                                    href="/blog/"
-                                    className="transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                                >
-                                    Blog
-                                </Link>
+                                    <li>
+                                        <Link
+                                            href="/blog/"
+                                            className="transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                                        >
+                                            Blog
+                                        </Link>
+                                    </li>
 
-                                <Link
-                                    href="/about/"
-                                    className="transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                                >
-                                    About
-                                </Link>
+                                    <li>
+                                        <Link
+                                            href="/about/"
+                                            className="transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                                        >
+                                            About
+                                        </Link>
+                                    </li>
+                                </ul>
                             </nav>
+
+                            <div className="mt-8 text-[10px] font-mono uppercase tracking-widest text-zinc-700">
+                                © {new Date().getFullYear()} NomadLifeXP
+                            </div>
 
                         </div>
                     </footer>

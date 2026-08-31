@@ -8,7 +8,6 @@ const withMDX = createMDX({
 });
 
 const nextConfig: NextConfig = {
-
   /* ==========================================================================
      BUILD SAFETY
      ========================================================================== */
@@ -17,13 +16,11 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
-
   /* ==========================================================================
      SECURITY
      ========================================================================== */
 
   poweredByHeader: false,
-
 
   /* ==========================================================================
      IMAGE CONFIGURATION
@@ -33,7 +30,6 @@ const nextConfig: NextConfig = {
     unoptimized: false,
   },
 
-
   /* ==========================================================================
      TYPESCRIPT SAFETY
      ========================================================================== */
@@ -41,7 +37,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-
 
   /* ==========================================================================
      MDX SUPPORT
@@ -56,7 +51,6 @@ const nextConfig: NextConfig = {
     "mdx",
   ],
 
-
   /* ==========================================================================
      PERMANENT SEO REDIRECTS
      Old URLs → Current Next.js routes
@@ -64,7 +58,6 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-
       /* ----------------------------------------------------------------------
          MIGRATION FIXES
          ---------------------------------------------------------------------- */
@@ -81,6 +74,27 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      {
+        source:
+          "/blog/posts/mental-clarity-how-to-stop-overthinking-and-improve-focus",
+        destination:
+          "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
+        permanent: true,
+      },
+
+      {
+        source:
+          "/blog/posts/can-you-rebuild-your-attention-span-after-years-of-digital-distraction",
+        destination: "/insights/rebuild-attention-span-digital-distraction",
+        permanent: true,
+      },
+
+      {
+        source:
+          "/blog/posts/the-reason-you-cant-focus-even-when-you-try-hard",
+        destination: "/insights/stop-procrastination-permanently",
+        permanent: true,
+      },
 
       /* ----------------------------------------------------------------------
          EXISTING REDIRECTS — UNCHANGED
@@ -169,11 +183,8 @@ const nextConfig: NextConfig = {
         destination: "/blog",
         permanent: true,
       },
-
     ];
   },
-
 };
-
 
 export default withMDX(nextConfig);

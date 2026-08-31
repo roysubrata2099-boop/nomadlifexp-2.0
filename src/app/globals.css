@@ -1,10 +1,10 @@
-/* ==========================================================================
-   🚀 TAILWIND ENGINE INITIALIZATION
+﻿/* ==========================================================================
+   ðŸš€ TAILWIND ENGINE INITIALIZATION
    ========================================================================== */
 @import "tailwindcss";
 
 /* ==========================================================================
-   🎨 BRAND PALETTE & CORE RESETS
+   ðŸŽ¨ BRAND PALETTE & CORE RESETS
    ========================================================================== */
 :root {
   --bg-surface-blue: #0f172a;
@@ -45,7 +45,7 @@ a {
 }
 
 /* ==========================================================================
-   ✨ TRILL TEXT UTILITY (SCOPED TO CLASS ONLY)
+   âœ¨ TRILL TEXT UTILITY (SCOPED TO CLASS ONLY)
    ========================================================================== */
 .trill,
 .trill-text-target {
@@ -78,7 +78,7 @@ a {
 }
 
 /* ==========================================================================
-   📖 STRICTLY SCOPED ARTICLE TYPOGRAPHY (AFFECTS ONLY .blog-content)
+   ðŸ“– STRICTLY SCOPED ARTICLE TYPOGRAPHY (AFFECTS ONLY .blog-content)
    ========================================================================== */
 .blog-content h1 {
   font-size: 2.5rem;
@@ -159,4 +159,26 @@ a {
 .blog-content td {
   border-bottom: 1px solid rgba(255, 255, 255, .08);
   padding: 0.875rem;
+}
+
+/* Recalibration System — highlighted navigation link */
+.recalibration-link {
+  display: inline-block;
+  color: #22d3ee !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  background: rgba(34, 211, 238, 0.14);
+  border: 1px solid rgba(34, 211, 238, 0.55);
+  border-radius: 6px;
+  padding: 2px 9px;
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.2);
+  transition: all 0.2s ease;
+}
+
+.recalibration-link:hover {
+  color: #ffffff !important;
+  background: rgba(34, 211, 238, 0.28);
+  border-color: #67e8f9;
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+  text-decoration: none !important;
 }

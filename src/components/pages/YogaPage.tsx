@@ -328,7 +328,7 @@ export default function YogaPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            &larr;
+                            ←
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -410,7 +410,7 @@ export default function YogaPage() {
                         practice or focused work, explore{" "}
                         <Link
                             href="/recalibration"
-                            className="text-cyan-400 underline decoration-cyan-400/30 underline-offset-4 transition-colors hover:text-white"
+                            className="recalibration-link"
                         >
                             the Recalibration System
                         </Link>{" "}
@@ -1623,5 +1623,8 @@ export default function YogaPage() {
         </main>
     );
 }
+
+
+
 
 

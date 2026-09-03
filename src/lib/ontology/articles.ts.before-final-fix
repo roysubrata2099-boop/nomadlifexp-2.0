@@ -74,9 +74,6 @@ export const articleOntology: Record<
         ],
 
         relatedArticles: [
-            "fitness-is-not-about-time",
-            "build-workout-habit-outlast-motivation",
-            "passive-fitness-consumption-trap",
         ],
     },
 
@@ -153,10 +150,9 @@ export const articleOntology: Record<
         ],
 
         relatedArticles: [
-"build-workout-habit-outlast-motivation",
+            "build-workout-habit-outlast-motivation",
             "consistency-myth-showing-up-beats-perfect",
             "indoor-rock-climbing-workout-strength-balance-mindset",
-            "fitness-for-digital-nomads",
         ],
     },
 
@@ -273,9 +269,6 @@ export const articleOntology: Record<
         ],
 
         relatedArticles: [
-            "self-discipline-comprehensive-guide",
-            "why-you-procrastinate-how-to-stop",
-            "mental-clarity-stop-overthinking-and-regain-focus",
         ],
     },
 
@@ -355,13 +348,12 @@ export const articleOntology: Record<
         ],
 
         relatedArticles: [
-"how-to-build-self-discipline",
+            "how-to-build-self-discipline",
             "rebuild-your-attention-span",
             "why-you-procrastinate-how-to-stop",
             "headstand-benefits-body-mind-safety",
             "forearm-stand-yoga-focus-confidence",
             "why-you-cannot-focus-overload",
-            "mental-clarity-for-digital-nomads",
         ],
     },
 

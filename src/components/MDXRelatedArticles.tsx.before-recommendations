@@ -1,13 +1,12 @@
-﻿import "server-only";
+import "server-only";
 
 import Link from "next/link";
 
 import { getAllMDXPosts } from "@/lib/mdx";
-import { getRecommendedArticleSlugs } from "@/lib/ontology/articleRecommendations";
+import { articleOntology } from "@/lib/ontology";
 
 type Props = {
     currentSlug: string;
-    relatedSlugs?: string[];
 };
 
 type SafePost = {
@@ -38,7 +37,6 @@ function safeText(value: unknown): string {
 
 export default function MDXRelatedArticles({
     currentSlug,
-    relatedSlugs = [],
 }: Props) {
     const cleanCurrentSlug = safeSlug(currentSlug);
 
@@ -89,39 +87,21 @@ export default function MDXRelatedArticles({
     );
 
     /*
-     * Preserve existing explicit relationships first.
-     *
-     * Then use the ontology recommendation engine
-     * to fill any remaining slots.
+     * Ontology is the single source of truth
+     * for editorial article relationships.
      */
-    const editorialSlugs =
-        relatedSlugs
-            .map(safeSlug)
-            .filter(Boolean);
+    const ontologyArticle =
+        articleOntology[cleanCurrentSlug];
 
-    const recommendedSlugs =
-        getRecommendedArticleSlugs(
-            cleanCurrentSlug,
-            {
-                limit: 10,
-            },
-        );
-
-    const combinedSlugs = [
-        ...editorialSlugs,
-        ...recommendedSlugs,
-    ];
-
-    const uniqueSlugs =
-        combinedSlugs.filter(
-            (slug, index, array) =>
-                array.indexOf(slug) === index
-        );
+    const ontologyRelatedSlugs =
+        ontologyArticle?.relatedArticles ?? [];
 
     const relatedPosts =
-        uniqueSlugs
+        ontologyRelatedSlugs
             .map((slug) =>
-                postMap.get(slug)
+                postMap.get(
+                    safeSlug(slug)
+                )
             )
             .filter(
                 (post): post is SafePost =>
@@ -131,6 +111,14 @@ export default function MDXRelatedArticles({
                 (post) =>
                     post.slug !==
                     cleanCurrentSlug
+            )
+            .filter(
+                (post, index, array) =>
+                    array.findIndex(
+                        (item) =>
+                            item.slug ===
+                            post.slug
+                    ) === index
             )
             .slice(0, 5);
 

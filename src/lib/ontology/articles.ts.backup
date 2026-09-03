@@ -28,13 +28,135 @@ export const articleOntology: Record<
     string,
     OntologyArticle
 > = {
+    "build-workout-habit-outlast-motivation": {
+        id: "build-workout-habit-outlast-motivation",
+
+        slug: "build-workout-habit-outlast-motivation",
+
+        title: "How to Build a Workout Habit That Outlasts Your Motivation",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "fitness",
+            "focus",
+            "confidence",
+        ],
+
+        relatedArticles: [
+            "consistency-myth-showing-up-beats-perfect",
+            "fitness-is-not-about-time",
+        ],
+    },
+
+    "consistency-myth-showing-up-beats-perfect": {
+        id: "consistency-myth-showing-up-beats-perfect",
+
+        slug: "consistency-myth-showing-up-beats-perfect",
+
+        title: "Fitness Consistency: How to Build Workout Discipline That Lasts",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "fitness",
+            "focus",
+            "confidence",
+        ],
+
+        relatedArticles: [
+        ],
+    },
+
+    "discipline-creates-freedom": {
+        id: "discipline-creates-freedom",
+
+        slug: "discipline-creates-freedom",
+
+        title: "Discipline Creates Freedom",
+
+        primaryPillar: "discipline",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "discipline",
+            "focus",
+            "confidence",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+            "self-discipline-comprehensive-guide",
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "rebuild-your-attention-span",
+            "why-you-procrastinate-how-to-stop",
+            "how-to-build-self-discipline",
+        ],
+    },
+
+    "fitness-for-digital-nomads": {
+        id: "fitness-for-digital-nomads",
+
+        slug: "fitness-for-digital-nomads",
+
+        title: "Fitness for Digital Nomads",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "digital-nomad",
+        ],
+
+        entities: [
+            "fitness",
+            "digital-nomad",
+        ],
+
+        relatedArticles: [
+        ],
+    },
+
+    "fitness-is-not-about-time": {
+        id: "fitness-is-not-about-time",
+
+        slug: "fitness-is-not-about-time",
+
+        title: "Fitness Is Not About Time: Mindset, Discipline, and Consistency over Motivation",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "fitness",
+            "focus",
+        ],
+
+        relatedArticles: [
+            "build-workout-habit-outlast-motivation",
+            "consistency-myth-showing-up-beats-perfect",
+        ],
+    },
+
     "forearm-stand-yoga-focus-confidence": {
         id: "forearm-stand-yoga-focus-confidence",
 
         slug: "forearm-stand-yoga-focus-confidence",
 
-        title:
-            "What Happens When You Try Forearm Stand Yoga for Focus and Confidence",
+        title: "What Happens When You Try Forearm Stand Yoga for Focus and Confidence",
 
         primaryPillar: "yoga",
 
@@ -60,4 +182,410 @@ export const articleOntology: Record<
             "you-are-not-stuck-in-life",
         ],
     },
+
+    "forward-bending-yoga-stress-relief": {
+        id: "forward-bending-yoga-stress-relief",
+
+        slug: "forward-bending-yoga-stress-relief",
+
+        title: "Itâ€™s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
+
+        primaryPillar: "yoga",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "yoga",
+            "forearm-stand",
+            "focus",
+            "confidence",
+            "body-awareness",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+            "headstand-benefits-body-mind-safety",
+            "forearm-stand-yoga-focus-confidence",
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "self-discipline-comprehensive-guide",
+            "you-are-not-stuck-in-life",
+        ],
+    },
+
+    "headstand-benefits-body-mind-safety": {
+        id: "headstand-benefits-body-mind-safety",
+
+        slug: "headstand-benefits-body-mind-safety",
+
+        title: "What Happens in Your Mind When Everything Becomes Still",
+
+        primaryPillar: "yoga",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "yoga",
+            "forearm-stand",
+            "focus",
+            "confidence",
+        ],
+
+        relatedArticles: [
+            "forearm-stand-yoga-focus-confidence",
+            "forward-bending-yoga-stress-relief",
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "self-discipline-comprehensive-guide",
+            "you-are-not-stuck-in-life",
+        ],
+    },
+
+    "how-to-build-self-discipline": {
+        id: "how-to-build-self-discipline",
+
+        slug: "how-to-build-self-discipline",
+
+        title: "Self Discipline: Why You Lack It and How to Build It for Good",
+
+        primaryPillar: "discipline",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "discipline",
+            "focus",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+        ],
+    },
+
+    "indoor-rock-climbing-workout-strength-balance-mindset": {
+        id: "indoor-rock-climbing-workout-strength-balance-mindset",
+
+        slug: "indoor-rock-climbing-workout-strength-balance-mindset",
+
+        title: "Indoor Rock Climbing: Strength, Balance & Mental Resilience",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "fitness",
+            "focus",
+            "confidence",
+            "body-awareness",
+        ],
+
+        relatedArticles: [
+            "fitness-is-not-about-time",
+            "build-workout-habit-outlast-motivation",
+            "consistency-myth-showing-up-beats-perfect",
+        ],
+    },
+
+    "mental-clarity-for-digital-nomads": {
+        id: "mental-clarity-for-digital-nomads",
+
+        slug: "mental-clarity-for-digital-nomads",
+
+        title: "Mental Clarity for Digital Nomads",
+
+        primaryPillar: "mindset",
+
+        contexts: [
+            "digital-nomad",
+        ],
+
+        entities: [
+            "mindset",
+            "digital-nomad",
+            "focus",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+        ],
+    },
+
+    "mental-clarity-stop-overthinking-and-regain-focus": {
+        id: "mental-clarity-stop-overthinking-and-regain-focus",
+
+        slug: "mental-clarity-stop-overthinking-and-regain-focus",
+
+        title: "Mental Clarity: How to Stop Overthinking and Improve Focus",
+
+        primaryPillar: "mindset",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "mindset",
+            "forearm-stand",
+            "focus",
+            "confidence",
+            "body-awareness",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+            "how-to-build-self-discipline",
+            "rebuild-your-attention-span",
+            "why-you-procrastinate-how-to-stop",
+            "headstand-benefits-body-mind-safety",
+            "forearm-stand-yoga-focus-confidence",
+        ],
+    },
+
+    "passive-fitness-consumption-trap": {
+        id: "passive-fitness-consumption-trap",
+
+        slug: "passive-fitness-consumption-trap",
+
+        title: "Why People Watch Workout Videos but Never Actually Exercise",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "fitness",
+            "focus",
+        ],
+
+        relatedArticles: [
+            "how-to-build-self-discipline",
+            "consistency-myth-showing-up-beats-perfect",
+            "why-you-procrastinate-how-to-stop",
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "rebuild-your-attention-span",
+        ],
+    },
+
+    "rebuild-your-attention-span": {
+        id: "rebuild-your-attention-span",
+
+        slug: "rebuild-your-attention-span",
+
+        title: "Can You Rebuild Your Attention Span After Years of Digital Distraction?",
+
+        primaryPillar: "mindset",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "mindset",
+            "focus",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "how-to-build-self-discipline",
+            "why-you-procrastinate-how-to-stop",
+            "passive-fitness-consumption-trap",
+            "you-are-not-stuck-in-life",
+        ],
+    },
+
+    "rope-climbing-guide": {
+        id: "rope-climbing-guide",
+
+        slug: "rope-climbing-guide",
+
+        title: "Every Pull Burns, Every Climb Transforms: The Complete Guide to Rope Climbing",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "fitness",
+            "focus",
+            "confidence",
+        ],
+
+        relatedArticles: [
+            "build-workout-habit-outlast-motivation",
+            "fitness-is-not-about-time",
+        ],
+    },
+
+    "self-discipline-comprehensive-guide": {
+        id: "self-discipline-comprehensive-guide",
+
+        slug: "self-discipline-comprehensive-guide",
+
+        title: "Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life",
+
+        primaryPillar: "discipline",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "discipline",
+            "focus",
+        ],
+
+        relatedArticles: [
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "rebuild-your-attention-span",
+            "why-you-procrastinate-how-to-stop",
+            "passive-fitness-consumption-trap",
+            "discipline-creates-freedom",
+        ],
+    },
+
+    "self-discipline-while-traveling": {
+        id: "self-discipline-while-traveling",
+
+        slug: "self-discipline-while-traveling",
+
+        title: "Self-Discipline While Traveling",
+
+        primaryPillar: "discipline",
+
+        contexts: [
+            "digital-nomad",
+        ],
+
+        entities: [
+            "discipline",
+            "digital-nomad",
+            "focus",
+        ],
+
+        relatedArticles: [
+        ],
+    },
+
+    "why-you-cannot-focus-overload": {
+        id: "why-you-cannot-focus-overload",
+
+        slug: "why-you-cannot-focus-overload",
+
+        title: "The Reason You Can't Focus Even When You Try Hard",
+
+        primaryPillar: "mindset",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "mindset",
+            "focus",
+            "emotional-control",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "rebuild-your-attention-span",
+            "how-to-build-self-discipline",
+            "discipline-creates-freedom",
+            "you-are-not-stuck-in-life",
+        ],
+    },
+
+    "why-you-procrastinate-how-to-stop": {
+        id: "why-you-procrastinate-how-to-stop",
+
+        slug: "why-you-procrastinate-how-to-stop",
+
+        title: "Why You Procrastinate and How to Stop It Permanently",
+
+        primaryPillar: "discipline",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "discipline",
+            "focus",
+            "emotional-control",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "how-to-build-self-discipline",
+            "self-discipline-comprehensive-guide",
+            "rebuild-your-attention-span",
+            "discipline-creates-freedom",
+        ],
+    },
+
+    "yoga-for-digital-nomads": {
+        id: "yoga-for-digital-nomads",
+
+        slug: "yoga-for-digital-nomads",
+
+        title: "Yoga for Digital Nomads",
+
+        primaryPillar: "yoga",
+
+        contexts: [
+            "digital-nomad",
+        ],
+
+        entities: [
+            "yoga",
+            "digital-nomad",
+            "focus",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+        ],
+    },
+
+    "you-are-not-stuck-in-life": {
+        id: "you-are-not-stuck-in-life",
+
+        slug: "you-are-not-stuck-in-life",
+
+        title: "You Are Not Stuck Because You Lack Answersâ€”Your Mind Is Too Comfortable to See Them",
+
+        primaryPillar: "mindset",
+
+        contexts: [
+            "core",
+        ],
+
+        entities: [
+            "mindset",
+            "focus",
+            "mental-clarity",
+        ],
+
+        relatedArticles: [
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "rebuild-your-attention-span",
+            "headstand-benefits-body-mind-safety",
+            "forward-bending-yoga-stress-relief",
+            "discipline-creates-freedom",
+        ],
+    },
+
 };

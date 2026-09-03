@@ -6,8 +6,9 @@
   "scripts": {
     "audit:content": "node scripts/audit-markdown.js",
     "build:content": "node scripts/build-posts.mjs",
-    "dev": "npm run build:content && npm run audit:content && next dev",
-    "prebuild": "npm run build:content && npm run audit:content",
+    "verify:ontology": "node verify-ontology.cjs",
+    "dev": "npm run build:content && npm run audit:content && npm run verify:ontology && next dev",
+    "prebuild": "npm run build:content && npm run audit:content && npm run verify:ontology",
     "build": "next build",
     "start": "next start"
   },

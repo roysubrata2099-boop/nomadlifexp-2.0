@@ -1,7 +1,8 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const SITE_URL = "https://www.nomadlifexp.com";
 const SITE_NAME = "NomadLifeXP";
@@ -215,6 +216,8 @@ export default function RootLayout({
                     {children}
                 </main>
 
+                <Footer />
+
                 {/* Microsoft Clarity */}
                 <Script
                     id="microsoft-clarity-init"
@@ -280,3 +283,5 @@ export default function RootLayout({
         </html>
     );
 }
+
+

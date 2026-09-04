@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import ClientSiteProtection from "@/components/ClientSiteProtection";
 import ClientVideoPlayer from "@/components/ClientVideoPlayer";
@@ -231,14 +231,6 @@ const FAQ_ITEMS: readonly FaqItem[] = [
 ];
 
 export default function HomePage() {
-  const youtubeUrl =
-    process.env.NEXT_PUBLIC_YOUTUBE_URL ||
-    "https://youtube.com/@nomadlifexp";
-
-  const instagramUrl =
-    process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
-    "https://instagram.com/nomadlifexp";
-
   return (
     <div className="w-full min-h-screen bg-[#050816] text-white selection:bg-cyan-400 selection:text-black font-sans flex flex-col justify-between select-none">
       <ClientSiteProtection />
@@ -288,7 +280,7 @@ export default function HomePage() {
               <span className="text-cyan-400">LIKE A SYSTEM</span>
             </h1>
 
-            <p className="text-xs md:text-sm font-mono tracking-widest uppercase text-slate-400 mb-6">
+            <p className="text-xs md:text-sm font-mono tracking-widest uppercase text-slate-300 mb-6">
               Discipline • Fitness • Yoga • Mindset
             </p>
 
@@ -350,7 +342,7 @@ export default function HomePage() {
               connection between physical awareness and personal growth.
             </p>
 
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-300 text-sm">
               Yoga is not simply about performing poses. It is about developing
               greater control, awareness, mobility, balance, and connection
               between body and mind.
@@ -380,7 +372,7 @@ export default function HomePage() {
                 perform, and adapt with greater purpose.
               </p>
 
-              <p className="text-slate-400">
+              <p className="text-slate-300">
                 It is not about becoming perfect, maximizing every minute, or
                 constantly pushing yourself harder. It is about developing the
                 strength, discipline, awareness, resilience, and habits that
@@ -486,13 +478,13 @@ export default function HomePage() {
                     </p>
 
                     {sys.extraDesc && (
-                      <p className="text-slate-400 text-sm leading-relaxed">
+                      <p className="text-slate-300 text-sm leading-relaxed">
                         {sys.extraDesc}
                       </p>
                     )}
 
                     <div className="pt-2">
-                      <p className="text-xs font-mono uppercase tracking-wider text-slate-500 mb-1">
+                      <p className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
                         Primary Outcome
                       </p>
 
@@ -514,7 +506,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <p className="text-center text-xs font-mono uppercase tracking-widest text-slate-400 mt-12">
+            <p className="text-center text-xs font-mono uppercase tracking-widest text-slate-300 mt-12">
               Four systems. Different functions. One direction: greater human
               capability.
             </p>
@@ -827,76 +819,15 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 bg-[#03050c] py-12 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div>
-            <Link
-              href="/"
-              className="font-black tracking-[0.25em] text-sm uppercase"
-            >
-              NOMADLIFE<span className="text-cyan-400">XP</span>
-            </Link>
-
-            <p className="text-xs text-slate-500 font-mono mt-1">
-              &copy; {new Date().getFullYear()} NomadLifeXP. All rights
-              reserved.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono uppercase">
-            <Link
-              href="/knowledge-index"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-            >
-              Knowledge Index
-            </Link>
-
-            <a
-              href={youtubeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-            >
-              YouTube
-            </a>
-
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-            >
-              Instagram
-            </a>
-
-            <Link
-              href="/about"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-            >
-              About
-            </Link>
-
-            <Link
-              href="/blog"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-            >
-              Blog
-            </Link>
-
-            <Link
-              href="/connect"
-              className="text-slate-400 hover:text-cyan-400 transition-colors"
-            >
-              Connect
-            </Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
+
+
+
+
+
+
 
 
 

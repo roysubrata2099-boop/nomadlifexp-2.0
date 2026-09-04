@@ -1,4 +1,4 @@
-// src/app/knowledge-index/page.tsx
+﻿// src/app/knowledge-index/page.tsx
 
 import { getAllPosts } from "@/lib/markdown";
 import type { Metadata } from "next";
@@ -134,7 +134,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            â†
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -317,16 +317,17 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                     </Link>
                 </section>
 
-                <footer className="mt-24 border-t border-neutral-900 pt-8">
+                <section className="mt-24 border-t border-neutral-900 pt-8">
                     <p className="text-xs font-mono uppercase tracking-widest text-neutral-600">
                         NOMADLIFEXP // HUMAN OPTIMIZATION MASTERCLASS LIBRARY
                     </p>
                     <p className="mt-4 max-w-3xl text-sm text-neutral-500 leading-relaxed">
                         A structured learning ecosystem connecting mindset, discipline, fitness, and yoga into a practical self-development framework.
                     </p>
-                </footer>
+                </section>
             </main>
         </div>
     );
 }
+
 

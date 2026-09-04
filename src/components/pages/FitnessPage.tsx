@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -340,7 +340,7 @@ export default function FitnessPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            â†
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -449,7 +449,7 @@ export default function FitnessPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 — Foundation",
+                                title: "01 â€” Foundation",
                                 subtext:
                                     "Establish baseline strength, joint integrity, and movement patterns.",
                                 text:
@@ -457,7 +457,7 @@ export default function FitnessPage() {
                             },
                             {
                                 id: "02",
-                                title: "02 — Adaptation",
+                                title: "02 â€” Adaptation",
                                 subtext:
                                     "Use progressive resistance, movement practice, and conditioning.",
                                 text:
@@ -465,7 +465,7 @@ export default function FitnessPage() {
                             },
                             {
                                 id: "03",
-                                title: "03 — Consistency",
+                                title: "03 â€” Consistency",
                                 subtext:
                                     "Build sustainable training systems that survive changing schedules and environments.",
                                 text:
@@ -473,7 +473,7 @@ export default function FitnessPage() {
                             },
                             {
                                 id: "04",
-                                title: "04 — Autonomy",
+                                title: "04 â€” Autonomy",
                                 subtext:
                                     "Build a resilient body ready for movement, exploration, and changing demands.",
                                 text:
@@ -851,7 +851,7 @@ export default function FitnessPage() {
                 </section>
 
                 {/* Cross-pillar navigation */}
-                <footer className="border-t border-neutral-900 pt-10">
+                <section className="border-t border-neutral-900 pt-10">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-neutral-500">
                         CONTINUE YOUR HUMAN EVOLUTION
                     </h2>
@@ -900,9 +900,10 @@ export default function FitnessPage() {
                             </span>
                         </Link>
                     </div>
-                </footer>
+                </section>
             </div>
         </main>
     );
 }
+
 

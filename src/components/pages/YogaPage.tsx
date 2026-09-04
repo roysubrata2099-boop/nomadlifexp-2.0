@@ -1484,7 +1484,7 @@ export default function YogaPage() {
                 </section>
 
                 {/* Human Evolution Architecture */}
-                <footer className="border-t border-neutral-900 pt-16">
+                <section className="border-t border-neutral-900 pt-16">
                     <div className="mx-auto mb-16 max-w-3xl text-center">
                         <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                             THE HUMAN OPERATING SYSTEM
@@ -1618,11 +1618,12 @@ export default function YogaPage() {
                             </Link>
                         </div>
                     </div>
-                </footer>
+                </section>
             </div>
         </main>
     );
 }
+
 
 
 

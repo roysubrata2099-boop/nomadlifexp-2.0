@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -74,7 +74,7 @@ export default function AboutPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            ←
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -527,15 +527,31 @@ export default function AboutPage() {
                     </div>
                 </div>
 
+                {/* Contact / Founder Email */}
+                <section className="mt-8 mb-16 border border-neutral-800 bg-neutral-950/60 p-6 md:p-8 text-center font-mono" aria-labelledby="contact-heading">
+                    <p id="contact-heading" className="text-[10px] uppercase tracking-[0.3em] text-cyan-400 font-bold mb-3">
+                        // CONNECT WITH NOMADLIFEXP
+                    </p>
+                    <p className="text-xs text-neutral-400 mb-4">
+                        Questions, feedback, collaborations, or simply want to connect?
+                    </p>
+                    <a
+                        href="mailto:roy@nomadlifexp.com"
+                        className="text-sm md:text-base text-white font-bold tracking-wider hover:text-cyan-400 transition-colors duration-200"
+                    >
+                        roy@nomadlifexp.com
+                    </a>
+                </section>
+
                 {/* Runtime System Status Tracker Footer */}
-                <footer className="mt-24 border-t border-neutral-800 pt-16 text-center space-y-3 font-mono">
+                <section className="mt-24 border-t border-neutral-800 pt-16 text-center space-y-3 font-mono">
                     <p className="text-xs uppercase tracking-[0.25em] font-black text-amber-400">
                         NOMADLIFEXP // Built for people who choose growth over comfort.
                     </p>
                     <p className="text-neutral-400 text-[10px] uppercase tracking-[0.4em] font-semibold">
                         © NomadLifeXP • Evolve in Motion 🏃‍♂️
                     </p>
-                </footer>
+                </section>
             </div>
 
             {/* ??? SECURITY SCHEMA BLOCK INGESTION MATRIX */}
@@ -549,6 +565,11 @@ export default function AboutPage() {
         </main>
     );
 }
+
+
+
+
+
 
 
 

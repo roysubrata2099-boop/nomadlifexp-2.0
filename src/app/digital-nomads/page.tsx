@@ -1000,7 +1000,7 @@ export default function DigitalNomadsPage() {
                         FOOTER
                     ================================================== */}
 
-                    <footer className="border-t border-white/10 bg-[#03050c]">
+                    <section className="border-t border-white/10 bg-[#03050c]">
                         <div className="mx-auto max-w-4xl px-6 py-16 text-center">
 
                             <h2 className="text-2xl font-bold md:text-4xl">
@@ -1054,13 +1054,14 @@ export default function DigitalNomadsPage() {
                             </div>
 
                         </div>
-                    </footer>
+                    </section>
 
                 </div>
             </main>
         </>
     );
 }
+
 
 
 

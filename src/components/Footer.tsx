@@ -1,6 +1,5 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
-/* ---------------- OPERATIONAL FOOTER COMPONENT ---------------- */
 export default function Footer() {
     const socialNodes = [
         { name: "YouTube", href: "https://www.youtube.com/@nomadlifexp" },
@@ -8,54 +7,67 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="border-t border-neutral-900 bg-black text-neutral-400 selection:bg-neutral-800 selection:text-white antialiased">
-            <div className="max-w-6xl mx-auto px-6 py-16 text-center space-y-8">
+        <footer className="border-t border-neutral-800 bg-black text-neutral-200 antialiased">
+            <div className="mx-auto max-w-6xl px-6 py-16 text-center">
 
-                {/* SOCIAL DIRECTORY ENFORCER */}
-                <div className="space-y-3">
-                    <h5 className="text-[10px] font-mono uppercase tracking-[0.25em] text-neutral-500">
+                <div className="space-y-4">
+                    <p className="text-sm font-bold uppercase tracking-[0.2em] text-white">
                         Follow NomadLifeXP
-                    </h5>
+                    </p>
 
-                    <div className="flex flex-wrap justify-center items-center gap-6 text-xs font-mono">
+                    <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-mono">
                         {socialNodes.map((node) => (
                             <Link
                                 key={node.name}
                                 href={node.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-neutral-400 hover:text-white hover:underline decoration-neutral-700 underline-offset-4 transition-colors"
+                                className="text-neutral-300 transition-colors hover:text-cyan-400 hover:underline underline-offset-4"
                             >
                                 {node.name}
                             </Link>
                         ))}
 
                         <Link
+                            href="/knowledge-index"
+                            className="text-neutral-300 transition-colors hover:text-cyan-400 hover:underline underline-offset-4"
+                        >
+                            Knowledge Index
+                        </Link>
+
+                        <Link
                             href="/connect"
-                            className="text-neutral-400 hover:text-white hover:underline decoration-neutral-700 underline-offset-4 transition-colors"
+                            className="text-neutral-300 transition-colors hover:text-cyan-400 hover:underline underline-offset-4"
                         >
                             Official Links & Profiles
                         </Link>
                     </div>
                 </div>
 
-                {/* RUNTIME SYSTEM CONFIG CODES */}
-                <div className="pt-4 border-t border-neutral-950 max-w-xs mx-auto">
-                    <p className="text-neutral-600 font-mono text-[9px] uppercase tracking-[0.4em]">
-                        Discipline System Mindset Discipline Fitness Yoga
-                    </p>
-                </div>
+                <div className="mx-auto my-10 max-w-md border-t border-neutral-800" />
 
-                {/* COPYRIGHT AND RUNTIME METRIC */}
-                <div className="text-[10px] font-mono text-neutral-600 flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2">
-                    <span>© 2026 NomadLifeXP</span>
-                    <span className="hidden sm:inline text-neutral-800">|</span>
-                    <span className="text-neutral-700 uppercase tracking-widest text-[9px]">
-                        System Status Nominal
-                    </span>
+                <p className="text-sm font-mono font-semibold uppercase tracking-[0.15em] text-neutral-300">
+                    Discipline • Fitness • Yoga • Mindset
+                </p>
+
+                <div className="mt-8 space-y-3">
+                    <a
+                        href="mailto:roy@nomadlifexp.com"
+                        className="text-sm font-mono text-cyan-400 transition-colors hover:text-cyan-300 hover:underline underline-offset-4"
+                    >
+                        roy@nomadlifexp.com
+                    </a>
+
+                    <div className="border-t border-neutral-800 pt-6">
+                        <p className="text-base font-mono font-bold tracking-wide text-white">
+                            © 2026 NomadLifeXP. All rights reserved.
+                        </p>
+                    </div>
                 </div>
 
             </div>
         </footer>
     );
 }
+
+

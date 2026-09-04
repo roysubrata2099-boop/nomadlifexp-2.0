@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -394,7 +394,7 @@ export default function MindsetPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            â†
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -489,7 +489,7 @@ export default function MindsetPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 — Awareness",
+                                title: "01 â€” Awareness",
                                 subtext:
                                     "Recognize Unconscious Patterns",
                                 text:
@@ -498,7 +498,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "02",
-                                title: "02 — Control",
+                                title: "02 â€” Control",
                                 subtext:
                                     "Manage Attention and Reactions",
                                 text:
@@ -507,7 +507,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "03",
-                                title: "03 — Reprogramming",
+                                title: "03 â€” Reprogramming",
                                 subtext:
                                     "Rebuild Mental Frameworks",
                                 text:
@@ -516,7 +516,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "04",
-                                title: "04 — Execution",
+                                title: "04 â€” Execution",
                                 subtext:
                                     "Convert Clarity Into Action",
                                 text:
@@ -1324,7 +1324,7 @@ export default function MindsetPage() {
 
                 {/* Human Operating System Integration */}
 
-                <footer className="border-t border-neutral-900 pt-16">
+                <section className="border-t border-neutral-900 pt-16">
                     <div className="max-w-3xl mx-auto text-center mb-16">
                         <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
                             THE HUMAN OPERATING SYSTEM
@@ -1462,9 +1462,10 @@ export default function MindsetPage() {
                             </Link>
                         </div>
                     </div>
-                </footer>
+                </section>
             </div>
         </main>
     );
 }
+
 

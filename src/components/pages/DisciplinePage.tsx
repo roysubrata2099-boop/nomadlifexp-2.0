@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -319,7 +319,7 @@ export default function DisciplinePage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            â†
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -496,7 +496,7 @@ export default function DisciplinePage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 — Awareness",
+                                title: "01 â€” Awareness",
                                 subtext:
                                     "Understand your patterns, distractions, and behaviors.",
                                 text:
@@ -504,7 +504,7 @@ export default function DisciplinePage() {
                             },
                             {
                                 id: "02",
-                                title: "02 — Control",
+                                title: "02 â€” Control",
                                 subtext:
                                     "Regain control over your attention, impulses, and decisions.",
                                 text:
@@ -512,7 +512,7 @@ export default function DisciplinePage() {
                             },
                             {
                                 id: "03",
-                                title: "03 — Consistency",
+                                title: "03 â€” Consistency",
                                 subtext:
                                     "Build systems that continue working even when motivation disappears.",
                                 text:
@@ -520,7 +520,7 @@ export default function DisciplinePage() {
                             },
                             {
                                 id: "04",
-                                title: "04 — Mastery",
+                                title: "04 â€” Mastery",
                                 subtext:
                                     "Become someone who naturally acts according to your values.",
                                 text:
@@ -943,7 +943,7 @@ export default function DisciplinePage() {
                 </section>
 
                 {/* Cross-Pillar Internal Linking */}
-                <footer className="border-t border-neutral-900 pt-10">
+                <section className="border-t border-neutral-900 pt-10">
                     <h2 className="mb-2 font-mono text-xs uppercase tracking-[0.4em] text-neutral-500">
                         CONTINUE YOUR HUMAN EVOLUTION
                     </h2>
@@ -1008,9 +1008,10 @@ export default function DisciplinePage() {
                             </span>
                         </Link>
                     </div>
-                </footer>
+                </section>
             </div>
         </main>
     );
 }
+
 

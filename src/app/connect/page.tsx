@@ -78,6 +78,12 @@ const internalResources = [
             "A starting point for exploring the NomadLifeXP personal-development framework.",
     },
     {
+        name: "Digital Nomads",
+        href: "/digital-nomads",
+        description:
+            "Explore the NomadLifeXP approach to fitness, discipline, mindset, mobility, and sustainable growth for digital nomads.",
+    },
+    {
         name: "Knowledge Index",
         href: "/knowledge-index",
         description:

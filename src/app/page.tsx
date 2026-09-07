@@ -722,6 +722,15 @@ export default function HomePage() {
               >
                 Explore The Knowledge Library &rarr;
               </Link>
+
+              <div className="text-center mt-4">
+                <Link
+                  href="/connect"
+                  className="inline-block text-xs font-mono uppercase tracking-widest text-cyan-400 hover:text-white transition-colors"
+                >
+                  Explore Official NomadLifeXP Resources &rarr;
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -822,14 +831,4 @@ export default function HomePage() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
 

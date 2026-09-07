@@ -153,7 +153,7 @@ export default function AboutPage() {
                             />
                             <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent">
                                 <span className="text-[10px] font-mono tracking-widest text-cyan-400 uppercase block">
-                                    // SYSTEM ARCHITECT // NOMADLIFEXP
+                                    {"// SYSTEM ARCHITECT // NOMADLIFEXP"}
                                 </span>
                                 <span className="text-sm font-bold tracking-tight text-white uppercase font-mono">
                                     Subrata Roy
@@ -168,8 +168,7 @@ export default function AboutPage() {
                     <div className="lg:col-span-7 space-y-4 font-mono text-xs md:text-sm text-neutral-300 leading-relaxed">
                         <div className="border-l-2 border-cyan-500 pl-4 py-1">
                             <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-cyan-400 mb-1">
-                                // FOUNDER ORIGIN
-                            </h2>
+                                {"// FOUNDER ORIGIN"}</h2>
                             <p className="text-white font-bold text-base md:text-lg">
                                 Founder & Creator &mdash; Subrata Roy
                             </p>
@@ -187,8 +186,7 @@ export default function AboutPage() {
                 <section className="mb-16 border border-neutral-800 bg-neutral-950/60 p-6 md:p-12 font-mono space-y-8" aria-labelledby="founder-origin-heading">
                     <div className="border-b border-neutral-800 pb-4">
                         <h2 id="founder-origin-heading" className="text-xs uppercase tracking-[0.3em] text-cyan-400 font-bold">
-                            // THE JOURNEY BEHIND THE SYSTEM
-                        </h2>
+                            {"// THE JOURNEY BEHIND THE SYSTEM"}</h2>
                     </div>
 
                     <div className="space-y-6 text-xs md:text-sm text-neutral-300 leading-relaxed font-light">
@@ -258,7 +256,7 @@ export default function AboutPage() {
                                 That realization became the foundation of NomadLifeXP. Not another temporary motivation program. Not another promise of instant transformation. But a structured human evolution framework designed to help people rebuild discipline, strengthen their bodies, develop mental clarity, and create a life built on intentional action.
                             </p>
                             <div className="p-4 bg-neutral-900 border border-neutral-700 text-white font-bold uppercase tracking-wider space-y-2">
-                                <p className="text-cyan-400 text-[11px]">// CORE PLATFORM DIRECTIVE</p>
+                                <p className="text-cyan-400 text-[11px]">{"// CORE PLATFORM DIRECTIVE"}</p>
                                 <p>You do not become stronger by waiting for change.</p>
                                 <p className="text-amber-400">You become stronger by building the systems that create change.</p>
                             </div>
@@ -324,7 +322,7 @@ export default function AboutPage() {
                 {/* Core Belief Section */}
                 <div className="mb-16 border border-neutral-800 bg-neutral-950/30 p-8 text-center space-y-4 font-mono">
                     <span className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400 font-bold block">
-                        // THE CORE BELIEF
+                        {"// THE CORE BELIEF"}
                     </span>
                     <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white">
                         Transformation Is Built, Not Found
@@ -460,8 +458,7 @@ export default function AboutPage() {
                 {/* Principle Section */}
                 <div className="mb-16 border-l-2 border-amber-400 pl-6 py-2 font-mono space-y-2">
                     <span className="text-[10px] uppercase tracking-widest text-amber-400 font-bold block">
-                        // THE NOMADLIFEXP PRINCIPLE
-                    </span>
+                        {"// THE NOMADLIFEXP PRINCIPLE"}</span>
                     <h2 className="text-xl font-bold uppercase tracking-tight text-white">
                         Become The Person You Train Yourself To Be
                     </h2>
@@ -504,8 +501,7 @@ export default function AboutPage() {
                 {/* Promise & Final CTA Block */}
                 <div className="border border-neutral-800 bg-neutral-950 p-8 md:p-12 text-center space-y-6 font-mono">
                     <span className="text-xs uppercase tracking-[0.3em] text-amber-400 font-bold block">
-                        // THE NOMADLIFEXP PROMISE
-                    </span>
+                        {"// THE NOMADLIFEXP PROMISE"}</span>
                     <p className="text-xs md:text-sm text-neutral-300 max-w-2xl mx-auto leading-relaxed">
                         We believe every person has the ability to evolve. Not through perfection. Not through temporary motivation. But through consistency, discipline, movement, and growth.
                     </p>
@@ -530,8 +526,7 @@ export default function AboutPage() {
                 {/* Contact / Founder Email */}
                 <section className="mt-8 mb-16 border border-neutral-800 bg-neutral-950/60 p-6 md:p-8 text-center font-mono" aria-labelledby="contact-heading">
                     <p id="contact-heading" className="text-[10px] uppercase tracking-[0.3em] text-cyan-400 font-bold mb-3">
-                        // CONNECT WITH NOMADLIFEXP
-                    </p>
+                        {"// CONNECT WITH NOMADLIFEXP"}</p>
                     <p className="text-xs text-neutral-400 mb-4">
                         Questions, feedback, collaborations, or simply want to connect?
                     </p>
@@ -565,6 +560,7 @@ export default function AboutPage() {
         </main>
     );
 }
+
 
 
 

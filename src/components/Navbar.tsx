@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -64,7 +64,7 @@ export default function Navbar() {
                                     }`}
                             >
                                 {isActive && (
-                                    <span className="text-cyan-400 mr-1 animate-pulse">//</span>
+                                    <span className="text-cyan-400 mr-1 animate-pulse">{"//"}</span>
                                 )}
                                 {node.label}
                             </Link>
@@ -76,3 +76,4 @@ export default function Navbar() {
         </header>
     );
 }
+

@@ -623,7 +623,7 @@ export default function YogaPage() {
                                     >
                                         <div>
                                             <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
-                                                {item.step} //{" "}
+                                                {item.step} {"//"}{" "}
                                                 {item.subtitle}
                                             </span>
 
@@ -1623,6 +1623,8 @@ export default function YogaPage() {
         </main>
     );
 }
+
+
 
 
 

@@ -283,8 +283,7 @@ export default function RecalibrationPage() {
                     aria-labelledby="why-recalibration"
                 >
                     <div className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-[#38BDF8]">
-                        // WHY_RECALIBRATION
-                    </div>
+                        {"// WHY_RECALIBRATION"}</div>
 
                     <h2
                         id="why-recalibration"
@@ -332,8 +331,7 @@ export default function RecalibrationPage() {
                 >
                     <div className="mb-8">
                         <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[#38BDF8]">
-                            // SYSTEM_MODEL
-                        </div>
+                            {"// SYSTEM_MODEL"}</div>
 
                         <h2
                             id="system-model"
@@ -379,8 +377,7 @@ export default function RecalibrationPage() {
                     <div className="mb-8 flex flex-col justify-between gap-5 border-b border-[#16304F] pb-5 md:flex-row md:items-end">
                         <div>
                             <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[#38BDF8]">
-                                // ACTIVE_PROTOCOLS
-                            </div>
+                                {"// ACTIVE_PROTOCOLS"}</div>
 
                             <h2
                                 id="protocol-matrix"
@@ -449,8 +446,7 @@ export default function RecalibrationPage() {
                         <div className="max-w-3xl">
 
                             <div className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-[#38BDF8]">
-                                // SYSTEM_CONNECTION
-                            </div>
+                                {"// SYSTEM_CONNECTION"}</div>
 
                             <h2
                                 id="yoga-connection"
@@ -562,8 +558,7 @@ export default function RecalibrationPage() {
                 >
                     <div className="mb-8">
                         <div className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-[#38BDF8]">
-                            // FIVE_MINUTE_RESET
-                        </div>
+                            {"// FIVE_MINUTE_RESET"}</div>
 
                         <h2
                             id="five-minute-reset"
@@ -607,8 +602,7 @@ export default function RecalibrationPage() {
 
                         <div>
                             <div className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-[#38BDF8]">
-                                // NOMADLIFEXP_PRINCIPLE
-                            </div>
+                                {"// NOMADLIFEXP_PRINCIPLE"}</div>
 
                             <h2
                                 id="recalibration-philosophy"
@@ -707,3 +701,4 @@ export default function RecalibrationPage() {
         </div>
     );
 }
+

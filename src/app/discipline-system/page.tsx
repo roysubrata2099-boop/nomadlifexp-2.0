@@ -125,7 +125,7 @@ const jsonLdSchema = {
                     "name": "What is Somatic Habit Engineering?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "NomadLifeXP's framework for connecting physical and physiological triggers, such as movement and breath control, with repeatable behaviours to anchor habit consistency."
+                        "text": "NomadLifeXP&apos;s framework for connecting physical and physiological triggers, such as movement and breath control, with repeatable behaviours to anchor habit consistency."
                     }
                 }
             ]
@@ -278,7 +278,7 @@ export default function DisciplineSystemPage() {
                             </div>
 
                             <div className="border border-[#0A1A33] bg-[#071428] p-8 text-center font-mono space-y-3">
-                                <div className="text-xs text-[#60A5FA] uppercase tracking-widest">// System Hierarchy</div>
+                                <div className="text-xs text-[#60A5FA] uppercase tracking-widest">{"// System Hierarchy"}</div>
                                 <div className="p-3 bg-[#050914] border border-[#0A1A33] text-white text-sm uppercase">HUMAN EVOLUTION</div>
                                 <div className="text-[#7DD3FC]">?</div>
                                 <div className="p-3 bg-[#050914] border border-[#0A1A33] text-white text-sm uppercase">HUMAN OPTIMIZATION SYSTEM</div>
@@ -497,7 +497,7 @@ export default function DisciplineSystemPage() {
                             </div>
                             <div className="border border-[#0A1A33] bg-[#071428] p-6 space-y-2">
                                 <h3 className="text-base font-bold text-white uppercase">What is Somatic Habit Engineering?</h3>
-                                <p className="text-sm text-[#EDF6FF] font-light">NomadLifeXP's framework for connecting physical and physiological triggers, such as movement and breath control, with repeatable behaviours to anchor habit consistency.</p>
+                                <p className="text-sm text-[#EDF6FF] font-light">NomadLifeXP&apos;s framework for connecting physical and physiological triggers, such as movement and breath control, with repeatable behaviours to anchor habit consistency.</p>
                             </div>
                         </div>
                     </section>
@@ -521,6 +521,7 @@ export default function DisciplineSystemPage() {
         </>
     );
 }
+
 
 
 

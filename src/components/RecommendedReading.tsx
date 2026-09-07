@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { getAllPosts, type PostData } from "@/lib/markdown";
 import { getSafePostUrl } from "@/lib/routes";
 
@@ -58,8 +58,7 @@ export default function RecommendedReading({
                     text-neutral-500
                 "
             >
-                // RECOMMENDED READING
-            </h2>
+                {"// RECOMMENDED READING"}</h2>
 
 
 
@@ -116,7 +115,7 @@ export default function RecommendedReading({
                                 text-cyan-400
                             "
                         >
-                            READ ARTICLE →
+                            READ ARTICLE â†’
                         </span>
 
 

@@ -590,7 +590,7 @@ export default function MindsetPage() {
                                                     {
                                                         item.step
                                                     }{" "}
-                                                //{" "}
+                                                {"//"}{" "}
                                                     {
                                                         item.subtitle
                                                     }
@@ -693,7 +693,7 @@ export default function MindsetPage() {
                                         {
                                             item.number
                                         }{" "}
-                                        //{" "}
+                                        {"//"}{" "}
                                         {
                                             item.title
                                         }
@@ -786,7 +786,7 @@ export default function MindsetPage() {
                                             {
                                                 item.number
                                             }{" "}
-                                            //{" "}
+                                            {"//"}{" "}
                                             {item.title.toUpperCase()}
                                         </span>
 
@@ -999,7 +999,7 @@ export default function MindsetPage() {
                             className="border border-neutral-800 bg-neutral-950 p-7 hover:border-cyan-500 transition-colors"
                         >
                             <span className="font-mono text-xs text-cyan-400">
-                                IF YOU CAN'T FOCUS
+                                IF YOU CAN&apos;T FOCUS
                             </span>
 
                             <h3 className="mt-3 text-lg font-bold uppercase">
@@ -1467,5 +1467,7 @@ export default function MindsetPage() {
         </main>
     );
 }
+
+
 
 

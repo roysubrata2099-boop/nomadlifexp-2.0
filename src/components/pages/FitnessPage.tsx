@@ -589,7 +589,7 @@ export default function FitnessPage() {
                                 >
                                     <div>
                                         <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
-                                            {item.step} // {item.subtitle}
+                                            {item.step} {"//"} {item.subtitle}
                                         </span>
 
                                         <h3 className="mt-3 text-xl font-bold uppercase tracking-wide text-white">
@@ -905,5 +905,7 @@ export default function FitnessPage() {
         </main>
     );
 }
+
+
 
 

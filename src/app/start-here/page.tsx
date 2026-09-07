@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
     description:
-        "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+        "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
     keywords:
         "daily discipline system, practical fitness habits, core stability training, mental focus framework, behavioral habits engine, functional mobility routines, digital distraction immunity, personal operating system",
     robots: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
         description:
-            "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+            "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
         url: "https://www.nomadlifexp.com/start-here",
         type: "website",
         siteName: "NomadLifeXP",
@@ -185,7 +185,7 @@ export default function StartHerePage() {
                 url: "https://www.nomadlifexp.com/start-here",
                 name: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
                 description:
-                    "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+                    "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
                 isPartOf: { "@type": "WebSite", "@id": "https://www.nomadlifexp.com/#website" },
                 author: { "@id": "https://www.nomadlifexp.com/#author" },
                 inLanguage: "en-US",
@@ -250,7 +250,7 @@ export default function StartHerePage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none"
                             aria-hidden="true"
                         >
-                            ←
+                            â†
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -319,8 +319,7 @@ export default function StartHerePage() {
                     <aside className="w-full border border-neutral-800 bg-neutral-950/80 p-6 font-mono text-xs rounded-none backdrop-blur-sm space-y-6 md:animate-[fadeIn_0.7s_ease-out] motion-reduce:animate-none">
                         <div>
                             <p className="text-neutral-600 uppercase tracking-widest text-[10px] mb-2 font-bold">
-                // SYSTEM STATUS
-                            </p>
+                {"// SYSTEM STATUS"}</p>
                             <div className="space-y-1.5 text-neutral-400">
                                 <div className="flex justify-between border-b border-neutral-900/60 pb-1">
                                     <span>PROFILE:</span>
@@ -345,8 +344,7 @@ export default function StartHerePage() {
 
                         <div>
                             <p className="text-neutral-600 uppercase tracking-widest text-[10px] mb-2 font-bold">
-                // MODULE DIRECTORY
-                            </p>
+                {"// MODULE DIRECTORY"}</p>
                             <div className="space-y-1 text-[11px] text-neutral-500">
                                 <div className="flex items-center gap-2">
                                     <span className="text-neutral-700">[01]</span> Discipline Engine
@@ -368,8 +366,7 @@ export default function StartHerePage() {
                 {/* Operating Philosophy */}
                 <section className="space-y-6 mb-16 text-neutral-300 text-sm sm:text-base leading-relaxed font-light border-t border-neutral-900 pt-12">
                     <h2 className="text-xl font-black uppercase tracking-tight text-white font-mono">
-            // The Personal Operating System Behind Lasting Transformation
-                    </h2>
+            {"// The Personal Operating System Behind Lasting Transformation"}</h2>
                     <div className="space-y-3 text-neutral-400">
                         <p>
                             Most people try to change their lives through motivation. <strong className="text-neutral-200">Motivation is temporary. Systems create consistency.</strong>
@@ -417,8 +414,7 @@ export default function StartHerePage() {
 
                                     <div className="md:col-span-4 border-t md:border-t-0 md:border-l border-neutral-900 pt-4 md:pt-0 md:pl-6 space-y-2 font-mono text-[11px]">
                                         <div className="text-neutral-600 uppercase tracking-wider text-[9px]">
-                      // SYSTEM HIGHLIGHTS
-                                        </div>
+                      {"// SYSTEM HIGHLIGHTS"}</div>
                                         <div className="space-y-1">
                                             {step.highlights.map((item, idx) => (
                                                 <div key={idx} className="flex items-center gap-2 text-neutral-400">
@@ -450,8 +446,7 @@ export default function StartHerePage() {
                     <section className="space-y-4" aria-labelledby="method-heading">
                         <div className="space-y-1">
                             <p className="font-mono text-[10px] tracking-wider text-neutral-500 uppercase">
-                // EXECUTION OVER INFORMATION
-                            </p>
+                {"// EXECUTION OVER INFORMATION"}</p>
                             <h2 id="method-heading" className="text-lg font-black uppercase tracking-tight text-white">
                                 How NomadLifeXP Creates Change
                             </h2>
@@ -475,27 +470,26 @@ export default function StartHerePage() {
                     <section className="space-y-4" aria-labelledby="framework-heading">
                         <div className="space-y-1">
                             <p className="font-mono text-[10px] tracking-wider text-neutral-500 uppercase">
-                // SYSTEM CORE
-                            </p>
+                {"// SYSTEM CORE"}</p>
                             <h2 id="framework-heading" className="text-lg font-black uppercase tracking-tight text-white">
                                 Evolution Framework
                             </h2>
                         </div>
                         <div className="space-y-3 font-mono text-xs">
                             <div className="border border-neutral-900 bg-neutral-950/40 p-4 space-y-1">
-                                <p className="text-white font-bold uppercase">// MOVE BETTER</p>
+                                <p className="text-white font-bold uppercase">{"// MOVE BETTER"}</p>
                                 <p className="text-neutral-400 font-sans font-light text-sm">
                                     Build physical strength, mobility, and energy.
                                 </p>
                             </div>
                             <div className="border border-neutral-900 bg-neutral-950/40 p-4 space-y-1">
-                                <p className="text-white font-bold uppercase">// THINK BETTER</p>
+                                <p className="text-white font-bold uppercase">{"// THINK BETTER"}</p>
                                 <p className="text-neutral-400 font-sans font-light text-sm">
                                     Develop focus, clarity, and mental control.
                                 </p>
                             </div>
                             <div className="border border-neutral-900 bg-neutral-950/40 p-4 space-y-1">
-                                <p className="text-white font-bold uppercase">// LIVE BETTER</p>
+                                <p className="text-white font-bold uppercase">{"// LIVE BETTER"}</p>
                                 <p className="text-neutral-400 font-sans font-light text-sm">
                                     Create systems that support your highest potential.
                                 </p>
@@ -508,8 +502,7 @@ export default function StartHerePage() {
                 <section className="space-y-6 mb-20" aria-labelledby="faq-heading">
                     <header className="border-b border-neutral-900 pb-3">
                         <p className="font-mono text-xs uppercase tracking-widest text-cyan-400 font-bold">
-              // FAQ
-                        </p>
+              {"// FAQ"}</p>
                         <h2 id="faq-heading" className="text-2xl font-black uppercase tracking-tight text-white">
                             Frequently Asked Questions
                         </h2>
@@ -563,4 +556,5 @@ export default function StartHerePage() {
         </div>
     );
 }
+
 

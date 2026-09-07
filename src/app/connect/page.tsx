@@ -118,6 +118,12 @@ const categories = [
 
 const externalProfiles = [
     {
+        name: "Substack",
+        href: "https://nomadlifexp.substack.com",
+        description:
+            "Official NomadLifeXP publication for essays, experiments, systems, and practical ideas on human evolution.",
+    },
+    {
         name: "LinkedIn",
         href: "https://www.linkedin.com/company/nomadlifexp",
         description: "Official NomadLifeXP company presence on LinkedIn.",
@@ -218,8 +224,9 @@ export default function ConnectPage() {
 
                         <p className="mt-8 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
                             The official directory for NomadLifeXP systems,
-                            knowledge resources, articles, and verified external
-                            profiles built around the Human Evolution System.
+                            knowledge resources, articles, and official
+                            external profiles built around the Human Evolution
+                            System.
                         </p>
 
                         <div className="mt-10 flex flex-wrap gap-3">
@@ -325,7 +332,9 @@ export default function ConnectPage() {
                                         {system.number}
                                     </span>
 
-                                    <span className="text-xl text-slate-600 transition group-hover:text-sky-400">→</span>
+                                    <span className="text-xl text-slate-600 transition group-hover:text-sky-400">
+                                        →
+                                    </span>
                                 </div>
 
                                 <h3 className="mt-7 text-2xl font-black uppercase tracking-tight text-white">
@@ -369,7 +378,9 @@ export default function ConnectPage() {
 
                                 <h3 className="mt-5 font-black uppercase tracking-tight text-white">
                                     {resource.name}
-                                    <span className="ml-2 text-slate-600 transition group-hover:text-sky-400">→</span>
+                                    <span className="ml-2 text-slate-600 transition group-hover:text-sky-400">
+                                        →
+                                    </span>
                                 </h3>
 
                                 <p className="mt-3 text-sm leading-6 text-slate-400">
@@ -454,7 +465,9 @@ export default function ConnectPage() {
                                         {String(index + 1).padStart(2, "0")}
                                     </span>
 
-                                    <span className="text-slate-600 transition group-hover:text-sky-400">→</span>
+                                    <span className="text-slate-600 transition group-hover:text-sky-400">
+                                        →
+                                    </span>
                                 </div>
 
                                 <h3 className="mt-7 text-xl font-black uppercase tracking-tight text-white">

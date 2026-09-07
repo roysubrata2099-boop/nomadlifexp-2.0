@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
+import { officialProfiles } from "@/data/officialProfiles";
 
 const SITE_URL = "https://www.nomadlifexp.com";
 
@@ -122,66 +123,10 @@ const categories = [
     },
 ];
 
-const externalProfiles = [
-    {
-        name: "Substack",
-        href: "https://nomadlifexp.substack.com",
-        description:
-            "Official NomadLifeXP publication for essays, experiments, systems, and practical ideas on human evolution.",
-    },
-    {
-        name: "LinkedIn",
-        href: "https://www.linkedin.com/company/nomadlifexp",
-        description: "Official NomadLifeXP company presence on LinkedIn.",
-    },
-    {
-        name: "Medium",
-        href: "https://medium.com/@roy.subrata2099",
-        description:
-            "NomadLifeXP and Subrata Roy's publishing presence on Medium.",
-    },
-    {
-        name: "Quora",
-        href: "https://www.quora.com/profile/NomadLifeXP",
-        description:
-            "Official NomadLifeXP profile and knowledge contributions on Quora.",
-    },
-    {
-        name: "Facebook",
-        href: "https://www.facebook.com/nomadlifexp",
-        description: "Official NomadLifeXP Facebook page.",
-    },
-    {
-        name: "GitHub",
-        href: "https://github.com/roysubrata2099-boop/nomadlifexp",
-        description: "NomadLifeXP's official GitHub repository.",
-    },
-    {
-        name: "Pinterest",
-        href: "https://in.pinterest.com/nomadlifexp",
-        description: "Official NomadLifeXP Pinterest presence.",
-    },
-    {
-        name: "Instagram",
-        href: "https://www.instagram.com/nomadlifexp",
-        description: "Official NomadLifeXP Instagram profile.",
-    },
-    {
-        name: "YouTube",
-        href: "https://www.youtube.com/@nomadlifexp",
-        description: "Official NomadLifeXP YouTube channel.",
-    },
-    {
-        name: "Threads",
-        href: "https://www.threads.com/@nomadlifexp",
-        description: "Official NomadLifeXP Threads profile.",
-    },
-    {
-        name: "Blogger",
-        href: "https://nomadlifexp.blogspot.com",
-        description: "NomadLifeXP's official Blogger publication.",
-    },
-];
+const externalProfiles = officialProfiles.map((profile) => ({
+    ...profile,
+    href: profile.url,
+}));
 
 const sameAs = externalProfiles.map((profile) => profile.href);
 
@@ -240,14 +185,14 @@ export default function ConnectPage() {
                                 href="/start-here"
                                 className="rounded-lg bg-sky-400 px-6 py-3 text-sm font-black uppercase tracking-wider text-[#050914] shadow-[0_0_30px_rgba(56,189,248,0.15)] transition hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-[#050914]"
                             >
-                                Start Here →
+                                Start Here â†’
                             </Link>
 
                             <Link
                                 href="/knowledge-index"
                                 className="rounded-lg border border-sky-400/20 bg-white/[0.03] px-6 py-3 text-sm font-black uppercase tracking-wider text-slate-200 transition hover:border-sky-400/50 hover:bg-sky-400/10 focus:outline-none focus:ring-2 focus:ring-sky-400"
                             >
-                                Knowledge Index →
+                                Knowledge Index â†’
                             </Link>
                         </div>
                     </div>
@@ -299,7 +244,7 @@ export default function ConnectPage() {
                             href="/"
                             className="inline-flex w-fit rounded-lg border border-sky-400/30 bg-sky-400/10 px-6 py-3 text-sm font-black uppercase tracking-wider text-sky-300 transition hover:border-sky-400 hover:bg-sky-400 hover:text-[#050914] focus:outline-none focus:ring-2 focus:ring-sky-400"
                         >
-                            Visit nomadlifexp.com →
+                            Visit nomadlifexp.com â†’
                         </Link>
                     </div>
                 </div>
@@ -339,7 +284,7 @@ export default function ConnectPage() {
                                     </span>
 
                                     <span className="text-xl text-slate-600 transition group-hover:text-sky-400">
-                                        →
+                                        â†’
                                     </span>
                                 </div>
 
@@ -385,7 +330,7 @@ export default function ConnectPage() {
                                 <h3 className="mt-5 font-black uppercase tracking-tight text-white">
                                     {resource.name}
                                     <span className="ml-2 text-slate-600 transition group-hover:text-sky-400">
-                                        →
+                                        â†’
                                     </span>
                                 </h3>
 
@@ -431,7 +376,7 @@ export default function ConnectPage() {
                             </span>
 
                             <span className="mt-3 block text-sm text-slate-600 transition group-hover:text-sky-400">
-                                Explore →
+                                Explore â†’
                             </span>
                         </Link>
                     ))}
@@ -472,7 +417,7 @@ export default function ConnectPage() {
                                     </span>
 
                                     <span className="text-slate-600 transition group-hover:text-sky-400">
-                                        →
+                                        â†’
                                     </span>
                                 </div>
 
@@ -517,7 +462,7 @@ export default function ConnectPage() {
                             href="/about"
                             className="mt-8 inline-flex rounded-lg border border-sky-400/30 bg-sky-400/10 px-6 py-3 text-sm font-black uppercase tracking-wider text-sky-300 transition hover:border-sky-400 hover:bg-sky-400 hover:text-[#050914] focus:outline-none focus:ring-2 focus:ring-sky-400"
                         >
-                            Learn About NomadLifeXP →
+                            Learn About NomadLifeXP â†’
                         </Link>
                     </div>
                 </div>
@@ -547,10 +492,13 @@ export default function ConnectPage() {
                         href="/"
                         className="mt-9 inline-flex rounded-lg bg-sky-400 px-7 py-4 text-sm font-black uppercase tracking-wider text-[#050914] shadow-[0_0_35px_rgba(56,189,248,0.18)] transition hover:bg-sky-300 hover:shadow-[0_0_45px_rgba(56,189,248,0.28)] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-[#030711]"
                     >
-                        Start Your Evolution →
+                        Start Your Evolution â†’
                     </Link>
                 </div>
             </section>
         </main>
     );
 }
+
+
+

@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -394,7 +394,7 @@ export default function MindsetPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            â†
+                            �?�
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -489,7 +489,7 @@ export default function MindsetPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 â€” Awareness",
+                                title: "01 — Awareness",
                                 subtext:
                                     "Recognize Unconscious Patterns",
                                 text:
@@ -498,7 +498,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "02",
-                                title: "02 â€” Control",
+                                title: "02 — Control",
                                 subtext:
                                     "Manage Attention and Reactions",
                                 text:
@@ -507,7 +507,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "03",
-                                title: "03 â€” Reprogramming",
+                                title: "03 — Reprogramming",
                                 subtext:
                                     "Rebuild Mental Frameworks",
                                 text:
@@ -516,7 +516,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "04",
-                                title: "04 â€” Execution",
+                                title: "04 — Execution",
                                 subtext:
                                     "Convert Clarity Into Action",
                                 text:

@@ -198,7 +198,7 @@ export const articleOntology: Record<
 
         slug: "forward-bending-yoga-stress-relief",
 
-        title: "Itâ€™s Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
+        title: "It's Never Too Late to Transform Your Body and Mind with Forward Bending Yoga",
 
         primaryPillar: "yoga",
 
@@ -586,7 +586,7 @@ export const articleOntology: Record<
 
         slug: "you-are-not-stuck-in-life",
 
-        title: "You Are Not Stuck Because You Lack Answersâ€”Your Mind Is Too Comfortable to See Them",
+        title: "You Are Not Stuck Because You Lack Answers—Your Mind Is Too Comfortable to See Them",
 
         primaryPillar: "mindset",
 
@@ -610,3 +610,4 @@ export const articleOntology: Record<
     },
 
 };
+

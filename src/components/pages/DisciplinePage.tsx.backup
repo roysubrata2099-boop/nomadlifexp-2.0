@@ -171,6 +171,7 @@ function createStructuredData(
         (post, index) => ({
             "@type": "ListItem",
             position: index + 1,
+            url: `${SITE_URL}/blog/posts/${post.slug}`,
             item: {
                 "@type": "Article",
                 headline: post.title,

@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -394,7 +394,7 @@ export default function MindsetPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            �?�
+                            →
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -1467,7 +1467,3 @@ export default function MindsetPage() {
         </main>
     );
 }
-
-
-
-

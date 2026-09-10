@@ -1,10 +1,10 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
     description:
-        "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+        "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
     keywords:
         "daily discipline system, practical fitness habits, core stability training, mental focus framework, behavioral habits engine, functional mobility routines, digital distraction immunity, personal operating system",
     robots: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
         description:
-            "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+            "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
         url: "https://www.nomadlifexp.com/start-here",
         type: "website",
         siteName: "NomadLifeXP",
@@ -185,7 +185,7 @@ export default function StartHerePage() {
                 url: "https://www.nomadlifexp.com/start-here",
                 name: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
                 description:
-                    "Evolve In Motion with NomadLifeXP â€” a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+                    "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
                 isPartOf: { "@type": "WebSite", "@id": "https://www.nomadlifexp.com/#website" },
                 author: { "@id": "https://www.nomadlifexp.com/#author" },
                 inLanguage: "en-US",
@@ -250,7 +250,7 @@ export default function StartHerePage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none"
                             aria-hidden="true"
                         >
-                            â†
+                            ←
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -556,5 +556,4 @@ export default function StartHerePage() {
         </div>
     );
 }
-
 

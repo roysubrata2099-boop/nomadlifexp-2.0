@@ -1,4 +1,4 @@
-﻿// src/app/knowledge-index/page.tsx
+// src/app/knowledge-index/page.tsx
 
 import { getAllPosts } from "@/lib/markdown";
 import type { Metadata } from "next";
@@ -134,7 +134,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            â†
+                            ←
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -329,5 +329,4 @@ export default async function KnowledgeIndexPage(props: PageProps) {
         </div>
     );
 }
-
 

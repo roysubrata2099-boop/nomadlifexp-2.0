@@ -115,7 +115,7 @@ export default function RecommendedReading({
                                 text-cyan-400
                             "
                         >
-                            READ ARTICLE â†’
+                            READ ARTICLE →
                         </span>
 
 

@@ -8,6 +8,7 @@
     "build:content": "node scripts/build-posts.mjs",
     "verify:ontology": "node verify-ontology.cjs",
     "check:encoding": "node scripts/check-text-encoding.mjs",
+    "fix:encoding": "node scripts/fix-text-encoding.mjs",
     "dev": "npm run build:content && npm run audit:content && npm run verify:ontology && next dev",
     "prebuild": "npm run build:content && npm run audit:content && npm run verify:ontology && npm run check:encoding",
     "build": "next build",
@@ -29,7 +30,7 @@
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "remark-rehype": "^11.0.0",
+    "remark-rehype": "^11.1.1",
     "unified": "^11.0.5"
   },
   "devDependencies": {

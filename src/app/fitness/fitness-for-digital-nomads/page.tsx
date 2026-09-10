@@ -1,10 +1,5 @@
-import NomadComingSoon from "@/components/NomadComingSoon";
+import { redirect } from "next/navigation";
 
 export default function FitnessForDigitalNomadsPage() {
-    return (
-        <NomadComingSoon
-            category="FITNESS"
-            title="Fitness for Digital Nomads"
-        />
-    );
+    redirect("/blog/posts/fitness-for-digital-nomads");
 }

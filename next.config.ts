@@ -1,4 +1,4 @@
-// next.config.ts
+﻿// next.config.ts
 
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
 
   /* ==========================================================================
      PERMANENT SEO REDIRECTS
-     Old URLs → Current Next.js routes
+     Old URLs â†’ Current Next.js routes
      ========================================================================== */
 
   async redirects() {
@@ -84,6 +84,15 @@ const nextConfig: NextConfig = {
 
       {
         source:
+          "/blog/posts/cant-focus-even-if-you-try",
+        destination:
+          "/blog/posts/why-you-cannot-focus-overload",
+        permanent: true,
+      },
+
+
+      {
+        source:
           "/blog/posts/can-you-rebuild-your-attention-span-after-years-of-digital-distraction",
         destination: "/insights/rebuild-attention-span-digital-distraction",
         permanent: true,
@@ -97,7 +106,7 @@ const nextConfig: NextConfig = {
       },
 
       /* ----------------------------------------------------------------------
-         EXISTING REDIRECTS — UNCHANGED
+         EXISTING REDIRECTS â€” UNCHANGED
          ---------------------------------------------------------------------- */
 
       {
@@ -188,3 +197,5 @@ const nextConfig: NextConfig = {
 };
 
 export default withMDX(nextConfig);
+
+

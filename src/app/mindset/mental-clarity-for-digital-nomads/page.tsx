@@ -1,10 +1,5 @@
-import NomadComingSoon from "@/components/NomadComingSoon";
+import { redirect } from "next/navigation";
 
 export default function MentalClarityForDigitalNomadsPage() {
-    return (
-        <NomadComingSoon
-            category="MINDSET"
-            title="Mental Clarity for Digital Nomads"
-        />
-    );
+    redirect("/blog/posts/mental-clarity-for-digital-nomads");
 }

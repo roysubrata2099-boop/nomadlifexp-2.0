@@ -1,7 +1,24 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import ClientSiteProtection from "@/components/ClientSiteProtection";
 import ClientVideoPlayer from "@/components/ClientVideoPlayer";
+
+export const metadata: Metadata = {
+  title: "Discipline, Fitness, Yoga & Mindset for Personal Growth",
+  description:
+    "NomadLifeXP is a practical personal development platform for building discipline, fitness, yoga, mindset, habits, and intentional living.",
+  keywords: [
+    "discipline",
+    "fitness",
+    "yoga",
+    "mindset",
+    "habit building",
+    "personal growth",
+    "personal development",
+    "intentional living",
+  ],
+};
 
 interface NavItem {
   readonly label: string;
@@ -831,6 +848,9 @@ export default function HomePage() {
     </div>
   );
 }
+
+
+
 
 
 

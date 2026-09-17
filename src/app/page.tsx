@@ -46,7 +46,7 @@ const NAVIGATION: readonly NavItem[] = [
   { label: "Digital Nomads", href: "/digital-nomads" },
   { label: "Systems", href: "/discipline-system" },
   { label: "Blog", href: "/blog" },
-  { label: "Start", href: "/start-here" },
+  { label: "Start Here", href: "/start-here" },
 ];
 
 const SYSTEMS_LIST: readonly SystemDetail[] = [
@@ -831,4 +831,6 @@ export default function HomePage() {
     </div>
   );
 }
+
+
 

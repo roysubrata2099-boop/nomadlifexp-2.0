@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+﻿import { redirect } from "next/navigation";
 
 export default function FitnessForDigitalNomadsPage() {
-    redirect("/blog/posts/self-discipline-while-traveling");
+    redirect("/blog/posts/fitness-for-digital-nomads");
 }

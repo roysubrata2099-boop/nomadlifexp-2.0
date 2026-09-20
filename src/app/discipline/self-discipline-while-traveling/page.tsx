@@ -1,10 +1,5 @@
-import NomadComingSoon from "@/components/NomadComingSoon";
+﻿import { redirect } from "next/navigation";
 
 export default function SelfDisciplineWhileTravelingPage() {
-    return (
-        <NomadComingSoon
-            category="DISCIPLINE"
-            title="Self-Discipline While Traveling"
-        />
-    );
+    redirect("/blog/posts/self-discipline-while-traveling");
 }

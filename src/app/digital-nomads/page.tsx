@@ -168,28 +168,28 @@ const articles = [
         title: 'Self-Discipline While Traveling',
         description:
             'How to maintain structure, consistency, and personal standards when your environment constantly changes.',
-        href: '/discipline/self-discipline-while-traveling/',
+        href: '/blog/posts/self-discipline-while-traveling/',
     },
     {
         category: 'FITNESS',
         title: 'Fitness for Digital Nomads',
         description:
             'Build a portable approach to strength, conditioning, mobility, and fitness while traveling.',
-        href: '/fitness/fitness-for-digital-nomads/',
+        href: '/blog/posts/fitness-for-digital-nomads/',
     },
     {
         category: 'YOGA',
         title: 'Yoga for Digital Nomads',
         description:
             'Movement, mobility, breath, and recovery practices for life on the road.',
-        href: '/yoga/yoga-for-digital-nomads/',
+        href: '/blog/posts/yoga-for-digital-nomads/',
     },
     {
         category: 'MINDSET',
         title: 'Mental Clarity for Digital Nomads',
         description:
             'Build focus, adaptability, resilience, and mental clarity while living in constantly changing environments.',
-        href: '/mindset/mental-clarity-for-digital-nomads/',
+        href: '/blog/posts/mental-clarity-for-digital-nomads/',
     },
 ] as const;
 
@@ -978,14 +978,14 @@ export default function DigitalNomadsPage() {
                         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
 
                             <Link
-                                href="/fitness/fitness-for-digital-nomads/"
+                                href="/blog/posts/fitness-for-digital-nomads/"
                                 className="inline-flex min-h-12 items-center justify-center bg-cyan-500 px-7 py-4 font-mono text-xs font-bold tracking-wider text-black transition hover:bg-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                             >
                                 START WITH FITNESS →
                             </Link>
 
                             <Link
-                                href="/discipline/self-discipline-while-traveling/"
+                                href="/blog/posts/self-discipline-while-traveling/"
                                 className="inline-flex min-h-12 items-center justify-center border border-white/15 px-7 py-4 font-mono text-xs font-bold tracking-wider text-zinc-300 transition hover:border-cyan-400 hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                             >
                                 BUILD DISCIPLINE →
@@ -1061,6 +1061,8 @@ export default function DigitalNomadsPage() {
         </>
     );
 }
+
+
 
 
 

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import ClientSiteProtection from "@/components/ClientSiteProtection";
@@ -126,7 +126,7 @@ const PROCESS_STEPS: readonly ProcessStep[] = [
   },
   {
     step: "02.",
-    title: "DISCIPLINE",
+    title: "DISCIPLINE IN ACTION",
     description:
       "Turn intention into consistent action. Build routines, remove unnecessary friction, manage distractions, and develop the ability to follow through even when motivation disappears.",
   },

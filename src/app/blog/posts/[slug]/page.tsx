@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import Image from "next/image";
 import Link from "next/link";

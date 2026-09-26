@@ -39,6 +39,24 @@ export default function AboutPage() {
                     "@id": "https://www.nomadlifexp.com/#organization"
                 },
                 "image": "https://www.nomadlifexp.com/images/about/subrata-roy-founder-nomadlifexp.jpg"
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "https://www.nomadlifexp.com/about/#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.nomadlifexp.com/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "About",
+                        "item": "https://www.nomadlifexp.com/about"
+                    }
+                ]
             }
         ]
     };

@@ -3,6 +3,7 @@
 import { getAllPosts } from "@/lib/markdown";
 import type { Metadata } from "next";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
     title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset & Yoga",
@@ -110,7 +111,15 @@ export default async function KnowledgeIndexPage(props: PageProps) {
     }
 
     return (
-        <div className="relative min-h-screen bg-[#03060f] text-[#E2E8F0] antialiased overflow-hidden">
+        <>
+            <BreadcrumbJsonLd
+                items={[
+                    { name: "Home", url: "/" },
+                    { name: "Knowledge Index", url: "/knowledge-index" },
+                ]}
+            />
+
+            <div className="relative min-h-screen bg-[#03060f] text-[#E2E8F0] antialiased overflow-hidden">
             {serializedJsonLd && (
                 <script
                     type="application/ld+json"
@@ -134,7 +143,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            ←
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -327,6 +336,6 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                 </section>
             </main>
         </div>
+        </>
     );
 }
-

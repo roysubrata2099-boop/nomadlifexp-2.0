@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 
 const SITE_URL = "https://www.nomadlifexp.com";
 const PAGE_URL = `${SITE_URL}/discipline-system`;
@@ -129,32 +130,19 @@ const jsonLdSchema = {
                 }
             ]
         },
-        {
-            "@type": "BreadcrumbList",
-            "@id": `${PAGE_URL}#breadcrumb`,
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "@id": `${SITE_URL}/#listItem`,
-                    "position": 1,
-                    "name": "Home",
-                    "item": SITE_URL,
-                },
-                {
-                    "@type": "ListItem",
-                    "@id": `${SITE_URL}/#listItem`,
-                    "position": 2,
-                    "name": "Discipline System",
-                    "item": PAGE_URL,
-                }
-            ]
-        }
     ]
 };
+
 
 export default function DisciplineSystemPage() {
     return (
         <>
+            <BreadcrumbJsonLd
+                items={[
+                    { name: "Home", url: "/" },
+                    { name: "Discipline System", url: "/discipline-system" },
+                ]}
+            />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}

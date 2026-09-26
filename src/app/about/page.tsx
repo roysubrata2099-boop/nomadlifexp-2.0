@@ -1,5 +1,6 @@
-﻿import React from "react";
+import React from "react";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 import Image from "next/image";
 import type { Metadata } from "next";
 
@@ -39,7 +40,8 @@ export default function AboutPage() {
                     "@id": "https://www.nomadlifexp.com/#organization"
                 },
                 "image": "https://www.nomadlifexp.com/images/about/subrata-roy-founder-nomadlifexp.jpg"
-            }
+            },
+
         ]
     };
 
@@ -53,6 +55,12 @@ export default function AboutPage() {
 
     return (
         <main className="relative min-h-screen bg-black text-white antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: "Home", url: "/" },
+                    { name: "About", url: "/about" },
+                ]}
+            />
             {/* Ambient Lighting Background Accents */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" aria-hidden="true" />

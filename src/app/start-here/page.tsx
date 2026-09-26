@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -208,19 +209,24 @@ export default function StartHerePage() {
                     },
                 })),
             },
-            {
-                "@type": "BreadcrumbList",
-                "@id": "https://www.nomadlifexp.com/start-here/#breadcrumb",
-                itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "System Home", item: "https://www.nomadlifexp.com" },
-                    { "@type": "ListItem", position: 2, name: "Start Here Sequence", item: "https://www.nomadlifexp.com/start-here" },
-                ],
-            },
         ],
     };
 
     return (
         <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
+            <BreadcrumbJsonLd
+                items={[
+                    {
+                        name: "System Home",
+                        url: "https://www.nomadlifexp.com",
+                    },
+                    {
+                        name: "Start Here Sequence",
+                        url: "https://www.nomadlifexp.com/start-here",
+                    },
+                ]}
+            />
+
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(graphSchema) }}

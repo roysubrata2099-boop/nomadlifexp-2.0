@@ -1,5 +1,3 @@
-// src/lib/ontology/index.ts
-
 export { entities } from "./entities";
 
 export type {
@@ -17,3 +15,7 @@ export type {
     ArticleContext,
     OntologyArticle,
 } from "./articles";
+
+export {
+    topicMap,
+} from "@/data/topic-map";

@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import Link from "next/link";
 
@@ -89,16 +89,17 @@ export default function MDXRelatedArticles({
     );
 
     /*
-     * Preserve existing explicit relationships first.
-     *
-     * Then use the ontology recommendation engine
-     * to fill any remaining slots.
+     * Preserve explicit editorial relationships first.
      */
     const editorialSlugs =
         relatedSlugs
             .map(safeSlug)
             .filter(Boolean);
 
+    /*
+     * Use the ontology recommendation engine
+     * as the semantic recommendation layer.
+     */
     const recommendedSlugs =
         getRecommendedArticleSlugs(
             cleanCurrentSlug,
@@ -107,6 +108,12 @@ export default function MDXRelatedArticles({
             },
         );
 
+    /*
+     * Priority:
+     *
+     * 1. Explicit editorial relationships
+     * 2. Ontology recommendations
+     */
     const combinedSlugs = [
         ...editorialSlugs,
         ...recommendedSlugs,

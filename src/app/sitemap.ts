@@ -1,4 +1,4 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { getAllMDXPosts } from "@/lib/mdx";
 
 /*
@@ -89,49 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 changeFrequency: "weekly",
             },
 
-            // Digital Nomads pillar articles
-            {
-                path: "/discipline/self-discipline-while-traveling",
-                priority: 0.8,
-                changeFrequency: "monthly",
-            },
-            {
-                path: "/fitness/fitness-for-digital-nomads",
-                priority: 0.8,
-                changeFrequency: "monthly",
-            },
-            {
-                path: "/yoga/yoga-for-digital-nomads",
-                priority: 0.8,
-                changeFrequency: "monthly",
-            },
-            {
-                path: "/mindset/mental-clarity-for-digital-nomads",
-                priority: 0.8,
-                changeFrequency: "monthly",
-            },
 
-            // Four category pillars
-            {
-                path: "/discipline",
-                priority: 0.9,
-                changeFrequency: "weekly",
-            },
-            {
-                path: "/fitness",
-                priority: 0.9,
-                changeFrequency: "weekly",
-            },
-            {
-                path: "/yoga",
-                priority: 0.9,
-                changeFrequency: "weekly",
-            },
-            {
-                path: "/mindset",
-                priority: 0.9,
-                changeFrequency: "weekly",
-            },
 
             // Core systems
             {
@@ -258,4 +216,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return true;
     });
 }
-

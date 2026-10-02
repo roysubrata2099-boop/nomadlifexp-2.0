@@ -84,7 +84,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             },
 
             {
-                path: "/digital-nomads",
+                path: "/digital-nomads/",
                 priority: 0.9,
                 changeFrequency: "weekly",
             },

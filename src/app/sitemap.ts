@@ -1,4 +1,4 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 import { getAllMDXPosts } from "@/lib/mdx";
 
 /*
@@ -103,6 +103,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 changeFrequency: "weekly",
             },
 
+            // Video pages
+            {
+                path: "/videos/yoga-mind-body-awareness/",
+                priority: 0.8,
+                changeFrequency: "monthly",
+            },
             // Blog hub
             {
                 path: "/blog",
@@ -216,3 +222,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return true;
     });
 }
+

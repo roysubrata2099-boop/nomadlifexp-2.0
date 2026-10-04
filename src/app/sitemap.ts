@@ -105,7 +105,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
             // Video pages
             {
-                path: "/videos/yoga-mind-body-awareness/",
+                path: "/videos/yoga-mind-body-awareness",
                 priority: 0.8,
                 changeFrequency: "monthly",
             },
@@ -222,4 +222,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return true;
     });
 }
+
 

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
         "Explore the connection between yoga, movement, breath, body awareness, mobility, balance, and personal growth with NomadLifeXP.",
     alternates: {
         canonical:
-            "https://www.nomadlifexp.com/videos/yoga-mind-body-awareness/",
+            "https://www.nomadlifexp.com/videos/yoga-mind-body-awareness",
     },
 };
 
@@ -104,3 +104,4 @@ export default function YogaMindBodyAwarenessVideoPage() {
         </main>
     );
 }
+

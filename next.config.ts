@@ -84,6 +84,14 @@ const nextConfig: NextConfig = {
 
       {
         source:
+          "/blog/posts/mental-clarity-stop-overthinking",
+        destination:
+          "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
+        permanent: true,
+      },
+
+      {
+        source:
           "/blog/posts/cant-focus-even-if-you-try",
         destination:
           "/blog/posts/why-you-cannot-focus-overload",
@@ -211,8 +219,4 @@ const nextConfig: NextConfig = {
 };
 
 export default withMDX(nextConfig);
-
-
-
-
 

@@ -94,14 +94,28 @@ const nextConfig: NextConfig = {
       {
         source:
           "/blog/posts/can-you-rebuild-your-attention-span-after-years-of-digital-distraction",
-        destination: "/insights/rebuild-attention-span-digital-distraction",
+        destination: "/blog/posts/rebuild-your-attention-span",
         permanent: true,
       },
 
       {
         source:
           "/blog/posts/the-reason-you-cant-focus-even-when-you-try-hard",
-        destination: "/insights/stop-procrastination-permanently",
+        destination: "/blog/posts/why-you-procrastinate-how-to-stop",
+        permanent: true,
+      },
+      {
+        source:
+          "/insights/rebuild-attention-span-digital-distraction",
+        destination:
+          "/blog/posts/rebuild-your-attention-span",
+        permanent: true,
+      },
+      {
+        source:
+          "/insights/stop-procrastination-permanently",
+        destination:
+          "/blog/posts/why-you-procrastinate-how-to-stop",
         permanent: true,
       },
 
@@ -197,5 +211,8 @@ const nextConfig: NextConfig = {
 };
 
 export default withMDX(nextConfig);
+
+
+
 
 

@@ -1,4 +1,4 @@
-﻿import { redirect } from "next/navigation";
+﻿import { permanentRedirect } from "next/navigation";
 
 type PageProps = {
     params: Promise<{
@@ -33,6 +33,7 @@ export default async function InsightsRedirect({
         LEGACY_SLUGS[normalizedSlug] ??
         normalizedSlug;
 
-    redirect(`/blog/posts/${targetSlug}`);
+    permanentRedirect(`/blog/posts/${targetSlug}`);
 }
+
 

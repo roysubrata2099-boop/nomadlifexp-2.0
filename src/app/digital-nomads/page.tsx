@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://www.nomadlifexp.com';
-const PAGE_PATH = '/digital-nomads/';
+const PAGE_PATH = '/digital-nomads';
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {

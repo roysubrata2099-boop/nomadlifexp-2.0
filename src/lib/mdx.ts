@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import fs from "fs";
 import path from "path";
@@ -58,6 +58,9 @@ export function getAllMDXPosts() {
 
             image:
                 String(data.image || ""),
+
+            updatedAt:
+                String(data.updatedAt || ""),
 
 
             relatedArticles:
@@ -127,3 +130,4 @@ export async function getMDXPostBySlug(
     };
 
 }
+

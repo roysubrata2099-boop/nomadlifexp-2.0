@@ -109,7 +109,7 @@ const nextConfig: NextConfig = {
       {
         source:
           "/blog/posts/the-reason-you-cant-focus-even-when-you-try-hard",
-        destination: "/blog/posts/why-you-procrastinate-how-to-stop",
+        destination: "/blog/posts/why-you-cannot-focus-overload",
         permanent: true,
       },
       {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 import Link from "next/link";
 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         siteName: "NomadLifeXP",
         images: [
             {
-                url: "https://www.nomadlifexp.com/og-main.jpg",
+                url: "https://www.nomadlifexp.com/images/hero.jpg",
                 width: 1200,
                 height: 630,
                 alt: "NomadLifeXP Personal Operating System",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         title: "Evolve In Motion | Personal Development System | NomadLifeXP",
         description:
             "Build self-discipline, functional fitness strength, mobility, and razor-sharp focus through structured daily execution protocols.",
-        images: ["https://www.nomadlifexp.com/og-main.jpg"],
+        images: ["https://www.nomadlifexp.com/images/hero.jpg"],
     },
 };
 
@@ -170,7 +170,7 @@ export default function StartHerePage() {
                 logo: {
                     "@type": "ImageObject",
                     "@id": "https://www.nomadlifexp.com/#logo",
-                    url: "https://www.nomadlifexp.com/logo.png",
+                    url: "https://www.nomadlifexp.com/images/logo.png",
                     caption: "NomadLifeXP Logo",
                 },
             },
@@ -194,7 +194,7 @@ export default function StartHerePage() {
                 dateModified: "2026-07-29T00:00:00+00:00",
                 primaryImageOfPage: {
                     "@type": "ImageObject",
-                    url: "https://www.nomadlifexp.com/og-main.jpg",
+                    url: "https://www.nomadlifexp.com/images/hero.jpg",
                 },
             },
             {
@@ -256,7 +256,7 @@ export default function StartHerePage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none"
                             aria-hidden="true"
                         >
-                            ←
+                            →Â
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -562,4 +562,3 @@ export default function StartHerePage() {
         </div>
     );
 }
-

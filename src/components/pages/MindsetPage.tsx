@@ -359,7 +359,7 @@ export default function MindsetPage() {
                     "@type": "ImageObject",
 
                     url:
-                        "https://www.nomadlifexp.com/logo.png",
+                        "https://www.nomadlifexp.com/images/logo.png",
                 },
             },
         ],

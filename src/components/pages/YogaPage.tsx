@@ -187,7 +187,7 @@ function createYogaStructuredData(
             url: SITE_URL,
             logo: {
                 "@type": "ImageObject",
-                url: `${SITE_URL}/logo.png`,
+                url: `${SITE_URL}/images/logo.png`,
             },
         },
         {
@@ -1623,11 +1623,3 @@ export default function YogaPage() {
         </main>
     );
 }
-
-
-
-
-
-
-
-

@@ -69,7 +69,7 @@ export const metadata: Metadata = {
             "A structured human optimization framework covering discipline, fitness, yoga, mindset, habits, and intentional living.",
         images: [
             {
-                url: "/og-main.jpg",
+                url: "/images/hero.jpg",
                 width: 1200,
                 height: 630,
                 alt: "NomadLifeXP Human Optimization Platform",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
         title: "NomadLifeXP // Human Optimization Platform",
         description:
             "A structured human optimization framework covering discipline, fitness, yoga, mindset, habits, and intentional living.",
-        images: ["/og-main.jpg"],
+        images: ["/images/hero.jpg"],
     },
 
     robots: {
@@ -283,5 +283,3 @@ export default function RootLayout({
         </html>
     );
 }
-
-

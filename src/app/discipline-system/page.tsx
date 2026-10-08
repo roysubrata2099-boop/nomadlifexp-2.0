@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 
@@ -10,7 +10,7 @@ const PAGE_URL = `${SITE_URL}/discipline-system`;
  */
 export const metadata: Metadata = {
     title: "The Discipline System | Build Self-Discipline & Lasting Habits",
-    description: "Build self-discipline, lasting habits, focus, and consistent routines with the NomadLifeXP Discipline System — a structured framework for behaviour change and human optimization.",
+    description: "Build self-discipline, lasting habits, focus, and consistent routines with the NomadLifeXP Discipline System ”” a structured framework for behaviour change and human optimization.",
     keywords: [
         "Self-Discipline System",
         "Discipline System",
@@ -63,7 +63,7 @@ const jsonLdSchema = {
             "@id": `${SITE_URL}/#organization`,
             "name": "NomadLifeXP",
             "url": SITE_URL,
-            "logo": `${SITE_URL}/logo.png`,
+            "logo": `${SITE_URL}/images/logo.png`,
         },
         {
             "@type": "WebPage",
@@ -508,5 +508,3 @@ export default function DisciplineSystemPage() {
         </>
     );
 }
-
-

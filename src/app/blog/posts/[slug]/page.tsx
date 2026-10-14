@@ -149,8 +149,7 @@ export async function generateMetadata(
             );
 
         return {
-            title:
-                `${title} | NomadLifeXP`,
+            title,
             description,
 
             alternates: {

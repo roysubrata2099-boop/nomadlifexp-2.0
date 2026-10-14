@@ -1,8 +1,9 @@
-﻿import type { Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
+import MediaProtection from "@/components/MediaProtection";
 
 const SITE_URL = "https://www.nomadlifexp.com";
 const SITE_NAME = "NomadLifeXP";
@@ -200,6 +201,7 @@ export default function RootLayout({
             className="scroll-smooth"
         >
             <body className="antialiased bg-black text-white flex flex-col min-h-screen">
+                <MediaProtection />
 
                 {serializedSchema !== null && (
                     <script

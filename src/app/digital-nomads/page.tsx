@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://www.nomadlifexp.com';
@@ -95,6 +95,15 @@ const pillars = [
             'Develop mental clarity, adaptability, perspective, and resilience while navigating unfamiliar environments, uncertainty, and constant change.',
         href: '/blog/category/mindset/',
         cta: 'EXPLORE NOMAD MINDSET →',
+    },
+    {
+        number: '05',
+        title: 'SELF-AWARENESS',
+        heading: 'Sanatana Dharma: Self-Mastery and Conscious Living',
+        description:
+            'Explore self-awareness, meditation, disciplined action, and intentional living while navigating life as a digital nomad.',
+        cta: 'EXPLORE SELF-AWARENESS',
+        href: '/blog/posts/sanatana-dharma-self-mastery-conscious-living/',
     },
 ] as const;
 

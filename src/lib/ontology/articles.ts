@@ -107,6 +107,8 @@ export const articleOntology: Record<
             "why-you-procrastinate-how-to-stop",
             "how-to-build-self-discipline",
             "self-discipline-while-traveling",
+
+            "sanatana-dharma-self-mastery-conscious-living",
         ],
     },
 
@@ -276,6 +278,8 @@ export const articleOntology: Record<
             "self-discipline-comprehensive-guide",
             "why-you-procrastinate-how-to-stop",
             "mental-clarity-stop-overthinking-and-regain-focus",
+
+            "sanatana-dharma-self-mastery-conscious-living",
         ],
     },
 
@@ -362,6 +366,8 @@ export const articleOntology: Record<
             "forearm-stand-yoga-focus-confidence",
             "why-you-cannot-focus-overload",
             "mental-clarity-for-digital-nomads",
+
+            "sanatana-dharma-self-mastery-conscious-living",
         ],
     },
 
@@ -606,8 +612,24 @@ export const articleOntology: Record<
             "headstand-benefits-body-mind-safety",
             "forward-bending-yoga-stress-relief",
             "discipline-creates-freedom",
+
+            "sanatana-dharma-self-mastery-conscious-living",
         ],
     },
 
+    "sanatana-dharma-self-mastery-conscious-living": {
+        id: "sanatana-dharma-self-mastery-conscious-living",
+        slug: "sanatana-dharma-self-mastery-conscious-living",
+        title: "Sanatana Dharma and Self-Awareness: Self-Mastery and Conscious Living",
+        primaryPillar: "mindset",
+        contexts: ["core"],
+        entities: ["mindset", "focus", "mental-clarity"],
+        relatedArticles: [
+            "how-to-build-self-discipline",
+            "discipline-creates-freedom",
+            "mental-clarity-stop-overthinking-and-regain-focus",
+            "you-are-not-stuck-in-life",
+        ],
+    },
 };
 

@@ -8,6 +8,7 @@ const withMDX = createMDX({
 });
 
 const nextConfig: NextConfig = {
+  htmlLimitedBots: /.*/,
   /* ==========================================================================
      BUILD SAFETY
      ========================================================================== */
@@ -55,4 +56,5 @@ const nextConfig: NextConfig = {
 };
 
 export default withMDX(nextConfig);
+
 

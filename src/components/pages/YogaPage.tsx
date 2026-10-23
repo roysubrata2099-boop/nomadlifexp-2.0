@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -328,7 +328,7 @@ export default function YogaPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            ←
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>

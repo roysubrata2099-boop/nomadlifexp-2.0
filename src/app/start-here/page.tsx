@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 import Link from "next/link";
 
@@ -255,9 +255,7 @@ export default function StartHerePage() {
                         <span
                             className="transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none"
                             aria-hidden="true"
-                        >
-                            →Â
-                        </span>
+                        >&rarr;</span>
                         <span>NOMADLIFEXP</span>
                     </Link>
 

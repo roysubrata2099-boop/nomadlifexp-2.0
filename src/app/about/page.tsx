@@ -82,7 +82,7 @@ export default function AboutPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            ←
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>

@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import FitnessPage from "@/components/pages/FitnessPage";
 import DisciplinePage from "@/components/pages/DisciplinePage";
@@ -42,14 +42,31 @@ function normalizeSlug(value: unknown): string {
 export async function generateMetadata(
     { params }: PageProps
 ): Promise<Metadata> {
-
     const { category } = await params;
-
     const slug = normalizeSlug(category);
 
+    const seo: Record<string, { title: string; description: string }> = {
+        yoga: {
+            title: "Yoga for Flexibility, Focus & Mind-Body Awareness | NomadLifeXP",
+            description: "Explore yoga for flexibility, mobility, breath awareness, mental focus, and mind-body connection with practical guides from NomadLifeXP.",
+        },
+        fitness: {
+            title: "Fitness, Strength & Physical Wellness | NomadLifeXP",
+            description: "Explore fitness guides on strength, conditioning, mobility, recovery, and building sustainable physical habits with NomadLifeXP.",
+        },
+        discipline: {
+            title: "Discipline, Consistency & Better Habits | NomadLifeXP",
+            description: "Explore practical guides to discipline, consistency, habit formation, and building routines that support long-term personal growth.",
+        },
+        mindset: {
+            title: "Mindset, Mental Clarity & Personal Growth | NomadLifeXP",
+            description: "Explore mindset guides on mental clarity, resilience, focus, self-awareness, and practical personal development with NomadLifeXP.",
+        },
+    };
 
-    if (!PILLARS.has(slug)) {
+    const page = seo[slug];
 
+    if (!PILLARS.has(slug) || !page) {
         return {
             title: "Category Not Found | NomadLifeXP",
             robots: {
@@ -59,33 +76,28 @@ export async function generateMetadata(
         };
     }
 
-
-    const title =
-        slug.charAt(0).toUpperCase() +
-        slug.slice(1);
-
+    const url = `https://www.nomadlifexp.com/blog/category/${slug}`;
 
     return {
-
-        title: title,
-
-        description:
-            `Explore the NomadLifeXP ${title} evolution system.`,
-
-        openGraph: {
-            title: title,
-            description: `Explore the NomadLifeXP ${title} evolution system.`,
-            url: `https://www.nomadlifexp.com/blog/category/${slug}`,
-            type: "website",
-        },
+        title: page.title,
+        description: page.description,
         alternates: {
-            canonical:
-                `https://www.nomadlifexp.com/blog/category/${slug}`,
+            canonical: url,
+        },
+        openGraph: {
+            title: page.title,
+            description: page.description,
+            url,
+            type: "website",
+            siteName: "NomadLifeXP",
+        },
+        twitter: {
+            card: "summary",
+            title: page.title,
+            description: page.description,
         },
     };
 }
-
-
 
 export default async function CategoryPage(
     { params }: PageProps

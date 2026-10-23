@@ -217,9 +217,9 @@ export default function AboutPage() {
                         </p>
 
                         <div className="pl-4 border-l border-neutral-700 space-y-1 text-neutral-200">
-                                    <p>&bull; I would set goals.</p>
-                                    <p>&bull; I would create plans.</p>
-                                    <p>&bull; I would commit to change.</p>
+                            <p>&bull; I would set goals.</p>
+                            <p>&bull; I would create plans.</p>
+                            <p>&bull; I would commit to change.</p>
                         </div>
 
                         <p>

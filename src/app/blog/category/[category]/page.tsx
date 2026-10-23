@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import FitnessPage from "@/components/pages/FitnessPage";
 import DisciplinePage from "@/components/pages/DisciplinePage";
@@ -67,11 +67,17 @@ export async function generateMetadata(
 
     return {
 
-        title: `${title} Architecture & Systems | NomadLifeXP`,
+        title: title,
 
         description:
             `Explore the NomadLifeXP ${title} evolution system.`,
 
+        openGraph: {
+            title: title,
+            description: `Explore the NomadLifeXP ${title} evolution system.`,
+            url: `https://www.nomadlifexp.com/blog/category/${slug}`,
+            type: "website",
+        },
         alternates: {
             canonical:
                 `https://www.nomadlifexp.com/blog/category/${slug}`,

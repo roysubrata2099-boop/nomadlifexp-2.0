@@ -9,7 +9,7 @@ export default function YogaVideo() {
                     muted
                     loop
                     playsInline
-                    poster="/images/yoga-mind-body-awareness.jpg"
+                    poster="/images/yoga-mind-body-awareness.webp"
                 >
                     {/* Fixed path pointing to the videos subfolder */}
                     <source src="/videos/yoga-mind-body-awareness.mp4" type="video/mp4" />

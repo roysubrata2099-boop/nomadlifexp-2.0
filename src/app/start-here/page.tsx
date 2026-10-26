@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         siteName: "NomadLifeXP",
         images: [
             {
-                url: "https://www.nomadlifexp.com/images/hero.jpg",
+                url: "https://www.nomadlifexp.com/images/hero.webp",
                 width: 1200,
                 height: 630,
                 alt: "NomadLifeXP Personal Operating System",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         title: "Evolve In Motion | Personal Development System | NomadLifeXP",
         description:
             "Build self-discipline, functional fitness strength, mobility, and razor-sharp focus through structured daily execution protocols.",
-        images: ["https://www.nomadlifexp.com/images/hero.jpg"],
+        images: ["https://www.nomadlifexp.com/images/hero.webp"],
     },
 };
 
@@ -194,7 +194,7 @@ export default function StartHerePage() {
                 dateModified: "2026-07-29T00:00:00+00:00",
                 primaryImageOfPage: {
                     "@type": "ImageObject",
-                    url: "https://www.nomadlifexp.com/images/hero.jpg",
+                    url: "https://www.nomadlifexp.com/images/hero.webp",
                 },
             },
             {

@@ -162,12 +162,9 @@ export default function BlogV2Page() {
             : Array.isArray(posts) ? posts.slice(0, 4) : [];
 
     const getTopicCount = (categorySlug: string): number => {
-        try {
-            if (!Array.isArray(posts)) return 0;
-            return posts.filter((p) => p && typeof p.category === "string" && p.category.includes(categorySlug)).length || 4;
-        } catch {
-            return 4;
-        }
+        return posts.filter(
+            (post) => post.category === categorySlug
+        ).length;
     };
 
     const topics = [
@@ -456,4 +453,5 @@ export default function BlogV2Page() {
         </div>
     );
 }
+
 

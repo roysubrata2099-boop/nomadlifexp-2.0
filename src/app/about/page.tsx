@@ -39,7 +39,7 @@ export default function AboutPage() {
                 "worksFor": {
                     "@id": "https://www.nomadlifexp.com/#organization"
                 },
-                "image": "https://www.nomadlifexp.com/images/about/subrata-roy-founder-nomadlifexp.jpg"
+                "image": "https://www.nomadlifexp.com/images/about/subrata-roy-founder-nomadlifexp.webp"
             },
 
         ]
@@ -152,7 +152,7 @@ export default function AboutPage() {
                         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-indigo-500 rounded-none blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" aria-hidden="true" />
                         <div className="relative aspect-[4/5] w-full overflow-hidden border border-neutral-700 bg-black">
                             <Image
-                                src="/images/about/subrata-roy-founder-nomadlifexp.jpg"
+                                src="/images/about/subrata-roy-founder-nomadlifexp.webp"
                                 alt="Subrata Roy, Founder and Creator of NomadLifeXP"
                                 fill
                                 priority

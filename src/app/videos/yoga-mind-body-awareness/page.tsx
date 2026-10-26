@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Yoga Mind & Body Awareness | NomadLifeXP",
@@ -14,7 +14,7 @@ const VIDEO_URL =
     "https://www.nomadlifexp.com/videos/yoga-mind-body-awareness.mp4";
 
 const THUMBNAIL_URL =
-    "https://www.nomadlifexp.com/images/yoga-mind-body-awareness.jpg";
+    "https://www.nomadlifexp.com/images/yoga-mind-body-awareness.webp";
 
 export default function YogaMindBodyAwarenessVideoPage() {
     const videoStructuredData = {
@@ -57,7 +57,7 @@ export default function YogaMindBodyAwarenessVideoPage() {
                         controls
                         playsInline
                         preload="metadata"
-                        poster="/images/yoga-mind-body-awareness.jpg"
+                        poster="/images/yoga-mind-body-awareness.webp"
                     >
                         <source
                             src="/videos/yoga-mind-body-awareness.mp4"

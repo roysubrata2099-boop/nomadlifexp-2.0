@@ -70,7 +70,7 @@ export const metadata: Metadata = {
             "A structured human optimization framework covering discipline, fitness, yoga, mindset, habits, and intentional living.",
         images: [
             {
-                url: "/images/hero.jpg",
+                url: "/images/hero.webp",
                 width: 1200,
                 height: 630,
                 alt: "NomadLifeXP Human Optimization Platform",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
         title: "NomadLifeXP // Human Optimization Platform",
         description:
             "A structured human optimization framework covering discipline, fitness, yoga, mindset, habits, and intentional living.",
-        images: ["/images/hero.jpg"],
+        images: ["/images/hero.webp"],
     },
 
     robots: {

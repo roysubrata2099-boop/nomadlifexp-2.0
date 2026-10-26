@@ -55,7 +55,7 @@ export default function ClientVideoPlayer() {
                         controls={false}
                         disablePictureInPicture
                         aria-hidden="true"
-                        poster="/images/yoga-mind-body-awareness.jpg"
+                        poster="/images/yoga-mind-body-awareness.webp"
                         onError={handleVideoError}
                     >
                         <source

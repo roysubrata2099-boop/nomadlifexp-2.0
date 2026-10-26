@@ -1,5 +1,7 @@
-import { redirect } from "next/navigation";
+import YogaPage, { metadata } from "@/components/pages/YogaPage";
 
-export default function YogaRedirect() {
-    redirect("/blog/category/yoga");
+export { metadata };
+
+export default function YogaRoute() {
+    return <YogaPage />;
 }

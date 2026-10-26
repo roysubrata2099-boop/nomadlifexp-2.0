@@ -1,4 +1,4 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { getAllMDXPosts } from "@/lib/mdx";
 
 /*
@@ -128,7 +128,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 changeFrequency: "weekly",
             },
             {
-                path: "/blog/category/yoga",
+                path: "/yoga",
                 priority: 0.8,
                 changeFrequency: "weekly",
             },

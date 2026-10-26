@@ -5,7 +5,7 @@ import DisciplinePage from "@/components/pages/DisciplinePage";
 import YogaPage from "@/components/pages/YogaPage";
 import MindsetPage from "@/components/pages/MindsetPage";
 
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -111,6 +111,10 @@ export default async function CategoryPage(
 
     if (!PILLARS.has(slug)) {
         notFound();
+    }
+
+    if (slug === "yoga") {
+        permanentRedirect("/yoga");
     }
 
 

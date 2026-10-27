@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import fs from "fs";
 import path from "path";
@@ -46,6 +46,8 @@ export function getAllMDXPosts() {
 
             title:
                 String(data.title || ""),
+            seoTitle:
+                String(data.seoTitle || ""),
 
             slug:
                 String(data.slug || ""),

@@ -133,6 +133,7 @@ export async function generateMetadata(
         }
 
         const title =
+            safeText(post.seoTitle) ||
             safeText(post.title) ||
             "NomadLifeXP Article";
 

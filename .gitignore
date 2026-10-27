@@ -40,3 +40,50 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 src/app/blog-md-old/
+
+# Local SEO and image optimization audit reports
+*-audit.csv
+*-validation.csv
+*-preflight.csv
+*-preview.csv
+*-proposal.csv
+*-readiness-audit.csv
+*-migration-plan.csv
+*-path-mapping.csv
+*-exact-image-paths.csv
+*-usage-audit.csv
+*-source-audit.csv
+*-link-audit.csv
+*-indexability-audit.csv
+*-delivery-audit.csv
+*-payload-size-audit.csv
+*-variant-audit.csv
+*-collision-audit.csv
+*-integrity-audit.csv
+*-test-audit.csv
+*-review/
+*-test/
+*-staging/
+
+# Local backup files
+*.bak
+*.bak-*
+*.before-*.bak
+*.backup-*
+
+# Local diagnostic files
+image-error-body.txt
+image-error-headers.txt
+sitemap-live.xml
+
+# Local SEO reports
+/image-variant-audit-after-deploy.csv
+/internal-links.csv
+/orphan-page-candidates.csv
+/seo-audit-results.csv
+
+# Local recovery backups
+/backup-yoga-canonical-20261026-124125/
+/redirect-audit-backup-20261026-145039/
+/webp-migration-backup-20261026-172551/
+/webp-reference-backup-20261026-172929/

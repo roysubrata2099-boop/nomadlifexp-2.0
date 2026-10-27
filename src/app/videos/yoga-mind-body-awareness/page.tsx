@@ -1,12 +1,26 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Yoga Mind & Body Awareness | NomadLifeXP",
+    title: "Yoga Mind-Body Awareness Video | NomadLifeXP",
     description:
         "Explore the connection between yoga, movement, breath, body awareness, mobility, balance, and personal growth with NomadLifeXP.",
     alternates: {
         canonical:
             "https://www.nomadlifexp.com/videos/yoga-mind-body-awareness",
+    },
+    openGraph: {
+        title: "Yoga Mind-Body Awareness Video | NomadLifeXP",
+        description:
+            "Explore the connection between yoga, movement, breath, body awareness, mobility, balance, and personal growth with NomadLifeXP.",
+        url: "https://www.nomadlifexp.com/videos/yoga-mind-body-awareness",
+        siteName: "NomadLifeXP",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Yoga Mind-Body Awareness Video | NomadLifeXP",
+        description:
+            "Explore yoga, mindful movement, breathing, and body awareness with NomadLifeXP.",
     },
 };
 

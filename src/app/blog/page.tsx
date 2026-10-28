@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -141,7 +141,7 @@ export default function BlogV2Page() {
     };
 
     const featuredTitles = [
-        ["self discipline", "why you lack"],
+        ["how to build self-discipline"],
         ["mental clarity", "overthinking"],
         ["fitness consistency", "workout discipline"],
         ["forward bending yoga"],

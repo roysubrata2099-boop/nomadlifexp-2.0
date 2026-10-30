@@ -12,12 +12,12 @@
     },
     {
       "source": "/attention-span.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/rebuild-your-attention-span",
       "permanent": true
     },
     {
       "source": "/cant-focus.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/why-you-cannot-focus-overload",
       "permanent": true
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "source": "/fitness-is-not-about-time.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/fitness-is-not-about-time",
       "permanent": true
     },
     {
@@ -42,27 +42,27 @@
     },
     {
       "source": "/forward-bending.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/forward-bending-yoga-stress-relief",
       "permanent": true
     },
     {
       "source": "/headstand.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/headstand-benefits-body-mind-safety",
       "permanent": true
     },
     {
       "source": "/mental-clarity.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
       "permanent": true
     },
     {
       "source": "/self-discipline-guide.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/self-discipline-comprehensive-guide",
       "permanent": true
     },
     {
       "source": "/stop-procrastination.html",
-      "destination": "/blog",
+      "destination": "/blog/posts/why-you-procrastinate-how-to-stop",
       "permanent": true
     },
     {

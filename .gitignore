@@ -87,3 +87,14 @@ sitemap-live.xml
 /redirect-audit-backup-20261026-145039/
 /webp-migration-backup-20261026-172551/
 /webp-reference-backup-20261026-172929/
+
+# Temporary diagnostic files
+*.log
+next-diagnostic.mjs
+node-diagnostic.cjs
+node-test.cjs
+package.json.backup
+
+# Local backups
+backups/
+indexing-audit/

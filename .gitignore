@@ -98,3 +98,8 @@ package.json.backup
 # Local backups
 backups/
 indexing-audit/
+
+# Local encoding recovery backups
+encoding-backup/
+
+pre-commit-backup/

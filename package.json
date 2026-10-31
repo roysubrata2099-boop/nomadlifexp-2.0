@@ -1,55 +1,57 @@
 {
-  "name": "nomadlifexp-2.0",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "audit:content": "node scripts/audit-markdown.js",
-    "build:content": "node scripts/build-posts.mjs",
-    "verify:ontology": "node verify-ontology.cjs",
-    "check:encoding": "node scripts/check-text-encoding.mjs",
-    "fix:encoding": "node scripts/fix-text-encoding.mjs",
-    "dev": "npm run build:content && npm run audit:content && npm run verify:ontology && next dev",
-    "prebuild": "npm run build:content && npm run audit:content && npm run verify:ontology && npm run check:encoding",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "@mdx-js/loader": "^3.1.1",
-    "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "15.5.25",
-    "@types/mdx": "^2.0.14",
-    "gray-matter": "^4.0.3",
-    "marked": "^18.0.6",
-    "next": "^15.5.28",
-    "next-mdx-remote": "^6.0.0",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
-    "react-markdown": "^10.1.0",
-    "rehype-stringify": "^10.0.1",
-    "remark": "^15.0.1",
-    "remark-html": "^16.0.1",
-    "remark-rehype": "^11.1.1",
-    "unified": "^11.0.5"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.3.7",
-    "@eslint/js": "^9.39.4",
-    "@tailwindcss/postcss": "^4.3.1",
-    "@types/node": "^20.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "eslint": "^9.39.5",
-    "eslint-config-next": "^15.5.25",
-    "sharp": "^0.35.5",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.0.0"
-  },
-  "engines": {
-    "node": ">=20.0.0"
-  },
-  "overrides": {
-    "postcss": "8.5.26"
-  }
+    "name":  "nomadlifexp-2.0",
+    "version":  "1.0.0",
+    "private":  true,
+    "type":  "module",
+    "scripts":  {
+                    "audit:content":  "node scripts/audit-markdown.js",
+                    "build:content":  "node src/scripts/build-posts.mjs",
+                    "verify:ontology":  "node verify-ontology.cjs",
+                    "check:encoding":  "node scripts/check-text-encoding.mjs",
+                    "fix:encoding":  "node scripts/fix-text-encoding.mjs",
+                    "dev":  "npm run build:content \u0026\u0026 npm run audit:content \u0026\u0026 npm run verify:ontology \u0026\u0026 next dev",
+                    "prebuild":  "npm run build:content \u0026\u0026 npm run audit:content \u0026\u0026 npm run verify:ontology \u0026\u0026 npm run check:encoding",
+                    "build":  "next build",
+                    "start":  "next start",
+                    "lint":  "eslint ."
+                },
+    "dependencies":  {
+                         "@mdx-js/loader":  "^3.1.1",
+                         "@mdx-js/react":  "^3.1.1",
+                         "@next/mdx":  "15.5.25",
+                         "@types/mdx":  "^2.0.14",
+                         "gray-matter":  "^4.0.3",
+                         "marked":  "^18.0.6",
+                         "next":  "^15.5.28",
+                         "next-mdx-remote":  "^6.0.0",
+                         "react":  "19.2.7",
+                         "react-dom":  "19.2.7",
+                         "react-markdown":  "^10.1.0",
+                         "rehype-stringify":  "^10.0.1",
+                         "remark":  "^15.0.1",
+                         "remark-gfm":  "^4.0.1",
+                         "remark-html":  "^16.0.1",
+                         "remark-rehype":  "^11.1.1",
+                         "server-only":  "^0.0.1",
+                         "unified":  "^11.0.5"
+                     },
+    "devDependencies":  {
+                            "@eslint/eslintrc":  "^3.3.7",
+                            "@eslint/js":  "^9.39.4",
+                            "@tailwindcss/postcss":  "^4.3.1",
+                            "@types/node":  "^20.0.0",
+                            "@types/react":  "^19.0.0",
+                            "@types/react-dom":  "^19.0.0",
+                            "eslint":  "^9.39.5",
+                            "eslint-config-next":  "^15.5.25",
+                            "sharp":  "^0.35.5",
+                            "tailwindcss":  "^4.0.0",
+                            "typescript":  "^5.0.0"
+                        },
+    "engines":  {
+                    "node":  "\u003e=20.0.0"
+                },
+    "overrides":  {
+                      "postcss":  "8.5.26"
+                  }
 }

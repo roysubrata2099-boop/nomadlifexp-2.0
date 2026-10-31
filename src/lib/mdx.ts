@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import YouTubeShort from "@/components/YouTubeShort";
 
 
@@ -108,10 +109,11 @@ export async function getMDXPostBySlug(
                 post.content,
 
             options: {
+                parseFrontmatter: false,
 
-                parseFrontmatter:
-                    false,
-
+                mdxOptions: {
+                    remarkPlugins: [remarkGfm],
+                },
             },
 
             components: {

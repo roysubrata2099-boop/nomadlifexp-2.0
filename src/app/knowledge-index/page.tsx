@@ -56,7 +56,13 @@ export default async function KnowledgeIndexPage(props: PageProps) {
             title: typeof post.title === "string" ? post.title : "Untitled Knowledge Node",
             description: typeof post.description === "string" ? post.description : "Explore this NomadLifeXP knowledge framework.",
             category: typeof post.category === "string" ? post.category.toLowerCase() : "mindset",
-            displayPillar: typeof post.displayPillar === "string" ? post.displayPillar : "KNOWLEDGE",
+            displayPillar: typeof post.displayPillar === "string"
+                ? post.displayPillar
+                : typeof post.pillar === "string"
+                    ? post.pillar.toUpperCase()
+                    : typeof post.category === "string"
+                        ? post.category.toUpperCase()
+                        : "KNOWLEDGE",
         }))
         : [];
 

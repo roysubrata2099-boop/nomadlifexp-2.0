@@ -1,4 +1,4 @@
-export interface FixedRoute {
+﻿export interface FixedRoute {
     slug: string;
     category: "mindset" | "discipline" | "fitness" | "yoga" | "general";
     displayPillar: "MINDSET" | "DISCIPLINE" | "FITNESS" | "YOGA" | "GENERAL";
@@ -8,7 +8,7 @@ export interface FixedRoute {
 
 // 100% Immutable Ground-Truth Map for all 14 baseline articles
 const STATIC_PROTECTION_MATRIX: Record<string, Omit<FixedRoute, 'slug'>> = {
-    // 🧠 Mindset (4)
+    // ðŸ§  Mindset (4)
     "rebuild-your-attention-span": {
         category: "mindset",
         displayPillar: "MINDSET",
@@ -34,7 +34,13 @@ const STATIC_PROTECTION_MATRIX: Record<string, Omit<FixedRoute, 'slug'>> = {
         fallbackDescription: "Breaking down false glass ceilings and rewiring momentum patterns."
     },
 
-    // 🎯 Discipline (3)
+    // ðŸŽ¯ Discipline (3)
+    "self-discipline-comprehensive-guide": {
+        category: "discipline",
+        displayPillar: "DISCIPLINE",
+        fallbackTitle: "Self-Discipline Guide: Reclaim Your Attention, Rebuild Your Life",
+        fallbackDescription: "A practical guide to building lasting self-discipline."
+    },
     "self-discipline-guide-reclaim-your-attention-rebuild-your-life": {
         category: "discipline",
         displayPillar: "DISCIPLINE",
@@ -54,7 +60,7 @@ const STATIC_PROTECTION_MATRIX: Record<string, Omit<FixedRoute, 'slug'>> = {
         fallbackDescription: "Why system-driven behavior scaling beats erratic motivation bursts every time."
     },
 
-    // 💪 Fitness (4)
+    // ðŸ’ª Fitness (4)
     "why-people-watch-workout-videos-but-never-actually-exercise": {
         category: "fitness",
         displayPillar: "FITNESS",
@@ -80,7 +86,7 @@ const STATIC_PROTECTION_MATRIX: Record<string, Omit<FixedRoute, 'slug'>> = {
         fallbackDescription: "The structural architecture required to anchor an unshakeable fitness identity."
     },
 
-    // 🧘 Yoga (3)
+    // ðŸ§˜ Yoga (3)
     "headstand-benefits-for-body-and-mind": {
         category: "yoga",
         displayPillar: "YOGA",
@@ -123,7 +129,7 @@ export function getGlobalSystemRoute(rawInput: string): FixedRoute {
     } else if (s.includes("not-stuck")) {
         s = "you-are-not-stuck-in-life";
     } else if (s.includes("self-discipline")) {
-        s = "self-discipline-guide-reclaim-your-attention-rebuild-your-life";
+        s = "self-discipline-comprehensive-guide";
     } else if (s.includes("procrastinate")) {
         s = "why-you-procrastinate-and-how-to-stop-it";
     } else if (s.includes("daily-habits")) {

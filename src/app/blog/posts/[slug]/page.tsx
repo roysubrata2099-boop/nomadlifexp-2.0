@@ -12,6 +12,7 @@ import {
 
 import MDXRelatedArticles from "@/components/MDXRelatedArticles";
 import { SITE_URL } from "@/lib/site";
+import { normalizeCategory } from "@/lib/taxonomy";
 
 type PageProps = {
     params: Promise<{
@@ -226,7 +227,7 @@ export default async function MDXPostPage(
         safeText(post.description);
 
     const category =
-        safeSlug(post.category);
+        normalizeCategory(post.category, title);
 
     const categoryName =
         safeText(post.category)
@@ -234,6 +235,12 @@ export default async function MDXPostPage(
             .replace(/\b\w/g, (char) =>
                 char.toUpperCase()
             );
+
+
+    const breadcrumbCategoryName =
+        cleanSlug === "self-discipline-comprehensive-guide"
+            ? "Discipline"
+            : categoryName;
 
     const image =
         safeImage(post.image);
@@ -380,10 +387,10 @@ export default async function MDXPostPage(
                 <div className="mb-6">
                     {category && (
                         <Link
-                            href={`/blog/category/${category}`}
+                            href={cleanSlug === "self-discipline-comprehensive-guide" ? "/discipline" : `/blog/category/${category}`}
                             className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
                         >
-                            ← Back to {categoryName}
+                            &larr; Back to {breadcrumbCategoryName}
                         </Link>
                     )}
                 </div>
@@ -429,4 +436,3 @@ export default async function MDXPostPage(
         </>
     );
 }
-

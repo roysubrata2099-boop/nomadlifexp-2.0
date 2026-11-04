@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import fs from "fs";
 import path from "path";
@@ -16,68 +16,51 @@ const mdxDirectory = path.join(
 
 
 export function getAllMDXPosts() {
-
     const files = fs
         .readdirSync(mdxDirectory)
-        .filter((file) =>
-            file.endsWith(".mdx")
-        );
+        .filter((file) => file.endsWith(".mdx"))
+        .sort((a, b) => a.localeCompare(b));
 
+    const seenSlugs = new Set<string>();
 
-    return files.map((file) => {
+    return files.flatMap((file) => {
+        try {
+            const filePath = path.join(mdxDirectory, file);
+            const fileContent = fs.readFileSync(filePath, "utf8");
+            const { data, content } = matter(fileContent);
 
-        const filePath = path.join(
-            mdxDirectory,
-            file
-        );
+            const slug = String(data.slug || "").trim();
 
+            if (!slug) {
+                console.warn(`[MDX] Missing slug in ${file}`);
+                return [];
+            }
 
-        const fileContent =
-            fs.readFileSync(
-                filePath,
-                "utf8"
-            );
+            if (seenSlugs.has(slug)) {
+                console.error(`[MDX] Duplicate MDX slug "${slug}" in ${file}. Skipping duplicate.`);
+                return [];
+            }
 
+            seenSlugs.add(slug);
 
-        const { data, content } =
-            matter(fileContent);
-
-
-        return {
-
-            title:
-                String(data.title || ""),
-            seoTitle:
-                String(data.seoTitle || ""),
-
-            slug:
-                String(data.slug || ""),
-
-            description:
-                String(data.description || ""),
-
-            category:
-                String(data.category || ""),
-
-            image:
-                String(data.image || ""),
-
-            updatedAt:
-                String(data.updatedAt || ""),
-
-
-            relatedArticles:
-                Array.isArray(data.relatedArticles)
+            return [{
+                title: String(data.title || ""),
+                seoTitle: String(data.seoTitle || ""),
+                slug,
+                description: String(data.description || ""),
+                category: String(data.category || ""),
+                image: String(data.image || ""),
+                updatedAt: String(data.updatedAt || ""),
+                relatedArticles: Array.isArray(data.relatedArticles)
                     ? data.relatedArticles
                     : [],
-
-
-            content,
-
-        };
-
+                content,
+            }];
+        } catch (error) {
+            console.error(`[MDX] Failed reading ${file}:`, error);
+            return [];
+        }
     });
-
 }
 
 
@@ -134,4 +117,6 @@ export async function getMDXPostBySlug(
     };
 
 }
+
+
 

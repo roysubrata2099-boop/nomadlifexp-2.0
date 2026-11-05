@@ -1,4 +1,4 @@
-import fs from "fs";
+﻿import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
@@ -60,14 +60,18 @@ function buildPosts() {
             category: data.category || "uncategorized",
             pillar: data.pillar || data.category || "general",
             keywords: data.keywords || [],
+            relatedArticles: Array.isArray(data.relatedArticles)
+                ? data.relatedArticles
+                : [],
+
             content: protectedContent,
         };
     });
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(posts, null, 2));
 
-    console.log(`\n🚀 Link Recovery Complete: Auto-corrected links across ${totalFixedInstances} markdown resources.`);
-    console.log(`✅ Generated operational JSON system nodes: ${posts.length}`);
+    console.log(`\nðŸš€ Link Recovery Complete: Auto-corrected links across ${totalFixedInstances} markdown resources.`);
+    console.log(`âœ… Generated operational JSON system nodes: ${posts.length}`);
 }
 
 buildPosts();

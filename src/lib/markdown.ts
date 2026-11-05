@@ -1,4 +1,4 @@
-// src/lib/markdown.ts
+﻿// src/lib/markdown.ts
 
 import fs from "fs";
 import path from "path";
@@ -55,6 +55,37 @@ function cleanString(value: unknown, fallback = ""): string {
 
 
 /**
+ * Normalize and validate publication dates.
+ * Supports both YAML strings and JavaScript Date objects.
+ */
+function cleanDate(value: unknown): string {
+    let date: string;
+
+    if (value instanceof Date) {
+        if (Number.isNaN(value.getTime())) return "";
+        date = value.toISOString().slice(0, 10);
+    } else if (typeof value === "string") {
+        date = value.trim();
+    } else {
+        return "";
+    }
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        return "";
+    }
+
+    const parsed = new Date(`${date}T00:00:00.000Z`);
+
+    if (
+        Number.isNaN(parsed.getTime()) ||
+        parsed.toISOString().slice(0, 10) !== date
+    ) {
+        return "";
+    }
+
+    return date;
+}
+/**
  * Safe markdown renderer
  */
 function renderMarkdown(content: unknown): string {
@@ -89,13 +120,10 @@ function normalizeFrontmatter(
     data: Record<string, unknown>
 ): Omit<PostData, "slug" | "contentHtml"> {
 
-    const now = new Date().toISOString();
-
-    const date =
-        cleanString(data.date, now);
+    const date = cleanDate(data.date);
 
     const updatedAt =
-        cleanString(data.updatedAt, date);
+        cleanDate(data.updatedAt) || date;
 
 
     return {
@@ -380,3 +408,6 @@ export function getPostBySlug(
         return null;
     }
 }
+
+
+

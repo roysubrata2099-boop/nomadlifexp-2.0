@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -278,6 +278,15 @@ export default async function MDXPostPage(
         "@type": "Article",
         "@id": `${articleUrl}#article`,
         headline: title,
+
+        datePublished:
+            post.publishedAt || post.date || undefined,
+
+        dateModified:
+            post.updatedAt ||
+            post.publishedAt ||
+            post.date ||
+            undefined,
         description: description || undefined,
 
         image: image
@@ -436,3 +445,6 @@ export default async function MDXPostPage(
         </>
     );
 }
+
+
+

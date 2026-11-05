@@ -50,6 +50,8 @@ export function getAllMDXPosts() {
                 description: String(data.description || ""),
                 category: String(data.category || ""),
                 image: String(data.image || ""),
+                date: String(data.date || ""),
+                publishedAt: String(data.publishedAt || data.date || ""),
                 updatedAt: String(data.updatedAt || ""),
                 relatedArticles: Array.isArray(data.relatedArticles)
                     ? data.relatedArticles
@@ -117,6 +119,7 @@ export async function getMDXPostBySlug(
     };
 
 }
+
 
 
 

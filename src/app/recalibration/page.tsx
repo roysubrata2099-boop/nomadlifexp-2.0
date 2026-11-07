@@ -1,4 +1,4 @@
-﻿// src/app/recalibration/page.tsx
+// src/app/recalibration/page.tsx
 
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import Link from "next/link";
 const SITE_URL = "https://www.nomadlifexp.com";
 
 export const metadata: Metadata = {
-    title: "Somatic Recalibration for Breath, Movement & Recovery | NomadLifeXP",
+    title: "Somatic Recalibration for Breath, Movement & Recovery",
     description:
         "Explore a practical somatic recalibration system using breath, gentle movement, visual rest, awareness, and yoga-based recovery after screen time, cognitive overload, and prolonged inactivity.",
     keywords: [
@@ -29,16 +29,25 @@ export const metadata: Metadata = {
         canonical: `${SITE_URL}/recalibration`,
     },
     openGraph: {
-        title: "Somatic Recalibration for Breath, Movement & Recovery | NomadLifeXP",
+        title: "Somatic Recalibration for Breath, Movement & Recovery",
         description:
             "A practical reset system using breath, gentle movement, visual rest, awareness, and yoga-based recovery after cognitive and physical overload.",
         url: `${SITE_URL}/recalibration`,
         siteName: "NomadLifeXP",
         type: "website",
+        images: [
+            {
+                url: `${SITE_URL}/images/hero.webp`,
+                width: 1200,
+                height: 630,
+                alt: "Somatic Recalibration - NomadLifeXP",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Somatic Recalibration for Breath, Movement & Recovery | NomadLifeXP",
+        images: [`${SITE_URL}/images/hero.webp`],
+        title: "Somatic Recalibration for Breath, Movement & Recovery",
         description:
             "A practical reset system using breath, movement, awareness, visual rest, and yoga-based recovery.",
     },
@@ -701,4 +710,3 @@ export default function RecalibrationPage() {
         </div>
     );
 }
-

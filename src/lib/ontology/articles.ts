@@ -133,7 +133,8 @@ export const articleOntology: Record<
         relatedArticles: [
             "fitness-is-not-about-time",
             "build-workout-habit-outlast-motivation",
-        ],
+
+            "recalibration",],
     },
 
     "fitness-is-not-about-time": {
@@ -333,7 +334,8 @@ export const articleOntology: Record<
         relatedArticles: [
             "mental-clarity-stop-overthinking-and-regain-focus",
             "rebuild-your-attention-span",
-        ],
+
+            "recalibration",],
     },
 
     "mental-clarity-stop-overthinking-and-regain-focus": {
@@ -584,7 +586,8 @@ export const articleOntology: Record<
         relatedArticles: [
             "forearm-stand-yoga-focus-confidence",
             "forward-bending-yoga-stress-relief",
-        ],
+
+            "recalibration",],
     },
 
     "you-are-not-stuck-in-life": {
@@ -631,5 +634,27 @@ export const articleOntology: Record<
             "you-are-not-stuck-in-life",
         ],
     },
-};
 
+    "recalibration": {
+        id: "recalibration",
+        slug: "recalibration",
+        title: "Somatic Recalibration for Breath, Movement & Recovery",
+        primaryPillar: "yoga",
+        contexts: ["core", "digital-nomad"],
+        entities: [
+            "recalibration",
+            "yoga",
+            "fitness",
+            "body-awareness",
+            "focus",
+            "mental-clarity",
+            "digital-nomad",
+        ],
+        relatedArticles: [
+            "yoga-for-digital-nomads",
+            "fitness-for-digital-nomads",
+            "mental-clarity-for-digital-nomads",
+            "mental-clarity-stop-overthinking-and-regain-focus",
+        ],
+    },
+};

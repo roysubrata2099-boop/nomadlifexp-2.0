@@ -780,6 +780,185 @@ export default function DigitalNomadsPage() {
                     </section>
 
 
+
+                    {/* =================================================
+                        NOMAD PRACTICAL SYSTEMS
+                    ================================================== */}
+
+                    <section
+                        id="nomad-practical-systems"
+                        aria-labelledby="practical-systems-heading"
+                        className="border-y border-white/10 bg-[#03050c]"
+                    >
+                        <div className="mx-auto max-w-6xl px-6 py-24 md:py-28">
+
+                            <div className="mx-auto mb-16 max-w-3xl text-center">
+                                <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
+                                    THE PRACTICAL FRAMEWORK
+                                </span>
+
+                                <h2
+                                    id="practical-systems-heading"
+                                    className="mt-4 text-3xl font-bold md:text-5xl"
+                                >
+                                    Build a life that works wherever you go.
+                                </h2>
+
+                                <p className="mt-6 leading-relaxed text-zinc-400 md:text-lg">
+                                    A sustainable digital nomad lifestyle requires
+                                    more than location independence. It requires
+                                    practical systems for maintaining health,
+                                    consistency, focus, adaptability, and personal
+                                    development through changing environments.
+                                </p>
+                            </div>
+
+                            <div className="space-y-8">
+
+                                <article className="border border-white/10 bg-[#050816] p-7 md:p-10">
+                                    <span className="font-mono text-xs text-cyan-400">MODULE // 01</span>
+                                    <h3 className="mt-3 text-2xl font-bold md:text-3xl">
+                                        Health and Fitness While Traveling
+                                    </h3>
+                                    <p className="mt-5 leading-relaxed text-zinc-300">
+                                        Travel changes your access to gyms, food,
+                                        outdoor spaces, and familiar routines.
+                                        Maintaining physical health therefore
+                                        requires flexible training and sustainable
+                                        everyday habits rather than dependence on
+                                        perfect conditions.
+                                    </p>
+                                    <h4 className="mt-6 font-semibold text-white">Build your portable foundation</h4>
+                                    <ul className="mt-3 list-disc space-y-2 pl-6 text-sm leading-relaxed text-zinc-400">
+                                        <li>Use bodyweight exercises and adaptable strength training.</li>
+                                        <li>Maintain regular walking, movement, and mobility practices.</li>
+                                        <li>Prioritize consistent sleep and recovery across time zones.</li>
+                                        <li>Build practical nutrition habits around locally available food.</li>
+                                    </ul>
+                                    <Link href="/blog/posts/fitness-for-digital-nomads/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
+                                        EXPLORE FITNESS FOR DIGITAL NOMADS →
+                                    </Link>
+                                </article>
+
+                                <article className="border border-white/10 bg-[#050816] p-7 md:p-10">
+                                    <span className="font-mono text-xs text-cyan-400">MODULE // 02</span>
+                                    <h3 className="mt-3 text-2xl font-bold md:text-3xl">
+                                        Building Routines in Changing Environments
+                                    </h3>
+                                    <p className="mt-5 leading-relaxed text-zinc-300">
+                                        A routine should support your life, not
+                                        depend on one particular apartment, city,
+                                        workspace, or schedule. Build a flexible
+                                        structure around a small number of repeatable
+                                        behaviours that travel with you.
+                                    </p>
+                                    <h4 className="mt-6 font-semibold text-white">Create adaptable daily systems</h4>
+                                    <ul className="mt-3 list-disc space-y-2 pl-6 text-sm leading-relaxed text-zinc-400">
+                                        <li>Establish a consistent starting ritual for your day.</li>
+                                        <li>Identify essential work, movement, and recovery priorities.</li>
+                                        <li>Use minimum viable routines on demanding travel days.</li>
+                                        <li>Review and adjust your schedule after every major relocation.</li>
+                                    </ul>
+                                    <Link href="/blog/posts/self-discipline-while-traveling/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
+                                        EXPLORE SELF-DISCIPLINE →
+                                    </Link>
+                                </article>
+
+                                <article className="border border-white/10 bg-[#050816] p-7 md:p-10">
+                                    <span className="font-mono text-xs text-cyan-400">MODULE // 03</span>
+                                    <h3 className="mt-3 text-2xl font-bold md:text-3xl">
+                                        Mental Clarity and Productivity
+                                    </h3>
+                                    <p className="mt-5 leading-relaxed text-zinc-300">
+                                        Constant movement introduces new decisions,
+                                        distractions, unfamiliar surroundings, and
+                                        changing work conditions. Mental clarity
+                                        improves when you deliberately manage
+                                        attention, reduce unnecessary decisions,
+                                        and create boundaries around focused work.
+                                    </p>
+                                    <h4 className="mt-6 font-semibold text-white">Protect your attention</h4>
+                                    <ul className="mt-3 list-disc space-y-2 pl-6 text-sm leading-relaxed text-zinc-400">
+                                        <li>Choose clear priorities before beginning focused work.</li>
+                                        <li>Separate demanding work from communication and administration.</li>
+                                        <li>Reduce unnecessary notifications and environmental distractions.</li>
+                                        <li>Schedule breaks and recovery instead of relying on constant stimulation.</li>
+                                    </ul>
+                                    <Link href="/blog/posts/mental-clarity-for-digital-nomads/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
+                                        EXPLORE MENTAL CLARITY →
+                                    </Link>
+                                </article>
+
+                                <article className="border border-white/10 bg-[#050816] p-7 md:p-10">
+                                    <span className="font-mono text-xs text-cyan-400">MODULE // 04</span>
+                                    <h3 className="mt-3 text-2xl font-bold md:text-3xl">
+                                        Adapting to Different Environments
+                                    </h3>
+                                    <p className="mt-5 leading-relaxed text-zinc-300">
+                                        Different destinations bring different
+                                        climates, cultures, infrastructure,
+                                        time zones, and opportunities. Adaptability
+                                        means understanding those differences and
+                                        adjusting your systems without abandoning
+                                        your underlying priorities.
+                                    </p>
+                                    <h4 className="mt-6 font-semibold text-white">Develop environmental adaptability</h4>
+                                    <ul className="mt-3 list-disc space-y-2 pl-6 text-sm leading-relaxed text-zinc-400">
+                                        <li>Assess your workspace and available resources when arriving.</li>
+                                        <li>Adjust training and recovery to local conditions.</li>
+                                        <li>Respect local customs, culture, and community expectations.</li>
+                                        <li>Keep essential habits while allowing flexible execution.</li>
+                                    </ul>
+                                    <Link href="/digital-nomads#systems" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
+                                        EXPLORE THE NOMAD FRAMEWORK →
+                                    </Link>
+                                </article>
+
+                                <article className="border border-white/10 bg-[#050816] p-7 md:p-10">
+                                    <span className="font-mono text-xs text-cyan-400">MODULE // 05</span>
+                                    <h3 className="mt-3 text-2xl font-bold md:text-3xl">
+                                        Self-Mastery and Personal Development
+                                    </h3>
+                                    <p className="mt-5 leading-relaxed text-zinc-300">
+                                        Location independence creates freedom,
+                                        but meaningful freedom also requires
+                                        responsibility. Self-mastery involves
+                                        developing awareness, disciplined action,
+                                        emotional balance, and the ability to
+                                        make deliberate decisions without depending
+                                        entirely on external structure.
+                                    </p>
+                                    <h4 className="mt-6 font-semibold text-white">Strengthen your internal foundation</h4>
+                                    <ul className="mt-3 list-disc space-y-2 pl-6 text-sm leading-relaxed text-zinc-400">
+                                        <li>Reflect regularly on your actions and priorities.</li>
+                                        <li>Practice awareness through meditation and mindful movement.</li>
+                                        <li>Build consistency between your values and daily behaviour.</li>
+                                        <li>Use challenges as opportunities for learning and recalibration.</li>
+                                    </ul>
+                                    <Link href="/blog/posts/sanatana-dharma-self-mastery-conscious-living/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
+                                        EXPLORE SELF-MASTERY →
+                                    </Link>
+                                </article>
+
+                            </div>
+
+                            <div className="mt-14 border border-cyan-400/20 bg-cyan-500/5 p-8 text-center">
+                                <p className="font-mono text-xs tracking-widest text-cyan-400">
+                                    THE NOMAD OPERATING PRINCIPLE
+                                </p>
+                                <p className="mt-4 text-2xl font-bold text-white md:text-3xl">
+                                    Flexible systems. Consistent foundations.
+                                </p>
+                                <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-zinc-400">
+                                    Build capabilities that remain useful across
+                                    destinations, changing schedules, and different
+                                    stages of your journey.
+                                </p>
+                            </div>
+
+                        </div>
+                    </section>
+
                     {/* =================================================
                         FIELD MANUAL / GUIDES
                     ================================================== */}

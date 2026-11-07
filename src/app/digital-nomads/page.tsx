@@ -95,18 +95,17 @@ const pillars = [
             'Develop mental clarity, adaptability, perspective, and resilience while navigating unfamiliar environments, uncertainty, and constant change.',
         href: '/blog/category/mindset/',
         cta: 'EXPLORE NOMAD MINDSET →',
-    },
-    {
-        number: '05',
-        title: 'SELF-AWARENESS',
-        heading: 'Sanatana Dharma: Self-Mastery and Conscious Living',
-        description:
-            'Explore self-awareness, meditation, disciplined action, and intentional living while navigating life as a digital nomad.',
-        cta: 'EXPLORE SELF-AWARENESS',
-        href: '/blog/posts/sanatana-dharma-self-mastery-conscious-living/',
-    },
-] as const;
+    },] as const;
 
+
+const supportingSystem = {
+    title: 'SELF-AWARENESS',
+    heading: 'Sanatana Dharma: Self-Mastery and Conscious Living',
+    description:
+        'Explore self-awareness, meditation, disciplined action, reflection, and intentional living as supporting foundations for all four pillars.',
+    href: '/blog/posts/sanatana-dharma-self-mastery-conscious-living/',
+    cta: 'EXPLORE SELF-AWARENESS',
+} as const;
 const problems = [
     {
         title: 'Changing routines',
@@ -612,6 +611,58 @@ export default function DigitalNomadsPage() {
                                     </article>
                                 ))}
                             </div>
+                        </div>
+                    </section>
+                    {/* =================================================
+                        SUPPORTING FOUNDATION: SELF-AWARENESS
+                    ================================================== */}
+
+                    <section
+                        aria-labelledby="self-awareness-heading"
+                        className="border-y border-white/10 bg-[#03050c]"
+                    >
+                        <div className="mx-auto max-w-5xl px-6 py-20 md:py-24">
+                            <div className="mx-auto max-w-3xl text-center">
+                                <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
+                                    THE SUPPORTING FOUNDATION
+                                </span>
+
+                                <h2
+                                    id="self-awareness-heading"
+                                    className="mt-4 text-3xl font-bold md:text-5xl"
+                                >
+                                    Self-awareness strengthens every system.
+                                </h2>
+
+                                <p className="mt-5 leading-relaxed text-zinc-400 md:text-lg">
+                                    Self-awareness is not a fifth pillar. It is a
+                                    supporting foundation that helps you understand
+                                    yourself, make intentional decisions, and develop
+                                    greater consistency across Discipline, Fitness,
+                                    Yoga, and Mindset.
+                                </p>
+                            </div>
+
+                            <article className="mx-auto mt-10 max-w-3xl border border-cyan-400/30 bg-cyan-500/5 p-8">
+                                <span className="font-mono text-xs tracking-widest text-cyan-400">
+                                    SUPPORTING SYSTEM
+                                </span>
+
+                                <h3 className="mt-3 text-2xl font-bold">
+                                    {supportingSystem.heading}
+                                </h3>
+
+                                <p className="mt-4 leading-relaxed text-zinc-400">
+                                    {supportingSystem.description}
+                                </p>
+
+                                <Link
+                                    href={supportingSystem.href}
+                                    className="mt-6 inline-flex min-h-10 items-center font-mono text-xs text-cyan-400 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                                >
+                                    {supportingSystem.cta}
+                                </Link>
+                            </article>
                         </div>
                     </section>
 

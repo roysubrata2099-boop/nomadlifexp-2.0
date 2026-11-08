@@ -1,0 +1,32 @@
+﻿
+    "recalibration": {
+        id: "recalibration",
+
+        slug: "recalibration",
+
+        title: "Somatic Recalibration for Breath, Movement & Recovery",
+
+        primaryPillar: "yoga",
+
+        contexts: [
+            "core",
+            "digital-nomad",
+        ],
+
+        entities: [
+            "recalibration",
+            "yoga",
+            "fitness",
+            "body-awareness",
+            "focus",
+            "mental-clarity",
+            "digital-nomad",
+        ],
+
+        relatedArticles: [
+            "yoga-for-digital-nomads",
+            "fitness-for-digital-nomads",
+            "mental-clarity-for-digital-nomads",
+            "mental-clarity-stop-overthinking-and-regain-focus",
+        ],
+    },

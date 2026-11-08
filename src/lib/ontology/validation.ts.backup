@@ -1,0 +1,81 @@
+﻿import { entities } from "./entities";
+import { articleOntology } from "./articles";
+import { articleGraph } from "./articleGraph";
+
+export interface OntologyIssue {
+    severity: "error" | "warning";
+    code: string;
+    message: string;
+}
+
+export function validateOntology(): OntologyIssue[] {
+    const issues: OntologyIssue[] = [];
+
+    const articleSlugs = new Set(
+        Object.values(articleOntology).map(
+            article => article.slug
+        )
+    );
+
+    for (const article of Object.values(articleOntology)) {
+        if (!article.id || !article.slug) {
+            issues.push({
+                severity: "error",
+                code: "INVALID_ARTICLE",
+                message: `Article has missing ID or slug: ${article.id}`
+            });
+        }
+
+        if (!entities[article.primaryPillar]) {
+            issues.push({
+                severity: "error",
+                code: "INVALID_PILLAR",
+                message: `${article.slug} references unknown pillar: ${article.primaryPillar}`
+            });
+        }
+
+        for (const entityId of article.entities) {
+            if (!entities[entityId]) {
+                issues.push({
+                    severity: "error",
+                    code: "UNKNOWN_ENTITY",
+                    message: `${article.slug} references unknown entity: ${entityId}`
+                });
+            }
+        }
+
+        for (const relatedSlug of article.relatedArticles) {
+            if (!articleSlugs.has(relatedSlug)) {
+                issues.push({
+                    severity: "error",
+                    code: "UNKNOWN_ARTICLE",
+                    message: `${article.slug} references unknown article: ${relatedSlug}`
+                });
+            }
+        }
+    }
+
+    for (const triple of articleGraph.triples) {
+        if (
+            !Number.isFinite(triple.confidence) ||
+            triple.confidence < 0 ||
+            triple.confidence > 1
+        ) {
+            issues.push({
+                severity: "error",
+                code: "INVALID_CONFIDENCE",
+                message: `Invalid confidence in relationship: ${triple.subject}`
+            });
+        }
+
+        if (!triple.subject || !triple.object) {
+            issues.push({
+                severity: "error",
+                code: "INVALID_TRIPLE",
+                message: "Relationship has an empty endpoint."
+            });
+        }
+    }
+
+    return issues;
+}

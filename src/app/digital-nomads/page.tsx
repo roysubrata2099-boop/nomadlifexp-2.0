@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -348,79 +349,83 @@ export default function DigitalNomadsPage() {
                         HERO
                     ================================================== */}
 
-                    <section
+                                        <section
                         aria-labelledby="page-title"
-                        className="mx-auto max-w-6xl px-6 pb-20 pt-20 text-center md:pb-28 md:pt-28"
+                        className="border-b border-white/10 px-4 py-20 text-center md:py-24"
                     >
-                        <div className="mb-8 inline-block border border-cyan-500/30 bg-[#03050c] px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">
-                            NOMADLIFEXP // DIGITAL NOMAD LIFESTYLE
-                        </div>
+                        <div className="mx-auto max-w-5xl">
 
-                        <h1
-                            id="page-title"
-                            className="mx-auto max-w-5xl text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl lg:text-8xl"
-                        >
-                            The Nomad Operating System:
-                            <span className="mt-3 block text-cyan-400">
-                                Build Yourself to Live Anywhere
-                            </span>
-                        </h1>
-
-                        <p className="mx-auto mt-8 max-w-3xl text-xl font-light leading-relaxed text-zinc-300 md:text-2xl">
-                            Live anywhere. Adapt anywhere. Build yourself everywhere.
-                        </p>
-
-                        <p className="mx-auto mt-7 max-w-3xl leading-relaxed text-zinc-400 md:text-lg">
-                            A digital nomad lifestyle gives you freedom, but freedom
-                            can also remove the structures that make consistency easy.
-                            NomadLifeXP is a human optimization system for building
-                            the health, fitness, mindset, productivity, discipline,
-                            and awareness required to thrive while living and working
-                            anywhere.
-                        </p>
-
-                        <div className="mt-10">
-                            <p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">
-                                YOUR ENVIRONMENT CHANGES.
+                            <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-400 md:text-sm">
+                                LIFE IN MOTION.
                             </p>
 
-                            <p className="mt-2 font-mono text-xs uppercase tracking-[0.25em] text-white">
-                                YOUR FOUNDATION DOESN&apos;T.
+                            <h1
+                                id="page-title"
+                                className="mx-auto max-w-5xl text-4xl font-black uppercase leading-tight tracking-tight text-white sm:text-5xl md:text-7xl"
+                            >
+                                LIVE ANYWHERE.
+                                <br />
+                                <span className="text-cyan-400">
+                                    ADAPT EVERYWHERE.
+                                </span>
+                                <br />
+                                BUILD YOURSELF EVERYWHERE.
+                            </h1>
+
+                            <p className="mx-auto mt-7 max-w-3xl text-lg font-medium text-slate-200 md:text-2xl">
+                                Your environment changes. Your foundation doesn&apos;t.
                             </p>
-                        </div>
 
-                        <div
-                            aria-label="NomadLifeXP core systems"
-                            className="mt-10 flex flex-wrap justify-center gap-x-3 gap-y-2 font-mono text-xs tracking-widest text-cyan-400"
-                        >
-                            <span>DISCIPLINE</span>
-                            <span aria-hidden="true">·</span>
-                            <span>FITNESS</span>
-                            <span aria-hidden="true">·</span>
-                            <span>YOGA</span>
-                            <span aria-hidden="true">·</span>
-                            <span>MINDSET</span>
-                        </div>
+                            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-400 md:text-lg">
+                                A digital nomad lifestyle gives you freedom, but freedom can also remove the structures that make consistency easy. NomadLifeXP is a human optimization system for building the health, fitness, mindset, productivity, discipline, and awareness required to thrive while living and working anywhere.
+                            </p>
 
-                        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                            <Link
-                                href="#systems"
-                                className="inline-flex min-h-12 items-center justify-center bg-cyan-500 px-7 py-4 font-mono text-xs font-bold tracking-wider text-black transition hover:bg-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
+                            <div
+                                aria-label="NomadLifeXP core systems"
+                                className="mt-8 flex flex-wrap justify-center gap-x-3 gap-y-3 font-mono text-xs font-semibold tracking-widest text-cyan-400 md:text-sm"
                             >
-                                EXPLORE THE SYSTEM →
-                            </Link>
+                                <span>DISCIPLINE</span>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>FITNESS</span>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>YOGA</span>
+                                <span aria-hidden="true">&middot;</span>
+                                <span>MINDSET</span>
+                            </div>
 
-                            <Link
-                                href="/blog/"
-                                className="inline-flex min-h-12 items-center justify-center border border-white/15 px-7 py-4 font-mono text-xs font-bold tracking-wider text-zinc-300 transition hover:border-cyan-400 hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
-                            >
-                                READ THE FIELD MANUAL
-                            </Link>
+                            {/* CENTERED FULL PORTRAIT IMAGE */}
+                            <div className="mx-auto mt-14 w-full max-w-4xl overflow-hidden border border-white/10 bg-[#03050c] shadow-2xl shadow-cyan-950/20">
+                                <Image
+                                    src="/images/about/Digital-nomad.png"
+                                    alt="Digital nomad lifestyle representing freedom, travel, adaptability, and personal development"
+                                    width={1024}
+                                    height={1536}
+                                    priority
+                                    sizes="(max-width: 768px) 100vw, 896px"
+                                    className="mx-auto h-auto w-full object-contain"
+                                />
+                            </div>
+
+                            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                                <Link
+                                    href="#systems"
+                                    className="inline-flex min-h-12 items-center justify-center bg-cyan-500 px-7 py-4 font-mono text-xs font-bold tracking-wider text-black transition hover:bg-cyan-400"
+                                >
+                                    EXPLORE THE SYSTEM &rarr;
+                                </Link>
+
+                                <Link
+                                    href="/blog/"
+                                    className="inline-flex min-h-12 items-center justify-center border border-white/20 px-7 py-4 font-mono text-xs font-bold tracking-wider text-zinc-300 transition hover:border-cyan-400 hover:text-cyan-400"
+                                >
+                                    READ THE FIELD MANUAL
+                                </Link>
+                            </div>
+
                         </div>
                     </section>
 
-
-                    {/* =================================================
+{/* =================================================
                         CORE POSITIONING
                     ================================================== */}
 

@@ -10,7 +10,7 @@
         "check:encoding": "node scripts/check-text-encoding.mjs",
         "fix:encoding": "node scripts/fix-text-encoding.mjs",
         "dev": "npm run build:content && npm run audit:content && npm run verify:ontology && next dev",
-        "prebuild": "npm run build:content && npm run audit:content && npm run verify:ontology && npm run check:encoding",
+        "prebuild": "npm run lint && npm run build:content && npm run audit:content && npm run verify:ontology && npm run check:encoding",
         "build": "next build",
         "start": "next start",
         "lint": "eslint ."

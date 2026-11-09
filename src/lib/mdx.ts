@@ -46,6 +46,7 @@ export function getAllMDXPosts() {
             return [{
                 title: String(data.title || ""),
                 seoTitle: String(data.seoTitle || ""),
+                author: String(data.author || "NomadLifeXP"),
                 slug,
                 description: String(data.description || ""),
                 category: String(data.category || ""),

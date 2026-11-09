@@ -182,7 +182,7 @@ export default function MindsetPage() {
                 "Remove unnecessary mental noise, reduce overthinking, and create a clearer cognitive environment for better focus, decision-making, and personal growth.",
 
             slug:
-                "mental-clarity-how-to-stop-overthinking-and-improve-focus",
+                "mental-clarity-stop-overthinking-and-regain-focus",
 
             step: "STEP 01",
             subtitle: "INFORMATION CONTROL",
@@ -713,7 +713,7 @@ export default function MindsetPage() {
                         If your main challenge is persistent mental noise,
                         start with our{" "}
                         <Link
-                            href="/blog/posts/mental-clarity-how-to-stop-overthinking-and-improve-focus"
+                            href="/blog/posts/mental-clarity-stop-overthinking-and-regain-focus"
                             className="text-cyan-400 hover:text-white transition-colors"
                         >
                             guide to mental clarity,
@@ -972,7 +972,7 @@ export default function MindsetPage() {
 
                     <div className="grid md:grid-cols-3 gap-6">
                         <Link
-                            href="/blog/posts/mental-clarity-how-to-stop-overthinking-and-improve-focus"
+                            href="/blog/posts/mental-clarity-stop-overthinking-and-regain-focus"
                             className="border border-neutral-800 bg-neutral-950 p-7 hover:border-cyan-500 transition-colors"
                         >
                             <span className="font-mono text-xs text-cyan-400">

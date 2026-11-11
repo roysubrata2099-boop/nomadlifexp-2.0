@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
     title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
     description:
-        "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+        "Evolve In Motion with NomadLifeXP - a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
     keywords:
         "daily discipline system, practical fitness habits, core stability training, mental focus framework, behavioral habits engine, functional mobility routines, digital distraction immunity, personal operating system",
     robots: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
         description:
-            "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+            "Evolve In Motion with NomadLifeXP - a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
         url: "https://www.nomadlifexp.com/start-here",
         type: "website",
         siteName: "NomadLifeXP",
@@ -186,7 +186,7 @@ export default function StartHerePage() {
                 url: "https://www.nomadlifexp.com/start-here",
                 name: "Evolve In Motion | Personal Development System for Discipline, Fitness & Growth | NomadLifeXP",
                 description:
-                    "Evolve In Motion with NomadLifeXP — a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
+                    "Evolve In Motion with NomadLifeXP - a personal operating system combining self-discipline, habit building, fitness, mindset training, and daily routines for lasting transformation.",
                 isPartOf: { "@type": "WebSite", "@id": "https://www.nomadlifexp.com/#website" },
                 author: { "@id": "https://www.nomadlifexp.com/#author" },
                 inLanguage: "en-US",
@@ -214,6 +214,15 @@ export default function StartHerePage() {
 
     return (
         <div className="relative min-h-screen bg-[#050914] text-[#EDF6FF] antialiased font-sans selection:bg-cyan-500 selection:text-black overflow-hidden">
+            <div
+                className="absolute inset-x-0 top-0 z-0 h-screen min-h-screen w-full bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "url('/images/Start.jpg')" }}
+                aria-hidden="true"
+            />
+            <div
+                className="absolute inset-x-0 top-0 z-[1] h-screen bg-gradient-to-b from-[#050914]/65 via-[#050914]/65 to-[#050914] pointer-events-none"
+                aria-hidden="true"
+            />
             <BreadcrumbJsonLd
                 items={[
                     {
@@ -244,40 +253,6 @@ export default function StartHerePage() {
 
             <main className="max-w-5xl mx-auto px-6 pt-24 md:pt-36 pb-32 relative z-10 animate-[fadeIn_0.5s_ease-out] motion-reduce:animate-none">
                 {/* Navigation */}
-                <nav
-                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900/60 pb-6 text-xs font-mono uppercase tracking-widest"
-                    aria-label="Page navigation"
-                >
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-200 group"
-                    >
-                        <span
-                            className="transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transform-none"
-                            aria-hidden="true"
-                        >&rarr;</span>
-                        <span>NOMADLIFEXP</span>
-                    </Link>
-
-                    <ol className="flex items-center gap-3">
-                        <li>
-                            <Link
-                                href="/"
-                                className="text-white hover:text-cyan-400 transition-colors duration-200"
-                            >
-                                Home
-                            </Link>
-                        </li>
-
-                        <li className="text-neutral-800" aria-hidden="true">
-                            /
-                        </li>
-
-                        <li className="text-cyan-400" aria-current="page">
-                            Start Here
-                        </li>
-                    </ol>
-                </nav>
 
                 {/* Hero Section */}
                 <div className="grid md:grid-cols-3 gap-8 lg:gap-12 items-start mb-16">

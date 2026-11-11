@@ -196,41 +196,19 @@ export default function BlogV2Page() {
 
     return (
         <div className="relative min-h-screen bg-black text-white overflow-hidden antialiased">
+            <div
+                className="absolute inset-x-0 top-0 z-0 h-screen min-h-screen w-full bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "url('/images/Blog.jpg')" }}
+                aria-hidden="true"
+            />
+            <div
+                className="absolute inset-x-0 top-0 z-[1] h-screen bg-gradient-to-b from-black/65 via-black/60 to-black pointer-events-none"
+                aria-hidden="true"
+            />
             <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
             <main className="relative z-10 max-w-7xl mx-auto px-6 py-28">
-                <nav
-                    className="flex flex-col gap-3 border-b border-neutral-900 pb-6 mb-16 font-mono text-xs tracking-[0.3em] uppercase"
-                    aria-label="Page navigation"
-                >
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-white hover:text-cyan-400 transition-colors"
-                    >
-                        <span aria-hidden="true">←</span>
-                        <span>NOMADLIFEXP</span>
-                    </Link>
-
-                    <ol className="flex items-center gap-3">
-                        <li>
-                            <Link
-                                href="/"
-                                className="text-white hover:text-cyan-400 transition-colors"
-                            >
-                                Home
-                            </Link>
-                        </li>
-
-                        <li aria-hidden="true" className="text-neutral-500">
-                            /
-                        </li>
-
-                        <li className="text-cyan-400" aria-current="page">
-                            Blog
-                        </li>
-                    </ol>
-                </nav>
 
                 <header className="max-w-5xl mb-20">
                     <h1 className="text-5xl md:text-7xl font-black uppercase leading-none tracking-tight">

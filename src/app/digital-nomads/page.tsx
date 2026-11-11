@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://www.nomadlifexp.com';
@@ -67,7 +67,7 @@ const pillars = [
         description:
             'Build structure, consistency, focus, and personal standards when your environment no longer provides them for you. Create routines that travel with you.',
         href: '/blog/category/discipline/',
-        cta: 'EXPLORE DISCIPLINE →',
+        cta: 'EXPLORE DISCIPLINE â†’',
     },
     {
         number: '02',
@@ -76,7 +76,7 @@ const pillars = [
         description:
             'Build strength, conditioning, mobility, and physical capability without relying on a permanent gym or predictable training environment.',
         href: '/blog/category/fitness/',
-        cta: 'EXPLORE NOMAD FITNESS →',
+        cta: 'EXPLORE NOMAD FITNESS â†’',
     },
     {
         number: '03',
@@ -85,7 +85,7 @@ const pillars = [
         description:
             'Use movement, breath, mobility, and awareness to support recovery and physical balance through flights, changing schedules, and life on the road.',
         href: '/blog/category/yoga/',
-        cta: 'EXPLORE NOMAD YOGA →',
+        cta: 'EXPLORE NOMAD YOGA â†’',
     },
     {
         number: '04',
@@ -94,7 +94,7 @@ const pillars = [
         description:
             'Develop mental clarity, adaptability, perspective, and resilience while navigating unfamiliar environments, uncertainty, and constant change.',
         href: '/blog/category/mindset/',
-        cta: 'EXPLORE NOMAD MINDSET →',
+        cta: 'EXPLORE NOMAD MINDSET â†’',
     },] as const;
 
 
@@ -350,34 +350,42 @@ export default function DigitalNomadsPage() {
 
                                         <section
     aria-labelledby="page-title"
-    className="relative isolate flex min-h-[100svh] w-screen -ml-[calc((100vw-100%)/2)] items-center overflow-hidden bg-[#03050c] text-left"
+    className="relative w-screen -ml-[calc((100vw-100%)/2)] bg-[#03050c] text-left"
 >
-    <div
-        className="absolute inset-0 -z-20 bg-cover bg-center"
-        style={{
-            backgroundImage: "url('/images/about/Digital-nomad.png')",
-        }}
-        aria-hidden="true"
-    />
+    {/* FULL-SCREEN CINEMATIC IMAGE */}
+    <div className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-black">
 
-    <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/65 to-black/20"
-        aria-hidden="true"
-    />
+        <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+                backgroundImage: "url('/images/about/Digital-nomad.png')",
+            }}
+            aria-hidden="true"
+        />
 
-    <div
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-transparent to-black/60"
-        aria-hidden="true"
-    />
+        <div
+            className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/20"
+            aria-hidden="true"
+        />
 
-    <div className="mx-auto w-full max-w-7xl px-6 py-32 md:px-12">
-        <p className="mb-6 font-mono text-xs tracking-[0.3em] text-cyan-400">
-            LIFE IN MOTION.
-        </p>
+        <div
+            className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60"
+            aria-hidden="true"
+        />
+
+        <div className="absolute left-6 top-10 z-10 md:left-12 md:top-12">
+            <p className="font-mono text-xs tracking-[0.3em] text-cyan-400">
+                LIFE IN MOTION.
+            </p>
+        </div>
+    </div>
+
+    {/* CONTENT BELOW IMAGE */}
+    <div className="mx-auto w-full max-w-7xl px-6 py-16 md:px-12 md:py-24">
 
         <h1
             id="page-title"
-            className="max-w-5xl text-5xl font-black uppercase leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl"
+            className="max-w-5xl text-4xl font-black uppercase leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl"
         >
             LIVE ANYWHERE.
             <br />
@@ -397,7 +405,7 @@ export default function DigitalNomadsPage() {
                 href="#systems"
                 className="bg-cyan-400 px-7 py-4 font-mono text-xs font-bold text-black hover:bg-cyan-300"
             >
-                EXPLORE THE SYSTEM →
+                EXPLORE THE SYSTEM &#8594;
             </Link>
 
             <Link
@@ -407,6 +415,7 @@ export default function DigitalNomadsPage() {
                 READ THE FIELD MANUAL
             </Link>
         </div>
+
     </div>
 </section>
 
@@ -508,7 +517,7 @@ export default function DigitalNomadsPage() {
                                         </h3>
 
                                         <span className="mt-3 block font-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-cyan-400">
-                                            EXPLORE →
+                                            EXPLORE â†’
                                         </span>
                                     </Link>
                                 ))}
@@ -843,7 +852,7 @@ export default function DigitalNomadsPage() {
                                         <li>Build practical nutrition habits around locally available food.</li>
                                     </ul>
                                     <Link href="/blog/posts/fitness-for-digital-nomads/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE FITNESS FOR DIGITAL NOMADS →
+                                        EXPLORE FITNESS FOR DIGITAL NOMADS â†’
                                     </Link>
                                 </article>
 
@@ -867,7 +876,7 @@ export default function DigitalNomadsPage() {
                                         <li>Review and adjust your schedule after every major relocation.</li>
                                     </ul>
                                     <Link href="/blog/posts/self-discipline-while-traveling/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE SELF-DISCIPLINE →
+                                        EXPLORE SELF-DISCIPLINE â†’
                                     </Link>
                                 </article>
 
@@ -892,7 +901,7 @@ export default function DigitalNomadsPage() {
                                         <li>Schedule breaks and recovery instead of relying on constant stimulation.</li>
                                     </ul>
                                     <Link href="/blog/posts/mental-clarity-for-digital-nomads/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE MENTAL CLARITY →
+                                        EXPLORE MENTAL CLARITY â†’
                                     </Link>
                                 </article>
 
@@ -917,7 +926,7 @@ export default function DigitalNomadsPage() {
                                         <li>Keep essential habits while allowing flexible execution.</li>
                                     </ul>
                                     <Link href="/digital-nomads#systems" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE THE NOMAD FRAMEWORK →
+                                        EXPLORE THE NOMAD FRAMEWORK â†’
                                     </Link>
                                 </article>
 
@@ -943,7 +952,7 @@ export default function DigitalNomadsPage() {
                                         <li>Use challenges as opportunities for learning and recalibration.</li>
                                     </ul>
                                     <Link href="/blog/posts/sanatana-dharma-self-mastery-conscious-living/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE SELF-MASTERY →
+                                        EXPLORE SELF-MASTERY â†’
                                     </Link>
                                 </article>
 
@@ -1015,7 +1024,7 @@ export default function DigitalNomadsPage() {
                                         </p>
 
                                         <span className="mt-5 block font-mono text-xs text-cyan-400">
-                                            READ →
+                                            READ â†’
                                         </span>
                                     </Link>
                                 ))}
@@ -1026,7 +1035,7 @@ export default function DigitalNomadsPage() {
                                     href="/blog/"
                                     className="inline-flex min-h-11 items-center font-mono text-xs uppercase tracking-widest text-cyan-400 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                                 >
-                                    EXPLORE THE NOMAD BLOG →
+                                    EXPLORE THE NOMAD BLOG â†’
                                 </Link>
                             </div>
 
@@ -1082,7 +1091,7 @@ export default function DigitalNomadsPage() {
                                         </p>
 
                                         <span className="mt-4 block font-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-cyan-400">
-                                            EXPLORE →
+                                            EXPLORE â†’
                                         </span>
                                     </Link>
                                 ))}
@@ -1131,14 +1140,14 @@ export default function DigitalNomadsPage() {
                                             href="/about/"
                                             className="inline-flex min-h-10 items-center border border-white/15 px-5 py-3 font-mono text-xs text-cyan-400 transition hover:border-cyan-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                                         >
-                                            ABOUT NOMADLIFEXP →
+                                            ABOUT NOMADLIFEXP â†’
                                         </Link>
 
                                         <Link
                                             href="/"
                                             className="inline-flex min-h-10 items-center border border-white/15 px-5 py-3 font-mono text-xs text-zinc-400 transition hover:border-cyan-400 hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                                         >
-                                            EXPLORE THE SYSTEM →
+                                            EXPLORE THE SYSTEM â†’
                                         </Link>
                                     </div>
                                 </div>
@@ -1176,14 +1185,14 @@ export default function DigitalNomadsPage() {
                                 href="/blog/posts/fitness-for-digital-nomads/"
                                 className="inline-flex min-h-12 items-center justify-center bg-cyan-500 px-7 py-4 font-mono text-xs font-bold tracking-wider text-black transition hover:bg-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                             >
-                                START WITH FITNESS →
+                                START WITH FITNESS â†’
                             </Link>
 
                             <Link
                                 href="/blog/posts/self-discipline-while-traveling/"
                                 className="inline-flex min-h-12 items-center justify-center border border-white/15 px-7 py-4 font-mono text-xs font-bold tracking-wider text-zinc-300 transition hover:border-cyan-400 hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                             >
-                                BUILD DISCIPLINE →
+                                BUILD DISCIPLINE â†’
                             </Link>
 
                         </div>
@@ -1245,7 +1254,7 @@ export default function DigitalNomadsPage() {
                             </nav>
 
                             <div className="mt-8 text-[10px] font-mono uppercase tracking-widest text-white">
-                                © {new Date().getFullYear()} NomadLifeXP
+                                Â© {new Date().getFullYear()} NomadLifeXP
                             </div>
 
                         </div>
@@ -1256,6 +1265,7 @@ export default function DigitalNomadsPage() {
         </>
     );
 }
+
 
 
 

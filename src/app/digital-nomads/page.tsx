@@ -67,7 +67,7 @@ const pillars = [
         description:
             'Build structure, consistency, focus, and personal standards when your environment no longer provides them for you. Create routines that travel with you.',
         href: '/blog/category/discipline/',
-        cta: 'EXPLORE DISCIPLINE â†’',
+        cta: 'EXPLORE DISCIPLINE →',
     },
     {
         number: '02',
@@ -76,7 +76,7 @@ const pillars = [
         description:
             'Build strength, conditioning, mobility, and physical capability without relying on a permanent gym or predictable training environment.',
         href: '/blog/category/fitness/',
-        cta: 'EXPLORE NOMAD FITNESS â†’',
+        cta: 'EXPLORE NOMAD FITNESS →',
     },
     {
         number: '03',
@@ -85,7 +85,7 @@ const pillars = [
         description:
             'Use movement, breath, mobility, and awareness to support recovery and physical balance through flights, changing schedules, and life on the road.',
         href: '/blog/category/yoga/',
-        cta: 'EXPLORE NOMAD YOGA â†’',
+        cta: 'EXPLORE NOMAD YOGA →',
     },
     {
         number: '04',
@@ -94,7 +94,7 @@ const pillars = [
         description:
             'Develop mental clarity, adaptability, perspective, and resilience while navigating unfamiliar environments, uncertainty, and constant change.',
         href: '/blog/category/mindset/',
-        cta: 'EXPLORE NOMAD MINDSET â†’',
+        cta: 'EXPLORE NOMAD MINDSET →',
     },] as const;
 
 
@@ -517,7 +517,7 @@ export default function DigitalNomadsPage() {
                                         </h3>
 
                                         <span className="mt-3 block font-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-cyan-400">
-                                            EXPLORE â†’
+                                            EXPLORE →
                                         </span>
                                     </Link>
                                 ))}
@@ -852,7 +852,7 @@ export default function DigitalNomadsPage() {
                                         <li>Build practical nutrition habits around locally available food.</li>
                                     </ul>
                                     <Link href="/blog/posts/fitness-for-digital-nomads/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE FITNESS FOR DIGITAL NOMADS â†’
+                                        EXPLORE FITNESS FOR DIGITAL NOMADS →
                                     </Link>
                                 </article>
 
@@ -876,7 +876,7 @@ export default function DigitalNomadsPage() {
                                         <li>Review and adjust your schedule after every major relocation.</li>
                                     </ul>
                                     <Link href="/blog/posts/self-discipline-while-traveling/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE SELF-DISCIPLINE â†’
+                                        EXPLORE SELF-DISCIPLINE →
                                     </Link>
                                 </article>
 
@@ -901,7 +901,7 @@ export default function DigitalNomadsPage() {
                                         <li>Schedule breaks and recovery instead of relying on constant stimulation.</li>
                                     </ul>
                                     <Link href="/blog/posts/mental-clarity-for-digital-nomads/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE MENTAL CLARITY â†’
+                                        EXPLORE MENTAL CLARITY →
                                     </Link>
                                 </article>
 
@@ -926,7 +926,7 @@ export default function DigitalNomadsPage() {
                                         <li>Keep essential habits while allowing flexible execution.</li>
                                     </ul>
                                     <Link href="/digital-nomads#systems" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE THE NOMAD FRAMEWORK â†’
+                                        EXPLORE THE NOMAD FRAMEWORK →
                                     </Link>
                                 </article>
 
@@ -952,7 +952,7 @@ export default function DigitalNomadsPage() {
                                         <li>Use challenges as opportunities for learning and recalibration.</li>
                                     </ul>
                                     <Link href="/blog/posts/sanatana-dharma-self-mastery-conscious-living/" className="mt-6 inline-flex font-mono text-xs text-cyan-400 hover:text-white">
-                                        EXPLORE SELF-MASTERY â†’
+                                        EXPLORE SELF-MASTERY →
                                     </Link>
                                 </article>
 
@@ -1024,7 +1024,7 @@ export default function DigitalNomadsPage() {
                                         </p>
 
                                         <span className="mt-5 block font-mono text-xs text-cyan-400">
-                                            READ â†’
+                                            READ →
                                         </span>
                                     </Link>
                                 ))}
@@ -1035,7 +1035,7 @@ export default function DigitalNomadsPage() {
                                     href="/blog/"
                                     className="inline-flex min-h-11 items-center font-mono text-xs uppercase tracking-widest text-cyan-400 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                                 >
-                                    EXPLORE THE NOMAD BLOG â†’
+                                    EXPLORE THE NOMAD BLOG →
                                 </Link>
                             </div>
 
@@ -1091,7 +1091,7 @@ export default function DigitalNomadsPage() {
                                         </p>
 
                                         <span className="mt-4 block font-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-cyan-400">
-                                            EXPLORE â†’
+                                            EXPLORE →
                                         </span>
                                     </Link>
                                 ))}
@@ -1140,14 +1140,14 @@ export default function DigitalNomadsPage() {
                                             href="/about/"
                                             className="inline-flex min-h-10 items-center border border-white/15 px-5 py-3 font-mono text-xs text-cyan-400 transition hover:border-cyan-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                                         >
-                                            ABOUT NOMADLIFEXP â†’
+                                            ABOUT NOMADLIFEXP →
                                         </Link>
 
                                         <Link
                                             href="/"
                                             className="inline-flex min-h-10 items-center border border-white/15 px-5 py-3 font-mono text-xs text-zinc-400 transition hover:border-cyan-400 hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                                         >
-                                            EXPLORE THE SYSTEM â†’
+                                            EXPLORE THE SYSTEM →
                                         </Link>
                                     </div>
                                 </div>
@@ -1185,14 +1185,14 @@ export default function DigitalNomadsPage() {
                                 href="/blog/posts/fitness-for-digital-nomads/"
                                 className="inline-flex min-h-12 items-center justify-center bg-cyan-500 px-7 py-4 font-mono text-xs font-bold tracking-wider text-black transition hover:bg-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                             >
-                                START WITH FITNESS â†’
+                                START WITH FITNESS →
                             </Link>
 
                             <Link
                                 href="/blog/posts/self-discipline-while-traveling/"
                                 className="inline-flex min-h-12 items-center justify-center border border-white/15 px-7 py-4 font-mono text-xs font-bold tracking-wider text-zinc-300 transition hover:border-cyan-400 hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
                             >
-                                BUILD DISCIPLINE â†’
+                                BUILD DISCIPLINE →
                             </Link>
 
                         </div>
@@ -1254,7 +1254,7 @@ export default function DigitalNomadsPage() {
                             </nav>
 
                             <div className="mt-8 text-[10px] font-mono uppercase tracking-widest text-white">
-                                Â© {new Date().getFullYear()} NomadLifeXP
+                                © {new Date().getFullYear()} NomadLifeXP
                             </div>
 
                         </div>

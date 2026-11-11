@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 import ClientSiteProtection from "@/components/ClientSiteProtection";
@@ -113,7 +113,7 @@ const SYSTEMS_LIST: readonly SystemDetail[] = [
       "A resilient mindset is not about pretending everything is easy. It is about developing the perspective and confidence to respond to difficulty instead of being controlled by it.",
     primaryOutcome:
       "Greater resilience. Stronger confidence. A growth oriented mind.",
-    href: "https://www.nomadlifexp.com/blog/category/mindset",
+    href: "/blog/category/mindset",
   },
 ];
 
@@ -848,6 +848,8 @@ export default function HomePage() {
     </div>
   );
 }
+
+
 
 
 

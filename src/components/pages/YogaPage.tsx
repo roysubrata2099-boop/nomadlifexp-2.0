@@ -303,7 +303,7 @@ export default function YogaPage() {
     return (
         <main className="min-h-screen bg-black text-white antialiased">
             <PillarHero
-                image="/images/yoga.jpg"
+                image="/images/yoga-hero.webp"
                 imageWidth={1024}
                 imageHeight={1536}
                 title="Find Your Alignment"
@@ -1631,3 +1631,6 @@ export default function YogaPage() {
         </main>
     );
 }
+
+
+

@@ -294,7 +294,7 @@ export default function DisciplinePage() {
     return (
         <main className="min-h-screen bg-black text-white antialiased">
                         <PillarHero
-                image="/images/Descipline.jpg"
+                image="/images/discipline-hero.webp"
                 imageWidth={1024}
                 imageHeight={1536}
                 title="Become Unbreakable"
@@ -1020,3 +1020,6 @@ export default function DisciplinePage() {
         </main>
     );
 }
+
+
+

@@ -369,7 +369,7 @@ export default function MindsetPage() {
     return (
         <main className="min-h-screen bg-black text-white antialiased">
             <PillarHero
-                image="/images/Mindset.jpg"
+                image="/images/mindset-hero.webp"
                 imageWidth={1200}
                 imageHeight={1600}
                 title="Rewrite Your Limits"
@@ -1475,3 +1475,6 @@ export default function MindsetPage() {
         </main>
     );
 }
+
+
+

@@ -103,3 +103,13 @@ indexing-audit/
 encoding-backup/
 
 pre-commit-backup/
+
+# Local backup files
+backup-before-*/
+encoding-backups/
+pillar-hero-backup-*/
+*.backup
+*.before-*
+*.redirect-backup-*
+*.encoding-backup.*
+

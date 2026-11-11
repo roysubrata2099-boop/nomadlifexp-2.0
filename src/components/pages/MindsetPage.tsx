@@ -389,63 +389,11 @@ export default function MindsetPage() {
 
                 {/* Visual Background Accent */}
 
-                <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />                {/* Navigation */}
-                <nav
-                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900 pb-6"
-                    aria-label="Page navigation"
-                >
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors group"
-                    >
-                        <span
-                            className="transition-transform duration-200 group-hover:-translate-x-1"
-                            aria-hidden="true"
-                        >
-                            →
-                        </span>
-                        <span>NOMADLIFEXP</span>
-                    </Link>
-
-                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
-                        <li>
-                            <Link
-                                href="/"
-                                className="text-white hover:text-cyan-400 transition-colors"
-                            >
-                                Home
-                            </Link>
-                        </li>
-
-                        <li aria-hidden="true" className="text-neutral-500">
-                            /
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/blog"
-                                className="text-white hover:text-cyan-400 transition-colors"
-                            >
-                                Blog
-                            </Link>
-                        </li>
-
-                        <li aria-hidden="true" className="text-neutral-500">
-                            /
-                        </li>
-
-                        <li className="text-cyan-400" aria-current="page">
-                            Mindset
-                        </li>
-                    </ol>
-                </nav>
+                <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
 
                 {/* Page Header */}
 
                 <header className="relative z-10 mb-24">
-                    <p className="mb-6 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                        NOMADLIFEXP // COGNITIVE OPERATING LAYER
-                    </p>
 
                     <h1 className="text-5xl md:text-7xl font-black uppercase leading-none">
                         Mindset & Mental Resilience
@@ -497,7 +445,7 @@ export default function MindsetPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 — Awareness",
+                                title: "01 - Awareness",
                                 subtext:
                                     "Recognize Unconscious Patterns",
                                 text:
@@ -506,7 +454,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "02",
-                                title: "02 — Control",
+                                title: "02 - Control",
                                 subtext:
                                     "Manage Attention and Reactions",
                                 text:
@@ -515,7 +463,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "03",
-                                title: "03 — Reprogramming",
+                                title: "03 - Reprogramming",
                                 subtext:
                                     "Rebuild Mental Frameworks",
                                 text:
@@ -524,7 +472,7 @@ export default function MindsetPage() {
 
                             {
                                 id: "04",
-                                title: "04 — Execution",
+                                title: "04 - Execution",
                                 subtext:
                                     "Convert Clarity Into Action",
                                 text:
@@ -1475,6 +1423,7 @@ export default function MindsetPage() {
         </main>
     );
 }
+
 
 
 

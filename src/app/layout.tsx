@@ -3,6 +3,7 @@ import Script from "next/script";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import MediaProtection from "@/components/MediaProtection";
 
 const SITE_URL = "https://www.nomadlifexp.com";
@@ -214,6 +215,7 @@ export default function RootLayout({
                     />
                 )}
 
+                <Navbar />
                 <main className="flex-grow">
                     {children}
                 </main>

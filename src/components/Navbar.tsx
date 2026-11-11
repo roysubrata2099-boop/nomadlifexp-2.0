@@ -1,79 +1,68 @@
-﻿"use client";
+"use client";
 
-import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-/* ---------------- OPERATIONAL NAVIGATION ENGINE ---------------- */
+const pillarPages = [
+    { label: "Discipline", href: "/blog/category/discipline" },
+    { label: "Fitness", href: "/blog/category/fitness" },
+    { label: "Mindset", href: "/blog/category/mindset" },
+    { label: "Yoga", href: "/yoga" },
+];
+
 export default function Navbar() {
     const currentPath = usePathname() || "/";
 
-    const navigationNodes = [
-        { label: "Home", href: "/" },
-        { label: "Systems", href: "/discipline-system" },
-        { label: "Blog", href: "/blog" },
-        { label: "About", href: "/about" },
-        { label: "Start Here", href: "/start-here" }
-    ];
-
-    const isHomepage = currentPath === "/";
+    const currentPillar = pillarPages.find(
+        (page) =>
+            currentPath === page.href ||
+            currentPath.startsWith(`${page.href}/`) ||
+            (page.label === "Yoga" && currentPath === "/yoga")
+    );
 
     return (
-        <header className="w-full border-b border-neutral-900 bg-black text-neutral-200 selection:bg-neutral-800 selection:text-white sticky top-0 z-50 backdrop-blur-md bg-black/95 antialiased">
-            <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+        <header className="sticky top-0 z-50 w-full border-b border-neutral-900 bg-black/95 text-neutral-200 backdrop-blur-md">
+            <nav
+                className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between"
+                aria-label="Main navigation"
+            >
+                <Link
+                    href="/"
+                    className="font-mono text-sm font-black tracking-wider text-white transition-colors hover:text-cyan-400"
+                >
+                    NOMADLIFEXP
+                </Link>
 
-                {/* LOGO & ESCAPE VECTOR ROOT GROUP */}
-                <div className="flex items-center justify-center gap-2">
-
-                    {/* CONDITIONAL BACK TO HOME NAV NODE */}
-                    {!isHomepage && (
-                        <Link
-                            href="/"
-                            className="text-neutral-500 hover:text-cyan-400 transition-colors duration-200 text-sm font-mono pr-2 border-r border-white/10 group flex items-center justify-center"
-                            title="Return to Homepage"
-                        >
-                            <span className="transform group-hover:-translate-x-1 transition-transform duration-200 font-bold">
-                                &larr;
-                            </span>
-                        </Link>
-                    )}
-
-                    {/* ABSOLUTE CASE-PROTECTED BRAND LOGO */}
+                <div className="flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-widest">
                     <Link
                         href="/"
-                        className="font-black text-white tracking-wider text-sm font-mono hover:text-neutral-300 transition-colors block"
+                        className="text-neutral-300 transition-colors hover:text-cyan-400"
                     >
-                        NomadLifeXP // Sys
+                        Home
                     </Link>
-                </div>
 
-                {/* RESPONSIVE SCALING LINK DECK */}
-                <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-xs font-mono tracking-widest uppercase">
-                    {navigationNodes.map((node) => {
-                        const isActive =
-                            currentPath === node.href ||
-                            (node.href !== "/" && currentPath.startsWith(`${node.href}/`));
+                    <span className="text-neutral-600">/</span>
 
-                        return (
-                            <Link
-                                key={node.href}
-                                href={node.href}
-                                className={`transition-colors py-1 relative group block ${isActive
-                                        ? "text-white font-bold"
-                                        : "text-neutral-500 hover:text-neutral-200"
-                                    }`}
+                    <Link
+                        href="/blog"
+                        className="text-neutral-300 transition-colors hover:text-cyan-400"
+                    >
+                        Blog
+                    </Link>
+
+                    {currentPillar && (
+                        <>
+                            <span className="text-neutral-600">/</span>
+                            <span
+                                className="font-bold text-cyan-400"
+                                aria-current="page"
                             >
-                                {isActive && (
-                                    <span className="text-cyan-400 mr-1 animate-pulse">{"//"}</span>
-                                )}
-                                {node.label}
-                            </Link>
-                        );
-                    })}
+                                {currentPillar.label}
+                            </span>
+                        </>
+                    )}
                 </div>
-
             </nav>
         </header>
     );
 }
-

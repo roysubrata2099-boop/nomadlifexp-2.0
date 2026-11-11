@@ -335,62 +335,10 @@ export default function FitnessPage() {
                 <div
                     aria-hidden="true"
                     className="pointer-events-none absolute left-1/3 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[150px]"
-                />                {/* Navigation */}
-                <nav
-                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900 pb-6"
-                    aria-label="Page navigation"
-                >
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors group"
-                    >
-                        <span
-                            className="transition-transform duration-200 group-hover:-translate-x-1"
-                            aria-hidden="true"
-                        >
-                            →
-                        </span>
-                        <span>NOMADLIFEXP</span>
-                    </Link>
-
-                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
-                        <li>
-                            <Link
-                                href="/"
-                                className="text-white hover:text-cyan-400 transition-colors"
-                            >
-                                Home
-                            </Link>
-                        </li>
-
-                        <li aria-hidden="true" className="text-neutral-500">
-                            /
-                        </li>
-
-                        <li>
-                            <Link
-                                href="/blog"
-                                className="text-white hover:text-cyan-400 transition-colors"
-                            >
-                                Blog
-                            </Link>
-                        </li>
-
-                        <li aria-hidden="true" className="text-neutral-500">
-                            /
-                        </li>
-
-                        <li className="text-cyan-400" aria-current="page">
-                            Fitness
-                        </li>
-                    </ol>
-                </nav>
+                />
 
                 {/* Hero */}
                 <header className="relative z-10 mb-24">
-                    <p className="mb-6 font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                        NOMADLIFEXP // HUMAN EVOLUTION SYSTEM
-                    </p>
 
                     <h1 className="max-w-6xl text-5xl font-black uppercase leading-none md:text-7xl">
                         Fitness: The Physical Architecture of Resilience
@@ -457,7 +405,7 @@ export default function FitnessPage() {
                         {[
                             {
                                 id: "01",
-                                title: "01 — Foundation",
+                                title: "01 - Foundation",
                                 subtext:
                                     "Establish baseline strength, joint integrity, and movement patterns.",
                                 text:
@@ -465,7 +413,7 @@ export default function FitnessPage() {
                             },
                             {
                                 id: "02",
-                                title: "02 — Adaptation",
+                                title: "02 - Adaptation",
                                 subtext:
                                     "Use progressive resistance, movement practice, and conditioning.",
                                 text:
@@ -473,7 +421,7 @@ export default function FitnessPage() {
                             },
                             {
                                 id: "03",
-                                title: "03 — Consistency",
+                                title: "03 - Consistency",
                                 subtext:
                                     "Build sustainable training systems that survive changing schedules and environments.",
                                 text:
@@ -481,7 +429,7 @@ export default function FitnessPage() {
                             },
                             {
                                 id: "04",
-                                title: "04 — Autonomy",
+                                title: "04 - Autonomy",
                                 subtext:
                                     "Build a resilient body ready for movement, exploration, and changing demands.",
                                 text:
@@ -913,3 +861,4 @@ export default function FitnessPage() {
         </main>
     );
 }
+

@@ -1,4 +1,4 @@
-﻿// next.config.ts
+// next.config.ts
 
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
@@ -29,6 +29,7 @@ const nextConfig: NextConfig = {
 
   images: {
     unoptimized: false,
+    qualities: [75, 90],
 
     deviceSizes: [
       640, 750, 828, 960, 1080,

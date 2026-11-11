@@ -1,4 +1,5 @@
 import "server-only";
+import PillarHero from "@/components/PillarHero";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -315,6 +316,13 @@ export default function FitnessPage() {
 
     return (
         <main className="min-h-screen bg-black text-white antialiased">
+            <PillarHero
+                image="/images/Fitness.jpg"
+                imageWidth={1289}
+                imageHeight={2268}
+                title="Stronger Every Day"
+                subtitle="Train with purpose. Move with intention."
+            />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -340,7 +348,7 @@ export default function FitnessPage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            →
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -905,4 +913,3 @@ export default function FitnessPage() {
         </main>
     );
 }
-

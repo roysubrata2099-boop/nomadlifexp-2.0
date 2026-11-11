@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -350,80 +349,66 @@ export default function DigitalNomadsPage() {
                     ================================================== */}
 
                                         <section
-                        aria-labelledby="page-title"
-                        className="border-b border-white/10 px-4 py-20 text-center md:py-24"
-                    >
-                        <div className="mx-auto max-w-5xl">
+    aria-labelledby="page-title"
+    className="relative isolate flex min-h-[100svh] w-screen -ml-[calc((100vw-100%)/2)] items-center overflow-hidden bg-[#03050c] text-left"
+>
+    <div
+        className="absolute inset-0 -z-20 bg-cover bg-center"
+        style={{
+            backgroundImage: "url('/images/about/Digital-nomad.png')",
+        }}
+        aria-hidden="true"
+    />
 
-                            <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-400 md:text-sm">
-                                LIFE IN MOTION.
-                            </p>
+    <div
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/65 to-black/20"
+        aria-hidden="true"
+    />
 
-                            <h1
-                                id="page-title"
-                                className="mx-auto max-w-5xl text-4xl font-black uppercase leading-tight tracking-tight text-white sm:text-5xl md:text-7xl"
-                            >
-                                LIVE ANYWHERE.
-                                <br />
-                                <span className="text-cyan-400">
-                                    ADAPT EVERYWHERE.
-                                </span>
-                                <br />
-                                BUILD YOURSELF EVERYWHERE.
-                            </h1>
+    <div
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-transparent to-black/60"
+        aria-hidden="true"
+    />
 
-                            <p className="mx-auto mt-7 max-w-3xl text-lg font-medium text-slate-200 md:text-2xl">
-                                Your environment changes. Your foundation doesn&apos;t.
-                            </p>
+    <div className="mx-auto w-full max-w-7xl px-6 py-32 md:px-12">
+        <p className="mb-6 font-mono text-xs tracking-[0.3em] text-cyan-400">
+            LIFE IN MOTION.
+        </p>
 
-                            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-400 md:text-lg">
-                                A digital nomad lifestyle gives you freedom, but freedom can also remove the structures that make consistency easy. NomadLifeXP is a human optimization system for building the health, fitness, mindset, productivity, discipline, and awareness required to thrive while living and working anywhere.
-                            </p>
+        <h1
+            id="page-title"
+            className="max-w-5xl text-5xl font-black uppercase leading-[0.98] tracking-tight text-white md:text-7xl lg:text-8xl"
+        >
+            LIVE ANYWHERE.
+            <br />
+            ADAPT EVERYWHERE.
+            <br />
+            BUILD YOURSELF EVERYWHERE.
+        </h1>
 
-                            <div
-                                aria-label="NomadLifeXP core systems"
-                                className="mt-8 flex flex-wrap justify-center gap-x-3 gap-y-3 font-mono text-xs font-semibold tracking-widest text-cyan-400 md:text-sm"
-                            >
-                                <span>DISCIPLINE</span>
-                                <span aria-hidden="true">&middot;</span>
-                                <span>FITNESS</span>
-                                <span aria-hidden="true">&middot;</span>
-                                <span>YOGA</span>
-                                <span aria-hidden="true">&middot;</span>
-                                <span>MINDSET</span>
-                            </div>
+        <p className="mt-8 max-w-2xl text-base leading-relaxed text-white/80 md:text-xl">
+            A human optimization system for building the health,
+            fitness, mindset, productivity, discipline, and
+            awareness required to thrive anywhere.
+        </p>
 
-                            {/* CENTERED FULL PORTRAIT IMAGE */}
-                            <div className="mx-auto mt-14 w-full max-w-4xl overflow-hidden border border-white/10 bg-[#03050c] shadow-2xl shadow-cyan-950/20">
-                                <Image
-                                    src="/images/about/Digital-nomad.png"
-                                    alt="Digital nomad lifestyle representing freedom, travel, adaptability, and personal development"
-                                    width={1024}
-                                    height={1536}
-                                    priority
-                                    sizes="(max-width: 768px) 100vw, 896px"
-                                    className="mx-auto h-auto w-full object-contain"
-                                />
-                            </div>
+        <div className="mt-9 flex flex-wrap gap-4">
+            <Link
+                href="#systems"
+                className="bg-cyan-400 px-7 py-4 font-mono text-xs font-bold text-black hover:bg-cyan-300"
+            >
+                EXPLORE THE SYSTEM →
+            </Link>
 
-                            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                                <Link
-                                    href="#systems"
-                                    className="inline-flex min-h-12 items-center justify-center bg-cyan-500 px-7 py-4 font-mono text-xs font-bold tracking-wider text-black transition hover:bg-cyan-400"
-                                >
-                                    EXPLORE THE SYSTEM &rarr;
-                                </Link>
-
-                                <Link
-                                    href="/blog/"
-                                    className="inline-flex min-h-12 items-center justify-center border border-white/20 px-7 py-4 font-mono text-xs font-bold tracking-wider text-zinc-300 transition hover:border-cyan-400 hover:text-cyan-400"
-                                >
-                                    READ THE FIELD MANUAL
-                                </Link>
-                            </div>
-
-                        </div>
-                    </section>
+            <Link
+                href="/blog/"
+                className="border border-white/40 px-7 py-4 font-mono text-xs font-bold text-white hover:border-cyan-400"
+            >
+                READ THE FIELD MANUAL
+            </Link>
+        </div>
+    </div>
+</section>
 
 {/* =================================================
                         CORE POSITIONING
@@ -464,10 +449,7 @@ export default function DigitalNomadsPage() {
                                     </p>
 
                                     <p className="mt-5 text-2xl font-bold leading-tight text-white md:text-3xl">
-                                        Your environment changes.
-                                        <span className="block text-cyan-400">
-                                            Your foundation doesn&apos;t.
-                                        </span>
+                                        Build capabilities that travel with you.
                                     </p>
 
                                     <p className="mt-5 text-sm leading-relaxed text-zinc-400">
@@ -536,7 +518,7 @@ export default function DigitalNomadsPage() {
                                 aria-hidden="true"
                                 className="my-6 text-center font-mono text-cyan-400"
                             >
-                                ↓
+                                &ldquo;
                             </div>
 
                             <div className="border border-cyan-400/30 bg-cyan-500/5 p-8 text-center">
@@ -803,37 +785,6 @@ export default function DigitalNomadsPage() {
                         </div>
                     </section>
 
-
-                    {/* =================================================
-                        CORE PHILOSOPHY
-                    ================================================== */}
-
-                    <section className="mx-auto max-w-5xl px-6 py-24 text-center md:py-32">
-
-                        <span className="font-mono text-xs uppercase tracking-widest text-cyan-400">
-                            THE NOMAD PHILOSOPHY
-                        </span>
-
-                        <h2 className="mt-4 text-3xl font-bold leading-tight md:text-6xl">
-                            Your environment changes.
-                            <span className="block text-cyan-400">
-                                Your foundation doesn&apos;t.
-                            </span>
-                        </h2>
-
-                        <p className="mx-auto mt-7 max-w-3xl leading-relaxed text-zinc-400 md:text-lg">
-                            The goal isn&apos;t to create a perfect routine that only
-                            works in one city. It&apos;s to develop systems that remain
-                            useful when the city, schedule, workspace, gym, climate,
-                            and culture change.
-                        </p>
-
-                        <p className="mx-auto mt-5 max-w-3xl leading-relaxed text-zinc-300 md:text-lg">
-                            You don&apos;t need the perfect environment. You need a
-                            foundation strong enough to adapt to imperfect ones.
-                        </p>
-
-                    </section>
 
 
 
@@ -1305,6 +1256,9 @@ export default function DigitalNomadsPage() {
         </>
     );
 }
+
+
+
 
 
 

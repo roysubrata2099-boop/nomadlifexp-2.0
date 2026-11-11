@@ -1,4 +1,5 @@
-﻿import "server-only";
+import "server-only";
+import PillarHero from "@/components/PillarHero";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -367,6 +368,13 @@ export default function MindsetPage() {
 
     return (
         <main className="min-h-screen bg-black text-white antialiased">
+            <PillarHero
+                image="/images/Mindset.jpg"
+                imageWidth={1200}
+                imageHeight={1600}
+                title="Rewrite Your Limits"
+                subtitle="Transform the way you think, act and live."
+            />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{

@@ -1,4 +1,5 @@
 import "server-only";
+import PillarHero from "@/components/PillarHero";
 
 import { getAllPosts } from "@/lib/markdown";
 import { normalizeCategory } from "@/lib/taxonomy";
@@ -292,7 +293,14 @@ export default function DisciplinePage() {
 
     return (
         <main className="min-h-screen bg-black text-white antialiased">
-            {/* Structured Data */}
+                        <PillarHero
+                image="/images/Descipline.jpg"
+                imageWidth={1024}
+                imageHeight={1536}
+                title="Become Unbreakable"
+                subtitle="Build the habits that build your future."
+            />
+{/* Structured Data */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -318,7 +326,7 @@ export default function DisciplinePage() {
                             className="transition-transform duration-200 group-hover:-translate-x-1"
                             aria-hidden="true"
                         >
-                            ←
+                            →
                         </span>
                         <span>NOMADLIFEXP</span>
                     </Link>
@@ -1012,4 +1020,3 @@ export default function DisciplinePage() {
         </main>
     );
 }
-

@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://www.nomadlifexp.com';
@@ -301,45 +301,7 @@ export default function DigitalNomadsPage() {
                     NAVBAR
                 ====================================================== */}
 
-                <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050816]/95 backdrop-blur-md">
-                    <nav
-                        aria-label="Primary navigation"
-                        className="mx-auto flex min-h-16 max-w-6xl items-center justify-between px-6"
-                    >
-                        <Link
-                            href="/"
-                            aria-label="NomadLifeXP Home"
-                            className="font-mono text-xs font-bold tracking-[0.2em] text-white transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816]"
-                        >
-                            NOMADLIFEXP
-                        </Link>
 
-                        <ol className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] sm:text-xs">
-                            <li>
-                                <Link
-                                    href="/"
-                                    className="text-zinc-400 transition hover:text-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                                >
-                                    Home
-                                </Link>
-                            </li>
-
-                            <li
-                                aria-hidden="true"
-                                className="text-zinc-600"
-                            >
-                                /
-                            </li>
-
-                            <li
-                                aria-current="page"
-                                className="text-cyan-400"
-                            >
-                                Digital Nomads
-                            </li>
-                        </ol>
-                    </nav>
-                </header>
 
 
                 <div id="main-content">

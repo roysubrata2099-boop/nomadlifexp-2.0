@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 import PillarHero from "@/components/PillarHero";
 
 import { getAllPosts } from "@/lib/markdown";
@@ -303,7 +303,7 @@ export default function YogaPage() {
     return (
         <main className="min-h-screen bg-black text-white antialiased">
             <PillarHero
-                image="/images/yoga-hero.webp"
+                image="/images/yoga.jpg"
                 imageWidth={1024}
                 imageHeight={1536}
                 title="Find Your Alignment"
@@ -1579,7 +1579,3 @@ export default function YogaPage() {
         </main>
     );
 }
-
-
-
-

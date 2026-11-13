@@ -3,16 +3,17 @@
 import { getAllPosts } from "@/lib/markdown";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-    title: "Human Optimization Masterclass Library | Discipline, Fitness, Mindset & Yoga",
-    description: "Explore the NomadLifeXP Human Optimization Masterclass Library. Learn self discipline, mental clarity, fitness consistency, yoga practices, habit systems, and personal development frameworks.",
+    title: "Human Optimization Knowledge Library | Discipline, Fitness, Mindset & Yoga",
+    description: "Explore the NomadLifeXP Human Optimization Knowledge Library. Learn self discipline, mental clarity, fitness consistency, yoga practices, habit systems, and personal development frameworks.",
     alternates: {
         canonical: "https://www.nomadlifexp.com/knowledge-index",
     },
     openGraph: {
-        title: "Human Optimization Masterclass Library",
+        title: "Human Optimization Knowledge Library",
         description: "A structured learning system covering discipline, mindset, fitness, yoga, focus, habits, and human optimization.",
         url: "https://www.nomadlifexp.com/knowledge-index",
         type: "website",
@@ -88,7 +89,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                 "@type": "CollectionPage",
                 "@id": "https://www.nomadlifexp.com/knowledge-index/#collectionpage",
                 "url": "https://www.nomadlifexp.com/knowledge-index",
-                "name": "NomadLifeXP Human Optimization Masterclass Library",
+                "name": "NomadLifeXP Human Optimization Knowledge Library",
                 "description": "A structured educational collection covering discipline, mindset, fitness, yoga and personal development.",
                 "isPartOf": { "@id": "https://www.nomadlifexp.com/#website" },
                 "about": [
@@ -136,49 +137,30 @@ export default async function KnowledgeIndexPage(props: PageProps) {
             <div className="absolute top-0 right-1/4 w-[700px] h-[700px] bg-cyan-500/[0.04] rounded-full blur-[180px] pointer-events-none" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff01_1px,transparent_1px),linear-gradient(to_bottom,#ffffff01_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)] pointer-events-none" />
 
-            <main className="max-w-7xl mx-auto px-6 pt-36 pb-32 relative z-10">
-                <nav
-                    className="mb-12 flex flex-col gap-3 border-b border-neutral-900/60 pb-6"
-                    aria-label="Page navigation"
+            <main className="max-w-7xl mx-auto px-6 pt-6 pb-32 relative z-10">
+
+
+                                <section
+                    aria-label="Knowledge Index hero image"
+                    className="relative left-1/2 -ml-[50vw] mb-16 w-screen"
                 >
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-white hover:text-cyan-400 transition-colors group"
-                    >
-                        <span
-                            className="transition-transform duration-200 group-hover:-translate-x-1"
-                            aria-hidden="true"
-                        >
-                            ←
-                        </span>
-                        <span>NOMADLIFEXP</span>
-                    </Link>
-
-                    <ol className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em]">
-                        <li>
-                            <Link
-                                href="/"
-                                className="text-white hover:text-cyan-400 transition-colors"
-                            >
-                                Home
-                            </Link>
-                        </li>
-
-                        <li aria-hidden="true" className="text-neutral-500">
-                            /
-                        </li>
-
-                        <li className="text-cyan-400" aria-current="page">
-                            Knowledge Index
-                        </li>
-                    </ol>
-                </nav>
-
-                <header className="mb-20 space-y-8">
+                    <div className="relative w-screen overflow-hidden bg-[#03060f]">
+                        <Image
+                            src="/images/Knowledge.jpg"
+                            alt="NomadLifeXP Human Optimization Knowledge Library"
+                            width={1920}
+                            height={1080}
+                            priority
+                            sizes="100vw"
+                            className="block h-auto w-full object-contain"
+                        />
+                    </div>
+                </section>
+<header className="mb-20 space-y-8">
                     <div className="flex items-center gap-3">
                         <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
                         <p className="font-mono text-xs uppercase tracking-[0.4em] text-cyan-400">
-                            NomadLifeXP // Human Optimization Masterclass
+                            NomadLifeXP // Knowledge Library
                         </p>
                     </div>
 
@@ -186,7 +168,7 @@ export default async function KnowledgeIndexPage(props: PageProps) {
                         Human Optimization
                         <br />
                         <span className="bg-gradient-to-r from-white via-neutral-300 to-cyan-400 bg-clip-text text-transparent">
-                            Masterclass Library
+                            Knowledge Library
                         </span>
                     </h1>
 

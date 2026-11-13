@@ -2,6 +2,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 const SITE_URL = "https://www.nomadlifexp.com";
 
@@ -173,61 +174,34 @@ export default function RecalibrationPage() {
                 MAIN CONTENT
             ========================================================== */}
 
-            <main className="relative z-10 mx-auto max-w-7xl px-6 pb-32 pt-36">
+            <main className="relative z-10 mx-auto max-w-7xl px-6 pb-32 pt-6">
 
                 {/* =====================================================
                     NAVIGATION
                 ====================================================== */}
 
-                <nav
-                    className="mb-16 flex flex-col gap-4 border-b border-[#16304F] pb-6"
-                    aria-label="Breadcrumb navigation"
-                >
-                    <Link
-                        href="/"
-                        className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-[#EDF6FF] transition-colors duration-200 hover:text-[#38BDF8]"
-                    >
-                        <span
-                            aria-hidden="true"
-                            className="transition-transform duration-200 group-hover:-translate-x-1"
-                        >
-                            ←
-                        </span>
 
-                        <span>NOMADLIFEXP</span>
-                    </Link>
-
-                    <ol className="flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-[0.25em]">
-                        <li>
-                            <Link
-                                href="/"
-                                className="text-[#A7B8CC] transition-colors hover:text-[#38BDF8]"
-                            >
-                                Home
-                            </Link>
-                        </li>
-
-                        <li
-                            aria-hidden="true"
-                            className="text-[#31506F]"
-                        >
-                            /
-                        </li>
-
-                        <li
-                            className="text-[#38BDF8]"
-                            aria-current="page"
-                        >
-                            Recalibration
-                        </li>
-                    </ol>
-                </nav>
 
                 {/* =====================================================
                     HERO
                 ====================================================== */}
 
-                <header className="mb-24 max-w-6xl">
+                                <section
+                    aria-label="Recalibration hero image"
+                    className="relative left-1/2 -ml-[50vw] mb-16 w-screen"
+                >
+                    <div className="relative aspect-video min-h-[260px] max-h-[650px] w-screen overflow-hidden bg-[#050914]">
+                        <Image
+                            src="/images/Recalibration.jpg"
+                            alt="NomadLifeXP Somatic Recalibration"
+                            fill
+                            priority
+                            sizes="100vw"
+                            className="object-cover object-center"
+                        />
+                    </div>
+                </section>
+<header className="mb-24 max-w-6xl">
 
                     <div className="mb-6 flex items-center gap-3">
                         <span

@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 
 type PillarHeroProps = {
   image: string;
@@ -10,12 +10,15 @@ type PillarHeroProps = {
 
 export default function PillarHero({
   image,
+  imageWidth,
+  imageHeight,
   title,
   subtitle,
 }: PillarHeroProps) {
   return (
     <section className="relative isolate flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-black text-white">
 
+      {/* Full-screen blurred background */}
       <Image
         src={image}
         alt=""
@@ -23,21 +26,40 @@ export default function PillarHero({
         priority
         sizes="100vw"
         quality={90}
-        className="object-cover object-center"
+        className="scale-110 object-cover object-center opacity-40 blur-2xl"
       />
 
-      <div aria-hidden="true" className="absolute inset-0 bg-black/35" />
+      {/* Main image - preserve original artwork */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Image
+          src={image}
+          alt=""
+          width={imageWidth}
+          height={imageHeight}
+          priority
+          sizes="(max-width: 768px) 100vw, 85vw"
+          quality={90}
+          className="h-full w-full object-cover object-center"
+        />
+      </div>
+
+      {/* Contrast overlays */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-black/30"
+      />
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/75"
+        className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-black/80"
       />
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/25"
+        className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"
       />
 
+      {/* Hero content */}
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-6 py-32 text-center">
 
         <p className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.4em] text-cyan-300">

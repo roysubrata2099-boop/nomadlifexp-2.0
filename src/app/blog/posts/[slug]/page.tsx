@@ -64,6 +64,29 @@ function safeImage(value: unknown): string {
 
     return image;
 }
+function toSchemaDate(value: unknown): string | undefined {
+    if (typeof value !== "string") {
+        return undefined;
+    }
+
+    const normalized = value.trim();
+
+    if (!normalized) {
+        return undefined;
+    }
+
+    const dateValue = /^\d{4}-\d{2}-\d{2}$/.test(normalized)
+        ? `${normalized}T00:00:00+00:00`
+        : normalized;
+
+    const timestamp = Date.parse(dateValue);
+
+    if (Number.isNaN(timestamp)) {
+        return undefined;
+    }
+
+    return new Date(timestamp).toISOString();
+}
 
 function absoluteUrl(pathname: string): string {
     const normalizedPath =
@@ -279,14 +302,15 @@ export default async function MDXPostPage(
         "@id": `${articleUrl}#article`,
         headline: title,
 
-        datePublished:
-            post.publishedAt || post.date || undefined,
+        datePublished: toSchemaDate(
+            post.publishedAt || post.date
+        ),
 
-        dateModified:
+        dateModified: toSchemaDate(
             post.updatedAt ||
             post.publishedAt ||
-            post.date ||
-            undefined,
+            post.date
+        ),
         description: description || undefined,
 
         image: image

@@ -46,7 +46,7 @@ const systems = [
     {
         number: "04",
         name: "Yoga",
-        href: "/blog/category/yoga",
+        href: "/yoga",
         description:
             "Movement, mobility, breathing, balance, body awareness, recovery, and mind-body connection.",
     },
@@ -115,7 +115,7 @@ const categories = [
     },
     {
         name: "Yoga Articles",
-        href: "/blog/category/yoga",
+        href: "/yoga",
     },
     {
         name: "Mindset Articles",

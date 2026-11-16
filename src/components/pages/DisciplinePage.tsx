@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 import PillarHero from "@/components/PillarHero";
 
 import { getAllPosts } from "@/lib/markdown";
@@ -946,7 +946,7 @@ export default function DisciplinePage() {
                         </Link>
 
                         <Link
-                            href="/blog/category/yoga"
+                            href="/yoga"
                             className="block border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 transition-colors hover:border-cyan-500"
                         >
                             <span className="mb-1 block font-bold text-white">

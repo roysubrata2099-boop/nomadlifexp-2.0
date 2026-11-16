@@ -101,7 +101,7 @@ const SYSTEMS_LIST: readonly SystemDetail[] = [
       "Yoga complements physical training by helping you move with greater awareness while supporting recovery, flexibility, balance, and the connection between body and mind. The goal is not simply to perform poses. It is to become more aware of how you move, breathe, recover, and respond to your physical state.",
     primaryOutcome:
       "Better movement. Better recovery. Greater mind and body connection.",
-    href: "/blog/category/yoga",
+    href: "/yoga",
   },
   {
     number: "04",
@@ -203,7 +203,7 @@ const KNOWLEDGE_CATEGORIES: readonly KnowledgeCard[] = [
     focus: "Movement • Breath • Mobility",
     description:
       "Explore yoga, mobility, breathing, body awareness, balance, recovery, and mindful movement.",
-    href: "/blog/category/yoga",
+    href: "/yoga",
   },
   {
     title: "MINDSET",

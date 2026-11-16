@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 import PillarHero from "@/components/PillarHero";
 
 import { getAllPosts } from "@/lib/markdown";
@@ -780,7 +780,7 @@ export default function MindsetPage() {
                             </Link>
                             , and{" "}
                             <Link
-                                href="/blog/category/yoga"
+                                href="/yoga"
                                 className="text-cyan-400 hover:text-white transition-colors"
                             >
                                 Yoga
@@ -1333,7 +1333,7 @@ export default function MindsetPage() {
                                 </Link>
 
                                 <Link
-                                    href="/blog/category/yoga"
+                                    href="/yoga"
                                     className="border border-neutral-800 bg-neutral-950 p-3 text-center hover:border-cyan-500 transition-colors"
                                 >
                                     <span className="block font-bold text-white mb-1">
@@ -1400,7 +1400,7 @@ export default function MindsetPage() {
                             </Link>
 
                             <Link
-                                href="/blog/category/yoga"
+                                href="/yoga"
                                 className="border border-neutral-900 bg-neutral-950 p-6 text-neutral-300 hover:border-cyan-500 transition-colors block"
                             >
                                 <span className="block text-white font-bold mb-1">

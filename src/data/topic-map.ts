@@ -1,4 +1,4 @@
-export const topicMap = {
+﻿export const topicMap = {
     digitalNomadLifestyle: {
         hub: "/digital-nomads",
         relatedTopics: [
@@ -56,7 +56,7 @@ export const topicMap = {
     yoga: {
         hub: "/yoga",
         guide: "/yoga/yoga-for-digital-nomads",
-        category: "/blog/category/yoga",
+        category: "/yoga",
         relatedTopics: [
             "digitalNomadLifestyle",
             "fitness",

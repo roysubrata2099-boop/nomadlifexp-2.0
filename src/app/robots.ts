@@ -1,6 +1,5 @@
 ﻿import type { MetadataRoute } from "next";
-
-const CANONICAL_SITE_URL = "https://www.nomadlifexp.com";
+import { SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
     return {
@@ -13,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
                 "/private/",
             ],
         },
-        sitemap: `${CANONICAL_SITE_URL}/sitemap.xml`,
+        sitemap: `${SITE_URL}/sitemap.xml`,
     };
 }

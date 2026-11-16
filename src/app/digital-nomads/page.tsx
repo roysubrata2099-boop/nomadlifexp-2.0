@@ -84,7 +84,7 @@ const pillars = [
         heading: 'Digital Nomad Yoga',
         description:
             'Use movement, breath, mobility, and awareness to support recovery and physical balance through flights, changing schedules, and life on the road.',
-        href: '/blog/category/yoga/',
+        href: '/yoga',
         cta: 'EXPLORE NOMAD YOGA →',
     },
     {
@@ -159,7 +159,7 @@ const resources = [
         title: 'Build mobility and awareness',
         description:
             'Breath, movement, recovery, flexibility, and body awareness on the road.',
-        href: '/blog/category/yoga/',
+        href: '/yoga',
     },
     {
         label: 'MINDSET',

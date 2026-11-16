@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import FitnessPage from "@/components/pages/FitnessPage";
 import DisciplinePage from "@/components/pages/DisciplinePage";
@@ -47,19 +47,19 @@ export async function generateMetadata(
 
     const seo: Record<string, { title: string; description: string }> = {
         yoga: {
-            title: "Yoga for Flexibility, Focus & Mind-Body Awareness | NomadLifeXP",
+            title: "Yoga for Flexibility, Focus & Mind-Body Awareness",
             description: "Explore yoga for flexibility, mobility, breath awareness, mental focus, and mind-body connection with practical guides from NomadLifeXP.",
         },
         fitness: {
-            title: "Fitness, Strength & Physical Wellness | NomadLifeXP",
+            title: "Fitness, Strength & Physical Wellness",
             description: "Explore fitness guides on strength, conditioning, mobility, recovery, and building sustainable physical habits with NomadLifeXP.",
         },
         discipline: {
-            title: "Discipline, Consistency & Better Habits | NomadLifeXP",
+            title: "Discipline, Consistency & Better Habits",
             description: "Explore practical guides to discipline, consistency, habit formation, and building routines that support long-term personal growth.",
         },
         mindset: {
-            title: "Mindset, Mental Clarity & Personal Growth | NomadLifeXP",
+            title: "Mindset, Mental Clarity & Personal Growth",
             description: "Explore mindset guides on mental clarity, resilience, focus, self-awareness, and practical personal development with NomadLifeXP.",
         },
     };
@@ -143,3 +143,4 @@ export default async function CategoryPage(
 
     }
 }
+

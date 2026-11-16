@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import BreadcrumbJsonLd from "@/components/SEO/BreadcrumbJsonLd";
 import Link from "next/link";
 
@@ -99,7 +99,7 @@ const DEPLOYMENT_STEPS: readonly DeploymentStep[] = [
         subtitle: "Yoga, Mobility & Mind-Body Balance System",
         description:
             "Reconnect your body and mind through movement, flexibility, breathing, and recovery practices.",
-        route: "/blog/category/yoga",
+        route: "/yoga",
         linkTitle: "Access the systematic functional yoga mobility routine blueprint",
         highlights: [
             "Mobility",

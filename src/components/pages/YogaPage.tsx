@@ -49,14 +49,14 @@ interface SystemPost {
  * - yoga for travelers and digital nomads
  */
 export const metadata: Metadata = {
-    title: "Yoga for Flexibility, Focus & Mind-Body Awareness | NomadLifeXP",
+    title: "Yoga for Flexibility, Focus & Mind-Body Awareness",
     description:
         "Explore yoga for beginners, flexibility, mobility, focus, mental clarity, breath awareness, stress regulation, and mind-body connection with the NomadLifeXP Yoga System.",
     alternates: {
         canonical: PAGE_URL,
     },
     openGraph: {
-        title: "Yoga for Flexibility, Focus & Mind-Body Awareness | NomadLifeXP",
+        title: "Yoga for Flexibility, Focus & Mind-Body Awareness",
         description:
             "Explore yoga for beginners, flexibility, mobility, focus, mental clarity, breath awareness, stress regulation, and mind-body connection with the NomadLifeXP Yoga System.",
         url: PAGE_URL,

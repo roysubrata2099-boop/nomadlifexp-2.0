@@ -1,119 +1,124 @@
-{
-  "redirects": [
-    {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/blog.html",
-      "destination": "/blog",
-      "permanent": true
-    },
-    {
-      "source": "/fitness-consistency.html",
-      "destination": "/blog/posts/passive-fitness-consumption-trap",
-      "permanent": true
-    },
-    {
-      "source": "/attention-span.html",
-      "destination": "/blog/posts/rebuild-your-attention-span",
-      "permanent": true
-    },
-    {
-      "source": "/cant-focus.html",
-      "destination": "/blog/posts/why-you-cannot-focus-overload",
-      "permanent": true
-    },
-    {
-      "source": "/discipline-blog.html",
-      "destination": "/blog",
-      "permanent": true
-    },
-    {
-      "source": "/discipline-creates-freedom.html",
-      "destination": "/blog/posts/discipline-creates-freedom",
-      "permanent": true
-    },
-    {
-      "source": "/fitness-is-not-about-time.html",
-      "destination": "/blog/posts/fitness-is-not-about-time",
-      "permanent": true
-    },
-    {
-      "source": "/forearm-stand.html",
-      "destination": "/blog/posts/forearm-stand-yoga-focus-confidence",
-      "permanent": true
-    },
-    {
-      "source": "/forward-bending.html",
-      "destination": "/blog/posts/forward-bending-yoga-stress-relief",
-      "permanent": true
-    },
-    {
-      "source": "/headstand.html",
-      "destination": "/blog/posts/headstand-benefits-body-mind-safety",
-      "permanent": true
-    },
-    {
-      "source": "/mental-clarity.html",
-      "destination": "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
-      "permanent": true
-    },
-    {
-      "source": "/self-discipline-guide.html",
-      "destination": "/blog/posts/self-discipline-comprehensive-guide",
-      "permanent": true
-    },
-    {
-      "source": "/stop-procrastination.html",
-      "destination": "/blog/posts/why-you-procrastinate-how-to-stop",
-      "permanent": true
-    },
-    {
-      "source": "/stuck-in-life.html",
-      "destination": "/blog/posts/you-are-not-stuck-in-life",
-      "permanent": true
-    },
-    {
-      "source": "/blog/posts/stop-procrastination",
-      "destination": "/blog/posts/why-you-procrastinate-how-to-stop",
-      "permanent": true
-    },
-    {
-      "source": "/blog/posts/mental-clarity-how-to-stop-overthinking-and-improve-focus",
-      "destination": "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
-      "permanent": true
-    },
-    {
-      "source": "/blog/posts/mental-clarity-stop-overthinking",
-      "destination": "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
-      "permanent": true
-    },
-    {
-      "source": "/blog/posts/cant-focus-even-if-you-try",
-      "destination": "/blog/posts/why-you-cannot-focus-overload",
-      "permanent": true
-    },
-    {
-      "source": "/blog/posts/can-you-rebuild-your-attention-span-after-years-of-digital-distraction",
-      "destination": "/blog/posts/rebuild-your-attention-span",
-      "permanent": true
-    },
-    {
-      "source": "/blog/posts/the-reason-you-cant-focus-even-when-you-try-hard",
-      "destination": "/blog/posts/why-you-cannot-focus-overload",
-      "permanent": true
-    },
-    {
-      "source": "/insights/rebuild-attention-span-digital-distraction",
-      "destination": "/blog/posts/rebuild-your-attention-span",
-      "permanent": true
-    },
-    {
-      "source": "/insights/stop-procrastination-permanently",
-      "destination": "/blog/posts/why-you-procrastinate-how-to-stop",
-      "permanent": true
-    }
-  ]
+﻿{
+    "redirects":  [
+                      {
+                          "source":  "/index.html",
+                          "destination":  "/",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog.html",
+                          "destination":  "/blog",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/fitness-consistency.html",
+                          "destination":  "/blog/posts/passive-fitness-consumption-trap",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/attention-span.html",
+                          "destination":  "/blog/posts/rebuild-your-attention-span",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/cant-focus.html",
+                          "destination":  "/blog/posts/why-you-cannot-focus-overload",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/discipline-blog.html",
+                          "destination":  "/blog",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/discipline-creates-freedom.html",
+                          "destination":  "/blog/posts/discipline-creates-freedom",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/fitness-is-not-about-time.html",
+                          "destination":  "/blog/posts/fitness-is-not-about-time",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/forearm-stand.html",
+                          "destination":  "/blog/posts/forearm-stand-yoga-focus-confidence",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/forward-bending.html",
+                          "destination":  "/blog/posts/forward-bending-yoga-stress-relief",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/headstand.html",
+                          "destination":  "/blog/posts/headstand-benefits-body-mind-safety",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/mental-clarity.html",
+                          "destination":  "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/self-discipline-guide.html",
+                          "destination":  "/blog/posts/self-discipline-comprehensive-guide",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/stop-procrastination.html",
+                          "destination":  "/blog/posts/why-you-procrastinate-how-to-stop",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/stuck-in-life.html",
+                          "destination":  "/blog/posts/you-are-not-stuck-in-life",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog/posts/stop-procrastination",
+                          "destination":  "/blog/posts/why-you-procrastinate-how-to-stop",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog/posts/mental-clarity-how-to-stop-overthinking-and-improve-focus",
+                          "destination":  "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog/posts/mental-clarity-stop-overthinking",
+                          "destination":  "/blog/posts/mental-clarity-stop-overthinking-and-regain-focus",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog/posts/cant-focus-even-if-you-try",
+                          "destination":  "/blog/posts/why-you-cannot-focus-overload",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog/posts/can-you-rebuild-your-attention-span-after-years-of-digital-distraction",
+                          "destination":  "/blog/posts/rebuild-your-attention-span",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog/posts/the-reason-you-cant-focus-even-when-you-try-hard",
+                          "destination":  "/blog/posts/why-you-cannot-focus-overload",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/insights/rebuild-attention-span-digital-distraction",
+                          "destination":  "/blog/posts/rebuild-your-attention-span",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/insights/stop-procrastination-permanently",
+                          "destination":  "/blog/posts/why-you-procrastinate-how-to-stop",
+                          "permanent":  true
+                      },
+                      {
+                          "source":  "/blog/category/yoga",
+                          "destination":  "/yoga",
+                          "permanent":  true
+                      }
+                  ]
 }

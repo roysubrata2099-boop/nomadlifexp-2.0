@@ -1,4 +1,4 @@
-﻿import fs from "fs";
+import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
@@ -84,6 +84,7 @@ function buildPosts() {
         return {
             slug: file.replace(/\.mdx$/, ""),
             title: data.title || "Untitled",
+            seoTitle: data.seoTitle || data.title || "Untitled",
             description: data.description || protectedContent.slice(0, 140),
             category: data.category || "uncategorized",
             image: typeof data.image === "string" ? data.image.trim() : "",

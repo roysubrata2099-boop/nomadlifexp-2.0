@@ -86,6 +86,10 @@ function buildPosts() {
             title: data.title || "Untitled",
             description: data.description || protectedContent.slice(0, 140),
             category: data.category || "uncategorized",
+            image: typeof data.image === "string" ? data.image.trim() : "",
+            author: typeof data.author === "string" && data.author.trim()
+                ? data.author.trim()
+                : "NomadLifeXP Editorial Team",
             pillar: data.pillar || data.category || "general",
             keywords: data.keywords || [],
             relatedArticles: Array.isArray(data.relatedArticles)
@@ -113,4 +117,6 @@ function buildPosts() {
 }
 
 buildPosts();
+
+
 

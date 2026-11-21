@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 import PillarHero from "@/components/PillarHero";
 
 import { getAllPosts } from "@/lib/markdown";
@@ -197,7 +197,7 @@ export default function MindsetPage() {
                 "Learn how to rebuild your attention span, develop deeper focus, and protect your ability to concentrate in an environment designed to constantly interrupt you.",
 
             slug:
-                "can-you-rebuild-your-attention-span-after-years-of-digital-distraction",
+                "rebuild-your-attention-span",
 
             step: "STEP 02",
             subtitle: "ATTENTION REBUILDING",
@@ -211,7 +211,7 @@ export default function MindsetPage() {
                 "Understand mental overload, attention fragmentation, distraction, and hidden cognitive barriers that can make sustained focus difficult.",
 
             slug:
-                "the-reason-you-cant-focus-even-when-you-try-hard",
+                "why-you-cannot-focus-overload",
 
             step: "STEP 03",
             subtitle: "COGNITIVE DIAGNOSIS",
@@ -951,7 +951,7 @@ export default function MindsetPage() {
                         </Link>
 
                         <Link
-                            href="/blog/posts/can-you-rebuild-your-attention-span-after-years-of-digital-distraction"
+                            href="/blog/posts/rebuild-your-attention-span"
                             className="border border-neutral-800 bg-neutral-950 p-7 hover:border-cyan-500 transition-colors"
                         >
                             <span className="font-mono text-xs text-cyan-400">
@@ -974,7 +974,7 @@ export default function MindsetPage() {
                         </Link>
 
                         <Link
-                            href="/blog/posts/the-reason-you-cant-focus-even-when-you-try-hard"
+                            href="/blog/posts/why-you-cannot-focus-overload"
                             className="border border-neutral-800 bg-neutral-950 p-7 hover:border-cyan-500 transition-colors"
                         >
                             <span className="font-mono text-xs text-cyan-400">

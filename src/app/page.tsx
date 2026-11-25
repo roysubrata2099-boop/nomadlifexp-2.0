@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Discipline, Fitness, Yoga & Mindset for Personal Growth",
   description:
     "NomadLifeXP is a practical personal development platform for building discipline, fitness, yoga, mindset, habits, and intentional living.",
+
   keywords: [
     "discipline",
     "fitness",
@@ -18,6 +19,48 @@ export const metadata: Metadata = {
     "personal development",
     "intentional living",
   ],
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "https://www.nomadlifexp.com/",
+    title: "Discipline, Fitness, Yoga & Mindset for Personal Growth",
+    description:
+      "Build discipline, improve fitness, practice yoga, strengthen your mindset, and develop habits for intentional living with NomadLifeXP.",
+    siteName: "NomadLifeXP",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/hero.webp",
+        width: 1200,
+        height: 630,
+        alt: "NomadLifeXP - Human Optimization Platform",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Discipline, Fitness, Yoga & Mindset for Personal Growth",
+    description:
+      "Build discipline, improve fitness, practice yoga, strengthen your mindset, and develop habits for intentional living.",
+    images: ["/images/hero.webp"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 interface NavItem {

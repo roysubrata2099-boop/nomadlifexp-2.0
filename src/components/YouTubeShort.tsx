@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 interface YouTubeShortProps {
@@ -35,10 +36,13 @@ export default function YouTubeShort({
                         aria-label={`Play video: ${title}`}
                         className="group absolute inset-0 flex h-full w-full items-center justify-center bg-black"
                     >
-                        <img
+                        <Image
                             src={thumbnail}
                             alt=""
-                            className="absolute inset-0 h-full w-full object-cover"
+                            fill
+                            unoptimized
+                            sizes="(max-width: 400px) 100vw, 400px"
+                            className="object-cover"
                         />
 
                         <span className="absolute inset-0 bg-black/20 transition group-hover:bg-black/35" />

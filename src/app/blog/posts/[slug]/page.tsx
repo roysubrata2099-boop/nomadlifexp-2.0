@@ -301,7 +301,7 @@ export default async function MDXPostPage(
         "@type": "Article",
         "@id": `${articleUrl}#article`,
         headline: title,
-
+        inLanguage: "en",
         datePublished: toSchemaDate(
             post.publishedAt || post.date
         ),

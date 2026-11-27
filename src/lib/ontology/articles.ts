@@ -1,4 +1,4 @@
-// src/lib/ontology/articles.ts
+﻿// src/lib/ontology/articles.ts
 
 export type ArticlePillar =
     | "discipline"
@@ -632,4 +632,32 @@ export const articleOntology: Record<
         ],
     },
 
+    "swimming-for-digital-nomads": {
+        id: "swimming-for-digital-nomads",
+
+        slug: "swimming-for-digital-nomads",
+
+        title: "Swimming for Digital Nomads: How to Stay Fit While Traveling",
+
+        primaryPillar: "fitness",
+
+        contexts: [
+            "digital-nomad",
+        ],
+
+        entities: [
+            "fitness",
+            "digital-nomad",
+            "confidence",
+            "body-awareness",
+        ],
+
+        relatedArticles: [
+            "fitness-for-digital-nomads",
+            "build-workout-habit-outlast-motivation",
+            "consistency-myth-showing-up-beats-perfect",
+            "yoga-for-digital-nomads",
+        ],
+    },
 };
+

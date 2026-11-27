@@ -6,7 +6,7 @@
     "scripts": {
         "audit:content": "node scripts/audit-markdown.js",
         "build:content": "node src/scripts/build-posts.mjs",
-        "verify:ontology": "node verify-ontology.cjs",
+        "verify:ontology": "node --import tsx src/scripts/audit-ontology.ts",
         "check:encoding": "node scripts/check-text-encoding.mjs",
         "fix:encoding": "node scripts/fix-text-encoding.mjs",
         "dev": "npm run build:content && npm run audit:content && npm run verify:ontology && next dev",

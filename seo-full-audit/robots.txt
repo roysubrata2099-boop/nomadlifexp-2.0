@@ -1,0 +1,8 @@
+﻿User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://www.nomadlifexp.com/sitemap.xml
+

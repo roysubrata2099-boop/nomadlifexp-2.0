@@ -55,6 +55,13 @@ function slugify(value: unknown): string {
         .replace(/^-+|-+$/g, "");
 }
 
+function normalizeTitle(value: string): string {
+    return value
+        .normalize("NFKC")
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]/gu, "");
+}
+
 function safeImage(value: unknown): string {
     if (typeof value !== "string") {
         return "";
@@ -85,6 +92,7 @@ function normalizePosts(): SafePost[] {
         }
 
         const seen = new Set<string>();
+        const seenTitles = new Set<string>();
 
         return raw
             .map((post): SafePost | null => {
@@ -96,11 +104,19 @@ function normalizePosts(): SafePost[] {
                 const rawSlug = safeText(record.slug, title);
                 const slug = slugify(rawSlug);
 
-                if (!slug || seen.has(slug)) {
+                const normalizedTitle = normalizeTitle(title);
+
+                if (
+                    !slug ||
+                    seen.has(slug) ||
+                    !normalizedTitle ||
+                    seenTitles.has(normalizedTitle)
+                ) {
                     return null;
                 }
 
                 seen.add(slug);
+                seenTitles.add(normalizedTitle);
 
                 const categoryRaw = safeText(record.category, "general");
 
@@ -149,9 +165,18 @@ export default function BlogV2Page() {
 
     let featuredPosts: SafePost[] = [];
     try {
+        const featuredSeen = new Set<string>();
+
         featuredPosts = featuredTitles
             .map((keywords) => findPostByKeywords(keywords))
-            .filter((p): p is SafePost => p !== undefined && p !== null);
+            .filter((p): p is SafePost => {
+                if (!p || !p.slug || featuredSeen.has(p.slug)) {
+                    return false;
+                }
+
+                featuredSeen.add(p.slug);
+                return true;
+            });
     } catch {
         featuredPosts = [];
     }

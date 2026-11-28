@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -98,7 +98,7 @@ function normalizePosts(): SafePost[] {
             .map((post): SafePost | null => {
                 if (!post || typeof post !== "object") return null;
 
-                const record = post as Record<string, unknown>;
+                const record = post;
 
                 const title = safeText(record.title, "Untitled Knowledge Node");
                 const rawSlug = safeText(record.slug, title);
@@ -456,5 +456,6 @@ export default function BlogV2Page() {
         </div>
     );
 }
+
 
 
